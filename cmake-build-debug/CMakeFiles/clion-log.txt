@@ -1,4 +1,4 @@
-/home/useralef/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.6777.58/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/useralef/Documents/uminho/computacaoGrafica/proj-phase1
+/home/useralef/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.6777.58/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/useralef/Documents/uminho/computacaoGrafica/proj
 -- The C compiler identification is GNU 11.2.0
 -- The CXX compiler identification is GNU 11.2.0
 -- Detecting C compiler ABI info
@@ -35,4 +35,4 @@ This warning is for project developers.  Use -Wno-dev to suppress it.
 -- Found GLUT: /usr/lib/libglut.so  
 -- Configuring done
 -- Generating done
--- Build files have been written to: /home/useralef/Documents/uminho/computacaoGrafica/proj-phase1/cmake-build-debug
+-- Build files have been written to: /home/useralef/Documents/uminho/computacaoGrafica/proj/cmake-build-debug
