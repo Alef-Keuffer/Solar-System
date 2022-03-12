@@ -1,0 +1,3 @@
+/home/useralef/Documents/uminho/computacaoGrafica/proj-phase1/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/useralef/Documents/uminho/computacaoGrafica/proj-phase1/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/useralef/Documents/uminho/computacaoGrafica/proj-phase1/cmake-build-debug/CMakeFiles/class2.dir
