@@ -11,18 +11,18 @@
 #define CONE "cone"
 #define PLANE "plane"
 
-void points_vertex(float x, float y, float z, unsigned int *pos, float points[]) {
+void points_vertex(const float x, const float y, const float z, unsigned int *pos, float points[]) {
     points[*pos] = x;
     points[*pos + 1] = y;
     points[*pos + 2] = z;
     *pos += 3;
 }
 
-void points_write(const char *filename, const unsigned int nVertices, float points[]) {
+void points_write(const char *filename, const unsigned int nVertices, const float points[]) {
     FILE *fp = fopen(filename, "w");
     if (!fp) {
         fprintf(stderr, "failed to open file");
-        exit(-1);
+        exit(1);
     }
 
     fwrite(&nVertices, sizeof(unsigned int), 1, fp);
@@ -31,9 +31,9 @@ void points_write(const char *filename, const unsigned int nVertices, float poin
     fclose(fp);
 }
 
-void model_plane_vertices(float length, unsigned int divisions, float *points) {
-    float o = -length / 2.0f;
-    float d = length / (float) divisions;
+void model_plane_vertices(const float length, const unsigned int divisions, float *points) {
+    const float o = -length / 2.0f;
+    const float d = length / (float) divisions;
 
     unsigned int pos = 0;
 
@@ -72,13 +72,13 @@ void model_plane_write(const char *filepath, const float length, const unsigned 
 }
 
 void model_cube_vertices(const float length, const unsigned int divisions, float points[]) {
-    float o = -length / 2.0f;
-    float d = length / (float) divisions;
+    const float o = -length / 2.0f;
+    const float d = length / (float) divisions;
 
     unsigned int pos = 0;
 
-    for (int m = 1; m <= divisions; m++) {
-        for (int n = 1; n <= divisions; n++) {
+    for (unsigned int m = 1; m <= divisions; m++) {
+        for (unsigned int n = 1; n <= divisions; n++) {
             float i = (float) m;
             float j = (float) n;
 
@@ -148,7 +148,9 @@ void model_cube_write(const char *filepath, const float length, const unsigned i
     points_write(filepath, nVertices, points);
 }
 
-static inline void model_cone_vertex(float r, float height, float theta, float h, unsigned int *pos, float *points) {
+static inline void
+model_cone_vertex(const float r, const float height, const float theta, const float h, unsigned int *pos,
+                  float *points) {
     points_vertex(r * h * cos(theta), 2 * (height + h), r * h * sin(theta), pos, points);
 }
 
@@ -156,15 +158,15 @@ void model_cone_vertices(const float r, const float height, const unsigned int s
                          float points[]) {
     // https://www.math3d.org/5gLCN9yBz
 
-    float s = 2.0f * (float) M_PI / (float) slices;
-    float t = height / (float) stacks;
-    float theta = -M_PI;
-    float h = -height;
+    const float s = 2.0f * (float) M_PI / (float) slices;
+    const float t = height / (float) stacks;
+    const float theta = -M_PI;
+    const float h = -height;
 
     unsigned int pos = 0;
 
-    for (int m = 1; m <= slices; m++) {
-        for (int n = 1; n <= stacks; n++) {
+    for (unsigned int m = 1; m <= slices; m++) {
+        for (unsigned int n = 1; n <= stacks; n++) {
             float i = (float) m;
             float j = (float) n;
 
@@ -190,30 +192,31 @@ static inline unsigned int model_cone_nVertices(const unsigned int stacks, const
 
 void model_cone_write(const char *filepath, const float radius, const float height, const unsigned int slices,
                       const unsigned int stacks) {
-    unsigned int nVertices = model_cone_nVertices(stacks, slices);
+    const unsigned int nVertices = model_cone_nVertices(stacks, slices);
     float points[3 * nVertices];
     model_cone_vertices(radius, height, slices, stacks, points);
     points_write(filepath, nVertices, points);
 }
 
 
-static inline void model_sphere_vertex(float r, float theta, float phi, unsigned int *pos, float *points) {
+static inline void
+model_sphere_vertex(const float r, const float theta, const float phi, unsigned int *pos, float *points) {
     points_vertex(r * sin(theta) * cos(phi), r * sin(phi), r * cos(theta) * cos(phi), pos, points);
 }
 
-static void model_sphere_vertices(float r, unsigned int slices, unsigned int stacks, float points[]) {
+static void model_sphere_vertices(const float r, const unsigned int slices, const unsigned int stacks, float points[]) {
     // https://www.math3d.org/EumEEZBKe
     // https://www.math3d.org/zE4n6xayX
 
-    float s = 2.0f * (float) M_PI / (float) slices;
-    float t = M_PI / (float) stacks;
-    float theta = -M_PI;
-    float phi = -M_PI / 2.0f;
+    const float s = 2.0f * (float) M_PI / (float) slices;
+    const float t = M_PI / (float) stacks;
+    const float theta = -M_PI;
+    const float phi = -M_PI / 2.0f;
 
     unsigned int pos = 0;
 
-    for (int m = 1; m <= slices; m++) {
-        for (int n = 1; n <= stacks; n++) {
+    for (unsigned int m = 1; m <= slices; m++) {
+        for (unsigned int n = 1; n <= stacks; n++) {
             float i = (float) m;
             float j = (float) n;
 

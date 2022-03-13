@@ -84,10 +84,10 @@ Model allocModel(const char *path) {
     return model;
 }
 
-void renderModel(Model model) {
+void renderModel(const Model model) {
     if (!model->nVertices % 3) {
         fprintf(stderr, "Number of coordinates is not divisible by 3");
-        exit(-1);
+        exit(1);
     }
     glBegin(GL_TRIANGLES);
     for (unsigned int i = 0; i < 3 * model->nVertices; i += 3)
