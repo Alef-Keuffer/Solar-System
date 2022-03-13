@@ -11,35 +11,148 @@
 #define CONE "cone"
 #define PLANE "plane"
 
-static FILE *globalFD;
+void points_vertex(float x, float y, float z, float *points) {
+    points[0] = x;
+    points[1] = y;
+    points[2] = z;
+}
 
-void render3d(const char *path) {
-    FILE *fp;
-    float p[3];
-    fp = fopen(path, "r");
+void points_write(const char *filename, const unsigned int nFloats, float points[]) {
+    FILE *fp = fopen(filename, "w");
+    if (!fp) {
+        fprintf(stderr, "failed to open file");
+        exit(-1);
+    }
 
-    // float *q = malloc(sizeof(float));
+    fwrite(&nFloats, sizeof(unsigned int), 1, fp);
 
-    while (fread(p, sizeof(float), 3, fp))
-        printf("%f %f %f\n", p[0], p[1], p[2]);
+    fwrite(points, sizeof(float), nFloats, fp);
     fclose(fp);
 }
 
-void writeVertex(float x, float y, float z) {
-    /*writes vertex (x,y,z) to globalFD*/
-    float p[3] = {x, y, z};
-    fwrite(p, sizeof(float), 3, globalFD);
+void model_plane_vertices(float length, unsigned int divisions, float *points) {
+    float o = -length / 2.0f;
+    float d = length / (float) divisions;
+
+    unsigned int pos = 0;
+
+    for (int m = 1; m <= divisions; m++) {
+        for (int n = 1; n <= divisions; n++) {
+            float i = (float) m;
+            float j = (float) n;
+
+            points_vertex(o + d * (i - 1), 0, o + d * (j - 1), points + (pos += 3)); //P1
+            points_vertex(o + d * (i - 1), 0, o + d * j, points + (pos += 3)); //P1'z
+            points_vertex(o + d * i, 0, o + d * (j - 1), points + (pos += 3)); //P1'x
+
+            points_vertex(o + d * i, 0, o + d * (j - 1), points + (pos += 3)); //P1'x
+            points_vertex(o + d * (i - 1), 0, o + d * j, points + (pos += 3)); //P1'z
+            points_vertex(o + d * i, 0, o + d * j, points + (pos += 3)); //P2
+
+            /*Cull face*/
+            points_vertex(o + d * (i - 1), 0, o + d * j, points + (pos += 3)); //P1'z
+            points_vertex(o + d * (i - 1), 0, o + d * (j - 1), points + (pos += 3)); //P1
+            points_vertex(o + d * i, 0, o + d * (j - 1), points + (pos += 3)); //P1'x
+
+            points_vertex(o + d * (i - 1), 0, o + d * j, points + (pos += 3)); //P1'z
+            points_vertex(o + d * i, 0, o + d * (j - 1), points + (pos += 3)); //P1'x
+            points_vertex(o + d * i, 0, o + d * j, points + (pos += 3)); //P2
+        }
+    }
 }
 
-void cylinderVertex(float radius, float height, float theta) {
-    writeVertex(radius * sin(theta), height, radius * cos(theta));
+static inline unsigned int model_plane_size(unsigned int divisions) { return divisions * divisions * 12 * 3 + 1; }
+
+void model_plane_write(const char *filepath, float length, unsigned int divisions) {
+    const unsigned int n = model_plane_size(divisions);
+    float points[n];
+    model_plane_vertices(length, divisions, points);
+    points_write(filepath, n, points);
 }
 
-void coneVertex(float r, float height, float theta, float h) {
-    writeVertex(r * h * cos(theta), 2 * (height + h), r * h * sin(theta));
+void model_cube_vertices(float length, unsigned int divisions, float points[]) {
+    float o = -length / 2.0f;
+    float d = length / (float) divisions;
+
+    unsigned int pos = 0;
+
+    for (int m = 1; m <= divisions; m++) {
+        for (int n = 1; n <= divisions; n++) {
+            float i = (float) m;
+            float j = (float) n;
+
+            // top
+            points_vertex(o + d * (i - 1), -o, o + d * (j - 1), points + (pos += 3)); //P1
+            points_vertex(o + d * (i - 1), -o, o + d * j, points + (pos += 3)); //P1'z
+            points_vertex(o + d * i, -o, o + d * (j - 1), points + (pos += 3)); //P1'x
+
+            points_vertex(o + d * i, -o, o + d * (j - 1), points + (pos += 3)); //P1'x
+            points_vertex(o + d * (i - 1), -o, o + d * j, points + (pos += 3)); //P1'z
+            points_vertex(o + d * i, -o, o + d * j, points + (pos += 3)); //P2
+
+            // bottom
+            points_vertex(o + d * (i - 1), o, o + d * j, points + (pos += 3)); //P1'z
+            points_vertex(o + d * (i - 1), o, o + d * (j - 1), points + (pos += 3)); //P1
+            points_vertex(o + d * i, o, o + d * (j - 1), points + (pos += 3)); //P1'x
+
+            points_vertex(o + d * (i - 1), o, o + d * j, points + (pos += 3)); //P1'z
+            points_vertex(o + d * i, o, o + d * (j - 1), points + (pos += 3)); //P1'x
+            points_vertex(o + d * i, o, o + d * j, points + (pos += 3)); //P2
+
+            // left
+            points_vertex(o, o + d * (i - 1), o + d * (j - 1), points + (pos += 3)); //P1
+            points_vertex(o, o + d * (i - 1), o + d * j, points + (pos += 3)); //P1'z
+            points_vertex(o, o + d * i, o + d * (j - 1), points + (pos += 3)); //P1'x
+
+            points_vertex(o, o + d * i, o + d * (j - 1), points + (pos += 3)); //P1'x
+            points_vertex(o, o + d * (i - 1), o + d * j, points + (pos += 3)); //P1'z
+            points_vertex(o, o + d * i, o + d * j, points + (pos += 3)); //P2
+
+            // right
+            points_vertex(-o, o + d * (i - 1), o + d * j, points + (pos += 3)); //P1'z
+            points_vertex(-o, o + d * (i - 1), o + d * (j - 1), points + (pos += 3)); //P1
+            points_vertex(-o, o + d * i, o + d * (j - 1), points + (pos += 3)); //P1'x
+
+            points_vertex(-o, o + d * (i - 1), o + d * j, points + (pos += 3)); //P1'z
+            points_vertex(-o, o + d * i, o + d * (j - 1), points + (pos += 3)); //P1'x
+            points_vertex(-o, o + d * i, o + d * j, points + (pos += 3)); //P2
+
+            // front
+            points_vertex(o + d * (i - 1), o + d * (j - 1), o, points + (pos += 3)); //P1
+            points_vertex(o + d * (i - 1), o + d * j, o, points + (pos += 3)); //P1'z
+            points_vertex(o + d * i, o + d * (j - 1), o, points + (pos += 3)); //P1'x
+
+            points_vertex(o + d * i, o + d * (j - 1), o, points + (pos += 3)); //P1'x
+            points_vertex(o + d * (i - 1), o + d * j, o, points + (pos += 3)); //P1'z
+            points_vertex(o + d * i, o + d * j, o, points + (pos += 3)); //P2
+
+            // back
+            points_vertex(o + d * (i - 1), o + d * j, -o, points + (pos += 3)); //P1'z
+            points_vertex(o + d * (i - 1), o + d * (j - 1), -o, points + (pos += 3)); //P1
+            points_vertex(o + d * i, o + d * (j - 1), -o, points + (pos += 3)); //P1'x
+
+            points_vertex(o + d * (i - 1), o + d * j, -o, points + (pos += 3)); //P1'z
+            points_vertex(o + d * i, o + d * (j - 1), -o, points + (pos += 3)); //P1'x
+            points_vertex(o + d * i, o + d * j, -o, points + (pos += 3)); //P2
+        }
+    }
 }
 
-void drawCone(float r, float height, unsigned int slices, unsigned int stacks) {
+unsigned int model_cube_size(const unsigned int divisions) { return divisions * divisions * 36 * 3; }
+
+void model_cube_write(const char *filepath, const float length, const unsigned int divisions) {
+    const unsigned int n = divisions * divisions * 36 * 3;
+    float points[n];
+    model_cube_vertices(length, divisions, points);
+    points_write(filepath, n, points);
+}
+
+static inline void model_cone_vertex(float r, float height, float theta, float h, float *points) {
+    points_vertex(r * h * cos(theta), 2 * (height + h), r * h * sin(theta), points);
+}
+
+void model_cone_vertices(const float r, const float height, const unsigned int slices, const unsigned int stacks,
+                         float points[]) {
     // https://www.math3d.org/5gLCN9yBz
 
     float s = 2.0f * (float) M_PI / (float) slices;
@@ -47,8 +160,7 @@ void drawCone(float r, float height, unsigned int slices, unsigned int stacks) {
     float theta = -M_PI;
     float h = -height;
 
-    unsigned int nVertices = slices * stacks * 9;
-    fwrite(&nVertices, sizeof(unsigned int), 1, globalFD);
+    unsigned int pos = 0;
 
     for (int m = 1; m <= slices; m++) {
         for (int n = 1; n <= stacks; n++) {
@@ -56,26 +168,37 @@ void drawCone(float r, float height, unsigned int slices, unsigned int stacks) {
             float j = (float) n;
 
             //base
-            writeVertex(0, 0, 0); //O
-            coneVertex(r, height, theta + s * (i - 1), h); //P1
-            coneVertex(r, height, theta + s * i, h); //P2
+            points_vertex(0, 0, 0, points + (pos += 3)); //O
+            model_cone_vertex(r, height, theta + s * (i - 1), h, points + (pos += 3)); //P1
+            model_cone_vertex(r, height, theta + s * i, h, points + (pos += 3)); //P2
 
-            coneVertex(r, height, theta + s * i, h + t * (j - 1)); // P2
-            coneVertex(r, height, theta + s * (i - 1), h + t * j); // P1'
-            coneVertex(r, height, theta + s * i, h + t * j); //P2'
+            model_cone_vertex(r, height, theta + s * i, h + t * (j - 1), points + (pos += 3)); // P2
+            model_cone_vertex(r, height, theta + s * (i - 1), h + t * j, points + (pos += 3)); // P1'
+            model_cone_vertex(r, height, theta + s * i, h + t * j, points + (pos += 3)); //P2'
 
-            coneVertex(r, height, theta + s * i, h + t * (j - 1)); // P2
-            coneVertex(r, height, theta + s * (i - 1), h + t * (j - 1)); // P1
-            coneVertex(r, height, theta + s * (i - 1), h + t * j); // P1'
+            model_cone_vertex(r, height, theta + s * i, h + t * (j - 1), points + (pos += 3)); // P2
+            model_cone_vertex(r, height, theta + s * (i - 1), h + t * (j - 1), points + (pos += 3)); // P1
+            model_cone_vertex(r, height, theta + s * (i - 1), h + t * j, points + (pos += 3)); // P1'
         }
     }
 }
 
-void sphereVertex(float r, float theta, float phi) {
-    writeVertex(r * sin(theta) * cos(phi), r * sin(phi), r * cos(theta) * cos(phi));
+static inline unsigned int model_cone_size(unsigned int stacks, unsigned int slices) { return slices * stacks * 9; };
+
+void model_cone_write(const char *filepath, const float radius, const float height, const unsigned int slices,
+                      const unsigned int stacks) {
+    unsigned int n = model_cone_size(stacks, slices);
+    float points[n];
+    model_cone_vertices(radius, height, slices, stacks, points);
+    points_write(filepath, n, points);
 }
 
-void drawSphere(float r, unsigned int slices, unsigned int stacks) {
+
+static inline void model_sphere_vertex(float r, float theta, float phi, float *points) {
+    points_vertex(r * sin(theta) * cos(phi), r * sin(phi), r * cos(theta) * cos(phi), points);
+}
+
+static void model_sphere_vertices(float r, unsigned int slices, unsigned int stacks, float points[]) {
     // https://www.math3d.org/EumEEZBKe
     // https://www.math3d.org/zE4n6xayX
 
@@ -84,137 +207,45 @@ void drawSphere(float r, unsigned int slices, unsigned int stacks) {
     float theta = -M_PI;
     float phi = -M_PI / 2.0f;
 
-    unsigned int nVertices = slices * stacks * 6;
-    fwrite(&nVertices, sizeof(unsigned int), 1, globalFD);
+    unsigned int pos = 0;
 
     for (int m = 1; m <= slices; m++) {
         for (int n = 1; n <= stacks; n++) {
             float i = (float) m;
             float j = (float) n;
 
-            sphereVertex(r, theta + s * (i - 1), phi + t * j); // P1'
-            sphereVertex(r, theta + s * i, phi + t * (j - 1)); // P2
-            sphereVertex(r, theta + s * i, phi + t * j); //P2'
+            model_sphere_vertex(r, theta + s * (i - 1), phi + t * j, points + (pos += 3)); // P1'
+            model_sphere_vertex(r, theta + s * i, phi + t * (j - 1), points + (pos += 3)); // P2
+            model_sphere_vertex(r, theta + s * i, phi + t * j, points + (pos += 3)); //P2'
 
-            sphereVertex(r, theta + s * (i - 1), phi + t * (j - 1)); // P1
-            sphereVertex(r, theta + s * i, phi + t * (j - 1)); // P2
-            sphereVertex(r, theta + s * (i - 1), phi + t * j); // P1'
-        }
-    }
-
-}
-
-void drawPlane(float length, unsigned int divisions) {
-    float o = -length / 2.0f;
-    float d = length / (float) divisions;
-
-    unsigned int nVertices = divisions * divisions * 12;
-    fwrite(&nVertices, sizeof(unsigned int), 1, globalFD);
-
-    for (int m = 1; m <= divisions; m++) {
-        for (int n = 1; n <= divisions; n++) {
-            float i = (float) m;
-            float j = (float) n;
-
-            writeVertex(o + d * (i - 1), 0, o + d * (j - 1)); //P1
-            writeVertex(o + d * (i - 1), 0, o + d * j); //P1'z
-            writeVertex(o + d * i, 0, o + d * (j - 1)); //P1'x
-
-            writeVertex(o + d * i, 0, o + d * (j - 1)); //P1'x
-            writeVertex(o + d * (i - 1), 0, o + d * j); //P1'z
-            writeVertex(o + d * i, 0, o + d * j); //P2
-
-            /*Cull face*/
-            writeVertex(o + d * (i - 1), 0, o + d * j); //P1'z
-            writeVertex(o + d * (i - 1), 0, o + d * (j - 1)); //P1
-            writeVertex(o + d * i, 0, o + d * (j - 1)); //P1'x
-
-            writeVertex(o + d * (i - 1), 0, o + d * j); //P1'z
-            writeVertex(o + d * i, 0, o + d * (j - 1)); //P1'x
-            writeVertex(o + d * i, 0, o + d * j); //P2
+            model_sphere_vertex(r, theta + s * (i - 1), phi + t * (j - 1), points + (pos += 3)); // P1
+            model_sphere_vertex(r, theta + s * i, phi + t * (j - 1), points + (pos += 3)); // P2
+            model_sphere_vertex(r, theta + s * (i - 1), phi + t * j, points + (pos += 3)); // P1'
         }
     }
 }
 
-void drawCube(float length, unsigned int divisions) {
-    float o = -length / 2.0f;
-    float d = length / (float) divisions;
+static inline unsigned int model_sphere_size(unsigned int slices, unsigned int stacks) { return slices * stacks * 6; }
 
-    unsigned int nVertices = divisions * divisions * 36;
-    fwrite(&nVertices, sizeof(unsigned int), 1, globalFD);
-
-    for (int m = 1; m <= divisions; m++) {
-        for (int n = 1; n <= divisions; n++) {
-            float i = (float) m;
-            float j = (float) n;
-
-            // top
-            writeVertex(o + d * (i - 1), -o, o + d * (j - 1)); //P1
-            writeVertex(o + d * (i - 1), -o, o + d * j); //P1'z
-            writeVertex(o + d * i, -o, o + d * (j - 1)); //P1'x
-
-            writeVertex(o + d * i, -o, o + d * (j - 1)); //P1'x
-            writeVertex(o + d * (i - 1), -o, o + d * j); //P1'z
-            writeVertex(o + d * i, -o, o + d * j); //P2
-
-            // bottom
-            writeVertex(o + d * (i - 1), o, o + d * j); //P1'z
-            writeVertex(o + d * (i - 1), o, o + d * (j - 1)); //P1
-            writeVertex(o + d * i, o, o + d * (j - 1)); //P1'x
-
-            writeVertex(o + d * (i - 1), o, o + d * j); //P1'z
-            writeVertex(o + d * i, o, o + d * (j - 1)); //P1'x
-            writeVertex(o + d * i, o, o + d * j); //P2
-
-            // left
-            writeVertex(o, o + d * (i - 1), o + d * (j - 1)); //P1
-            writeVertex(o, o + d * (i - 1), o + d * j); //P1'z
-            writeVertex(o, o + d * i, o + d * (j - 1)); //P1'x
-
-            writeVertex(o, o + d * i, o + d * (j - 1)); //P1'x
-            writeVertex(o, o + d * (i - 1), o + d * j); //P1'z
-            writeVertex(o, o + d * i, o + d * j); //P2
-
-            // right
-            writeVertex(-o, o + d * (i - 1), o + d * j); //P1'z
-            writeVertex(-o, o + d * (i - 1), o + d * (j - 1)); //P1
-            writeVertex(-o, o + d * i, o + d * (j - 1)); //P1'x
-
-            writeVertex(-o, o + d * (i - 1), o + d * j); //P1'z
-            writeVertex(-o, o + d * i, o + d * (j - 1)); //P1'x
-            writeVertex(-o, o + d * i, o + d * j); //P2
-
-            // front
-            writeVertex(o + d * (i - 1), o + d * (j - 1), o); //P1
-            writeVertex(o + d * (i - 1), o + d * j, o); //P1'z
-            writeVertex(o + d * i, o + d * (j - 1), o); //P1'x
-
-            writeVertex(o + d * i, o + d * (j - 1), o); //P1'x
-            writeVertex(o + d * (i - 1), o + d * j, o); //P1'z
-            writeVertex(o + d * i, o + d * j, o); //P2
-
-            // back
-            writeVertex(o + d * (i - 1), o + d * j, -o); //P1'z
-            writeVertex(o + d * (i - 1), o + d * (j - 1), -o); //P1
-            writeVertex(o + d * i, o + d * (j - 1), -o); //P1'x
-
-            writeVertex(o + d * (i - 1), o + d * j, -o); //P1'z
-            writeVertex(o + d * i, o + d * (j - 1), -o); //P1'x
-            writeVertex(o + d * i, o + d * j, -o); //P2
-        }
-    }
+void model_sphere_write(const char *filepath, float radius, unsigned int slices, unsigned int stacks) {
+    const unsigned int n = model_sphere_size(slices, stacks);
+    float points[n];
+    model_sphere_vertices(radius, slices, stacks, points);
+    points_write(filepath, n, points);
 }
 
 int main(int argc, char *argv[]) {
-    if (argc < 5) { render3d("box.3d"); }
+    if (argc < 5) { printf("Not enough arguments"); }
     else {
-        globalFD = fopen(argv[argc - 1], "w");
+        const char *filepath = argv[argc - 1];
+        const char *polygon = argv[1];
 
-        if (!strcmp(SPHERE, argv[1])) drawSphere(atof(argv[2]), atoi(argv[3]), atoi(argv[4]));
-        if (!strcmp(CUBE, argv[1])) drawCube(atof(argv[2]), atoi(argv[3]));
-        if (!strcmp(CONE, argv[1])) drawCone(atof(argv[2]), atof(argv[3]), atoi(argv[4]), atoi(argv[5]));
-        if (!strcmp(PLANE, argv[1])) drawPlane(atof(argv[2]), atoi(argv[3]));
-        fclose(globalFD);
+        if (!strcmp(PLANE, polygon))
+            model_plane_write(filepath, strtof(argv[2], nullptr), strtoul(argv[3], nullptr, 10));
+        if (!strcmp(CUBE, polygon)) model_cube_write(filepath, atof(argv[2]), strtoul(argv[3], nullptr, 10));
+        if (!strcmp(CONE, polygon))
+            model_cone_write(filepath, atof(argv[2]), atof(argv[3]), atoi(argv[4]), atoi(argv[5]));
+        if (!strcmp(SPHERE, polygon)) model_sphere_write(filepath, atof(argv[2]), atoi(argv[3]), atoi(argv[4]));
     }
     return 1;
 }
