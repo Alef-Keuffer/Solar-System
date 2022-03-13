@@ -210,27 +210,29 @@ int load_xml(FILE *xmlFILE) {
 
 int main(int argc, char **argv) {
 
-    FILE *xmlFILE = fopen(argv[1], "r");
-    load_xml(xmlFILE);
-    fclose(xmlFILE);
+    if (argc > 0) {
+        FILE *xmlFILE = fopen(argv[1], "r");
+        load_xml(xmlFILE);
+        fclose(xmlFILE);
+    }
 
-// init GLUT and the window
+    // init GLUT and the window
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);
     glutInitWindowPosition(100, 100);
     glutInitWindowSize(800, 800);
     glutCreateWindow("engine");
 
-// Required callback registry
+    // Required callback registry
     glutDisplayFunc(renderScene);
     glutReshapeFunc(changeSize);
 
-//  OpenGL settings
+    //  OpenGL settings
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_CULL_FACE);
     glPolygonMode(GL_FRONT, GL_LINE);
 
-// enter GLUT's main cycle
+    // enter GLUT's main cycle
     glutMainLoop();
 
     return 1;
