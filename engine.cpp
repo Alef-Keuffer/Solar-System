@@ -8,6 +8,7 @@
 
 #include <tinyxml2.h>
 #include <stdio.h>
+#include <vector>
 
 /*rotation*/
 static float globalAngle = 0;
@@ -62,8 +63,7 @@ typedef struct model {
     unsigned int nVertices;
 } *Model;
 
-static Model globalModels[BUFSIZ];
-static unsigned int globalModelsPos = 0;
+static std::vector<Model> globalModels;
 
 Model allocModel(const char *path) {
     FILE *fp = fopen(path, "r");
@@ -95,7 +95,7 @@ void renderModel(Model model) {
 }
 
 void renderAllModels() {
-    for (unsigned int i = 0; i < globalModelsPos; i++) renderModel(globalModels[i]);
+    for (Model m: globalModels) renderModel(m);
 }
 
 size_t readModelToBuffer(const char *path, float *p, unsigned int n) {
@@ -195,15 +195,14 @@ int load_xml(FILE *xmlFILE) {
     globalFar = doc.FirstChildElement("world")->FirstChildElement("camera")->FirstChildElement(
             "projection")->FloatAttribute("far");
 
-    globalModels[globalModelsPos++] = allocModel(
+    globalModels.push_back(allocModel(
             doc.FirstChildElement("world")->FirstChildElement("group")->FirstChildElement(
-                    "models")->FirstChildElement("model")->Attribute("file"));
+                    "models")->FirstChildElement("model")->Attribute("file")));
 
     tinyxml2::XMLElement *model2 = doc.FirstChildElement("world")->FirstChildElement("group")->FirstChildElement(
             "models")->FirstChildElement("model")->NextSiblingElement("model");
-    if (model2) {
-        globalModels[globalModelsPos++] = allocModel(model2->Attribute("file"));
-    }
+
+    if (model2) globalModels.push_back(allocModel(model2->Attribute("file")));
 
     return 1;
 }
