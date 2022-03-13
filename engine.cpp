@@ -67,17 +67,18 @@ static unsigned int globalModelsPos = 0;
 
 Model allocModel(const char *path) {
     FILE *fp = fopen(path, "r");
-    unsigned int nFloats;
-    fread(&nFloats, sizeof(unsigned int), 1, fp);
-    float *modelBuf = (float *) malloc(3 * nFloats * sizeof(float));
 
-    fread(modelBuf, sizeof(float), nFloats, fp);
+    unsigned int nVertices;
+    fread(&nVertices, sizeof(unsigned int), 1, fp);
+    float *modelBuf = (float *) malloc(3 * nVertices * sizeof(float));
+
+    fread(modelBuf, 3 * sizeof(float), nVertices, fp);
     fclose(fp);
 
 
     Model model = (Model) malloc(sizeof(Model));
 
-    model->nVertices = nFloats;
+    model->nVertices = nVertices;
     model->vertices = modelBuf;
 
     return model;
