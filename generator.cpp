@@ -26,8 +26,8 @@ void points_write(const char *filename, const unsigned int nVertices, const floa
     }
 
     fwrite(&nVertices, sizeof(unsigned int), 1, fp);
-
     fwrite(points, 3 * sizeof(float), nVertices, fp);
+
     fclose(fp);
 }
 
@@ -37,8 +37,8 @@ void model_plane_vertices(const float length, const unsigned int divisions, floa
 
     unsigned int pos = 0;
 
-    for (int m = 1; m <= divisions; m++) {
-        for (int n = 1; n <= divisions; n++) {
+    for (unsigned int m = 1; m <= divisions; m++) {
+        for (unsigned int n = 1; n <= divisions; n++) {
             float i = (float) m;
             float j = (float) n;
 
@@ -151,6 +151,18 @@ void model_cube_write(const char *filepath, const float length, const unsigned i
 static inline void
 model_cone_vertex(const float r, const float height, const float theta, const float h, unsigned int *pos,
                   float *points) {
+    /*
+       x = r ⋅ h ⋅ cos(θ)
+       y = 2 ⋅ (height + h)
+       z = r ⋅ h ⋅ sin(θ)
+
+       r ≥ 0
+       θ ∈ {-π      + i⋅s : s = 2π/slices      ∧ i ∈ {0,...,slices} }
+       h ∈ {-height + j⋅t : t =  height/stacks ∧ j ∈ {0,...,stacks} }
+
+       check:
+           1. https://www.math3d.org/5gLCN9yBz
+     */
     points_vertex(r * h * cos(theta), 2 * (height + h), r * h * sin(theta), pos, points);
 }
 
@@ -188,7 +200,7 @@ void model_cone_vertices(const float r, const float height, const unsigned int s
 
 static inline unsigned int model_cone_nVertices(const unsigned int stacks, const unsigned int slices) {
     return slices * stacks * 9;
-};
+}
 
 void model_cone_write(const char *filepath, const float radius, const float height, const unsigned int slices,
                       const unsigned int stacks) {
@@ -201,6 +213,19 @@ void model_cone_write(const char *filepath, const float radius, const float heig
 
 static inline void
 model_sphere_vertex(const float r, const float theta, const float phi, unsigned int *pos, float *points) {
+    /*
+        x = r ⋅ sin(θ)cos(φ)
+        y = r ⋅ sin(φ)
+        z = r ⋅ cos(θ)cos(φ)
+
+        r ≥ 0
+        θ ∈ {-π +   i⋅s : s = 2π/slices ∧ i ∈ {0,...,slices} }
+        ϕ ∈ {-π/2 + j⋅t : t =  π/stacks ∧ j ∈ {0,...,stacks} }
+
+        check
+            1. https://www.math3d.org/EumEEZBKe
+            2. https://www.math3d.org/zE4n6xayX
+     */
     points_vertex(r * sin(theta) * cos(phi), r * sin(phi), r * cos(theta) * cos(phi), pos, points);
 }
 
