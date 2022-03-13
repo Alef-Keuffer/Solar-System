@@ -53,7 +53,7 @@ endif (WIN32)
 
 
 add_executable(engine engine.cpp)
-find_package(tinyxml2 REQUIRED)
+#find_package(tinyxml2 REQUIRED)
 target_link_libraries(${PROJECT_NAME} tinyxml2)
 target_link_libraries(engine tinyxml2 ${OPENGL_LIBRARIES} ${GLUT_LIBRARIES})
 
