@@ -18,11 +18,11 @@ void points_vertex(float x, float y, float z, unsigned int *pos, float points[])
     *pos += 3;
 }
 
-void points_write(const char *filename, const unsigned int nVertices, float points[]) {
+void points_write(const char *filename, const unsigned int nVertices, const float points[]) {
     FILE *fp = fopen(filename, "w");
     if (!fp) {
         fprintf(stderr, "failed to open file");
-        exit(-1);
+        exit(1);
     }
 
     fwrite(&nVertices, sizeof(unsigned int), 1, fp);
@@ -31,9 +31,9 @@ void points_write(const char *filename, const unsigned int nVertices, float poin
     fclose(fp);
 }
 
-void model_plane_vertices(float length, unsigned int divisions, float *points) {
-    float o = -length / 2.0f;
-    float d = length / (float) divisions;
+void model_plane_vertices(const float length, const unsigned int divisions, float *points) {
+    const float o = -length / 2.0f;
+    const float d = length / (float) divisions;
 
     unsigned int pos = 0;
 
@@ -72,8 +72,8 @@ void model_plane_write(const char *filepath, const float length, const unsigned 
 }
 
 void model_cube_vertices(const float length, const unsigned int divisions, float points[]) {
-    float o = -length / 2.0f;
-    float d = length / (float) divisions;
+    const float o = -length / 2.0f;
+    const float d = length / (float) divisions;
 
     unsigned int pos = 0;
 
@@ -156,10 +156,10 @@ void model_cone_vertices(const float r, const float height, const unsigned int s
                          float points[]) {
     // https://www.math3d.org/5gLCN9yBz
 
-    float s = 2.0f * (float) M_PI / (float) slices;
-    float t = height / (float) stacks;
-    float theta = -M_PI;
-    float h = -height;
+    const float s = 2.0f * (float) M_PI / (float) slices;
+    const float t = height / (float) stacks;
+    const float theta = -M_PI;
+    const float h = -height;
 
     unsigned int pos = 0;
 
@@ -205,10 +205,10 @@ static void model_sphere_vertices(float r, unsigned int slices, unsigned int sta
     // https://www.math3d.org/EumEEZBKe
     // https://www.math3d.org/zE4n6xayX
 
-    float s = 2.0f * (float) M_PI / (float) slices;
-    float t = M_PI / (float) stacks;
-    float theta = -M_PI;
-    float phi = -M_PI / 2.0f;
+    const float s = 2.0f * (float) M_PI / (float) slices;
+    const float t = M_PI / (float) stacks;
+    const float theta = -M_PI;
+    const float phi = -M_PI / 2.0f;
 
     unsigned int pos = 0;
 
