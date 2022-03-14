@@ -10,6 +10,8 @@
 #include <stdio.h>
 #include <vector>
 
+#include "parsing.h"
+
 /*rotation*/
 static float globalAngle = 0;
 static float globalRotateX = 0;
@@ -64,9 +66,14 @@ typedef struct model {
 } *Model;
 
 static std::vector<Model> globalModels;
+static std::vector<float> globalOperations;
 
 Model allocModel(const char *path) {
     FILE *fp = fopen(path, "r");
+    if (!fp) {
+        fprintf(stderr, "failed to open model: %s", path);
+        return NULL;
+    }
 
     unsigned int nVertices;
     fread(&nVertices, sizeof(unsigned int), 1, fp);
@@ -142,6 +149,72 @@ void changeSize(int w, int h) {
     glMatrixMode(GL_MODELVIEW);
 }
 
+//! @ingroup Operations
+void operations_render(std::vector<float> *operations) {
+    unsigned int i = 0;
+
+    globalEyeX = operations->at(i);
+    globalEyeY = operations->at(i + 1);
+    globalEyeZ = operations->at(i + 2);
+    i += 3;
+
+    globalCenterX = operations->at(i);
+    globalCenterY = operations->at(i + 1);
+    globalCenterZ = operations->at(i + 2);
+    i += 3;
+
+    globalUpX = operations->at(i);
+    globalUpY = operations->at(i + 1);
+    globalUpZ = operations->at(i + 2);
+    i += 3;
+
+    globalFOV = operations->at(i);
+    globalNear = operations->at(i + 1);
+    globalFar = operations->at(i + 2);
+
+    for (i += 3; i < operations->size(); i++) {
+        switch ((int) operations->at(i)) {
+            case ROTATE:
+                glRotated(operations->at(i + 1),
+                          operations->at(i + 2),
+                          operations->at(i + 3),
+                          operations->at(i + 4));
+                i += 4;
+                continue;
+            case TRANSLATE:
+                glTranslatef(operations->at(i + 1),
+                             operations->at(i + 2),
+                             operations->at(i + 3));
+                i += 3;
+                continue;
+            case SCALE:
+                glScalef(operations->at(i + 1),
+                         operations->at(i + 2),
+                         operations->at(i + 3));
+                i += 3;
+                continue;
+            case BEGIN_GROUP:
+                glPushMatrix();
+                continue;
+            case END_GROUP:
+                glPopMatrix();
+                continue;
+            case LOAD_MODEL:
+                int stringSize = (int) operations->at(i + 1);
+                char model[stringSize + 1];
+
+                int j;
+                for (j = 0; j < stringSize; j++)
+                    model[j] = (char) operations->at(i + 2 + j);
+
+                model[j] = 0;
+                renderModel(allocModel(model));
+                i += 1 + j - 1; //just to be explicit
+                continue;
+        }
+    }
+}
+
 void renderScene() {
 
     // clear buffers
@@ -159,13 +232,19 @@ void renderScene() {
     glTranslatef(globalTranslateX, globalTranslateY, globalTranslateZ);
     glScalef(globalScaleX, globalScaleY, globalScaleZ);
 
-    renderAllModels();
+    operations_render(&globalOperations);
 
     // End of frame
     glutSwapBuffers();
 }
 
-int load_xml(FILE *xmlFILE) {
+
+void xml_load_and_set_env(const char *filename) {
+    operations_load_xml(filename, &globalOperations);
+    operations_render(&globalOperations);
+}
+
+int load_xml1(FILE *xmlFILE) {
     tinyxml2::XMLDocument doc;
     doc.LoadFile(xmlFILE);
 
@@ -211,9 +290,8 @@ int load_xml(FILE *xmlFILE) {
 int main(int argc, char **argv) {
 
     if (argc > 0) {
-        FILE *xmlFILE = fopen(argv[1], "r");
-        load_xml(xmlFILE);
-        fclose(xmlFILE);
+//        xml_load_and_set_env("test_files_phase_2/test_2_2.xml");
+        xml_load_and_set_env(argv[1]);
     }
 
     // init GLUT and the window

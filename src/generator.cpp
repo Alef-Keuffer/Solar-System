@@ -62,7 +62,7 @@ void model_plane_vertices(const float length, const unsigned int divisions, floa
     }
 }
 
-static inline unsigned int model_plane_nVertices(const unsigned int divisions) { return divisions * divisions * 12; }
+inline unsigned int model_plane_nVertices(const unsigned int divisions) { return divisions * divisions * 12; }
 
 void model_plane_write(const char *filepath, const float length, const unsigned int divisions) {
     const unsigned int nVertices = model_plane_nVertices(divisions);
@@ -148,13 +148,26 @@ void model_cube_write(const char *filepath, const float length, const unsigned i
     points_write(filepath, nVertices, points);
 }
 
+/*!
+ * \f{aligned}{
+ * x &= r⋅\frac{h}{\textrm{height}} ⋅ \cos(θ)\\[2em]
+ * y &= h + \textrm{height}\\[2em]
+ * z &= r⋅\frac{h}{\textrm{height}} ⋅ \sin(θ)
+ * \f}\n
+ *
+ * \f{aligned}{
+ *  r &≥ 0\\
+ *  θ &∈ \left\{-π      + i⋅s : s = \frac{2π}{\textrm{slices}}      ∧ i ∈ \{0,...,\textrm{slices}\} \right\}\\
+ *  h &∈ \left\{- \textrm{height} + j⋅t : t =  \frac{\textrm{height}}{\textrm{stacks}} ∧ j ∈ \{0,...,\textrm{stacks}\} \right\}
+ *  \f}
+ */
 static inline void
 model_cone_vertex(const float r, const float height, const float theta, const float h, unsigned int *pos,
                   float *points) {
     /*
-       x = r ⋅ h ⋅ cos(θ)
+       x = r ⋅ (h/height) ⋅ cos(θ)
        y = 2 ⋅ (height + h)
-       z = r ⋅ h ⋅ sin(θ)
+       z = r ⋅ (h/height) ⋅ sin(θ)
 
        r ≥ 0
        θ ∈ {-π      + i⋅s : s = 2π/slices      ∧ i ∈ {0,...,slices} }
@@ -163,7 +176,7 @@ model_cone_vertex(const float r, const float height, const float theta, const fl
        check:
            1. https://www.math3d.org/5gLCN9yBz
      */
-    points_vertex(r * h * cos(theta), 2 * (height + h), r * h * sin(theta), pos, points);
+    points_vertex(r * h / height * cos(theta), height + h, r * h / height * sin(theta), pos, points);
 }
 
 void model_cone_vertices(const float r, const float height, const unsigned int slices, const unsigned int stacks,

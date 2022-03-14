@@ -130,7 +130,7 @@ void operations_push_groups(tinyxml2::XMLElement *group, std::vector<float> *ope
 /*! @addtogroup xml
  *@{*/
 
-void operations_load_file(const char *filename, std::vector<float> *operations) {
+void operations_load_xml(const char *filename, std::vector<float> *operations) {
     tinyxml2::XMLDocument doc;
 
     if (doc.LoadFile(filename)) {
@@ -259,11 +259,11 @@ void example1(const char *filename) {
     }
 
     std::vector<float> operations;
-    operations_load_file(filename, &operations);
+    operations_load_xml(filename, &operations);
     operations_print(&operations);
 }
 
-int main(int argc, char *argv[]) {
+int main2(int argc, char *argv[]) {
     example1("test_files_phase_2/test_2_3.xml");
     return 1;
 }
