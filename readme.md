@@ -2,7 +2,7 @@
 
 ## Documentation
 
-See [docs](https://alef-keuffer.github.io/proj/docs/)
+See [docs](https://alef-keuffer.github.io/proj/)
 
 ## Goal
 
