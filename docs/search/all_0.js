@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['groups_0',['Groups',['../group___groups.html',1,'']]]
+  ['_5fuse_5fmath_5fdefines_0', ['_USE_MATH_DEFINES', ['../generator_8cpp.html#a525335710b53cb064ca56b936120431e', 1, '_USE_MATH_DEFINES():&#160;generator.cpp'], ['../main_8cpp.html#a525335710b53cb064ca56b936120431e', 1, '_USE_MATH_DEFINES():&#160;main.cpp']]]
 ];
