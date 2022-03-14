@@ -1,3 +1,3 @@
-../cmake-build-debug/generator box 2 3 box.3d
-../cmake-build-debug/engine test_2_4.xml
+../bin/generator box 2 3 box.3d
+../bin/engine test_2_4.xml
 rm box.3d

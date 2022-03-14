@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 3.5)
 
 # Project Name
 PROJECT(proj)
+set(dir ${CMAKE_CURRENT_SOURCE_DIR})
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${dir}/bin")
 
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
@@ -61,3 +63,10 @@ target_link_libraries(${PROJECT_NAME} tinyxml2)
 
 add_executable(engine src/engine.cpp)
 target_link_libraries(engine tinyxml2 parsing ${OPENGL_LIBRARIES} ${GLUT_LIBRARIES})
+#
+#add_custom_command(TARGET engine
+#                   POST_BUILD
+#                   COMMAND ${CMAKE_COMMAND} -E copy engine bin)
+
+
+
