@@ -7,7 +7,7 @@ var indexSectionsWithContent =
   4: "beglnrstv",
   5: "m",
   6: "_cdps",
-  7: "gmoptx"
+  7: "cegmopstx"
 };
 
 var indexSectionNames =

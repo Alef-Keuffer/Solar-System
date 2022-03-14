@@ -11,7 +11,13 @@
 #define CONE "cone"
 #define PLANE "plane"
 
-void points_vertex(const float x, const float y, const float z, unsigned int *pos, float points[]) {
+
+/*! @addtogroup generator
+* @{*/
+
+/*! @addtogroup points
+ * @{*/
+ void points_vertex(const float x, const float y, const float z, unsigned int *pos, float points[]) {
     points[*pos] = x;
     points[*pos + 1] = y;
     points[*pos + 2] = z;
@@ -30,7 +36,13 @@ void points_write(const char *filename, const unsigned int nVertices, const floa
 
     fclose(fp);
 }
+//!@} end of group points
 
+/*! @addtogroup model
+ * @{*/
+
+/*! @addtogroup plane
+* @{*/
 void model_plane_vertices(const float length, const unsigned int divisions, float *points) {
     const float o = -length / 2.0f;
     const float d = length / (float) divisions;
@@ -70,7 +82,10 @@ void model_plane_write(const char *filepath, const float length, const unsigned 
     model_plane_vertices(length, divisions, points);
     points_write(filepath, nVertices, points);
 }
+//!@} end of group plane
 
+/*! @addtogroup cube
+* @{*/
 void model_cube_vertices(const float length, const unsigned int divisions, float points[]) {
     const float o = -length / 2.0f;
     const float d = length / (float) divisions;
@@ -148,6 +163,11 @@ void model_cube_write(const char *filepath, const float length, const unsigned i
     points_write(filepath, nVertices, points);
 }
 
+//!@} end of group cube
+
+/*! @addtogroup cone
+* @{*/
+
 /*!
  * \f{aligned}{
  * x &= r⋅\frac{h}{\textrm{height}} ⋅ \cos(θ)\\[2em]
@@ -160,6 +180,8 @@ void model_cube_write(const char *filepath, const float length, const unsigned i
  *  θ &∈ \left\{-π      + i⋅s : s = \frac{2π}{\textrm{slices}}      ∧ i ∈ \{0,...,\textrm{slices}\} \right\}\\
  *  h &∈ \left\{- \textrm{height} + j⋅t : t =  \frac{\textrm{height}}{\textrm{stacks}} ∧ j ∈ \{0,...,\textrm{stacks}\} \right\}
  *  \f}
+ *
+ *  See the [3d model](https://www.math3d.org/7oeSkmuns).
  */
 static inline void
 model_cone_vertex(const float r, const float height, const float theta, const float h, unsigned int *pos,
@@ -174,14 +196,13 @@ model_cone_vertex(const float r, const float height, const float theta, const fl
        h ∈ {-height + j⋅t : t =  height/stacks ∧ j ∈ {0,...,stacks} }
 
        check:
-           1. https://www.math3d.org/5gLCN9yBz
+           1. https://www.math3d.org/7oeSkmuns
      */
     points_vertex(r * h / height * cos(theta), height + h, r * h / height * sin(theta), pos, points);
 }
 
 void model_cone_vertices(const float r, const float height, const unsigned int slices, const unsigned int stacks,
                          float points[]) {
-    // https://www.math3d.org/5gLCN9yBz
 
     const float s = 2.0f * (float) M_PI / (float) slices;
     const float t = height / (float) stacks;
@@ -223,6 +244,10 @@ void model_cone_write(const char *filepath, const float radius, const float heig
     points_write(filepath, nVertices, points);
 }
 
+//!@} end of group cone
+
+/*! @addtogroup sphere
+* @{*/
 
 static inline void
 model_sphere_vertex(const float r, const float theta, const float phi, unsigned int *pos, float *points) {
@@ -279,6 +304,11 @@ void model_sphere_write(const char *filepath, float radius, unsigned int slices,
     model_sphere_vertices(radius, slices, stacks, points);
     points_write(filepath, nVertices, points);
 }
+//!@} end of group sphere
+
+//!@} end of group model
+
+//!@} end of group generator
 
 int main(int argc, char *argv[]) {
     if (argc < 5) { printf("Not enough arguments"); }

@@ -1,3 +1,6 @@
+/*! @addtogroup engine
+ * @{*/
+
 #ifdef __APPLE__
 #include <GLUT/glut.h>
 #else
@@ -91,7 +94,7 @@ Model allocModel(const char *path) {
     return model;
 }
 
-void renderModel(const Model model) {
+void renderModel(Model model) {
     if (!model->nVertices % 3) {
         fprintf(stderr, "Number of coordinates is not divisible by 3");
         exit(1);
@@ -148,6 +151,7 @@ void changeSize(int w, int h) {
     // return to the model view matrix mode
     glMatrixMode(GL_MODELVIEW);
 }
+//!@} end of group engine
 
 //! @ingroup Operations
 void operations_render(std::vector<float> *operations) {
@@ -215,6 +219,8 @@ void operations_render(std::vector<float> *operations) {
     }
 }
 
+/*!@addtogroup engine
+ * @{*/
 void renderScene() {
 
     // clear buffers
@@ -243,6 +249,37 @@ void xml_load_and_set_env(const char *filename) {
     operations_load_xml(filename, &globalOperations);
     operations_render(&globalOperations);
 }
+
+void engine_run(int argc, char **argv) {
+
+    if (argc > 0) xml_load_and_set_env(argv[1]);
+
+    // init GLUT and the window
+    glutInit(&argc,argv);
+    glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);
+    glutInitWindowPosition(100, 100);
+    glutInitWindowSize(800, 800);
+    glutCreateWindow("engine");
+
+    // Required callback registry
+    glutDisplayFunc(renderScene);
+    glutReshapeFunc(changeSize);
+
+    //  OpenGL settings
+    glEnable(GL_DEPTH_TEST);
+    glEnable(GL_CULL_FACE);
+    glPolygonMode(GL_FRONT, GL_LINE);
+
+    // enter GLUT's main cycle
+    glutMainLoop();
+}
+
+
+int main(int argc, char **argv) {
+    engine_run(argc,argv);
+    return 1;
+}
+//!@} end of group engine
 
 int load_xml1(FILE *xmlFILE) {
     tinyxml2::XMLDocument doc;
@@ -283,35 +320,6 @@ int load_xml1(FILE *xmlFILE) {
             "models")->FirstChildElement("model")->NextSiblingElement("model");
 
     if (model2) globalModels.push_back(allocModel(model2->Attribute("file")));
-
-    return 1;
-}
-
-int main(int argc, char **argv) {
-
-    if (argc > 0) {
-//        xml_load_and_set_env("test_files_phase_2/test_2_2.xml");
-        xml_load_and_set_env(argv[1]);
-    }
-
-    // init GLUT and the window
-    glutInit(&argc, argv);
-    glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);
-    glutInitWindowPosition(100, 100);
-    glutInitWindowSize(800, 800);
-    glutCreateWindow("engine");
-
-    // Required callback registry
-    glutDisplayFunc(renderScene);
-    glutReshapeFunc(changeSize);
-
-    //  OpenGL settings
-    glEnable(GL_DEPTH_TEST);
-    glEnable(GL_CULL_FACE);
-    glPolygonMode(GL_FRONT, GL_LINE);
-
-    // enter GLUT's main cycle
-    glutMainLoop();
 
     return 1;
 }
