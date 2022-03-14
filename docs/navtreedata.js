@@ -24,7 +24,15 @@
 */
 var NAVTREE =
 [
-  [ "Solar System Project", "index.html", [
+  [ "Solar System - demo scence", "index.html", [
+    [ "Practical Assignment CG - 2020/21", "md_readme.html", [
+      [ "Documentation", "md_readme.html#autotoc_md1", null ],
+      [ "Goal", "md_readme.html#autotoc_md2", [
+        [ "Phase 2", "md_readme.html#autotoc_md3", null ],
+        [ "Phase 3", "md_readme.html#autotoc_md4", null ],
+        [ "Phase 4", "md_readme.html#autotoc_md5", null ]
+      ] ]
+    ] ],
     [ "Modules", "modules.html", "modules" ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],

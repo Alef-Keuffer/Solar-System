@@ -2,12 +2,13 @@ var indexSectionsWithContent =
 {
   0: "_abcdegklmnoprstvx",
   1: "m",
-  2: "egmp",
+  2: "egmpr",
   3: "acdeklmoprsx",
   4: "beglnrstv",
   5: "m",
   6: "_cdps",
-  7: "cegmopstx"
+  7: "cegmopstx",
+  8: "p"
 };
 
 var indexSectionNames =
@@ -19,7 +20,8 @@ var indexSectionNames =
   4: "variables",
   5: "typedefs",
   6: "defines",
-  7: "groups"
+  7: "groups",
+  8: "pages"
 };
 
 var indexSectionLabels =
@@ -31,6 +33,7 @@ var indexSectionLabels =
   4: "Variables",
   5: "Typedefs",
   6: "Macros",
-  7: "Modules"
+  7: "Modules",
+  8: "Pages"
 };
 
