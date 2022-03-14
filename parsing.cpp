@@ -20,13 +20,21 @@ static const int END_GROUP = 6;
  * -# `⟨TRANSFORM⟩ ⟨float⟩ ⟨float⟩ ⟨float⟩ [float]` or
  * -# `⟨LOAD_MODEL⟩ ⟨NUMBER_OF_CHARACTERS⟩ ⟨char⟩ ... ⟨char⟩`
  *
- * and operations will be
+ * and `groups` will be
  *
  * - `⟨BEGIN_GROUP⟩⟨BEGIN_GROUP⟩⃰  ⟨elem⟩⁺ ⟨END_GROUP⟩⃰ ⟨END_GROUP⟩`
  *
- * for example,
+ * for example (inside a group),
  *
  * @code{.unparsed}LOAD_MODEL 7 'e' 'x' 'a' 'm' 'p' 'l' 'e'@endcode
+ *
+ * our operations (`world`) will be
+ *
+ * - `⟨position⟩⟨lookAt⟩⟨up⟩⟨projection⟩⟨group⟩⁺
+ *
+ * where `position`, `lookAt`, `up` and ⟨projection⟩ are
+ *
+ * - ⟨float⟩⟨float⟩⟨float⟩
  *
  * we'll use an array of floats, therefore we will need to cast to char when reading
  * the model filename characters and to int when reading the number of characters.
@@ -35,6 +43,8 @@ static const int END_GROUP = 6;
 /*! @addtogroup Transforms
  * @{*/
 void operations_push_transform_attributes(tinyxml2::XMLElement *transform, std::vector<float> *operations) {
+    if (!transform) return;
+
     float angle = transform->FloatAttribute("angle");
     if ((int) angle)
         operations->push_back(angle);
@@ -117,13 +127,79 @@ void operations_push_groups(tinyxml2::XMLElement *group, std::vector<float> *ope
 }
 //! @} end of group Groups
 
+/*! @addtogroup xml
+ *@{*/
+
+void operations_load_file(const char *filename, std::vector<float> *operations) {
+    tinyxml2::XMLDocument doc;
+
+    if (doc.LoadFile(filename)) {
+        fprintf(stderr, "%s", doc.ErrorName());
+        exit(1);
+    }
+
+    tinyxml2::XMLElement *world = doc.FirstChildElement("world");
+
+    /*camera*/
+    tinyxml2::XMLElement *camera = world->FirstChildElement("camera");
+
+    tinyxml2::XMLElement *position = camera->FirstChildElement("position");
+    operations_push_transform_attributes(position, operations);
+
+    tinyxml2::XMLElement *lookAt = camera->FirstChildElement("lookAt");
+    operations_push_transform_attributes(lookAt, operations);
+
+    tinyxml2::XMLElement *up = camera->FirstChildElement("up");
+    if (up) operations_push_transform_attributes(up, operations);
+    else operations->insert(operations->end(), {0, 1, 0});
+
+    tinyxml2::XMLElement *projection = camera->FirstChildElement("projection");
+    if (projection) {
+        operations->push_back(projection->FloatAttribute("fov"));
+        operations->push_back(projection->FloatAttribute("near"));
+        operations->push_back(projection->FloatAttribute("far"));
+    } else operations->insert(operations->end(), {60, 1, 1000});
+    /*end of camera*/
+
+    // groups
+    tinyxml2::XMLElement *group = world->FirstChildElement("group");
+    operations_push_groups(group, operations);
+}
+//! @} end of group xml
+
 /*! @addtogroup Printing
  * @{*/
 void operations_print(std::vector<float> *operations) {
-    for (int i = 0; i < operations->size(); i++) {
+    unsigned int i = 0;
+    fprintf(stderr,
+            "POSITION(%.2f %.2f %.2f)\n",
+            operations->at(i),
+            operations->at(i + 1),
+            operations->at(i + 2));
+    i += 3;
+    fprintf(stderr,
+            "LOOK_AT(%.2f %.2f %.2f)\n",
+            operations->at(i),
+            operations->at(i + 1),
+            operations->at(i + 2));
+    i += 3;
+    fprintf(stderr,
+            "UP(%.2f %.2f %.2f)\n",
+            operations->at(i),
+            operations->at(i + 1),
+            operations->at(i + 2));
+    i += 3;
+    fprintf(stderr,
+            "PROJECTION(%.2f %.2f %.2f)\n",
+            operations->at(i),
+            operations->at(i + 1),
+            operations->at(i + 2));
+
+    for (i += 3; i < operations->size(); i++) {
         switch ((int) operations->at(i)) {
             case ROTATE:
-                fprintf(stderr, "ROTATE(%2f %2f %2f %2f)\n",
+                fprintf(stderr,
+                        "ROTATE(%.2f %.2f %.2f %.2f)\n",
                         operations->at(i + 1),
                         operations->at(i + 2),
                         operations->at(i + 3),
@@ -131,14 +207,16 @@ void operations_print(std::vector<float> *operations) {
                 i += 4;
                 continue;
             case TRANSLATE:
-                fprintf(stderr, "TRANSLATE(%2f %2f %2f)\n",
+                fprintf(stderr,
+                        "TRANSLATE(%.2f %.2f %.2f)\n",
                         operations->at(i + 1),
                         operations->at(i + 2),
                         operations->at(i + 3));
                 i += 3;
                 continue;
             case SCALE:
-                fprintf(stderr, "SCALE(%2f %2f %2f)\n",
+                fprintf(stderr,
+                        "SCALE(%.2f %.2f %.2f)\n",
                         operations->at(i + 1),
                         operations->at(i + 2),
                         operations->at(i + 3));
@@ -170,6 +248,8 @@ void operations_print(std::vector<float> *operations) {
 //! @} end of group Operations
 
 
+
+
 void example1(const char *filename) {
     tinyxml2::XMLDocument doc;
 
@@ -178,9 +258,8 @@ void example1(const char *filename) {
         exit(1);
     }
 
-    tinyxml2::XMLElement *group = doc.FirstChildElement("world")->FirstChildElement("group");
     std::vector<float> operations;
-    operations_push_groups(group, &operations);
+    operations_load_file(filename, &operations);
     operations_print(&operations);
 }
 
