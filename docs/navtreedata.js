@@ -24,7 +24,7 @@
 */
 var NAVTREE =
 [
-  [ "My Project", "index.html", [
+  [ "Solar System Project", "index.html", [
     [ "Practical Assignment CG - 2020/21", "md_readme.html", [
       [ "Documentation", "md_readme.html#autotoc_md2", null ],
       [ "Goal", "md_readme.html#autotoc_md3", null ]
