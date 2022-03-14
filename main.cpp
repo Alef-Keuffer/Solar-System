@@ -720,7 +720,7 @@ void processSpecialKeys(int key, int xx, int yy) {
 
 int main2(int argc, char **argv) {
     tinyxml2::XMLDocument doc;
-    doc.LoadFile("./test_files/test_1_1.xml");
+    doc.LoadFile("./test_files_phase1/test_1_1.xml");
 
     const float title = doc.FirstChildElement("world")->FirstChildElement("camera")->FirstChildElement(
             "position")->FloatAttribute("x");

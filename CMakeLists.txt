@@ -51,10 +51,13 @@ else (WIN32) #Linux and Mac
 
 endif (WIN32)
 
-
-add_executable(engine engine.cpp)
 find_package(tinyxml2 REQUIRED)
 target_link_libraries(${PROJECT_NAME} tinyxml2)
+
+add_executable(engine engine.cpp)
 target_link_libraries(engine tinyxml2 ${OPENGL_LIBRARIES} ${GLUT_LIBRARIES})
 
 add_executable(generator generator.cpp)
+
+add_executable(parsing parsing.cpp)
+target_link_libraries(parsing tinyxml2)
