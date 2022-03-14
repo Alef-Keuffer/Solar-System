@@ -131,53 +131,81 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">  122</span>                                                    {</div>
-<div class="line"><span class="lineno">  123</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; operations-&gt;size(); i++) {</div>
-<div class="line"><span class="lineno">  124</span>        <span class="keywordflow">switch</span> ((<span class="keywordtype">int</span>) operations-&gt;at(i)) {</div>
-<div class="line"><span class="lineno">  125</span>            <span class="keywordflow">case</span> ROTATE:</div>
-<div class="line"><span class="lineno">  126</span>                fprintf(stderr, <span class="stringliteral">&quot;ROTATE(%2f %2f %2f %2f)\n&quot;</span>,</div>
-<div class="line"><span class="lineno">  127</span>                        operations-&gt;at(i + 1),</div>
-<div class="line"><span class="lineno">  128</span>                        operations-&gt;at(i + 2),</div>
-<div class="line"><span class="lineno">  129</span>                        operations-&gt;at(i + 3),</div>
-<div class="line"><span class="lineno">  130</span>                        operations-&gt;at(i + 4));</div>
-<div class="line"><span class="lineno">  131</span>                i += 4;</div>
-<div class="line"><span class="lineno">  132</span>                <span class="keywordflow">continue</span>;</div>
-<div class="line"><span class="lineno">  133</span>            <span class="keywordflow">case</span> TRANSLATE:</div>
-<div class="line"><span class="lineno">  134</span>                fprintf(stderr, <span class="stringliteral">&quot;TRANSLATE(%2f %2f %2f)\n&quot;</span>,</div>
-<div class="line"><span class="lineno">  135</span>                        operations-&gt;at(i + 1),</div>
-<div class="line"><span class="lineno">  136</span>                        operations-&gt;at(i + 2),</div>
-<div class="line"><span class="lineno">  137</span>                        operations-&gt;at(i + 3));</div>
-<div class="line"><span class="lineno">  138</span>                i += 3;</div>
-<div class="line"><span class="lineno">  139</span>                <span class="keywordflow">continue</span>;</div>
-<div class="line"><span class="lineno">  140</span>            <span class="keywordflow">case</span> SCALE:</div>
-<div class="line"><span class="lineno">  141</span>                fprintf(stderr, <span class="stringliteral">&quot;SCALE(%2f %2f %2f)\n&quot;</span>,</div>
-<div class="line"><span class="lineno">  142</span>                        operations-&gt;at(i + 1),</div>
-<div class="line"><span class="lineno">  143</span>                        operations-&gt;at(i + 2),</div>
-<div class="line"><span class="lineno">  144</span>                        operations-&gt;at(i + 3));</div>
-<div class="line"><span class="lineno">  145</span>                i += 3;</div>
-<div class="line"><span class="lineno">  146</span>                <span class="keywordflow">continue</span>;</div>
-<div class="line"><span class="lineno">  147</span>            <span class="keywordflow">case</span> BEGIN_GROUP:</div>
-<div class="line"><span class="lineno">  148</span>                fprintf(stderr, <span class="stringliteral">&quot;BEGIN_GROUP\n&quot;</span>);</div>
-<div class="line"><span class="lineno">  149</span>                <span class="keywordflow">continue</span>;</div>
-<div class="line"><span class="lineno">  150</span>            <span class="keywordflow">case</span> END_GROUP:</div>
-<div class="line"><span class="lineno">  151</span>                fprintf(stderr, <span class="stringliteral">&quot;END_GROUP\n&quot;</span>);</div>
-<div class="line"><span class="lineno">  152</span>                <span class="keywordflow">continue</span>;</div>
-<div class="line"><span class="lineno">  153</span>            <span class="keywordflow">case</span> LOAD_MODEL:</div>
-<div class="line"><span class="lineno">  154</span>                <span class="keywordtype">int</span> stringSize = (int) operations-&gt;at(i + 1);</div>
-<div class="line"><span class="lineno">  155</span>                <span class="keywordtype">char</span> <a class="code hl_struct" href="structmodel.html">model</a>[stringSize + 1];</div>
-<div class="line"><span class="lineno">  156</span> </div>
-<div class="line"><span class="lineno">  157</span>                <span class="keywordtype">int</span> j;</div>
-<div class="line"><span class="lineno">  158</span>                <span class="keywordflow">for</span> (j = 0; j &lt; stringSize; j++)</div>
-<div class="line"><span class="lineno">  159</span>                    <a class="code hl_struct" href="structmodel.html">model</a>[j] = (<span class="keywordtype">char</span>) operations-&gt;at(i + 2 + j);</div>
-<div class="line"><span class="lineno">  160</span> </div>
-<div class="line"><span class="lineno">  161</span>                <a class="code hl_struct" href="structmodel.html">model</a>[j] = 0;</div>
-<div class="line"><span class="lineno">  162</span> </div>
-<div class="line"><span class="lineno">  163</span>                fprintf(stderr, <span class="stringliteral">&quot;LOAD_MODEL(%s)\n&quot;</span>, <a class="code hl_struct" href="structmodel.html">model</a>);</div>
-<div class="line"><span class="lineno">  164</span>                i += 1 + j - 1; <span class="comment">//just to be explicit</span></div>
-<div class="line"><span class="lineno">  165</span>                <span class="keywordflow">continue</span>;</div>
-<div class="line"><span class="lineno">  166</span>        }</div>
-<div class="line"><span class="lineno">  167</span>    }</div>
-<div class="line"><span class="lineno">  168</span>}</div>
+<div class="fragment"><div class="line"><span class="lineno">  172</span>                                                    {</div>
+<div class="line"><span class="lineno">  173</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i = 0;</div>
+<div class="line"><span class="lineno">  174</span>    fprintf(stderr,</div>
+<div class="line"><span class="lineno">  175</span>            <span class="stringliteral">&quot;POSITION(%.2f %.2f %.2f)\n&quot;</span>,</div>
+<div class="line"><span class="lineno">  176</span>            operations-&gt;at(i),</div>
+<div class="line"><span class="lineno">  177</span>            operations-&gt;at(i + 1),</div>
+<div class="line"><span class="lineno">  178</span>            operations-&gt;at(i + 2));</div>
+<div class="line"><span class="lineno">  179</span>    i += 3;</div>
+<div class="line"><span class="lineno">  180</span>    fprintf(stderr,</div>
+<div class="line"><span class="lineno">  181</span>            <span class="stringliteral">&quot;LOOK_AT(%.2f %.2f %.2f)\n&quot;</span>,</div>
+<div class="line"><span class="lineno">  182</span>            operations-&gt;at(i),</div>
+<div class="line"><span class="lineno">  183</span>            operations-&gt;at(i + 1),</div>
+<div class="line"><span class="lineno">  184</span>            operations-&gt;at(i + 2));</div>
+<div class="line"><span class="lineno">  185</span>    i += 3;</div>
+<div class="line"><span class="lineno">  186</span>    fprintf(stderr,</div>
+<div class="line"><span class="lineno">  187</span>            <span class="stringliteral">&quot;UP(%.2f %.2f %.2f)\n&quot;</span>,</div>
+<div class="line"><span class="lineno">  188</span>            operations-&gt;at(i),</div>
+<div class="line"><span class="lineno">  189</span>            operations-&gt;at(i + 1),</div>
+<div class="line"><span class="lineno">  190</span>            operations-&gt;at(i + 2));</div>
+<div class="line"><span class="lineno">  191</span>    i += 3;</div>
+<div class="line"><span class="lineno">  192</span>    fprintf(stderr,</div>
+<div class="line"><span class="lineno">  193</span>            <span class="stringliteral">&quot;PROJECTION(%.2f %.2f %.2f)\n&quot;</span>,</div>
+<div class="line"><span class="lineno">  194</span>            operations-&gt;at(i),</div>
+<div class="line"><span class="lineno">  195</span>            operations-&gt;at(i + 1),</div>
+<div class="line"><span class="lineno">  196</span>            operations-&gt;at(i + 2));</div>
+<div class="line"><span class="lineno">  197</span> </div>
+<div class="line"><span class="lineno">  198</span>    <span class="keywordflow">for</span> (i += 3; i &lt; operations-&gt;size(); i++) {</div>
+<div class="line"><span class="lineno">  199</span>        <span class="keywordflow">switch</span> ((<span class="keywordtype">int</span>) operations-&gt;at(i)) {</div>
+<div class="line"><span class="lineno">  200</span>            <span class="keywordflow">case</span> ROTATE:</div>
+<div class="line"><span class="lineno">  201</span>                fprintf(stderr,</div>
+<div class="line"><span class="lineno">  202</span>                        <span class="stringliteral">&quot;ROTATE(%.2f %.2f %.2f %.2f)\n&quot;</span>,</div>
+<div class="line"><span class="lineno">  203</span>                        operations-&gt;at(i + 1),</div>
+<div class="line"><span class="lineno">  204</span>                        operations-&gt;at(i + 2),</div>
+<div class="line"><span class="lineno">  205</span>                        operations-&gt;at(i + 3),</div>
+<div class="line"><span class="lineno">  206</span>                        operations-&gt;at(i + 4));</div>
+<div class="line"><span class="lineno">  207</span>                i += 4;</div>
+<div class="line"><span class="lineno">  208</span>                <span class="keywordflow">continue</span>;</div>
+<div class="line"><span class="lineno">  209</span>            <span class="keywordflow">case</span> TRANSLATE:</div>
+<div class="line"><span class="lineno">  210</span>                fprintf(stderr,</div>
+<div class="line"><span class="lineno">  211</span>                        <span class="stringliteral">&quot;TRANSLATE(%.2f %.2f %.2f)\n&quot;</span>,</div>
+<div class="line"><span class="lineno">  212</span>                        operations-&gt;at(i + 1),</div>
+<div class="line"><span class="lineno">  213</span>                        operations-&gt;at(i + 2),</div>
+<div class="line"><span class="lineno">  214</span>                        operations-&gt;at(i + 3));</div>
+<div class="line"><span class="lineno">  215</span>                i += 3;</div>
+<div class="line"><span class="lineno">  216</span>                <span class="keywordflow">continue</span>;</div>
+<div class="line"><span class="lineno">  217</span>            <span class="keywordflow">case</span> SCALE:</div>
+<div class="line"><span class="lineno">  218</span>                fprintf(stderr,</div>
+<div class="line"><span class="lineno">  219</span>                        <span class="stringliteral">&quot;SCALE(%.2f %.2f %.2f)\n&quot;</span>,</div>
+<div class="line"><span class="lineno">  220</span>                        operations-&gt;at(i + 1),</div>
+<div class="line"><span class="lineno">  221</span>                        operations-&gt;at(i + 2),</div>
+<div class="line"><span class="lineno">  222</span>                        operations-&gt;at(i + 3));</div>
+<div class="line"><span class="lineno">  223</span>                i += 3;</div>
+<div class="line"><span class="lineno">  224</span>                <span class="keywordflow">continue</span>;</div>
+<div class="line"><span class="lineno">  225</span>            <span class="keywordflow">case</span> BEGIN_GROUP:</div>
+<div class="line"><span class="lineno">  226</span>                fprintf(stderr, <span class="stringliteral">&quot;BEGIN_GROUP\n&quot;</span>);</div>
+<div class="line"><span class="lineno">  227</span>                <span class="keywordflow">continue</span>;</div>
+<div class="line"><span class="lineno">  228</span>            <span class="keywordflow">case</span> END_GROUP:</div>
+<div class="line"><span class="lineno">  229</span>                fprintf(stderr, <span class="stringliteral">&quot;END_GROUP\n&quot;</span>);</div>
+<div class="line"><span class="lineno">  230</span>                <span class="keywordflow">continue</span>;</div>
+<div class="line"><span class="lineno">  231</span>            <span class="keywordflow">case</span> LOAD_MODEL:</div>
+<div class="line"><span class="lineno">  232</span>                <span class="keywordtype">int</span> stringSize = (int) operations-&gt;at(i + 1);</div>
+<div class="line"><span class="lineno">  233</span>                <span class="keywordtype">char</span> <a class="code hl_struct" href="structmodel.html">model</a>[stringSize + 1];</div>
+<div class="line"><span class="lineno">  234</span> </div>
+<div class="line"><span class="lineno">  235</span>                <span class="keywordtype">int</span> j;</div>
+<div class="line"><span class="lineno">  236</span>                <span class="keywordflow">for</span> (j = 0; j &lt; stringSize; j++)</div>
+<div class="line"><span class="lineno">  237</span>                    <a class="code hl_struct" href="structmodel.html">model</a>[j] = (<span class="keywordtype">char</span>) operations-&gt;at(i + 2 + j);</div>
+<div class="line"><span class="lineno">  238</span> </div>
+<div class="line"><span class="lineno">  239</span>                <a class="code hl_struct" href="structmodel.html">model</a>[j] = 0;</div>
+<div class="line"><span class="lineno">  240</span> </div>
+<div class="line"><span class="lineno">  241</span>                fprintf(stderr, <span class="stringliteral">&quot;LOAD_MODEL(%s)\n&quot;</span>, <a class="code hl_struct" href="structmodel.html">model</a>);</div>
+<div class="line"><span class="lineno">  242</span>                i += 1 + j - 1; <span class="comment">//just to be explicit</span></div>
+<div class="line"><span class="lineno">  243</span>                <span class="keywordflow">continue</span>;</div>
+<div class="line"><span class="lineno">  244</span>        }</div>
+<div class="line"><span class="lineno">  245</span>    }</div>
+<div class="line"><span class="lineno">  246</span>}</div>
 <div class="ttc" id="astructmodel_html"><div class="ttname"><a href="structmodel.html">model</a></div><div class="ttdef"><b>Definition:</b> engine.cpp:61</div></div>
 </div><!-- fragment -->
 </div>

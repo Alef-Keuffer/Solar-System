@@ -143,24 +143,24 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   74</span>                                                                                    {</div>
-<div class="line"><span class="lineno">   75</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i = 0;</div>
-<div class="line"><span class="lineno">   76</span>    <span class="keyword">const</span> <span class="keywordtype">char</span> *<span class="keywordtype">string</span> = <a class="code hl_struct" href="structmodel.html">model</a>-&gt;Attribute(<span class="stringliteral">&quot;file&quot;</span>);</div>
-<div class="line"><span class="lineno">   77</span> </div>
-<div class="line"><span class="lineno">   78</span>    operations-&gt;push_back(LOAD_MODEL);</div>
-<div class="line"><span class="lineno">   79</span> </div>
-<div class="line"><span class="lineno">   80</span>    <span class="keywordflow">do</span> operations-&gt;push_back(<span class="keywordtype">string</span>[i++]);</div>
-<div class="line"><span class="lineno">   81</span>    <span class="keywordflow">while</span> (<span class="keywordtype">string</span>[i]);</div>
-<div class="line"><span class="lineno">   82</span> </div>
-<div class="line"><span class="lineno">   83</span>    <span class="keywordflow">if</span> (i &lt;= 0) {</div>
-<div class="line"><span class="lineno">   84</span>        fprintf(stderr, <span class="stringliteral">&quot;filename is empty&quot;</span>);</div>
-<div class="line"><span class="lineno">   85</span>        exit(1);</div>
-<div class="line"><span class="lineno">   86</span>    }</div>
+<div class="fragment"><div class="line"><span class="lineno">   84</span>                                                                                    {</div>
+<div class="line"><span class="lineno">   85</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i = 0;</div>
+<div class="line"><span class="lineno">   86</span>    <span class="keyword">const</span> <span class="keywordtype">char</span> *<span class="keywordtype">string</span> = <a class="code hl_struct" href="structmodel.html">model</a>-&gt;Attribute(<span class="stringliteral">&quot;file&quot;</span>);</div>
 <div class="line"><span class="lineno">   87</span> </div>
-<div class="line"><span class="lineno">   88</span>    <span class="comment">//i--;</span></div>
+<div class="line"><span class="lineno">   88</span>    operations-&gt;push_back(LOAD_MODEL);</div>
 <div class="line"><span class="lineno">   89</span> </div>
-<div class="line"><span class="lineno">   90</span>    operations-&gt;insert(operations-&gt;end() - i, (<span class="keywordtype">float</span>) i);</div>
-<div class="line"><span class="lineno">   91</span>}</div>
+<div class="line"><span class="lineno">   90</span>    <span class="keywordflow">do</span> operations-&gt;push_back(<span class="keywordtype">string</span>[i++]);</div>
+<div class="line"><span class="lineno">   91</span>    <span class="keywordflow">while</span> (<span class="keywordtype">string</span>[i]);</div>
+<div class="line"><span class="lineno">   92</span> </div>
+<div class="line"><span class="lineno">   93</span>    <span class="keywordflow">if</span> (i &lt;= 0) {</div>
+<div class="line"><span class="lineno">   94</span>        fprintf(stderr, <span class="stringliteral">&quot;filename is empty&quot;</span>);</div>
+<div class="line"><span class="lineno">   95</span>        exit(1);</div>
+<div class="line"><span class="lineno">   96</span>    }</div>
+<div class="line"><span class="lineno">   97</span> </div>
+<div class="line"><span class="lineno">   98</span>    <span class="comment">//i--;</span></div>
+<div class="line"><span class="lineno">   99</span> </div>
+<div class="line"><span class="lineno">  100</span>    operations-&gt;insert(operations-&gt;end() - i, (<span class="keywordtype">float</span>) i);</div>
+<div class="line"><span class="lineno">  101</span>}</div>
 <div class="ttc" id="astructmodel_html"><div class="ttname"><a href="structmodel.html">model</a></div><div class="ttdef"><b>Definition:</b> engine.cpp:61</div></div>
 </div><!-- fragment -->
 </div>
@@ -190,11 +190,11 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   93</span>                                                                                      {</div>
-<div class="line"><span class="lineno">   94</span>    tinyxml2::XMLElement *<a class="code hl_struct" href="structmodel.html">model</a> = models-&gt;FirstChildElement(<span class="stringliteral">&quot;model&quot;</span>);</div>
-<div class="line"><span class="lineno">   95</span>    <span class="keywordflow">do</span> operations_push_model(<a class="code hl_struct" href="structmodel.html">model</a>, operations);</div>
-<div class="line"><span class="lineno">   96</span>    <span class="keywordflow">while</span> ((<a class="code hl_struct" href="structmodel.html">model</a> = <a class="code hl_struct" href="structmodel.html">model</a>-&gt;NextSiblingElement(<span class="stringliteral">&quot;model&quot;</span>)));</div>
-<div class="line"><span class="lineno">   97</span>}</div>
+<div class="fragment"><div class="line"><span class="lineno">  103</span>                                                                                      {</div>
+<div class="line"><span class="lineno">  104</span>    tinyxml2::XMLElement *<a class="code hl_struct" href="structmodel.html">model</a> = models-&gt;FirstChildElement(<span class="stringliteral">&quot;model&quot;</span>);</div>
+<div class="line"><span class="lineno">  105</span>    <span class="keywordflow">do</span> operations_push_model(<a class="code hl_struct" href="structmodel.html">model</a>, operations);</div>
+<div class="line"><span class="lineno">  106</span>    <span class="keywordflow">while</span> ((<a class="code hl_struct" href="structmodel.html">model</a> = <a class="code hl_struct" href="structmodel.html">model</a>-&gt;NextSiblingElement(<span class="stringliteral">&quot;model&quot;</span>)));</div>
+<div class="line"><span class="lineno">  107</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>

@@ -141,22 +141,22 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">  102</span>                                                                                     {</div>
-<div class="line"><span class="lineno">  103</span>    operations-&gt;push_back(BEGIN_GROUP);</div>
-<div class="line"><span class="lineno">  104</span> </div>
-<div class="line"><span class="lineno">  105</span>    tinyxml2::XMLElement *transforms = group-&gt;FirstChildElement(<span class="stringliteral">&quot;transform&quot;</span>);</div>
-<div class="line"><span class="lineno">  106</span>    tinyxml2::XMLElement *models = group-&gt;FirstChildElement(<span class="stringliteral">&quot;models&quot;</span>);</div>
-<div class="line"><span class="lineno">  107</span> </div>
-<div class="line"><span class="lineno">  108</span>    <span class="keywordflow">if</span> (transforms) operations_push_transforms(transforms, operations);</div>
-<div class="line"><span class="lineno">  109</span>    <span class="keywordflow">if</span> (models) operations_push_models(models, operations);</div>
-<div class="line"><span class="lineno">  110</span> </div>
-<div class="line"><span class="lineno">  111</span>    tinyxml2::XMLElement *childGroup = group-&gt;FirstChildElement(<span class="stringliteral">&quot;group&quot;</span>);</div>
-<div class="line"><span class="lineno">  112</span>    <span class="keywordflow">if</span> (childGroup)</div>
-<div class="line"><span class="lineno">  113</span>        <span class="keywordflow">do</span> operations_push_groups(childGroup, operations);</div>
-<div class="line"><span class="lineno">  114</span>        <span class="keywordflow">while</span> ((childGroup = childGroup-&gt;NextSiblingElement(<span class="stringliteral">&quot;group&quot;</span>)));</div>
-<div class="line"><span class="lineno">  115</span> </div>
-<div class="line"><span class="lineno">  116</span>    operations-&gt;push_back(END_GROUP);</div>
-<div class="line"><span class="lineno">  117</span>}</div>
+<div class="fragment"><div class="line"><span class="lineno">  112</span>                                                                                     {</div>
+<div class="line"><span class="lineno">  113</span>    operations-&gt;push_back(BEGIN_GROUP);</div>
+<div class="line"><span class="lineno">  114</span> </div>
+<div class="line"><span class="lineno">  115</span>    tinyxml2::XMLElement *transforms = group-&gt;FirstChildElement(<span class="stringliteral">&quot;transform&quot;</span>);</div>
+<div class="line"><span class="lineno">  116</span>    tinyxml2::XMLElement *models = group-&gt;FirstChildElement(<span class="stringliteral">&quot;models&quot;</span>);</div>
+<div class="line"><span class="lineno">  117</span> </div>
+<div class="line"><span class="lineno">  118</span>    <span class="keywordflow">if</span> (transforms) operations_push_transforms(transforms, operations);</div>
+<div class="line"><span class="lineno">  119</span>    <span class="keywordflow">if</span> (models) operations_push_models(models, operations);</div>
+<div class="line"><span class="lineno">  120</span> </div>
+<div class="line"><span class="lineno">  121</span>    tinyxml2::XMLElement *childGroup = group-&gt;FirstChildElement(<span class="stringliteral">&quot;group&quot;</span>);</div>
+<div class="line"><span class="lineno">  122</span>    <span class="keywordflow">if</span> (childGroup)</div>
+<div class="line"><span class="lineno">  123</span>        <span class="keywordflow">do</span> operations_push_groups(childGroup, operations);</div>
+<div class="line"><span class="lineno">  124</span>        <span class="keywordflow">while</span> ((childGroup = childGroup-&gt;NextSiblingElement(<span class="stringliteral">&quot;group&quot;</span>)));</div>
+<div class="line"><span class="lineno">  125</span> </div>
+<div class="line"><span class="lineno">  126</span>    operations-&gt;push_back(END_GROUP);</div>
+<div class="line"><span class="lineno">  127</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>

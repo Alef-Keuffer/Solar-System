@@ -117,6 +117,8 @@ Modules</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:group___groups"><td align="right" class="memItemLeft" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___groups.html">Groups</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:group__xml"><td align="right" class="memItemLeft" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xml.html">Xml</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:group___printing"><td align="right" class="memItemLeft" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___printing.html">Printing</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -128,13 +130,21 @@ Data structure for Operations</h1>
 <li><code>⟨TRANSFORM⟩ ⟨float⟩ ⟨float⟩ ⟨float⟩ [float]</code> or</li>
 <li><code>⟨LOAD_MODEL⟩ ⟨NUMBER_OF_CHARACTERS⟩ ⟨char⟩ ... ⟨char⟩</code></li>
 </ol>
-<p >and operations will be</p>
+<p >and <code>groups</code> will be</p>
 <ul>
 <li><code>⟨BEGIN_GROUP⟩⟨BEGIN_GROUP⟩⃰ ⟨elem⟩⁺ ⟨END_GROUP⟩⃰ ⟨END_GROUP⟩</code></li>
 </ul>
-<p >for example,</p>
+<p >for example (inside a group),</p>
 <div class="fragment"><div class="line">LOAD_MODEL 7 &#39;e&#39; &#39;x&#39; &#39;a&#39; &#39;m&#39; &#39;p&#39; &#39;l&#39; &#39;e&#39;</div>
-</div><!-- fragment --><p >we'll use an array of floats, therefore we will need to cast to char when reading the model filename characters and to int when reading the number of characters. </p>
+</div><!-- fragment --><p >our operations (<code>world</code>) will be</p>
+<ul>
+<li>`⟨position⟩⟨lookAt⟩⟨up⟩⟨projection⟩⟨group⟩⁺</li>
+</ul>
+<p >where <code>position</code>, <code>lookAt</code>, <code>up</code> and ⟨projection⟩ are</p>
+<ul>
+<li>⟨float⟩⟨float⟩⟨float⟩</li>
+</ul>
+<p >we'll use an array of floats, therefore we will need to cast to char when reading the model filename characters and to int when reading the number of characters. </p>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

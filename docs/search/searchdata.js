@@ -1,8 +1,8 @@
 var indexSectionsWithContent =
 {
-  0: "gmopt",
+  0: "gmoptx",
   1: "m",
-  2: "gmopt",
+  2: "gmoptx",
   3: "p"
 };
 
