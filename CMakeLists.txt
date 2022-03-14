@@ -5,7 +5,7 @@ PROJECT(proj)
 
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
-add_executable(${PROJECT_NAME} main.cpp)
+add_executable(${PROJECT_NAME} src/main.cpp)
 
 find_package(OpenGL REQUIRED)
 include_directories(${OpenGL_INCLUDE_DIRS})
@@ -51,13 +51,13 @@ else (WIN32) #Linux and Mac
 
 endif (WIN32)
 
+add_executable(generator src/generator.cpp)
+
+add_library(parsing src/parsing.cpp src/parsing.h)
+target_link_libraries(parsing tinyxml2)
+
 find_package(tinyxml2 REQUIRED)
 target_link_libraries(${PROJECT_NAME} tinyxml2)
 
-add_executable(engine engine.cpp)
-target_link_libraries(engine tinyxml2 ${OPENGL_LIBRARIES} ${GLUT_LIBRARIES})
-
-add_executable(generator generator.cpp)
-
-add_executable(parsing parsing.cpp)
-target_link_libraries(parsing tinyxml2)
+add_executable(engine src/engine.cpp)
+target_link_libraries(engine tinyxml2 parsing ${OPENGL_LIBRARIES} ${GLUT_LIBRARIES})
