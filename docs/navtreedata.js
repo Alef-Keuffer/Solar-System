@@ -25,28 +25,24 @@
 var NAVTREE =
 [
   [ "Solar System Project", "index.html", [
-    [ "Practical Assignment CG - 2020/21", "md_readme.html", [
-      [ "Documentation", "md_readme.html#autotoc_md2", null ],
-      [ "Goal", "md_readme.html#autotoc_md3", null ]
-    ] ],
     [ "Modules", "modules.html", "modules" ],
     [ "Classes", "annotated.html", [
-        ["Class List", "annotated.html", "annotated_dup"],
-        ["Class Index", "classes.html", null],
-        ["Class Members", "functions.html", [
-            ["All", "functions.html", null],
-            ["Variables", "functions_vars.html", null]
-        ]]
+      [ "Class List", "annotated.html", "annotated_dup" ],
+      [ "Class Index", "classes.html", null ],
+      [ "Class Members", "functions.html", [
+        [ "All", "functions.html", null ],
+        [ "Variables", "functions_vars.html", null ]
+      ] ]
     ] ],
     [ "Files", "files.html", [
-        ["File List", "files.html", "files_dup"],
-        ["File Members", "globals.html", [
-            ["All", "globals.html", null],
-            ["Functions", "globals_func.html", null],
-            ["Variables", "globals_vars.html", null],
-            ["Typedefs", "globals_type.html", null],
-            ["Macros", "globals_defs.html", null]
-        ]]
+      [ "File List", "files.html", "files_dup" ],
+      [ "File Members", "globals.html", [
+        [ "All", "globals.html", null ],
+        [ "Functions", "globals_func.html", null ],
+        [ "Variables", "globals_vars.html", null ],
+        [ "Typedefs", "globals_type.html", null ],
+        [ "Macros", "globals_defs.html", null ]
+      ] ]
     ] ]
   ] ]
 ];

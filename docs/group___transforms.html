@@ -30,8 +30,7 @@ window.MathJax = {
   }
 };
 </script>
-<script async="async" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"
-        type="text/javascript"></script>
+<script async="async" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" type="text/javascript"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
@@ -146,29 +145,17 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 <div class="fragment"><div class="line"><span class="lineno">   45</span>                                                                                                       {</div>
 <div class="line"><span class="lineno">   46</span>    <span class="keywordflow">if</span> (!transform) <span class="keywordflow">return</span>;</div>
-    <div class="line"><span class="lineno">   47</span></div>
-    <div class="line"><span class="lineno">   48</span> <span class="keywordtype">float</span> angle = transform-&gt;FloatAttribute(<span
-            class="stringliteral">&quot;angle&quot;</span>);
-    </div>
-    <div class="line"><span class="lineno">   49</span> <span class="keywordflow">if</span> ((<span class="keywordtype">int</span>)
-        angle)
-    </div>
-    <div class="line"><span class="lineno">   50</span> operations-&gt;push_back(angle);</div>
-    <div class="line"><span class="lineno">   51</span></div>
-    <div class="line"><span class="lineno">   52</span> operations-&gt;push_back(transform-&gt;FloatAttribute(<span
-            class="stringliteral">&quot;x&quot;</span>));
-    </div>
-    <div class="line"><span class="lineno">   53</span> operations-&gt;push_back(transform-&gt;FloatAttribute(<span
-            class="stringliteral">&quot;y&quot;</span>));
-    </div>
-    <div class="line"><span class="lineno">   54</span> operations-&gt;push_back(transform-&gt;FloatAttribute(<span
-            class="stringliteral">&quot;z&quot;</span>));
-    </div>
-    <div class="line"><span class="lineno">   55</span>}</div>
+<div class="line"><span class="lineno">   47</span> </div>
+<div class="line"><span class="lineno">   48</span>    <span class="keywordtype">float</span> angle = transform-&gt;FloatAttribute(<span class="stringliteral">&quot;angle&quot;</span>);</div>
+<div class="line"><span class="lineno">   49</span>    <span class="keywordflow">if</span> ((<span class="keywordtype">int</span>) angle)</div>
+<div class="line"><span class="lineno">   50</span>        operations-&gt;push_back(angle);</div>
+<div class="line"><span class="lineno">   51</span> </div>
+<div class="line"><span class="lineno">   52</span>    operations-&gt;push_back(transform-&gt;FloatAttribute(<span class="stringliteral">&quot;x&quot;</span>));</div>
+<div class="line"><span class="lineno">   53</span>    operations-&gt;push_back(transform-&gt;FloatAttribute(<span class="stringliteral">&quot;y&quot;</span>));</div>
+<div class="line"><span class="lineno">   54</span>    operations-&gt;push_back(transform-&gt;FloatAttribute(<span class="stringliteral">&quot;z&quot;</span>));</div>
+<div class="line"><span class="lineno">   55</span>}</div>
 </div><!-- fragment -->
-    <p class="reference">Referenced by <a class="el" href="#l00133">operations_load_xml()</a>, and <a class="el"
-                                                                                                      href="#l00057">operations_push_transforms()</a>.
-    </p>
+<p class="reference">Referenced by <a class="el" href="#l00133">operations_load_xml()</a>, and <a class="el" href="#l00057">operations_push_transforms()</a>.</p>
 
 </div>
 </div>
@@ -204,63 +191,28 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">   61</span>        <span class="keyword">const</span> <span class="keywordtype">char</span> *transformValue = transform-&gt;Value();</div>
 <div class="line"><span class="lineno">   62</span> </div>
 <div class="line"><span class="lineno">   63</span>        <span class="keywordflow">if</span> (!strcmp(<span class="stringliteral">&quot;translate&quot;</span>, transformValue))</div>
-    <div class="line"><span class="lineno">   64</span> operations-&gt;push_back(<a class="code hl_variable"
-                                                                                    href="parsing_8cpp.html#a5ca818cc3b6e31a94c8f90cd2ffe39e4">TRANSLATE</a>);
-    </div>
+<div class="line"><span class="lineno">   64</span>            operations-&gt;push_back(<a class="code hl_variable" href="parsing_8cpp.html#a5ca818cc3b6e31a94c8f90cd2ffe39e4">TRANSLATE</a>);</div>
 <div class="line"><span class="lineno">   65</span>        <span class="keywordflow">else</span> <span class="keywordflow">if</span> (!strcmp(<span class="stringliteral">&quot;rotate&quot;</span>, transformValue))</div>
-    <div class="line"><span class="lineno">   66</span> operations-&gt;push_back(<a class="code hl_variable"
-                                                                                    href="parsing_8cpp.html#af4ae699d8cd926769e89e26cd088b2c0">ROTATE</a>);
-    </div>
+<div class="line"><span class="lineno">   66</span>            operations-&gt;push_back(<a class="code hl_variable" href="parsing_8cpp.html#af4ae699d8cd926769e89e26cd088b2c0">ROTATE</a>);</div>
 <div class="line"><span class="lineno">   67</span>        <span class="keywordflow">else</span> <span class="keywordflow">if</span> (!strcmp(<span class="stringliteral">&quot;scale&quot;</span>, transformValue))</div>
-    <div class="line"><span class="lineno">   68</span> operations-&gt;push_back(<a class="code hl_variable"
-                                                                                    href="parsing_8cpp.html#a8334f0c0c56b96debb10231b86050ead">SCALE</a>);
-    </div>
-    <div class="line"><span class="lineno">   69</span> <span class="keywordflow">else</span> {</div>
-    <div class="line"><span class="lineno">   70</span> fprintf(stderr, <span class="stringliteral">&quot;Unknown transform: \&quot;%s\&quot;&quot;</span>,
-        transformValue);
-    </div>
-    <div class="line"><span class="lineno">   71</span> exit(1);</div>
-    <div class="line"><span class="lineno">   72</span> }</div>
-    <div class="line"><span class="lineno">   73</span></div>
-    <div class="line"><span class="lineno">   74</span> <a class="code hl_function"
-                                                           href="group___transforms.html#gaa15fe56d7980e7877845f3bc09125017">operations_push_transform_attributes</a>(transform,
-        operations);
-    </div>
-    <div class="line"><span class="lineno">   75</span></div>
-    <div class="line"><span class="lineno">   76</span> } <span class="keywordflow">while</span> ((transform =
-        transform-&gt;NextSiblingElement()));
-    </div>
-    <div class="line"><span class="lineno">   77</span>}</div>
-    <div class="ttc" id="agroup___transforms_html_gaa15fe56d7980e7877845f3bc09125017">
-        <div class="ttname"><a href="group___transforms.html#gaa15fe56d7980e7877845f3bc09125017">operations_push_transform_attributes</a>
-        </div>
-        <div class="ttdeci">void operations_push_transform_attributes(tinyxml2::XMLElement *transform, std::vector&lt;
-            float &gt; *operations)
-        </div>
-        <div class="ttdef"><b>Definition:</b> parsing.cpp:45</div>
-    </div>
-    <div class="ttc" id="aparsing_8cpp_html_a5ca818cc3b6e31a94c8f90cd2ffe39e4">
-        <div class="ttname"><a href="parsing_8cpp.html#a5ca818cc3b6e31a94c8f90cd2ffe39e4">TRANSLATE</a></div>
-        <div class="ttdeci">static const int TRANSLATE</div>
-        <div class="ttdef"><b>Definition:</b> parsing.cpp:7</div>
-    </div>
-    <div class="ttc" id="aparsing_8cpp_html_a8334f0c0c56b96debb10231b86050ead">
-        <div class="ttname"><a href="parsing_8cpp.html#a8334f0c0c56b96debb10231b86050ead">SCALE</a></div>
-        <div class="ttdeci">static const int SCALE</div>
-        <div class="ttdef"><b>Definition:</b> parsing.cpp:9</div>
-    </div>
-    <div class="ttc" id="aparsing_8cpp_html_af4ae699d8cd926769e89e26cd088b2c0">
-        <div class="ttname"><a href="parsing_8cpp.html#af4ae699d8cd926769e89e26cd088b2c0">ROTATE</a></div>
-        <div class="ttdeci">static const int ROTATE</div>
-        <div class="ttdef"><b>Definition:</b> parsing.cpp:8</div>
-    </div>
+<div class="line"><span class="lineno">   68</span>            operations-&gt;push_back(<a class="code hl_variable" href="parsing_8cpp.html#a8334f0c0c56b96debb10231b86050ead">SCALE</a>);</div>
+<div class="line"><span class="lineno">   69</span>        <span class="keywordflow">else</span> {</div>
+<div class="line"><span class="lineno">   70</span>            fprintf(stderr, <span class="stringliteral">&quot;Unknown transform: \&quot;%s\&quot;&quot;</span>, transformValue);</div>
+<div class="line"><span class="lineno">   71</span>            exit(1);</div>
+<div class="line"><span class="lineno">   72</span>        }</div>
+<div class="line"><span class="lineno">   73</span> </div>
+<div class="line"><span class="lineno">   74</span>        <a class="code hl_function" href="group___transforms.html#gaa15fe56d7980e7877845f3bc09125017">operations_push_transform_attributes</a>(transform, operations);</div>
+<div class="line"><span class="lineno">   75</span> </div>
+<div class="line"><span class="lineno">   76</span>    } <span class="keywordflow">while</span> ((transform = transform-&gt;NextSiblingElement()));</div>
+<div class="line"><span class="lineno">   77</span>}</div>
+<div class="ttc" id="agroup___transforms_html_gaa15fe56d7980e7877845f3bc09125017"><div class="ttname"><a href="group___transforms.html#gaa15fe56d7980e7877845f3bc09125017">operations_push_transform_attributes</a></div><div class="ttdeci">void operations_push_transform_attributes(tinyxml2::XMLElement *transform, std::vector&lt; float &gt; *operations)</div><div class="ttdef"><b>Definition:</b> parsing.cpp:45</div></div>
+<div class="ttc" id="aparsing_8cpp_html_a5ca818cc3b6e31a94c8f90cd2ffe39e4"><div class="ttname"><a href="parsing_8cpp.html#a5ca818cc3b6e31a94c8f90cd2ffe39e4">TRANSLATE</a></div><div class="ttdeci">static const int TRANSLATE</div><div class="ttdef"><b>Definition:</b> parsing.cpp:7</div></div>
+<div class="ttc" id="aparsing_8cpp_html_a8334f0c0c56b96debb10231b86050ead"><div class="ttname"><a href="parsing_8cpp.html#a8334f0c0c56b96debb10231b86050ead">SCALE</a></div><div class="ttdeci">static const int SCALE</div><div class="ttdef"><b>Definition:</b> parsing.cpp:9</div></div>
+<div class="ttc" id="aparsing_8cpp_html_af4ae699d8cd926769e89e26cd088b2c0"><div class="ttname"><a href="parsing_8cpp.html#af4ae699d8cd926769e89e26cd088b2c0">ROTATE</a></div><div class="ttdeci">static const int ROTATE</div><div class="ttdef"><b>Definition:</b> parsing.cpp:8</div></div>
 </div><!-- fragment -->
-    <p class="reference">References <a class="el" href="#l00045">operations_push_transform_attributes()</a>, <a
-            class="el" href="#l00008">ROTATE</a>, <a class="el" href="#l00009">SCALE</a>, and <a class="el"
-                                                                                                 href="#l00007">TRANSLATE</a>.
-    </p>
+<p class="reference">References <a class="el" href="#l00045">operations_push_transform_attributes()</a>, <a class="el" href="#l00008">ROTATE</a>, <a class="el" href="#l00009">SCALE</a>, and <a class="el" href="#l00007">TRANSLATE</a>.</p>
 
-    <p class="reference">Referenced by <a class="el" href="#l00112">operations_push_groups()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="#l00112">operations_push_groups()</a>.</p>
 
 </div>
 </div>

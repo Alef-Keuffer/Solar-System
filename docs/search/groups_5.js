@@ -1,4 +1,4 @@
-var searchData =
-    [
-        ['xml_0', ['Xml', ['../group__xml.html', 1, '']]]
-    ];
+var searchData=
+[
+  ['xml_0',['Xml',['../group__xml.html',1,'']]]
+];

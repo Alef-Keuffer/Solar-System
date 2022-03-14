@@ -30,8 +30,7 @@ window.MathJax = {
   }
 };
 </script>
-<script async="async" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"
-        type="text/javascript"></script>
+<script async="async" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" type="text/javascript"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
@@ -142,87 +141,31 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-    <div class="fragment">
-        <div class="line"><span class="lineno">  112</span> {</div>
-        <div class="line"><span class="lineno">  113</span> operations-&gt;push_back(<a class="code hl_variable"
-                                                                                        href="parsing_8cpp.html#ae38a16613cd19c49df2093ac07acf4c2">BEGIN_GROUP</a>);
-        </div>
-        <div class="line"><span class="lineno">  114</span></div>
-        <div class="line"><span class="lineno">  115</span> tinyxml2::XMLElement *transforms = group-&gt;FirstChildElement(<span
-                class="stringliteral">&quot;transform&quot;</span>);
-        </div>
-        <div class="line"><span class="lineno">  116</span> tinyxml2::XMLElement *models =
-            group-&gt;FirstChildElement(<span class="stringliteral">&quot;models&quot;</span>);
-        </div>
-        <div class="line"><span class="lineno">  117</span></div>
-        <div class="line"><span class="lineno">  118</span> <span class="keywordflow">if</span> (transforms) <a
-                class="code hl_function" href="group___transforms.html#gaaa78b92f0257bb4755731622692de0cb">operations_push_transforms</a>(transforms,
-            operations);
-        </div>
-        <div class="line"><span class="lineno">  119</span> <span class="keywordflow">if</span> (models) <a
-                class="code hl_function" href="group___models.html#gaca17d77a06e750f5cd95c1b79e1a8a30">operations_push_models</a>(models,
-            operations);
-        </div>
-        <div class="line"><span class="lineno">  120</span></div>
-        <div class="line"><span class="lineno">  121</span> tinyxml2::XMLElement *childGroup = group-&gt;FirstChildElement(<span
-                class="stringliteral">&quot;group&quot;</span>);
-        </div>
-        <div class="line"><span class="lineno">  122</span> <span class="keywordflow">if</span> (childGroup)</div>
-        <div class="line"><span class="lineno">  123</span> <span class="keywordflow">do</span> <a
-                class="code hl_function" href="group___groups.html#ga72c2d5ef943a89f829c08f6707e7669d">operations_push_groups</a>(childGroup,
-            operations);
-        </div>
-        <div class="line"><span class="lineno">  124</span> <span class="keywordflow">while</span> ((childGroup =
-            childGroup-&gt;NextSiblingElement(<span class="stringliteral">&quot;group&quot;</span>)));
-        </div>
-        <div class="line"><span class="lineno">  125</span></div>
-        <div class="line"><span class="lineno">  126</span> operations-&gt;push_back(<a class="code hl_variable"
-                                                                                        href="parsing_8cpp.html#aa439df53a792b65747b73e9941f8f54a">END_GROUP</a>);
-        </div>
-        <div class="line"><span class="lineno">  127</span>}</div>
-        <div class="ttc" id="agroup___groups_html_ga72c2d5ef943a89f829c08f6707e7669d">
-            <div class="ttname"><a
-                    href="group___groups.html#ga72c2d5ef943a89f829c08f6707e7669d">operations_push_groups</a></div>
-            <div class="ttdeci">void operations_push_groups(tinyxml2::XMLElement *group, std::vector&lt; float &gt;
-                *operations)
-            </div>
-            <div class="ttdef"><b>Definition:</b> parsing.cpp:112</div>
-        </div>
-        <div class="ttc" id="agroup___models_html_gaca17d77a06e750f5cd95c1b79e1a8a30">
-            <div class="ttname"><a
-                    href="group___models.html#gaca17d77a06e750f5cd95c1b79e1a8a30">operations_push_models</a></div>
-            <div class="ttdeci">void operations_push_models(tinyxml2::XMLElement *models, std::vector&lt; float &gt;
-                *operations)
-            </div>
-            <div class="ttdef"><b>Definition:</b> parsing.cpp:103</div>
-        </div>
-        <div class="ttc" id="agroup___transforms_html_gaaa78b92f0257bb4755731622692de0cb">
-            <div class="ttname"><a href="group___transforms.html#gaaa78b92f0257bb4755731622692de0cb">operations_push_transforms</a>
-            </div>
-            <div class="ttdeci">void operations_push_transforms(tinyxml2::XMLElement *transforms, std::vector&lt; float
-                &gt; *operations)
-            </div>
-            <div class="ttdef"><b>Definition:</b> parsing.cpp:57</div>
-        </div>
-        <div class="ttc" id="aparsing_8cpp_html_aa439df53a792b65747b73e9941f8f54a">
-            <div class="ttname"><a href="parsing_8cpp.html#aa439df53a792b65747b73e9941f8f54a">END_GROUP</a></div>
-            <div class="ttdeci">static const int END_GROUP</div>
-            <div class="ttdef"><b>Definition:</b> parsing.cpp:12</div>
-        </div>
-        <div class="ttc" id="aparsing_8cpp_html_ae38a16613cd19c49df2093ac07acf4c2">
-            <div class="ttname"><a href="parsing_8cpp.html#ae38a16613cd19c49df2093ac07acf4c2">BEGIN_GROUP</a></div>
-            <div class="ttdeci">static const int BEGIN_GROUP</div>
-            <div class="ttdef"><b>Definition:</b> parsing.cpp:11</div>
-        </div>
-    </div><!-- fragment -->
-    <p class="reference">References <a class="el" href="#l00011">BEGIN_GROUP</a>, <a class="el"
-                                                                                     href="#l00012">END_GROUP</a>, <a
-            class="el" href="#l00112">operations_push_groups()</a>, <a class="el" href="#l00103">operations_push_models()</a>,
-        and <a class="el" href="#l00057">operations_push_transforms()</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  112</span>                                                                                     {</div>
+<div class="line"><span class="lineno">  113</span>    operations-&gt;push_back(<a class="code hl_variable" href="parsing_8cpp.html#ae38a16613cd19c49df2093ac07acf4c2">BEGIN_GROUP</a>);</div>
+<div class="line"><span class="lineno">  114</span> </div>
+<div class="line"><span class="lineno">  115</span>    tinyxml2::XMLElement *transforms = group-&gt;FirstChildElement(<span class="stringliteral">&quot;transform&quot;</span>);</div>
+<div class="line"><span class="lineno">  116</span>    tinyxml2::XMLElement *models = group-&gt;FirstChildElement(<span class="stringliteral">&quot;models&quot;</span>);</div>
+<div class="line"><span class="lineno">  117</span> </div>
+<div class="line"><span class="lineno">  118</span>    <span class="keywordflow">if</span> (transforms) <a class="code hl_function" href="group___transforms.html#gaaa78b92f0257bb4755731622692de0cb">operations_push_transforms</a>(transforms, operations);</div>
+<div class="line"><span class="lineno">  119</span>    <span class="keywordflow">if</span> (models) <a class="code hl_function" href="group___models.html#gaca17d77a06e750f5cd95c1b79e1a8a30">operations_push_models</a>(models, operations);</div>
+<div class="line"><span class="lineno">  120</span> </div>
+<div class="line"><span class="lineno">  121</span>    tinyxml2::XMLElement *childGroup = group-&gt;FirstChildElement(<span class="stringliteral">&quot;group&quot;</span>);</div>
+<div class="line"><span class="lineno">  122</span>    <span class="keywordflow">if</span> (childGroup)</div>
+<div class="line"><span class="lineno">  123</span>        <span class="keywordflow">do</span> <a class="code hl_function" href="group___groups.html#ga72c2d5ef943a89f829c08f6707e7669d">operations_push_groups</a>(childGroup, operations);</div>
+<div class="line"><span class="lineno">  124</span>        <span class="keywordflow">while</span> ((childGroup = childGroup-&gt;NextSiblingElement(<span class="stringliteral">&quot;group&quot;</span>)));</div>
+<div class="line"><span class="lineno">  125</span> </div>
+<div class="line"><span class="lineno">  126</span>    operations-&gt;push_back(<a class="code hl_variable" href="parsing_8cpp.html#aa439df53a792b65747b73e9941f8f54a">END_GROUP</a>);</div>
+<div class="line"><span class="lineno">  127</span>}</div>
+<div class="ttc" id="agroup___groups_html_ga72c2d5ef943a89f829c08f6707e7669d"><div class="ttname"><a href="group___groups.html#ga72c2d5ef943a89f829c08f6707e7669d">operations_push_groups</a></div><div class="ttdeci">void operations_push_groups(tinyxml2::XMLElement *group, std::vector&lt; float &gt; *operations)</div><div class="ttdef"><b>Definition:</b> parsing.cpp:112</div></div>
+<div class="ttc" id="agroup___models_html_gaca17d77a06e750f5cd95c1b79e1a8a30"><div class="ttname"><a href="group___models.html#gaca17d77a06e750f5cd95c1b79e1a8a30">operations_push_models</a></div><div class="ttdeci">void operations_push_models(tinyxml2::XMLElement *models, std::vector&lt; float &gt; *operations)</div><div class="ttdef"><b>Definition:</b> parsing.cpp:103</div></div>
+<div class="ttc" id="agroup___transforms_html_gaaa78b92f0257bb4755731622692de0cb"><div class="ttname"><a href="group___transforms.html#gaaa78b92f0257bb4755731622692de0cb">operations_push_transforms</a></div><div class="ttdeci">void operations_push_transforms(tinyxml2::XMLElement *transforms, std::vector&lt; float &gt; *operations)</div><div class="ttdef"><b>Definition:</b> parsing.cpp:57</div></div>
+<div class="ttc" id="aparsing_8cpp_html_aa439df53a792b65747b73e9941f8f54a"><div class="ttname"><a href="parsing_8cpp.html#aa439df53a792b65747b73e9941f8f54a">END_GROUP</a></div><div class="ttdeci">static const int END_GROUP</div><div class="ttdef"><b>Definition:</b> parsing.cpp:12</div></div>
+<div class="ttc" id="aparsing_8cpp_html_ae38a16613cd19c49df2093ac07acf4c2"><div class="ttname"><a href="parsing_8cpp.html#ae38a16613cd19c49df2093ac07acf4c2">BEGIN_GROUP</a></div><div class="ttdeci">static const int BEGIN_GROUP</div><div class="ttdef"><b>Definition:</b> parsing.cpp:11</div></div>
+</div><!-- fragment -->
+<p class="reference">References <a class="el" href="#l00011">BEGIN_GROUP</a>, <a class="el" href="#l00012">END_GROUP</a>, <a class="el" href="#l00112">operations_push_groups()</a>, <a class="el" href="#l00103">operations_push_models()</a>, and <a class="el" href="#l00057">operations_push_transforms()</a>.</p>
 
-    <p class="reference">Referenced by <a class="el" href="#l00133">operations_load_xml()</a>, and <a class="el"
-                                                                                                      href="#l00112">operations_push_groups()</a>.
-    </p>
+<p class="reference">Referenced by <a class="el" href="#l00133">operations_load_xml()</a>, and <a class="el" href="#l00112">operations_push_groups()</a>.</p>
 
 </div>
 </div>

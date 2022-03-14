@@ -1,4 +1,4 @@
 var annotated_dup =
 [
-    ["model", "structmodel.html", "structmodel"]
+    [ "model", "structmodel.html", "structmodel" ]
 ];

@@ -30,8 +30,7 @@ window.MathJax = {
   }
 };
 </script>
-<script async="async" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"
-        type="text/javascript"></script>
+<script async="async" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" type="text/javascript"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
@@ -148,38 +147,26 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">   85</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i = 0;</div>
 <div class="line"><span class="lineno">   86</span>    <span class="keyword">const</span> <span class="keywordtype">char</span> *<span class="keywordtype">string</span> = <a class="code hl_struct" href="structmodel.html">model</a>-&gt;Attribute(<span class="stringliteral">&quot;file&quot;</span>);</div>
 <div class="line"><span class="lineno">   87</span> </div>
-    <div class="line"><span class="lineno">   88</span> operations-&gt;push_back(<a class="code hl_variable"
-                                                                                    href="parsing_8cpp.html#aa51361de9fa3f1deb5ea0db3378699ad">LOAD_MODEL</a>);
-    </div>
+<div class="line"><span class="lineno">   88</span>    operations-&gt;push_back(<a class="code hl_variable" href="parsing_8cpp.html#aa51361de9fa3f1deb5ea0db3378699ad">LOAD_MODEL</a>);</div>
 <div class="line"><span class="lineno">   89</span> </div>
 <div class="line"><span class="lineno">   90</span>    <span class="keywordflow">do</span> operations-&gt;push_back(<span class="keywordtype">string</span>[i++]);</div>
 <div class="line"><span class="lineno">   91</span>    <span class="keywordflow">while</span> (<span class="keywordtype">string</span>[i]);</div>
-    <div class="line"><span class="lineno">   92</span></div>
-    <div class="line"><span class="lineno">   93</span> <span class="keywordflow">if</span> (i &lt;= 0) {</div>
-    <div class="line"><span class="lineno">   94</span> fprintf(stderr, <span class="stringliteral">&quot;filename is empty&quot;</span>);
-    </div>
-    <div class="line"><span class="lineno">   95</span> exit(1);</div>
-    <div class="line"><span class="lineno">   96</span> }</div>
-    <div class="line"><span class="lineno">   97</span></div>
-    <div class="line"><span class="lineno">   98</span> <span class="comment">//i--;</span></div>
-    <div class="line"><span class="lineno">   99</span></div>
-    <div class="line"><span class="lineno">  100</span> operations-&gt;insert(operations-&gt;end() - i, (<span
-            class="keywordtype">float</span>) i);
-    </div>
-    <div class="line"><span class="lineno">  101</span>}</div>
-    <div class="ttc" id="aparsing_8cpp_html_aa51361de9fa3f1deb5ea0db3378699ad">
-        <div class="ttname"><a href="parsing_8cpp.html#aa51361de9fa3f1deb5ea0db3378699ad">LOAD_MODEL</a></div>
-        <div class="ttdeci">static const int LOAD_MODEL</div>
-        <div class="ttdef"><b>Definition:</b> parsing.cpp:10</div>
-    </div>
-    <div class="ttc" id="astructmodel_html">
-        <div class="ttname"><a href="structmodel.html">model</a></div>
-        <div class="ttdef"><b>Definition:</b> engine.cpp:63</div>
-    </div>
+<div class="line"><span class="lineno">   92</span> </div>
+<div class="line"><span class="lineno">   93</span>    <span class="keywordflow">if</span> (i &lt;= 0) {</div>
+<div class="line"><span class="lineno">   94</span>        fprintf(stderr, <span class="stringliteral">&quot;filename is empty&quot;</span>);</div>
+<div class="line"><span class="lineno">   95</span>        exit(1);</div>
+<div class="line"><span class="lineno">   96</span>    }</div>
+<div class="line"><span class="lineno">   97</span> </div>
+<div class="line"><span class="lineno">   98</span>    <span class="comment">//i--;</span></div>
+<div class="line"><span class="lineno">   99</span> </div>
+<div class="line"><span class="lineno">  100</span>    operations-&gt;insert(operations-&gt;end() - i, (<span class="keywordtype">float</span>) i);</div>
+<div class="line"><span class="lineno">  101</span>}</div>
+<div class="ttc" id="aparsing_8cpp_html_aa51361de9fa3f1deb5ea0db3378699ad"><div class="ttname"><a href="parsing_8cpp.html#aa51361de9fa3f1deb5ea0db3378699ad">LOAD_MODEL</a></div><div class="ttdeci">static const int LOAD_MODEL</div><div class="ttdef"><b>Definition:</b> parsing.cpp:10</div></div>
+<div class="ttc" id="astructmodel_html"><div class="ttname"><a href="structmodel.html">model</a></div><div class="ttdef"><b>Definition:</b> engine.cpp:63</div></div>
 </div><!-- fragment -->
-    <p class="reference">References <a class="el" href="#l00010">LOAD_MODEL</a>.</p>
+<p class="reference">References <a class="el" href="#l00010">LOAD_MODEL</a>.</p>
 
-    <p class="reference">Referenced by <a class="el" href="#l00103">operations_push_models()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="#l00103">operations_push_models()</a>.</p>
 
 </div>
 </div>
@@ -207,38 +194,19 @@ Functions</h2></td></tr>
           <td></td><td></td>
         </tr>
       </table>
+</div><div class="memdoc">
+<div class="fragment"><div class="line"><span class="lineno">  103</span>                                                                                      {</div>
+<div class="line"><span class="lineno">  104</span>    tinyxml2::XMLElement *<a class="code hl_struct" href="structmodel.html">model</a> = models-&gt;FirstChildElement(<span class="stringliteral">&quot;model&quot;</span>);</div>
+<div class="line"><span class="lineno">  105</span>    <span class="keywordflow">do</span> <a class="code hl_function" href="group___models.html#ga5dc84f3f40c0bb6ad63dc2da3793ddd9">operations_push_model</a>(<a class="code hl_struct" href="structmodel.html">model</a>, operations);</div>
+<div class="line"><span class="lineno">  106</span>    <span class="keywordflow">while</span> ((<a class="code hl_struct" href="structmodel.html">model</a> = <a class="code hl_struct" href="structmodel.html">model</a>-&gt;NextSiblingElement(<span class="stringliteral">&quot;model&quot;</span>)));</div>
+<div class="line"><span class="lineno">  107</span>}</div>
+<div class="ttc" id="agroup___models_html_ga5dc84f3f40c0bb6ad63dc2da3793ddd9"><div class="ttname"><a href="group___models.html#ga5dc84f3f40c0bb6ad63dc2da3793ddd9">operations_push_model</a></div><div class="ttdeci">void operations_push_model(tinyxml2::XMLElement *model, std::vector&lt; float &gt; *operations)</div><div class="ttdef"><b>Definition:</b> parsing.cpp:84</div></div>
+</div><!-- fragment -->
+<p class="reference">References <a class="el" href="#l00084">operations_push_model()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="#l00112">operations_push_groups()</a>.</p>
+
 </div>
-    <div class="memdoc">
-        <div class="fragment">
-            <div class="line"><span class="lineno">  103</span> {</div>
-            <div class="line"><span class="lineno">  104</span> tinyxml2::XMLElement *<a class="code hl_struct"
-                                                                                         href="structmodel.html">model</a>
-                = models-&gt;FirstChildElement(<span class="stringliteral">&quot;model&quot;</span>);
-            </div>
-            <div class="line"><span class="lineno">  105</span> <span class="keywordflow">do</span> <a
-                    class="code hl_function" href="group___models.html#ga5dc84f3f40c0bb6ad63dc2da3793ddd9">operations_push_model</a>(<a
-                    class="code hl_struct" href="structmodel.html">model</a>, operations);
-            </div>
-            <div class="line"><span class="lineno">  106</span> <span class="keywordflow">while</span> ((<a
-                    class="code hl_struct" href="structmodel.html">model</a> = <a class="code hl_struct"
-                                                                                  href="structmodel.html">model</a>-&gt;NextSiblingElement(<span
-                    class="stringliteral">&quot;model&quot;</span>)));
-            </div>
-            <div class="line"><span class="lineno">  107</span>}</div>
-            <div class="ttc" id="agroup___models_html_ga5dc84f3f40c0bb6ad63dc2da3793ddd9">
-                <div class="ttname"><a href="group___models.html#ga5dc84f3f40c0bb6ad63dc2da3793ddd9">operations_push_model</a>
-                </div>
-                <div class="ttdeci">void operations_push_model(tinyxml2::XMLElement *model, std::vector&lt; float &gt;
-                    *operations)
-                </div>
-                <div class="ttdef"><b>Definition:</b> parsing.cpp:84</div>
-            </div>
-        </div><!-- fragment -->
-        <p class="reference">References <a class="el" href="#l00084">operations_push_model()</a>.</p>
-
-        <p class="reference">Referenced by <a class="el" href="#l00112">operations_push_groups()</a>.</p>
-
-    </div>
 </div>
 </div><!-- contents -->
 </div><!-- doc-content -->
