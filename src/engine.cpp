@@ -16,53 +16,85 @@
 #include "parsing.h"
 
 /*rotation*/
+const unsigned int DEFAULT_GLOBAL_ANGLE_STEP = 16;
+static float globalAngleStep = DEFAULT_GLOBAL_ANGLE_STEP;
 static float globalAngle = 0;
 static float globalRotateX = 0;
 static float globalRotateY = 0;
 static float globalRotateZ = 0;
 
 /*translation*/
+const unsigned int DEFAULT_GLOBAL_TRANSLATE_STEP = 1;
+static float globalTranslateStep = DEFAULT_GLOBAL_TRANSLATE_STEP;
 static float globalTranslateX = 0;
 static float globalTranslateY = 0;
 static float globalTranslateZ = 0;
 
 /*scaling*/
+const unsigned int DEFAULT_GLOBAL_SCALE_STEP = 1;
+float globalScaleStep = DEFAULT_GLOBAL_SCALE_STEP;
 static float globalScaleX = 1;
 static float globalScaleY = 1;
 static float globalScaleZ = 1;
 
-/*camera*/
-#define DEFAULT_GLOBAL_EYE_STEP 1.0f
-#define DEFAULT_GLOBAL_EYE_X 1.0f
-#define DEFAULT_GLOBAL_EYE_Y (-5.0f)
-#define DEFAULT_GLOBAL_EYE_Z (-30.0f)
+/*! @addtogroup camera
+ * @{*/
 
-#define DEFAULT_GLOBAL_CENTER_STEP 1.0f
-#define DEFAULT_GLOBAL_CENTER_X 0.0f
-#define DEFAULT_GLOBAL_CENTER_Y 0.0f
-#define DEFAULT_GLOBAL_CENTER_Z 0.0f
+/*! @addtogroup position
+ * @{*/
+const unsigned int DEFAULT_GLOBAL_EYE_STEP = 1;
+static float DEFAULT_GLOBAL_EYE_X = 0;
+static float DEFAULT_GLOBAL_EYE_Y = 0;
+static float DEFAULT_GLOBAL_EYE_Z = 0;
 
-#define DEFAULT_GLOBAL_UP_STEP 1.0f
-#define DEFAULT_GLOBAL_UP_X 0.0f
-#define DEFAULT_GLOBAL_UP_Y 1.0f
-#define DEFAULT_GLOBAL_UP_Z 0.0f
-
+static float globalEyeStep = DEFAULT_GLOBAL_EYE_STEP;
 static float globalEyeX = DEFAULT_GLOBAL_EYE_X;
 static float globalEyeY = DEFAULT_GLOBAL_EYE_Y;
 static float globalEyeZ = DEFAULT_GLOBAL_EYE_Z;
+//!@} end of group position
 
+/*! @addtogroup lookAt
+ * @{*/
+const unsigned int DEFAULT_GLOBAL_CENTER_STEP = 1.0;
+static float DEFAULT_GLOBAL_CENTER_X = 0;
+static float DEFAULT_GLOBAL_CENTER_Y = 0;
+static float DEFAULT_GLOBAL_CENTER_Z = 0;
+
+float globalCenterStep = DEFAULT_GLOBAL_CENTER_STEP;
 static float globalCenterX = DEFAULT_GLOBAL_CENTER_X;
 static float globalCenterY = DEFAULT_GLOBAL_CENTER_Y;
 static float globalCenterZ = DEFAULT_GLOBAL_CENTER_Z;
+//!@} end of group lookAt
 
+/*! @addtogroup up
+ * @{*/
+const unsigned int DEFAULT_GLOBAL_UP_STEP = 1;
+static float DEFAULT_GLOBAL_UP_X = 0;
+static float DEFAULT_GLOBAL_UP_Y = 1;
+static float DEFAULT_GLOBAL_UP_Z = 0;
+
+float globalUpStep = DEFAULT_GLOBAL_UP_STEP;
 static float globalUpX = DEFAULT_GLOBAL_UP_X;
 static float globalUpY = DEFAULT_GLOBAL_UP_Y;
 static float globalUpZ = DEFAULT_GLOBAL_UP_Z;
+//!@} end of group up
 
-static float globalFOV = 45.0f;
-static float globalNear = 1.0f;
-static float globalFar = 1000.0f;
+/*! @addtogroup projection
+ * @{*/
+static float DEFAULT_GLOBAL_FOV = 60;
+static float DEFAULT_GLOBAL_NEAR = 1;
+static float DEFAULT_GLOBAL_FAR = 1000;
 
+static float globalFOV = DEFAULT_GLOBAL_FOV;
+static float globalNear = DEFAULT_GLOBAL_NEAR;
+static float globalFar = DEFAULT_GLOBAL_FAR;
+//!@} end of group projection
+//!@} end of group camera
+
+//! @defgroup modelEngine Model
+
+/*! @addtogroup modelEngine
+ * @{*/
 typedef struct model {
     float *vertices;
     unsigned int nVertices;
@@ -70,6 +102,7 @@ typedef struct model {
 
 static std::vector<Model> globalModels;
 static std::vector<float> globalOperations;
+static bool operations_hasBeenInitialized = false;
 
 Model allocModel(const char *path) {
     FILE *fp = fopen(path, "r");
@@ -115,6 +148,7 @@ size_t readModelToBuffer(const char *path, float *p, unsigned int n) {
     fclose(fp);
     return r;
 }
+//!@} end of group modelEngine
 
 void renderTriangleVertexSeq(float *p, unsigned int nVertices) {
     if (!nVertices % 3) {
@@ -154,32 +188,50 @@ void changeSize(int w, int h) {
 //!@} end of group engine
 
 //! @ingroup Operations
-void operations_render(std::vector<float> *operations) {
+int operations_render(std::vector<float> *operations) {
+    if (operations_hasBeenInitialized) return 1;
+
     unsigned int i = 0;
+    static bool hasPushedModels = false;
 
-    globalEyeX = operations->at(i);
-    globalEyeY = operations->at(i + 1);
-    globalEyeZ = operations->at(i + 2);
+    DEFAULT_GLOBAL_EYE_X = operations->at(i);
+    DEFAULT_GLOBAL_EYE_Y = operations->at(i + 1);
+    DEFAULT_GLOBAL_EYE_Z = operations->at(i + 2);
+    globalEyeX = DEFAULT_GLOBAL_EYE_X;
+    globalEyeY = DEFAULT_GLOBAL_EYE_Y;
+    globalEyeZ = DEFAULT_GLOBAL_EYE_Z;
     i += 3;
 
-    globalCenterX = operations->at(i);
-    globalCenterY = operations->at(i + 1);
-    globalCenterZ = operations->at(i + 2);
+    DEFAULT_GLOBAL_CENTER_X = operations->at(i);
+    DEFAULT_GLOBAL_CENTER_Y = operations->at(i + 1);
+    DEFAULT_GLOBAL_CENTER_Z = operations->at(i + 2);
+    globalCenterX = DEFAULT_GLOBAL_CENTER_X;
+    globalCenterY = DEFAULT_GLOBAL_CENTER_Y;
+    globalCenterZ = DEFAULT_GLOBAL_CENTER_Z;
     i += 3;
 
-    globalUpX = operations->at(i);
-    globalUpY = operations->at(i + 1);
-    globalUpZ = operations->at(i + 2);
+    DEFAULT_GLOBAL_UP_X = operations->at(i);
+    DEFAULT_GLOBAL_UP_Y = operations->at(i + 1);
+    DEFAULT_GLOBAL_UP_Z = operations->at(i + 2);
+    globalUpX = DEFAULT_GLOBAL_UP_X;
+    globalUpY = DEFAULT_GLOBAL_UP_Y;
+    globalUpZ = DEFAULT_GLOBAL_UP_Z;
     i += 3;
 
-    globalFOV = operations->at(i);
-    globalNear = operations->at(i + 1);
-    globalFar = operations->at(i + 2);
+    DEFAULT_GLOBAL_FOV = operations->at(i);
+    DEFAULT_GLOBAL_NEAR = operations->at(i + 1);
+    DEFAULT_GLOBAL_FAR = operations->at(i + 2);
+
+    globalFOV = DEFAULT_GLOBAL_FOV;
+    globalNear = DEFAULT_GLOBAL_NEAR;
+    globalFar = DEFAULT_GLOBAL_FAR;
+
+    unsigned int modelNo = 0;
 
     for (i += 3; i < operations->size(); i++) {
         switch ((int) operations->at(i)) {
             case ROTATE:
-                glRotated(operations->at(i + 1),
+                glRotatef(operations->at(i + 1),
                           operations->at(i + 2),
                           operations->at(i + 3),
                           operations->at(i + 4));
@@ -205,18 +257,25 @@ void operations_render(std::vector<float> *operations) {
                 continue;
             case LOAD_MODEL:
                 int stringSize = (int) operations->at(i + 1);
-                char model[stringSize + 1];
+                if (!hasPushedModels) {
+                    char modelName[stringSize + 1];
 
-                int j;
-                for (j = 0; j < stringSize; j++)
-                    model[j] = (char) operations->at(i + 2 + j);
+                    int j;
+                    for (j = 0; j < stringSize; j++)
+                        modelName[j] = (char) operations->at(i + 2 + j);
 
-                model[j] = 0;
-                renderModel(allocModel(model));
-                i += 1 + j - 1; //just to be explicit
+                    modelName[j] = 0;
+
+                    globalModels.push_back(allocModel(modelName));
+                }
+                renderModel(globalModels.at(modelNo++));
+                i += stringSize+1; //just to be explicit
                 continue;
         }
     }
+    hasPushedModels = true;
+    operations_hasBeenInitialized = true;
+    return 0;
 }
 
 /*!@addtogroup engine
@@ -238,7 +297,7 @@ void renderScene() {
     glTranslatef(globalTranslateX, globalTranslateY, globalTranslateZ);
     glScalef(globalScaleX, globalScaleY, globalScaleZ);
 
-    operations_render(&globalOperations);
+    if(operations_render(&globalOperations)) renderAllModels();
 
     // End of frame
     glutSwapBuffers();
@@ -248,6 +307,225 @@ void renderScene() {
 void xml_load_and_set_env(const char *filename) {
     operations_load_xml(filename, &globalOperations);
     operations_render(&globalOperations);
+}
+
+void keyboardFunc (unsigned char key, int xmouse, int ymouse)
+{
+/*
+    Rotation:
+        x y z       x↓ y↓ z↓
+        X Y Z       x↑ y↑ z↑
+    angle:
+        , .     θ-=s    θ+=s
+        < >     s↓     s↑
+    translation:
+        q w e       y↓ z↑ y↑
+        a s d       x↓ z↓ x↑
+    scaling:
+        u i o       y↓ z↑ y↑
+        j k l       x↓ z↓ x↑
+    background color: r g b R G B
+    camera:
+        1 2 3 ⎫       ! @ # ⎫        EyeX     EyeY     EyeZ
+        4 5 6 ⎬↓      $ % ^ ⎬↑       CenterX  CenterY  CenterZ
+        7 8 9 ⎭       & * ( ⎭        UpX      UpY      UpZ
+ */
+    switch (key){
+        case 'x':
+            globalRotateX -= 1;
+            break;
+
+        case 'X':
+            globalRotateX += 1;
+            break;
+
+        case 'y':
+            globalRotateY -= 1;
+            break;
+
+        case 'Y':
+            globalRotateY += 1;
+            break;
+
+        case 'z':
+            globalRotateZ -= 1;
+            break;
+
+        case 'Z':
+            globalRotateZ += 1;
+            break;
+
+        case ',':
+            globalAngle -= globalAngleStep;
+            break;
+
+        case '.':
+            globalAngle += globalAngleStep;
+            break;
+
+        case '<':
+            globalAngleStep /= 2;
+            break;
+
+        case '>':
+            globalAngleStep *= 2;
+            break;
+
+            /*translation*/
+
+            /*z-axis*/
+        case 'w':
+            globalTranslateZ += globalTranslateStep;
+            break;
+        case 's':
+            globalTranslateZ -= globalTranslateStep;
+            break;
+
+            /*x-axis*/
+        case 'a':
+            globalTranslateX -= globalTranslateStep;
+            break;
+        case 'd':
+            globalTranslateX += globalTranslateStep;
+            break;
+
+            /*y-axis*/
+        case 'q':
+            globalTranslateY -= globalTranslateStep;
+            break;
+        case 'e':
+            globalTranslateY += globalTranslateStep;
+            break;
+            /*end of translation*/
+
+            /*scaling*/
+
+            /*z-axis*/
+        case 'i':
+            globalScaleZ += globalScaleStep;
+            break;
+        case 'k':
+            globalScaleZ -= globalScaleStep;
+            break;
+
+            /*x-axis*/
+        case 'j':
+            globalScaleX -= globalScaleStep;
+            break;
+        case 'l':
+            globalScaleX += globalScaleStep;
+            break;
+
+            /*y-axis*/
+        case 'u':
+            globalScaleY -= globalScaleStep;
+            break;
+        case 'o':
+            globalScaleY += globalScaleStep;
+            break;
+            /*end of scaling*/
+
+        /*camera*/
+        case '1':
+            globalEyeX -= globalEyeStep;
+            break;
+        case '!':
+            globalEyeX += globalEyeStep;
+            break;
+        case '2':
+            globalEyeY -= globalEyeStep;
+            break;
+        case '@':
+            globalEyeY += globalEyeStep;
+            break;
+        case '3':
+            globalEyeZ -= globalEyeStep;
+            break;
+        case '#':
+            globalEyeZ += globalEyeStep;
+            break;
+
+        case '4':
+            globalCenterX -= globalCenterStep;
+            break;
+        case '$':
+            globalCenterX += globalCenterStep;
+            break;
+        case '5':
+            globalCenterY -= globalCenterStep;
+            break;
+        case '%':
+            globalCenterY += globalCenterStep;
+            break;
+        case '6':
+            globalCenterZ -= globalCenterStep;
+            break;
+        case '^':
+            globalCenterZ += globalCenterStep;
+            break;
+        case '7':
+            globalUpX -= globalUpStep;
+            break;
+        case '&':
+            globalUpX += globalUpStep;
+            break;
+        case '8':
+            globalUpY -= globalUpStep;
+            break;
+        case '*':
+            globalUpY += globalUpStep;
+            break;
+        case '9':
+            globalUpZ-= globalUpStep;
+            break;
+        case '(':
+            globalUpZ += globalUpStep;
+            break;
+
+        /*reset environment*/
+        case '0':
+            if (operations_hasBeenInitialized) {operations_hasBeenInitialized = false;
+                operations_render(&globalOperations);}
+            /*Reset Rotation*/
+            globalAngle = 0;
+            globalRotateX = 0;
+            globalRotateY = 0;
+            globalRotateZ = 0;
+            globalAngleStep = DEFAULT_GLOBAL_ANGLE_STEP;
+
+            /*Reset Translation*/
+            globalTranslateStep = DEFAULT_GLOBAL_TRANSLATE_STEP;
+            globalTranslateX = 0;
+            globalTranslateY = 0;
+            globalTranslateZ = 0;
+
+            /*Reset Scale*/
+            globalScaleStep = DEFAULT_GLOBAL_SCALE_STEP;
+            globalScaleX = 1;
+            globalScaleY = 1;
+            globalScaleZ = 1;
+
+            /*Reset Camera*/
+            globalEyeStep = DEFAULT_GLOBAL_EYE_STEP;
+            globalEyeX = DEFAULT_GLOBAL_EYE_X;
+            globalEyeY = DEFAULT_GLOBAL_EYE_Y;
+            globalEyeZ = DEFAULT_GLOBAL_EYE_Z;
+
+            globalCenterStep = DEFAULT_GLOBAL_CENTER_STEP;
+            globalCenterX = DEFAULT_GLOBAL_CENTER_X;
+            globalCenterY = DEFAULT_GLOBAL_CENTER_Y;
+            globalCenterZ = DEFAULT_GLOBAL_CENTER_Z;
+
+            globalUpStep = DEFAULT_GLOBAL_UP_STEP;
+            globalUpX = DEFAULT_GLOBAL_UP_X;
+            globalUpY = DEFAULT_GLOBAL_UP_Y;
+            globalUpZ = DEFAULT_GLOBAL_UP_Z;
+            break;
+
+        default:
+            break;
+    }
+    glutPostRedisplay(); //request display() call ASAP
 }
 
 void engine_run(int argc, char **argv) {
@@ -265,6 +543,9 @@ void engine_run(int argc, char **argv) {
     glutDisplayFunc(renderScene);
     glutReshapeFunc(changeSize);
 
+    // Callback registration for keyboard processing
+	glutKeyboardFunc(keyboardFunc);
+
     //  OpenGL settings
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_CULL_FACE);
@@ -273,7 +554,6 @@ void engine_run(int argc, char **argv) {
     // enter GLUT's main cycle
     glutMainLoop();
 }
-
 
 int main(int argc, char **argv) {
     engine_run(argc,argv);
