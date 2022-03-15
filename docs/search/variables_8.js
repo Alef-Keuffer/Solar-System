@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['vertices_0',['vertices',['../structmodel.html#aeda4520a3b906127f05c05c3aa6a5eea',1,'model']]]
+  ['translate_0',['TRANSLATE',['../parsing_8cpp.html#a5ca818cc3b6e31a94c8f90cd2ffe39e4',1,'TRANSLATE():&#160;parsing.cpp'],['../parsing_8h.html#a5ca818cc3b6e31a94c8f90cd2ffe39e4',1,'TRANSLATE():&#160;parsing.h']]]
 ];

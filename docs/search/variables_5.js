@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['rotate_0',['ROTATE',['../parsing_8cpp.html#af4ae699d8cd926769e89e26cd088b2c0',1,'ROTATE():&#160;parsing.cpp'],['../parsing_8h.html#af4ae699d8cd926769e89e26cd088b2c0',1,'ROTATE():&#160;parsing.h']]]
+  ['nvertices_0',['nVertices',['../structmodel.html#ac7a1c78e27dd01024b8fcff624b4ef20',1,'model']]]
 ];

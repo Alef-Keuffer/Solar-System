@@ -167,95 +167,95 @@ Data structure for Operations</h1>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">  157</span>                                                     {</div>
-<div class="line"><span class="lineno">  158</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i = 0;</div>
-<div class="line"><span class="lineno">  159</span> </div>
-<div class="line"><span class="lineno">  160</span>    <a class="code hl_variable" href="group__engine.html#gab5ee8b685f6c6fc482b830ecee0e66bb">globalEyeX</a> = operations-&gt;at(i);</div>
-<div class="line"><span class="lineno">  161</span>    <a class="code hl_variable" href="group__engine.html#ga3c1e3779aa4cd498aec201b2e9568883">globalEyeY</a> = operations-&gt;at(i + 1);</div>
-<div class="line"><span class="lineno">  162</span>    <a class="code hl_variable" href="group__engine.html#ga97bf3be2b89d735f7fbb5ef293c77be6">globalEyeZ</a> = operations-&gt;at(i + 2);</div>
-<div class="line"><span class="lineno">  163</span>    i += 3;</div>
-<div class="line"><span class="lineno">  164</span> </div>
-<div class="line"><span class="lineno">  165</span>    <a class="code hl_variable" href="group__engine.html#ga2cb5db8bdad416592fa643be93c764be">globalCenterX</a> = operations-&gt;at(i);</div>
-<div class="line"><span class="lineno">  166</span>    <a class="code hl_variable" href="group__engine.html#gaf3f8074b4e6ebaf6687f0777fd500e51">globalCenterY</a> = operations-&gt;at(i + 1);</div>
-<div class="line"><span class="lineno">  167</span>    <a class="code hl_variable" href="group__engine.html#gaa63e0d164754e930baf0d8d08106febb">globalCenterZ</a> = operations-&gt;at(i + 2);</div>
-<div class="line"><span class="lineno">  168</span>    i += 3;</div>
-<div class="line"><span class="lineno">  169</span> </div>
-<div class="line"><span class="lineno">  170</span>    <a class="code hl_variable" href="group__engine.html#ga72f95312c48395a912ce37b15c5ff841">globalUpX</a> = operations-&gt;at(i);</div>
-<div class="line"><span class="lineno">  171</span>    <a class="code hl_variable" href="group__engine.html#gaa2f1ed4a70974b3b22481d3124e1dbf2">globalUpY</a> = operations-&gt;at(i + 1);</div>
-<div class="line"><span class="lineno">  172</span>    <a class="code hl_variable" href="group__engine.html#ga9b87730968b220018fd7f1a53728e46e">globalUpZ</a> = operations-&gt;at(i + 2);</div>
-<div class="line"><span class="lineno">  173</span>    i += 3;</div>
-<div class="line"><span class="lineno">  174</span> </div>
-<div class="line"><span class="lineno">  175</span>    <a class="code hl_variable" href="group__engine.html#ga59f6d63e115356ceacbc105f05acd900">globalFOV</a> = operations-&gt;at(i);</div>
-<div class="line"><span class="lineno">  176</span>    <a class="code hl_variable" href="group__engine.html#ga4ce7b2ac871b1ff992a5048c9efedb4f">globalNear</a> = operations-&gt;at(i + 1);</div>
-<div class="line"><span class="lineno">  177</span>    <a class="code hl_variable" href="group__engine.html#ga0d7ac28f9a90c72a02d5f7c6f1182be9">globalFar</a> = operations-&gt;at(i + 2);</div>
-<div class="line"><span class="lineno">  178</span> </div>
-<div class="line"><span class="lineno">  179</span>    <span class="keywordflow">for</span> (i += 3; i &lt; operations-&gt;size(); i++) {</div>
-<div class="line"><span class="lineno">  180</span>        <span class="keywordflow">switch</span> ((<span class="keywordtype">int</span>) operations-&gt;at(i)) {</div>
-<div class="line"><span class="lineno">  181</span>            <span class="keywordflow">case</span> <a class="code hl_variable" href="parsing_8h.html#af4ae699d8cd926769e89e26cd088b2c0">ROTATE</a>:</div>
-<div class="line"><span class="lineno">  182</span>                glRotated(operations-&gt;at(i + 1),</div>
-<div class="line"><span class="lineno">  183</span>                          operations-&gt;at(i + 2),</div>
-<div class="line"><span class="lineno">  184</span>                          operations-&gt;at(i + 3),</div>
-<div class="line"><span class="lineno">  185</span>                          operations-&gt;at(i + 4));</div>
-<div class="line"><span class="lineno">  186</span>                i += 4;</div>
-<div class="line"><span class="lineno">  187</span>                <span class="keywordflow">continue</span>;</div>
-<div class="line"><span class="lineno">  188</span>            <span class="keywordflow">case</span> <a class="code hl_variable" href="parsing_8h.html#a5ca818cc3b6e31a94c8f90cd2ffe39e4">TRANSLATE</a>:</div>
-<div class="line"><span class="lineno">  189</span>                glTranslatef(operations-&gt;at(i + 1),</div>
-<div class="line"><span class="lineno">  190</span>                             operations-&gt;at(i + 2),</div>
-<div class="line"><span class="lineno">  191</span>                             operations-&gt;at(i + 3));</div>
-<div class="line"><span class="lineno">  192</span>                i += 3;</div>
-<div class="line"><span class="lineno">  193</span>                <span class="keywordflow">continue</span>;</div>
-<div class="line"><span class="lineno">  194</span>            <span class="keywordflow">case</span> <a class="code hl_variable" href="parsing_8h.html#a8334f0c0c56b96debb10231b86050ead">SCALE</a>:</div>
-<div class="line"><span class="lineno">  195</span>                glScalef(operations-&gt;at(i + 1),</div>
-<div class="line"><span class="lineno">  196</span>                         operations-&gt;at(i + 2),</div>
-<div class="line"><span class="lineno">  197</span>                         operations-&gt;at(i + 3));</div>
-<div class="line"><span class="lineno">  198</span>                i += 3;</div>
-<div class="line"><span class="lineno">  199</span>                <span class="keywordflow">continue</span>;</div>
-<div class="line"><span class="lineno">  200</span>            <span class="keywordflow">case</span> <a class="code hl_variable" href="parsing_8h.html#ae38a16613cd19c49df2093ac07acf4c2">BEGIN_GROUP</a>:</div>
-<div class="line"><span class="lineno">  201</span>                glPushMatrix();</div>
-<div class="line"><span class="lineno">  202</span>                <span class="keywordflow">continue</span>;</div>
-<div class="line"><span class="lineno">  203</span>            <span class="keywordflow">case</span> <a class="code hl_variable" href="parsing_8h.html#aa439df53a792b65747b73e9941f8f54a">END_GROUP</a>:</div>
-<div class="line"><span class="lineno">  204</span>                glPopMatrix();</div>
-<div class="line"><span class="lineno">  205</span>                <span class="keywordflow">continue</span>;</div>
-<div class="line"><span class="lineno">  206</span>            <span class="keywordflow">case</span> <a class="code hl_variable" href="parsing_8h.html#aa51361de9fa3f1deb5ea0db3378699ad">LOAD_MODEL</a>:</div>
-<div class="line"><span class="lineno">  207</span>                <span class="keywordtype">int</span> stringSize = (int) operations-&gt;at(i + 1);</div>
-<div class="line"><span class="lineno">  208</span>                <span class="keywordtype">char</span> <a class="code hl_struct" href="structmodel.html">model</a>[stringSize + 1];</div>
-<div class="line"><span class="lineno">  209</span> </div>
-<div class="line"><span class="lineno">  210</span>                <span class="keywordtype">int</span> j;</div>
-<div class="line"><span class="lineno">  211</span>                <span class="keywordflow">for</span> (j = 0; j &lt; stringSize; j++)</div>
-<div class="line"><span class="lineno">  212</span>                    <a class="code hl_struct" href="structmodel.html">model</a>[j] = (<span class="keywordtype">char</span>) operations-&gt;at(i + 2 + j);</div>
-<div class="line"><span class="lineno">  213</span> </div>
-<div class="line"><span class="lineno">  214</span>                <a class="code hl_struct" href="structmodel.html">model</a>[j] = 0;</div>
-<div class="line"><span class="lineno">  215</span>                <a class="code hl_function" href="group__engine.html#ga9b0aa26dead35aab4fa6be0709998046">renderModel</a>(<a class="code hl_function" href="group__engine.html#ga56beba311d0a6fcbda9aeb516fe67f8f">allocModel</a>(<a class="code hl_struct" href="structmodel.html">model</a>));</div>
-<div class="line"><span class="lineno">  216</span>                i += 1 + j - 1; <span class="comment">//just to be explicit</span></div>
-<div class="line"><span class="lineno">  217</span>                <span class="keywordflow">continue</span>;</div>
-<div class="line"><span class="lineno">  218</span>        }</div>
-<div class="line"><span class="lineno">  219</span>    }</div>
-<div class="line"><span class="lineno">  220</span>}</div>
-<div class="ttc" id="agroup__engine_html_ga0d7ac28f9a90c72a02d5f7c6f1182be9"><div class="ttname"><a href="group__engine.html#ga0d7ac28f9a90c72a02d5f7c6f1182be9">globalFar</a></div><div class="ttdeci">static float globalFar</div><div class="ttdef"><b>Definition:</b> engine.cpp:64</div></div>
-<div class="ttc" id="agroup__engine_html_ga2cb5db8bdad416592fa643be93c764be"><div class="ttname"><a href="group__engine.html#ga2cb5db8bdad416592fa643be93c764be">globalCenterX</a></div><div class="ttdeci">static float globalCenterX</div><div class="ttdef"><b>Definition:</b> engine.cpp:54</div></div>
-<div class="ttc" id="agroup__engine_html_ga3c1e3779aa4cd498aec201b2e9568883"><div class="ttname"><a href="group__engine.html#ga3c1e3779aa4cd498aec201b2e9568883">globalEyeY</a></div><div class="ttdeci">static float globalEyeY</div><div class="ttdef"><b>Definition:</b> engine.cpp:51</div></div>
-<div class="ttc" id="agroup__engine_html_ga4ce7b2ac871b1ff992a5048c9efedb4f"><div class="ttname"><a href="group__engine.html#ga4ce7b2ac871b1ff992a5048c9efedb4f">globalNear</a></div><div class="ttdeci">static float globalNear</div><div class="ttdef"><b>Definition:</b> engine.cpp:63</div></div>
-<div class="ttc" id="agroup__engine_html_ga56beba311d0a6fcbda9aeb516fe67f8f"><div class="ttname"><a href="group__engine.html#ga56beba311d0a6fcbda9aeb516fe67f8f">allocModel</a></div><div class="ttdeci">Model allocModel(const char *path)</div><div class="ttdef"><b>Definition:</b> engine.cpp:74</div></div>
-<div class="ttc" id="agroup__engine_html_ga59f6d63e115356ceacbc105f05acd900"><div class="ttname"><a href="group__engine.html#ga59f6d63e115356ceacbc105f05acd900">globalFOV</a></div><div class="ttdeci">static float globalFOV</div><div class="ttdef"><b>Definition:</b> engine.cpp:62</div></div>
-<div class="ttc" id="agroup__engine_html_ga72f95312c48395a912ce37b15c5ff841"><div class="ttname"><a href="group__engine.html#ga72f95312c48395a912ce37b15c5ff841">globalUpX</a></div><div class="ttdeci">static float globalUpX</div><div class="ttdef"><b>Definition:</b> engine.cpp:58</div></div>
-<div class="ttc" id="agroup__engine_html_ga97bf3be2b89d735f7fbb5ef293c77be6"><div class="ttname"><a href="group__engine.html#ga97bf3be2b89d735f7fbb5ef293c77be6">globalEyeZ</a></div><div class="ttdeci">static float globalEyeZ</div><div class="ttdef"><b>Definition:</b> engine.cpp:52</div></div>
-<div class="ttc" id="agroup__engine_html_ga9b0aa26dead35aab4fa6be0709998046"><div class="ttname"><a href="group__engine.html#ga9b0aa26dead35aab4fa6be0709998046">renderModel</a></div><div class="ttdeci">void renderModel(Model model)</div><div class="ttdef"><b>Definition:</b> engine.cpp:97</div></div>
-<div class="ttc" id="agroup__engine_html_ga9b87730968b220018fd7f1a53728e46e"><div class="ttname"><a href="group__engine.html#ga9b87730968b220018fd7f1a53728e46e">globalUpZ</a></div><div class="ttdeci">static float globalUpZ</div><div class="ttdef"><b>Definition:</b> engine.cpp:60</div></div>
-<div class="ttc" id="agroup__engine_html_gaa2f1ed4a70974b3b22481d3124e1dbf2"><div class="ttname"><a href="group__engine.html#gaa2f1ed4a70974b3b22481d3124e1dbf2">globalUpY</a></div><div class="ttdeci">static float globalUpY</div><div class="ttdef"><b>Definition:</b> engine.cpp:59</div></div>
-<div class="ttc" id="agroup__engine_html_gaa63e0d164754e930baf0d8d08106febb"><div class="ttname"><a href="group__engine.html#gaa63e0d164754e930baf0d8d08106febb">globalCenterZ</a></div><div class="ttdeci">static float globalCenterZ</div><div class="ttdef"><b>Definition:</b> engine.cpp:56</div></div>
-<div class="ttc" id="agroup__engine_html_gab5ee8b685f6c6fc482b830ecee0e66bb"><div class="ttname"><a href="group__engine.html#gab5ee8b685f6c6fc482b830ecee0e66bb">globalEyeX</a></div><div class="ttdeci">static float globalEyeX</div><div class="ttdef"><b>Definition:</b> engine.cpp:50</div></div>
-<div class="ttc" id="agroup__engine_html_gaf3f8074b4e6ebaf6687f0777fd500e51"><div class="ttname"><a href="group__engine.html#gaf3f8074b4e6ebaf6687f0777fd500e51">globalCenterY</a></div><div class="ttdeci">static float globalCenterY</div><div class="ttdef"><b>Definition:</b> engine.cpp:55</div></div>
+<div class="fragment"><div class="line"><span class="lineno">  190</span>                                                     {</div>
+<div class="line"><span class="lineno">  191</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i = 0;</div>
+<div class="line"><span class="lineno">  192</span> </div>
+<div class="line"><span class="lineno">  193</span>    <a class="code hl_variable" href="group__position.html#gab5ee8b685f6c6fc482b830ecee0e66bb">globalEyeX</a> = operations-&gt;at(i);</div>
+<div class="line"><span class="lineno">  194</span>    <a class="code hl_variable" href="group__position.html#ga3c1e3779aa4cd498aec201b2e9568883">globalEyeY</a> = operations-&gt;at(i + 1);</div>
+<div class="line"><span class="lineno">  195</span>    <a class="code hl_variable" href="group__position.html#ga97bf3be2b89d735f7fbb5ef293c77be6">globalEyeZ</a> = operations-&gt;at(i + 2);</div>
+<div class="line"><span class="lineno">  196</span>    i += 3;</div>
+<div class="line"><span class="lineno">  197</span> </div>
+<div class="line"><span class="lineno">  198</span>    <a class="code hl_variable" href="group__look_at.html#ga2cb5db8bdad416592fa643be93c764be">globalCenterX</a> = operations-&gt;at(i);</div>
+<div class="line"><span class="lineno">  199</span>    <a class="code hl_variable" href="group__look_at.html#gaf3f8074b4e6ebaf6687f0777fd500e51">globalCenterY</a> = operations-&gt;at(i + 1);</div>
+<div class="line"><span class="lineno">  200</span>    <a class="code hl_variable" href="group__look_at.html#gaa63e0d164754e930baf0d8d08106febb">globalCenterZ</a> = operations-&gt;at(i + 2);</div>
+<div class="line"><span class="lineno">  201</span>    i += 3;</div>
+<div class="line"><span class="lineno">  202</span> </div>
+<div class="line"><span class="lineno">  203</span>    <a class="code hl_variable" href="group__up.html#ga72f95312c48395a912ce37b15c5ff841">globalUpX</a> = operations-&gt;at(i);</div>
+<div class="line"><span class="lineno">  204</span>    <a class="code hl_variable" href="group__up.html#gaa2f1ed4a70974b3b22481d3124e1dbf2">globalUpY</a> = operations-&gt;at(i + 1);</div>
+<div class="line"><span class="lineno">  205</span>    <a class="code hl_variable" href="group__up.html#ga9b87730968b220018fd7f1a53728e46e">globalUpZ</a> = operations-&gt;at(i + 2);</div>
+<div class="line"><span class="lineno">  206</span>    i += 3;</div>
+<div class="line"><span class="lineno">  207</span> </div>
+<div class="line"><span class="lineno">  208</span>    <a class="code hl_variable" href="group__projection.html#ga59f6d63e115356ceacbc105f05acd900">globalFOV</a> = operations-&gt;at(i);</div>
+<div class="line"><span class="lineno">  209</span>    <a class="code hl_variable" href="group__projection.html#ga4ce7b2ac871b1ff992a5048c9efedb4f">globalNear</a> = operations-&gt;at(i + 1);</div>
+<div class="line"><span class="lineno">  210</span>    <a class="code hl_variable" href="group__projection.html#ga0d7ac28f9a90c72a02d5f7c6f1182be9">globalFar</a> = operations-&gt;at(i + 2);</div>
+<div class="line"><span class="lineno">  211</span> </div>
+<div class="line"><span class="lineno">  212</span>    <span class="keywordflow">for</span> (i += 3; i &lt; operations-&gt;size(); i++) {</div>
+<div class="line"><span class="lineno">  213</span>        <span class="keywordflow">switch</span> ((<span class="keywordtype">int</span>) operations-&gt;at(i)) {</div>
+<div class="line"><span class="lineno">  214</span>            <span class="keywordflow">case</span> <a class="code hl_variable" href="parsing_8h.html#af4ae699d8cd926769e89e26cd088b2c0">ROTATE</a>:</div>
+<div class="line"><span class="lineno">  215</span>                glRotated(operations-&gt;at(i + 1),</div>
+<div class="line"><span class="lineno">  216</span>                          operations-&gt;at(i + 2),</div>
+<div class="line"><span class="lineno">  217</span>                          operations-&gt;at(i + 3),</div>
+<div class="line"><span class="lineno">  218</span>                          operations-&gt;at(i + 4));</div>
+<div class="line"><span class="lineno">  219</span>                i += 4;</div>
+<div class="line"><span class="lineno">  220</span>                <span class="keywordflow">continue</span>;</div>
+<div class="line"><span class="lineno">  221</span>            <span class="keywordflow">case</span> <a class="code hl_variable" href="parsing_8h.html#a5ca818cc3b6e31a94c8f90cd2ffe39e4">TRANSLATE</a>:</div>
+<div class="line"><span class="lineno">  222</span>                glTranslatef(operations-&gt;at(i + 1),</div>
+<div class="line"><span class="lineno">  223</span>                             operations-&gt;at(i + 2),</div>
+<div class="line"><span class="lineno">  224</span>                             operations-&gt;at(i + 3));</div>
+<div class="line"><span class="lineno">  225</span>                i += 3;</div>
+<div class="line"><span class="lineno">  226</span>                <span class="keywordflow">continue</span>;</div>
+<div class="line"><span class="lineno">  227</span>            <span class="keywordflow">case</span> <a class="code hl_variable" href="parsing_8h.html#a8334f0c0c56b96debb10231b86050ead">SCALE</a>:</div>
+<div class="line"><span class="lineno">  228</span>                glScalef(operations-&gt;at(i + 1),</div>
+<div class="line"><span class="lineno">  229</span>                         operations-&gt;at(i + 2),</div>
+<div class="line"><span class="lineno">  230</span>                         operations-&gt;at(i + 3));</div>
+<div class="line"><span class="lineno">  231</span>                i += 3;</div>
+<div class="line"><span class="lineno">  232</span>                <span class="keywordflow">continue</span>;</div>
+<div class="line"><span class="lineno">  233</span>            <span class="keywordflow">case</span> <a class="code hl_variable" href="parsing_8h.html#ae38a16613cd19c49df2093ac07acf4c2">BEGIN_GROUP</a>:</div>
+<div class="line"><span class="lineno">  234</span>                glPushMatrix();</div>
+<div class="line"><span class="lineno">  235</span>                <span class="keywordflow">continue</span>;</div>
+<div class="line"><span class="lineno">  236</span>            <span class="keywordflow">case</span> <a class="code hl_variable" href="parsing_8h.html#aa439df53a792b65747b73e9941f8f54a">END_GROUP</a>:</div>
+<div class="line"><span class="lineno">  237</span>                glPopMatrix();</div>
+<div class="line"><span class="lineno">  238</span>                <span class="keywordflow">continue</span>;</div>
+<div class="line"><span class="lineno">  239</span>            <span class="keywordflow">case</span> <a class="code hl_variable" href="parsing_8h.html#aa51361de9fa3f1deb5ea0db3378699ad">LOAD_MODEL</a>:</div>
+<div class="line"><span class="lineno">  240</span>                <span class="keywordtype">int</span> stringSize = (int) operations-&gt;at(i + 1);</div>
+<div class="line"><span class="lineno">  241</span>                <span class="keywordtype">char</span> <a class="code hl_struct" href="structmodel.html">model</a>[stringSize + 1];</div>
+<div class="line"><span class="lineno">  242</span> </div>
+<div class="line"><span class="lineno">  243</span>                <span class="keywordtype">int</span> j;</div>
+<div class="line"><span class="lineno">  244</span>                <span class="keywordflow">for</span> (j = 0; j &lt; stringSize; j++)</div>
+<div class="line"><span class="lineno">  245</span>                    <a class="code hl_struct" href="structmodel.html">model</a>[j] = (<span class="keywordtype">char</span>) operations-&gt;at(i + 2 + j);</div>
+<div class="line"><span class="lineno">  246</span> </div>
+<div class="line"><span class="lineno">  247</span>                <a class="code hl_struct" href="structmodel.html">model</a>[j] = 0;</div>
+<div class="line"><span class="lineno">  248</span>                <a class="code hl_function" href="group__model_engine.html#ga9b0aa26dead35aab4fa6be0709998046">renderModel</a>(<a class="code hl_function" href="group__model_engine.html#ga56beba311d0a6fcbda9aeb516fe67f8f">allocModel</a>(<a class="code hl_struct" href="structmodel.html">model</a>));</div>
+<div class="line"><span class="lineno">  249</span>                i += 1 + j - 1; <span class="comment">//just to be explicit</span></div>
+<div class="line"><span class="lineno">  250</span>                <span class="keywordflow">continue</span>;</div>
+<div class="line"><span class="lineno">  251</span>        }</div>
+<div class="line"><span class="lineno">  252</span>    }</div>
+<div class="line"><span class="lineno">  253</span>}</div>
+<div class="ttc" id="agroup__look_at_html_ga2cb5db8bdad416592fa643be93c764be"><div class="ttname"><a href="group__look_at.html#ga2cb5db8bdad416592fa643be93c764be">globalCenterX</a></div><div class="ttdeci">static float globalCenterX</div><div class="ttdef"><b>Definition:</b> engine.cpp:64</div></div>
+<div class="ttc" id="agroup__look_at_html_gaa63e0d164754e930baf0d8d08106febb"><div class="ttname"><a href="group__look_at.html#gaa63e0d164754e930baf0d8d08106febb">globalCenterZ</a></div><div class="ttdeci">static float globalCenterZ</div><div class="ttdef"><b>Definition:</b> engine.cpp:66</div></div>
+<div class="ttc" id="agroup__look_at_html_gaf3f8074b4e6ebaf6687f0777fd500e51"><div class="ttname"><a href="group__look_at.html#gaf3f8074b4e6ebaf6687f0777fd500e51">globalCenterY</a></div><div class="ttdeci">static float globalCenterY</div><div class="ttdef"><b>Definition:</b> engine.cpp:65</div></div>
+<div class="ttc" id="agroup__model_engine_html_ga56beba311d0a6fcbda9aeb516fe67f8f"><div class="ttname"><a href="group__model_engine.html#ga56beba311d0a6fcbda9aeb516fe67f8f">allocModel</a></div><div class="ttdeci">Model allocModel(const char *path)</div><div class="ttdef"><b>Definition:</b> engine.cpp:106</div></div>
+<div class="ttc" id="agroup__model_engine_html_ga9b0aa26dead35aab4fa6be0709998046"><div class="ttname"><a href="group__model_engine.html#ga9b0aa26dead35aab4fa6be0709998046">renderModel</a></div><div class="ttdeci">void renderModel(Model model)</div><div class="ttdef"><b>Definition:</b> engine.cpp:129</div></div>
+<div class="ttc" id="agroup__position_html_ga3c1e3779aa4cd498aec201b2e9568883"><div class="ttname"><a href="group__position.html#ga3c1e3779aa4cd498aec201b2e9568883">globalEyeY</a></div><div class="ttdeci">static float globalEyeY</div><div class="ttdef"><b>Definition:</b> engine.cpp:52</div></div>
+<div class="ttc" id="agroup__position_html_ga97bf3be2b89d735f7fbb5ef293c77be6"><div class="ttname"><a href="group__position.html#ga97bf3be2b89d735f7fbb5ef293c77be6">globalEyeZ</a></div><div class="ttdeci">static float globalEyeZ</div><div class="ttdef"><b>Definition:</b> engine.cpp:53</div></div>
+<div class="ttc" id="agroup__position_html_gab5ee8b685f6c6fc482b830ecee0e66bb"><div class="ttname"><a href="group__position.html#gab5ee8b685f6c6fc482b830ecee0e66bb">globalEyeX</a></div><div class="ttdeci">static float globalEyeX</div><div class="ttdef"><b>Definition:</b> engine.cpp:51</div></div>
+<div class="ttc" id="agroup__projection_html_ga0d7ac28f9a90c72a02d5f7c6f1182be9"><div class="ttname"><a href="group__projection.html#ga0d7ac28f9a90c72a02d5f7c6f1182be9">globalFar</a></div><div class="ttdeci">static float globalFar</div><div class="ttdef"><b>Definition:</b> engine.cpp:90</div></div>
+<div class="ttc" id="agroup__projection_html_ga4ce7b2ac871b1ff992a5048c9efedb4f"><div class="ttname"><a href="group__projection.html#ga4ce7b2ac871b1ff992a5048c9efedb4f">globalNear</a></div><div class="ttdeci">static float globalNear</div><div class="ttdef"><b>Definition:</b> engine.cpp:89</div></div>
+<div class="ttc" id="agroup__projection_html_ga59f6d63e115356ceacbc105f05acd900"><div class="ttname"><a href="group__projection.html#ga59f6d63e115356ceacbc105f05acd900">globalFOV</a></div><div class="ttdeci">static float globalFOV</div><div class="ttdef"><b>Definition:</b> engine.cpp:88</div></div>
+<div class="ttc" id="agroup__up_html_ga72f95312c48395a912ce37b15c5ff841"><div class="ttname"><a href="group__up.html#ga72f95312c48395a912ce37b15c5ff841">globalUpX</a></div><div class="ttdeci">static float globalUpX</div><div class="ttdef"><b>Definition:</b> engine.cpp:77</div></div>
+<div class="ttc" id="agroup__up_html_ga9b87730968b220018fd7f1a53728e46e"><div class="ttname"><a href="group__up.html#ga9b87730968b220018fd7f1a53728e46e">globalUpZ</a></div><div class="ttdeci">static float globalUpZ</div><div class="ttdef"><b>Definition:</b> engine.cpp:79</div></div>
+<div class="ttc" id="agroup__up_html_gaa2f1ed4a70974b3b22481d3124e1dbf2"><div class="ttname"><a href="group__up.html#gaa2f1ed4a70974b3b22481d3124e1dbf2">globalUpY</a></div><div class="ttdeci">static float globalUpY</div><div class="ttdef"><b>Definition:</b> engine.cpp:78</div></div>
 <div class="ttc" id="aparsing_8h_html_a5ca818cc3b6e31a94c8f90cd2ffe39e4"><div class="ttname"><a href="parsing_8h.html#a5ca818cc3b6e31a94c8f90cd2ffe39e4">TRANSLATE</a></div><div class="ttdeci">const int TRANSLATE</div><div class="ttdef"><b>Definition:</b> parsing.h:8</div></div>
 <div class="ttc" id="aparsing_8h_html_a8334f0c0c56b96debb10231b86050ead"><div class="ttname"><a href="parsing_8h.html#a8334f0c0c56b96debb10231b86050ead">SCALE</a></div><div class="ttdeci">const int SCALE</div><div class="ttdef"><b>Definition:</b> parsing.h:10</div></div>
 <div class="ttc" id="aparsing_8h_html_aa439df53a792b65747b73e9941f8f54a"><div class="ttname"><a href="parsing_8h.html#aa439df53a792b65747b73e9941f8f54a">END_GROUP</a></div><div class="ttdeci">const int END_GROUP</div><div class="ttdef"><b>Definition:</b> parsing.h:13</div></div>
 <div class="ttc" id="aparsing_8h_html_aa51361de9fa3f1deb5ea0db3378699ad"><div class="ttname"><a href="parsing_8h.html#aa51361de9fa3f1deb5ea0db3378699ad">LOAD_MODEL</a></div><div class="ttdeci">const int LOAD_MODEL</div><div class="ttdef"><b>Definition:</b> parsing.h:11</div></div>
 <div class="ttc" id="aparsing_8h_html_ae38a16613cd19c49df2093ac07acf4c2"><div class="ttname"><a href="parsing_8h.html#ae38a16613cd19c49df2093ac07acf4c2">BEGIN_GROUP</a></div><div class="ttdeci">const int BEGIN_GROUP</div><div class="ttdef"><b>Definition:</b> parsing.h:12</div></div>
 <div class="ttc" id="aparsing_8h_html_af4ae699d8cd926769e89e26cd088b2c0"><div class="ttname"><a href="parsing_8h.html#af4ae699d8cd926769e89e26cd088b2c0">ROTATE</a></div><div class="ttdeci">const int ROTATE</div><div class="ttdef"><b>Definition:</b> parsing.h:9</div></div>
-<div class="ttc" id="astructmodel_html"><div class="ttname"><a href="structmodel.html">model</a></div><div class="ttdef"><b>Definition:</b> engine.cpp:66</div></div>
+<div class="ttc" id="astructmodel_html"><div class="ttname"><a href="structmodel.html">model</a></div><div class="ttdef"><b>Definition:</b> engine.cpp:98</div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="#l00074">allocModel()</a>, <a class="el" href="#l00012">BEGIN_GROUP</a>, <a class="el" href="#l00013">END_GROUP</a>, <a class="el" href="#l00054">globalCenterX</a>, <a class="el" href="#l00055">globalCenterY</a>, <a class="el" href="#l00056">globalCenterZ</a>, <a class="el" href="#l00050">globalEyeX</a>, <a class="el" href="#l00051">globalEyeY</a>, <a class="el" href="#l00052">globalEyeZ</a>, <a class="el" href="#l00064">globalFar</a>, <a class="el" href="#l00062">globalFOV</a>, <a class="el" href="#l00063">globalNear</a>, <a class="el" href="#l00058">globalUpX</a>, <a class="el" href="#l00059">globalUpY</a>, <a class="el" href="#l00060">globalUpZ</a>, <a class="el" href="#l00011">LOAD_MODEL</a>, <a class="el" href="#l00097">renderModel()</a>, <a class="el" href="#l00009">ROTATE</a>, <a class="el" href="#l00010">SCALE</a>, and <a class="el" href="#l00008">TRANSLATE</a>.</p>
+<p class="reference">References <a class="el" href="#l00106">allocModel()</a>, <a class="el" href="#l00012">BEGIN_GROUP</a>, <a class="el" href="#l00013">END_GROUP</a>, <a class="el" href="#l00064">globalCenterX</a>, <a class="el" href="#l00065">globalCenterY</a>, <a class="el" href="#l00066">globalCenterZ</a>, <a class="el" href="#l00051">globalEyeX</a>, <a class="el" href="#l00052">globalEyeY</a>, <a class="el" href="#l00053">globalEyeZ</a>, <a class="el" href="#l00090">globalFar</a>, <a class="el" href="#l00088">globalFOV</a>, <a class="el" href="#l00089">globalNear</a>, <a class="el" href="#l00077">globalUpX</a>, <a class="el" href="#l00078">globalUpY</a>, <a class="el" href="#l00079">globalUpZ</a>, <a class="el" href="#l00011">LOAD_MODEL</a>, <a class="el" href="#l00129">renderModel()</a>, <a class="el" href="#l00009">ROTATE</a>, <a class="el" href="#l00010">SCALE</a>, and <a class="el" href="#l00008">TRANSLATE</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="#l00224">renderScene()</a>, and <a class="el" href="#l00248">xml_load_and_set_env()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="#l00257">renderScene()</a>, and <a class="el" href="#l00281">xml_load_and_set_env()</a>.</p>
 
 </div>
 </div>
