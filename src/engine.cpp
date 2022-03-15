@@ -308,6 +308,31 @@ void operations_render(std::vector<float> *operations) {
     hasPushedModels = true;
 }
 
+void draw_axes() {
+        /*draw absolute (before any transformation) axes*/
+        glBegin(GL_LINES);
+        /*X-axis in red*/
+        glColor3f(1.0f, 0.0f, 0.0f);
+        glVertex3f(
+                -100.0f, 0.0f, 0.0f);
+        glVertex3f( 100.0f, 0.0f, 0.0f);
+
+        /*Y-Axis in Green*/
+        glColor3f(0.0f, 1.0f, 0.0f);
+        glVertex3f(0.0f,
+                   -100.0f, 0.0f);
+        glVertex3f(0.0f, 100.0f, 0.0f);
+
+        /*Z-Axis in Blue*/
+        glColor3f(0.0f, 0.0f, 1.0f);
+        glVertex3f(0.0f, 0.0f,
+                   -100.0f);
+        glVertex3f(0.0f, 0.0f, 100.0f);
+        glColor3d(1,1,1);
+        glEnd();
+    /*end of draw absolute (before any transformation) axes*/
+}
+
 /*!@addtogroup engine
  * @{*/
 void renderScene() {
@@ -315,13 +340,18 @@ void renderScene() {
     // clear buffers
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    // set the camera
-    glLoadIdentity();
     // helps in avoiding rounding mistakes, discards old matrix, read more
+    glLoadIdentity();
 
+
+    // set the camera
     gluLookAt(globalEyeX, globalEyeY, globalEyeZ,
               globalCenterX, globalCenterY, globalCenterZ,
               globalUpX, globalUpY, globalUpZ);
+
+    /*draw absolute (before any transformation) axes*/
+    draw_axes();
+
     // put the geometric transformations here
     glRotatef(globalAngle, globalRotateX, globalRotateY, globalRotateZ);
     glTranslatef(globalTranslateX, globalTranslateY, globalTranslateZ);
