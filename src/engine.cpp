@@ -37,6 +37,8 @@ static float globalScaleX = 1;
 static float globalScaleY = 1;
 static float globalScaleZ = 1;
 
+
+
 /*! @addtogroup camera
  * @{*/
 
@@ -90,6 +92,51 @@ static float globalNear = DEFAULT_GLOBAL_NEAR;
 static float globalFar = DEFAULT_GLOBAL_FAR;
 //!@} end of group projection
 //!@} end of group camera
+
+void env_load_defaults() {
+    /*rotation*/
+    globalAngleStep = DEFAULT_GLOBAL_ANGLE_STEP;
+    globalAngle = 0;
+    globalRotateX = 0;
+    globalRotateY = 0;
+    globalRotateZ = 0;
+
+    /*translation*/
+    globalTranslateStep = DEFAULT_GLOBAL_TRANSLATE_STEP;
+    globalTranslateX = 0;
+    globalTranslateY = 0;
+    globalTranslateZ = 0;
+
+    /*scaling*/
+    globalScaleStep = DEFAULT_GLOBAL_SCALE_STEP;
+    globalScaleX = 1;
+    globalScaleY = 1;
+    globalScaleZ = 1;
+
+    /*position*/
+    globalEyeStep = DEFAULT_GLOBAL_EYE_STEP;
+    globalEyeX = DEFAULT_GLOBAL_EYE_X;
+    globalEyeY = DEFAULT_GLOBAL_EYE_Y;
+    globalEyeZ = DEFAULT_GLOBAL_EYE_Z;
+
+    /*lookAt*/
+    globalCenterStep = DEFAULT_GLOBAL_CENTER_STEP;
+    globalCenterX = DEFAULT_GLOBAL_CENTER_X;
+    globalCenterY = DEFAULT_GLOBAL_CENTER_Y;
+    globalCenterZ = DEFAULT_GLOBAL_CENTER_Z;
+
+    /*u[*/
+
+    globalUpStep = DEFAULT_GLOBAL_UP_STEP;
+    globalUpX = DEFAULT_GLOBAL_UP_X;
+    globalUpY = DEFAULT_GLOBAL_UP_Y;
+    globalUpZ = DEFAULT_GLOBAL_UP_Z;
+
+    /*projection*/
+    globalFOV = DEFAULT_GLOBAL_FOV;
+    globalNear = DEFAULT_GLOBAL_NEAR;
+    globalFar = DEFAULT_GLOBAL_FAR;
+}
 
 //! @defgroup modelEngine Model
 
@@ -188,43 +235,28 @@ void changeSize(int w, int h) {
 //!@} end of group engine
 
 //! @ingroup Operations
-int operations_render(std::vector<float> *operations) {
-    if (operations_hasBeenInitialized) return 1;
-
+void operations_render(std::vector<float> *operations) {
     unsigned int i = 0;
     static bool hasPushedModels = false;
 
     DEFAULT_GLOBAL_EYE_X = operations->at(i);
     DEFAULT_GLOBAL_EYE_Y = operations->at(i + 1);
     DEFAULT_GLOBAL_EYE_Z = operations->at(i + 2);
-    globalEyeX = DEFAULT_GLOBAL_EYE_X;
-    globalEyeY = DEFAULT_GLOBAL_EYE_Y;
-    globalEyeZ = DEFAULT_GLOBAL_EYE_Z;
     i += 3;
 
     DEFAULT_GLOBAL_CENTER_X = operations->at(i);
     DEFAULT_GLOBAL_CENTER_Y = operations->at(i + 1);
     DEFAULT_GLOBAL_CENTER_Z = operations->at(i + 2);
-    globalCenterX = DEFAULT_GLOBAL_CENTER_X;
-    globalCenterY = DEFAULT_GLOBAL_CENTER_Y;
-    globalCenterZ = DEFAULT_GLOBAL_CENTER_Z;
     i += 3;
 
     DEFAULT_GLOBAL_UP_X = operations->at(i);
     DEFAULT_GLOBAL_UP_Y = operations->at(i + 1);
     DEFAULT_GLOBAL_UP_Z = operations->at(i + 2);
-    globalUpX = DEFAULT_GLOBAL_UP_X;
-    globalUpY = DEFAULT_GLOBAL_UP_Y;
-    globalUpZ = DEFAULT_GLOBAL_UP_Z;
     i += 3;
 
     DEFAULT_GLOBAL_FOV = operations->at(i);
     DEFAULT_GLOBAL_NEAR = operations->at(i + 1);
     DEFAULT_GLOBAL_FAR = operations->at(i + 2);
-
-    globalFOV = DEFAULT_GLOBAL_FOV;
-    globalNear = DEFAULT_GLOBAL_NEAR;
-    globalFar = DEFAULT_GLOBAL_FAR;
 
     unsigned int modelNo = 0;
 
@@ -274,8 +306,6 @@ int operations_render(std::vector<float> *operations) {
         }
     }
     hasPushedModels = true;
-    operations_hasBeenInitialized = true;
-    return 0;
 }
 
 /*!@addtogroup engine
@@ -297,7 +327,7 @@ void renderScene() {
     glTranslatef(globalTranslateX, globalTranslateY, globalTranslateZ);
     glScalef(globalScaleX, globalScaleY, globalScaleZ);
 
-    if(operations_render(&globalOperations)) renderAllModels();
+    operations_render(&globalOperations);
 
     // End of frame
     glutSwapBuffers();
@@ -307,6 +337,7 @@ void renderScene() {
 void xml_load_and_set_env(const char *filename) {
     operations_load_xml(filename, &globalOperations);
     operations_render(&globalOperations);
+    env_load_defaults();
 }
 
 void keyboardFunc (unsigned char key, int xmouse, int ymouse)
@@ -484,42 +515,7 @@ void keyboardFunc (unsigned char key, int xmouse, int ymouse)
 
         /*reset environment*/
         case '0':
-            if (operations_hasBeenInitialized) {operations_hasBeenInitialized = false;
-                operations_render(&globalOperations);}
-            /*Reset Rotation*/
-            globalAngle = 0;
-            globalRotateX = 0;
-            globalRotateY = 0;
-            globalRotateZ = 0;
-            globalAngleStep = DEFAULT_GLOBAL_ANGLE_STEP;
-
-            /*Reset Translation*/
-            globalTranslateStep = DEFAULT_GLOBAL_TRANSLATE_STEP;
-            globalTranslateX = 0;
-            globalTranslateY = 0;
-            globalTranslateZ = 0;
-
-            /*Reset Scale*/
-            globalScaleStep = DEFAULT_GLOBAL_SCALE_STEP;
-            globalScaleX = 1;
-            globalScaleY = 1;
-            globalScaleZ = 1;
-
-            /*Reset Camera*/
-            globalEyeStep = DEFAULT_GLOBAL_EYE_STEP;
-            globalEyeX = DEFAULT_GLOBAL_EYE_X;
-            globalEyeY = DEFAULT_GLOBAL_EYE_Y;
-            globalEyeZ = DEFAULT_GLOBAL_EYE_Z;
-
-            globalCenterStep = DEFAULT_GLOBAL_CENTER_STEP;
-            globalCenterX = DEFAULT_GLOBAL_CENTER_X;
-            globalCenterY = DEFAULT_GLOBAL_CENTER_Y;
-            globalCenterZ = DEFAULT_GLOBAL_CENTER_Z;
-
-            globalUpStep = DEFAULT_GLOBAL_UP_STEP;
-            globalUpX = DEFAULT_GLOBAL_UP_X;
-            globalUpY = DEFAULT_GLOBAL_UP_Y;
-            globalUpZ = DEFAULT_GLOBAL_UP_Z;
+            env_load_defaults();
             break;
 
         default:
