@@ -1,78 +1,79 @@
 <world> <!-- a world can have a camera, a set of lights, and a single group -->
 	
     <camera> 
-	    <position x="3" y="10" z="4" />
+	    <position x="-10" y="10" z="-10000000" />
 	    <lookAt x="0" y="0" z="0" />
 	    <up x="0" y="1" z="0" /> <!-- optional, use these values as default-->
-        <projection fov="60" near="1" far="1000" /> <!-- optional, use these values as default-->
+        <projection fov="60" near="10000" far="10000000" /> <!-- optional, use these values as default-->
     </camera>
-
     <group>
-        <transform> 
-            <translate x="0" y="1" z="0" />
-        </transform>
-        <group> 
-            <transform> 
-                <rotate angle="45" x="0" y ="1" z = "0" />
-                <translate x="3.5" y="0" z="0" />
+        <models>
+		    <model file="sun.3d" />
+        </models>
+        <group>
+            <transform>
+                <translate x="390000" y="0" z="0" />
             </transform>
-			<models> 
-				<model file="box.3d" /> <!-- generator box 2 3 box.3d -->
+			<models>
+				<model file="mercury.3d" />
 			</models>
         </group>
-        <group> 
-            <transform> 
-                <rotate angle="90" x="0" y ="1" z = "0" />
-                <translate x="3.5" y="0" z="0" />
+        <group>
+            <transform>
+                <translate x="723000" y="0" z="0" />
             </transform>
-			<models> 
-				<model file="box.3d" /> <!-- generator box 2 3 box.3d -->
-			</models>
+            <models>
+                <model file="venus.3d" />
+            </models>
         </group>
-        <group> 
-            <transform> 
-                <rotate angle="135" x="0" y ="1" z = "0" />
-                <translate x="3.5" y="0" z="0" />
+        <group>
+            <transform>
+                <translate x="1000000" y="0" z="0" />
             </transform>
-			<models> 
-				<model file="box.3d" /> <!-- generator box 2 3 box.3d -->
-			</models>
+            <models>
+                <model file="earth.3d" />
+            </models>
         </group>
-        <group> 
-            <transform> 
-                <rotate angle="180" x="0" y ="1" z = "0" />
-                <translate x="3.5" y="0" z="0" />
+        <group>
+            <transform>
+                <translate x="1524000" y="0" z="0" />
             </transform>
-			<models> 
-				<model file="box.3d" /> <!-- generator box 2 3 box.3d -->
-			</models>
+            <models>
+                <model file="mars.3d" />
+            </models>
         </group>
-        <group> 
-            <transform> 
-                <rotate angle="225" x="0" y ="1" z = "0" />
-                <translate x="3.5" y="0" z="0" />
+        <group>
+            <transform>
+                <translate x="5203000" y="0" z="0" />
             </transform>
-			<models> 
-				<model file="box.3d" /> <!-- generator box 2 3 box.3d -->
-			</models>
+            <models>
+                <model file="jupiter.3d" />
+            </models>
         </group>
-        <group> 
-            <transform> 
-                <rotate angle="270" x="0" y ="1" z = "0" />
-                <translate x="3.5" y="0" z="0" />
+        <group>
+            <transform>
+                <translate x="9539000" y="0" z="0" />
             </transform>
-			<models> 
-				<model file="box.3d" /> <!-- generator box 2 3 box.3d -->
-			</models>
+            <models>
+                <model file="saturn.3d" />
+            </models>
         </group>
-        <group> 
-            <transform> 
-                <rotate angle="315" x="0" y ="1" z = "0" />
-                <translate x="3.5" y="0" z="0" />
+        <group>
+            <transform>
+                <translate x="19180000" y="0" z="0" />
             </transform>
-			<models> 
-				<model file="box.3d" /> <!-- generator box 2 3 box.3d -->
-			</models>
+            <models>
+                <model file="uranus.3d" />
+            </models>
         </group>
-	</group>
+        <group>
+            <transform>
+                <translate x="30060000" y="0" z="0" />
+            </transform>
+            <models>
+                <model file="neptune.3d" />
+            </models>
+        </group>
+
+    </group>
 </world>
