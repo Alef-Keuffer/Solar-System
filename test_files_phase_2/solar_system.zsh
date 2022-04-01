@@ -1,3 +1,4 @@
+#!/usr/bin/zsh
 MERCURY_R=30
 VENUS_R=$(python -c "print( $MERCURY_R * 1.5 )")
 EARTH_R=$(python -c "print( $MERCURY_R * 1.55 )")
@@ -8,15 +9,17 @@ URANUS_R=$(python -c "print( $MERCURY_R * 1.9 )")
 NEPTUNE_R=$(python -c "print( $MERCURY_R * 1.5 )")
 SUN_R=$(python -c "print( $MERCURY_R * 3.3 )")
 
-../bin/generator sphere $MERCURY_R 16 16 mercury.3d
-../bin/generator sphere "$VENUS_R" 16 16 venus.3d
-../bin/generator sphere "$EARTH_R" 16 16 earth.3d
-../bin/generator sphere "$MARS_R" 16 16 mars.3d
-../bin/generator sphere "$JUPITER_R" 16 16 jupiter.3d
-../bin/generator sphere "$SATURN_R" 16 16 saturn.3d
-../bin/generator sphere "$URANUS_R" 16 16 uranus.3d
-../bin/generator sphere "$NEPTUNE_R" 16 16 neptune.3d
-../bin/generator sphere "$SUN_R" 16 16 sun.3d
+RES=32
+
+../bin/generator sphere $MERCURY_R $RES $RES mercury.3d
+../bin/generator sphere "$VENUS_R" $RES $RES venus.3d
+../bin/generator sphere "$EARTH_R" $RES $RES earth.3d
+../bin/generator sphere "$MARS_R" $RES $RES mars.3d
+../bin/generator sphere "$JUPITER_R" $RES $RES jupiter.3d
+../bin/generator sphere "$SATURN_R" $RES $RES saturn.3d
+../bin/generator sphere "$URANUS_R" $RES $RES uranus.3d
+../bin/generator sphere "$NEPTUNE_R" $RES $RES neptune.3d
+../bin/generator sphere "$SUN_R" $RES $RES sun.3d
 
 MERCURY_D=$(((SUN_R+MERCURY_R)*1.5))
 VENUS_D=$(((MERCURY_D+VENUS_R)*1.5))
@@ -27,7 +30,6 @@ SATURN_D=$(((JUPITER_D+SATURN_R)*1.5))
 URANUS_D=$(((SATURN_D+URANUS_R)*1.5))
 NEPTUNE_D=$(((URANUS_D+NEPTUNE_R)*1.5))
 
-# shellcheck disable=SC2079
 sed -e "s/MERCURY/$MERCURY_D/g"\
     -e "s/VENUS/$VENUS_D/g"\
     -e "s/EARTH/$EARTH_D/g"\
