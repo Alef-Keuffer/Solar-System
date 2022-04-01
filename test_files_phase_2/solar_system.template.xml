@@ -4,7 +4,7 @@
 	    <position x="-400" y="0" z="400" />
 	    <lookAt x="0" y="0" z="0" />
 	    <up x="0" y="1" z="0" /> <!-- optional, use these values as default-->
-        <projection fov="60" near="10" far="1000" /> <!-- optional, use these values as default-->
+        <projection fov="60" near="10" far="10000" /> <!-- optional, use these values as default-->
     </camera>
     <group>
         <models>
@@ -12,7 +12,7 @@
         </models>
         <group>
             <transform>
-                <translate x="130" y="0" z="0" />
+                <translate x="MERCURY" y="0" z="0" />
             </transform>
 			<models>
 				<model file="mercury.3d" />
@@ -20,7 +20,7 @@
         </group>
         <group>
             <transform>
-                <translate x="200" y="0" z="0" />
+                <translate x="VENUS" y="0" z="0" />
             </transform>
             <models>
                 <model file="venus.3d" />
@@ -28,7 +28,7 @@
         </group>
         <group>
             <transform>
-                <translate x="280" y="0" z="0" />
+                <translate x="EARTH" y="0" z="0" />
             </transform>
             <models>
                 <model file="earth.3d" />
@@ -36,7 +36,7 @@
         </group>
         <group>
             <transform>
-                <translate x="380" y="0" z="0" />
+                <translate x="MARS" y="0" z="0" />
             </transform>
             <models>
                 <model file="mars.3d" />
@@ -44,7 +44,7 @@
         </group>
         <group>
             <transform>
-                <translate x="500" y="0" z="0" />
+                <translate x="JUPITER" y="0" z="0" />
             </transform>
             <models>
                 <model file="jupiter.3d" />
@@ -52,7 +52,7 @@
         </group>
         <group>
             <transform>
-                <translate x="640" y="0" z="0" />
+                <translate x="SATURN" y="0" z="0" />
             </transform>
             <models>
                 <model file="saturn.3d" />
@@ -60,7 +60,7 @@
         </group>
         <group>
             <transform>
-                <translate x="940" y="0" z="0" />
+                <translate x="URANUS" y="0" z="0" />
             </transform>
             <models>
                 <model file="uranus.3d" />
@@ -68,7 +68,7 @@
         </group>
         <group>
             <transform>
-                <translate x="1200" y="0" z="0" />
+                <translate x="NEPTUNE" y="0" z="0" />
             </transform>
             <models>
                 <model file="neptune.3d" />
