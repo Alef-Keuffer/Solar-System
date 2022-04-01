@@ -1,4 +1,3 @@
-# https://www.enchantedlearning.com/subjects/astronomy/planets/
 MERCURY_R=30
 VENUS_R=$(python -c "print( $MERCURY_R * 1.5 )")
 EARTH_R=$(python -c "print( $MERCURY_R * 1.55 )")
