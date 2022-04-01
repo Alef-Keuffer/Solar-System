@@ -392,6 +392,7 @@ void keyboardFunc (unsigned char key, int xmouse, int ymouse)
         7 8 9 ⎭       & * ( ⎭        UpX      UpY      UpZ
  */
     switch (key){
+    /*Rotation*/
         case 'x':
             globalRotateX -= 1;
             break;
@@ -433,6 +434,13 @@ void keyboardFunc (unsigned char key, int xmouse, int ymouse)
             break;
 
             /*translation*/
+        case 'T':
+          globalTranslateStep *= 2;
+          break;
+        case 't':
+          if (globalTranslateStep > 1)
+            globalTranslateStep /= 2;
+          break;
 
             /*z-axis*/
         case 'w':
