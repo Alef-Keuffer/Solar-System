@@ -486,6 +486,13 @@ void keyboardFunc (unsigned char key, int xmouse, int ymouse)
       /*end of scaling*/
 
       /*camera*/
+  case '`':globalEyeStep *= 2;
+      break;
+  case '~':
+    if (globalEyeStep > 1)
+      globalEyeStep /= 2;
+      break;
+
   case '1':globalEyeX -= globalEyeStep;
       break;
   case '!':globalEyeX += globalEyeStep;
