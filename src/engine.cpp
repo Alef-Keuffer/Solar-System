@@ -125,7 +125,7 @@ void env_load_defaults() {
     globalCenterY = DEFAULT_GLOBAL_CENTER_Y;
     globalCenterZ = DEFAULT_GLOBAL_CENTER_Z;
 
-    /*u[*/
+    /*up*/
 
     globalUpStep = DEFAULT_GLOBAL_UP_STEP;
     globalUpX = DEFAULT_GLOBAL_UP_X;

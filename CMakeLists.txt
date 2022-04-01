@@ -58,7 +58,7 @@ add_executable(generator src/generator.cpp)
 add_library(parsing src/parsing.cpp src/parsing.h)
 target_link_libraries(parsing tinyxml2)
 
-find_package(tinyxml2 REQUIRED)
+#find_package(tinyxml2 REQUIRED)
 target_link_libraries(${PROJECT_NAME} tinyxml2)
 
 add_executable(engine src/engine.cpp)
