@@ -59,9 +59,9 @@ bool globalMouseLeftButton = false;
 void spherical2Cartesian (double radius, double elevation, double azimuth, double *x, double *y, double *z)
 {
 
-  *x = globalRadius * cos (globalElevation) * sin (globalAzimuth);
-  *y = globalRadius * sin (globalElevation);
-  *z = globalRadius * cos (globalElevation) * cos (globalAzimuth);
+  *x = radius * cos (elevation) * sin (azimuth);
+  *y = radius * sin (elevation);
+  *z = radius * cos (elevation) * cos (azimuth);
 }
 
 void cartesian2Spherical (double x, double y, double z, double *radius, double *azimuth, double *elevation)
@@ -388,7 +388,7 @@ void draw_axes ()
  * @{*/
 void redisplay ()
 {
-  spherical2Cartesian (globalRadius,globalElevation,globalAzimuth,&globalEyeX,&globalEyeY,&globalEyeZ);
+  spherical2Cartesian (globalRadius, globalElevation, globalAzimuth, &globalEyeX, &globalEyeY, &globalEyeZ);
   glutPostRedisplay ();
 }
 
