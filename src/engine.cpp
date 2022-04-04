@@ -47,17 +47,32 @@ static float globalScaleZ = 1;
 
 /*! @addtogroup spherical
  * @{ */
-double globalAlfa = 0, globalBeta = 0, globalRadius = 1000;
-double globalCamX, globalCamY, globalCamZ;
+double DEFAULT_GLOBAL_RADIUS = 1;
+double DEFAULT_GLOBAL_AZIMUTH = 0;
+double DEFAULT_GLOBAL_ELEVATION = 0;
+
+double globalRadius = DEFAULT_GLOBAL_RADIUS;
+double globalAzimuth = DEFAULT_GLOBAL_AZIMUTH;
+double globalElevation = DEFAULT_GLOBAL_ELEVATION;
+double globalCamSphereX, globalCamSphereY, globalCamSphereZ;
 bool globalMouseLeftButton = false;
 
 void spherical2Cartesian ()
 {
 
-  globalCamX = globalRadius * cos (globalBeta) * sin (globalAlfa);
-  globalCamY = globalRadius * sin (globalBeta);
-  globalCamZ = globalRadius * cos (globalBeta) * cos (globalAlfa);
+  globalCamSphereX = globalRadius * cos (globalElevation) * sin (globalAzimuth);
+  globalCamSphereY = globalRadius * sin (globalElevation);
+  globalCamSphereZ = globalRadius * cos (globalElevation) * cos (globalAzimuth);
 }
+
+void cartesian2Spherical (double x, double y, double z, double *radius, double *azimuth, double *elevation)
+{
+  *radius = abs (sqrt (pow (x, 2) + pow (y, 2) + pow (z, 2)));
+  *elevation = asin (y / (*radius));
+  *azimuth = asin (x / (*radius * cos (*elevation)));
+
+}
+
 //! @} end of group spherical
 /*! @addtogroup position
  * @{*/
@@ -136,6 +151,10 @@ void env_load_defaults ()
   globalEyeX = DEFAULT_GLOBAL_EYE_X;
   globalEyeY = DEFAULT_GLOBAL_EYE_Y;
   globalEyeZ = DEFAULT_GLOBAL_EYE_Z;
+
+  globalRadius = DEFAULT_GLOBAL_RADIUS;
+  globalAzimuth = DEFAULT_GLOBAL_AZIMUTH;
+  globalElevation = DEFAULT_GLOBAL_ELEVATION;
 
   /*lookAt*/
   globalCenterStep = DEFAULT_GLOBAL_CENTER_STEP;
@@ -270,6 +289,10 @@ void operations_render (std::vector<float> *operations)
   DEFAULT_GLOBAL_EYE_X = operations->at (i);
   DEFAULT_GLOBAL_EYE_Y = operations->at (i + 1);
   DEFAULT_GLOBAL_EYE_Z = operations->at (i + 2);
+
+  cartesian2Spherical (
+      DEFAULT_GLOBAL_EYE_X, DEFAULT_GLOBAL_EYE_Y, DEFAULT_GLOBAL_EYE_Z,
+      &DEFAULT_GLOBAL_RADIUS, &DEFAULT_GLOBAL_AZIMUTH, &DEFAULT_GLOBAL_ELEVATION);
   i += 3;
 
   DEFAULT_GLOBAL_CENTER_X = operations->at (i);
@@ -384,7 +407,7 @@ void renderScene ()
   /*gluLookAt (globalEyeX, globalEyeY, globalEyeZ,
              globalCenterX, globalCenterY, globalCenterZ,
              globalUpX, globalUpY, globalUpZ);*/
-  gluLookAt (globalCamX, globalCamY, globalCamZ,
+  gluLookAt (globalCamSphereX, globalCamSphereY, globalCamSphereZ,
              0.0, 0.0, 0.0,
              0.0f, 1.0f, 0.0f);
 
@@ -565,7 +588,7 @@ void keyboardFunc (unsigned char key, int xmouse, int ymouse)
 
   default:break;
     }
-  glutPostRedisplay (); //request display() call ASAP
+  redisplay (); //request display() call ASAP
 }
 
 int globalXPrev = 0;
@@ -619,21 +642,21 @@ void motionFunc (int x, int y)
       const double stepBeta = 0.035;
 
       if (x < globalXPrev)
-        globalAlfa += stepAlfa;
+        globalAzimuth += stepAlfa;
       else if (x > globalXPrev)
-        globalAlfa -= stepAlfa;
+        globalAzimuth -= stepAlfa;
 
       if (y < globalYPrev)
         {
-          globalBeta -= stepBeta;
-          if (globalBeta < -1.5)
-            globalBeta = -1.5;
+          globalElevation -= stepBeta;
+          if (globalElevation < -1.5)
+            globalElevation = -1.5;
         }
       else if (y > globalYPrev)
         {
-          globalBeta += stepBeta;
-          if (globalBeta > 1.5)
-            globalBeta = 1.5;
+          globalElevation += stepBeta;
+          if (globalElevation > 1.5)
+            globalElevation = 1.5;
         }
 
       globalXPrev = x;
