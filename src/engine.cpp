@@ -615,8 +615,8 @@ void motionFunc (int x, int y)
 {
   if (globalMouseLeftButton)
     {
-      const double stepAlfa = 0.045;
-      const double stepBeta = 0.045;
+      const double stepAlfa = 0.035;
+      const double stepBeta = 0.035;
 
       if (x < globalXPrev)
         globalAlfa += stepAlfa;
