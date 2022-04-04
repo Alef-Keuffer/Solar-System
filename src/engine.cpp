@@ -54,15 +54,14 @@ double DEFAULT_GLOBAL_ELEVATION = 0;
 double globalRadius = DEFAULT_GLOBAL_RADIUS;
 double globalAzimuth = DEFAULT_GLOBAL_AZIMUTH;
 double globalElevation = DEFAULT_GLOBAL_ELEVATION;
-double globalCamSphereX, globalCamSphereY, globalCamSphereZ;
 bool globalMouseLeftButton = false;
 
-void spherical2Cartesian ()
+void spherical2Cartesian (double radius, double elevation, double azimuth, double *x, double *y, double *z)
 {
 
-  globalCamSphereX = globalRadius * cos (globalElevation) * sin (globalAzimuth);
-  globalCamSphereY = globalRadius * sin (globalElevation);
-  globalCamSphereZ = globalRadius * cos (globalElevation) * cos (globalAzimuth);
+  *x = globalRadius * cos (globalElevation) * sin (globalAzimuth);
+  *y = globalRadius * sin (globalElevation);
+  *z = globalRadius * cos (globalElevation) * cos (globalAzimuth);
 }
 
 void cartesian2Spherical (double x, double y, double z, double *radius, double *azimuth, double *elevation)
@@ -81,10 +80,10 @@ static float DEFAULT_GLOBAL_EYE_X = 0;
 static float DEFAULT_GLOBAL_EYE_Y = 0;
 static float DEFAULT_GLOBAL_EYE_Z = 0;
 
-static float globalEyeStep = DEFAULT_GLOBAL_EYE_STEP;
-static float globalEyeX = DEFAULT_GLOBAL_EYE_X;
-static float globalEyeY = DEFAULT_GLOBAL_EYE_Y;
-static float globalEyeZ = DEFAULT_GLOBAL_EYE_Z;
+static double globalEyeStep = DEFAULT_GLOBAL_EYE_STEP;
+static double globalEyeX = DEFAULT_GLOBAL_EYE_X;
+static double globalEyeY = DEFAULT_GLOBAL_EYE_Y;
+static double globalEyeZ = DEFAULT_GLOBAL_EYE_Z;
 //!@} end of group position
 
 /*! @addtogroup lookAt
@@ -389,7 +388,7 @@ void draw_axes ()
  * @{*/
 void redisplay ()
 {
-  spherical2Cartesian ();
+  spherical2Cartesian (globalRadius,globalElevation,globalAzimuth,&globalEyeX,&globalEyeY,&globalEyeZ);
   glutPostRedisplay ();
 }
 
@@ -404,13 +403,9 @@ void renderScene ()
 
 
   // set the camera
-  /*gluLookAt (globalEyeX, globalEyeY, globalEyeZ,
+  gluLookAt (globalEyeX, globalEyeY, globalEyeZ,
              globalCenterX, globalCenterY, globalCenterZ,
-             globalUpX, globalUpY, globalUpZ);*/
-  gluLookAt (globalCamSphereX, globalCamSphereY, globalCamSphereZ,
-             0.0, 0.0, 0.0,
-             0.0f, 1.0f, 0.0f);
-
+             globalUpX, globalUpY, globalUpZ);
 
   /*draw absolute (before any transformation) axes*/
   draw_axes ();
@@ -629,6 +624,14 @@ void mouseFunc (int button, int state, int x, int y)
               globalMouseLeftButton = false;
             }
         }
+      else if (button == GLUT_RIGHT_BUTTON)
+        {
+          if (state == GLUT_DOWN)
+            {
+              globalEyeX = x;
+              globalEyeZ = y;
+            }
+        }
     }
 
   redisplay ();
@@ -694,8 +697,6 @@ void engine_run (int argc, char **argv)
   glEnable (GL_DEPTH_TEST);
   glEnable (GL_CULL_FACE);
   glPolygonMode (GL_FRONT, GL_LINE);
-
-  spherical2Cartesian ();
 
   // enter GLUT's main cycle
   glutMainLoop ();
