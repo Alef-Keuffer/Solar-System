@@ -64,7 +64,6 @@ target_link_libraries(${PROJECT_NAME} tinyxml2)
 add_executable(engine src/engine.cpp)
 target_link_libraries(engine tinyxml2 parsing ${OPENGL_LIBRARIES} ${GLUT_LIBRARIES})
 
-
 foreach (folder test_files_phase_1 test_files_phase_2)
     file(GLOB files "${folder}/*.sh" "${folder}/*.zsh")
     foreach (file ${files})
@@ -77,22 +76,3 @@ foreach (folder test_files_phase_1 test_files_phase_2)
         )
     endforeach ()
 endforeach ()
-#
-#set(test_folder "test_files_phase_1")
-#file(GLOB tests1 "${test_folder}/*.sh")
-#foreach (test ${tests1})
-#    get_filename_component(tname ${test} NAME)
-#    add_custom_target(
-#            ${tname}
-#            COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/${test}
-#            WORKING_DIRECTORY ${test_folder}/
-#            DEPENDS engine generator
-#    )
-#endforeach ()
-#
-#add_custom_target(
-#        solar_system
-#        COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/test_files_phase_2/solar_system.zsh
-#        WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/test_files_phase_2/
-#        DEPENDS engine generator)
-#
