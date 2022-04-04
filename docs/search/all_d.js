@@ -1,11 +1,15 @@
 var searchData=
 [
-  ['readme_2emd_0',['readme.md',['../readme_8md.html',1,'']]],
-  ['readmodeltobuffer_1',['readModelToBuffer',['../group__model_engine.html#ga943eb4ae9be9204315e7dc4ccb7b3ca6',1,'readModelToBuffer(const char *path, float *p, unsigned int n):&#160;engine.cpp'],['../main_8cpp.html#a943eb4ae9be9204315e7dc4ccb7b3ca6',1,'readModelToBuffer(const char *path, float *p, unsigned int n):&#160;main.cpp']]],
-  ['render3d_2',['render3d',['../main_8cpp.html#a26a1f548f94f1ae7cb50446eded247ce',1,'main.cpp']]],
-  ['renderallmodels_3',['renderAllModels',['../group__model_engine.html#gacf6e708a0a1874bf2d8fd951a6ede500',1,'engine.cpp']]],
-  ['rendermodel_4',['renderModel',['../group__model_engine.html#ga9b0aa26dead35aab4fa6be0709998046',1,'engine.cpp']]],
-  ['renderscene_5',['renderScene',['../group__engine.html#ga91c42686f3245f22fb6b17ba5372d92c',1,'renderScene():&#160;engine.cpp'],['../main_8cpp.html#a2a96aed746d13d9b42d7888e156045f6',1,'renderScene(void):&#160;main.cpp']]],
-  ['rendertrianglevertexseq_6',['renderTriangleVertexSeq',['../group__engine.html#gaa790ed3f50ff9672fc05cd787d33a4ef',1,'renderTriangleVertexSeq(float *p, unsigned int nVertices):&#160;engine.cpp'],['../main_8cpp.html#a398691ab8678e504e5d144ef8f004dff',1,'renderTriangleVertexSeq(float *p, int n):&#160;main.cpp']]],
-  ['rotate_7',['ROTATE',['../parsing_8cpp.html#af4ae699d8cd926769e89e26cd088b2c0',1,'ROTATE():&#160;parsing.cpp'],['../parsing_8h.html#af4ae699d8cd926769e89e26cd088b2c0',1,'ROTATE():&#160;parsing.h']]]
+  ['parsing_2ecpp_0',['parsing.cpp',['../parsing_8cpp.html',1,'']]],
+  ['parsing_2eh_1',['parsing.h',['../parsing_8h.html',1,'']]],
+  ['plane_2',['PLANE',['../generator_8cpp.html#a7ad8eaf8fe89c7f27a41cb7e1d0d28ab',1,'generator.cpp']]],
+  ['plane_3',['Plane',['../group__plane.html',1,'']]],
+  ['points_4',['Points',['../group__points.html',1,'']]],
+  ['points_5fvertex_5',['points_vertex',['../group__points.html#ga127fb8e56ec1e38505cdd9ea6efa2cf6',1,'generator.cpp']]],
+  ['points_5fwrite_6',['points_write',['../group__points.html#gab0ec2dac46ec7ee44911b8bcf1e9dad0',1,'generator.cpp']]],
+  ['position_7',['Position',['../group__position.html',1,'']]],
+  ['practical_20assignment_20cg_20_2d_202020_2f21_8',['Practical Assignment CG - 2020/21',['../md_readme.html',1,'']]],
+  ['printing_9',['Printing',['../group___printing.html',1,'']]],
+  ['processspecialkeys_10',['processSpecialKeys',['../main_8cpp.html#a22a15e4bdf7b2b913b6cb41cc85b0b79',1,'main.cpp']]],
+  ['projection_11',['Projection',['../group__projection.html',1,'']]]
 ];

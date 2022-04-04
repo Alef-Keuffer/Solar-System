@@ -111,6 +111,17 @@ $(document).ready(function(){initNavTree('group__model_engine.html',''); initRes
   <div class="headertitle"><div class="title">Model<div class="ingroups"><a class="el" href="group__engine.html">Engine</a></div></div></div>
 </div><!--header-->
 <div class="contents">
+<div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Collaboration diagram for Model:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="group__model_engine.png" border="0" usemap="#agroup____model__engine" alt=""/></div>
+<map name="agroup____model__engine" id="agroup____model__engine">
+<area shape="rect" href="group__engine.html" title=" " alt="" coords="5,5,72,31"/>
+<area shape="rect" title=" " alt="" coords="120,5,183,31"/>
+</map>
+</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
@@ -139,6 +150,8 @@ Variables</h2></td></tr>
 <tr class="separator:ga8a16af82495542bcca4dd9f261fc4ef2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga5e4458752ec64e54ed9ef910aaac54e9"><td class="memItemLeft" align="right" valign="top">static std::vector&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__model_engine.html#ga5e4458752ec64e54ed9ef910aaac54e9">globalOperations</a></td></tr>
 <tr class="separator:ga5e4458752ec64e54ed9ef910aaac54e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab237219c50895634f5f03682f9d66b7b"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__model_engine.html#gab237219c50895634f5f03682f9d66b7b">operations_hasBeenInitialized</a> = false</td></tr>
+<tr class="separator:gab237219c50895634f5f03682f9d66b7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <h2 class="groupheader">Typedef Documentation</h2>
@@ -172,36 +185,54 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">  106</span>                                   {</div>
-<div class="line"><span class="lineno">  107</span>    FILE *fp = fopen(path, <span class="stringliteral">&quot;r&quot;</span>);</div>
-<div class="line"><span class="lineno">  108</span>    <span class="keywordflow">if</span> (!fp) {</div>
-<div class="line"><span class="lineno">  109</span>        fprintf(stderr, <span class="stringliteral">&quot;failed to open model: %s&quot;</span>, path);</div>
-<div class="line"><span class="lineno">  110</span>        <span class="keywordflow">return</span> NULL;</div>
-<div class="line"><span class="lineno">  111</span>    }</div>
-<div class="line"><span class="lineno">  112</span> </div>
-<div class="line"><span class="lineno">  113</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> nVertices;</div>
-<div class="line"><span class="lineno">  114</span>    fread(&amp;nVertices, <span class="keyword">sizeof</span>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>), 1, fp);</div>
-<div class="line"><span class="lineno">  115</span>    <span class="keywordtype">float</span> *modelBuf = (<span class="keywordtype">float</span> *) malloc(3 * nVertices * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>));</div>
-<div class="line"><span class="lineno">  116</span> </div>
-<div class="line"><span class="lineno">  117</span>    fread(modelBuf, 3 * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>), nVertices, fp);</div>
-<div class="line"><span class="lineno">  118</span>    fclose(fp);</div>
-<div class="line"><span class="lineno">  119</span> </div>
-<div class="line"><span class="lineno">  120</span> </div>
-<div class="line"><span class="lineno">  121</span>    <a class="code hl_struct" href="structmodel.html">Model</a> <a class="code hl_struct" href="structmodel.html">model</a> = (<a class="code hl_typedef" href="group__model_engine.html#gac23ada62673b8ab28c7af5ec63179742">Model</a>) malloc(<span class="keyword">sizeof</span>(<a class="code hl_struct" href="structmodel.html">Model</a>));</div>
-<div class="line"><span class="lineno">  122</span> </div>
-<div class="line"><span class="lineno">  123</span>    <a class="code hl_struct" href="structmodel.html">model</a>-&gt;<a class="code hl_variable" href="structmodel.html#ac7a1c78e27dd01024b8fcff624b4ef20">nVertices</a> = nVertices;</div>
-<div class="line"><span class="lineno">  124</span>    <a class="code hl_struct" href="structmodel.html">model</a>-&gt;<a class="code hl_variable" href="structmodel.html#aeda4520a3b906127f05c05c3aa6a5eea">vertices</a> = modelBuf;</div>
-<div class="line"><span class="lineno">  125</span> </div>
-<div class="line"><span class="lineno">  126</span>    <span class="keywordflow">return</span> <a class="code hl_struct" href="structmodel.html">model</a>;</div>
-<div class="line"><span class="lineno">  127</span>}</div>
-<div class="ttc" id="agroup__model_engine_html_gac23ada62673b8ab28c7af5ec63179742"><div class="ttname"><a href="group__model_engine.html#gac23ada62673b8ab28c7af5ec63179742">Model</a></div><div class="ttdeci">struct model * Model</div></div>
-<div class="ttc" id="astructmodel_html"><div class="ttname"><a href="structmodel.html">model</a></div><div class="ttdef"><b>Definition:</b> engine.cpp:98</div></div>
-<div class="ttc" id="astructmodel_html_ac7a1c78e27dd01024b8fcff624b4ef20"><div class="ttname"><a href="structmodel.html#ac7a1c78e27dd01024b8fcff624b4ef20">model::nVertices</a></div><div class="ttdeci">unsigned int nVertices</div><div class="ttdef"><b>Definition:</b> engine.cpp:100</div></div>
-<div class="ttc" id="astructmodel_html_aeda4520a3b906127f05c05c3aa6a5eea"><div class="ttname"><a href="structmodel.html#aeda4520a3b906127f05c05c3aa6a5eea">model::vertices</a></div><div class="ttdeci">float * vertices</div><div class="ttdef"><b>Definition:</b> engine.cpp:99</div></div>
-</div><!-- fragment -->
-<p class="reference">References <a class="el" href="#l00100">model::nVertices</a>, and <a class="el" href="#l00099">model::vertices</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="#l00536">load_xml1()</a>, and <a class="el" href="#l00190">operations_render()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00190">190</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  191</span>{</div>
+<div class="line"><span class="lineno">  192</span>  FILE *fp = fopen (path, <span class="stringliteral">&quot;r&quot;</span>);</div>
+<div class="line"><span class="lineno">  193</span>  <span class="keywordflow">if</span> (!fp)</div>
+<div class="line"><span class="lineno">  194</span>    {</div>
+<div class="line"><span class="lineno">  195</span>      fprintf (stderr, <span class="stringliteral">&quot;failed to open model: %s&quot;</span>, path);</div>
+<div class="line"><span class="lineno">  196</span>      <span class="keywordflow">return</span> NULL;</div>
+<div class="line"><span class="lineno">  197</span>    }</div>
+<div class="line"><span class="lineno">  198</span> </div>
+<div class="line"><span class="lineno">  199</span>  <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> nVertices;</div>
+<div class="line"><span class="lineno">  200</span>  fread (&amp;nVertices, <span class="keyword">sizeof</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>), 1, fp);</div>
+<div class="line"><span class="lineno">  201</span>  <span class="keywordtype">float</span> *modelBuf = (<span class="keywordtype">float</span> *) malloc (3 * nVertices * <span class="keyword">sizeof</span> (<span class="keywordtype">float</span>));</div>
+<div class="line"><span class="lineno">  202</span> </div>
+<div class="line"><span class="lineno">  203</span>  fread (modelBuf, 3 * <span class="keyword">sizeof</span> (<span class="keywordtype">float</span>), nVertices, fp);</div>
+<div class="line"><span class="lineno">  204</span>  fclose (fp);</div>
+<div class="line"><span class="lineno">  205</span> </div>
+<div class="line"><span class="lineno">  206</span>  <a class="code hl_struct" href="structmodel.html">Model</a> <a class="code hl_struct" href="structmodel.html">model</a> = (<a class="code hl_typedef" href="group__model_engine.html#gac23ada62673b8ab28c7af5ec63179742">Model</a>) malloc (<span class="keyword">sizeof</span> (<a class="code hl_struct" href="structmodel.html">Model</a>));</div>
+<div class="line"><span class="lineno">  207</span> </div>
+<div class="line"><span class="lineno">  208</span>  <a class="code hl_struct" href="structmodel.html">model</a>-&gt;<a class="code hl_variable" href="structmodel.html#ac7a1c78e27dd01024b8fcff624b4ef20">nVertices</a> = nVertices;</div>
+<div class="line"><span class="lineno">  209</span>  <a class="code hl_struct" href="structmodel.html">model</a>-&gt;<a class="code hl_variable" href="structmodel.html#aeda4520a3b906127f05c05c3aa6a5eea">vertices</a> = modelBuf;</div>
+<div class="line"><span class="lineno">  210</span> </div>
+<div class="line"><span class="lineno">  211</span>  <span class="keywordflow">return</span> <a class="code hl_struct" href="structmodel.html">model</a>;</div>
+<div class="line"><span class="lineno">  212</span>}</div>
+<div class="ttc" id="agroup__model_engine_html_gac23ada62673b8ab28c7af5ec63179742"><div class="ttname"><a href="group__model_engine.html#gac23ada62673b8ab28c7af5ec63179742">Model</a></div><div class="ttdeci">struct model * Model</div></div>
+<div class="ttc" id="astructmodel_html"><div class="ttname"><a href="structmodel.html">model</a></div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00181">engine.cpp:181</a></div></div>
+<div class="ttc" id="astructmodel_html_ac7a1c78e27dd01024b8fcff624b4ef20"><div class="ttname"><a href="structmodel.html#ac7a1c78e27dd01024b8fcff624b4ef20">model::nVertices</a></div><div class="ttdeci">unsigned int nVertices</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00183">engine.cpp:183</a></div></div>
+<div class="ttc" id="astructmodel_html_aeda4520a3b906127f05c05c3aa6a5eea"><div class="ttname"><a href="structmodel.html#aeda4520a3b906127f05c05c3aa6a5eea">model::vertices</a></div><div class="ttdeci">float * vertices</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00182">engine.cpp:182</a></div></div>
+</div><!-- fragment -->
+<p class="reference">References <a class="el" href="engine_8cpp_source.html#l00183">model::nVertices</a>, and <a class="el" href="engine_8cpp_source.html#l00182">model::vertices</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00756">load_xml1()</a>, and <a class="el" href="engine_8cpp_source.html#l00283">operations_render()</a>.</p>
+<div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="group__model_engine_ga56beba311d0a6fcbda9aeb516fe67f8f_icgraph.png" border="0" usemap="#agroup__model_engine_ga56beba311d0a6fcbda9aeb516fe67f8f_icgraph" alt=""/></div>
+<map name="agroup__model_engine_ga56beba311d0a6fcbda9aeb516fe67f8f_icgraph" id="agroup__model_engine_ga56beba311d0a6fcbda9aeb516fe67f8f_icgraph">
+<area shape="rect" title=" " alt="" coords="657,31,751,57"/>
+<area shape="rect" href="engine_8cpp.html#a3b1c1e5ab87f055dffe4f30f6379ec6a" title=" " alt="" coords="494,5,585,32"/>
+<area shape="rect" href="group___operations.html#ga887f20c10a27832ea24178203a47fcc2" title=" " alt="" coords="469,56,609,83"/>
+<area shape="rect" href="group__engine.html#ga91c42686f3245f22fb6b17ba5372d92c" title=" " alt="" coords="285,31,387,57"/>
+<area shape="rect" href="group__engine.html#ga2b6a8884687b3fe271b099a450a82d24" title=" " alt="" coords="251,81,421,108"/>
+<area shape="rect" href="group__engine.html#ga98eaf946471acbd931de5d52ca83b3d1" title=" " alt="" coords="108,56,203,83"/>
+<area shape="rect" href="group__engine.html#ga3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,56,60,83"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -236,12 +267,14 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">  144</span>                                                                     {</div>
-<div class="line"><span class="lineno">  145</span>    FILE *fp = fopen(path, <span class="stringliteral">&quot;r&quot;</span>);</div>
-<div class="line"><span class="lineno">  146</span>    <span class="keywordtype">size_t</span> r = fread(p, <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>), n, fp);</div>
-<div class="line"><span class="lineno">  147</span>    fclose(fp);</div>
-<div class="line"><span class="lineno">  148</span>    <span class="keywordflow">return</span> r;</div>
-<div class="line"><span class="lineno">  149</span>}</div>
+
+<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00233">233</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  234</span>{</div>
+<div class="line"><span class="lineno">  235</span>  FILE *fp = fopen (path, <span class="stringliteral">&quot;r&quot;</span>);</div>
+<div class="line"><span class="lineno">  236</span>  <span class="keywordtype">size_t</span> r = fread (p, <span class="keyword">sizeof</span> (<span class="keywordtype">float</span>), n, fp);</div>
+<div class="line"><span class="lineno">  237</span>  fclose (fp);</div>
+<div class="line"><span class="lineno">  238</span>  <span class="keywordflow">return</span> r;</div>
+<div class="line"><span class="lineno">  239</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -259,13 +292,27 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">  140</span>                       {</div>
-<div class="line"><span class="lineno">  141</span>    <span class="keywordflow">for</span> (<a class="code hl_struct" href="structmodel.html">Model</a> m: <a class="code hl_variable" href="group__model_engine.html#ga8a16af82495542bcca4dd9f261fc4ef2">globalModels</a>) <a class="code hl_function" href="group__model_engine.html#ga9b0aa26dead35aab4fa6be0709998046">renderModel</a>(m);</div>
-<div class="line"><span class="lineno">  142</span>}</div>
-<div class="ttc" id="agroup__model_engine_html_ga8a16af82495542bcca4dd9f261fc4ef2"><div class="ttname"><a href="group__model_engine.html#ga8a16af82495542bcca4dd9f261fc4ef2">globalModels</a></div><div class="ttdeci">static std::vector&lt; Model &gt; globalModels</div><div class="ttdef"><b>Definition:</b> engine.cpp:103</div></div>
-<div class="ttc" id="agroup__model_engine_html_ga9b0aa26dead35aab4fa6be0709998046"><div class="ttname"><a href="group__model_engine.html#ga9b0aa26dead35aab4fa6be0709998046">renderModel</a></div><div class="ttdeci">void renderModel(Model model)</div><div class="ttdef"><b>Definition:</b> engine.cpp:129</div></div>
+
+<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00227">227</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  228</span>{</div>
+<div class="line"><span class="lineno">  229</span>  <span class="keywordflow">for</span> (<a class="code hl_struct" href="structmodel.html">Model</a> m : <a class="code hl_variable" href="group__model_engine.html#ga8a16af82495542bcca4dd9f261fc4ef2">globalModels</a>)</div>
+<div class="line"><span class="lineno">  230</span>    <a class="code hl_function" href="group__model_engine.html#ga9b0aa26dead35aab4fa6be0709998046">renderModel</a> (m);</div>
+<div class="line"><span class="lineno">  231</span>}</div>
+<div class="ttc" id="agroup__model_engine_html_ga8a16af82495542bcca4dd9f261fc4ef2"><div class="ttname"><a href="group__model_engine.html#ga8a16af82495542bcca4dd9f261fc4ef2">globalModels</a></div><div class="ttdeci">static std::vector&lt; Model &gt; globalModels</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00186">engine.cpp:186</a></div></div>
+<div class="ttc" id="agroup__model_engine_html_ga9b0aa26dead35aab4fa6be0709998046"><div class="ttname"><a href="group__model_engine.html#ga9b0aa26dead35aab4fa6be0709998046">renderModel</a></div><div class="ttdeci">void renderModel(Model model)</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00214">engine.cpp:214</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="#l00103">globalModels</a>, and <a class="el" href="#l00129">renderModel()</a>.</p>
+<p class="reference">References <a class="el" href="engine_8cpp_source.html#l00186">globalModels</a>, and <a class="el" href="engine_8cpp_source.html#l00214">renderModel()</a>.</p>
+<div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-2-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-2-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-2-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="group__model_engine_gacf6e708a0a1874bf2d8fd951a6ede500_cgraph.png" border="0" usemap="#agroup__model_engine_gacf6e708a0a1874bf2d8fd951a6ede500_cgraph" alt=""/></div>
+<map name="agroup__model_engine_gacf6e708a0a1874bf2d8fd951a6ede500_cgraph" id="agroup__model_engine_gacf6e708a0a1874bf2d8fd951a6ede500_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,133,32"/>
+<area shape="rect" href="group__model_engine.html#ga9b0aa26dead35aab4fa6be0709998046" title=" " alt="" coords="181,5,285,32"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -284,20 +331,39 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">  129</span>                              {</div>
-<div class="line"><span class="lineno">  130</span>    <span class="keywordflow">if</span> (!<a class="code hl_struct" href="structmodel.html">model</a>-&gt;<a class="code hl_variable" href="structmodel.html#ac7a1c78e27dd01024b8fcff624b4ef20">nVertices</a> % 3) {</div>
-<div class="line"><span class="lineno">  131</span>        fprintf(stderr, <span class="stringliteral">&quot;Number of coordinates is not divisible by 3&quot;</span>);</div>
-<div class="line"><span class="lineno">  132</span>        exit(1);</div>
-<div class="line"><span class="lineno">  133</span>    }</div>
-<div class="line"><span class="lineno">  134</span>    glBegin(GL_TRIANGLES);</div>
-<div class="line"><span class="lineno">  135</span>    <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i = 0; i &lt; 3 * <a class="code hl_struct" href="structmodel.html">model</a>-&gt;<a class="code hl_variable" href="structmodel.html#ac7a1c78e27dd01024b8fcff624b4ef20">nVertices</a>; i += 3)</div>
-<div class="line"><span class="lineno">  136</span>        glVertex3f(<a class="code hl_struct" href="structmodel.html">model</a>-&gt;<a class="code hl_variable" href="structmodel.html#aeda4520a3b906127f05c05c3aa6a5eea">vertices</a>[i], <a class="code hl_struct" href="structmodel.html">model</a>-&gt;<a class="code hl_variable" href="structmodel.html#aeda4520a3b906127f05c05c3aa6a5eea">vertices</a>[i + 1], <a class="code hl_struct" href="structmodel.html">model</a>-&gt;<a class="code hl_variable" href="structmodel.html#aeda4520a3b906127f05c05c3aa6a5eea">vertices</a>[i + 2]);</div>
-<div class="line"><span class="lineno">  137</span>    glEnd();</div>
-<div class="line"><span class="lineno">  138</span>}</div>
-</div><!-- fragment -->
-<p class="reference">References <a class="el" href="#l00100">model::nVertices</a>, and <a class="el" href="#l00099">model::vertices</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="#l00190">operations_render()</a>, and <a class="el" href="#l00140">renderAllModels()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00214">214</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  215</span>{</div>
+<div class="line"><span class="lineno">  216</span>  <span class="keywordflow">if</span> (!<a class="code hl_struct" href="structmodel.html">model</a>-&gt;<a class="code hl_variable" href="structmodel.html#ac7a1c78e27dd01024b8fcff624b4ef20">nVertices</a> % 3)</div>
+<div class="line"><span class="lineno">  217</span>    {</div>
+<div class="line"><span class="lineno">  218</span>      fprintf (stderr, <span class="stringliteral">&quot;Number of coordinates is not divisible by 3&quot;</span>);</div>
+<div class="line"><span class="lineno">  219</span>      exit (1);</div>
+<div class="line"><span class="lineno">  220</span>    }</div>
+<div class="line"><span class="lineno">  221</span>  glBegin (GL_TRIANGLES);</div>
+<div class="line"><span class="lineno">  222</span>  <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i = 0; i &lt; 3 * <a class="code hl_struct" href="structmodel.html">model</a>-&gt;<a class="code hl_variable" href="structmodel.html#ac7a1c78e27dd01024b8fcff624b4ef20">nVertices</a>; i += 3)</div>
+<div class="line"><span class="lineno">  223</span>    glVertex3f (<a class="code hl_struct" href="structmodel.html">model</a>-&gt;<a class="code hl_variable" href="structmodel.html#aeda4520a3b906127f05c05c3aa6a5eea">vertices</a>[i], <a class="code hl_struct" href="structmodel.html">model</a>-&gt;<a class="code hl_variable" href="structmodel.html#aeda4520a3b906127f05c05c3aa6a5eea">vertices</a>[i + 1], <a class="code hl_struct" href="structmodel.html">model</a>-&gt;<a class="code hl_variable" href="structmodel.html#aeda4520a3b906127f05c05c3aa6a5eea">vertices</a>[i + 2]);</div>
+<div class="line"><span class="lineno">  224</span>  glEnd ();</div>
+<div class="line"><span class="lineno">  225</span>}</div>
+</div><!-- fragment -->
+<p class="reference">References <a class="el" href="engine_8cpp_source.html#l00183">model::nVertices</a>, and <a class="el" href="engine_8cpp_source.html#l00182">model::vertices</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00283">operations_render()</a>, and <a class="el" href="engine_8cpp_source.html#l00227">renderAllModels()</a>.</p>
+<div id="dynsection-3" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-3-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-3-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-3-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="group__model_engine_ga9b0aa26dead35aab4fa6be0709998046_icgraph.png" border="0" usemap="#agroup__model_engine_ga9b0aa26dead35aab4fa6be0709998046_icgraph" alt=""/></div>
+<map name="agroup__model_engine_ga9b0aa26dead35aab4fa6be0709998046_icgraph" id="agroup__model_engine_ga9b0aa26dead35aab4fa6be0709998046_icgraph">
+<area shape="rect" title=" " alt="" coords="657,56,761,83"/>
+<area shape="rect" href="group___operations.html#ga887f20c10a27832ea24178203a47fcc2" title=" " alt="" coords="469,31,609,57"/>
+<area shape="rect" href="group__model_engine.html#gacf6e708a0a1874bf2d8fd951a6ede500" title=" " alt="" coords="475,81,603,108"/>
+<area shape="rect" href="group__engine.html#ga91c42686f3245f22fb6b17ba5372d92c" title=" " alt="" coords="285,5,387,32"/>
+<area shape="rect" href="group__engine.html#ga2b6a8884687b3fe271b099a450a82d24" title=" " alt="" coords="251,56,421,83"/>
+<area shape="rect" href="group__engine.html#ga98eaf946471acbd931de5d52ca83b3d1" title=" " alt="" coords="108,31,203,57"/>
+<area shape="rect" href="group__engine.html#ga3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,31,60,57"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -322,7 +388,9 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="reference">Referenced by <a class="el" href="#l00536">load_xml1()</a>, and <a class="el" href="#l00140">renderAllModels()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00186">186</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00756">load_xml1()</a>, <a class="el" href="engine_8cpp_source.html#l00283">operations_render()</a>, and <a class="el" href="engine_8cpp_source.html#l00227">renderAllModels()</a>.</p>
 
 </div>
 </div>
@@ -346,7 +414,33 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="reference">Referenced by <a class="el" href="#l00257">renderScene()</a>, and <a class="el" href="#l00281">xml_load_and_set_env()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00187">187</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00396">renderScene()</a>, and <a class="el" href="engine_8cpp_source.html#l00438">xml_load_and_set_env()</a>.</p>
+
+</div>
+</div>
+<a id="gab237219c50895634f5f03682f9d66b7b" name="gab237219c50895634f5f03682f9d66b7b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gab237219c50895634f5f03682f9d66b7b">&#9670;&nbsp;</a></span>operations_hasBeenInitialized</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool operations_hasBeenInitialized = false</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00188">188</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
 
 </div>
 </div>

@@ -10,5 +10,6 @@ var group__model_engine =
     [ "renderAllModels", "group__model_engine.html#gacf6e708a0a1874bf2d8fd951a6ede500", null ],
     [ "renderModel", "group__model_engine.html#ga9b0aa26dead35aab4fa6be0709998046", null ],
     [ "globalModels", "group__model_engine.html#ga8a16af82495542bcca4dd9f261fc4ef2", null ],
-    [ "globalOperations", "group__model_engine.html#ga5e4458752ec64e54ed9ef910aaac54e9", null ]
+    [ "globalOperations", "group__model_engine.html#ga5e4458752ec64e54ed9ef910aaac54e9", null ],
+    [ "operations_hasBeenInitialized", "group__model_engine.html#gab237219c50895634f5f03682f9d66b7b", null ]
 ];

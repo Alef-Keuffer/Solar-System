@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>height</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.6.8' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/1.html#L187'>height</a>            187 src/generator.cpp model_cone_vertex(const float r, const float height, const float theta, const float h, unsigned int *pos,</span>
+<span class='curline'><a href='../S/1.html#L201'>height</a>            201 src/generator.cpp     points_vertex(r * h / height * cos(theta), height + h, r * h / height * sin(theta), pos, points);</span>
+<span class='curline'><a href='../S/1.html#L204'>height</a>            204 src/generator.cpp void model_cone_vertices(const float r, const float height, const unsigned int slices, const unsigned int stacks,</span>
+<span class='curline'><a href='../S/1.html#L208'>height</a>            208 src/generator.cpp     const float t = height / (float) stacks;</span>
+<span class='curline'><a href='../S/1.html#L210'>height</a>            210 src/generator.cpp     const float h = -height;</span>
+<span class='curline'><a href='../S/1.html#L221'>height</a>            221 src/generator.cpp             model_cone_vertex(r, height, theta + s * (i - 1), h, &amp;pos, points); //P1</span>
+<span class='curline'><a href='../S/1.html#L222'>height</a>            222 src/generator.cpp             model_cone_vertex(r, height, theta + s * i, h, &amp;pos, points); //P2</span>
+<span class='curline'><a href='../S/1.html#L224'>height</a>            224 src/generator.cpp             model_cone_vertex(r, height, theta + s * i, h + t * (j - 1), &amp;pos, points); // P2</span>
+<span class='curline'><a href='../S/1.html#L225'>height</a>            225 src/generator.cpp             model_cone_vertex(r, height, theta + s * (i - 1), h + t * j, &amp;pos, points); // P1'</span>
+<span class='curline'><a href='../S/1.html#L226'>height</a>            226 src/generator.cpp             model_cone_vertex(r, height, theta + s * i, h + t * j, &amp;pos, points); //P2'</span>
+<span class='curline'><a href='../S/1.html#L228'>height</a>            228 src/generator.cpp             model_cone_vertex(r, height, theta + s * i, h + t * (j - 1), &amp;pos, points); // P2</span>
+<span class='curline'><a href='../S/1.html#L229'>height</a>            229 src/generator.cpp             model_cone_vertex(r, height, theta + s * (i - 1), h + t * (j - 1), &amp;pos, points); // P1</span>
+<span class='curline'><a href='../S/1.html#L230'>height</a>            230 src/generator.cpp             model_cone_vertex(r, height, theta + s * (i - 1), h + t * j, &amp;pos, points); // P1'</span>
+<span class='curline'><a href='../S/1.html#L239'>height</a>            239 src/generator.cpp void model_cone_write(const char *filepath, const float radius, const float height, const unsigned int slices,</span>
+<span class='curline'><a href='../S/1.html#L243'>height</a>            243 src/generator.cpp     model_cone_vertices(radius, height, slices, stacks, points);</span>
+<span class='curline'><a href='../S/4.html#L144'>height</a>            144 src/main.cpp   void cylinderVertex(float radius, float height, float theta) {</span>
+<span class='curline'><a href='../S/4.html#L145'>height</a>            145 src/main.cpp       glVertex3d(radius * sin(theta), height, radius * cos(theta));</span>
+<span class='curline'><a href='../S/4.html#L148'>height</a>            148 src/main.cpp   void drawCylinder(float r, float height, int slices) {</span>
+<span class='curline'><a href='../S/4.html#L168'>height</a>            168 src/main.cpp           glVertex3d(0, height, 0); //O'</span>
+<span class='curline'><a href='../S/4.html#L169'>height</a>            169 src/main.cpp           cylinderVertex(r, height, theta + s * (i - 1)); //P1'</span>
+<span class='curline'><a href='../S/4.html#L170'>height</a>            170 src/main.cpp           cylinderVertex(r, height, theta + s * i); //P2'</span>
+<span class='curline'><a href='../S/4.html#L176'>height</a>            176 src/main.cpp           cylinderVertex(r, height, theta + s * (i - 1)); // P1'</span>
+<span class='curline'><a href='../S/4.html#L179'>height</a>            179 src/main.cpp           cylinderVertex(r, height, theta + s * i); // P2'</span>
+<span class='curline'><a href='../S/4.html#L180'>height</a>            180 src/main.cpp           cylinderVertex(r, height, theta + s * (i - 1)); // P1'</span>
+<span class='curline'><a href='../S/4.html#L188'>height</a>            188 src/main.cpp   void coneVertex(float r, float height, float theta, float h) {</span>
+<span class='curline'><a href='../S/4.html#L189'>height</a>            189 src/main.cpp       glVertex3d(r * h * cos(theta), 2 * (height + h), r * h * sin(theta));</span>
+<span class='curline'><a href='../S/4.html#L192'>height</a>            192 src/main.cpp   void drawCone(float r, float height, unsigned int slices, unsigned int stacks) {</span>
+<span class='curline'><a href='../S/4.html#L201'>height</a>            201 src/main.cpp       float t = height / (float) stacks;</span>
+<span class='curline'><a href='../S/4.html#L203'>height</a>            203 src/main.cpp       float h = -height;</span>
+<span class='curline'><a href='../S/4.html#L214'>height</a>            214 src/main.cpp               coneVertex(r, height, theta + s * (i - 1), h); //P1</span>
+<span class='curline'><a href='../S/4.html#L215'>height</a>            215 src/main.cpp               coneVertex(r, height, theta + s * i, h); //P2</span>
+<span class='curline'><a href='../S/4.html#L218'>height</a>            218 src/main.cpp               coneVertex(r, height, theta + s * i, h + t * (j - 1)); // P2</span>
+<span class='curline'><a href='../S/4.html#L219'>height</a>            219 src/main.cpp               coneVertex(r, height, theta + s * (i - 1), h + t * j); // P1'</span>
+<span class='curline'><a href='../S/4.html#L220'>height</a>            220 src/main.cpp               coneVertex(r, height, theta + s * i, h + t * j); //P2'</span>
+<span class='curline'><a href='../S/4.html#L223'>height</a>            223 src/main.cpp               coneVertex(r, height, theta + s * i, h + t * (j - 1)); // P2</span>
+<span class='curline'><a href='../S/4.html#L224'>height</a>            224 src/main.cpp               coneVertex(r, height, theta + s * (i - 1), h + t * (j - 1)); // P1</span>
+<span class='curline'><a href='../S/4.html#L225'>height</a>            225 src/main.cpp               coneVertex(r, height, theta + s * (i - 1), h + t * j); // P1'</span>
+</pre>
+</body>
+</html>

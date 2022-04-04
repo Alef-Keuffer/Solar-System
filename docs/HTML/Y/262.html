@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>divisions</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.6.8' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/1.html#L46'>divisions</a>          46 src/generator.cpp void model_plane_vertices(const float length, const unsigned int divisions, float *points) {</span>
+<span class='curline'><a href='../S/1.html#L48'>divisions</a>          48 src/generator.cpp     const float d = length / (float) divisions;</span>
+<span class='curline'><a href='../S/1.html#L52'>divisions</a>          52 src/generator.cpp     for (unsigned int m = 1; m &lt;= divisions; m++) {</span>
+<span class='curline'><a href='../S/1.html#L53'>divisions</a>          53 src/generator.cpp         for (unsigned int n = 1; n &lt;= divisions; n++) {</span>
+<span class='curline'><a href='../S/1.html#L77'>divisions</a>          77 src/generator.cpp inline unsigned int model_plane_nVertices(const unsigned int divisions) { return divisions * divisions * 12; }</span>
+<span class='curline'><a href='../S/1.html#L79'>divisions</a>          79 src/generator.cpp void model_plane_write(const char *filepath, const float length, const unsigned int divisions) {</span>
+<span class='curline'><a href='../S/1.html#L80'>divisions</a>          80 src/generator.cpp     const unsigned int nVertices = model_plane_nVertices(divisions);</span>
+<span class='curline'><a href='../S/1.html#L82'>divisions</a>          82 src/generator.cpp     model_plane_vertices(length, divisions, points);</span>
+<span class='curline'><a href='../S/1.html#L89'>divisions</a>          89 src/generator.cpp void model_cube_vertices(const float length, const unsigned int divisions, float points[]) {</span>
+<span class='curline'><a href='../S/1.html#L91'>divisions</a>          91 src/generator.cpp     const float d = length / (float) divisions;</span>
+<span class='curline'><a href='../S/1.html#L95'>divisions</a>          95 src/generator.cpp     for (unsigned int m = 1; m &lt;= divisions; m++) {</span>
+<span class='curline'><a href='../S/1.html#L96'>divisions</a>          96 src/generator.cpp         for (unsigned int n = 1; n &lt;= divisions; n++) {</span>
+<span class='curline'><a href='../S/1.html#L157'>divisions</a>         157 src/generator.cpp unsigned int model_cube_nVertices(const unsigned int divisions) { return divisions * divisions * 36; }</span>
+<span class='curline'><a href='../S/1.html#L159'>divisions</a>         159 src/generator.cpp void model_cube_write(const char *filepath, const float length, const unsigned int divisions) {</span>
+<span class='curline'><a href='../S/1.html#L160'>divisions</a>         160 src/generator.cpp     const unsigned int nVertices = model_cube_nVertices(divisions);</span>
+<span class='curline'><a href='../S/1.html#L162'>divisions</a>         162 src/generator.cpp     model_cube_vertices(length, divisions, points);</span>
+<span class='curline'><a href='../S/4.html#L276'>divisions</a>         276 src/main.cpp   void drawPlane(float length, unsigned int divisions) {</span>
+<span class='curline'><a href='../S/4.html#L280'>divisions</a>         280 src/main.cpp       float color_step = (float) 1.0 / (float) (divisions + 4);</span>
+<span class='curline'><a href='../S/4.html#L283'>divisions</a>         283 src/main.cpp       float d = length / (float) divisions;</span>
+<span class='curline'><a href='../S/4.html#L285'>divisions</a>         285 src/main.cpp       for (int m = 1; m &lt;= divisions; m++) {</span>
+<span class='curline'><a href='../S/4.html#L286'>divisions</a>         286 src/main.cpp           for (int n = 1; n &lt;= divisions; n++) {</span>
+<span class='curline'><a href='../S/4.html#L335'>divisions</a>         335 src/main.cpp   void drawCube(float length, unsigned int divisions) {</span>
+<span class='curline'><a href='../S/4.html#L339'>divisions</a>         339 src/main.cpp       float color_step = (float) 1.0 / (float) (divisions + 4);</span>
+<span class='curline'><a href='../S/4.html#L342'>divisions</a>         342 src/main.cpp       float d = length / (float) divisions;</span>
+<span class='curline'><a href='../S/4.html#L344'>divisions</a>         344 src/main.cpp       for (int m = 1; m &lt;= divisions; m++) {</span>
+<span class='curline'><a href='../S/4.html#L345'>divisions</a>         345 src/main.cpp           for (int n = 1; n &lt;= divisions; n++) {</span>
+</pre>
+</body>
+</html>

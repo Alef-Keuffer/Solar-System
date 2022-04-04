@@ -108,24 +108,35 @@ $(document).ready(function(){initNavTree('group__up.html',''); initResizable(); 
   <div class="headertitle"><div class="title">Up<div class="ingroups"><a class="el" href="group__engine.html">Engine</a> &raquo; <a class="el" href="group__camera.html">Camera</a></div></div></div>
 </div><!--header-->
 <div class="contents">
+<div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Collaboration diagram for Up:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="group__up.png" border="0" usemap="#agroup____up" alt=""/></div>
+<map name="agroup____up" id="agroup____up">
+<area shape="rect" href="group__camera.html" title=" " alt="" coords="5,5,79,31"/>
+<area shape="rect" title=" " alt="" coords="127,5,167,31"/>
+</map>
+</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
 <tr class="memitem:gacc7ac1ab6cb80fe4ac3385f34321d33a"><td class="memItemLeft" align="right" valign="top">const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__up.html#gacc7ac1ab6cb80fe4ac3385f34321d33a">DEFAULT_GLOBAL_UP_STEP</a> = 1</td></tr>
 <tr class="separator:gacc7ac1ab6cb80fe4ac3385f34321d33a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga4d609e7ab80287e9e5ffe08a5a969f29"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__up.html#ga4d609e7ab80287e9e5ffe08a5a969f29">DEFAULT_GLOBAL_UP_X</a> = 0</td></tr>
-<tr class="separator:ga4d609e7ab80287e9e5ffe08a5a969f29"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga7c021dbec22d1ca2cf6ea41cb23f60d2"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__up.html#ga7c021dbec22d1ca2cf6ea41cb23f60d2">DEFAULT_GLOBAL_UP_Y</a> = 1</td></tr>
-<tr class="separator:ga7c021dbec22d1ca2cf6ea41cb23f60d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gab3c59757feffbac41787390c8b506f9d"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__up.html#gab3c59757feffbac41787390c8b506f9d">DEFAULT_GLOBAL_UP_Z</a> = 0</td></tr>
-<tr class="separator:gab3c59757feffbac41787390c8b506f9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa7c5ea30e53e8277f3453748b3ec65b2"><td class="memItemLeft" align="right" valign="top">static float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__up.html#gaa7c5ea30e53e8277f3453748b3ec65b2">DEFAULT_GLOBAL_UP_X</a> = 0</td></tr>
+<tr class="separator:gaa7c5ea30e53e8277f3453748b3ec65b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1d99792fd6031999dbee0ddc59d70f6f"><td class="memItemLeft" align="right" valign="top">static float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__up.html#ga1d99792fd6031999dbee0ddc59d70f6f">DEFAULT_GLOBAL_UP_Y</a> = 1</td></tr>
+<tr class="separator:ga1d99792fd6031999dbee0ddc59d70f6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga310ca5fbbd5424d2678ec570136e46ae"><td class="memItemLeft" align="right" valign="top">static float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__up.html#ga310ca5fbbd5424d2678ec570136e46ae">DEFAULT_GLOBAL_UP_Z</a> = 0</td></tr>
+<tr class="separator:ga310ca5fbbd5424d2678ec570136e46ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga05d6061a888c03cd994582410976b8c5"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__up.html#ga05d6061a888c03cd994582410976b8c5">globalUpStep</a> = <a class="el" href="group__up.html#gacc7ac1ab6cb80fe4ac3385f34321d33a">DEFAULT_GLOBAL_UP_STEP</a></td></tr>
 <tr class="separator:ga05d6061a888c03cd994582410976b8c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga72f95312c48395a912ce37b15c5ff841"><td class="memItemLeft" align="right" valign="top">static float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__up.html#ga72f95312c48395a912ce37b15c5ff841">globalUpX</a> = <a class="el" href="group__up.html#ga4d609e7ab80287e9e5ffe08a5a969f29">DEFAULT_GLOBAL_UP_X</a></td></tr>
+<tr class="memitem:ga72f95312c48395a912ce37b15c5ff841"><td class="memItemLeft" align="right" valign="top">static float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__up.html#ga72f95312c48395a912ce37b15c5ff841">globalUpX</a> = <a class="el" href="group__up.html#gaa7c5ea30e53e8277f3453748b3ec65b2">DEFAULT_GLOBAL_UP_X</a></td></tr>
 <tr class="separator:ga72f95312c48395a912ce37b15c5ff841"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaa2f1ed4a70974b3b22481d3124e1dbf2"><td class="memItemLeft" align="right" valign="top">static float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__up.html#gaa2f1ed4a70974b3b22481d3124e1dbf2">globalUpY</a> = <a class="el" href="group__up.html#ga7c021dbec22d1ca2cf6ea41cb23f60d2">DEFAULT_GLOBAL_UP_Y</a></td></tr>
+<tr class="memitem:gaa2f1ed4a70974b3b22481d3124e1dbf2"><td class="memItemLeft" align="right" valign="top">static float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__up.html#gaa2f1ed4a70974b3b22481d3124e1dbf2">globalUpY</a> = <a class="el" href="group__up.html#ga1d99792fd6031999dbee0ddc59d70f6f">DEFAULT_GLOBAL_UP_Y</a></td></tr>
 <tr class="separator:gaa2f1ed4a70974b3b22481d3124e1dbf2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga9b87730968b220018fd7f1a53728e46e"><td class="memItemLeft" align="right" valign="top">static float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__up.html#ga9b87730968b220018fd7f1a53728e46e">globalUpZ</a> = <a class="el" href="group__up.html#gab3c59757feffbac41787390c8b506f9d">DEFAULT_GLOBAL_UP_Z</a></td></tr>
+<tr class="memitem:ga9b87730968b220018fd7f1a53728e46e"><td class="memItemLeft" align="right" valign="top">static float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__up.html#ga9b87730968b220018fd7f1a53728e46e">globalUpZ</a> = <a class="el" href="group__up.html#ga310ca5fbbd5424d2678ec570136e46ae">DEFAULT_GLOBAL_UP_Z</a></td></tr>
 <tr class="separator:ga9b87730968b220018fd7f1a53728e46e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -142,55 +153,87 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="reference">Referenced by <a class="el" href="#l00310">keyboardFunc()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00104">104</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00127">env_load_defaults()</a>.</p>
 
 </div>
 </div>
-<a id="ga4d609e7ab80287e9e5ffe08a5a969f29" name="ga4d609e7ab80287e9e5ffe08a5a969f29"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga4d609e7ab80287e9e5ffe08a5a969f29">&#9670;&nbsp;</a></span>DEFAULT_GLOBAL_UP_X</h2>
+<a id="gaa7c5ea30e53e8277f3453748b3ec65b2" name="gaa7c5ea30e53e8277f3453748b3ec65b2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaa7c5ea30e53e8277f3453748b3ec65b2">&#9670;&nbsp;</a></span>DEFAULT_GLOBAL_UP_X</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const int DEFAULT_GLOBAL_UP_X = 0</td>
+          <td class="memname">float DEFAULT_GLOBAL_UP_X = 0</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
-<p class="reference">Referenced by <a class="el" href="#l00310">keyboardFunc()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00105">105</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00127">env_load_defaults()</a>, and <a class="el" href="engine_8cpp_source.html#l00283">operations_render()</a>.</p>
 
 </div>
 </div>
-<a id="ga7c021dbec22d1ca2cf6ea41cb23f60d2" name="ga7c021dbec22d1ca2cf6ea41cb23f60d2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga7c021dbec22d1ca2cf6ea41cb23f60d2">&#9670;&nbsp;</a></span>DEFAULT_GLOBAL_UP_Y</h2>
+<a id="ga1d99792fd6031999dbee0ddc59d70f6f" name="ga1d99792fd6031999dbee0ddc59d70f6f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga1d99792fd6031999dbee0ddc59d70f6f">&#9670;&nbsp;</a></span>DEFAULT_GLOBAL_UP_Y</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const int DEFAULT_GLOBAL_UP_Y = 1</td>
+          <td class="memname">float DEFAULT_GLOBAL_UP_Y = 1</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
-<p class="reference">Referenced by <a class="el" href="#l00310">keyboardFunc()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00106">106</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00127">env_load_defaults()</a>, and <a class="el" href="engine_8cpp_source.html#l00283">operations_render()</a>.</p>
 
 </div>
 </div>
-<a id="gab3c59757feffbac41787390c8b506f9d" name="gab3c59757feffbac41787390c8b506f9d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gab3c59757feffbac41787390c8b506f9d">&#9670;&nbsp;</a></span>DEFAULT_GLOBAL_UP_Z</h2>
+<a id="ga310ca5fbbd5424d2678ec570136e46ae" name="ga310ca5fbbd5424d2678ec570136e46ae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga310ca5fbbd5424d2678ec570136e46ae">&#9670;&nbsp;</a></span>DEFAULT_GLOBAL_UP_Z</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const int DEFAULT_GLOBAL_UP_Z = 0</td>
+          <td class="memname">float DEFAULT_GLOBAL_UP_Z = 0</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
-<p class="reference">Referenced by <a class="el" href="#l00310">keyboardFunc()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00107">107</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00127">env_load_defaults()</a>, and <a class="el" href="engine_8cpp_source.html#l00283">operations_render()</a>.</p>
 
 </div>
 </div>
@@ -206,7 +249,9 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="reference">Referenced by <a class="el" href="#l00310">keyboardFunc()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00109">109</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00127">env_load_defaults()</a>, and <a class="el" href="engine_8cpp_source.html#l00446">keyboardFunc()</a>.</p>
 
 </div>
 </div>
@@ -220,7 +265,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">float globalUpX = <a class="el" href="group__up.html#ga4d609e7ab80287e9e5ffe08a5a969f29">DEFAULT_GLOBAL_UP_X</a></td>
+          <td class="memname">float globalUpX = <a class="el" href="group__up.html#gaa7c5ea30e53e8277f3453748b3ec65b2">DEFAULT_GLOBAL_UP_X</a></td>
         </tr>
       </table>
   </td>
@@ -230,7 +275,9 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="reference">Referenced by <a class="el" href="#l00310">keyboardFunc()</a>, <a class="el" href="#l00536">load_xml1()</a>, <a class="el" href="#l00190">operations_render()</a>, and <a class="el" href="#l00257">renderScene()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00110">110</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00127">env_load_defaults()</a>, <a class="el" href="engine_8cpp_source.html#l00446">keyboardFunc()</a>, <a class="el" href="engine_8cpp_source.html#l00756">load_xml1()</a>, and <a class="el" href="engine_8cpp_source.html#l00396">renderScene()</a>.</p>
 
 </div>
 </div>
@@ -244,7 +291,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">float globalUpY = <a class="el" href="group__up.html#ga7c021dbec22d1ca2cf6ea41cb23f60d2">DEFAULT_GLOBAL_UP_Y</a></td>
+          <td class="memname">float globalUpY = <a class="el" href="group__up.html#ga1d99792fd6031999dbee0ddc59d70f6f">DEFAULT_GLOBAL_UP_Y</a></td>
         </tr>
       </table>
   </td>
@@ -254,7 +301,9 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="reference">Referenced by <a class="el" href="#l00310">keyboardFunc()</a>, <a class="el" href="#l00536">load_xml1()</a>, <a class="el" href="#l00190">operations_render()</a>, and <a class="el" href="#l00257">renderScene()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00111">111</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00127">env_load_defaults()</a>, <a class="el" href="engine_8cpp_source.html#l00446">keyboardFunc()</a>, <a class="el" href="engine_8cpp_source.html#l00756">load_xml1()</a>, and <a class="el" href="engine_8cpp_source.html#l00396">renderScene()</a>.</p>
 
 </div>
 </div>
@@ -268,7 +317,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">float globalUpZ = <a class="el" href="group__up.html#gab3c59757feffbac41787390c8b506f9d">DEFAULT_GLOBAL_UP_Z</a></td>
+          <td class="memname">float globalUpZ = <a class="el" href="group__up.html#ga310ca5fbbd5424d2678ec570136e46ae">DEFAULT_GLOBAL_UP_Z</a></td>
         </tr>
       </table>
   </td>
@@ -278,7 +327,9 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="reference">Referenced by <a class="el" href="#l00310">keyboardFunc()</a>, <a class="el" href="#l00536">load_xml1()</a>, <a class="el" href="#l00190">operations_render()</a>, and <a class="el" href="#l00257">renderScene()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00112">112</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00127">env_load_defaults()</a>, <a class="el" href="engine_8cpp_source.html#l00446">keyboardFunc()</a>, <a class="el" href="engine_8cpp_source.html#l00756">load_xml1()</a>, and <a class="el" href="engine_8cpp_source.html#l00396">renderScene()</a>.</p>
 
 </div>
 </div>

@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>glVertex3d</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.6.8' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/4.html#L145'>glVertex3d</a>        145 src/main.cpp       glVertex3d(radius * sin(theta), height, radius * cos(theta));</span>
+<span class='curline'><a href='../S/4.html#L162'>glVertex3d</a>        162 src/main.cpp           glVertex3d(0, 0, 0); //O</span>
+<span class='curline'><a href='../S/4.html#L168'>glVertex3d</a>        168 src/main.cpp           glVertex3d(0, height, 0); //O'</span>
+<span class='curline'><a href='../S/4.html#L189'>glVertex3d</a>        189 src/main.cpp       glVertex3d(r * h * cos(theta), 2 * (height + h), r * h * sin(theta));</span>
+<span class='curline'><a href='../S/4.html#L213'>glVertex3d</a>        213 src/main.cpp               glVertex3d(0, 0, 0); //O</span>
+<span class='curline'><a href='../S/4.html#L236'>glVertex3d</a>        236 src/main.cpp       glVertex3d(r * sin(theta) * cos(phi), r * sin(phi), r * cos(theta) * cos(phi));</span>
+<span class='curline'><a href='../S/4.html#L290'>glVertex3d</a>        290 src/main.cpp               glVertex3d(o + d * (i - 1), 0, o + d * (j - 1)); //P1</span>
+<span class='curline'><a href='../S/4.html#L291'>glVertex3d</a>        291 src/main.cpp               glVertex3d(o + d * (i - 1), 0, o + d * j); //P1'z</span>
+<span class='curline'><a href='../S/4.html#L292'>glVertex3d</a>        292 src/main.cpp               glVertex3d(o + d * i, 0, o + d * (j - 1)); //P1'x</span>
+<span class='curline'><a href='../S/4.html#L295'>glVertex3d</a>        295 src/main.cpp               glVertex3d(o + d * i, 0, o + d * (j - 1)); //P1'x</span>
+<span class='curline'><a href='../S/4.html#L296'>glVertex3d</a>        296 src/main.cpp               glVertex3d(o + d * (i - 1), 0, o + d * j); //P1'z</span>
+<span class='curline'><a href='../S/4.html#L297'>glVertex3d</a>        297 src/main.cpp               glVertex3d(o + d * i, 0, o + d * j); //P2</span>
+<span class='curline'><a href='../S/4.html#L301'>glVertex3d</a>        301 src/main.cpp               glVertex3d(o + d * (i - 1), 0, o + d * j); //P1'z</span>
+<span class='curline'><a href='../S/4.html#L302'>glVertex3d</a>        302 src/main.cpp               glVertex3d(o + d * (i - 1), 0, o + d * (j - 1)); //P1</span>
+<span class='curline'><a href='../S/4.html#L303'>glVertex3d</a>        303 src/main.cpp               glVertex3d(o + d * i, 0, o + d * (j - 1)); //P1'x</span>
+<span class='curline'><a href='../S/4.html#L306'>glVertex3d</a>        306 src/main.cpp               glVertex3d(o + d * (i - 1), 0, o + d * j); //P1'z</span>
+<span class='curline'><a href='../S/4.html#L307'>glVertex3d</a>        307 src/main.cpp               glVertex3d(o + d * i, 0, o + d * (j - 1)); //P1'x</span>
+<span class='curline'><a href='../S/4.html#L308'>glVertex3d</a>        308 src/main.cpp               glVertex3d(o + d * i, 0, o + d * j); //P2</span>
+<span class='curline'><a href='../S/4.html#L351'>glVertex3d</a>        351 src/main.cpp               glVertex3d(o + d * (i - 1), -o, o + d * (j - 1)); //P1</span>
+<span class='curline'><a href='../S/4.html#L352'>glVertex3d</a>        352 src/main.cpp               glVertex3d(o + d * (i - 1), -o, o + d * j); //P1'z</span>
+<span class='curline'><a href='../S/4.html#L353'>glVertex3d</a>        353 src/main.cpp               glVertex3d(o + d * i, -o, o + d * (j - 1)); //P1'x</span>
+<span class='curline'><a href='../S/4.html#L356'>glVertex3d</a>        356 src/main.cpp               glVertex3d(o + d * i, -o, o + d * (j - 1)); //P1'x</span>
+<span class='curline'><a href='../S/4.html#L357'>glVertex3d</a>        357 src/main.cpp               glVertex3d(o + d * (i - 1), -o, o + d * j); //P1'z</span>
+<span class='curline'><a href='../S/4.html#L358'>glVertex3d</a>        358 src/main.cpp               glVertex3d(o + d * i, -o, o + d * j); //P2</span>
+<span class='curline'><a href='../S/4.html#L362'>glVertex3d</a>        362 src/main.cpp               glVertex3d(o + d * (i - 1), o, o + d * j); //P1'z</span>
+<span class='curline'><a href='../S/4.html#L363'>glVertex3d</a>        363 src/main.cpp               glVertex3d(o + d * (i - 1), o, o + d * (j - 1)); //P1</span>
+<span class='curline'><a href='../S/4.html#L364'>glVertex3d</a>        364 src/main.cpp               glVertex3d(o + d * i, o, o + d * (j - 1)); //P1'x</span>
+<span class='curline'><a href='../S/4.html#L367'>glVertex3d</a>        367 src/main.cpp               glVertex3d(o + d * (i - 1), o, o + d * j); //P1'z</span>
+<span class='curline'><a href='../S/4.html#L368'>glVertex3d</a>        368 src/main.cpp               glVertex3d(o + d * i, o, o + d * (j - 1)); //P1'x</span>
+<span class='curline'><a href='../S/4.html#L369'>glVertex3d</a>        369 src/main.cpp               glVertex3d(o + d * i, o, o + d * j); //P2</span>
+<span class='curline'><a href='../S/4.html#L373'>glVertex3d</a>        373 src/main.cpp               glVertex3d(o, o + d * (i - 1), o + d * (j - 1)); //P1</span>
+<span class='curline'><a href='../S/4.html#L374'>glVertex3d</a>        374 src/main.cpp               glVertex3d(o, o + d * (i - 1), o + d * j); //P1'z</span>
+<span class='curline'><a href='../S/4.html#L375'>glVertex3d</a>        375 src/main.cpp               glVertex3d(o, o + d * i, o + d * (j - 1)); //P1'x</span>
+<span class='curline'><a href='../S/4.html#L378'>glVertex3d</a>        378 src/main.cpp               glVertex3d(o, o + d * i, o + d * (j - 1)); //P1'x</span>
+<span class='curline'><a href='../S/4.html#L379'>glVertex3d</a>        379 src/main.cpp               glVertex3d(o, o + d * (i - 1), o + d * j); //P1'z</span>
+<span class='curline'><a href='../S/4.html#L380'>glVertex3d</a>        380 src/main.cpp               glVertex3d(o, o + d * i, o + d * j); //P2</span>
+<span class='curline'><a href='../S/4.html#L384'>glVertex3d</a>        384 src/main.cpp               glVertex3d(-o, o + d * (i - 1), o + d * j); //P1'z</span>
+<span class='curline'><a href='../S/4.html#L385'>glVertex3d</a>        385 src/main.cpp               glVertex3d(-o, o + d * (i - 1), o + d * (j - 1)); //P1</span>
+<span class='curline'><a href='../S/4.html#L386'>glVertex3d</a>        386 src/main.cpp               glVertex3d(-o, o + d * i, o + d * (j - 1)); //P1'x</span>
+<span class='curline'><a href='../S/4.html#L389'>glVertex3d</a>        389 src/main.cpp               glVertex3d(-o, o + d * (i - 1), o + d * j); //P1'z</span>
+<span class='curline'><a href='../S/4.html#L390'>glVertex3d</a>        390 src/main.cpp               glVertex3d(-o, o + d * i, o + d * (j - 1)); //P1'x</span>
+<span class='curline'><a href='../S/4.html#L391'>glVertex3d</a>        391 src/main.cpp               glVertex3d(-o, o + d * i, o + d * j); //P2</span>
+<span class='curline'><a href='../S/4.html#L395'>glVertex3d</a>        395 src/main.cpp               glVertex3d(o + d * (i - 1), o + d * (j - 1), o); //P1</span>
+<span class='curline'><a href='../S/4.html#L396'>glVertex3d</a>        396 src/main.cpp               glVertex3d(o + d * (i - 1), o + d * j, o); //P1'z</span>
+<span class='curline'><a href='../S/4.html#L397'>glVertex3d</a>        397 src/main.cpp               glVertex3d(o + d * i, o + d * (j - 1), o); //P1'x</span>
+<span class='curline'><a href='../S/4.html#L400'>glVertex3d</a>        400 src/main.cpp               glVertex3d(o + d * i, o + d * (j - 1), o); //P1'x</span>
+<span class='curline'><a href='../S/4.html#L401'>glVertex3d</a>        401 src/main.cpp               glVertex3d(o + d * (i - 1), o + d * j, o); //P1'z</span>
+<span class='curline'><a href='../S/4.html#L402'>glVertex3d</a>        402 src/main.cpp               glVertex3d(o + d * i, o + d * j, o); //P2</span>
+<span class='curline'><a href='../S/4.html#L406'>glVertex3d</a>        406 src/main.cpp               glVertex3d(o + d * (i - 1), o + d * j, -o); //P1'z</span>
+<span class='curline'><a href='../S/4.html#L407'>glVertex3d</a>        407 src/main.cpp               glVertex3d(o + d * (i - 1), o + d * (j - 1), -o); //P1</span>
+<span class='curline'><a href='../S/4.html#L408'>glVertex3d</a>        408 src/main.cpp               glVertex3d(o + d * i, o + d * (j - 1), -o); //P1'x</span>
+<span class='curline'><a href='../S/4.html#L411'>glVertex3d</a>        411 src/main.cpp               glVertex3d(o + d * (i - 1), o + d * j, -o); //P1'z</span>
+<span class='curline'><a href='../S/4.html#L412'>glVertex3d</a>        412 src/main.cpp               glVertex3d(o + d * i, o + d * (j - 1), -o); //P1'x</span>
+<span class='curline'><a href='../S/4.html#L413'>glVertex3d</a>        413 src/main.cpp               glVertex3d(o + d * i, o + d * j, -o); //P2</span>
+</pre>
+</body>
+</html>

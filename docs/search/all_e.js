@@ -1,7 +1,12 @@
 var searchData=
 [
-  ['scale_0',['SCALE',['../parsing_8cpp.html#a8334f0c0c56b96debb10231b86050ead',1,'SCALE():&#160;parsing.cpp'],['../parsing_8h.html#a8334f0c0c56b96debb10231b86050ead',1,'SCALE():&#160;parsing.h']]],
-  ['sphere_1',['SPHERE',['../generator_8cpp.html#ad6372e14875f107f90642c7da8e10d12',1,'generator.cpp']]],
-  ['sphere_2',['Sphere',['../group__sphere.html',1,'']]],
-  ['spherevertex_3',['sphereVertex',['../main_8cpp.html#a56f39b3037e5c23b0d7523d4a0aa364f',1,'main.cpp']]]
+  ['readme_2emd_0',['readme.md',['../readme_8md.html',1,'']]],
+  ['readmodeltobuffer_1',['readModelToBuffer',['../group__model_engine.html#ga943eb4ae9be9204315e7dc4ccb7b3ca6',1,'readModelToBuffer(const char *path, float *p, unsigned int n):&#160;engine.cpp'],['../main_8cpp.html#a943eb4ae9be9204315e7dc4ccb7b3ca6',1,'readModelToBuffer(const char *path, float *p, unsigned int n):&#160;main.cpp']]],
+  ['redisplay_2',['redisplay',['../group__engine.html#gab9813926390dc5773baf0b20dc2ea16e',1,'engine.cpp']]],
+  ['render3d_3',['render3d',['../main_8cpp.html#a26a1f548f94f1ae7cb50446eded247ce',1,'main.cpp']]],
+  ['renderallmodels_4',['renderAllModels',['../group__model_engine.html#gacf6e708a0a1874bf2d8fd951a6ede500',1,'engine.cpp']]],
+  ['rendermodel_5',['renderModel',['../group__model_engine.html#ga9b0aa26dead35aab4fa6be0709998046',1,'engine.cpp']]],
+  ['renderscene_6',['renderScene',['../group__engine.html#ga91c42686f3245f22fb6b17ba5372d92c',1,'renderScene():&#160;engine.cpp'],['../main_8cpp.html#a2a96aed746d13d9b42d7888e156045f6',1,'renderScene(void):&#160;main.cpp']]],
+  ['rendertrianglevertexseq_7',['renderTriangleVertexSeq',['../group__engine.html#gaa790ed3f50ff9672fc05cd787d33a4ef',1,'renderTriangleVertexSeq(float *p, unsigned int nVertices):&#160;engine.cpp'],['../main_8cpp.html#a398691ab8678e504e5d144ef8f004dff',1,'renderTriangleVertexSeq(float *p, int n):&#160;main.cpp']]],
+  ['rotate_8',['ROTATE',['../parsing_8cpp.html#af4ae699d8cd926769e89e26cd088b2c0',1,'ROTATE():&#160;parsing.cpp'],['../parsing_8h.html#af4ae699d8cd926769e89e26cd088b2c0',1,'ROTATE():&#160;parsing.h']]]
 ];

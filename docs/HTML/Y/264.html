@@ -1,0 +1,21 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>elevation</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.6.8' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/6.html#L59'>elevation</a>          59 src/engine.cpp void spherical2Cartesian (double radius, double elevation, double azimuth, double *x, double *y, double *z)</span>
+<span class='curline'><a href='../S/6.html#L62'>elevation</a>          62 src/engine.cpp   *x = radius * cos (elevation) * sin (azimuth);</span>
+<span class='curline'><a href='../S/6.html#L63'>elevation</a>          63 src/engine.cpp   *y = radius * sin (elevation);</span>
+<span class='curline'><a href='../S/6.html#L64'>elevation</a>          64 src/engine.cpp   *z = radius * cos (elevation) * cos (azimuth);</span>
+<span class='curline'><a href='../S/6.html#L67'>elevation</a>          67 src/engine.cpp void cartesian2Spherical (double x, double y, double z, double *radius, double *azimuth, double *elevation)</span>
+<span class='curline'><a href='../S/6.html#L70'>elevation</a>          70 src/engine.cpp   *elevation = asin (y / (*radius));</span>
+<span class='curline'><a href='../S/6.html#L71'>elevation</a>          71 src/engine.cpp   *azimuth = asin (x / (*radius * cos (*elevation)));</span>
+</pre>
+</body>
+</html>

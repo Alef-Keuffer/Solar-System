@@ -108,24 +108,35 @@ $(document).ready(function(){initNavTree('group__look_at.html',''); initResizabl
   <div class="headertitle"><div class="title">LookAt<div class="ingroups"><a class="el" href="group__engine.html">Engine</a> &raquo; <a class="el" href="group__camera.html">Camera</a></div></div></div>
 </div><!--header-->
 <div class="contents">
+<div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Collaboration diagram for LookAt:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="group__look_at.png" border="0" usemap="#agroup____look__at" alt=""/></div>
+<map name="agroup____look__at" id="agroup____look__at">
+<area shape="rect" href="group__camera.html" title=" " alt="" coords="5,5,79,31"/>
+<area shape="rect" title=" " alt="" coords="127,5,193,31"/>
+</map>
+</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
 <tr class="memitem:ga3f847a1dda79418433019cbee15c313e"><td class="memItemLeft" align="right" valign="top">const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__look_at.html#ga3f847a1dda79418433019cbee15c313e">DEFAULT_GLOBAL_CENTER_STEP</a> = 1.0</td></tr>
 <tr class="separator:ga3f847a1dda79418433019cbee15c313e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gad121c1d79047c8e9f608d7582b5c0e3b"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__look_at.html#gad121c1d79047c8e9f608d7582b5c0e3b">DEFAULT_GLOBAL_CENTER_X</a> = 0</td></tr>
-<tr class="separator:gad121c1d79047c8e9f608d7582b5c0e3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gadf60ee2ec3d8e38e2aae174b4bd822af"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__look_at.html#gadf60ee2ec3d8e38e2aae174b4bd822af">DEFAULT_GLOBAL_CENTER_Y</a> = 0</td></tr>
-<tr class="separator:gadf60ee2ec3d8e38e2aae174b4bd822af"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gada2c1d8d5f9bca676b00dfddccedc13e"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__look_at.html#gada2c1d8d5f9bca676b00dfddccedc13e">DEFAULT_GLOBAL_CENTER_Z</a> = 0</td></tr>
-<tr class="separator:gada2c1d8d5f9bca676b00dfddccedc13e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf1a9b548d1f24649e0ba3cf4af735456"><td class="memItemLeft" align="right" valign="top">static float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__look_at.html#gaf1a9b548d1f24649e0ba3cf4af735456">DEFAULT_GLOBAL_CENTER_X</a> = 0</td></tr>
+<tr class="separator:gaf1a9b548d1f24649e0ba3cf4af735456"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga054a4c2a70619b372f56ef9a45a82493"><td class="memItemLeft" align="right" valign="top">static float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__look_at.html#ga054a4c2a70619b372f56ef9a45a82493">DEFAULT_GLOBAL_CENTER_Y</a> = 0</td></tr>
+<tr class="separator:ga054a4c2a70619b372f56ef9a45a82493"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gadedc332e2d5c7cdc0295a051833eb4f9"><td class="memItemLeft" align="right" valign="top">static float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__look_at.html#gadedc332e2d5c7cdc0295a051833eb4f9">DEFAULT_GLOBAL_CENTER_Z</a> = 0</td></tr>
+<tr class="separator:gadedc332e2d5c7cdc0295a051833eb4f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga24788a09c1fd390f1b6abee92c090c5c"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__look_at.html#ga24788a09c1fd390f1b6abee92c090c5c">globalCenterStep</a> = <a class="el" href="group__look_at.html#ga3f847a1dda79418433019cbee15c313e">DEFAULT_GLOBAL_CENTER_STEP</a></td></tr>
 <tr class="separator:ga24788a09c1fd390f1b6abee92c090c5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga2cb5db8bdad416592fa643be93c764be"><td class="memItemLeft" align="right" valign="top">static float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__look_at.html#ga2cb5db8bdad416592fa643be93c764be">globalCenterX</a> = <a class="el" href="group__look_at.html#gad121c1d79047c8e9f608d7582b5c0e3b">DEFAULT_GLOBAL_CENTER_X</a></td></tr>
+<tr class="memitem:ga2cb5db8bdad416592fa643be93c764be"><td class="memItemLeft" align="right" valign="top">static float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__look_at.html#ga2cb5db8bdad416592fa643be93c764be">globalCenterX</a> = <a class="el" href="group__look_at.html#gaf1a9b548d1f24649e0ba3cf4af735456">DEFAULT_GLOBAL_CENTER_X</a></td></tr>
 <tr class="separator:ga2cb5db8bdad416592fa643be93c764be"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaf3f8074b4e6ebaf6687f0777fd500e51"><td class="memItemLeft" align="right" valign="top">static float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__look_at.html#gaf3f8074b4e6ebaf6687f0777fd500e51">globalCenterY</a> = <a class="el" href="group__look_at.html#gadf60ee2ec3d8e38e2aae174b4bd822af">DEFAULT_GLOBAL_CENTER_Y</a></td></tr>
+<tr class="memitem:gaf3f8074b4e6ebaf6687f0777fd500e51"><td class="memItemLeft" align="right" valign="top">static float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__look_at.html#gaf3f8074b4e6ebaf6687f0777fd500e51">globalCenterY</a> = <a class="el" href="group__look_at.html#ga054a4c2a70619b372f56ef9a45a82493">DEFAULT_GLOBAL_CENTER_Y</a></td></tr>
 <tr class="separator:gaf3f8074b4e6ebaf6687f0777fd500e51"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaa63e0d164754e930baf0d8d08106febb"><td class="memItemLeft" align="right" valign="top">static float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__look_at.html#gaa63e0d164754e930baf0d8d08106febb">globalCenterZ</a> = <a class="el" href="group__look_at.html#gada2c1d8d5f9bca676b00dfddccedc13e">DEFAULT_GLOBAL_CENTER_Z</a></td></tr>
+<tr class="memitem:gaa63e0d164754e930baf0d8d08106febb"><td class="memItemLeft" align="right" valign="top">static float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__look_at.html#gaa63e0d164754e930baf0d8d08106febb">globalCenterZ</a> = <a class="el" href="group__look_at.html#gadedc332e2d5c7cdc0295a051833eb4f9">DEFAULT_GLOBAL_CENTER_Z</a></td></tr>
 <tr class="separator:gaa63e0d164754e930baf0d8d08106febb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -142,55 +153,87 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="reference">Referenced by <a class="el" href="#l00310">keyboardFunc()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00091">91</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00127">env_load_defaults()</a>.</p>
 
 </div>
 </div>
-<a id="gad121c1d79047c8e9f608d7582b5c0e3b" name="gad121c1d79047c8e9f608d7582b5c0e3b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gad121c1d79047c8e9f608d7582b5c0e3b">&#9670;&nbsp;</a></span>DEFAULT_GLOBAL_CENTER_X</h2>
+<a id="gaf1a9b548d1f24649e0ba3cf4af735456" name="gaf1a9b548d1f24649e0ba3cf4af735456"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaf1a9b548d1f24649e0ba3cf4af735456">&#9670;&nbsp;</a></span>DEFAULT_GLOBAL_CENTER_X</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const int DEFAULT_GLOBAL_CENTER_X = 0</td>
+          <td class="memname">float DEFAULT_GLOBAL_CENTER_X = 0</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
-<p class="reference">Referenced by <a class="el" href="#l00310">keyboardFunc()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00092">92</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00127">env_load_defaults()</a>, and <a class="el" href="engine_8cpp_source.html#l00283">operations_render()</a>.</p>
 
 </div>
 </div>
-<a id="gadf60ee2ec3d8e38e2aae174b4bd822af" name="gadf60ee2ec3d8e38e2aae174b4bd822af"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gadf60ee2ec3d8e38e2aae174b4bd822af">&#9670;&nbsp;</a></span>DEFAULT_GLOBAL_CENTER_Y</h2>
+<a id="ga054a4c2a70619b372f56ef9a45a82493" name="ga054a4c2a70619b372f56ef9a45a82493"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga054a4c2a70619b372f56ef9a45a82493">&#9670;&nbsp;</a></span>DEFAULT_GLOBAL_CENTER_Y</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const int DEFAULT_GLOBAL_CENTER_Y = 0</td>
+          <td class="memname">float DEFAULT_GLOBAL_CENTER_Y = 0</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
-<p class="reference">Referenced by <a class="el" href="#l00310">keyboardFunc()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00093">93</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00127">env_load_defaults()</a>, and <a class="el" href="engine_8cpp_source.html#l00283">operations_render()</a>.</p>
 
 </div>
 </div>
-<a id="gada2c1d8d5f9bca676b00dfddccedc13e" name="gada2c1d8d5f9bca676b00dfddccedc13e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gada2c1d8d5f9bca676b00dfddccedc13e">&#9670;&nbsp;</a></span>DEFAULT_GLOBAL_CENTER_Z</h2>
+<a id="gadedc332e2d5c7cdc0295a051833eb4f9" name="gadedc332e2d5c7cdc0295a051833eb4f9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gadedc332e2d5c7cdc0295a051833eb4f9">&#9670;&nbsp;</a></span>DEFAULT_GLOBAL_CENTER_Z</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const int DEFAULT_GLOBAL_CENTER_Z = 0</td>
+          <td class="memname">float DEFAULT_GLOBAL_CENTER_Z = 0</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
-<p class="reference">Referenced by <a class="el" href="#l00310">keyboardFunc()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00094">94</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00127">env_load_defaults()</a>, and <a class="el" href="engine_8cpp_source.html#l00283">operations_render()</a>.</p>
 
 </div>
 </div>
@@ -206,7 +249,9 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="reference">Referenced by <a class="el" href="#l00310">keyboardFunc()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00096">96</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00127">env_load_defaults()</a>, and <a class="el" href="engine_8cpp_source.html#l00446">keyboardFunc()</a>.</p>
 
 </div>
 </div>
@@ -220,7 +265,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">float globalCenterX = <a class="el" href="group__look_at.html#gad121c1d79047c8e9f608d7582b5c0e3b">DEFAULT_GLOBAL_CENTER_X</a></td>
+          <td class="memname">float globalCenterX = <a class="el" href="group__look_at.html#gaf1a9b548d1f24649e0ba3cf4af735456">DEFAULT_GLOBAL_CENTER_X</a></td>
         </tr>
       </table>
   </td>
@@ -230,7 +275,9 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="reference">Referenced by <a class="el" href="#l00310">keyboardFunc()</a>, <a class="el" href="#l00536">load_xml1()</a>, <a class="el" href="#l00190">operations_render()</a>, and <a class="el" href="#l00257">renderScene()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00097">97</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00127">env_load_defaults()</a>, <a class="el" href="engine_8cpp_source.html#l00446">keyboardFunc()</a>, <a class="el" href="engine_8cpp_source.html#l00756">load_xml1()</a>, <a class="el" href="engine_8cpp_source.html#l00606">mouseFunc()</a>, and <a class="el" href="engine_8cpp_source.html#l00396">renderScene()</a>.</p>
 
 </div>
 </div>
@@ -244,7 +291,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">float globalCenterY = <a class="el" href="group__look_at.html#gadf60ee2ec3d8e38e2aae174b4bd822af">DEFAULT_GLOBAL_CENTER_Y</a></td>
+          <td class="memname">float globalCenterY = <a class="el" href="group__look_at.html#ga054a4c2a70619b372f56ef9a45a82493">DEFAULT_GLOBAL_CENTER_Y</a></td>
         </tr>
       </table>
   </td>
@@ -254,7 +301,9 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="reference">Referenced by <a class="el" href="#l00310">keyboardFunc()</a>, <a class="el" href="#l00536">load_xml1()</a>, <a class="el" href="#l00190">operations_render()</a>, and <a class="el" href="#l00257">renderScene()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00098">98</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00127">env_load_defaults()</a>, <a class="el" href="engine_8cpp_source.html#l00446">keyboardFunc()</a>, <a class="el" href="engine_8cpp_source.html#l00756">load_xml1()</a>, and <a class="el" href="engine_8cpp_source.html#l00396">renderScene()</a>.</p>
 
 </div>
 </div>
@@ -268,7 +317,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">float globalCenterZ = <a class="el" href="group__look_at.html#gada2c1d8d5f9bca676b00dfddccedc13e">DEFAULT_GLOBAL_CENTER_Z</a></td>
+          <td class="memname">float globalCenterZ = <a class="el" href="group__look_at.html#gadedc332e2d5c7cdc0295a051833eb4f9">DEFAULT_GLOBAL_CENTER_Z</a></td>
         </tr>
       </table>
   </td>
@@ -278,7 +327,9 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="reference">Referenced by <a class="el" href="#l00310">keyboardFunc()</a>, <a class="el" href="#l00536">load_xml1()</a>, <a class="el" href="#l00190">operations_render()</a>, and <a class="el" href="#l00257">renderScene()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00099">99</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00127">env_load_defaults()</a>, <a class="el" href="engine_8cpp_source.html#l00446">keyboardFunc()</a>, <a class="el" href="engine_8cpp_source.html#l00756">load_xml1()</a>, <a class="el" href="engine_8cpp_source.html#l00606">mouseFunc()</a>, and <a class="el" href="engine_8cpp_source.html#l00396">renderScene()</a>.</p>
 
 </div>
 </div>

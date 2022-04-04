@@ -109,6 +109,21 @@ $(document).ready(function(){initNavTree('group___operations.html',''); initResi
   <div class="headertitle"><div class="title">Operations</div></div>
 </div><!--header-->
 <div class="contents">
+<div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Collaboration diagram for Operations:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="group___operations.png" border="0" usemap="#agroup______operations" alt=""/></div>
+<map name="agroup______operations" id="agroup______operations">
+<area shape="rect" href="group___groups.html" title=" " alt="" coords="160,5,228,31"/>
+<area shape="rect" href="group___models.html" title=" " alt="" coords="159,55,229,80"/>
+<area shape="rect" title=" " alt="" coords="5,104,99,129"/>
+<area shape="rect" href="group___printing.html" title=" " alt="" coords="158,104,230,129"/>
+<area shape="rect" href="group___transforms.html" title=" " alt="" coords="147,153,241,179"/>
+<area shape="rect" href="group__xml.html" title=" " alt="" coords="170,203,218,228"/>
+</map>
+</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="groups" name="groups"></a>
 Modules</h2></td></tr>
@@ -167,95 +182,140 @@ Data structure for Operations</h1>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">  190</span>                                                     {</div>
-<div class="line"><span class="lineno">  191</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i = 0;</div>
-<div class="line"><span class="lineno">  192</span> </div>
-<div class="line"><span class="lineno">  193</span>    <a class="code hl_variable" href="group__position.html#gab5ee8b685f6c6fc482b830ecee0e66bb">globalEyeX</a> = operations-&gt;at(i);</div>
-<div class="line"><span class="lineno">  194</span>    <a class="code hl_variable" href="group__position.html#ga3c1e3779aa4cd498aec201b2e9568883">globalEyeY</a> = operations-&gt;at(i + 1);</div>
-<div class="line"><span class="lineno">  195</span>    <a class="code hl_variable" href="group__position.html#ga97bf3be2b89d735f7fbb5ef293c77be6">globalEyeZ</a> = operations-&gt;at(i + 2);</div>
-<div class="line"><span class="lineno">  196</span>    i += 3;</div>
-<div class="line"><span class="lineno">  197</span> </div>
-<div class="line"><span class="lineno">  198</span>    <a class="code hl_variable" href="group__look_at.html#ga2cb5db8bdad416592fa643be93c764be">globalCenterX</a> = operations-&gt;at(i);</div>
-<div class="line"><span class="lineno">  199</span>    <a class="code hl_variable" href="group__look_at.html#gaf3f8074b4e6ebaf6687f0777fd500e51">globalCenterY</a> = operations-&gt;at(i + 1);</div>
-<div class="line"><span class="lineno">  200</span>    <a class="code hl_variable" href="group__look_at.html#gaa63e0d164754e930baf0d8d08106febb">globalCenterZ</a> = operations-&gt;at(i + 2);</div>
-<div class="line"><span class="lineno">  201</span>    i += 3;</div>
-<div class="line"><span class="lineno">  202</span> </div>
-<div class="line"><span class="lineno">  203</span>    <a class="code hl_variable" href="group__up.html#ga72f95312c48395a912ce37b15c5ff841">globalUpX</a> = operations-&gt;at(i);</div>
-<div class="line"><span class="lineno">  204</span>    <a class="code hl_variable" href="group__up.html#gaa2f1ed4a70974b3b22481d3124e1dbf2">globalUpY</a> = operations-&gt;at(i + 1);</div>
-<div class="line"><span class="lineno">  205</span>    <a class="code hl_variable" href="group__up.html#ga9b87730968b220018fd7f1a53728e46e">globalUpZ</a> = operations-&gt;at(i + 2);</div>
-<div class="line"><span class="lineno">  206</span>    i += 3;</div>
-<div class="line"><span class="lineno">  207</span> </div>
-<div class="line"><span class="lineno">  208</span>    <a class="code hl_variable" href="group__projection.html#ga59f6d63e115356ceacbc105f05acd900">globalFOV</a> = operations-&gt;at(i);</div>
-<div class="line"><span class="lineno">  209</span>    <a class="code hl_variable" href="group__projection.html#ga4ce7b2ac871b1ff992a5048c9efedb4f">globalNear</a> = operations-&gt;at(i + 1);</div>
-<div class="line"><span class="lineno">  210</span>    <a class="code hl_variable" href="group__projection.html#ga0d7ac28f9a90c72a02d5f7c6f1182be9">globalFar</a> = operations-&gt;at(i + 2);</div>
-<div class="line"><span class="lineno">  211</span> </div>
-<div class="line"><span class="lineno">  212</span>    <span class="keywordflow">for</span> (i += 3; i &lt; operations-&gt;size(); i++) {</div>
-<div class="line"><span class="lineno">  213</span>        <span class="keywordflow">switch</span> ((<span class="keywordtype">int</span>) operations-&gt;at(i)) {</div>
-<div class="line"><span class="lineno">  214</span>            <span class="keywordflow">case</span> <a class="code hl_variable" href="parsing_8h.html#af4ae699d8cd926769e89e26cd088b2c0">ROTATE</a>:</div>
-<div class="line"><span class="lineno">  215</span>                glRotated(operations-&gt;at(i + 1),</div>
-<div class="line"><span class="lineno">  216</span>                          operations-&gt;at(i + 2),</div>
-<div class="line"><span class="lineno">  217</span>                          operations-&gt;at(i + 3),</div>
-<div class="line"><span class="lineno">  218</span>                          operations-&gt;at(i + 4));</div>
-<div class="line"><span class="lineno">  219</span>                i += 4;</div>
-<div class="line"><span class="lineno">  220</span>                <span class="keywordflow">continue</span>;</div>
-<div class="line"><span class="lineno">  221</span>            <span class="keywordflow">case</span> <a class="code hl_variable" href="parsing_8h.html#a5ca818cc3b6e31a94c8f90cd2ffe39e4">TRANSLATE</a>:</div>
-<div class="line"><span class="lineno">  222</span>                glTranslatef(operations-&gt;at(i + 1),</div>
-<div class="line"><span class="lineno">  223</span>                             operations-&gt;at(i + 2),</div>
-<div class="line"><span class="lineno">  224</span>                             operations-&gt;at(i + 3));</div>
-<div class="line"><span class="lineno">  225</span>                i += 3;</div>
-<div class="line"><span class="lineno">  226</span>                <span class="keywordflow">continue</span>;</div>
-<div class="line"><span class="lineno">  227</span>            <span class="keywordflow">case</span> <a class="code hl_variable" href="parsing_8h.html#a8334f0c0c56b96debb10231b86050ead">SCALE</a>:</div>
-<div class="line"><span class="lineno">  228</span>                glScalef(operations-&gt;at(i + 1),</div>
-<div class="line"><span class="lineno">  229</span>                         operations-&gt;at(i + 2),</div>
-<div class="line"><span class="lineno">  230</span>                         operations-&gt;at(i + 3));</div>
-<div class="line"><span class="lineno">  231</span>                i += 3;</div>
-<div class="line"><span class="lineno">  232</span>                <span class="keywordflow">continue</span>;</div>
-<div class="line"><span class="lineno">  233</span>            <span class="keywordflow">case</span> <a class="code hl_variable" href="parsing_8h.html#ae38a16613cd19c49df2093ac07acf4c2">BEGIN_GROUP</a>:</div>
-<div class="line"><span class="lineno">  234</span>                glPushMatrix();</div>
-<div class="line"><span class="lineno">  235</span>                <span class="keywordflow">continue</span>;</div>
-<div class="line"><span class="lineno">  236</span>            <span class="keywordflow">case</span> <a class="code hl_variable" href="parsing_8h.html#aa439df53a792b65747b73e9941f8f54a">END_GROUP</a>:</div>
-<div class="line"><span class="lineno">  237</span>                glPopMatrix();</div>
-<div class="line"><span class="lineno">  238</span>                <span class="keywordflow">continue</span>;</div>
-<div class="line"><span class="lineno">  239</span>            <span class="keywordflow">case</span> <a class="code hl_variable" href="parsing_8h.html#aa51361de9fa3f1deb5ea0db3378699ad">LOAD_MODEL</a>:</div>
-<div class="line"><span class="lineno">  240</span>                <span class="keywordtype">int</span> stringSize = (int) operations-&gt;at(i + 1);</div>
-<div class="line"><span class="lineno">  241</span>                <span class="keywordtype">char</span> <a class="code hl_struct" href="structmodel.html">model</a>[stringSize + 1];</div>
-<div class="line"><span class="lineno">  242</span> </div>
-<div class="line"><span class="lineno">  243</span>                <span class="keywordtype">int</span> j;</div>
-<div class="line"><span class="lineno">  244</span>                <span class="keywordflow">for</span> (j = 0; j &lt; stringSize; j++)</div>
-<div class="line"><span class="lineno">  245</span>                    <a class="code hl_struct" href="structmodel.html">model</a>[j] = (<span class="keywordtype">char</span>) operations-&gt;at(i + 2 + j);</div>
-<div class="line"><span class="lineno">  246</span> </div>
-<div class="line"><span class="lineno">  247</span>                <a class="code hl_struct" href="structmodel.html">model</a>[j] = 0;</div>
-<div class="line"><span class="lineno">  248</span>                <a class="code hl_function" href="group__model_engine.html#ga9b0aa26dead35aab4fa6be0709998046">renderModel</a>(<a class="code hl_function" href="group__model_engine.html#ga56beba311d0a6fcbda9aeb516fe67f8f">allocModel</a>(<a class="code hl_struct" href="structmodel.html">model</a>));</div>
-<div class="line"><span class="lineno">  249</span>                i += 1 + j - 1; <span class="comment">//just to be explicit</span></div>
-<div class="line"><span class="lineno">  250</span>                <span class="keywordflow">continue</span>;</div>
-<div class="line"><span class="lineno">  251</span>        }</div>
-<div class="line"><span class="lineno">  252</span>    }</div>
-<div class="line"><span class="lineno">  253</span>}</div>
-<div class="ttc" id="agroup__look_at_html_ga2cb5db8bdad416592fa643be93c764be"><div class="ttname"><a href="group__look_at.html#ga2cb5db8bdad416592fa643be93c764be">globalCenterX</a></div><div class="ttdeci">static float globalCenterX</div><div class="ttdef"><b>Definition:</b> engine.cpp:64</div></div>
-<div class="ttc" id="agroup__look_at_html_gaa63e0d164754e930baf0d8d08106febb"><div class="ttname"><a href="group__look_at.html#gaa63e0d164754e930baf0d8d08106febb">globalCenterZ</a></div><div class="ttdeci">static float globalCenterZ</div><div class="ttdef"><b>Definition:</b> engine.cpp:66</div></div>
-<div class="ttc" id="agroup__look_at_html_gaf3f8074b4e6ebaf6687f0777fd500e51"><div class="ttname"><a href="group__look_at.html#gaf3f8074b4e6ebaf6687f0777fd500e51">globalCenterY</a></div><div class="ttdeci">static float globalCenterY</div><div class="ttdef"><b>Definition:</b> engine.cpp:65</div></div>
-<div class="ttc" id="agroup__model_engine_html_ga56beba311d0a6fcbda9aeb516fe67f8f"><div class="ttname"><a href="group__model_engine.html#ga56beba311d0a6fcbda9aeb516fe67f8f">allocModel</a></div><div class="ttdeci">Model allocModel(const char *path)</div><div class="ttdef"><b>Definition:</b> engine.cpp:106</div></div>
-<div class="ttc" id="agroup__model_engine_html_ga9b0aa26dead35aab4fa6be0709998046"><div class="ttname"><a href="group__model_engine.html#ga9b0aa26dead35aab4fa6be0709998046">renderModel</a></div><div class="ttdeci">void renderModel(Model model)</div><div class="ttdef"><b>Definition:</b> engine.cpp:129</div></div>
-<div class="ttc" id="agroup__position_html_ga3c1e3779aa4cd498aec201b2e9568883"><div class="ttname"><a href="group__position.html#ga3c1e3779aa4cd498aec201b2e9568883">globalEyeY</a></div><div class="ttdeci">static float globalEyeY</div><div class="ttdef"><b>Definition:</b> engine.cpp:52</div></div>
-<div class="ttc" id="agroup__position_html_ga97bf3be2b89d735f7fbb5ef293c77be6"><div class="ttname"><a href="group__position.html#ga97bf3be2b89d735f7fbb5ef293c77be6">globalEyeZ</a></div><div class="ttdeci">static float globalEyeZ</div><div class="ttdef"><b>Definition:</b> engine.cpp:53</div></div>
-<div class="ttc" id="agroup__position_html_gab5ee8b685f6c6fc482b830ecee0e66bb"><div class="ttname"><a href="group__position.html#gab5ee8b685f6c6fc482b830ecee0e66bb">globalEyeX</a></div><div class="ttdeci">static float globalEyeX</div><div class="ttdef"><b>Definition:</b> engine.cpp:51</div></div>
-<div class="ttc" id="agroup__projection_html_ga0d7ac28f9a90c72a02d5f7c6f1182be9"><div class="ttname"><a href="group__projection.html#ga0d7ac28f9a90c72a02d5f7c6f1182be9">globalFar</a></div><div class="ttdeci">static float globalFar</div><div class="ttdef"><b>Definition:</b> engine.cpp:90</div></div>
-<div class="ttc" id="agroup__projection_html_ga4ce7b2ac871b1ff992a5048c9efedb4f"><div class="ttname"><a href="group__projection.html#ga4ce7b2ac871b1ff992a5048c9efedb4f">globalNear</a></div><div class="ttdeci">static float globalNear</div><div class="ttdef"><b>Definition:</b> engine.cpp:89</div></div>
-<div class="ttc" id="agroup__projection_html_ga59f6d63e115356ceacbc105f05acd900"><div class="ttname"><a href="group__projection.html#ga59f6d63e115356ceacbc105f05acd900">globalFOV</a></div><div class="ttdeci">static float globalFOV</div><div class="ttdef"><b>Definition:</b> engine.cpp:88</div></div>
-<div class="ttc" id="agroup__up_html_ga72f95312c48395a912ce37b15c5ff841"><div class="ttname"><a href="group__up.html#ga72f95312c48395a912ce37b15c5ff841">globalUpX</a></div><div class="ttdeci">static float globalUpX</div><div class="ttdef"><b>Definition:</b> engine.cpp:77</div></div>
-<div class="ttc" id="agroup__up_html_ga9b87730968b220018fd7f1a53728e46e"><div class="ttname"><a href="group__up.html#ga9b87730968b220018fd7f1a53728e46e">globalUpZ</a></div><div class="ttdeci">static float globalUpZ</div><div class="ttdef"><b>Definition:</b> engine.cpp:79</div></div>
-<div class="ttc" id="agroup__up_html_gaa2f1ed4a70974b3b22481d3124e1dbf2"><div class="ttname"><a href="group__up.html#gaa2f1ed4a70974b3b22481d3124e1dbf2">globalUpY</a></div><div class="ttdeci">static float globalUpY</div><div class="ttdef"><b>Definition:</b> engine.cpp:78</div></div>
-<div class="ttc" id="aparsing_8h_html_a5ca818cc3b6e31a94c8f90cd2ffe39e4"><div class="ttname"><a href="parsing_8h.html#a5ca818cc3b6e31a94c8f90cd2ffe39e4">TRANSLATE</a></div><div class="ttdeci">const int TRANSLATE</div><div class="ttdef"><b>Definition:</b> parsing.h:8</div></div>
-<div class="ttc" id="aparsing_8h_html_a8334f0c0c56b96debb10231b86050ead"><div class="ttname"><a href="parsing_8h.html#a8334f0c0c56b96debb10231b86050ead">SCALE</a></div><div class="ttdeci">const int SCALE</div><div class="ttdef"><b>Definition:</b> parsing.h:10</div></div>
-<div class="ttc" id="aparsing_8h_html_aa439df53a792b65747b73e9941f8f54a"><div class="ttname"><a href="parsing_8h.html#aa439df53a792b65747b73e9941f8f54a">END_GROUP</a></div><div class="ttdeci">const int END_GROUP</div><div class="ttdef"><b>Definition:</b> parsing.h:13</div></div>
-<div class="ttc" id="aparsing_8h_html_aa51361de9fa3f1deb5ea0db3378699ad"><div class="ttname"><a href="parsing_8h.html#aa51361de9fa3f1deb5ea0db3378699ad">LOAD_MODEL</a></div><div class="ttdeci">const int LOAD_MODEL</div><div class="ttdef"><b>Definition:</b> parsing.h:11</div></div>
-<div class="ttc" id="aparsing_8h_html_ae38a16613cd19c49df2093ac07acf4c2"><div class="ttname"><a href="parsing_8h.html#ae38a16613cd19c49df2093ac07acf4c2">BEGIN_GROUP</a></div><div class="ttdeci">const int BEGIN_GROUP</div><div class="ttdef"><b>Definition:</b> parsing.h:12</div></div>
-<div class="ttc" id="aparsing_8h_html_af4ae699d8cd926769e89e26cd088b2c0"><div class="ttname"><a href="parsing_8h.html#af4ae699d8cd926769e89e26cd088b2c0">ROTATE</a></div><div class="ttdeci">const int ROTATE</div><div class="ttdef"><b>Definition:</b> parsing.h:9</div></div>
-<div class="ttc" id="astructmodel_html"><div class="ttname"><a href="structmodel.html">model</a></div><div class="ttdef"><b>Definition:</b> engine.cpp:98</div></div>
-</div><!-- fragment -->
-<p class="reference">References <a class="el" href="#l00106">allocModel()</a>, <a class="el" href="#l00012">BEGIN_GROUP</a>, <a class="el" href="#l00013">END_GROUP</a>, <a class="el" href="#l00064">globalCenterX</a>, <a class="el" href="#l00065">globalCenterY</a>, <a class="el" href="#l00066">globalCenterZ</a>, <a class="el" href="#l00051">globalEyeX</a>, <a class="el" href="#l00052">globalEyeY</a>, <a class="el" href="#l00053">globalEyeZ</a>, <a class="el" href="#l00090">globalFar</a>, <a class="el" href="#l00088">globalFOV</a>, <a class="el" href="#l00089">globalNear</a>, <a class="el" href="#l00077">globalUpX</a>, <a class="el" href="#l00078">globalUpY</a>, <a class="el" href="#l00079">globalUpZ</a>, <a class="el" href="#l00011">LOAD_MODEL</a>, <a class="el" href="#l00129">renderModel()</a>, <a class="el" href="#l00009">ROTATE</a>, <a class="el" href="#l00010">SCALE</a>, and <a class="el" href="#l00008">TRANSLATE</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="#l00257">renderScene()</a>, and <a class="el" href="#l00281">xml_load_and_set_env()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00283">283</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  284</span>{</div>
+<div class="line"><span class="lineno">  285</span>  <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i = 0;</div>
+<div class="line"><span class="lineno">  286</span>  <span class="keyword">static</span> <span class="keywordtype">bool</span> hasPushedModels = <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  287</span> </div>
+<div class="line"><span class="lineno">  288</span>  <a class="code hl_variable" href="group__position.html#gac405408e87c2764abe6ccf07bc3e59e2">DEFAULT_GLOBAL_EYE_X</a> = operations-&gt;at (i);</div>
+<div class="line"><span class="lineno">  289</span>  <a class="code hl_variable" href="group__position.html#ga434a33b9dda24c1da34daf37de1f97ce">DEFAULT_GLOBAL_EYE_Y</a> = operations-&gt;at (i + 1);</div>
+<div class="line"><span class="lineno">  290</span>  <a class="code hl_variable" href="group__position.html#ga66e088ca33532c7abf22b05512009c52">DEFAULT_GLOBAL_EYE_Z</a> = operations-&gt;at (i + 2);</div>
+<div class="line"><span class="lineno">  291</span> </div>
+<div class="line"><span class="lineno">  292</span>  <a class="code hl_function" href="group__spherical.html#ga2a22d15f7463ccd8f8d1aa65e7578983">cartesian2Spherical</a> (</div>
+<div class="line"><span class="lineno">  293</span>      <a class="code hl_variable" href="group__position.html#gac405408e87c2764abe6ccf07bc3e59e2">DEFAULT_GLOBAL_EYE_X</a>, <a class="code hl_variable" href="group__position.html#ga434a33b9dda24c1da34daf37de1f97ce">DEFAULT_GLOBAL_EYE_Y</a>, <a class="code hl_variable" href="group__position.html#ga66e088ca33532c7abf22b05512009c52">DEFAULT_GLOBAL_EYE_Z</a>,</div>
+<div class="line"><span class="lineno">  294</span>      &amp;<a class="code hl_variable" href="group__spherical.html#ga9046d488bde40feb5c8cd6372f12d5cf">DEFAULT_GLOBAL_RADIUS</a>, &amp;<a class="code hl_variable" href="group__spherical.html#ga8847a748f16dded3615f8f4b48ab2ef4">DEFAULT_GLOBAL_AZIMUTH</a>, &amp;<a class="code hl_variable" href="group__spherical.html#ga3f93d1092ee04ee1206b02259e320784">DEFAULT_GLOBAL_ELEVATION</a>);</div>
+<div class="line"><span class="lineno">  295</span>  i += 3;</div>
+<div class="line"><span class="lineno">  296</span> </div>
+<div class="line"><span class="lineno">  297</span>  <a class="code hl_variable" href="group__look_at.html#gaf1a9b548d1f24649e0ba3cf4af735456">DEFAULT_GLOBAL_CENTER_X</a> = operations-&gt;at (i);</div>
+<div class="line"><span class="lineno">  298</span>  <a class="code hl_variable" href="group__look_at.html#ga054a4c2a70619b372f56ef9a45a82493">DEFAULT_GLOBAL_CENTER_Y</a> = operations-&gt;at (i + 1);</div>
+<div class="line"><span class="lineno">  299</span>  <a class="code hl_variable" href="group__look_at.html#gadedc332e2d5c7cdc0295a051833eb4f9">DEFAULT_GLOBAL_CENTER_Z</a> = operations-&gt;at (i + 2);</div>
+<div class="line"><span class="lineno">  300</span>  i += 3;</div>
+<div class="line"><span class="lineno">  301</span> </div>
+<div class="line"><span class="lineno">  302</span>  <a class="code hl_variable" href="group__up.html#gaa7c5ea30e53e8277f3453748b3ec65b2">DEFAULT_GLOBAL_UP_X</a> = operations-&gt;at (i);</div>
+<div class="line"><span class="lineno">  303</span>  <a class="code hl_variable" href="group__up.html#ga1d99792fd6031999dbee0ddc59d70f6f">DEFAULT_GLOBAL_UP_Y</a> = operations-&gt;at (i + 1);</div>
+<div class="line"><span class="lineno">  304</span>  <a class="code hl_variable" href="group__up.html#ga310ca5fbbd5424d2678ec570136e46ae">DEFAULT_GLOBAL_UP_Z</a> = operations-&gt;at (i + 2);</div>
+<div class="line"><span class="lineno">  305</span>  i += 3;</div>
+<div class="line"><span class="lineno">  306</span> </div>
+<div class="line"><span class="lineno">  307</span>  <a class="code hl_variable" href="group__projection.html#ga9344f8711dfb5b6484b85d74ecfc5aa9">DEFAULT_GLOBAL_FOV</a> = operations-&gt;at (i);</div>
+<div class="line"><span class="lineno">  308</span>  <a class="code hl_variable" href="group__projection.html#gac45b46967400f1ff08d5eb9009b5275e">DEFAULT_GLOBAL_NEAR</a> = operations-&gt;at (i + 1);</div>
+<div class="line"><span class="lineno">  309</span>  <a class="code hl_variable" href="group__projection.html#ga77c5e8ffdba32056cc34a418d778962b">DEFAULT_GLOBAL_FAR</a> = operations-&gt;at (i + 2);</div>
+<div class="line"><span class="lineno">  310</span> </div>
+<div class="line"><span class="lineno">  311</span>  <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> modelNo = 0;</div>
+<div class="line"><span class="lineno">  312</span> </div>
+<div class="line"><span class="lineno">  313</span>  <span class="keywordflow">for</span> (i += 3; i &lt; operations-&gt;size (); i++)</div>
+<div class="line"><span class="lineno">  314</span>    {</div>
+<div class="line"><span class="lineno">  315</span>      <span class="keywordflow">switch</span> ((<span class="keywordtype">int</span>) operations-&gt;at (i))</div>
+<div class="line"><span class="lineno">  316</span>        {</div>
+<div class="line"><span class="lineno">  317</span>      <span class="keywordflow">case</span> <a class="code hl_variable" href="parsing_8h.html#af4ae699d8cd926769e89e26cd088b2c0">ROTATE</a>:</div>
+<div class="line"><span class="lineno">  318</span>        glRotatef (operations-&gt;at (i + 1),</div>
+<div class="line"><span class="lineno">  319</span>                   operations-&gt;at (i + 2),</div>
+<div class="line"><span class="lineno">  320</span>                   operations-&gt;at (i + 3),</div>
+<div class="line"><span class="lineno">  321</span>                   operations-&gt;at (i + 4));</div>
+<div class="line"><span class="lineno">  322</span>          i += 4;</div>
+<div class="line"><span class="lineno">  323</span>          <span class="keywordflow">continue</span>;</div>
+<div class="line"><span class="lineno">  324</span>      <span class="keywordflow">case</span> <a class="code hl_variable" href="parsing_8h.html#a5ca818cc3b6e31a94c8f90cd2ffe39e4">TRANSLATE</a>:</div>
+<div class="line"><span class="lineno">  325</span>        glTranslatef (operations-&gt;at (i + 1),</div>
+<div class="line"><span class="lineno">  326</span>                      operations-&gt;at (i + 2),</div>
+<div class="line"><span class="lineno">  327</span>                      operations-&gt;at (i + 3));</div>
+<div class="line"><span class="lineno">  328</span>          i += 3;</div>
+<div class="line"><span class="lineno">  329</span>          <span class="keywordflow">continue</span>;</div>
+<div class="line"><span class="lineno">  330</span>      <span class="keywordflow">case</span> <a class="code hl_variable" href="parsing_8h.html#a8334f0c0c56b96debb10231b86050ead">SCALE</a>:</div>
+<div class="line"><span class="lineno">  331</span>        glScalef (operations-&gt;at (i + 1),</div>
+<div class="line"><span class="lineno">  332</span>                  operations-&gt;at (i + 2),</div>
+<div class="line"><span class="lineno">  333</span>                  operations-&gt;at (i + 3));</div>
+<div class="line"><span class="lineno">  334</span>          i += 3;</div>
+<div class="line"><span class="lineno">  335</span>          <span class="keywordflow">continue</span>;</div>
+<div class="line"><span class="lineno">  336</span>      <span class="keywordflow">case</span> <a class="code hl_variable" href="parsing_8h.html#ae38a16613cd19c49df2093ac07acf4c2">BEGIN_GROUP</a>:glPushMatrix ();</div>
+<div class="line"><span class="lineno">  337</span>          <span class="keywordflow">continue</span>;</div>
+<div class="line"><span class="lineno">  338</span>      <span class="keywordflow">case</span> <a class="code hl_variable" href="parsing_8h.html#aa439df53a792b65747b73e9941f8f54a">END_GROUP</a>:glPopMatrix ();</div>
+<div class="line"><span class="lineno">  339</span>          <span class="keywordflow">continue</span>;</div>
+<div class="line"><span class="lineno">  340</span>      <span class="keywordflow">case</span> <a class="code hl_variable" href="parsing_8h.html#aa51361de9fa3f1deb5ea0db3378699ad">LOAD_MODEL</a>:<span class="keywordtype">int</span> stringSize = (int) operations-&gt;at (i + 1);</div>
+<div class="line"><span class="lineno">  341</span>          <span class="keywordflow">if</span> (!hasPushedModels)</div>
+<div class="line"><span class="lineno">  342</span>            {</div>
+<div class="line"><span class="lineno">  343</span>              <span class="keywordtype">char</span> modelName[stringSize + 1];</div>
+<div class="line"><span class="lineno">  344</span> </div>
+<div class="line"><span class="lineno">  345</span>              <span class="keywordtype">int</span> j;</div>
+<div class="line"><span class="lineno">  346</span>              <span class="keywordflow">for</span> (j = 0; j &lt; stringSize; j++)</div>
+<div class="line"><span class="lineno">  347</span>                modelName[j] = (<span class="keywordtype">char</span>) operations-&gt;at (i + 2 + j);</div>
+<div class="line"><span class="lineno">  348</span> </div>
+<div class="line"><span class="lineno">  349</span>              modelName[j] = 0;</div>
+<div class="line"><span class="lineno">  350</span> </div>
+<div class="line"><span class="lineno">  351</span>              <a class="code hl_variable" href="group__model_engine.html#ga8a16af82495542bcca4dd9f261fc4ef2">globalModels</a>.push_back (<a class="code hl_function" href="group__model_engine.html#ga56beba311d0a6fcbda9aeb516fe67f8f">allocModel</a> (modelName));</div>
+<div class="line"><span class="lineno">  352</span>            }</div>
+<div class="line"><span class="lineno">  353</span>          <a class="code hl_function" href="group__model_engine.html#ga9b0aa26dead35aab4fa6be0709998046">renderModel</a> (<a class="code hl_variable" href="group__model_engine.html#ga8a16af82495542bcca4dd9f261fc4ef2">globalModels</a>.at (modelNo++));</div>
+<div class="line"><span class="lineno">  354</span>          i += stringSize + 1; <span class="comment">//just to be explicit</span></div>
+<div class="line"><span class="lineno">  355</span>          <span class="keywordflow">continue</span>;</div>
+<div class="line"><span class="lineno">  356</span>        }</div>
+<div class="line"><span class="lineno">  357</span>    }</div>
+<div class="line"><span class="lineno">  358</span>  hasPushedModels = <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  359</span>}</div>
+<div class="ttc" id="agroup__look_at_html_ga054a4c2a70619b372f56ef9a45a82493"><div class="ttname"><a href="group__look_at.html#ga054a4c2a70619b372f56ef9a45a82493">DEFAULT_GLOBAL_CENTER_Y</a></div><div class="ttdeci">static float DEFAULT_GLOBAL_CENTER_Y</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00093">engine.cpp:93</a></div></div>
+<div class="ttc" id="agroup__look_at_html_gadedc332e2d5c7cdc0295a051833eb4f9"><div class="ttname"><a href="group__look_at.html#gadedc332e2d5c7cdc0295a051833eb4f9">DEFAULT_GLOBAL_CENTER_Z</a></div><div class="ttdeci">static float DEFAULT_GLOBAL_CENTER_Z</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00094">engine.cpp:94</a></div></div>
+<div class="ttc" id="agroup__look_at_html_gaf1a9b548d1f24649e0ba3cf4af735456"><div class="ttname"><a href="group__look_at.html#gaf1a9b548d1f24649e0ba3cf4af735456">DEFAULT_GLOBAL_CENTER_X</a></div><div class="ttdeci">static float DEFAULT_GLOBAL_CENTER_X</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00092">engine.cpp:92</a></div></div>
+<div class="ttc" id="agroup__model_engine_html_ga56beba311d0a6fcbda9aeb516fe67f8f"><div class="ttname"><a href="group__model_engine.html#ga56beba311d0a6fcbda9aeb516fe67f8f">allocModel</a></div><div class="ttdeci">Model allocModel(const char *path)</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00190">engine.cpp:190</a></div></div>
+<div class="ttc" id="agroup__model_engine_html_ga8a16af82495542bcca4dd9f261fc4ef2"><div class="ttname"><a href="group__model_engine.html#ga8a16af82495542bcca4dd9f261fc4ef2">globalModels</a></div><div class="ttdeci">static std::vector&lt; Model &gt; globalModels</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00186">engine.cpp:186</a></div></div>
+<div class="ttc" id="agroup__model_engine_html_ga9b0aa26dead35aab4fa6be0709998046"><div class="ttname"><a href="group__model_engine.html#ga9b0aa26dead35aab4fa6be0709998046">renderModel</a></div><div class="ttdeci">void renderModel(Model model)</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00214">engine.cpp:214</a></div></div>
+<div class="ttc" id="agroup__position_html_ga434a33b9dda24c1da34daf37de1f97ce"><div class="ttname"><a href="group__position.html#ga434a33b9dda24c1da34daf37de1f97ce">DEFAULT_GLOBAL_EYE_Y</a></div><div class="ttdeci">static float DEFAULT_GLOBAL_EYE_Y</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00080">engine.cpp:80</a></div></div>
+<div class="ttc" id="agroup__position_html_ga66e088ca33532c7abf22b05512009c52"><div class="ttname"><a href="group__position.html#ga66e088ca33532c7abf22b05512009c52">DEFAULT_GLOBAL_EYE_Z</a></div><div class="ttdeci">static float DEFAULT_GLOBAL_EYE_Z</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00081">engine.cpp:81</a></div></div>
+<div class="ttc" id="agroup__position_html_gac405408e87c2764abe6ccf07bc3e59e2"><div class="ttname"><a href="group__position.html#gac405408e87c2764abe6ccf07bc3e59e2">DEFAULT_GLOBAL_EYE_X</a></div><div class="ttdeci">static float DEFAULT_GLOBAL_EYE_X</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00079">engine.cpp:79</a></div></div>
+<div class="ttc" id="agroup__projection_html_ga77c5e8ffdba32056cc34a418d778962b"><div class="ttname"><a href="group__projection.html#ga77c5e8ffdba32056cc34a418d778962b">DEFAULT_GLOBAL_FAR</a></div><div class="ttdeci">static float DEFAULT_GLOBAL_FAR</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00119">engine.cpp:119</a></div></div>
+<div class="ttc" id="agroup__projection_html_ga9344f8711dfb5b6484b85d74ecfc5aa9"><div class="ttname"><a href="group__projection.html#ga9344f8711dfb5b6484b85d74ecfc5aa9">DEFAULT_GLOBAL_FOV</a></div><div class="ttdeci">static float DEFAULT_GLOBAL_FOV</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00117">engine.cpp:117</a></div></div>
+<div class="ttc" id="agroup__projection_html_gac45b46967400f1ff08d5eb9009b5275e"><div class="ttname"><a href="group__projection.html#gac45b46967400f1ff08d5eb9009b5275e">DEFAULT_GLOBAL_NEAR</a></div><div class="ttdeci">static float DEFAULT_GLOBAL_NEAR</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00118">engine.cpp:118</a></div></div>
+<div class="ttc" id="agroup__spherical_html_ga2a22d15f7463ccd8f8d1aa65e7578983"><div class="ttname"><a href="group__spherical.html#ga2a22d15f7463ccd8f8d1aa65e7578983">cartesian2Spherical</a></div><div class="ttdeci">void cartesian2Spherical(double x, double y, double z, double *radius, double *azimuth, double *elevation)</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00067">engine.cpp:67</a></div></div>
+<div class="ttc" id="agroup__spherical_html_ga3f93d1092ee04ee1206b02259e320784"><div class="ttname"><a href="group__spherical.html#ga3f93d1092ee04ee1206b02259e320784">DEFAULT_GLOBAL_ELEVATION</a></div><div class="ttdeci">double DEFAULT_GLOBAL_ELEVATION</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00052">engine.cpp:52</a></div></div>
+<div class="ttc" id="agroup__spherical_html_ga8847a748f16dded3615f8f4b48ab2ef4"><div class="ttname"><a href="group__spherical.html#ga8847a748f16dded3615f8f4b48ab2ef4">DEFAULT_GLOBAL_AZIMUTH</a></div><div class="ttdeci">double DEFAULT_GLOBAL_AZIMUTH</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00051">engine.cpp:51</a></div></div>
+<div class="ttc" id="agroup__spherical_html_ga9046d488bde40feb5c8cd6372f12d5cf"><div class="ttname"><a href="group__spherical.html#ga9046d488bde40feb5c8cd6372f12d5cf">DEFAULT_GLOBAL_RADIUS</a></div><div class="ttdeci">double DEFAULT_GLOBAL_RADIUS</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00050">engine.cpp:50</a></div></div>
+<div class="ttc" id="agroup__up_html_ga1d99792fd6031999dbee0ddc59d70f6f"><div class="ttname"><a href="group__up.html#ga1d99792fd6031999dbee0ddc59d70f6f">DEFAULT_GLOBAL_UP_Y</a></div><div class="ttdeci">static float DEFAULT_GLOBAL_UP_Y</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00106">engine.cpp:106</a></div></div>
+<div class="ttc" id="agroup__up_html_ga310ca5fbbd5424d2678ec570136e46ae"><div class="ttname"><a href="group__up.html#ga310ca5fbbd5424d2678ec570136e46ae">DEFAULT_GLOBAL_UP_Z</a></div><div class="ttdeci">static float DEFAULT_GLOBAL_UP_Z</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00107">engine.cpp:107</a></div></div>
+<div class="ttc" id="agroup__up_html_gaa7c5ea30e53e8277f3453748b3ec65b2"><div class="ttname"><a href="group__up.html#gaa7c5ea30e53e8277f3453748b3ec65b2">DEFAULT_GLOBAL_UP_X</a></div><div class="ttdeci">static float DEFAULT_GLOBAL_UP_X</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00105">engine.cpp:105</a></div></div>
+<div class="ttc" id="aparsing_8h_html_a5ca818cc3b6e31a94c8f90cd2ffe39e4"><div class="ttname"><a href="parsing_8h.html#a5ca818cc3b6e31a94c8f90cd2ffe39e4">TRANSLATE</a></div><div class="ttdeci">const int TRANSLATE</div><div class="ttdef"><b>Definition:</b> <a href="parsing_8h_source.html#l00008">parsing.h:8</a></div></div>
+<div class="ttc" id="aparsing_8h_html_a8334f0c0c56b96debb10231b86050ead"><div class="ttname"><a href="parsing_8h.html#a8334f0c0c56b96debb10231b86050ead">SCALE</a></div><div class="ttdeci">const int SCALE</div><div class="ttdef"><b>Definition:</b> <a href="parsing_8h_source.html#l00010">parsing.h:10</a></div></div>
+<div class="ttc" id="aparsing_8h_html_aa439df53a792b65747b73e9941f8f54a"><div class="ttname"><a href="parsing_8h.html#aa439df53a792b65747b73e9941f8f54a">END_GROUP</a></div><div class="ttdeci">const int END_GROUP</div><div class="ttdef"><b>Definition:</b> <a href="parsing_8h_source.html#l00013">parsing.h:13</a></div></div>
+<div class="ttc" id="aparsing_8h_html_aa51361de9fa3f1deb5ea0db3378699ad"><div class="ttname"><a href="parsing_8h.html#aa51361de9fa3f1deb5ea0db3378699ad">LOAD_MODEL</a></div><div class="ttdeci">const int LOAD_MODEL</div><div class="ttdef"><b>Definition:</b> <a href="parsing_8h_source.html#l00011">parsing.h:11</a></div></div>
+<div class="ttc" id="aparsing_8h_html_ae38a16613cd19c49df2093ac07acf4c2"><div class="ttname"><a href="parsing_8h.html#ae38a16613cd19c49df2093ac07acf4c2">BEGIN_GROUP</a></div><div class="ttdeci">const int BEGIN_GROUP</div><div class="ttdef"><b>Definition:</b> <a href="parsing_8h_source.html#l00012">parsing.h:12</a></div></div>
+<div class="ttc" id="aparsing_8h_html_af4ae699d8cd926769e89e26cd088b2c0"><div class="ttname"><a href="parsing_8h.html#af4ae699d8cd926769e89e26cd088b2c0">ROTATE</a></div><div class="ttdeci">const int ROTATE</div><div class="ttdef"><b>Definition:</b> <a href="parsing_8h_source.html#l00009">parsing.h:9</a></div></div>
+</div><!-- fragment -->
+<p class="reference">References <a class="el" href="engine_8cpp_source.html#l00190">allocModel()</a>, <a class="el" href="parsing_8h_source.html#l00012">BEGIN_GROUP</a>, <a class="el" href="engine_8cpp_source.html#l00067">cartesian2Spherical()</a>, <a class="el" href="engine_8cpp_source.html#l00051">DEFAULT_GLOBAL_AZIMUTH</a>, <a class="el" href="engine_8cpp_source.html#l00092">DEFAULT_GLOBAL_CENTER_X</a>, <a class="el" href="engine_8cpp_source.html#l00093">DEFAULT_GLOBAL_CENTER_Y</a>, <a class="el" href="engine_8cpp_source.html#l00094">DEFAULT_GLOBAL_CENTER_Z</a>, <a class="el" href="engine_8cpp_source.html#l00052">DEFAULT_GLOBAL_ELEVATION</a>, <a class="el" href="engine_8cpp_source.html#l00079">DEFAULT_GLOBAL_EYE_X</a>, <a class="el" href="engine_8cpp_source.html#l00080">DEFAULT_GLOBAL_EYE_Y</a>, <a class="el" href="engine_8cpp_source.html#l00081">DEFAULT_GLOBAL_EYE_Z</a>, <a class="el" href="engine_8cpp_source.html#l00119">DEFAULT_GLOBAL_FAR</a>, <a class="el" href="engine_8cpp_source.html#l00117">DEFAULT_GLOBAL_FOV</a>, <a class="el" href="engine_8cpp_source.html#l00118">DEFAULT_GLOBAL_NEAR</a>, <a class="el" href="engine_8cpp_source.html#l00050">DEFAULT_GLOBAL_RADIUS</a>, <a class="el" href="engine_8cpp_source.html#l00105">DEFAULT_GLOBAL_UP_X</a>, <a class="el" href="engine_8cpp_source.html#l00106">DEFAULT_GLOBAL_UP_Y</a>, <a class="el" href="engine_8cpp_source.html#l00107">DEFAULT_GLOBAL_UP_Z</a>, <a class="el" href="parsing_8h_source.html#l00013">END_GROUP</a>, <a class="el" href="engine_8cpp_source.html#l00186">globalModels</a>, <a class="el" href="parsing_8h_source.html#l00011">LOAD_MODEL</a>, <a class="el" href="engine_8cpp_source.html#l00214">renderModel()</a>, <a class="el" href="parsing_8h_source.html#l00009">ROTATE</a>, <a class="el" href="parsing_8h_source.html#l00010">SCALE</a>, and <a class="el" href="parsing_8h_source.html#l00008">TRANSLATE</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00396">renderScene()</a>, and <a class="el" href="engine_8cpp_source.html#l00438">xml_load_and_set_env()</a>.</p>
+<div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="group___operations_ga887f20c10a27832ea24178203a47fcc2_cgraph.png" border="0" usemap="#agroup___operations_ga887f20c10a27832ea24178203a47fcc2_cgraph" alt=""/></div>
+<map name="agroup___operations_ga887f20c10a27832ea24178203a47fcc2_cgraph" id="agroup___operations_ga887f20c10a27832ea24178203a47fcc2_cgraph">
+<area shape="rect" title=" " alt="" coords="5,56,145,83"/>
+<area shape="rect" href="group__model_engine.html#ga56beba311d0a6fcbda9aeb516fe67f8f" title=" " alt="" coords="222,5,315,32"/>
+<area shape="rect" href="group__spherical.html#ga2a22d15f7463ccd8f8d1aa65e7578983" title=" " alt="" coords="193,56,344,83"/>
+<area shape="rect" href="group__model_engine.html#ga9b0aa26dead35aab4fa6be0709998046" title=" " alt="" coords="217,107,321,133"/>
+</map>
+</div>
+<div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-2-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-2-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-2-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="group___operations_ga887f20c10a27832ea24178203a47fcc2_icgraph.png" border="0" usemap="#agroup___operations_ga887f20c10a27832ea24178203a47fcc2_icgraph" alt=""/></div>
+<map name="agroup___operations_ga887f20c10a27832ea24178203a47fcc2_icgraph" id="agroup___operations_ga887f20c10a27832ea24178203a47fcc2_icgraph">
+<area shape="rect" title=" " alt="" coords="469,31,609,57"/>
+<area shape="rect" href="group__engine.html#ga91c42686f3245f22fb6b17ba5372d92c" title=" " alt="" coords="285,5,387,32"/>
+<area shape="rect" href="group__engine.html#ga2b6a8884687b3fe271b099a450a82d24" title=" " alt="" coords="251,56,421,83"/>
+<area shape="rect" href="group__engine.html#ga98eaf946471acbd931de5d52ca83b3d1" title=" " alt="" coords="108,31,203,57"/>
+<area shape="rect" href="group__engine.html#ga3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,31,60,57"/>
+</map>
+</div>
 
 </div>
 </div>

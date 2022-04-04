@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>operations</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.6.8' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/6.html#L283'>operations</a>        283 src/engine.cpp void operations_render (std::vector&lt;float&gt; *operations)</span>
+<span class='curline'><a href='../S/6.html#L288'>operations</a>        288 src/engine.cpp   DEFAULT_GLOBAL_EYE_X = operations-&gt;at (i);</span>
+<span class='curline'><a href='../S/6.html#L289'>operations</a>        289 src/engine.cpp   DEFAULT_GLOBAL_EYE_Y = operations-&gt;at (i + 1);</span>
+<span class='curline'><a href='../S/6.html#L290'>operations</a>        290 src/engine.cpp   DEFAULT_GLOBAL_EYE_Z = operations-&gt;at (i + 2);</span>
+<span class='curline'><a href='../S/6.html#L297'>operations</a>        297 src/engine.cpp   DEFAULT_GLOBAL_CENTER_X = operations-&gt;at (i);</span>
+<span class='curline'><a href='../S/6.html#L298'>operations</a>        298 src/engine.cpp   DEFAULT_GLOBAL_CENTER_Y = operations-&gt;at (i + 1);</span>
+<span class='curline'><a href='../S/6.html#L299'>operations</a>        299 src/engine.cpp   DEFAULT_GLOBAL_CENTER_Z = operations-&gt;at (i + 2);</span>
+<span class='curline'><a href='../S/6.html#L302'>operations</a>        302 src/engine.cpp   DEFAULT_GLOBAL_UP_X = operations-&gt;at (i);</span>
+<span class='curline'><a href='../S/6.html#L303'>operations</a>        303 src/engine.cpp   DEFAULT_GLOBAL_UP_Y = operations-&gt;at (i + 1);</span>
+<span class='curline'><a href='../S/6.html#L304'>operations</a>        304 src/engine.cpp   DEFAULT_GLOBAL_UP_Z = operations-&gt;at (i + 2);</span>
+<span class='curline'><a href='../S/6.html#L307'>operations</a>        307 src/engine.cpp   DEFAULT_GLOBAL_FOV = operations-&gt;at (i);</span>
+<span class='curline'><a href='../S/6.html#L308'>operations</a>        308 src/engine.cpp   DEFAULT_GLOBAL_NEAR = operations-&gt;at (i + 1);</span>
+<span class='curline'><a href='../S/6.html#L309'>operations</a>        309 src/engine.cpp   DEFAULT_GLOBAL_FAR = operations-&gt;at (i + 2);</span>
+<span class='curline'><a href='../S/6.html#L313'>operations</a>        313 src/engine.cpp   for (i += 3; i &lt; operations-&gt;size (); i++)</span>
+<span class='curline'><a href='../S/6.html#L315'>operations</a>        315 src/engine.cpp       switch ((int) operations-&gt;at (i))</span>
+<span class='curline'><a href='../S/6.html#L318'>operations</a>        318 src/engine.cpp         glRotatef (operations-&gt;at (i + 1),</span>
+<span class='curline'><a href='../S/6.html#L319'>operations</a>        319 src/engine.cpp                    operations-&gt;at (i + 2),</span>
+<span class='curline'><a href='../S/6.html#L320'>operations</a>        320 src/engine.cpp                    operations-&gt;at (i + 3),</span>
+<span class='curline'><a href='../S/6.html#L321'>operations</a>        321 src/engine.cpp                    operations-&gt;at (i + 4));</span>
+<span class='curline'><a href='../S/6.html#L325'>operations</a>        325 src/engine.cpp         glTranslatef (operations-&gt;at (i + 1),</span>
+<span class='curline'><a href='../S/6.html#L326'>operations</a>        326 src/engine.cpp                       operations-&gt;at (i + 2),</span>
+<span class='curline'><a href='../S/6.html#L327'>operations</a>        327 src/engine.cpp                       operations-&gt;at (i + 3));</span>
+<span class='curline'><a href='../S/6.html#L331'>operations</a>        331 src/engine.cpp         glScalef (operations-&gt;at (i + 1),</span>
+<span class='curline'><a href='../S/6.html#L332'>operations</a>        332 src/engine.cpp                   operations-&gt;at (i + 2),</span>
+<span class='curline'><a href='../S/6.html#L333'>operations</a>        333 src/engine.cpp                   operations-&gt;at (i + 3));</span>
+<span class='curline'><a href='../S/6.html#L340'>operations</a>        340 src/engine.cpp       case LOAD_MODEL:int stringSize = (int) operations-&gt;at (i + 1);</span>
+<span class='curline'><a href='../S/6.html#L347'>operations</a>        347 src/engine.cpp                 modelName[j] = (char) operations-&gt;at (i + 2 + j);</span>
+<span class='curline'><a href='../S/2.html#L45'>operations</a>         45 src/parsing.cpp void operations_push_transform_attributes(tinyxml2::XMLElement *transform, std::vector&lt;float&gt; *operations) {</span>
+<span class='curline'><a href='../S/2.html#L50'>operations</a>         50 src/parsing.cpp         operations-&gt;push_back(angle);</span>
+<span class='curline'><a href='../S/2.html#L52'>operations</a>         52 src/parsing.cpp     operations-&gt;push_back(transform-&gt;FloatAttribute("x"));</span>
+<span class='curline'><a href='../S/2.html#L53'>operations</a>         53 src/parsing.cpp     operations-&gt;push_back(transform-&gt;FloatAttribute("y"));</span>
+<span class='curline'><a href='../S/2.html#L54'>operations</a>         54 src/parsing.cpp     operations-&gt;push_back(transform-&gt;FloatAttribute("z"));</span>
+<span class='curline'><a href='../S/2.html#L57'>operations</a>         57 src/parsing.cpp void operations_push_transforms(tinyxml2::XMLElement *transforms, std::vector&lt;float&gt; *operations) {</span>
+<span class='curline'><a href='../S/2.html#L64'>operations</a>         64 src/parsing.cpp             operations-&gt;push_back(TRANSLATE);</span>
+<span class='curline'><a href='../S/2.html#L66'>operations</a>         66 src/parsing.cpp             operations-&gt;push_back(ROTATE);</span>
+<span class='curline'><a href='../S/2.html#L68'>operations</a>         68 src/parsing.cpp             operations-&gt;push_back(SCALE);</span>
+<span class='curline'><a href='../S/2.html#L74'>operations</a>         74 src/parsing.cpp         operations_push_transform_attributes(transform, operations);</span>
+<span class='curline'><a href='../S/2.html#L84'>operations</a>         84 src/parsing.cpp void operations_push_model(tinyxml2::XMLElement *model, std::vector&lt;float&gt; *operations) {</span>
+<span class='curline'><a href='../S/2.html#L88'>operations</a>         88 src/parsing.cpp     operations-&gt;push_back(LOAD_MODEL);</span>
+<span class='curline'><a href='../S/2.html#L90'>operations</a>         90 src/parsing.cpp     do operations-&gt;push_back(string[i++]);</span>
+<span class='curline'><a href='../S/2.html#L100'>operations</a>        100 src/parsing.cpp     operations-&gt;insert(operations-&gt;end() - i, (float) i);</span>
+<span class='curline'><a href='../S/2.html#L103'>operations</a>        103 src/parsing.cpp void operations_push_models(tinyxml2::XMLElement *models, std::vector&lt;float&gt; *operations) {</span>
+<span class='curline'><a href='../S/2.html#L105'>operations</a>        105 src/parsing.cpp     do operations_push_model(model, operations);</span>
+<span class='curline'><a href='../S/2.html#L112'>operations</a>        112 src/parsing.cpp void operations_push_groups(tinyxml2::XMLElement *group, std::vector&lt;float&gt; *operations) {</span>
+<span class='curline'><a href='../S/2.html#L113'>operations</a>        113 src/parsing.cpp     operations-&gt;push_back(BEGIN_GROUP);</span>
+<span class='curline'><a href='../S/2.html#L118'>operations</a>        118 src/parsing.cpp     if (transforms) operations_push_transforms(transforms, operations);</span>
+<span class='curline'><a href='../S/2.html#L119'>operations</a>        119 src/parsing.cpp     if (models) operations_push_models(models, operations);</span>
+<span class='curline'><a href='../S/2.html#L123'>operations</a>        123 src/parsing.cpp         do operations_push_groups(childGroup, operations);</span>
+<span class='curline'><a href='../S/2.html#L126'>operations</a>        126 src/parsing.cpp     operations-&gt;push_back(END_GROUP);</span>
+<span class='curline'><a href='../S/2.html#L133'>operations</a>        133 src/parsing.cpp void operations_load_xml(const char *filename, std::vector&lt;float&gt; *operations) {</span>
+<span class='curline'><a href='../S/2.html#L147'>operations</a>        147 src/parsing.cpp     operations_push_transform_attributes(position, operations);</span>
+<span class='curline'><a href='../S/2.html#L150'>operations</a>        150 src/parsing.cpp     operations_push_transform_attributes(lookAt, operations);</span>
+<span class='curline'><a href='../S/2.html#L153'>operations</a>        153 src/parsing.cpp     if (up) operations_push_transform_attributes(up, operations);</span>
+<span class='curline'><a href='../S/2.html#L154'>operations</a>        154 src/parsing.cpp     else operations-&gt;insert(operations-&gt;end(), {0, 1, 0});</span>
+<span class='curline'><a href='../S/2.html#L158'>operations</a>        158 src/parsing.cpp         operations-&gt;push_back(projection-&gt;FloatAttribute("fov"));</span>
+<span class='curline'><a href='../S/2.html#L159'>operations</a>        159 src/parsing.cpp         operations-&gt;push_back(projection-&gt;FloatAttribute("near"));</span>
+<span class='curline'><a href='../S/2.html#L160'>operations</a>        160 src/parsing.cpp         operations-&gt;push_back(projection-&gt;FloatAttribute("far"));</span>
+<span class='curline'><a href='../S/2.html#L161'>operations</a>        161 src/parsing.cpp     } else operations-&gt;insert(operations-&gt;end(), {60, 1, 1000});</span>
+<span class='curline'><a href='../S/2.html#L166'>operations</a>        166 src/parsing.cpp     operations_push_groups(group, operations);</span>
+<span class='curline'><a href='../S/2.html#L172'>operations</a>        172 src/parsing.cpp void operations_print(std::vector&lt;float&gt; *operations) {</span>
+<span class='curline'><a href='../S/2.html#L176'>operations</a>        176 src/parsing.cpp             operations-&gt;at(i),</span>
+<span class='curline'><a href='../S/2.html#L177'>operations</a>        177 src/parsing.cpp             operations-&gt;at(i + 1),</span>
+<span class='curline'><a href='../S/2.html#L178'>operations</a>        178 src/parsing.cpp             operations-&gt;at(i + 2));</span>
+<span class='curline'><a href='../S/2.html#L182'>operations</a>        182 src/parsing.cpp             operations-&gt;at(i),</span>
+<span class='curline'><a href='../S/2.html#L183'>operations</a>        183 src/parsing.cpp             operations-&gt;at(i + 1),</span>
+<span class='curline'><a href='../S/2.html#L184'>operations</a>        184 src/parsing.cpp             operations-&gt;at(i + 2));</span>
+<span class='curline'><a href='../S/2.html#L188'>operations</a>        188 src/parsing.cpp             operations-&gt;at(i),</span>
+<span class='curline'><a href='../S/2.html#L189'>operations</a>        189 src/parsing.cpp             operations-&gt;at(i + 1),</span>
+<span class='curline'><a href='../S/2.html#L190'>operations</a>        190 src/parsing.cpp             operations-&gt;at(i + 2));</span>
+<span class='curline'><a href='../S/2.html#L194'>operations</a>        194 src/parsing.cpp             operations-&gt;at(i),</span>
+<span class='curline'><a href='../S/2.html#L195'>operations</a>        195 src/parsing.cpp             operations-&gt;at(i + 1),</span>
+<span class='curline'><a href='../S/2.html#L196'>operations</a>        196 src/parsing.cpp             operations-&gt;at(i + 2));</span>
+<span class='curline'><a href='../S/2.html#L198'>operations</a>        198 src/parsing.cpp     for (i += 3; i &lt; operations-&gt;size(); i++) {</span>
+<span class='curline'><a href='../S/2.html#L199'>operations</a>        199 src/parsing.cpp         switch ((int) operations-&gt;at(i)) {</span>
+<span class='curline'><a href='../S/2.html#L203'>operations</a>        203 src/parsing.cpp                         operations-&gt;at(i + 1),</span>
+<span class='curline'><a href='../S/2.html#L204'>operations</a>        204 src/parsing.cpp                         operations-&gt;at(i + 2),</span>
+<span class='curline'><a href='../S/2.html#L205'>operations</a>        205 src/parsing.cpp                         operations-&gt;at(i + 3),</span>
+<span class='curline'><a href='../S/2.html#L206'>operations</a>        206 src/parsing.cpp                         operations-&gt;at(i + 4));</span>
+<span class='curline'><a href='../S/2.html#L212'>operations</a>        212 src/parsing.cpp                         operations-&gt;at(i + 1),</span>
+<span class='curline'><a href='../S/2.html#L213'>operations</a>        213 src/parsing.cpp                         operations-&gt;at(i + 2),</span>
+<span class='curline'><a href='../S/2.html#L214'>operations</a>        214 src/parsing.cpp                         operations-&gt;at(i + 3));</span>
+<span class='curline'><a href='../S/2.html#L220'>operations</a>        220 src/parsing.cpp                         operations-&gt;at(i + 1),</span>
+<span class='curline'><a href='../S/2.html#L221'>operations</a>        221 src/parsing.cpp                         operations-&gt;at(i + 2),</span>
+<span class='curline'><a href='../S/2.html#L222'>operations</a>        222 src/parsing.cpp                         operations-&gt;at(i + 3));</span>
+<span class='curline'><a href='../S/2.html#L232'>operations</a>        232 src/parsing.cpp                 int stringSize = (int) operations-&gt;at(i + 1);</span>
+<span class='curline'><a href='../S/2.html#L237'>operations</a>        237 src/parsing.cpp                     model[j] = (char) operations-&gt;at(i + 2 + j);</span>
+<span class='curline'><a href='../S/2.html#L261'>operations</a>        261 src/parsing.cpp     std::vector&lt;float&gt; operations;</span>
+<span class='curline'><a href='../S/2.html#L262'>operations</a>        262 src/parsing.cpp     operations_load_xml(filename, &amp;operations);</span>
+<span class='curline'><a href='../S/2.html#L263'>operations</a>        263 src/parsing.cpp     operations_print(&amp;operations);</span>
+<span class='curline'><a href='../S/3.html#L6'>operations</a>          6 src/parsing.h  void operations_load_xml(const char *filename, std::vector&lt;float&gt; *operations);</span>
+</pre>
+</body>
+</html>

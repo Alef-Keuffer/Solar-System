@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>model</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.6.8' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/6.html#L206'>model</a>             206 src/engine.cpp   Model model = (Model) malloc (sizeof (Model));</span>
+<span class='curline'><a href='../S/6.html#L208'>model</a>             208 src/engine.cpp   model-&gt;nVertices = nVertices;</span>
+<span class='curline'><a href='../S/6.html#L209'>model</a>             209 src/engine.cpp   model-&gt;vertices = modelBuf;</span>
+<span class='curline'><a href='../S/6.html#L211'>model</a>             211 src/engine.cpp   return model;</span>
+<span class='curline'><a href='../S/6.html#L214'>model</a>             214 src/engine.cpp void renderModel (Model model)</span>
+<span class='curline'><a href='../S/6.html#L216'>model</a>             216 src/engine.cpp   if (!model-&gt;nVertices % 3)</span>
+<span class='curline'><a href='../S/6.html#L222'>model</a>             222 src/engine.cpp   for (unsigned int i = 0; i &lt; 3 * model-&gt;nVertices; i += 3)</span>
+<span class='curline'><a href='../S/6.html#L223'>model</a>             223 src/engine.cpp     glVertex3f (model-&gt;vertices[i], model-&gt;vertices[i + 1], model-&gt;vertices[i + 2]);</span>
+<span class='curline'><a href='../S/6.html#L658'>model</a>             658 src/engine.cpp               double model[16];</span>
+<span class='curline'><a href='../S/6.html#L659'>model</a>             659 src/engine.cpp               glGetDoublev (GL_MODELVIEW_MATRIX, model);</span>
+<span class='curline'><a href='../S/6.html#L665'>model</a>             665 src/engine.cpp                             model,</span>
+<span class='curline'><a href='../S/2.html#L84'>model</a>              84 src/parsing.cpp void operations_push_model(tinyxml2::XMLElement *model, std::vector&lt;float&gt; *operations) {</span>
+<span class='curline'><a href='../S/2.html#L86'>model</a>              86 src/parsing.cpp     const char *string = model-&gt;Attribute("file");</span>
+<span class='curline'><a href='../S/2.html#L104'>model</a>             104 src/parsing.cpp     tinyxml2::XMLElement *model = models-&gt;FirstChildElement("model");</span>
+<span class='curline'><a href='../S/2.html#L105'>model</a>             105 src/parsing.cpp     do operations_push_model(model, operations);</span>
+<span class='curline'><a href='../S/2.html#L106'>model</a>             106 src/parsing.cpp     while ((model = model-&gt;NextSiblingElement("model")));</span>
+<span class='curline'><a href='../S/2.html#L233'>model</a>             233 src/parsing.cpp                 char model[stringSize + 1];</span>
+<span class='curline'><a href='../S/2.html#L237'>model</a>             237 src/parsing.cpp                     model[j] = (char) operations-&gt;at(i + 2 + j);</span>
+<span class='curline'><a href='../S/2.html#L239'>model</a>             239 src/parsing.cpp                 model[j] = 0;</span>
+<span class='curline'><a href='../S/2.html#L241'>model</a>             241 src/parsing.cpp                 fprintf(stderr, "LOAD_MODEL(%s)\n", model);</span>
+</pre>
+</body>
+</html>

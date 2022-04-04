@@ -15,5 +15,7 @@ var searchData=
   ['model_5fsphere_5fnvertices_12',['model_sphere_nVertices',['../group__sphere.html#ga093e996c7f18f239228d66ffa2b35078',1,'generator.cpp']]],
   ['model_5fsphere_5fvertex_13',['model_sphere_vertex',['../group__sphere.html#ga8cfa785fa5a63f8e74b5d21f24721c4c',1,'generator.cpp']]],
   ['model_5fsphere_5fvertices_14',['model_sphere_vertices',['../group__sphere.html#gaaa3b03bbb79c4d88b3eee338eeec15b2',1,'generator.cpp']]],
-  ['model_5fsphere_5fwrite_15',['model_sphere_write',['../group__sphere.html#gac12b373e99ed20d69a86f42d7fbba274',1,'generator.cpp']]]
+  ['model_5fsphere_5fwrite_15',['model_sphere_write',['../group__sphere.html#gac12b373e99ed20d69a86f42d7fbba274',1,'generator.cpp']]],
+  ['motionfunc_16',['motionFunc',['../group__input.html#ga2bebb17428cb218231ad556de2a20ed6',1,'engine.cpp']]],
+  ['mousefunc_17',['mouseFunc',['../group__input.html#gad48076b61c0ddb6bd4fadf644bf59ff1',1,'engine.cpp']]]
 ];

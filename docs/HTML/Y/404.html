@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>points</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.6.8' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/1.html#L20'>points</a>             20 src/generator.cpp  void points_vertex(const float x, const float y, const float z, unsigned int *pos, float points[]) {</span>
+<span class='curline'><a href='../S/1.html#L21'>points</a>             21 src/generator.cpp     points[*pos] = x;</span>
+<span class='curline'><a href='../S/1.html#L22'>points</a>             22 src/generator.cpp     points[*pos + 1] = y;</span>
+<span class='curline'><a href='../S/1.html#L23'>points</a>             23 src/generator.cpp     points[*pos + 2] = z;</span>
+<span class='curline'><a href='../S/1.html#L27'>points</a>             27 src/generator.cpp void points_write(const char *filename, const unsigned int nVertices, const float points[]) {</span>
+<span class='curline'><a href='../S/1.html#L35'>points</a>             35 src/generator.cpp     fwrite(points, 3 * sizeof(float), nVertices, fp);</span>
+<span class='curline'><a href='../S/1.html#L46'>points</a>             46 src/generator.cpp void model_plane_vertices(const float length, const unsigned int divisions, float *points) {</span>
+<span class='curline'><a href='../S/1.html#L57'>points</a>             57 src/generator.cpp             points_vertex(o + d * (i - 1), 0, o + d * (j - 1), &amp;pos, points); //P1</span>
+<span class='curline'><a href='../S/1.html#L58'>points</a>             58 src/generator.cpp             points_vertex(o + d * (i - 1), 0, o + d * j, &amp;pos, points); //P1'z</span>
+<span class='curline'><a href='../S/1.html#L59'>points</a>             59 src/generator.cpp             points_vertex(o + d * i, 0, o + d * (j - 1), &amp;pos, points); //P1'x</span>
+<span class='curline'><a href='../S/1.html#L61'>points</a>             61 src/generator.cpp             points_vertex(o + d * i, 0, o + d * (j - 1), &amp;pos, points); //P1'x</span>
+<span class='curline'><a href='../S/1.html#L62'>points</a>             62 src/generator.cpp             points_vertex(o + d * (i - 1), 0, o + d * j, &amp;pos, points); //P1'z</span>
+<span class='curline'><a href='../S/1.html#L63'>points</a>             63 src/generator.cpp             points_vertex(o + d * i, 0, o + d * j, &amp;pos, points); //P2</span>
+<span class='curline'><a href='../S/1.html#L66'>points</a>             66 src/generator.cpp             points_vertex(o + d * (i - 1), 0, o + d * j, &amp;pos, points); //P1'z</span>
+<span class='curline'><a href='../S/1.html#L67'>points</a>             67 src/generator.cpp             points_vertex(o + d * (i - 1), 0, o + d * (j - 1), &amp;pos, points); //P1</span>
+<span class='curline'><a href='../S/1.html#L68'>points</a>             68 src/generator.cpp             points_vertex(o + d * i, 0, o + d * (j - 1), &amp;pos, points); //P1'x</span>
+<span class='curline'><a href='../S/1.html#L70'>points</a>             70 src/generator.cpp             points_vertex(o + d * (i - 1), 0, o + d * j, &amp;pos, points); //P1'z</span>
+<span class='curline'><a href='../S/1.html#L71'>points</a>             71 src/generator.cpp             points_vertex(o + d * i, 0, o + d * (j - 1), &amp;pos, points); //P1'x</span>
+<span class='curline'><a href='../S/1.html#L72'>points</a>             72 src/generator.cpp             points_vertex(o + d * i, 0, o + d * j, &amp;pos, points); //P2</span>
+<span class='curline'><a href='../S/1.html#L81'>points</a>             81 src/generator.cpp     float points[3 * nVertices];</span>
+<span class='curline'><a href='../S/1.html#L82'>points</a>             82 src/generator.cpp     model_plane_vertices(length, divisions, points);</span>
+<span class='curline'><a href='../S/1.html#L83'>points</a>             83 src/generator.cpp     points_write(filepath, nVertices, points);</span>
+<span class='curline'><a href='../S/1.html#L89'>points</a>             89 src/generator.cpp void model_cube_vertices(const float length, const unsigned int divisions, float points[]) {</span>
+<span class='curline'><a href='../S/1.html#L101'>points</a>            101 src/generator.cpp             points_vertex(o + d * (i - 1), -o, o + d * (j - 1), &amp;pos, points); //P1</span>
+<span class='curline'><a href='../S/1.html#L102'>points</a>            102 src/generator.cpp             points_vertex(o + d * (i - 1), -o, o + d * j, &amp;pos, points); //P1'z</span>
+<span class='curline'><a href='../S/1.html#L103'>points</a>            103 src/generator.cpp             points_vertex(o + d * i, -o, o + d * (j - 1), &amp;pos, points); //P1'x</span>
+<span class='curline'><a href='../S/1.html#L105'>points</a>            105 src/generator.cpp             points_vertex(o + d * i, -o, o + d * (j - 1), &amp;pos, points); //P1'x</span>
+<span class='curline'><a href='../S/1.html#L106'>points</a>            106 src/generator.cpp             points_vertex(o + d * (i - 1), -o, o + d * j, &amp;pos, points); //P1'z</span>
+<span class='curline'><a href='../S/1.html#L107'>points</a>            107 src/generator.cpp             points_vertex(o + d * i, -o, o + d * j, &amp;pos, points); //P2</span>
+<span class='curline'><a href='../S/1.html#L110'>points</a>            110 src/generator.cpp             points_vertex(o + d * (i - 1), o, o + d * j, &amp;pos, points); //P1'z</span>
+<span class='curline'><a href='../S/1.html#L111'>points</a>            111 src/generator.cpp             points_vertex(o + d * (i - 1), o, o + d * (j - 1), &amp;pos, points); //P1</span>
+<span class='curline'><a href='../S/1.html#L112'>points</a>            112 src/generator.cpp             points_vertex(o + d * i, o, o + d * (j - 1), &amp;pos, points); //P1'x</span>
+<span class='curline'><a href='../S/1.html#L114'>points</a>            114 src/generator.cpp             points_vertex(o + d * (i - 1), o, o + d * j, &amp;pos, points); //P1'z</span>
+<span class='curline'><a href='../S/1.html#L115'>points</a>            115 src/generator.cpp             points_vertex(o + d * i, o, o + d * (j - 1), &amp;pos, points); //P1'x</span>
+<span class='curline'><a href='../S/1.html#L116'>points</a>            116 src/generator.cpp             points_vertex(o + d * i, o, o + d * j, &amp;pos, points); //P2</span>
+<span class='curline'><a href='../S/1.html#L119'>points</a>            119 src/generator.cpp             points_vertex(o, o + d * (i - 1), o + d * (j - 1), &amp;pos, points); //P1</span>
+<span class='curline'><a href='../S/1.html#L120'>points</a>            120 src/generator.cpp             points_vertex(o, o + d * (i - 1), o + d * j, &amp;pos, points); //P1'z</span>
+<span class='curline'><a href='../S/1.html#L121'>points</a>            121 src/generator.cpp             points_vertex(o, o + d * i, o + d * (j - 1), &amp;pos, points); //P1'x</span>
+<span class='curline'><a href='../S/1.html#L123'>points</a>            123 src/generator.cpp             points_vertex(o, o + d * i, o + d * (j - 1), &amp;pos, points); //P1'x</span>
+<span class='curline'><a href='../S/1.html#L124'>points</a>            124 src/generator.cpp             points_vertex(o, o + d * (i - 1), o + d * j, &amp;pos, points); //P1'z</span>
+<span class='curline'><a href='../S/1.html#L125'>points</a>            125 src/generator.cpp             points_vertex(o, o + d * i, o + d * j, &amp;pos, points); //P2</span>
+<span class='curline'><a href='../S/1.html#L128'>points</a>            128 src/generator.cpp             points_vertex(-o, o + d * (i - 1), o + d * j, &amp;pos, points); //P1'z</span>
+<span class='curline'><a href='../S/1.html#L129'>points</a>            129 src/generator.cpp             points_vertex(-o, o + d * (i - 1), o + d * (j - 1), &amp;pos, points); //P1</span>
+<span class='curline'><a href='../S/1.html#L130'>points</a>            130 src/generator.cpp             points_vertex(-o, o + d * i, o + d * (j - 1), &amp;pos, points); //P1'x</span>
+<span class='curline'><a href='../S/1.html#L132'>points</a>            132 src/generator.cpp             points_vertex(-o, o + d * (i - 1), o + d * j, &amp;pos, points); //P1'z</span>
+<span class='curline'><a href='../S/1.html#L133'>points</a>            133 src/generator.cpp             points_vertex(-o, o + d * i, o + d * (j - 1), &amp;pos, points); //P1'x</span>
+<span class='curline'><a href='../S/1.html#L134'>points</a>            134 src/generator.cpp             points_vertex(-o, o + d * i, o + d * j, &amp;pos, points); //P2</span>
+<span class='curline'><a href='../S/1.html#L137'>points</a>            137 src/generator.cpp             points_vertex(o + d * (i - 1), o + d * (j - 1), o, &amp;pos, points); //P1</span>
+<span class='curline'><a href='../S/1.html#L138'>points</a>            138 src/generator.cpp             points_vertex(o + d * (i - 1), o + d * j, o, &amp;pos, points); //P1'z</span>
+<span class='curline'><a href='../S/1.html#L139'>points</a>            139 src/generator.cpp             points_vertex(o + d * i, o + d * (j - 1), o, &amp;pos, points); //P1'x</span>
+<span class='curline'><a href='../S/1.html#L141'>points</a>            141 src/generator.cpp             points_vertex(o + d * i, o + d * (j - 1), o, &amp;pos, points); //P1'x</span>
+<span class='curline'><a href='../S/1.html#L142'>points</a>            142 src/generator.cpp             points_vertex(o + d * (i - 1), o + d * j, o, &amp;pos, points); //P1'z</span>
+<span class='curline'><a href='../S/1.html#L143'>points</a>            143 src/generator.cpp             points_vertex(o + d * i, o + d * j, o, &amp;pos, points); //P2</span>
+<span class='curline'><a href='../S/1.html#L146'>points</a>            146 src/generator.cpp             points_vertex(o + d * (i - 1), o + d * j, -o, &amp;pos, points); //P1'z</span>
+<span class='curline'><a href='../S/1.html#L147'>points</a>            147 src/generator.cpp             points_vertex(o + d * (i - 1), o + d * (j - 1), -o, &amp;pos, points); //P1</span>
+<span class='curline'><a href='../S/1.html#L148'>points</a>            148 src/generator.cpp             points_vertex(o + d * i, o + d * (j - 1), -o, &amp;pos, points); //P1'x</span>
+<span class='curline'><a href='../S/1.html#L150'>points</a>            150 src/generator.cpp             points_vertex(o + d * (i - 1), o + d * j, -o, &amp;pos, points); //P1'z</span>
+<span class='curline'><a href='../S/1.html#L151'>points</a>            151 src/generator.cpp             points_vertex(o + d * i, o + d * (j - 1), -o, &amp;pos, points); //P1'x</span>
+<span class='curline'><a href='../S/1.html#L152'>points</a>            152 src/generator.cpp             points_vertex(o + d * i, o + d * j, -o, &amp;pos, points); //P2</span>
+<span class='curline'><a href='../S/1.html#L161'>points</a>            161 src/generator.cpp     float points[3 * nVertices];</span>
+<span class='curline'><a href='../S/1.html#L162'>points</a>            162 src/generator.cpp     model_cube_vertices(length, divisions, points);</span>
+<span class='curline'><a href='../S/1.html#L163'>points</a>            163 src/generator.cpp     points_write(filepath, nVertices, points);</span>
+<span class='curline'><a href='../S/1.html#L188'>points</a>            188 src/generator.cpp                   float *points) {</span>
+<span class='curline'><a href='../S/1.html#L201'>points</a>            201 src/generator.cpp     points_vertex(r * h / height * cos(theta), height + h, r * h / height * sin(theta), pos, points);</span>
+<span class='curline'><a href='../S/1.html#L205'>points</a>            205 src/generator.cpp                          float points[]) {</span>
+<span class='curline'><a href='../S/1.html#L220'>points</a>            220 src/generator.cpp             points_vertex(0, 0, 0, &amp;pos, points); //O</span>
+<span class='curline'><a href='../S/1.html#L221'>points</a>            221 src/generator.cpp             model_cone_vertex(r, height, theta + s * (i - 1), h, &amp;pos, points); //P1</span>
+<span class='curline'><a href='../S/1.html#L222'>points</a>            222 src/generator.cpp             model_cone_vertex(r, height, theta + s * i, h, &amp;pos, points); //P2</span>
+<span class='curline'><a href='../S/1.html#L224'>points</a>            224 src/generator.cpp             model_cone_vertex(r, height, theta + s * i, h + t * (j - 1), &amp;pos, points); // P2</span>
+<span class='curline'><a href='../S/1.html#L225'>points</a>            225 src/generator.cpp             model_cone_vertex(r, height, theta + s * (i - 1), h + t * j, &amp;pos, points); // P1'</span>
+<span class='curline'><a href='../S/1.html#L226'>points</a>            226 src/generator.cpp             model_cone_vertex(r, height, theta + s * i, h + t * j, &amp;pos, points); //P2'</span>
+<span class='curline'><a href='../S/1.html#L228'>points</a>            228 src/generator.cpp             model_cone_vertex(r, height, theta + s * i, h + t * (j - 1), &amp;pos, points); // P2</span>
+<span class='curline'><a href='../S/1.html#L229'>points</a>            229 src/generator.cpp             model_cone_vertex(r, height, theta + s * (i - 1), h + t * (j - 1), &amp;pos, points); // P1</span>
+<span class='curline'><a href='../S/1.html#L230'>points</a>            230 src/generator.cpp             model_cone_vertex(r, height, theta + s * (i - 1), h + t * j, &amp;pos, points); // P1'</span>
+<span class='curline'><a href='../S/1.html#L242'>points</a>            242 src/generator.cpp     float points[3 * nVertices];</span>
+<span class='curline'><a href='../S/1.html#L243'>points</a>            243 src/generator.cpp     model_cone_vertices(radius, height, slices, stacks, points);</span>
+<span class='curline'><a href='../S/1.html#L244'>points</a>            244 src/generator.cpp     points_write(filepath, nVertices, points);</span>
+<span class='curline'><a href='../S/1.html#L253'>points</a>            253 src/generator.cpp model_sphere_vertex(const float r, const float theta, const float phi, unsigned int *pos, float *points) {</span>
+<span class='curline'><a href='../S/1.html#L267'>points</a>            267 src/generator.cpp     points_vertex(r * sin(theta) * cos(phi), r * sin(phi), r * cos(theta) * cos(phi), pos, points);</span>
+<span class='curline'><a href='../S/1.html#L270'>points</a>            270 src/generator.cpp static void model_sphere_vertices(const float r, const unsigned int slices, const unsigned int stacks, float points[]) {</span>
+<span class='curline'><a href='../S/1.html#L286'>points</a>            286 src/generator.cpp             model_sphere_vertex(r, theta + s * (i - 1), phi + t * j, &amp;pos, points); // P1'</span>
+<span class='curline'><a href='../S/1.html#L287'>points</a>            287 src/generator.cpp             model_sphere_vertex(r, theta + s * i, phi + t * (j - 1), &amp;pos, points); // P2</span>
+<span class='curline'><a href='../S/1.html#L288'>points</a>            288 src/generator.cpp             model_sphere_vertex(r, theta + s * i, phi + t * j, &amp;pos, points); //P2'</span>
+<span class='curline'><a href='../S/1.html#L290'>points</a>            290 src/generator.cpp             model_sphere_vertex(r, theta + s * (i - 1), phi + t * (j - 1), &amp;pos, points); // P1</span>
+<span class='curline'><a href='../S/1.html#L291'>points</a>            291 src/generator.cpp             model_sphere_vertex(r, theta + s * i, phi + t * (j - 1), &amp;pos, points); // P2</span>
+<span class='curline'><a href='../S/1.html#L292'>points</a>            292 src/generator.cpp             model_sphere_vertex(r, theta + s * (i - 1), phi + t * j, &amp;pos, points); // P1'</span>
+<span class='curline'><a href='../S/1.html#L303'>points</a>            303 src/generator.cpp     float points[3 * nVertices];</span>
+<span class='curline'><a href='../S/1.html#L304'>points</a>            304 src/generator.cpp     model_sphere_vertices(radius, slices, stacks, points);</span>
+<span class='curline'><a href='../S/1.html#L305'>points</a>            305 src/generator.cpp     points_write(filepath, nVertices, points);</span>
+</pre>
+</body>
+</html>
