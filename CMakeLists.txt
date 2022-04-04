@@ -71,10 +71,28 @@ foreach (folder test_files_phase_1 test_files_phase_2)
         get_filename_component(tname ${file} NAME)
         add_custom_target(
                 ${tname}
-                COMMAND ${folder}/${file}
-                WORKING_DIRECTORY ${folder}/
+                COMMAND ${file}
+                WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/${folder}
                 DEPENDS engine generator
         )
     endforeach ()
 endforeach ()
-
+#
+#set(test_folder "test_files_phase_1")
+#file(GLOB tests1 "${test_folder}/*.sh")
+#foreach (test ${tests1})
+#    get_filename_component(tname ${test} NAME)
+#    add_custom_target(
+#            ${tname}
+#            COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/${test}
+#            WORKING_DIRECTORY ${test_folder}/
+#            DEPENDS engine generator
+#    )
+#endforeach ()
+#
+#add_custom_target(
+#        solar_system
+#        COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/test_files_phase_2/solar_system.zsh
+#        WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/test_files_phase_2/
+#        DEPENDS engine generator)
+#
