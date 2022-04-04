@@ -15,6 +15,9 @@
 
 #include "parsing.h"
 
+#define _USE_MATH_DEFINES
+#include <math.h>
+
 /*rotation*/
 const unsigned int DEFAULT_GLOBAL_ANGLE_STEP = 16;
 static float globalAngleStep = DEFAULT_GLOBAL_ANGLE_STEP;
@@ -42,6 +45,20 @@ static float globalScaleZ = 1;
 /*! @addtogroup camera
  * @{*/
 
+/*! @addtogroup spherical
+ * @{ */
+double globalAlfa = 0, globalBeta = 0, globalRadius = 1000;
+double globalCamX, globalCamY, globalCamZ;
+bool globalMouseLeftButton = false;
+
+void spherical2Cartesian ()
+{
+
+  globalCamX = globalRadius * cos (globalBeta) * sin (globalAlfa);
+  globalCamY = globalRadius * sin (globalBeta);
+  globalCamZ = globalRadius * cos (globalBeta) * cos (globalAlfa);
+}
+//! @} end of group spherical
 /*! @addtogroup position
  * @{*/
 const unsigned int DEFAULT_GLOBAL_EYE_STEP = 1;
@@ -347,6 +364,12 @@ void draw_axes ()
 
 /*!@addtogroup engine
  * @{*/
+void redisplay ()
+{
+  spherical2Cartesian ();
+  glutPostRedisplay ();
+}
+
 void renderScene ()
 {
 
@@ -358,9 +381,13 @@ void renderScene ()
 
 
   // set the camera
-  gluLookAt (globalEyeX, globalEyeY, globalEyeZ,
+  /*gluLookAt (globalEyeX, globalEyeY, globalEyeZ,
              globalCenterX, globalCenterY, globalCenterZ,
-             globalUpX, globalUpY, globalUpZ);
+             globalUpX, globalUpY, globalUpZ);*/
+  gluLookAt (globalCamX, globalCamY, globalCamZ,
+             0.0, 0.0, 0.0,
+             0.0f, 1.0f, 0.0f);
+
 
   /*draw absolute (before any transformation) axes*/
   draw_axes ();
@@ -382,7 +409,8 @@ void xml_load_and_set_env (const char *filename)
   operations_render (&globalOperations);
   env_load_defaults ();
 }
-
+/*! @addtogroup input
+ * @{*/
 void keyboardFunc (unsigned char key, int xmouse, int ymouse)
 {
   /*
@@ -540,6 +568,81 @@ void keyboardFunc (unsigned char key, int xmouse, int ymouse)
   glutPostRedisplay (); //request display() call ASAP
 }
 
+int globalXPrev = 0;
+int globalYPrev = 0;
+
+void mouseFunc (int button, int state, int x, int y)
+{
+  // Wheel reports as button 3(scroll up) and button 4(scroll down)
+  if ((button == 3) || (button == 4)) // It's a wheel event
+    {
+      // Each wheel event reports like a button click, GLUT_DOWN then GLUT_UP
+      if (state == GLUT_UP)
+        return; // Disregard redundant GLUT_UP events
+
+      if (button == 3)
+        {
+          globalRadius *= .8f;
+          if (globalRadius < 1.0f)
+            globalRadius = 1.0f;
+        }
+      else
+        globalRadius *= 1.5;
+      printf ("Scroll %s At %d %d\n", (button == 3) ? "Up" : "Down", x, y);
+    }
+  else
+    {  // normal button event
+      printf ("Button %s At %d %d\n", (state == GLUT_DOWN) ? "Down" : "Up", x, y);
+      if (button == GLUT_LEFT_BUTTON)
+        {
+          if (state == GLUT_DOWN)
+            {
+              globalMouseLeftButton = true;
+              globalXPrev = x;
+              globalYPrev = y;
+            }
+          if (state == GLUT_UP)
+            {
+              globalMouseLeftButton = false;
+            }
+        }
+    }
+
+  redisplay ();
+}
+
+void motionFunc (int x, int y)
+{
+  if (globalMouseLeftButton)
+    {
+      const double stepAlfa = 0.045;
+      const double stepBeta = 0.045;
+
+      if (x < globalXPrev)
+        globalAlfa += stepAlfa;
+      else if (x > globalXPrev)
+        globalAlfa -= stepAlfa;
+
+      if (y < globalYPrev)
+        {
+          globalBeta -= stepBeta;
+          if (globalBeta < -1.5)
+            globalBeta = -1.5;
+        }
+      else if (y > globalYPrev)
+        {
+          globalBeta += stepBeta;
+          if (globalBeta > 1.5)
+            globalBeta = 1.5;
+        }
+
+      globalXPrev = x;
+      globalYPrev = y;
+    }
+  redisplay ();
+}
+
+//! @} end of group input
 void engine_run (int argc, char **argv)
 {
 
@@ -560,10 +663,16 @@ void engine_run (int argc, char **argv)
   // Callback registration for keyboard processing
   glutKeyboardFunc (keyboardFunc);
 
+  // Callback registration for mouse processing
+  glutMouseFunc (mouseFunc);
+  glutMotionFunc (motionFunc);
+
   //  OpenGL settings
   glEnable (GL_DEPTH_TEST);
   glEnable (GL_CULL_FACE);
   glPolygonMode (GL_FRONT, GL_LINE);
+
+  spherical2Cartesian ();
 
   // enter GLUT's main cycle
   glutMainLoop ();

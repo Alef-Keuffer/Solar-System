@@ -1,0 +1,79 @@
+<world> <!-- a world can have a camera, a set of lights, and a single group -->
+	
+    <camera> 
+	    <position x="-400" y="0" z="400" />
+	    <lookAt x="0" y="0" z="0" />
+	    <up x="0" y="1" z="0" /> <!-- optional, use these values as default-->
+        <projection fov="60" near="10" far="10000" /> <!-- optional, use these values as default-->
+    </camera>
+    <group>
+        <models>
+		    <model file="sun.3d" />
+        </models>
+        <group>
+            <transform>
+                <translate x="193.5" y="0" z="0" />
+            </transform>
+			<models>
+				<model file="mercury.3d" />
+			</models>
+        </group>
+        <group>
+            <transform>
+                <translate x="357.75" y="0" z="0" />
+            </transform>
+            <models>
+                <model file="venus.3d" />
+            </models>
+        </group>
+        <group>
+            <transform>
+                <translate x="606.375" y="0" z="0" />
+            </transform>
+            <models>
+                <model file="earth.3d" />
+            </models>
+        </group>
+        <group>
+            <transform>
+                <translate x="972.5625" y="0" z="0" />
+            </transform>
+            <models>
+                <model file="mars.3d" />
+            </models>
+        </group>
+        <group>
+            <transform>
+                <translate x="1584.84375" y="0" z="0" />
+            </transform>
+            <models>
+                <model file="jupiter.3d" />
+            </models>
+        </group>
+        <group>
+            <transform>
+                <translate x="2467.265625" y="0" z="0" />
+            </transform>
+            <models>
+                <model file="saturn.3d" />
+            </models>
+        </group>
+        <group>
+            <transform>
+                <translate x="3786.3984375" y="0" z="0" />
+            </transform>
+            <models>
+                <model file="uranus.3d" />
+            </models>
+        </group>
+        <group>
+            <transform>
+                <translate x="5747.09765625" y="0" z="0" />
+            </transform>
+            <models>
+                <model file="neptune.3d" />
+            </models>
+        </group>
+
+    </group>
+</world>
