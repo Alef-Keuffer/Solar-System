@@ -114,11 +114,7 @@ $(document).ready(function(){initNavTree('group__input.html',''); initResizable(
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="group__input.png" border="0" usemap="#agroup____input" alt=""/></div>
-<map name="agroup____input" id="agroup____input">
-<area shape="rect" href="group__engine.html" title=" " alt="" coords="5,5,72,31"/>
-<area shape="rect" title=" " alt="" coords="120,5,175,31"/>
-</map>
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__input.svg" width="180" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
@@ -171,162 +167,162 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00446">446</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  447</span>{</div>
-<div class="line"><span class="lineno">  448</span>  <span class="comment">/*</span></div>
-<div class="line"><span class="lineno">  449</span><span class="comment">      Rotation:</span></div>
-<div class="line"><span class="lineno">  450</span><span class="comment">          x y z       x↓ y↓ z↓</span></div>
-<div class="line"><span class="lineno">  451</span><span class="comment">          X Y Z       x↑ y↑ z↑</span></div>
-<div class="line"><span class="lineno">  452</span><span class="comment">      angle:</span></div>
-<div class="line"><span class="lineno">  453</span><span class="comment">          , .     θ-=s    θ+=s</span></div>
-<div class="line"><span class="lineno">  454</span><span class="comment">          &lt; &gt;     s↓     s↑</span></div>
-<div class="line"><span class="lineno">  455</span><span class="comment">      translation:</span></div>
-<div class="line"><span class="lineno">  456</span><span class="comment">          q w e       y↓ z↑ y↑</span></div>
-<div class="line"><span class="lineno">  457</span><span class="comment">          a s d       x↓ z↓ x↑</span></div>
-<div class="line"><span class="lineno">  458</span><span class="comment">      scaling:</span></div>
-<div class="line"><span class="lineno">  459</span><span class="comment">          u i o       y↓ z↑ y↑</span></div>
-<div class="line"><span class="lineno">  460</span><span class="comment">          j k l       x↓ z↓ x↑</span></div>
-<div class="line"><span class="lineno">  461</span><span class="comment">      background color: r g b R G B</span></div>
-<div class="line"><span class="lineno">  462</span><span class="comment">      camera:</span></div>
-<div class="line"><span class="lineno">  463</span><span class="comment">          1 2 3 ⎫       ! @ # ⎫        EyeX     EyeY     EyeZ</span></div>
-<div class="line"><span class="lineno">  464</span><span class="comment">          4 5 6 ⎬↓      $ % ^ ⎬↑       CenterX  CenterY  CenterZ</span></div>
-<div class="line"><span class="lineno">  465</span><span class="comment">          7 8 9 ⎭       &amp; * ( ⎭        UpX      UpY      UpZ</span></div>
-<div class="line"><span class="lineno">  466</span><span class="comment">   */</span></div>
-<div class="line"><span class="lineno">  467</span>  <span class="keywordflow">switch</span> (key)</div>
-<div class="line"><span class="lineno">  468</span>    {</div>
-<div class="line"><span class="lineno">  469</span>      <span class="comment">/*Rotation*/</span></div>
-<div class="line"><span class="lineno">  470</span>  <span class="keywordflow">case</span> <span class="charliteral">&#39;x&#39;</span>:<a class="code hl_variable" href="group__engine.html#gaddd518403add69d85e781edfff4c94cc">globalRotateX</a> -= 1;</div>
-<div class="line"><span class="lineno">  471</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  472</span> </div>
-<div class="line"><span class="lineno">  473</span>  <span class="keywordflow">case</span> <span class="charliteral">&#39;X&#39;</span>:<a class="code hl_variable" href="group__engine.html#gaddd518403add69d85e781edfff4c94cc">globalRotateX</a> += 1;</div>
-<div class="line"><span class="lineno">  474</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  475</span> </div>
-<div class="line"><span class="lineno">  476</span>  <span class="keywordflow">case</span> <span class="charliteral">&#39;y&#39;</span>:<a class="code hl_variable" href="group__engine.html#ga79577108f7a530d0ad847b9f779663b0">globalRotateY</a> -= 1;</div>
-<div class="line"><span class="lineno">  477</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  478</span> </div>
-<div class="line"><span class="lineno">  479</span>  <span class="keywordflow">case</span> <span class="charliteral">&#39;Y&#39;</span>:<a class="code hl_variable" href="group__engine.html#ga79577108f7a530d0ad847b9f779663b0">globalRotateY</a> += 1;</div>
-<div class="line"><span class="lineno">  480</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  481</span> </div>
-<div class="line"><span class="lineno">  482</span>  <span class="keywordflow">case</span> <span class="charliteral">&#39;z&#39;</span>:<a class="code hl_variable" href="group__engine.html#gabf991ada5cb4710283b06356b09b0828">globalRotateZ</a> -= 1;</div>
-<div class="line"><span class="lineno">  483</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  484</span> </div>
-<div class="line"><span class="lineno">  485</span>  <span class="keywordflow">case</span> <span class="charliteral">&#39;Z&#39;</span>:<a class="code hl_variable" href="group__engine.html#gabf991ada5cb4710283b06356b09b0828">globalRotateZ</a> += 1;</div>
-<div class="line"><span class="lineno">  486</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  487</span> </div>
-<div class="line"><span class="lineno">  488</span>  <span class="keywordflow">case</span> <span class="charliteral">&#39;,&#39;</span>:<a class="code hl_variable" href="group__engine.html#ga466fc31ceeef83b53e03a820891b1ca2">globalAngle</a> -= <a class="code hl_variable" href="group__engine.html#ga2e8f792b2bea2085eabf137c2a5db166">globalAngleStep</a>;</div>
-<div class="line"><span class="lineno">  489</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  490</span> </div>
-<div class="line"><span class="lineno">  491</span>  <span class="keywordflow">case</span> <span class="charliteral">&#39;.&#39;</span>:<a class="code hl_variable" href="group__engine.html#ga466fc31ceeef83b53e03a820891b1ca2">globalAngle</a> += <a class="code hl_variable" href="group__engine.html#ga2e8f792b2bea2085eabf137c2a5db166">globalAngleStep</a>;</div>
-<div class="line"><span class="lineno">  492</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  493</span> </div>
-<div class="line"><span class="lineno">  494</span>  <span class="keywordflow">case</span> <span class="charliteral">&#39;&lt;&#39;</span>:<a class="code hl_variable" href="group__engine.html#ga2e8f792b2bea2085eabf137c2a5db166">globalAngleStep</a> /= 2;</div>
-<div class="line"><span class="lineno">  495</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  496</span> </div>
-<div class="line"><span class="lineno">  497</span>  <span class="keywordflow">case</span> <span class="charliteral">&#39;&gt;&#39;</span>:<a class="code hl_variable" href="group__engine.html#ga2e8f792b2bea2085eabf137c2a5db166">globalAngleStep</a> *= 2;</div>
-<div class="line"><span class="lineno">  498</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  499</span> </div>
-<div class="line"><span class="lineno">  500</span>      <span class="comment">/*translation*/</span></div>
-<div class="line"><span class="lineno">  501</span>  <span class="keywordflow">case</span> <span class="charliteral">&#39;T&#39;</span>:<a class="code hl_variable" href="group__engine.html#ga3dccccfb75086f82e8e8cb4b4f17a3bc">globalTranslateStep</a> *= 2;</div>
-<div class="line"><span class="lineno">  502</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  503</span>  <span class="keywordflow">case</span> <span class="charliteral">&#39;t&#39;</span>:</div>
-<div class="line"><span class="lineno">  504</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="group__engine.html#ga3dccccfb75086f82e8e8cb4b4f17a3bc">globalTranslateStep</a> &gt; 1)</div>
-<div class="line"><span class="lineno">  505</span>      <a class="code hl_variable" href="group__engine.html#ga3dccccfb75086f82e8e8cb4b4f17a3bc">globalTranslateStep</a> /= 2;</div>
-<div class="line"><span class="lineno">  506</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  507</span> </div>
-<div class="line"><span class="lineno">  508</span>      <span class="comment">/*z-axis*/</span></div>
-<div class="line"><span class="lineno">  509</span>  <span class="keywordflow">case</span> <span class="charliteral">&#39;w&#39;</span>:<a class="code hl_variable" href="group__engine.html#gae5197ff392fbb6687d3ad586f589e309">globalTranslateZ</a> += <a class="code hl_variable" href="group__engine.html#ga3dccccfb75086f82e8e8cb4b4f17a3bc">globalTranslateStep</a>;</div>
-<div class="line"><span class="lineno">  510</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  511</span>  <span class="keywordflow">case</span> <span class="charliteral">&#39;s&#39;</span>:<a class="code hl_variable" href="group__engine.html#gae5197ff392fbb6687d3ad586f589e309">globalTranslateZ</a> -= <a class="code hl_variable" href="group__engine.html#ga3dccccfb75086f82e8e8cb4b4f17a3bc">globalTranslateStep</a>;</div>
+<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00448">448</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  449</span>{</div>
+<div class="line"><span class="lineno">  450</span>  <span class="comment">/*</span></div>
+<div class="line"><span class="lineno">  451</span><span class="comment">      Rotation:</span></div>
+<div class="line"><span class="lineno">  452</span><span class="comment">          x y z       x↓ y↓ z↓</span></div>
+<div class="line"><span class="lineno">  453</span><span class="comment">          X Y Z       x↑ y↑ z↑</span></div>
+<div class="line"><span class="lineno">  454</span><span class="comment">      angle:</span></div>
+<div class="line"><span class="lineno">  455</span><span class="comment">          , .     θ-=s    θ+=s</span></div>
+<div class="line"><span class="lineno">  456</span><span class="comment">          &lt; &gt;     s↓     s↑</span></div>
+<div class="line"><span class="lineno">  457</span><span class="comment">      translation:</span></div>
+<div class="line"><span class="lineno">  458</span><span class="comment">          q w e       y↓ z↑ y↑</span></div>
+<div class="line"><span class="lineno">  459</span><span class="comment">          a s d       x↓ z↓ x↑</span></div>
+<div class="line"><span class="lineno">  460</span><span class="comment">      scaling:</span></div>
+<div class="line"><span class="lineno">  461</span><span class="comment">          u i o       y↓ z↑ y↑</span></div>
+<div class="line"><span class="lineno">  462</span><span class="comment">          j k l       x↓ z↓ x↑</span></div>
+<div class="line"><span class="lineno">  463</span><span class="comment">      background color: r g b R G B</span></div>
+<div class="line"><span class="lineno">  464</span><span class="comment">      camera:</span></div>
+<div class="line"><span class="lineno">  465</span><span class="comment">          1 2 3 ⎫       ! @ # ⎫        EyeX     EyeY     EyeZ</span></div>
+<div class="line"><span class="lineno">  466</span><span class="comment">          4 5 6 ⎬↓      $ % ^ ⎬↑       CenterX  CenterY  CenterZ</span></div>
+<div class="line"><span class="lineno">  467</span><span class="comment">          7 8 9 ⎭       &amp; * ( ⎭        UpX      UpY      UpZ</span></div>
+<div class="line"><span class="lineno">  468</span><span class="comment">   */</span></div>
+<div class="line"><span class="lineno">  469</span>  <span class="keywordflow">switch</span> (key)</div>
+<div class="line"><span class="lineno">  470</span>    {</div>
+<div class="line"><span class="lineno">  471</span>      <span class="comment">/*Rotation*/</span></div>
+<div class="line"><span class="lineno">  472</span>  <span class="keywordflow">case</span> <span class="charliteral">&#39;x&#39;</span>:<a class="code hl_variable" href="group__engine.html#gaddd518403add69d85e781edfff4c94cc">globalRotateX</a> -= 1;</div>
+<div class="line"><span class="lineno">  473</span>      <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  474</span> </div>
+<div class="line"><span class="lineno">  475</span>  <span class="keywordflow">case</span> <span class="charliteral">&#39;X&#39;</span>:<a class="code hl_variable" href="group__engine.html#gaddd518403add69d85e781edfff4c94cc">globalRotateX</a> += 1;</div>
+<div class="line"><span class="lineno">  476</span>      <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  477</span> </div>
+<div class="line"><span class="lineno">  478</span>  <span class="keywordflow">case</span> <span class="charliteral">&#39;y&#39;</span>:<a class="code hl_variable" href="group__engine.html#ga79577108f7a530d0ad847b9f779663b0">globalRotateY</a> -= 1;</div>
+<div class="line"><span class="lineno">  479</span>      <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  480</span> </div>
+<div class="line"><span class="lineno">  481</span>  <span class="keywordflow">case</span> <span class="charliteral">&#39;Y&#39;</span>:<a class="code hl_variable" href="group__engine.html#ga79577108f7a530d0ad847b9f779663b0">globalRotateY</a> += 1;</div>
+<div class="line"><span class="lineno">  482</span>      <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  483</span> </div>
+<div class="line"><span class="lineno">  484</span>  <span class="keywordflow">case</span> <span class="charliteral">&#39;z&#39;</span>:<a class="code hl_variable" href="group__engine.html#gabf991ada5cb4710283b06356b09b0828">globalRotateZ</a> -= 1;</div>
+<div class="line"><span class="lineno">  485</span>      <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  486</span> </div>
+<div class="line"><span class="lineno">  487</span>  <span class="keywordflow">case</span> <span class="charliteral">&#39;Z&#39;</span>:<a class="code hl_variable" href="group__engine.html#gabf991ada5cb4710283b06356b09b0828">globalRotateZ</a> += 1;</div>
+<div class="line"><span class="lineno">  488</span>      <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  489</span> </div>
+<div class="line"><span class="lineno">  490</span>  <span class="keywordflow">case</span> <span class="charliteral">&#39;,&#39;</span>:<a class="code hl_variable" href="group__engine.html#ga466fc31ceeef83b53e03a820891b1ca2">globalAngle</a> -= <a class="code hl_variable" href="group__engine.html#ga2e8f792b2bea2085eabf137c2a5db166">globalAngleStep</a>;</div>
+<div class="line"><span class="lineno">  491</span>      <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  492</span> </div>
+<div class="line"><span class="lineno">  493</span>  <span class="keywordflow">case</span> <span class="charliteral">&#39;.&#39;</span>:<a class="code hl_variable" href="group__engine.html#ga466fc31ceeef83b53e03a820891b1ca2">globalAngle</a> += <a class="code hl_variable" href="group__engine.html#ga2e8f792b2bea2085eabf137c2a5db166">globalAngleStep</a>;</div>
+<div class="line"><span class="lineno">  494</span>      <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  495</span> </div>
+<div class="line"><span class="lineno">  496</span>  <span class="keywordflow">case</span> <span class="charliteral">&#39;&lt;&#39;</span>:<a class="code hl_variable" href="group__engine.html#ga2e8f792b2bea2085eabf137c2a5db166">globalAngleStep</a> /= 2;</div>
+<div class="line"><span class="lineno">  497</span>      <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  498</span> </div>
+<div class="line"><span class="lineno">  499</span>  <span class="keywordflow">case</span> <span class="charliteral">&#39;&gt;&#39;</span>:<a class="code hl_variable" href="group__engine.html#ga2e8f792b2bea2085eabf137c2a5db166">globalAngleStep</a> *= 2;</div>
+<div class="line"><span class="lineno">  500</span>      <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  501</span> </div>
+<div class="line"><span class="lineno">  502</span>      <span class="comment">/*translation*/</span></div>
+<div class="line"><span class="lineno">  503</span>  <span class="keywordflow">case</span> <span class="charliteral">&#39;T&#39;</span>:<a class="code hl_variable" href="group__engine.html#ga3dccccfb75086f82e8e8cb4b4f17a3bc">globalTranslateStep</a> *= 2;</div>
+<div class="line"><span class="lineno">  504</span>      <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  505</span>  <span class="keywordflow">case</span> <span class="charliteral">&#39;t&#39;</span>:</div>
+<div class="line"><span class="lineno">  506</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="group__engine.html#ga3dccccfb75086f82e8e8cb4b4f17a3bc">globalTranslateStep</a> &gt; 1)</div>
+<div class="line"><span class="lineno">  507</span>      <a class="code hl_variable" href="group__engine.html#ga3dccccfb75086f82e8e8cb4b4f17a3bc">globalTranslateStep</a> /= 2;</div>
+<div class="line"><span class="lineno">  508</span>      <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  509</span> </div>
+<div class="line"><span class="lineno">  510</span>      <span class="comment">/*z-axis*/</span></div>
+<div class="line"><span class="lineno">  511</span>  <span class="keywordflow">case</span> <span class="charliteral">&#39;w&#39;</span>:<a class="code hl_variable" href="group__engine.html#gae5197ff392fbb6687d3ad586f589e309">globalTranslateZ</a> += <a class="code hl_variable" href="group__engine.html#ga3dccccfb75086f82e8e8cb4b4f17a3bc">globalTranslateStep</a>;</div>
 <div class="line"><span class="lineno">  512</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  513</span> </div>
-<div class="line"><span class="lineno">  514</span>      <span class="comment">/*x-axis*/</span></div>
-<div class="line"><span class="lineno">  515</span>  <span class="keywordflow">case</span> <span class="charliteral">&#39;a&#39;</span>:<a class="code hl_variable" href="group__engine.html#ga38677f95037f4575ab422e6980f920e0">globalTranslateX</a> -= <a class="code hl_variable" href="group__engine.html#ga3dccccfb75086f82e8e8cb4b4f17a3bc">globalTranslateStep</a>;</div>
-<div class="line"><span class="lineno">  516</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  517</span>  <span class="keywordflow">case</span> <span class="charliteral">&#39;d&#39;</span>:<a class="code hl_variable" href="group__engine.html#ga38677f95037f4575ab422e6980f920e0">globalTranslateX</a> += <a class="code hl_variable" href="group__engine.html#ga3dccccfb75086f82e8e8cb4b4f17a3bc">globalTranslateStep</a>;</div>
+<div class="line"><span class="lineno">  513</span>  <span class="keywordflow">case</span> <span class="charliteral">&#39;s&#39;</span>:<a class="code hl_variable" href="group__engine.html#gae5197ff392fbb6687d3ad586f589e309">globalTranslateZ</a> -= <a class="code hl_variable" href="group__engine.html#ga3dccccfb75086f82e8e8cb4b4f17a3bc">globalTranslateStep</a>;</div>
+<div class="line"><span class="lineno">  514</span>      <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  515</span> </div>
+<div class="line"><span class="lineno">  516</span>      <span class="comment">/*x-axis*/</span></div>
+<div class="line"><span class="lineno">  517</span>  <span class="keywordflow">case</span> <span class="charliteral">&#39;a&#39;</span>:<a class="code hl_variable" href="group__engine.html#ga38677f95037f4575ab422e6980f920e0">globalTranslateX</a> -= <a class="code hl_variable" href="group__engine.html#ga3dccccfb75086f82e8e8cb4b4f17a3bc">globalTranslateStep</a>;</div>
 <div class="line"><span class="lineno">  518</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  519</span> </div>
-<div class="line"><span class="lineno">  520</span>      <span class="comment">/*y-axis*/</span></div>
-<div class="line"><span class="lineno">  521</span>  <span class="keywordflow">case</span> <span class="charliteral">&#39;q&#39;</span>:<a class="code hl_variable" href="group__engine.html#ga1bd69a3237cca1b346bec2ac742a0a8e">globalTranslateY</a> -= <a class="code hl_variable" href="group__engine.html#ga3dccccfb75086f82e8e8cb4b4f17a3bc">globalTranslateStep</a>;</div>
-<div class="line"><span class="lineno">  522</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  523</span>  <span class="keywordflow">case</span> <span class="charliteral">&#39;e&#39;</span>:<a class="code hl_variable" href="group__engine.html#ga1bd69a3237cca1b346bec2ac742a0a8e">globalTranslateY</a> += <a class="code hl_variable" href="group__engine.html#ga3dccccfb75086f82e8e8cb4b4f17a3bc">globalTranslateStep</a>;</div>
+<div class="line"><span class="lineno">  519</span>  <span class="keywordflow">case</span> <span class="charliteral">&#39;d&#39;</span>:<a class="code hl_variable" href="group__engine.html#ga38677f95037f4575ab422e6980f920e0">globalTranslateX</a> += <a class="code hl_variable" href="group__engine.html#ga3dccccfb75086f82e8e8cb4b4f17a3bc">globalTranslateStep</a>;</div>
+<div class="line"><span class="lineno">  520</span>      <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  521</span> </div>
+<div class="line"><span class="lineno">  522</span>      <span class="comment">/*y-axis*/</span></div>
+<div class="line"><span class="lineno">  523</span>  <span class="keywordflow">case</span> <span class="charliteral">&#39;q&#39;</span>:<a class="code hl_variable" href="group__engine.html#ga1bd69a3237cca1b346bec2ac742a0a8e">globalTranslateY</a> -= <a class="code hl_variable" href="group__engine.html#ga3dccccfb75086f82e8e8cb4b4f17a3bc">globalTranslateStep</a>;</div>
 <div class="line"><span class="lineno">  524</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  525</span>      <span class="comment">/*end of translation*/</span></div>
-<div class="line"><span class="lineno">  526</span> </div>
-<div class="line"><span class="lineno">  527</span>      <span class="comment">/*scaling*/</span></div>
+<div class="line"><span class="lineno">  525</span>  <span class="keywordflow">case</span> <span class="charliteral">&#39;e&#39;</span>:<a class="code hl_variable" href="group__engine.html#ga1bd69a3237cca1b346bec2ac742a0a8e">globalTranslateY</a> += <a class="code hl_variable" href="group__engine.html#ga3dccccfb75086f82e8e8cb4b4f17a3bc">globalTranslateStep</a>;</div>
+<div class="line"><span class="lineno">  526</span>      <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  527</span>      <span class="comment">/*end of translation*/</span></div>
 <div class="line"><span class="lineno">  528</span> </div>
-<div class="line"><span class="lineno">  529</span>      <span class="comment">/*z-axis*/</span></div>
-<div class="line"><span class="lineno">  530</span>  <span class="keywordflow">case</span> <span class="charliteral">&#39;i&#39;</span>:<a class="code hl_variable" href="group__engine.html#ga6759b1a14e7b7edc9cc5f5caaee5cb88">globalScaleZ</a> += <a class="code hl_variable" href="group__engine.html#ga5906958820a0271f052da739c634a994">globalScaleStep</a>;</div>
-<div class="line"><span class="lineno">  531</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  532</span>  <span class="keywordflow">case</span> <span class="charliteral">&#39;k&#39;</span>:<a class="code hl_variable" href="group__engine.html#ga6759b1a14e7b7edc9cc5f5caaee5cb88">globalScaleZ</a> -= <a class="code hl_variable" href="group__engine.html#ga5906958820a0271f052da739c634a994">globalScaleStep</a>;</div>
+<div class="line"><span class="lineno">  529</span>      <span class="comment">/*scaling*/</span></div>
+<div class="line"><span class="lineno">  530</span> </div>
+<div class="line"><span class="lineno">  531</span>      <span class="comment">/*z-axis*/</span></div>
+<div class="line"><span class="lineno">  532</span>  <span class="keywordflow">case</span> <span class="charliteral">&#39;i&#39;</span>:<a class="code hl_variable" href="group__engine.html#ga6759b1a14e7b7edc9cc5f5caaee5cb88">globalScaleZ</a> += <a class="code hl_variable" href="group__engine.html#ga5906958820a0271f052da739c634a994">globalScaleStep</a>;</div>
 <div class="line"><span class="lineno">  533</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  534</span> </div>
-<div class="line"><span class="lineno">  535</span>      <span class="comment">/*x-axis*/</span></div>
-<div class="line"><span class="lineno">  536</span>  <span class="keywordflow">case</span> <span class="charliteral">&#39;j&#39;</span>:<a class="code hl_variable" href="group__engine.html#ga76ca2b2b73be400347bb4b460405f1f2">globalScaleX</a> -= <a class="code hl_variable" href="group__engine.html#ga5906958820a0271f052da739c634a994">globalScaleStep</a>;</div>
-<div class="line"><span class="lineno">  537</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  538</span>  <span class="keywordflow">case</span> <span class="charliteral">&#39;l&#39;</span>:<a class="code hl_variable" href="group__engine.html#ga76ca2b2b73be400347bb4b460405f1f2">globalScaleX</a> += <a class="code hl_variable" href="group__engine.html#ga5906958820a0271f052da739c634a994">globalScaleStep</a>;</div>
+<div class="line"><span class="lineno">  534</span>  <span class="keywordflow">case</span> <span class="charliteral">&#39;k&#39;</span>:<a class="code hl_variable" href="group__engine.html#ga6759b1a14e7b7edc9cc5f5caaee5cb88">globalScaleZ</a> -= <a class="code hl_variable" href="group__engine.html#ga5906958820a0271f052da739c634a994">globalScaleStep</a>;</div>
+<div class="line"><span class="lineno">  535</span>      <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  536</span> </div>
+<div class="line"><span class="lineno">  537</span>      <span class="comment">/*x-axis*/</span></div>
+<div class="line"><span class="lineno">  538</span>  <span class="keywordflow">case</span> <span class="charliteral">&#39;j&#39;</span>:<a class="code hl_variable" href="group__engine.html#ga76ca2b2b73be400347bb4b460405f1f2">globalScaleX</a> -= <a class="code hl_variable" href="group__engine.html#ga5906958820a0271f052da739c634a994">globalScaleStep</a>;</div>
 <div class="line"><span class="lineno">  539</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  540</span> </div>
-<div class="line"><span class="lineno">  541</span>      <span class="comment">/*y-axis*/</span></div>
-<div class="line"><span class="lineno">  542</span>  <span class="keywordflow">case</span> <span class="charliteral">&#39;u&#39;</span>:<a class="code hl_variable" href="group__engine.html#ga5c609aa58ab1231665e34d751cd592ae">globalScaleY</a> -= <a class="code hl_variable" href="group__engine.html#ga5906958820a0271f052da739c634a994">globalScaleStep</a>;</div>
-<div class="line"><span class="lineno">  543</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  544</span>  <span class="keywordflow">case</span> <span class="charliteral">&#39;o&#39;</span>:<a class="code hl_variable" href="group__engine.html#ga5c609aa58ab1231665e34d751cd592ae">globalScaleY</a> += <a class="code hl_variable" href="group__engine.html#ga5906958820a0271f052da739c634a994">globalScaleStep</a>;</div>
+<div class="line"><span class="lineno">  540</span>  <span class="keywordflow">case</span> <span class="charliteral">&#39;l&#39;</span>:<a class="code hl_variable" href="group__engine.html#ga76ca2b2b73be400347bb4b460405f1f2">globalScaleX</a> += <a class="code hl_variable" href="group__engine.html#ga5906958820a0271f052da739c634a994">globalScaleStep</a>;</div>
+<div class="line"><span class="lineno">  541</span>      <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  542</span> </div>
+<div class="line"><span class="lineno">  543</span>      <span class="comment">/*y-axis*/</span></div>
+<div class="line"><span class="lineno">  544</span>  <span class="keywordflow">case</span> <span class="charliteral">&#39;u&#39;</span>:<a class="code hl_variable" href="group__engine.html#ga5c609aa58ab1231665e34d751cd592ae">globalScaleY</a> -= <a class="code hl_variable" href="group__engine.html#ga5906958820a0271f052da739c634a994">globalScaleStep</a>;</div>
 <div class="line"><span class="lineno">  545</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  546</span>      <span class="comment">/*end of scaling*/</span></div>
-<div class="line"><span class="lineno">  547</span> </div>
-<div class="line"><span class="lineno">  548</span>      <span class="comment">/*camera*/</span></div>
-<div class="line"><span class="lineno">  549</span>  <span class="keywordflow">case</span> <span class="charliteral">&#39;`&#39;</span>:<a class="code hl_variable" href="group__position.html#ga9673727a896669866bb7f5a53dd6a41c">globalEyeStep</a> *= 2;</div>
-<div class="line"><span class="lineno">  550</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  551</span>  <span class="keywordflow">case</span> <span class="charliteral">&#39;~&#39;</span>:</div>
-<div class="line"><span class="lineno">  552</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="group__position.html#ga9673727a896669866bb7f5a53dd6a41c">globalEyeStep</a> &gt; 1)</div>
-<div class="line"><span class="lineno">  553</span>      <a class="code hl_variable" href="group__position.html#ga9673727a896669866bb7f5a53dd6a41c">globalEyeStep</a> /= 2;</div>
-<div class="line"><span class="lineno">  554</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  555</span> </div>
-<div class="line"><span class="lineno">  556</span>  <span class="keywordflow">case</span> <span class="charliteral">&#39;1&#39;</span>:<a class="code hl_variable" href="group__position.html#ga718827325d2f8ecfb7db4767a124d99b">globalEyeX</a> -= <a class="code hl_variable" href="group__position.html#ga9673727a896669866bb7f5a53dd6a41c">globalEyeStep</a>;</div>
-<div class="line"><span class="lineno">  557</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  558</span>  <span class="keywordflow">case</span> <span class="charliteral">&#39;!&#39;</span>:<a class="code hl_variable" href="group__position.html#ga718827325d2f8ecfb7db4767a124d99b">globalEyeX</a> += <a class="code hl_variable" href="group__position.html#ga9673727a896669866bb7f5a53dd6a41c">globalEyeStep</a>;</div>
+<div class="line"><span class="lineno">  546</span>  <span class="keywordflow">case</span> <span class="charliteral">&#39;o&#39;</span>:<a class="code hl_variable" href="group__engine.html#ga5c609aa58ab1231665e34d751cd592ae">globalScaleY</a> += <a class="code hl_variable" href="group__engine.html#ga5906958820a0271f052da739c634a994">globalScaleStep</a>;</div>
+<div class="line"><span class="lineno">  547</span>      <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  548</span>      <span class="comment">/*end of scaling*/</span></div>
+<div class="line"><span class="lineno">  549</span> </div>
+<div class="line"><span class="lineno">  550</span>      <span class="comment">/*camera*/</span></div>
+<div class="line"><span class="lineno">  551</span>  <span class="keywordflow">case</span> <span class="charliteral">&#39;`&#39;</span>:<a class="code hl_variable" href="group__position.html#ga9673727a896669866bb7f5a53dd6a41c">globalEyeStep</a> *= 2;</div>
+<div class="line"><span class="lineno">  552</span>      <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  553</span>  <span class="keywordflow">case</span> <span class="charliteral">&#39;~&#39;</span>:</div>
+<div class="line"><span class="lineno">  554</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="group__position.html#ga9673727a896669866bb7f5a53dd6a41c">globalEyeStep</a> &gt; 1)</div>
+<div class="line"><span class="lineno">  555</span>      <a class="code hl_variable" href="group__position.html#ga9673727a896669866bb7f5a53dd6a41c">globalEyeStep</a> /= 2;</div>
+<div class="line"><span class="lineno">  556</span>      <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  557</span> </div>
+<div class="line"><span class="lineno">  558</span>  <span class="keywordflow">case</span> <span class="charliteral">&#39;1&#39;</span>:<a class="code hl_variable" href="group__position.html#ga718827325d2f8ecfb7db4767a124d99b">globalEyeX</a> -= <a class="code hl_variable" href="group__position.html#ga9673727a896669866bb7f5a53dd6a41c">globalEyeStep</a>;</div>
 <div class="line"><span class="lineno">  559</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  560</span>  <span class="keywordflow">case</span> <span class="charliteral">&#39;2&#39;</span>:<a class="code hl_variable" href="group__position.html#ga249dfe7a961b98a6109c56ceec57d1ad">globalEyeY</a> -= <a class="code hl_variable" href="group__position.html#ga9673727a896669866bb7f5a53dd6a41c">globalEyeStep</a>;</div>
+<div class="line"><span class="lineno">  560</span>  <span class="keywordflow">case</span> <span class="charliteral">&#39;!&#39;</span>:<a class="code hl_variable" href="group__position.html#ga718827325d2f8ecfb7db4767a124d99b">globalEyeX</a> += <a class="code hl_variable" href="group__position.html#ga9673727a896669866bb7f5a53dd6a41c">globalEyeStep</a>;</div>
 <div class="line"><span class="lineno">  561</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  562</span>  <span class="keywordflow">case</span> <span class="charliteral">&#39;@&#39;</span>:<a class="code hl_variable" href="group__position.html#ga249dfe7a961b98a6109c56ceec57d1ad">globalEyeY</a> += <a class="code hl_variable" href="group__position.html#ga9673727a896669866bb7f5a53dd6a41c">globalEyeStep</a>;</div>
+<div class="line"><span class="lineno">  562</span>  <span class="keywordflow">case</span> <span class="charliteral">&#39;2&#39;</span>:<a class="code hl_variable" href="group__position.html#ga249dfe7a961b98a6109c56ceec57d1ad">globalEyeY</a> -= <a class="code hl_variable" href="group__position.html#ga9673727a896669866bb7f5a53dd6a41c">globalEyeStep</a>;</div>
 <div class="line"><span class="lineno">  563</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  564</span>  <span class="keywordflow">case</span> <span class="charliteral">&#39;3&#39;</span>:<a class="code hl_variable" href="group__position.html#gab7a6de09906647c4f67ee4dd4076842b">globalEyeZ</a> -= <a class="code hl_variable" href="group__position.html#ga9673727a896669866bb7f5a53dd6a41c">globalEyeStep</a>;</div>
+<div class="line"><span class="lineno">  564</span>  <span class="keywordflow">case</span> <span class="charliteral">&#39;@&#39;</span>:<a class="code hl_variable" href="group__position.html#ga249dfe7a961b98a6109c56ceec57d1ad">globalEyeY</a> += <a class="code hl_variable" href="group__position.html#ga9673727a896669866bb7f5a53dd6a41c">globalEyeStep</a>;</div>
 <div class="line"><span class="lineno">  565</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  566</span>  <span class="keywordflow">case</span> <span class="charliteral">&#39;#&#39;</span>:<a class="code hl_variable" href="group__position.html#gab7a6de09906647c4f67ee4dd4076842b">globalEyeZ</a> += <a class="code hl_variable" href="group__position.html#ga9673727a896669866bb7f5a53dd6a41c">globalEyeStep</a>;</div>
+<div class="line"><span class="lineno">  566</span>  <span class="keywordflow">case</span> <span class="charliteral">&#39;3&#39;</span>:<a class="code hl_variable" href="group__position.html#gab7a6de09906647c4f67ee4dd4076842b">globalEyeZ</a> -= <a class="code hl_variable" href="group__position.html#ga9673727a896669866bb7f5a53dd6a41c">globalEyeStep</a>;</div>
 <div class="line"><span class="lineno">  567</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  568</span> </div>
-<div class="line"><span class="lineno">  569</span>  <span class="keywordflow">case</span> <span class="charliteral">&#39;4&#39;</span>:<a class="code hl_variable" href="group__look_at.html#ga2cb5db8bdad416592fa643be93c764be">globalCenterX</a> -= <a class="code hl_variable" href="group__look_at.html#ga24788a09c1fd390f1b6abee92c090c5c">globalCenterStep</a>;</div>
-<div class="line"><span class="lineno">  570</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  571</span>  <span class="keywordflow">case</span> <span class="charliteral">&#39;$&#39;</span>:<a class="code hl_variable" href="group__look_at.html#ga2cb5db8bdad416592fa643be93c764be">globalCenterX</a> += <a class="code hl_variable" href="group__look_at.html#ga24788a09c1fd390f1b6abee92c090c5c">globalCenterStep</a>;</div>
+<div class="line"><span class="lineno">  568</span>  <span class="keywordflow">case</span> <span class="charliteral">&#39;#&#39;</span>:<a class="code hl_variable" href="group__position.html#gab7a6de09906647c4f67ee4dd4076842b">globalEyeZ</a> += <a class="code hl_variable" href="group__position.html#ga9673727a896669866bb7f5a53dd6a41c">globalEyeStep</a>;</div>
+<div class="line"><span class="lineno">  569</span>      <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  570</span> </div>
+<div class="line"><span class="lineno">  571</span>  <span class="keywordflow">case</span> <span class="charliteral">&#39;4&#39;</span>:<a class="code hl_variable" href="group__look_at.html#ga2cb5db8bdad416592fa643be93c764be">globalCenterX</a> -= <a class="code hl_variable" href="group__look_at.html#ga24788a09c1fd390f1b6abee92c090c5c">globalCenterStep</a>;</div>
 <div class="line"><span class="lineno">  572</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  573</span>  <span class="keywordflow">case</span> <span class="charliteral">&#39;5&#39;</span>:<a class="code hl_variable" href="group__look_at.html#gaf3f8074b4e6ebaf6687f0777fd500e51">globalCenterY</a> -= <a class="code hl_variable" href="group__look_at.html#ga24788a09c1fd390f1b6abee92c090c5c">globalCenterStep</a>;</div>
+<div class="line"><span class="lineno">  573</span>  <span class="keywordflow">case</span> <span class="charliteral">&#39;$&#39;</span>:<a class="code hl_variable" href="group__look_at.html#ga2cb5db8bdad416592fa643be93c764be">globalCenterX</a> += <a class="code hl_variable" href="group__look_at.html#ga24788a09c1fd390f1b6abee92c090c5c">globalCenterStep</a>;</div>
 <div class="line"><span class="lineno">  574</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  575</span>  <span class="keywordflow">case</span> <span class="charliteral">&#39;%&#39;</span>:<a class="code hl_variable" href="group__look_at.html#gaf3f8074b4e6ebaf6687f0777fd500e51">globalCenterY</a> += <a class="code hl_variable" href="group__look_at.html#ga24788a09c1fd390f1b6abee92c090c5c">globalCenterStep</a>;</div>
+<div class="line"><span class="lineno">  575</span>  <span class="keywordflow">case</span> <span class="charliteral">&#39;5&#39;</span>:<a class="code hl_variable" href="group__look_at.html#gaf3f8074b4e6ebaf6687f0777fd500e51">globalCenterY</a> -= <a class="code hl_variable" href="group__look_at.html#ga24788a09c1fd390f1b6abee92c090c5c">globalCenterStep</a>;</div>
 <div class="line"><span class="lineno">  576</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  577</span>  <span class="keywordflow">case</span> <span class="charliteral">&#39;6&#39;</span>:<a class="code hl_variable" href="group__look_at.html#gaa63e0d164754e930baf0d8d08106febb">globalCenterZ</a> -= <a class="code hl_variable" href="group__look_at.html#ga24788a09c1fd390f1b6abee92c090c5c">globalCenterStep</a>;</div>
+<div class="line"><span class="lineno">  577</span>  <span class="keywordflow">case</span> <span class="charliteral">&#39;%&#39;</span>:<a class="code hl_variable" href="group__look_at.html#gaf3f8074b4e6ebaf6687f0777fd500e51">globalCenterY</a> += <a class="code hl_variable" href="group__look_at.html#ga24788a09c1fd390f1b6abee92c090c5c">globalCenterStep</a>;</div>
 <div class="line"><span class="lineno">  578</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  579</span>  <span class="keywordflow">case</span> <span class="charliteral">&#39;^&#39;</span>:<a class="code hl_variable" href="group__look_at.html#gaa63e0d164754e930baf0d8d08106febb">globalCenterZ</a> += <a class="code hl_variable" href="group__look_at.html#ga24788a09c1fd390f1b6abee92c090c5c">globalCenterStep</a>;</div>
+<div class="line"><span class="lineno">  579</span>  <span class="keywordflow">case</span> <span class="charliteral">&#39;6&#39;</span>:<a class="code hl_variable" href="group__look_at.html#gaa63e0d164754e930baf0d8d08106febb">globalCenterZ</a> -= <a class="code hl_variable" href="group__look_at.html#ga24788a09c1fd390f1b6abee92c090c5c">globalCenterStep</a>;</div>
 <div class="line"><span class="lineno">  580</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  581</span>  <span class="keywordflow">case</span> <span class="charliteral">&#39;7&#39;</span>:<a class="code hl_variable" href="group__up.html#ga72f95312c48395a912ce37b15c5ff841">globalUpX</a> -= <a class="code hl_variable" href="group__up.html#ga05d6061a888c03cd994582410976b8c5">globalUpStep</a>;</div>
+<div class="line"><span class="lineno">  581</span>  <span class="keywordflow">case</span> <span class="charliteral">&#39;^&#39;</span>:<a class="code hl_variable" href="group__look_at.html#gaa63e0d164754e930baf0d8d08106febb">globalCenterZ</a> += <a class="code hl_variable" href="group__look_at.html#ga24788a09c1fd390f1b6abee92c090c5c">globalCenterStep</a>;</div>
 <div class="line"><span class="lineno">  582</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  583</span>  <span class="keywordflow">case</span> <span class="charliteral">&#39;&amp;&#39;</span>:<a class="code hl_variable" href="group__up.html#ga72f95312c48395a912ce37b15c5ff841">globalUpX</a> += <a class="code hl_variable" href="group__up.html#ga05d6061a888c03cd994582410976b8c5">globalUpStep</a>;</div>
+<div class="line"><span class="lineno">  583</span>  <span class="keywordflow">case</span> <span class="charliteral">&#39;7&#39;</span>:<a class="code hl_variable" href="group__up.html#ga72f95312c48395a912ce37b15c5ff841">globalUpX</a> -= <a class="code hl_variable" href="group__up.html#ga05d6061a888c03cd994582410976b8c5">globalUpStep</a>;</div>
 <div class="line"><span class="lineno">  584</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  585</span>  <span class="keywordflow">case</span> <span class="charliteral">&#39;8&#39;</span>:<a class="code hl_variable" href="group__up.html#gaa2f1ed4a70974b3b22481d3124e1dbf2">globalUpY</a> -= <a class="code hl_variable" href="group__up.html#ga05d6061a888c03cd994582410976b8c5">globalUpStep</a>;</div>
+<div class="line"><span class="lineno">  585</span>  <span class="keywordflow">case</span> <span class="charliteral">&#39;&amp;&#39;</span>:<a class="code hl_variable" href="group__up.html#ga72f95312c48395a912ce37b15c5ff841">globalUpX</a> += <a class="code hl_variable" href="group__up.html#ga05d6061a888c03cd994582410976b8c5">globalUpStep</a>;</div>
 <div class="line"><span class="lineno">  586</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  587</span>  <span class="keywordflow">case</span> <span class="charliteral">&#39;*&#39;</span>:<a class="code hl_variable" href="group__up.html#gaa2f1ed4a70974b3b22481d3124e1dbf2">globalUpY</a> += <a class="code hl_variable" href="group__up.html#ga05d6061a888c03cd994582410976b8c5">globalUpStep</a>;</div>
+<div class="line"><span class="lineno">  587</span>  <span class="keywordflow">case</span> <span class="charliteral">&#39;8&#39;</span>:<a class="code hl_variable" href="group__up.html#gaa2f1ed4a70974b3b22481d3124e1dbf2">globalUpY</a> -= <a class="code hl_variable" href="group__up.html#ga05d6061a888c03cd994582410976b8c5">globalUpStep</a>;</div>
 <div class="line"><span class="lineno">  588</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  589</span>  <span class="keywordflow">case</span> <span class="charliteral">&#39;9&#39;</span>:<a class="code hl_variable" href="group__up.html#ga9b87730968b220018fd7f1a53728e46e">globalUpZ</a> -= <a class="code hl_variable" href="group__up.html#ga05d6061a888c03cd994582410976b8c5">globalUpStep</a>;</div>
+<div class="line"><span class="lineno">  589</span>  <span class="keywordflow">case</span> <span class="charliteral">&#39;*&#39;</span>:<a class="code hl_variable" href="group__up.html#gaa2f1ed4a70974b3b22481d3124e1dbf2">globalUpY</a> += <a class="code hl_variable" href="group__up.html#ga05d6061a888c03cd994582410976b8c5">globalUpStep</a>;</div>
 <div class="line"><span class="lineno">  590</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  591</span>  <span class="keywordflow">case</span> <span class="charliteral">&#39;(&#39;</span>:<a class="code hl_variable" href="group__up.html#ga9b87730968b220018fd7f1a53728e46e">globalUpZ</a> += <a class="code hl_variable" href="group__up.html#ga05d6061a888c03cd994582410976b8c5">globalUpStep</a>;</div>
+<div class="line"><span class="lineno">  591</span>  <span class="keywordflow">case</span> <span class="charliteral">&#39;9&#39;</span>:<a class="code hl_variable" href="group__up.html#ga9b87730968b220018fd7f1a53728e46e">globalUpZ</a> -= <a class="code hl_variable" href="group__up.html#ga05d6061a888c03cd994582410976b8c5">globalUpStep</a>;</div>
 <div class="line"><span class="lineno">  592</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  593</span> </div>
-<div class="line"><span class="lineno">  594</span>      <span class="comment">/*reset environment*/</span></div>
-<div class="line"><span class="lineno">  595</span>  <span class="keywordflow">case</span> <span class="charliteral">&#39;0&#39;</span>:<a class="code hl_function" href="group__engine.html#ga8679d9b303f36964bf51dba0993caeaa">env_load_defaults</a> ();</div>
-<div class="line"><span class="lineno">  596</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  597</span> </div>
-<div class="line"><span class="lineno">  598</span>  <span class="keywordflow">default</span>:<span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  599</span>    }</div>
-<div class="line"><span class="lineno">  600</span>  <a class="code hl_function" href="group__engine.html#gab9813926390dc5773baf0b20dc2ea16e">redisplay</a> (); <span class="comment">//request display() call ASAP</span></div>
-<div class="line"><span class="lineno">  601</span>}</div>
+<div class="line"><span class="lineno">  593</span>  <span class="keywordflow">case</span> <span class="charliteral">&#39;(&#39;</span>:<a class="code hl_variable" href="group__up.html#ga9b87730968b220018fd7f1a53728e46e">globalUpZ</a> += <a class="code hl_variable" href="group__up.html#ga05d6061a888c03cd994582410976b8c5">globalUpStep</a>;</div>
+<div class="line"><span class="lineno">  594</span>      <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  595</span> </div>
+<div class="line"><span class="lineno">  596</span>      <span class="comment">/*reset environment*/</span></div>
+<div class="line"><span class="lineno">  597</span>  <span class="keywordflow">case</span> <span class="charliteral">&#39;0&#39;</span>:<a class="code hl_function" href="group__engine.html#ga8679d9b303f36964bf51dba0993caeaa">env_load_defaults</a> ();</div>
+<div class="line"><span class="lineno">  598</span>      <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  599</span> </div>
+<div class="line"><span class="lineno">  600</span>  <span class="keywordflow">default</span>:<span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  601</span>    }</div>
+<div class="line"><span class="lineno">  602</span>  <a class="code hl_function" href="group__engine.html#gab9813926390dc5773baf0b20dc2ea16e">redisplay</a> (); <span class="comment">//request display() call ASAP</span></div>
+<div class="line"><span class="lineno">  603</span>}</div>
 <div class="ttc" id="agroup__engine_html_ga1bd69a3237cca1b346bec2ac742a0a8e"><div class="ttname"><a href="group__engine.html#ga1bd69a3237cca1b346bec2ac742a0a8e">globalTranslateY</a></div><div class="ttdeci">static float globalTranslateY</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00033">engine.cpp:33</a></div></div>
 <div class="ttc" id="agroup__engine_html_ga2e8f792b2bea2085eabf137c2a5db166"><div class="ttname"><a href="group__engine.html#ga2e8f792b2bea2085eabf137c2a5db166">globalAngleStep</a></div><div class="ttdeci">static float globalAngleStep</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00023">engine.cpp:23</a></div></div>
 <div class="ttc" id="agroup__engine_html_ga38677f95037f4575ab422e6980f920e0"><div class="ttname"><a href="group__engine.html#ga38677f95037f4575ab422e6980f920e0">globalTranslateX</a></div><div class="ttdeci">static float globalTranslateX</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00032">engine.cpp:32</a></div></div>
@@ -357,31 +353,22 @@ Variables</h2></td></tr>
 </div><!-- fragment -->
 <p class="reference">References <a class="el" href="engine_8cpp_source.html#l00127">env_load_defaults()</a>, <a class="el" href="engine_8cpp_source.html#l00024">globalAngle</a>, <a class="el" href="engine_8cpp_source.html#l00023">globalAngleStep</a>, <a class="el" href="engine_8cpp_source.html#l00096">globalCenterStep</a>, <a class="el" href="engine_8cpp_source.html#l00097">globalCenterX</a>, <a class="el" href="engine_8cpp_source.html#l00098">globalCenterY</a>, <a class="el" href="engine_8cpp_source.html#l00099">globalCenterZ</a>, <a class="el" href="engine_8cpp_source.html#l00083">globalEyeStep</a>, <a class="el" href="engine_8cpp_source.html#l00084">globalEyeX</a>, <a class="el" href="engine_8cpp_source.html#l00085">globalEyeY</a>, <a class="el" href="engine_8cpp_source.html#l00086">globalEyeZ</a>, <a class="el" href="engine_8cpp_source.html#l00025">globalRotateX</a>, <a class="el" href="engine_8cpp_source.html#l00026">globalRotateY</a>, <a class="el" href="engine_8cpp_source.html#l00027">globalRotateZ</a>, <a class="el" href="engine_8cpp_source.html#l00038">globalScaleStep</a>, <a class="el" href="engine_8cpp_source.html#l00039">globalScaleX</a>, <a class="el" href="engine_8cpp_source.html#l00040">globalScaleY</a>, <a class="el" href="engine_8cpp_source.html#l00041">globalScaleZ</a>, <a class="el" href="engine_8cpp_source.html#l00031">globalTranslateStep</a>, <a class="el" href="engine_8cpp_source.html#l00032">globalTranslateX</a>, <a class="el" href="engine_8cpp_source.html#l00033">globalTranslateY</a>, <a class="el" href="engine_8cpp_source.html#l00034">globalTranslateZ</a>, <a class="el" href="engine_8cpp_source.html#l00109">globalUpStep</a>, <a class="el" href="engine_8cpp_source.html#l00110">globalUpX</a>, <a class="el" href="engine_8cpp_source.html#l00111">globalUpY</a>, <a class="el" href="engine_8cpp_source.html#l00112">globalUpZ</a>, and <a class="el" href="engine_8cpp_source.html#l00390">redisplay()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00716">engine_run()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00718">engine_run()</a>.</p>
 <div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="group__input_gac7632fff72011e8c11ae504a4596a7f7_cgraph.png" border="0" usemap="#agroup__input_gac7632fff72011e8c11ae504a4596a7f7_cgraph" alt=""/></div>
-<map name="agroup__input_gac7632fff72011e8c11ae504a4596a7f7_cgraph" id="agroup__input_gac7632fff72011e8c11ae504a4596a7f7_cgraph">
-<area shape="rect" title=" " alt="" coords="5,31,117,57"/>
-<area shape="rect" href="group__engine.html#ga8679d9b303f36964bf51dba0993caeaa" title=" " alt="" coords="165,5,307,32"/>
-<area shape="rect" href="group__engine.html#gab9813926390dc5773baf0b20dc2ea16e" title=" " alt="" coords="195,56,277,83"/>
-<area shape="rect" href="group__spherical.html#gab5ff5216bffd1e15798677f24213213d" title=" " alt="" coords="355,56,505,83"/>
-</map>
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__input_gac7632fff72011e8c11ae504a4596a7f7_cgraph.svg" width="511" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 <div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-2-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-2-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-2-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="group__input_gac7632fff72011e8c11ae504a4596a7f7_icgraph.png" border="0" usemap="#agroup__input_gac7632fff72011e8c11ae504a4596a7f7_icgraph" alt=""/></div>
-<map name="agroup__input_gac7632fff72011e8c11ae504a4596a7f7_icgraph" id="agroup__input_gac7632fff72011e8c11ae504a4596a7f7_icgraph">
-<area shape="rect" title=" " alt="" coords="251,5,363,32"/>
-<area shape="rect" href="group__engine.html#ga98eaf946471acbd931de5d52ca83b3d1" title=" " alt="" coords="108,5,203,32"/>
-<area shape="rect" href="group__engine.html#ga3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,5,60,32"/>
-</map>
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__input_gac7632fff72011e8c11ae504a4596a7f7_icgraph.svg" width="368" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>
@@ -412,68 +399,60 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00684">684</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  685</span>{</div>
-<div class="line"><span class="lineno">  686</span>  <span class="keywordflow">if</span> (<a class="code hl_variable" href="group__spherical.html#gac3d947315432e74f7c2d8f0dee6d5166">globalMouseLeftButton</a>)</div>
-<div class="line"><span class="lineno">  687</span>    {</div>
-<div class="line"><span class="lineno">  688</span>      <span class="keyword">const</span> <span class="keywordtype">double</span> stepAlfa = 0.035;</div>
-<div class="line"><span class="lineno">  689</span>      <span class="keyword">const</span> <span class="keywordtype">double</span> stepBeta = 0.035;</div>
-<div class="line"><span class="lineno">  690</span> </div>
-<div class="line"><span class="lineno">  691</span>      <span class="keywordflow">if</span> (x &lt; <a class="code hl_variable" href="group__input.html#ga86b84325bd56f5046ead1fc28690c412">globalXPrev</a>)</div>
-<div class="line"><span class="lineno">  692</span>        <a class="code hl_variable" href="group__spherical.html#gadaab4529e17c31628ede6500a0f9dd07">globalAzimuth</a> += stepAlfa;</div>
-<div class="line"><span class="lineno">  693</span>      <span class="keywordflow">else</span> <span class="keywordflow">if</span> (x &gt; <a class="code hl_variable" href="group__input.html#ga86b84325bd56f5046ead1fc28690c412">globalXPrev</a>)</div>
-<div class="line"><span class="lineno">  694</span>        <a class="code hl_variable" href="group__spherical.html#gadaab4529e17c31628ede6500a0f9dd07">globalAzimuth</a> -= stepAlfa;</div>
-<div class="line"><span class="lineno">  695</span> </div>
-<div class="line"><span class="lineno">  696</span>      <span class="keywordflow">if</span> (y &lt; <a class="code hl_variable" href="group__input.html#ga5955bfd3ab86257de26e3b040e7fe4c3">globalYPrev</a>)</div>
-<div class="line"><span class="lineno">  697</span>        {</div>
-<div class="line"><span class="lineno">  698</span>          <a class="code hl_variable" href="group__spherical.html#ga2788cc0fae99c064d291338b8fbe8484">globalElevation</a> -= stepBeta;</div>
-<div class="line"><span class="lineno">  699</span>          <span class="keywordflow">if</span> (<a class="code hl_variable" href="group__spherical.html#ga2788cc0fae99c064d291338b8fbe8484">globalElevation</a> &lt; -1.5)</div>
-<div class="line"><span class="lineno">  700</span>            <a class="code hl_variable" href="group__spherical.html#ga2788cc0fae99c064d291338b8fbe8484">globalElevation</a> = -1.5;</div>
-<div class="line"><span class="lineno">  701</span>        }</div>
-<div class="line"><span class="lineno">  702</span>      <span class="keywordflow">else</span> <span class="keywordflow">if</span> (y &gt; <a class="code hl_variable" href="group__input.html#ga5955bfd3ab86257de26e3b040e7fe4c3">globalYPrev</a>)</div>
-<div class="line"><span class="lineno">  703</span>        {</div>
-<div class="line"><span class="lineno">  704</span>          <a class="code hl_variable" href="group__spherical.html#ga2788cc0fae99c064d291338b8fbe8484">globalElevation</a> += stepBeta;</div>
-<div class="line"><span class="lineno">  705</span>          <span class="keywordflow">if</span> (<a class="code hl_variable" href="group__spherical.html#ga2788cc0fae99c064d291338b8fbe8484">globalElevation</a> &gt; 1.5)</div>
-<div class="line"><span class="lineno">  706</span>            <a class="code hl_variable" href="group__spherical.html#ga2788cc0fae99c064d291338b8fbe8484">globalElevation</a> = 1.5;</div>
-<div class="line"><span class="lineno">  707</span>        }</div>
-<div class="line"><span class="lineno">  708</span> </div>
-<div class="line"><span class="lineno">  709</span>      <a class="code hl_variable" href="group__input.html#ga86b84325bd56f5046ead1fc28690c412">globalXPrev</a> = x;</div>
-<div class="line"><span class="lineno">  710</span>      <a class="code hl_variable" href="group__input.html#ga5955bfd3ab86257de26e3b040e7fe4c3">globalYPrev</a> = y;</div>
-<div class="line"><span class="lineno">  711</span>    }</div>
-<div class="line"><span class="lineno">  712</span>  <a class="code hl_function" href="group__engine.html#gab9813926390dc5773baf0b20dc2ea16e">redisplay</a> ();</div>
-<div class="line"><span class="lineno">  713</span>}</div>
-<div class="ttc" id="agroup__input_html_ga5955bfd3ab86257de26e3b040e7fe4c3"><div class="ttname"><a href="group__input.html#ga5955bfd3ab86257de26e3b040e7fe4c3">globalYPrev</a></div><div class="ttdeci">int globalYPrev</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00604">engine.cpp:604</a></div></div>
-<div class="ttc" id="agroup__input_html_ga86b84325bd56f5046ead1fc28690c412"><div class="ttname"><a href="group__input.html#ga86b84325bd56f5046ead1fc28690c412">globalXPrev</a></div><div class="ttdeci">int globalXPrev</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00603">engine.cpp:603</a></div></div>
+<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00686">686</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  687</span>{</div>
+<div class="line"><span class="lineno">  688</span>  <span class="keywordflow">if</span> (<a class="code hl_variable" href="group__spherical.html#gac3d947315432e74f7c2d8f0dee6d5166">globalMouseLeftButton</a>)</div>
+<div class="line"><span class="lineno">  689</span>    {</div>
+<div class="line"><span class="lineno">  690</span>      <span class="keyword">const</span> <span class="keywordtype">double</span> stepAlfa = 0.035;</div>
+<div class="line"><span class="lineno">  691</span>      <span class="keyword">const</span> <span class="keywordtype">double</span> stepBeta = 0.035;</div>
+<div class="line"><span class="lineno">  692</span> </div>
+<div class="line"><span class="lineno">  693</span>      <span class="keywordflow">if</span> (x &lt; <a class="code hl_variable" href="group__input.html#ga86b84325bd56f5046ead1fc28690c412">globalXPrev</a>)</div>
+<div class="line"><span class="lineno">  694</span>        <a class="code hl_variable" href="group__spherical.html#gadaab4529e17c31628ede6500a0f9dd07">globalAzimuth</a> += stepAlfa;</div>
+<div class="line"><span class="lineno">  695</span>      <span class="keywordflow">else</span> <span class="keywordflow">if</span> (x &gt; <a class="code hl_variable" href="group__input.html#ga86b84325bd56f5046ead1fc28690c412">globalXPrev</a>)</div>
+<div class="line"><span class="lineno">  696</span>        <a class="code hl_variable" href="group__spherical.html#gadaab4529e17c31628ede6500a0f9dd07">globalAzimuth</a> -= stepAlfa;</div>
+<div class="line"><span class="lineno">  697</span> </div>
+<div class="line"><span class="lineno">  698</span>      <span class="keywordflow">if</span> (y &lt; <a class="code hl_variable" href="group__input.html#ga5955bfd3ab86257de26e3b040e7fe4c3">globalYPrev</a>)</div>
+<div class="line"><span class="lineno">  699</span>        {</div>
+<div class="line"><span class="lineno">  700</span>          <a class="code hl_variable" href="group__spherical.html#ga2788cc0fae99c064d291338b8fbe8484">globalElevation</a> -= stepBeta;</div>
+<div class="line"><span class="lineno">  701</span>          <span class="keywordflow">if</span> (<a class="code hl_variable" href="group__spherical.html#ga2788cc0fae99c064d291338b8fbe8484">globalElevation</a> &lt; -1.5)</div>
+<div class="line"><span class="lineno">  702</span>            <a class="code hl_variable" href="group__spherical.html#ga2788cc0fae99c064d291338b8fbe8484">globalElevation</a> = -1.5;</div>
+<div class="line"><span class="lineno">  703</span>        }</div>
+<div class="line"><span class="lineno">  704</span>      <span class="keywordflow">else</span> <span class="keywordflow">if</span> (y &gt; <a class="code hl_variable" href="group__input.html#ga5955bfd3ab86257de26e3b040e7fe4c3">globalYPrev</a>)</div>
+<div class="line"><span class="lineno">  705</span>        {</div>
+<div class="line"><span class="lineno">  706</span>          <a class="code hl_variable" href="group__spherical.html#ga2788cc0fae99c064d291338b8fbe8484">globalElevation</a> += stepBeta;</div>
+<div class="line"><span class="lineno">  707</span>          <span class="keywordflow">if</span> (<a class="code hl_variable" href="group__spherical.html#ga2788cc0fae99c064d291338b8fbe8484">globalElevation</a> &gt; 1.5)</div>
+<div class="line"><span class="lineno">  708</span>            <a class="code hl_variable" href="group__spherical.html#ga2788cc0fae99c064d291338b8fbe8484">globalElevation</a> = 1.5;</div>
+<div class="line"><span class="lineno">  709</span>        }</div>
+<div class="line"><span class="lineno">  710</span> </div>
+<div class="line"><span class="lineno">  711</span>      <a class="code hl_variable" href="group__input.html#ga86b84325bd56f5046ead1fc28690c412">globalXPrev</a> = x;</div>
+<div class="line"><span class="lineno">  712</span>      <a class="code hl_variable" href="group__input.html#ga5955bfd3ab86257de26e3b040e7fe4c3">globalYPrev</a> = y;</div>
+<div class="line"><span class="lineno">  713</span>    }</div>
+<div class="line"><span class="lineno">  714</span>  <a class="code hl_function" href="group__engine.html#gab9813926390dc5773baf0b20dc2ea16e">redisplay</a> ();</div>
+<div class="line"><span class="lineno">  715</span>}</div>
+<div class="ttc" id="agroup__input_html_ga5955bfd3ab86257de26e3b040e7fe4c3"><div class="ttname"><a href="group__input.html#ga5955bfd3ab86257de26e3b040e7fe4c3">globalYPrev</a></div><div class="ttdeci">int globalYPrev</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00606">engine.cpp:606</a></div></div>
+<div class="ttc" id="agroup__input_html_ga86b84325bd56f5046ead1fc28690c412"><div class="ttname"><a href="group__input.html#ga86b84325bd56f5046ead1fc28690c412">globalXPrev</a></div><div class="ttdeci">int globalXPrev</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00605">engine.cpp:605</a></div></div>
 <div class="ttc" id="agroup__spherical_html_ga2788cc0fae99c064d291338b8fbe8484"><div class="ttname"><a href="group__spherical.html#ga2788cc0fae99c064d291338b8fbe8484">globalElevation</a></div><div class="ttdeci">double globalElevation</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00056">engine.cpp:56</a></div></div>
 <div class="ttc" id="agroup__spherical_html_gac3d947315432e74f7c2d8f0dee6d5166"><div class="ttname"><a href="group__spherical.html#gac3d947315432e74f7c2d8f0dee6d5166">globalMouseLeftButton</a></div><div class="ttdeci">bool globalMouseLeftButton</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00057">engine.cpp:57</a></div></div>
 <div class="ttc" id="agroup__spherical_html_gadaab4529e17c31628ede6500a0f9dd07"><div class="ttname"><a href="group__spherical.html#gadaab4529e17c31628ede6500a0f9dd07">globalAzimuth</a></div><div class="ttdeci">double globalAzimuth</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00055">engine.cpp:55</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="engine_8cpp_source.html#l00055">globalAzimuth</a>, <a class="el" href="engine_8cpp_source.html#l00056">globalElevation</a>, <a class="el" href="engine_8cpp_source.html#l00057">globalMouseLeftButton</a>, <a class="el" href="engine_8cpp_source.html#l00603">globalXPrev</a>, <a class="el" href="engine_8cpp_source.html#l00604">globalYPrev</a>, and <a class="el" href="engine_8cpp_source.html#l00390">redisplay()</a>.</p>
+<p class="reference">References <a class="el" href="engine_8cpp_source.html#l00055">globalAzimuth</a>, <a class="el" href="engine_8cpp_source.html#l00056">globalElevation</a>, <a class="el" href="engine_8cpp_source.html#l00057">globalMouseLeftButton</a>, <a class="el" href="engine_8cpp_source.html#l00605">globalXPrev</a>, <a class="el" href="engine_8cpp_source.html#l00606">globalYPrev</a>, and <a class="el" href="engine_8cpp_source.html#l00390">redisplay()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00716">engine_run()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00718">engine_run()</a>.</p>
 <div id="dynsection-3" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-3-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-3-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-3-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="group__input_ga2bebb17428cb218231ad556de2a20ed6_cgraph.png" border="0" usemap="#agroup__input_ga2bebb17428cb218231ad556de2a20ed6_cgraph" alt=""/></div>
-<map name="agroup__input_ga2bebb17428cb218231ad556de2a20ed6_cgraph" id="agroup__input_ga2bebb17428cb218231ad556de2a20ed6_cgraph">
-<area shape="rect" title=" " alt="" coords="5,5,104,32"/>
-<area shape="rect" href="group__engine.html#gab9813926390dc5773baf0b20dc2ea16e" title=" " alt="" coords="152,5,235,32"/>
-<area shape="rect" href="group__spherical.html#gab5ff5216bffd1e15798677f24213213d" title=" " alt="" coords="283,5,433,32"/>
-</map>
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__input_ga2bebb17428cb218231ad556de2a20ed6_cgraph.svg" width="439" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 <div id="dynsection-4" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-4-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-4-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-4-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="group__input_ga2bebb17428cb218231ad556de2a20ed6_icgraph.png" border="0" usemap="#agroup__input_ga2bebb17428cb218231ad556de2a20ed6_icgraph" alt=""/></div>
-<map name="agroup__input_ga2bebb17428cb218231ad556de2a20ed6_icgraph" id="agroup__input_ga2bebb17428cb218231ad556de2a20ed6_icgraph">
-<area shape="rect" title=" " alt="" coords="251,5,349,32"/>
-<area shape="rect" href="group__engine.html#ga98eaf946471acbd931de5d52ca83b3d1" title=" " alt="" coords="108,5,203,32"/>
-<area shape="rect" href="group__engine.html#ga3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,5,60,32"/>
-</map>
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__input_ga2bebb17428cb218231ad556de2a20ed6_icgraph.svg" width="355" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>
@@ -516,114 +495,105 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00606">606</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  607</span>{</div>
-<div class="line"><span class="lineno">  608</span>  <span class="comment">// Wheel reports as button 3(scroll up) and button 4(scroll down)</span></div>
-<div class="line"><span class="lineno">  609</span>  <span class="keywordflow">if</span> ((button == 3) || (button == 4)) <span class="comment">// It&#39;s a wheel event</span></div>
-<div class="line"><span class="lineno">  610</span>    {</div>
-<div class="line"><span class="lineno">  611</span>      <span class="comment">// Each wheel event reports like a button click, GLUT_DOWN then GLUT_UP</span></div>
-<div class="line"><span class="lineno">  612</span>      <span class="keywordflow">if</span> (state == GLUT_UP)</div>
-<div class="line"><span class="lineno">  613</span>        <span class="keywordflow">return</span>; <span class="comment">// Disregard redundant GLUT_UP events</span></div>
-<div class="line"><span class="lineno">  614</span> </div>
-<div class="line"><span class="lineno">  615</span>      <span class="keywordflow">if</span> (button == 3)</div>
-<div class="line"><span class="lineno">  616</span>        {</div>
-<div class="line"><span class="lineno">  617</span>          <a class="code hl_variable" href="group__spherical.html#gaee0ddcd277ec7a7a451dbd5b17f98187">globalRadius</a> *= .8f;</div>
-<div class="line"><span class="lineno">  618</span>          <span class="keywordflow">if</span> (<a class="code hl_variable" href="group__spherical.html#gaee0ddcd277ec7a7a451dbd5b17f98187">globalRadius</a> &lt; 1.0f)</div>
-<div class="line"><span class="lineno">  619</span>            <a class="code hl_variable" href="group__spherical.html#gaee0ddcd277ec7a7a451dbd5b17f98187">globalRadius</a> = 1.0f;</div>
-<div class="line"><span class="lineno">  620</span>        }</div>
-<div class="line"><span class="lineno">  621</span>      <span class="keywordflow">else</span></div>
-<div class="line"><span class="lineno">  622</span>        <a class="code hl_variable" href="group__spherical.html#gaee0ddcd277ec7a7a451dbd5b17f98187">globalRadius</a> *= 1.5;</div>
-<div class="line"><span class="lineno">  623</span>      printf (<span class="stringliteral">&quot;Scroll %s At %d %d\n&quot;</span>, (button == 3) ? <span class="stringliteral">&quot;Up&quot;</span> : <span class="stringliteral">&quot;Down&quot;</span>, x, y);</div>
-<div class="line"><span class="lineno">  624</span>    }</div>
-<div class="line"><span class="lineno">  625</span>  <span class="keywordflow">else</span></div>
-<div class="line"><span class="lineno">  626</span>    {  <span class="comment">// normal button event</span></div>
-<div class="line"><span class="lineno">  627</span>      printf (<span class="stringliteral">&quot;Button %s At %d %d\n&quot;</span>, (state == GLUT_DOWN) ? <span class="stringliteral">&quot;Down&quot;</span> : <span class="stringliteral">&quot;Up&quot;</span>, x, y);</div>
-<div class="line"><span class="lineno">  628</span>      <span class="keywordflow">if</span> (button == GLUT_LEFT_BUTTON)</div>
-<div class="line"><span class="lineno">  629</span>        {</div>
-<div class="line"><span class="lineno">  630</span>          <span class="keywordflow">if</span> (state == GLUT_DOWN)</div>
-<div class="line"><span class="lineno">  631</span>            {</div>
-<div class="line"><span class="lineno">  632</span>              <a class="code hl_variable" href="group__spherical.html#gac3d947315432e74f7c2d8f0dee6d5166">globalMouseLeftButton</a> = <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  633</span>              <a class="code hl_variable" href="group__input.html#ga86b84325bd56f5046ead1fc28690c412">globalXPrev</a> = x;</div>
-<div class="line"><span class="lineno">  634</span>              <a class="code hl_variable" href="group__input.html#ga5955bfd3ab86257de26e3b040e7fe4c3">globalYPrev</a> = y;</div>
-<div class="line"><span class="lineno">  635</span>            }</div>
-<div class="line"><span class="lineno">  636</span>          <span class="keywordflow">if</span> (state == GLUT_UP)</div>
-<div class="line"><span class="lineno">  637</span>            {</div>
-<div class="line"><span class="lineno">  638</span>              <a class="code hl_variable" href="group__spherical.html#gac3d947315432e74f7c2d8f0dee6d5166">globalMouseLeftButton</a> = <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">  639</span>            }</div>
-<div class="line"><span class="lineno">  640</span>        }</div>
-<div class="line"><span class="lineno">  641</span>      <span class="keywordflow">else</span> <span class="keywordflow">if</span> (button == GLUT_RIGHT_BUTTON)</div>
-<div class="line"><span class="lineno">  642</span>        {</div>
-<div class="line"><span class="lineno">  643</span>          <span class="keywordflow">if</span> (state == GLUT_DOWN)</div>
-<div class="line"><span class="lineno">  644</span>            {</div>
-<div class="line"><span class="lineno">  645</span>              <span class="keywordtype">int</span> window_width = glutGet (GLUT_WINDOW_WIDTH);</div>
-<div class="line"><span class="lineno">  646</span>              <span class="keywordtype">int</span> window_height = glutGet (GLUT_WINDOW_HEIGHT);</div>
-<div class="line"><span class="lineno">  647</span> </div>
-<div class="line"><span class="lineno">  648</span>              GLbyte color[4];</div>
-<div class="line"><span class="lineno">  649</span>              GLfloat depth;</div>
-<div class="line"><span class="lineno">  650</span>              GLuint index;</div>
-<div class="line"><span class="lineno">  651</span> </div>
-<div class="line"><span class="lineno">  652</span>              glReadPixels (x, window_height - y - 1, 1, 1, GL_RGBA, GL_UNSIGNED_BYTE, color);</div>
-<div class="line"><span class="lineno">  653</span>              glReadPixels (x, window_height - y - 1, 1, 1, GL_DEPTH_COMPONENT, GL_FLOAT, &amp;depth);</div>
-<div class="line"><span class="lineno">  654</span>              glReadPixels (x, window_height - y - 1, 1, 1, GL_STENCIL_INDEX, GL_UNSIGNED_INT, &amp;index);</div>
-<div class="line"><span class="lineno">  655</span> </div>
-<div class="line"><span class="lineno">  656</span>              <span class="keywordtype">double</span> ox, oy, oz;</div>
+<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00608">608</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  609</span>{</div>
+<div class="line"><span class="lineno">  610</span>  <span class="comment">// Wheel reports as button 3(scroll up) and button 4(scroll down)</span></div>
+<div class="line"><span class="lineno">  611</span>  <span class="keywordflow">if</span> ((button == 3) || (button == 4)) <span class="comment">// It&#39;s a wheel event</span></div>
+<div class="line"><span class="lineno">  612</span>    {</div>
+<div class="line"><span class="lineno">  613</span>      <span class="comment">// Each wheel event reports like a button click, GLUT_DOWN then GLUT_UP</span></div>
+<div class="line"><span class="lineno">  614</span>      <span class="keywordflow">if</span> (state == GLUT_UP)</div>
+<div class="line"><span class="lineno">  615</span>        <span class="keywordflow">return</span>; <span class="comment">// Disregard redundant GLUT_UP events</span></div>
+<div class="line"><span class="lineno">  616</span> </div>
+<div class="line"><span class="lineno">  617</span>      <span class="keywordflow">if</span> (button == 3)</div>
+<div class="line"><span class="lineno">  618</span>        {</div>
+<div class="line"><span class="lineno">  619</span>          <a class="code hl_variable" href="group__spherical.html#gaee0ddcd277ec7a7a451dbd5b17f98187">globalRadius</a> *= .8f;</div>
+<div class="line"><span class="lineno">  620</span>          <span class="keywordflow">if</span> (<a class="code hl_variable" href="group__spherical.html#gaee0ddcd277ec7a7a451dbd5b17f98187">globalRadius</a> &lt; 1.0f)</div>
+<div class="line"><span class="lineno">  621</span>            <a class="code hl_variable" href="group__spherical.html#gaee0ddcd277ec7a7a451dbd5b17f98187">globalRadius</a> = 1.0f;</div>
+<div class="line"><span class="lineno">  622</span>        }</div>
+<div class="line"><span class="lineno">  623</span>      <span class="keywordflow">else</span></div>
+<div class="line"><span class="lineno">  624</span>        <a class="code hl_variable" href="group__spherical.html#gaee0ddcd277ec7a7a451dbd5b17f98187">globalRadius</a> *= 1.5;</div>
+<div class="line"><span class="lineno">  625</span>      printf (<span class="stringliteral">&quot;Scroll %s At %d %d\n&quot;</span>, (button == 3) ? <span class="stringliteral">&quot;Up&quot;</span> : <span class="stringliteral">&quot;Down&quot;</span>, x, y);</div>
+<div class="line"><span class="lineno">  626</span>    }</div>
+<div class="line"><span class="lineno">  627</span>  <span class="keywordflow">else</span></div>
+<div class="line"><span class="lineno">  628</span>    {  <span class="comment">// normal button event</span></div>
+<div class="line"><span class="lineno">  629</span>      printf (<span class="stringliteral">&quot;Button %s At %d %d\n&quot;</span>, (state == GLUT_DOWN) ? <span class="stringliteral">&quot;Down&quot;</span> : <span class="stringliteral">&quot;Up&quot;</span>, x, y);</div>
+<div class="line"><span class="lineno">  630</span>      <span class="keywordflow">if</span> (button == GLUT_LEFT_BUTTON)</div>
+<div class="line"><span class="lineno">  631</span>        {</div>
+<div class="line"><span class="lineno">  632</span>          <span class="keywordflow">if</span> (state == GLUT_DOWN)</div>
+<div class="line"><span class="lineno">  633</span>            {</div>
+<div class="line"><span class="lineno">  634</span>              <a class="code hl_variable" href="group__spherical.html#gac3d947315432e74f7c2d8f0dee6d5166">globalMouseLeftButton</a> = <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  635</span>              <a class="code hl_variable" href="group__input.html#ga86b84325bd56f5046ead1fc28690c412">globalXPrev</a> = x;</div>
+<div class="line"><span class="lineno">  636</span>              <a class="code hl_variable" href="group__input.html#ga5955bfd3ab86257de26e3b040e7fe4c3">globalYPrev</a> = y;</div>
+<div class="line"><span class="lineno">  637</span>            }</div>
+<div class="line"><span class="lineno">  638</span>          <span class="keywordflow">if</span> (state == GLUT_UP)</div>
+<div class="line"><span class="lineno">  639</span>            {</div>
+<div class="line"><span class="lineno">  640</span>              <a class="code hl_variable" href="group__spherical.html#gac3d947315432e74f7c2d8f0dee6d5166">globalMouseLeftButton</a> = <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  641</span>            }</div>
+<div class="line"><span class="lineno">  642</span>        }</div>
+<div class="line"><span class="lineno">  643</span>      <span class="keywordflow">else</span> <span class="keywordflow">if</span> (button == GLUT_RIGHT_BUTTON)</div>
+<div class="line"><span class="lineno">  644</span>        {</div>
+<div class="line"><span class="lineno">  645</span>          <span class="keywordflow">if</span> (state == GLUT_DOWN)</div>
+<div class="line"><span class="lineno">  646</span>            {</div>
+<div class="line"><span class="lineno">  647</span>              <span class="keywordtype">int</span> window_width = glutGet (GLUT_WINDOW_WIDTH);</div>
+<div class="line"><span class="lineno">  648</span>              <span class="keywordtype">int</span> window_height = glutGet (GLUT_WINDOW_HEIGHT);</div>
+<div class="line"><span class="lineno">  649</span> </div>
+<div class="line"><span class="lineno">  650</span>              GLbyte color[4];</div>
+<div class="line"><span class="lineno">  651</span>              GLfloat depth;</div>
+<div class="line"><span class="lineno">  652</span>              GLuint index;</div>
+<div class="line"><span class="lineno">  653</span> </div>
+<div class="line"><span class="lineno">  654</span>              glReadPixels (x, window_height - y - 1, 1, 1, GL_RGBA, GL_UNSIGNED_BYTE, color);</div>
+<div class="line"><span class="lineno">  655</span>              glReadPixels (x, window_height - y - 1, 1, 1, GL_DEPTH_COMPONENT, GL_FLOAT, &amp;depth);</div>
+<div class="line"><span class="lineno">  656</span>              glReadPixels (x, window_height - y - 1, 1, 1, GL_STENCIL_INDEX, GL_UNSIGNED_INT, &amp;index);</div>
 <div class="line"><span class="lineno">  657</span> </div>
-<div class="line"><span class="lineno">  658</span>              <span class="keywordtype">double</span> <a class="code hl_struct" href="structmodel.html">model</a>[16];</div>
-<div class="line"><span class="lineno">  659</span>              glGetDoublev (GL_MODELVIEW_MATRIX, <a class="code hl_struct" href="structmodel.html">model</a>);</div>
-<div class="line"><span class="lineno">  660</span>              <span class="keywordtype">double</span> proj[16];</div>
-<div class="line"><span class="lineno">  661</span>              glGetDoublev (GL_PROJECTION_MATRIX, proj);</div>
-<div class="line"><span class="lineno">  662</span>              <span class="keywordtype">int</span> view[4];</div>
-<div class="line"><span class="lineno">  663</span>              glGetIntegerv (GL_VIEWPORT, view);</div>
-<div class="line"><span class="lineno">  664</span>              gluUnProject (x, window_height - y - 1, depth,</div>
-<div class="line"><span class="lineno">  665</span>                            <a class="code hl_struct" href="structmodel.html">model</a>,</div>
-<div class="line"><span class="lineno">  666</span>                            proj,</div>
-<div class="line"><span class="lineno">  667</span>                            view,</div>
-<div class="line"><span class="lineno">  668</span>                            &amp;ox, &amp;oy, &amp;oz);</div>
-<div class="line"><span class="lineno">  669</span> </div>
-<div class="line"><span class="lineno">  670</span>              <a class="code hl_function" href="group__spherical.html#ga2a22d15f7463ccd8f8d1aa65e7578983">cartesian2Spherical</a> (ox, <a class="code hl_variable" href="group__position.html#ga249dfe7a961b98a6109c56ceec57d1ad">globalEyeY</a>, oz,</div>
-<div class="line"><span class="lineno">  671</span>                                   &amp;<a class="code hl_variable" href="group__spherical.html#gaee0ddcd277ec7a7a451dbd5b17f98187">globalRadius</a>, &amp;<a class="code hl_variable" href="group__spherical.html#gadaab4529e17c31628ede6500a0f9dd07">globalAzimuth</a>, &amp;<a class="code hl_variable" href="group__spherical.html#ga2788cc0fae99c064d291338b8fbe8484">globalElevation</a>);</div>
-<div class="line"><span class="lineno">  672</span> </div>
-<div class="line"><span class="lineno">  673</span>              <a class="code hl_variable" href="group__look_at.html#ga2cb5db8bdad416592fa643be93c764be">globalCenterX</a> = ox;</div>
-<div class="line"><span class="lineno">  674</span>              <a class="code hl_variable" href="group__look_at.html#gaa63e0d164754e930baf0d8d08106febb">globalCenterZ</a> = oz;</div>
-<div class="line"><span class="lineno">  675</span> </div>
-<div class="line"><span class="lineno">  676</span>              fprintf (stderr, <span class="stringliteral">&quot;%f %f %f&quot;</span>, ox, oy, oz);</div>
-<div class="line"><span class="lineno">  677</span>            }</div>
-<div class="line"><span class="lineno">  678</span>        }</div>
-<div class="line"><span class="lineno">  679</span>    }</div>
-<div class="line"><span class="lineno">  680</span> </div>
-<div class="line"><span class="lineno">  681</span>  <a class="code hl_function" href="group__engine.html#gab9813926390dc5773baf0b20dc2ea16e">redisplay</a> ();</div>
-<div class="line"><span class="lineno">  682</span>}</div>
+<div class="line"><span class="lineno">  658</span>              <span class="keywordtype">double</span> ox, oy, oz;</div>
+<div class="line"><span class="lineno">  659</span> </div>
+<div class="line"><span class="lineno">  660</span>              <span class="keywordtype">double</span> <a class="code hl_struct" href="structmodel.html">model</a>[16];</div>
+<div class="line"><span class="lineno">  661</span>              glGetDoublev (GL_MODELVIEW_MATRIX, <a class="code hl_struct" href="structmodel.html">model</a>);</div>
+<div class="line"><span class="lineno">  662</span>              <span class="keywordtype">double</span> proj[16];</div>
+<div class="line"><span class="lineno">  663</span>              glGetDoublev (GL_PROJECTION_MATRIX, proj);</div>
+<div class="line"><span class="lineno">  664</span>              <span class="keywordtype">int</span> view[4];</div>
+<div class="line"><span class="lineno">  665</span>              glGetIntegerv (GL_VIEWPORT, view);</div>
+<div class="line"><span class="lineno">  666</span>              gluUnProject (x, window_height - y - 1, depth,</div>
+<div class="line"><span class="lineno">  667</span>                            <a class="code hl_struct" href="structmodel.html">model</a>,</div>
+<div class="line"><span class="lineno">  668</span>                            proj,</div>
+<div class="line"><span class="lineno">  669</span>                            view,</div>
+<div class="line"><span class="lineno">  670</span>                            &amp;ox, &amp;oy, &amp;oz);</div>
+<div class="line"><span class="lineno">  671</span> </div>
+<div class="line"><span class="lineno">  672</span>              <a class="code hl_function" href="group__spherical.html#ga2a22d15f7463ccd8f8d1aa65e7578983">cartesian2Spherical</a> (ox, <a class="code hl_variable" href="group__position.html#ga249dfe7a961b98a6109c56ceec57d1ad">globalEyeY</a>, oz,</div>
+<div class="line"><span class="lineno">  673</span>                                   &amp;<a class="code hl_variable" href="group__spherical.html#gaee0ddcd277ec7a7a451dbd5b17f98187">globalRadius</a>, &amp;<a class="code hl_variable" href="group__spherical.html#gadaab4529e17c31628ede6500a0f9dd07">globalAzimuth</a>, &amp;<a class="code hl_variable" href="group__spherical.html#ga2788cc0fae99c064d291338b8fbe8484">globalElevation</a>);</div>
+<div class="line"><span class="lineno">  674</span> </div>
+<div class="line"><span class="lineno">  675</span>              <a class="code hl_variable" href="group__look_at.html#ga2cb5db8bdad416592fa643be93c764be">globalCenterX</a> = ox;</div>
+<div class="line"><span class="lineno">  676</span>              <a class="code hl_variable" href="group__look_at.html#gaa63e0d164754e930baf0d8d08106febb">globalCenterZ</a> = oz;</div>
+<div class="line"><span class="lineno">  677</span> </div>
+<div class="line"><span class="lineno">  678</span>              fprintf (stderr, <span class="stringliteral">&quot;%f %f %f&quot;</span>, ox, oy, oz);</div>
+<div class="line"><span class="lineno">  679</span>            }</div>
+<div class="line"><span class="lineno">  680</span>        }</div>
+<div class="line"><span class="lineno">  681</span>    }</div>
+<div class="line"><span class="lineno">  682</span> </div>
+<div class="line"><span class="lineno">  683</span>  <a class="code hl_function" href="group__engine.html#gab9813926390dc5773baf0b20dc2ea16e">redisplay</a> ();</div>
+<div class="line"><span class="lineno">  684</span>}</div>
 <div class="ttc" id="agroup__spherical_html_ga2a22d15f7463ccd8f8d1aa65e7578983"><div class="ttname"><a href="group__spherical.html#ga2a22d15f7463ccd8f8d1aa65e7578983">cartesian2Spherical</a></div><div class="ttdeci">void cartesian2Spherical(double x, double y, double z, double *radius, double *azimuth, double *elevation)</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00067">engine.cpp:67</a></div></div>
 <div class="ttc" id="agroup__spherical_html_gaee0ddcd277ec7a7a451dbd5b17f98187"><div class="ttname"><a href="group__spherical.html#gaee0ddcd277ec7a7a451dbd5b17f98187">globalRadius</a></div><div class="ttdeci">double globalRadius</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00054">engine.cpp:54</a></div></div>
 <div class="ttc" id="astructmodel_html"><div class="ttname"><a href="structmodel.html">model</a></div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00181">engine.cpp:181</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="engine_8cpp_source.html#l00067">cartesian2Spherical()</a>, <a class="el" href="engine_8cpp_source.html#l00055">globalAzimuth</a>, <a class="el" href="engine_8cpp_source.html#l00097">globalCenterX</a>, <a class="el" href="engine_8cpp_source.html#l00099">globalCenterZ</a>, <a class="el" href="engine_8cpp_source.html#l00056">globalElevation</a>, <a class="el" href="engine_8cpp_source.html#l00085">globalEyeY</a>, <a class="el" href="engine_8cpp_source.html#l00057">globalMouseLeftButton</a>, <a class="el" href="engine_8cpp_source.html#l00054">globalRadius</a>, <a class="el" href="engine_8cpp_source.html#l00603">globalXPrev</a>, <a class="el" href="engine_8cpp_source.html#l00604">globalYPrev</a>, and <a class="el" href="engine_8cpp_source.html#l00390">redisplay()</a>.</p>
+<p class="reference">References <a class="el" href="engine_8cpp_source.html#l00067">cartesian2Spherical()</a>, <a class="el" href="engine_8cpp_source.html#l00055">globalAzimuth</a>, <a class="el" href="engine_8cpp_source.html#l00097">globalCenterX</a>, <a class="el" href="engine_8cpp_source.html#l00099">globalCenterZ</a>, <a class="el" href="engine_8cpp_source.html#l00056">globalElevation</a>, <a class="el" href="engine_8cpp_source.html#l00085">globalEyeY</a>, <a class="el" href="engine_8cpp_source.html#l00057">globalMouseLeftButton</a>, <a class="el" href="engine_8cpp_source.html#l00054">globalRadius</a>, <a class="el" href="engine_8cpp_source.html#l00605">globalXPrev</a>, <a class="el" href="engine_8cpp_source.html#l00606">globalYPrev</a>, and <a class="el" href="engine_8cpp_source.html#l00390">redisplay()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00716">engine_run()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00718">engine_run()</a>.</p>
 <div id="dynsection-5" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-5-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-5-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-5-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="group__input_gad48076b61c0ddb6bd4fadf644bf59ff1_cgraph.png" border="0" usemap="#agroup__input_gad48076b61c0ddb6bd4fadf644bf59ff1_cgraph" alt=""/></div>
-<map name="agroup__input_gad48076b61c0ddb6bd4fadf644bf59ff1_cgraph" id="agroup__input_gad48076b61c0ddb6bd4fadf644bf59ff1_cgraph">
-<area shape="rect" title=" " alt="" coords="5,31,101,57"/>
-<area shape="rect" href="group__spherical.html#ga2a22d15f7463ccd8f8d1aa65e7578983" title=" " alt="" coords="149,5,300,32"/>
-<area shape="rect" href="group__engine.html#gab9813926390dc5773baf0b20dc2ea16e" title=" " alt="" coords="183,56,266,83"/>
-<area shape="rect" href="group__spherical.html#gab5ff5216bffd1e15798677f24213213d" title=" " alt="" coords="348,56,499,83"/>
-</map>
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__input_gad48076b61c0ddb6bd4fadf644bf59ff1_cgraph.svg" width="504" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 <div id="dynsection-6" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-6-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-6-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-6-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="group__input_gad48076b61c0ddb6bd4fadf644bf59ff1_icgraph.png" border="0" usemap="#agroup__input_gad48076b61c0ddb6bd4fadf644bf59ff1_icgraph" alt=""/></div>
-<map name="agroup__input_gad48076b61c0ddb6bd4fadf644bf59ff1_icgraph" id="agroup__input_gad48076b61c0ddb6bd4fadf644bf59ff1_icgraph">
-<area shape="rect" title=" " alt="" coords="251,5,347,32"/>
-<area shape="rect" href="group__engine.html#ga98eaf946471acbd931de5d52ca83b3d1" title=" " alt="" coords="108,5,203,32"/>
-<area shape="rect" href="group__engine.html#ga3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,5,60,32"/>
-</map>
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__input_gad48076b61c0ddb6bd4fadf644bf59ff1_icgraph.svg" width="352" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>
@@ -641,9 +611,9 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00603">603</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00605">605</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00684">motionFunc()</a>, and <a class="el" href="engine_8cpp_source.html#l00606">mouseFunc()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00686">motionFunc()</a>, and <a class="el" href="engine_8cpp_source.html#l00608">mouseFunc()</a>.</p>
 
 </div>
 </div>
@@ -659,9 +629,9 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00604">604</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00606">606</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00684">motionFunc()</a>, and <a class="el" href="engine_8cpp_source.html#l00606">mouseFunc()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00686">motionFunc()</a>, and <a class="el" href="engine_8cpp_source.html#l00608">mouseFunc()</a>.</p>
 
 </div>
 </div>
