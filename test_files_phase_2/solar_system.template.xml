@@ -1,0 +1,79 @@
+<world> <!-- a world can have a camera, a set of lights, and a single group -->
+	
+    <camera> 
+	    <position x="-400" y="0" z="400" />
+	    <lookAt x="0" y="0" z="0" />
+	    <up x="0" y="1" z="0" /> <!-- optional, use these values as default-->
+        <projection fov="60" near="10" far="100000" /> <!-- optional, use these values as default-->
+    </camera>
+    <group>
+        <models>
+		    <model file="sun.3d" />
+        </models>
+        <group>
+            <transform>
+                <translate x="MERCURY" y="0" z="0" />
+            </transform>
+			<models>
+				<model file="mercury.3d" />
+			</models>
+        </group>
+        <group>
+            <transform>
+                <translate x="VENUS" y="0" z="0" />
+            </transform>
+            <models>
+                <model file="venus.3d" />
+            </models>
+        </group>
+        <group>
+            <transform>
+                <translate x="EARTH" y="0" z="0" />
+            </transform>
+            <models>
+                <model file="earth.3d" />
+            </models>
+        </group>
+        <group>
+            <transform>
+                <translate x="MARS" y="0" z="0" />
+            </transform>
+            <models>
+                <model file="mars.3d" />
+            </models>
+        </group>
+        <group>
+            <transform>
+                <translate x="JUPITER" y="0" z="0" />
+            </transform>
+            <models>
+                <model file="jupiter.3d" />
+            </models>
+        </group>
+        <group>
+            <transform>
+                <translate x="SATURN" y="0" z="0" />
+            </transform>
+            <models>
+                <model file="saturn.3d" />
+            </models>
+        </group>
+        <group>
+            <transform>
+                <translate x="URANUS" y="0" z="0" />
+            </transform>
+            <models>
+                <model file="uranus.3d" />
+            </models>
+        </group>
+        <group>
+            <transform>
+                <translate x="NEPTUNE" y="0" z="0" />
+            </transform>
+            <models>
+                <model file="neptune.3d" />
+            </models>
+        </group>
+
+    </group>
+</world>
