@@ -5,6 +5,7 @@
 #include <GLUT/glut.h>
 #else
 
+#include <GL/glew.h>
 #include <GL/glut.h>
 
 #endif
@@ -17,6 +18,11 @@
 
 #define _USE_MATH_DEFINES
 #include <math.h>
+
+/* Required!
+We probably don't need all this brings into scope, but it's not relevant.
+*/
+using namespace std;
 
 /*rotation*/
 const unsigned int DEFAULT_GLOBAL_ANGLE_STEP = 16;
@@ -40,6 +46,15 @@ static float globalScaleX = 1;
 static float globalScaleY = 1;
 static float globalScaleZ = 1;
 
+/*
+VBO related variables.
+*/
+
+/*
+glGenBuffer will place a buffer object name for VBO mode (no index) in this variable.
+Each model needs an index, so there must be a globally accessible vector for all models.
+*/
+vector<GLuint> vbo_indices;
 
 
 /*! @addtogroup camera
@@ -179,7 +194,7 @@ void env_load_defaults ()
 /*! @addtogroup modelEngine
  * @{*/
 typedef struct model {
-  float *vertices;
+  vector<float> vertices;
   unsigned int nVertices;
 } *Model;
 
@@ -203,31 +218,38 @@ Model allocModel (const char *path)
   fread (modelBuf, 3 * sizeof (float), nVertices, fp);
   fclose (fp);
 
+  vector<float> modelVec;
+  for (int i = 0; i < nVertices; i++) {
+    modelVec.push_back(modelBuf[i]);
+  }
+  free(modelBuf);
+
   Model model = (Model) malloc (sizeof (Model));
 
   model->nVertices = nVertices;
-  model->vertices = modelBuf;
+  model->vertices = modelVec;
 
   return model;
 }
 
-void renderModel (Model model)
+void renderModel (Model model, GLuint64 vbo_ix)
 {
   if (!model->nVertices % 3)
     {
       fprintf (stderr, "Number of coordinates is not divisible by 3");
       exit (1);
     }
-  glBegin (GL_TRIANGLES);
-  for (unsigned int i = 0; i < 3 * model->nVertices; i += 3)
-    glVertex3f (model->vertices[i], model->vertices[i + 1], model->vertices[i + 2]);
-  glEnd ();
+
+  glBindBuffer(GL_ARRAY_BUFFER, vbo_ix);
+  (3, GL_FLOAT, 0, 0);
+  (GL_TRIANGLES, 0, model->nVertices);
 }
 
 void renderAllModels ()
 {
-  for (Model m : globalModels)
-    renderModel (m);
+  for (int i = 0; i < globalModels.size(); i++) {
+    renderModel(globalModels[i], vbo_indices[i]);
+  }
 }
 
 size_t readModelToBuffer (const char *path, float *p, unsigned int n)
@@ -350,7 +372,8 @@ void operations_render (std::vector<float> *operations)
 
               globalModels.push_back (allocModel (modelName));
             }
-          renderModel (globalModels.at (modelNo++));
+          renderModel (globalModels[modelNo], vbo_indices[modelNo]);
+          modelNo++;
           i += stringSize + 1; //just to be explicit
           continue;
         }
@@ -713,6 +736,7 @@ int load_xml1 (FILE *xmlFILE)
 {
   tinyxml2::XMLDocument doc;
   doc.LoadFile (xmlFILE);
+  int vbo_num = 0;
 
   globalEyeX = doc.FirstChildElement ("world")->FirstChildElement ("camera")->FirstChildElement (
       "position")->FloatAttribute ("x");
@@ -744,12 +768,23 @@ int load_xml1 (FILE *xmlFILE)
   globalModels.push_back (allocModel (
       doc.FirstChildElement ("world")->FirstChildElement ("group")->FirstChildElement (
           "models")->FirstChildElement ("model")->Attribute ("file")));
+  vbo_num++;
 
   tinyxml2::XMLElement *model2 = doc.FirstChildElement ("world")->FirstChildElement ("group")->FirstChildElement (
       "models")->FirstChildElement ("model")->NextSiblingElement ("model");
 
-  if (model2)
+  if (model2) {
     globalModels.push_back (allocModel (model2->Attribute ("file")));
+    vbo_num++;
+  }
+
+  vbo_indices.resize(vbo_num);
+
+  glGenBuffers(vbo_indices.size(), vbo_indices.data());
+  for (int i = 0; i < vbo_indices.size(); i++) {
+    glBindBuffer(GL_ARRAY_BUFFER, vbo_indices[i]);
+    glBufferData(GL_ARRAY_BUFFER, globalModels[i]->nVertices * sizeof(float), globalModels[i]->vertices.data(), GL_STATIC_DRAW);
+  }
 
   return 1;
 }
