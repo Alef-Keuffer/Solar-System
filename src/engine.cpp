@@ -232,7 +232,7 @@ Model allocModel (const char *path)
   return model;
 }
 
-void renderModel (Model model, GLuint64 vbo_ix)
+void renderModel (Model model, GLuint vbo_ix)
 {
   if (!model->nVertices % 3)
     {
@@ -241,8 +241,8 @@ void renderModel (Model model, GLuint64 vbo_ix)
     }
 
   glBindBuffer(GL_ARRAY_BUFFER, vbo_ix);
-  (3, GL_FLOAT, 0, 0);
-  (GL_TRIANGLES, 0, model->nVertices);
+  glVertexPointer(3, GL_FLOAT, 0, 0);
+  glDrawArrays(GL_TRIANGLES, 0, model->nVertices);
 }
 
 void renderAllModels ()
@@ -372,6 +372,12 @@ void operations_render (std::vector<float> *operations)
 
               globalModels.push_back (allocModel (modelName));
             }
+
+          glGenBuffers(1, &(vbo_indices[modelNo]));
+          glBindBuffer(GL_ARRAY_BUFFER, vbo_indices[modelNo]);
+          Model m = globalModels.back();
+          glBufferData(GL_ARRAY_BUFFER, sizeof(float) * m->vertices.size(), m->vertices.data(),     GL_STATIC_DRAW);
+
           renderModel (globalModels[modelNo], vbo_indices[modelNo]);
           modelNo++;
           i += stringSize + 1; //just to be explicit
