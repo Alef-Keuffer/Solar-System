@@ -40,39 +40,6 @@ static float globalScaleX = 1;
 static float globalScaleY = 1;
 static float globalScaleZ = 1;
 
-
-
-/*! @addtogroup camera
- * @{*/
-
-/*! @addtogroup spherical
- * @{ */
-double DEFAULT_GLOBAL_RADIUS = 1;
-double DEFAULT_GLOBAL_AZIMUTH = 0;
-double DEFAULT_GLOBAL_ELEVATION = 0;
-
-double globalRadius = DEFAULT_GLOBAL_RADIUS;
-double globalAzimuth = DEFAULT_GLOBAL_AZIMUTH;
-double globalElevation = DEFAULT_GLOBAL_ELEVATION;
-bool globalMouseLeftButton = false;
-
-void spherical2Cartesian (double radius, double elevation, double azimuth, double *x, double *y, double *z)
-{
-
-  *x = radius * cos (elevation) * sin (azimuth);
-  *y = radius * sin (elevation);
-  *z = radius * cos (elevation) * cos (azimuth);
-}
-
-void cartesian2Spherical (double x, double y, double z, double *radius, double *azimuth, double *elevation)
-{
-  *radius = abs (sqrt (pow (x, 2) + pow (y, 2) + pow (z, 2)));
-  *elevation = asin (y / (*radius));
-  *azimuth = asin (x / (*radius * cos (*elevation)));
-
-}
-
-//! @} end of group spherical
 /*! @addtogroup position
  * @{*/
 const unsigned int DEFAULT_GLOBAL_EYE_STEP = 1;
@@ -123,6 +90,37 @@ static float globalNear = DEFAULT_GLOBAL_NEAR;
 static float globalFar = DEFAULT_GLOBAL_FAR;
 //!@} end of group projection
 //!@} end of group camera
+
+/*! @addtogroup camera
+ * @{*/
+
+/*! @addtogroup spherical
+ * @{ */
+double DEFAULT_GLOBAL_RADIUS = 1;
+double DEFAULT_GLOBAL_AZIMUTH = 0;
+double DEFAULT_GLOBAL_ELEVATION = 0;
+
+double globalRadius = DEFAULT_GLOBAL_RADIUS;
+double globalAzimuth = DEFAULT_GLOBAL_AZIMUTH;
+double globalElevation = DEFAULT_GLOBAL_ELEVATION;
+bool globalMouseLeftButton = false;
+
+void spherical2Cartesian (double radius, double elevation, double azimuth, double *x, double *y, double *z)
+{
+
+  *x = radius * cos (elevation) * sin (azimuth) + globalCenterX;
+  *y = radius * sin (elevation) + globalCenterY;
+  *z = radius * cos (elevation) * cos (azimuth) + globalCenterZ;
+}
+
+void cartesian2Spherical (double x, double y, double z, double *radius, double *azimuth, double *elevation)
+{
+  *radius = abs (sqrt (pow (x, 2) + pow (y, 2) + pow (z, 2)));
+  *elevation = asin (y / (*radius));
+  *azimuth = asin (x / (*radius * cos (*elevation)));
+}
+
+//! @} end of group spherical
 
 void env_load_defaults ()
 {
@@ -363,22 +361,19 @@ void draw_axes ()
   /*draw absolute (before any transformation) axes*/
   glBegin (GL_LINES);
   /*X-axis in red*/
-  glColor3f (1.0f, 0.0f, 0.0f);
-  glVertex3f (
-      -100.0f, 0.0f, 0.0f);
-  glVertex3f (100.0f, 0.0f, 0.0f);
+  glColor3f (1, 0, 0);
+  glVertex3f (100, 0, 0);
+  glVertex3f (-100, 0, 0);
 
   /*Y-Axis in Green*/
-  glColor3f (0.0f, 1.0f, 0.0f);
-  glVertex3f (0.0f,
-              -100.0f, 0.0f);
-  glVertex3f (0.0f, 100.0f, 0.0f);
+  glColor3f (0, 1, 0);
+  glVertex3f (0, 100, 0);
+  glVertex3f (0, -100, 0);
 
   /*Z-Axis in Blue*/
-  glColor3f (0.0f, 0.0f, 1.0f);
-  glVertex3f (0.0f, 0.0f,
-              -100.0f);
-  glVertex3f (0.0f, 0.0f, 100.0f);
+  glColor3f (0, 0, 1);
+  glVertex3f (0, 0, 100);
+  glVertex3f (0, 0, -100);
   glColor3d (1, 1, 1);
   glEnd ();
   /*end of draw absolute (before any transformation) axes*/
@@ -386,10 +381,26 @@ void draw_axes ()
 
 /*!@addtogroup engine
  * @{*/
+
 void redisplay ()
 {
   spherical2Cartesian (globalRadius, globalElevation, globalAzimuth, &globalEyeX, &globalEyeY, &globalEyeZ);
   glutPostRedisplay ();
+}
+
+void renderGreenPlane ()
+{
+  glColor3f (0.2f, 0.8f, 0.2f);
+  glBegin (GL_TRIANGLES);
+  glVertex3f (100.0f, 0, -100.0f);
+  glVertex3f (-100.0f, 0, -100.0f);
+  glVertex3f (-100.0f, 0, 100.0f);
+
+  glVertex3f (100.0f, 0, -100.0f);
+  glVertex3f (-100.0f, 0, 100.0f);
+  glVertex3f (100.0f, 0, 100.0f);
+  glEnd ();
+  glColor3f (1, 1, 1);
 }
 
 void renderScene ()
@@ -401,20 +412,20 @@ void renderScene ()
   // helps in avoiding rounding mistakes, discards old matrix, read more
   glLoadIdentity ();
 
+  /*draw absolute (before any transformation) axes*/
+  draw_axes ();
 
   // set the camera
   gluLookAt (globalEyeX, globalEyeY, globalEyeZ,
              globalCenterX, globalCenterY, globalCenterZ,
              globalUpX, globalUpY, globalUpZ);
 
-  /*draw absolute (before any transformation) axes*/
-  draw_axes ();
-
   // put the geometric transformations here
   glRotatef (globalAngle, globalRotateX, globalRotateY, globalRotateZ);
-  glTranslatef (globalTranslateX, globalTranslateY, globalTranslateZ);
+  //glTranslatef (globalTranslateX, globalTranslateY, globalTranslateZ);
   glScalef (globalScaleX, globalScaleY, globalScaleZ);
 
+  renderGreenPlane ();
   operations_render (&globalOperations);
 
   // End of frame
@@ -628,8 +639,41 @@ void mouseFunc (int button, int state, int x, int y)
         {
           if (state == GLUT_DOWN)
             {
-              globalEyeX = x;
-              globalEyeZ = y;
+              int window_width = glutGet (GLUT_WINDOW_WIDTH);
+              int window_height = glutGet (GLUT_WINDOW_HEIGHT);
+
+              GLbyte color[4];
+              GLfloat depth;
+              GLuint index;
+
+              //glReadPixels (x, window_height - y - 1, 1, 1, GL_RGBA, GL_UNSIGNED_BYTE, color);
+              glReadPixels (x, window_height - y - 1, 1, 1, GL_DEPTH_COMPONENT, GL_FLOAT, &depth);
+              //glReadPixels (x, window_height - y - 1, 1, 1, GL_STENCIL_INDEX, GL_UNSIGNED_INT, &index);
+
+              double ox, oy, oz;
+
+              double model[16];
+              glGetDoublev (GL_MODELVIEW_MATRIX, model);
+              double proj[16];
+              glGetDoublev (GL_PROJECTION_MATRIX, proj);
+              int view[4];
+              glGetIntegerv (GL_VIEWPORT, view);
+              gluUnProject (x, window_height - y - 1, depth,
+                            model,
+                            proj,
+                            view,
+                            &ox, &oy, &oz);
+              fprintf (stderr, "%d %d\n", x, y);
+              //globalTranslateX = -ox;
+              //globalTranslateZ = -oz;
+              /*cartesian2Spherical (ox, globalEyeY, oz,
+                                   &globalRadius, &globalAzimuth, &globalElevation);*/
+              //              globalTranslateX = ox;
+              //              globalTranslateZ = oz;
+              globalCenterX = ox;
+              globalCenterZ = oz;
+
+              fprintf (stderr, "%f %f %f\n", ox, oy, oz);
             }
         }
     }
@@ -696,7 +740,7 @@ void engine_run (int argc, char **argv)
   //  OpenGL settings
   glEnable (GL_DEPTH_TEST);
   glEnable (GL_CULL_FACE);
-  glPolygonMode (GL_FRONT, GL_LINE);
+  //  glPolygonMode (GL_FRONT, GL_LINE);
 
   // enter GLUT's main cycle
   glutMainLoop ();
@@ -708,48 +752,3 @@ int main (int argc, char **argv)
   return 1;
 }
 //!@} end of group engine
-
-int load_xml1 (FILE *xmlFILE)
-{
-  tinyxml2::XMLDocument doc;
-  doc.LoadFile (xmlFILE);
-
-  globalEyeX = doc.FirstChildElement ("world")->FirstChildElement ("camera")->FirstChildElement (
-      "position")->FloatAttribute ("x");
-  globalEyeY = doc.FirstChildElement ("world")->FirstChildElement ("camera")->FirstChildElement (
-      "position")->FloatAttribute ("y");
-  globalEyeZ = doc.FirstChildElement ("world")->FirstChildElement ("camera")->FirstChildElement (
-      "position")->FloatAttribute ("z");
-
-  globalCenterX = doc.FirstChildElement ("world")->FirstChildElement ("camera")->FirstChildElement (
-      "lookAt")->FloatAttribute ("x");
-  globalCenterY = doc.FirstChildElement ("world")->FirstChildElement ("camera")->FirstChildElement (
-      "lookAt")->FloatAttribute ("y");
-  globalCenterZ = doc.FirstChildElement ("world")->FirstChildElement ("camera")->FirstChildElement (
-      "lookAt")->FloatAttribute ("z");
-
-  globalUpX = doc.FirstChildElement ("world")->FirstChildElement ("camera")->FirstChildElement (
-      "up")->FloatAttribute ("x");
-  globalUpY = doc.FirstChildElement ("world")->FirstChildElement ("camera")->FirstChildElement (
-      "up")->FloatAttribute ("y");
-  globalUpZ = doc.FirstChildElement ("world")->FirstChildElement ("camera")->FirstChildElement (
-      "up")->FloatAttribute ("z");
-  globalFOV = doc.FirstChildElement ("world")->FirstChildElement ("camera")->FirstChildElement (
-      "projection")->FloatAttribute ("fov");
-  globalNear = doc.FirstChildElement ("world")->FirstChildElement ("camera")->FirstChildElement (
-      "projection")->FloatAttribute ("near");
-  globalFar = doc.FirstChildElement ("world")->FirstChildElement ("camera")->FirstChildElement (
-      "projection")->FloatAttribute ("far");
-
-  globalModels.push_back (allocModel (
-      doc.FirstChildElement ("world")->FirstChildElement ("group")->FirstChildElement (
-          "models")->FirstChildElement ("model")->Attribute ("file")));
-
-  tinyxml2::XMLElement *model2 = doc.FirstChildElement ("world")->FirstChildElement ("group")->FirstChildElement (
-      "models")->FirstChildElement ("model")->NextSiblingElement ("model");
-
-  if (model2)
-    globalModels.push_back (allocModel (model2->Attribute ("file")));
-
-  return 1;
-}
