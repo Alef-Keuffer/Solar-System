@@ -54,7 +54,8 @@ VBO related variables.
 glGenBuffer will place a buffer object name for VBO mode (no index) in this variable.
 Each model needs an index, so there must be a globally accessible vector for all models.
 */
-vector<GLuint> vbo_indices;
+vector<GLuint> vbo_indices (100);
+unsigned int VBO;
 
 
 /*! @addtogroup camera
@@ -194,7 +195,7 @@ void env_load_defaults ()
 /*! @addtogroup modelEngine
  * @{*/
 typedef struct model {
-  vector<float> vertices;
+  float *vertices;
   unsigned int nVertices;
 } *Model;
 
@@ -218,16 +219,15 @@ Model allocModel (const char *path)
   fread (modelBuf, 3 * sizeof (float), nVertices, fp);
   fclose (fp);
 
-  vector<float> modelVec;
-  for (int i = 0; i < nVertices; i++) {
-    modelVec.push_back(modelBuf[i]);
-  }
-  free(modelBuf);
-
   Model model = (Model) malloc (sizeof (Model));
+  if (model == NULL)
+    {
+      fprintf (stderr, "Failed loading model\n");
+      exit (1);
+    }
 
   model->nVertices = nVertices;
-  model->vertices = modelVec;
+  model->vertices = modelBuf;
 
   return model;
 }
@@ -240,16 +240,17 @@ void renderModel (Model model, GLuint vbo_ix)
       exit (1);
     }
 
-  glBindBuffer(GL_ARRAY_BUFFER, vbo_ix);
-  glVertexPointer(3, GL_FLOAT, 0, 0);
-  glDrawArrays(GL_TRIANGLES, 0, model->nVertices);
+  glBindBuffer (GL_ARRAY_BUFFER, vbo_ix);
+  glVertexPointer (3, GL_FLOAT, 0, 0);
+  glDrawArrays (GL_TRIANGLES, 0, model->nVertices);
 }
 
 void renderAllModels ()
 {
-  for (int i = 0; i < globalModels.size(); i++) {
-    renderModel(globalModels[i], vbo_indices[i]);
-  }
+  for (int i = 0; i < globalModels.size (); i++)
+    {
+      renderModel (globalModels[i], vbo_indices[i]);
+    }
 }
 
 size_t readModelToBuffer (const char *path, float *p, unsigned int n)
@@ -336,30 +337,33 @@ void operations_render (std::vector<float> *operations)
     {
       switch ((int) operations->at (i))
         {
-      case ROTATE:
-        glRotatef (operations->at (i + 1),
-                   operations->at (i + 2),
-                   operations->at (i + 3),
-                   operations->at (i + 4));
+          case ROTATE:
+            glRotatef (operations->at (i + 1),
+                       operations->at (i + 2),
+                       operations->at (i + 3),
+                       operations->at (i + 4));
           i += 4;
           continue;
-      case TRANSLATE:
-        glTranslatef (operations->at (i + 1),
+          case TRANSLATE:
+            glTranslatef (operations->at (i + 1),
+                          operations->at (i + 2),
+                          operations->at (i + 3));
+          i += 3;
+          continue;
+          case SCALE:
+            glScalef (operations->at (i + 1),
                       operations->at (i + 2),
                       operations->at (i + 3));
           i += 3;
           continue;
-      case SCALE:
-        glScalef (operations->at (i + 1),
-                  operations->at (i + 2),
-                  operations->at (i + 3));
-          i += 3;
+          case BEGIN_GROUP:
+            glPushMatrix ();
           continue;
-      case BEGIN_GROUP:glPushMatrix ();
+          case END_GROUP:
+            glPopMatrix ();
           continue;
-      case END_GROUP:glPopMatrix ();
-          continue;
-      case LOAD_MODEL:int stringSize = (int) operations->at (i + 1);
+          case LOAD_MODEL:
+            int stringSize = (int) operations->at (i + 1);
           if (!hasPushedModels)
             {
               char modelName[stringSize + 1];
@@ -371,12 +375,12 @@ void operations_render (std::vector<float> *operations)
               modelName[j] = 0;
 
               globalModels.push_back (allocModel (modelName));
+              glGenBuffers (1, &vbo_indices[modelNo]);
+              glBindBuffer (GL_ARRAY_BUFFER, vbo_indices[modelNo]);
+              Model m = globalModels.back ();
+              glBufferData (GL_ARRAY_BUFFER, sizeof (float) * 3 * m->nVertices, m->vertices, GL_STATIC_DRAW);
+              free(m->vertices);
             }
-
-          glGenBuffers(1, &(vbo_indices[modelNo]));
-          glBindBuffer(GL_ARRAY_BUFFER, vbo_indices[modelNo]);
-          Model m = globalModels.back();
-          glBufferData(GL_ARRAY_BUFFER, sizeof(float) * m->vertices.size(), m->vertices.data(),     GL_STATIC_DRAW);
 
           renderModel (globalModels[modelNo], vbo_indices[modelNo]);
           modelNo++;
@@ -482,135 +486,179 @@ void keyboardFunc (unsigned char key, int xmouse, int ymouse)
   switch (key)
     {
       /*Rotation*/
-  case 'x':globalRotateX -= 1;
+      case 'x':
+        globalRotateX -= 1;
       break;
 
-  case 'X':globalRotateX += 1;
+      case 'X':
+        globalRotateX += 1;
       break;
 
-  case 'y':globalRotateY -= 1;
+      case 'y':
+        globalRotateY -= 1;
       break;
 
-  case 'Y':globalRotateY += 1;
+      case 'Y':
+        globalRotateY += 1;
       break;
 
-  case 'z':globalRotateZ -= 1;
+      case 'z':
+        globalRotateZ -= 1;
       break;
 
-  case 'Z':globalRotateZ += 1;
+      case 'Z':
+        globalRotateZ += 1;
       break;
 
-  case ',':globalAngle -= globalAngleStep;
+      case ',':
+        globalAngle -= globalAngleStep;
       break;
 
-  case '.':globalAngle += globalAngleStep;
+      case '.':
+        globalAngle += globalAngleStep;
       break;
 
-  case '<':globalAngleStep /= 2;
+      case '<':
+        globalAngleStep /= 2;
       break;
 
-  case '>':globalAngleStep *= 2;
+      case '>':
+        globalAngleStep *= 2;
       break;
 
       /*translation*/
-  case 'T':globalTranslateStep *= 2;
+      case 'T':
+        globalTranslateStep *= 2;
       break;
-  case 't':
-    if (globalTranslateStep > 1)
-      globalTranslateStep /= 2;
+      case 't':
+        if (globalTranslateStep > 1)
+          globalTranslateStep /= 2;
       break;
 
       /*z-axis*/
-  case 'w':globalTranslateZ += globalTranslateStep;
+      case 'w':
+        globalTranslateZ += globalTranslateStep;
       break;
-  case 's':globalTranslateZ -= globalTranslateStep;
+      case 's':
+        globalTranslateZ -= globalTranslateStep;
       break;
 
       /*x-axis*/
-  case 'a':globalTranslateX -= globalTranslateStep;
+      case 'a':
+        globalTranslateX -= globalTranslateStep;
       break;
-  case 'd':globalTranslateX += globalTranslateStep;
+      case 'd':
+        globalTranslateX += globalTranslateStep;
       break;
 
       /*y-axis*/
-  case 'q':globalTranslateY -= globalTranslateStep;
+      case 'q':
+        globalTranslateY -= globalTranslateStep;
       break;
-  case 'e':globalTranslateY += globalTranslateStep;
+      case 'e':
+        globalTranslateY += globalTranslateStep;
       break;
       /*end of translation*/
 
       /*scaling*/
 
       /*z-axis*/
-  case 'i':globalScaleZ += globalScaleStep;
+      case 'i':
+        globalScaleZ += globalScaleStep;
       break;
-  case 'k':globalScaleZ -= globalScaleStep;
+      case 'k':
+        globalScaleZ -= globalScaleStep;
       break;
 
       /*x-axis*/
-  case 'j':globalScaleX -= globalScaleStep;
+      case 'j':
+        globalScaleX -= globalScaleStep;
       break;
-  case 'l':globalScaleX += globalScaleStep;
+      case 'l':
+        globalScaleX += globalScaleStep;
       break;
 
       /*y-axis*/
-  case 'u':globalScaleY -= globalScaleStep;
+      case 'u':
+        globalScaleY -= globalScaleStep;
       break;
-  case 'o':globalScaleY += globalScaleStep;
+      case 'o':
+        globalScaleY += globalScaleStep;
       break;
       /*end of scaling*/
 
       /*camera*/
-  case '`':globalEyeStep *= 2;
+      case '`':
+        globalEyeStep *= 2;
       break;
-  case '~':
-    if (globalEyeStep > 1)
-      globalEyeStep /= 2;
-      break;
-
-  case '1':globalEyeX -= globalEyeStep;
-      break;
-  case '!':globalEyeX += globalEyeStep;
-      break;
-  case '2':globalEyeY -= globalEyeStep;
-      break;
-  case '@':globalEyeY += globalEyeStep;
-      break;
-  case '3':globalEyeZ -= globalEyeStep;
-      break;
-  case '#':globalEyeZ += globalEyeStep;
+      case '~':
+        if (globalEyeStep > 1)
+          globalEyeStep /= 2;
       break;
 
-  case '4':globalCenterX -= globalCenterStep;
+      case '1':
+        globalEyeX -= globalEyeStep;
       break;
-  case '$':globalCenterX += globalCenterStep;
+      case '!':
+        globalEyeX += globalEyeStep;
       break;
-  case '5':globalCenterY -= globalCenterStep;
+      case '2':
+        globalEyeY -= globalEyeStep;
       break;
-  case '%':globalCenterY += globalCenterStep;
+      case '@':
+        globalEyeY += globalEyeStep;
       break;
-  case '6':globalCenterZ -= globalCenterStep;
+      case '3':
+        globalEyeZ -= globalEyeStep;
       break;
-  case '^':globalCenterZ += globalCenterStep;
+      case '#':
+        globalEyeZ += globalEyeStep;
       break;
-  case '7':globalUpX -= globalUpStep;
+
+      case '4':
+        globalCenterX -= globalCenterStep;
       break;
-  case '&':globalUpX += globalUpStep;
+      case '$':
+        globalCenterX += globalCenterStep;
       break;
-  case '8':globalUpY -= globalUpStep;
+      case '5':
+        globalCenterY -= globalCenterStep;
       break;
-  case '*':globalUpY += globalUpStep;
+      case '%':
+        globalCenterY += globalCenterStep;
       break;
-  case '9':globalUpZ -= globalUpStep;
+      case '6':
+        globalCenterZ -= globalCenterStep;
       break;
-  case '(':globalUpZ += globalUpStep;
+      case '^':
+        globalCenterZ += globalCenterStep;
+      break;
+      case '7':
+        globalUpX -= globalUpStep;
+      break;
+      case '&':
+        globalUpX += globalUpStep;
+      break;
+      case '8':
+        globalUpY -= globalUpStep;
+      break;
+      case '*':
+        globalUpY += globalUpStep;
+      break;
+      case '9':
+        globalUpZ -= globalUpStep;
+      break;
+      case '(':
+        globalUpZ += globalUpStep;
       break;
 
       /*reset environment*/
-  case '0':env_load_defaults ();
+      case '0':
+        env_load_defaults ();
       break;
 
-  default:break;
+      default:
+        break;
     }
   redisplay (); //request display() call ASAP
 }
@@ -701,8 +749,11 @@ void motionFunc (int x, int y)
 void engine_run (int argc, char **argv)
 {
 
-  if (argc > 0)
-    xml_load_and_set_env (argv[1]);
+  if (argc != 2)
+    {
+      fprintf (stderr, "Number of arguments is not one\n");
+      exit (1);
+    }
 
   // init GLUT and the window
   glutInit (&argc, argv);
@@ -724,10 +775,13 @@ void engine_run (int argc, char **argv)
 
   //  OpenGL settings
   glEnable (GL_DEPTH_TEST);
+  glEnableClientState (GL_VERTEX_ARRAY);
   glEnable (GL_CULL_FACE);
   glPolygonMode (GL_FRONT, GL_LINE);
 
   // enter GLUT's main cycle
+  glewInit ();
+  xml_load_and_set_env (argv[1]);
   glutMainLoop ();
 }
 
@@ -738,59 +792,3 @@ int main (int argc, char **argv)
 }
 //!@} end of group engine
 
-int load_xml1 (FILE *xmlFILE)
-{
-  tinyxml2::XMLDocument doc;
-  doc.LoadFile (xmlFILE);
-  int vbo_num = 0;
-
-  globalEyeX = doc.FirstChildElement ("world")->FirstChildElement ("camera")->FirstChildElement (
-      "position")->FloatAttribute ("x");
-  globalEyeY = doc.FirstChildElement ("world")->FirstChildElement ("camera")->FirstChildElement (
-      "position")->FloatAttribute ("y");
-  globalEyeZ = doc.FirstChildElement ("world")->FirstChildElement ("camera")->FirstChildElement (
-      "position")->FloatAttribute ("z");
-
-  globalCenterX = doc.FirstChildElement ("world")->FirstChildElement ("camera")->FirstChildElement (
-      "lookAt")->FloatAttribute ("x");
-  globalCenterY = doc.FirstChildElement ("world")->FirstChildElement ("camera")->FirstChildElement (
-      "lookAt")->FloatAttribute ("y");
-  globalCenterZ = doc.FirstChildElement ("world")->FirstChildElement ("camera")->FirstChildElement (
-      "lookAt")->FloatAttribute ("z");
-
-  globalUpX = doc.FirstChildElement ("world")->FirstChildElement ("camera")->FirstChildElement (
-      "up")->FloatAttribute ("x");
-  globalUpY = doc.FirstChildElement ("world")->FirstChildElement ("camera")->FirstChildElement (
-      "up")->FloatAttribute ("y");
-  globalUpZ = doc.FirstChildElement ("world")->FirstChildElement ("camera")->FirstChildElement (
-      "up")->FloatAttribute ("z");
-  globalFOV = doc.FirstChildElement ("world")->FirstChildElement ("camera")->FirstChildElement (
-      "projection")->FloatAttribute ("fov");
-  globalNear = doc.FirstChildElement ("world")->FirstChildElement ("camera")->FirstChildElement (
-      "projection")->FloatAttribute ("near");
-  globalFar = doc.FirstChildElement ("world")->FirstChildElement ("camera")->FirstChildElement (
-      "projection")->FloatAttribute ("far");
-
-  globalModels.push_back (allocModel (
-      doc.FirstChildElement ("world")->FirstChildElement ("group")->FirstChildElement (
-          "models")->FirstChildElement ("model")->Attribute ("file")));
-  vbo_num++;
-
-  tinyxml2::XMLElement *model2 = doc.FirstChildElement ("world")->FirstChildElement ("group")->FirstChildElement (
-      "models")->FirstChildElement ("model")->NextSiblingElement ("model");
-
-  if (model2) {
-    globalModels.push_back (allocModel (model2->Attribute ("file")));
-    vbo_num++;
-  }
-
-  vbo_indices.resize(vbo_num);
-
-  glGenBuffers(vbo_indices.size(), vbo_indices.data());
-  for (int i = 0; i < vbo_indices.size(); i++) {
-    glBindBuffer(GL_ARRAY_BUFFER, vbo_indices[i]);
-    glBufferData(GL_ARRAY_BUFFER, globalModels[i]->nVertices * sizeof(float), globalModels[i]->vertices.data(), GL_STATIC_DRAW);
-  }
-
-  return 1;
-}

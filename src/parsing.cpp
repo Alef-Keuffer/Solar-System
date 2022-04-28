@@ -134,10 +134,13 @@ void operations_load_xml(const char *filename, std::vector<float> *operations) {
     tinyxml2::XMLDocument doc;
 
     if (doc.LoadFile(filename)) {
+        if (doc.ErrorID() == tinyxml2::XML_ERROR_FILE_NOT_FOUND)
+          fprintf(stderr, "Failed loading file: '%s'\n", filename);
         fprintf(stderr, "%s", doc.ErrorName());
         exit(1);
     }
 
+    fprintf(stderr, "Loaded file: '%s'", filename);
     tinyxml2::XMLElement *world = doc.FirstChildElement("world");
 
     /*camera*/
