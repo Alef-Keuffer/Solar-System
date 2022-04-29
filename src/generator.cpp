@@ -10,7 +10,15 @@
 #define CUBE "box"
 #define CONE "cone"
 #define PLANE "plane"
+#define BEZIER "bezier"
 
+#include <vector>
+#include <string>
+#include <sstream>
+#include <fstream>
+#include <tuple>
+
+using namespace std;
 
 /*! @addtogroup generator
 * @{*/
@@ -293,6 +301,152 @@ static void model_sphere_vertices(const float r, const unsigned int slices, cons
         }
     }
 }
+
+/*
+*******************************************************************************
+Bezier patches
+*******************************************************************************
+*/
+
+struct Ponto {
+    float x;
+    float y;
+    float z;
+};
+
+vector<vector<float>> read_Bezier(string patch){
+    string buffer;
+    ifstream myFile;
+
+    myFile.open(patch, ios::in | ios::out);
+    getline(myFile, buffer);
+    // Número de patches presentes no ficheiro.
+    int p = stoi(buffer);
+
+    // Vetor de vetores de índices.
+    vector<vector<int>> patches;
+
+    // Ciclo externo lê uma linha (patch) de cada vez
+    for(int j = 0; j < p; j++){
+        vector<int> patchIndexes;
+        /*
+        Ciclo interno lê os índices dos pontos de controlo de cada patch, sabendo que cada
+        patch terá 16 pontos de controlo.
+        */
+        for (int i = 0; i < 16; i++) {
+            getline(myFile, buffer, ',');
+            patchIndexes.push_back(stoi(buffer));
+        }
+        patches.push_back(patchIndexes);
+    }
+
+    getline(myFile, buffer);
+    // Número de pontos presentes no ficheiro.
+    int pts = stoi(buffer);
+
+    // Vetor que guardará as coordenadas de pontos de controlo para superfície de Bézier.
+    vector<Ponto> control;
+    for(int j = 0; j < pts; j++) {
+        Ponto ponto;
+        getline(myFile, buffer, ',');
+        ponto.x = stof(buffer);
+        getline(myFile, buffer, ',');
+        ponto.y = stof(buffer);
+        getline(myFile, buffer, ',');
+        ponto.z = stof(buffer);
+
+        control.push_back(ponto);
+    }
+
+    /*
+    Percorrem-se os vetores que, para cada patch, guardam os seus índices de pontos de controlo.
+    Para cada patch, constroi-se um vetor com as coordenadas dos seus pontos de controlo.
+    */
+    vector<vector<float>> pointsInPatches;
+    for (int i = 0; i < patches.size(); i++) {
+        vector<float>pointsInPatch;
+        for (int j = 0; j < 16; j++) {
+            Ponto p = control[patches[i][j]];
+            pointsInPatch.push_back(p.x);
+            pointsInPatch.push_back(p.y);
+            pointsInPatch.push_back(p.z);
+        }
+    }
+
+    myFile.close();
+    return pointsInPatches;
+}
+
+tuple <float,float,float> getBezierPoint(float u, float v, vector<float> x){
+    float bernsteinU[4] = { powf(1-u, 3), 3 * u * powf(1-u, 2), 3 * powf(u, 2) * (1-u), powf(u, 3) };
+    float bernsteinV[4] = { powf(1-v, 3), 3 * v * powf(1-v, 2), 3 * powf(v, 2) * (1-v), powf(v, 3) };
+    tuple <float,float,float> ponto;
+    get<0>(ponto) = 0.0;
+    get<1>(ponto) = 0.0;
+    get<2>(ponto) = 0.0;
+    for (int j=0; j<4; j++) {
+        for (int i=0; i<4; i++) {
+            int indexCP = j*12+i*3;
+            get<0>(ponto) = get<0>(ponto) + x[indexCP] * bernsteinU[j] * bernsteinV[i];
+            get<1>(ponto) = get<1>(ponto) + x[indexCP + 1] * bernsteinU[j] * bernsteinV[i];
+            get<2>(ponto) = get<2>(ponto) + x[indexCP + 2] * bernsteinU[j] * bernsteinV[i];
+        }
+    }
+    return ponto;
+}
+
+string gen_Bezier(string patch, int tesselation) {
+    vector <float> control = read_Bezier(patch, tesselation);
+    stringstream res;
+    ifstream myFile;
+    string buffer;
+    vector <tuple <float,float,float>> pontos ;
+    vector <float> x;
+    myFile.open(patch,ios::in|ios::out);
+    getline(myFile, buffer);
+    int npatches = stoi(buffer);
+    for(int i=0;i<npatches;i+=1) {
+        for(int p=0;p<15;p+=1){
+        getline(myFile, buffer, ',');
+        x.push_back(control[stoi(buffer)*3]);
+        x.push_back(control[stoi(buffer)*3+1]);
+        x.push_back(control[stoi(buffer)*3+2]);
+        }
+        getline(myFile,buffer);
+        x.push_back(control[stoi(buffer)*3]);
+        x.push_back(control[stoi(buffer)*3+1]);
+        x.push_back(control[stoi(buffer)*3+2]);
+        for (int tv=0; tv<tesselation; tv++) {
+            float v = (float) tv/tesselation;
+
+            for (int tu = 0; tu < tesselation; tu++) {
+                float u = (float) tu/tesselation;
+                    // triângulo superior
+                    pontos.push_back(getBezierPoint((u + (1.0f/tesselation)), (v + (1.0f/tesselation)),x));
+                    pontos.push_back(getBezierPoint(u, (v + (1.0f/tesselation)),x));
+                    pontos.push_back(getBezierPoint(u, v,x));
+                    // triângulo inferior
+                    pontos.push_back(getBezierPoint(u, v,x));
+                    pontos.push_back(getBezierPoint((u + (1.0f/tesselation)), v,x));
+                    pontos.push_back(getBezierPoint((u + (1.0f/tesselation)), (v + (1.0f/tesselation)),x));
+                    for(int k=0;k<6;k++){
+                    res << get<0>(pontos[k]) << " " << get<1>(pontos[k]) << " " << get<2>(pontos[k]) << "\n";
+                    }
+                    pontos.clear();
+            }
+        }
+        x.clear();
+    }
+        myFile.close();
+        return res.str();
+}
+
+/*
+*******************************************************************************
+End of Bezier patches
+*******************************************************************************
+*/
+
 
 static inline unsigned int model_sphere_nVertices(const unsigned int slices, const unsigned int stacks) {
     return slices * stacks * 6;
