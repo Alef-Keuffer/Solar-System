@@ -208,8 +208,8 @@ Model allocModel (const char *path)
   FILE *fp = fopen (path, "r");
   if (!fp)
     {
-      fprintf (stderr, "failed to open model: %s", path);
-      return NULL;
+      fprintf (stderr, "failed to open model: %s\n", path);
+      exit(1);
     }
 
   unsigned int nVertices;

@@ -118,8 +118,7 @@ $(document).ready(function(){initNavTree('parsing_8cpp.html',''); initResizable(
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="parsing_8cpp__incl.svg" width="376" height="112"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="parsing_8cpp__incl.svg" width="376" height="112"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 <p><a href="parsing_8cpp_source.html">Go to the source code of this file.</a></p>
@@ -177,40 +176,38 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="parsing_8cpp_source.html#l00253">253</a> of file <a class="el" href="parsing_8cpp_source.html">parsing.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  253</span>                                    {</div>
-<div class="line"><span class="lineno">  254</span>    tinyxml2::XMLDocument doc;</div>
-<div class="line"><span class="lineno">  255</span> </div>
-<div class="line"><span class="lineno">  256</span>    <span class="keywordflow">if</span> (doc.LoadFile(filename)) {</div>
-<div class="line"><span class="lineno">  257</span>        fprintf(stderr, <span class="stringliteral">&quot;%s&quot;</span>, doc.ErrorName());</div>
-<div class="line"><span class="lineno">  258</span>        exit(1);</div>
-<div class="line"><span class="lineno">  259</span>    }</div>
-<div class="line"><span class="lineno">  260</span> </div>
-<div class="line"><span class="lineno">  261</span>    std::vector&lt;float&gt; operations;</div>
-<div class="line"><span class="lineno">  262</span>    <a class="code hl_function" href="group__xml.html#gac937a83a82258806ef77b02f97ef0834">operations_load_xml</a>(filename, &amp;operations);</div>
-<div class="line"><span class="lineno">  263</span>    <a class="code hl_function" href="group___printing.html#ga8ad288d2a741eb3d632a6d3e005c4347">operations_print</a>(&amp;operations);</div>
-<div class="line"><span class="lineno">  264</span>}</div>
-<div class="ttc" id="agroup___printing_html_ga8ad288d2a741eb3d632a6d3e005c4347"><div class="ttname"><a href="group___printing.html#ga8ad288d2a741eb3d632a6d3e005c4347">operations_print</a></div><div class="ttdeci">void operations_print(std::vector&lt; float &gt; *operations)</div><div class="ttdef"><b>Definition:</b> <a href="parsing_8cpp_source.html#l00172">parsing.cpp:172</a></div></div>
+<p class="definition">Definition at line <a class="el" href="parsing_8cpp_source.html#l00256">256</a> of file <a class="el" href="parsing_8cpp_source.html">parsing.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  256</span>                                    {</div>
+<div class="line"><span class="lineno">  257</span>    tinyxml2::XMLDocument doc;</div>
+<div class="line"><span class="lineno">  258</span> </div>
+<div class="line"><span class="lineno">  259</span>    <span class="keywordflow">if</span> (doc.LoadFile(filename)) {</div>
+<div class="line"><span class="lineno">  260</span>        fprintf(stderr, <span class="stringliteral">&quot;%s&quot;</span>, doc.ErrorName());</div>
+<div class="line"><span class="lineno">  261</span>        exit(1);</div>
+<div class="line"><span class="lineno">  262</span>    }</div>
+<div class="line"><span class="lineno">  263</span> </div>
+<div class="line"><span class="lineno">  264</span>    std::vector&lt;float&gt; operations;</div>
+<div class="line"><span class="lineno">  265</span>    <a class="code hl_function" href="group__xml.html#gac937a83a82258806ef77b02f97ef0834">operations_load_xml</a>(filename, &amp;operations);</div>
+<div class="line"><span class="lineno">  266</span>    <a class="code hl_function" href="group___printing.html#ga8ad288d2a741eb3d632a6d3e005c4347">operations_print</a>(&amp;operations);</div>
+<div class="line"><span class="lineno">  267</span>}</div>
+<div class="ttc" id="agroup___printing_html_ga8ad288d2a741eb3d632a6d3e005c4347"><div class="ttname"><a href="group___printing.html#ga8ad288d2a741eb3d632a6d3e005c4347">operations_print</a></div><div class="ttdeci">void operations_print(std::vector&lt; float &gt; *operations)</div><div class="ttdef"><b>Definition:</b> <a href="parsing_8cpp_source.html#l00175">parsing.cpp:175</a></div></div>
 <div class="ttc" id="agroup__xml_html_gac937a83a82258806ef77b02f97ef0834"><div class="ttname"><a href="group__xml.html#gac937a83a82258806ef77b02f97ef0834">operations_load_xml</a></div><div class="ttdeci">void operations_load_xml(const char *filename, std::vector&lt; float &gt; *operations)</div><div class="ttdef"><b>Definition:</b> <a href="parsing_8cpp_source.html#l00133">parsing.cpp:133</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="parsing_8cpp_source.html#l00133">operations_load_xml()</a>, and <a class="el" href="parsing_8cpp_source.html#l00172">operations_print()</a>.</p>
+<p class="reference">References <a class="el" href="parsing_8cpp_source.html#l00133">operations_load_xml()</a>, and <a class="el" href="parsing_8cpp_source.html#l00175">operations_print()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="parsing_8cpp_source.html#l00266">main2()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="parsing_8cpp_source.html#l00269">main2()</a>.</p>
 <div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="parsing_8cpp_a46d5190ea0181cc625329b5221e9dce9_cgraph.svg" width="100%" height="423"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="parsing_8cpp_a46d5190ea0181cc625329b5221e9dce9_cgraph.svg" width="100%" height="423"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
 </div>
 <div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-2-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-2-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-2-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="parsing_8cpp_a46d5190ea0181cc625329b5221e9dce9_icgraph.svg" width="208" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="parsing_8cpp_a46d5190ea0181cc625329b5221e9dce9_icgraph.svg" width="208" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -241,21 +238,20 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="parsing_8cpp_source.html#l00266">266</a> of file <a class="el" href="parsing_8cpp_source.html">parsing.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  266</span>                                  {</div>
-<div class="line"><span class="lineno">  267</span>    <a class="code hl_function" href="parsing_8cpp.html#a46d5190ea0181cc625329b5221e9dce9">example1</a>(<span class="stringliteral">&quot;test_files_phase_2/test_2_3.xml&quot;</span>);</div>
-<div class="line"><span class="lineno">  268</span>    <span class="keywordflow">return</span> 1;</div>
-<div class="line"><span class="lineno">  269</span>}</div>
-<div class="ttc" id="aparsing_8cpp_html_a46d5190ea0181cc625329b5221e9dce9"><div class="ttname"><a href="parsing_8cpp.html#a46d5190ea0181cc625329b5221e9dce9">example1</a></div><div class="ttdeci">void example1(const char *filename)</div><div class="ttdef"><b>Definition:</b> <a href="parsing_8cpp_source.html#l00253">parsing.cpp:253</a></div></div>
+<p class="definition">Definition at line <a class="el" href="parsing_8cpp_source.html#l00269">269</a> of file <a class="el" href="parsing_8cpp_source.html">parsing.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  269</span>                                  {</div>
+<div class="line"><span class="lineno">  270</span>    <a class="code hl_function" href="parsing_8cpp.html#a46d5190ea0181cc625329b5221e9dce9">example1</a>(<span class="stringliteral">&quot;test_files_phase_2/test_2_3.xml&quot;</span>);</div>
+<div class="line"><span class="lineno">  271</span>    <span class="keywordflow">return</span> 1;</div>
+<div class="line"><span class="lineno">  272</span>}</div>
+<div class="ttc" id="aparsing_8cpp_html_a46d5190ea0181cc625329b5221e9dce9"><div class="ttname"><a href="parsing_8cpp.html#a46d5190ea0181cc625329b5221e9dce9">example1</a></div><div class="ttdeci">void example1(const char *filename)</div><div class="ttdef"><b>Definition:</b> <a href="parsing_8cpp_source.html#l00256">parsing.cpp:256</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="parsing_8cpp_source.html#l00253">example1()</a>.</p>
+<p class="reference">References <a class="el" href="parsing_8cpp_source.html#l00256">example1()</a>.</p>
 <div id="dynsection-3" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-3-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-3-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-3-content" class="dyncontent" style="display:none;">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="parsing_8cpp_a75c2e94360fa8e46050b4f66fe444d6b_cgraph.svg" width="100%" height="423"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="parsing_8cpp_a75c2e94360fa8e46050b4f66fe444d6b_cgraph.svg" width="100%" height="423"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
 </div>
 
 </div>
@@ -283,7 +279,7 @@ Variables</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="parsing_8cpp_source.html#l00011">11</a> of file <a class="el" href="parsing_8cpp_source.html">parsing.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="parsing_8cpp_source.html#l00172">operations_print()</a>, and <a class="el" href="parsing_8cpp_source.html#l00112">operations_push_groups()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="parsing_8cpp_source.html#l00175">operations_print()</a>, and <a class="el" href="parsing_8cpp_source.html#l00112">operations_push_groups()</a>.</p>
 
 </div>
 </div>
@@ -309,7 +305,7 @@ Variables</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="parsing_8cpp_source.html#l00012">12</a> of file <a class="el" href="parsing_8cpp_source.html">parsing.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="parsing_8cpp_source.html#l00172">operations_print()</a>, and <a class="el" href="parsing_8cpp_source.html#l00112">operations_push_groups()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="parsing_8cpp_source.html#l00175">operations_print()</a>, and <a class="el" href="parsing_8cpp_source.html#l00112">operations_push_groups()</a>.</p>
 
 </div>
 </div>
@@ -335,7 +331,7 @@ Variables</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="parsing_8cpp_source.html#l00010">10</a> of file <a class="el" href="parsing_8cpp_source.html">parsing.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="parsing_8cpp_source.html#l00172">operations_print()</a>, and <a class="el" href="parsing_8cpp_source.html#l00084">operations_push_model()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="parsing_8cpp_source.html#l00175">operations_print()</a>, and <a class="el" href="parsing_8cpp_source.html#l00084">operations_push_model()</a>.</p>
 
 </div>
 </div>
@@ -361,7 +357,7 @@ Variables</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="parsing_8cpp_source.html#l00008">8</a> of file <a class="el" href="parsing_8cpp_source.html">parsing.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="parsing_8cpp_source.html#l00172">operations_print()</a>, and <a class="el" href="parsing_8cpp_source.html#l00057">operations_push_transforms()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="parsing_8cpp_source.html#l00175">operations_print()</a>, and <a class="el" href="parsing_8cpp_source.html#l00057">operations_push_transforms()</a>.</p>
 
 </div>
 </div>
@@ -387,7 +383,7 @@ Variables</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="parsing_8cpp_source.html#l00009">9</a> of file <a class="el" href="parsing_8cpp_source.html">parsing.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="parsing_8cpp_source.html#l00172">operations_print()</a>, and <a class="el" href="parsing_8cpp_source.html#l00057">operations_push_transforms()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="parsing_8cpp_source.html#l00175">operations_print()</a>, and <a class="el" href="parsing_8cpp_source.html#l00057">operations_push_transforms()</a>.</p>
 
 </div>
 </div>
@@ -413,7 +409,7 @@ Variables</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="parsing_8cpp_source.html#l00007">7</a> of file <a class="el" href="parsing_8cpp_source.html">parsing.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="parsing_8cpp_source.html#l00172">operations_print()</a>, and <a class="el" href="parsing_8cpp_source.html#l00057">operations_push_transforms()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="parsing_8cpp_source.html#l00175">operations_print()</a>, and <a class="el" href="parsing_8cpp_source.html#l00057">operations_push_transforms()</a>.</p>
 
 </div>
 </div>

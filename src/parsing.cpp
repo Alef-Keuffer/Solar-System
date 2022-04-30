@@ -140,7 +140,7 @@ void operations_load_xml(const char *filename, std::vector<float> *operations) {
         exit(1);
     }
 
-    fprintf(stderr, "Loaded file: '%s'", filename);
+    fprintf(stderr, "Loaded file: '%s'\n", filename);
     tinyxml2::XMLElement *world = doc.FirstChildElement("world");
 
     /*camera*/

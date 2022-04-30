@@ -9,7 +9,6 @@ var engine_8cpp =
     [ "engine_run", "group__engine.html#ga98eaf946471acbd931de5d52ca83b3d1", null ],
     [ "env_load_defaults", "group__engine.html#ga8679d9b303f36964bf51dba0993caeaa", null ],
     [ "keyboardFunc", "group__input.html#gac7632fff72011e8c11ae504a4596a7f7", null ],
-    [ "load_xml1", "engine_8cpp.html#a3b1c1e5ab87f055dffe4f30f6379ec6a", null ],
     [ "main", "group__engine.html#ga3c04138a5bfe5d72780bb7e82a18e627", null ],
     [ "motionFunc", "group__input.html#ga2bebb17428cb218231ad556de2a20ed6", null ],
     [ "mouseFunc", "group__input.html#gad48076b61c0ddb6bd4fadf644bf59ff1", null ],
@@ -17,11 +16,11 @@ var engine_8cpp =
     [ "readModelToBuffer", "group__model_engine.html#ga943eb4ae9be9204315e7dc4ccb7b3ca6", null ],
     [ "redisplay", "group__engine.html#gab9813926390dc5773baf0b20dc2ea16e", null ],
     [ "renderAllModels", "group__model_engine.html#gacf6e708a0a1874bf2d8fd951a6ede500", null ],
-    [ "renderGreenPlane", "group__engine.html#gaf049ec1caddd7a032fc8b48641e12f1e", null ],
-    [ "renderModel", "group__model_engine.html#ga9b0aa26dead35aab4fa6be0709998046", null ],
+    [ "renderModel", "group__model_engine.html#gae7de75a0850ac9069b4a3710b63a102c", null ],
     [ "renderScene", "group__engine.html#ga91c42686f3245f22fb6b17ba5372d92c", null ],
     [ "renderTriangleVertexSeq", "group__engine.html#gaa790ed3f50ff9672fc05cd787d33a4ef", null ],
     [ "spherical2Cartesian", "group__spherical.html#gab5ff5216bffd1e15798677f24213213d", null ],
+    [ "vbo_indices", "group__engine.html#ga260fbd3d70764684657bbf1a617ddf99", null ],
     [ "xml_load_and_set_env", "group__engine.html#ga2b6a8884687b3fe271b099a450a82d24", null ],
     [ "DEFAULT_GLOBAL_ANGLE_STEP", "group__engine.html#gafbb57ef1726ff61d49254b383fcb0eb3", null ],
     [ "DEFAULT_GLOBAL_AZIMUTH", "group__spherical.html#ga8847a748f16dded3615f8f4b48ab2ef4", null ],
@@ -80,5 +79,6 @@ var engine_8cpp =
     [ "globalUpZ", "group__up.html#ga9b87730968b220018fd7f1a53728e46e", null ],
     [ "globalXPrev", "group__input.html#ga86b84325bd56f5046ead1fc28690c412", null ],
     [ "globalYPrev", "group__input.html#ga5955bfd3ab86257de26e3b040e7fe4c3", null ],
-    [ "operations_hasBeenInitialized", "group__model_engine.html#gab237219c50895634f5f03682f9d66b7b", null ]
+    [ "operations_hasBeenInitialized", "group__model_engine.html#gab237219c50895634f5f03682f9d66b7b", null ],
+    [ "VBO", "group__engine.html#gad9a24fe28e2326cb0445791525781160", null ]
 ];

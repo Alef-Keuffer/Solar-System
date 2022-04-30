@@ -135,6 +135,8 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:ga260fbd3d70764684657bbf1a617ddf99"><td class="memItemLeft" align="right" valign="top">vector&lt; GLuint &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__engine.html#ga260fbd3d70764684657bbf1a617ddf99">vbo_indices</a> (100)</td></tr>
+<tr class="separator:ga260fbd3d70764684657bbf1a617ddf99"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga8679d9b303f36964bf51dba0993caeaa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__engine.html#ga8679d9b303f36964bf51dba0993caeaa">env_load_defaults</a> ()</td></tr>
 <tr class="separator:ga8679d9b303f36964bf51dba0993caeaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaa790ed3f50ff9672fc05cd787d33a4ef"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__engine.html#gaa790ed3f50ff9672fc05cd787d33a4ef">renderTriangleVertexSeq</a> (float *p, unsigned int nVertices)</td></tr>
@@ -143,8 +145,6 @@ Functions</h2></td></tr>
 <tr class="separator:ga33e20b37682a0492a9e95d13bef17f02"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gab9813926390dc5773baf0b20dc2ea16e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__engine.html#gab9813926390dc5773baf0b20dc2ea16e">redisplay</a> ()</td></tr>
 <tr class="separator:gab9813926390dc5773baf0b20dc2ea16e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaf049ec1caddd7a032fc8b48641e12f1e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__engine.html#gaf049ec1caddd7a032fc8b48641e12f1e">renderGreenPlane</a> ()</td></tr>
-<tr class="separator:gaf049ec1caddd7a032fc8b48641e12f1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga91c42686f3245f22fb6b17ba5372d92c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__engine.html#ga91c42686f3245f22fb6b17ba5372d92c">renderScene</a> ()</td></tr>
 <tr class="separator:ga91c42686f3245f22fb6b17ba5372d92c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga2b6a8884687b3fe271b099a450a82d24"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__engine.html#ga2b6a8884687b3fe271b099a450a82d24">xml_load_and_set_env</a> (const char *filename)</td></tr>
@@ -188,6 +188,8 @@ Variables</h2></td></tr>
 <tr class="separator:ga5c609aa58ab1231665e34d751cd592ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga6759b1a14e7b7edc9cc5f5caaee5cb88"><td class="memItemLeft" align="right" valign="top">static float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__engine.html#ga6759b1a14e7b7edc9cc5f5caaee5cb88">globalScaleZ</a> = 1</td></tr>
 <tr class="separator:ga6759b1a14e7b7edc9cc5f5caaee5cb88"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad9a24fe28e2326cb0445791525781160"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__engine.html#gad9a24fe28e2326cb0445791525781160">VBO</a></td></tr>
+<tr class="separator:gad9a24fe28e2326cb0445791525781160"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <h2 class="groupheader">Macro Definition Documentation</h2>
@@ -203,7 +205,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00018">18</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00019">19</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
 
 </div>
 </div>
@@ -234,45 +236,44 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00255">255</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  256</span>{</div>
-<div class="line"><span class="lineno">  257</span> </div>
-<div class="line"><span class="lineno">  258</span>  <span class="comment">// Prevent a divide by zero, when window is too short</span></div>
-<div class="line"><span class="lineno">  259</span>  <span class="comment">// (you cant make a window with zero width).</span></div>
-<div class="line"><span class="lineno">  260</span>  <span class="keywordflow">if</span> (h == 0)</div>
-<div class="line"><span class="lineno">  261</span>    h = 1;</div>
-<div class="line"><span class="lineno">  262</span> </div>
-<div class="line"><span class="lineno">  263</span>  <span class="comment">// compute window&#39;s aspect ratio</span></div>
-<div class="line"><span class="lineno">  264</span>  <span class="keywordtype">float</span> ratio = (float) w * 1.0f / (<span class="keywordtype">float</span>) h;</div>
-<div class="line"><span class="lineno">  265</span> </div>
-<div class="line"><span class="lineno">  266</span>  <span class="comment">// Set the projection matrix as current</span></div>
-<div class="line"><span class="lineno">  267</span>  glMatrixMode (GL_PROJECTION);</div>
-<div class="line"><span class="lineno">  268</span>  <span class="comment">// Load Identity Matrix</span></div>
-<div class="line"><span class="lineno">  269</span>  glLoadIdentity ();</div>
-<div class="line"><span class="lineno">  270</span> </div>
-<div class="line"><span class="lineno">  271</span>  <span class="comment">// Set the viewport to be the entire window</span></div>
-<div class="line"><span class="lineno">  272</span>  glViewport (0, 0, w, h);</div>
-<div class="line"><span class="lineno">  273</span> </div>
-<div class="line"><span class="lineno">  274</span>  <span class="comment">// Set perspective</span></div>
-<div class="line"><span class="lineno">  275</span>  gluPerspective (<a class="code hl_variable" href="group__projection.html#ga59f6d63e115356ceacbc105f05acd900">globalFOV</a>, ratio, <a class="code hl_variable" href="group__projection.html#ga4ce7b2ac871b1ff992a5048c9efedb4f">globalNear</a>, <a class="code hl_variable" href="group__projection.html#ga0d7ac28f9a90c72a02d5f7c6f1182be9">globalFar</a>); <span class="comment">//fox,near,far</span></div>
-<div class="line"><span class="lineno">  276</span> </div>
-<div class="line"><span class="lineno">  277</span>  <span class="comment">// return to the model view matrix mode</span></div>
-<div class="line"><span class="lineno">  278</span>  glMatrixMode (GL_MODELVIEW);</div>
-<div class="line"><span class="lineno">  279</span>}</div>
-<div class="ttc" id="agroup__projection_html_ga0d7ac28f9a90c72a02d5f7c6f1182be9"><div class="ttname"><a href="group__projection.html#ga0d7ac28f9a90c72a02d5f7c6f1182be9">globalFar</a></div><div class="ttdeci">static float globalFar</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00123">engine.cpp:123</a></div></div>
-<div class="ttc" id="agroup__projection_html_ga4ce7b2ac871b1ff992a5048c9efedb4f"><div class="ttname"><a href="group__projection.html#ga4ce7b2ac871b1ff992a5048c9efedb4f">globalNear</a></div><div class="ttdeci">static float globalNear</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00122">engine.cpp:122</a></div></div>
-<div class="ttc" id="agroup__projection_html_ga59f6d63e115356ceacbc105f05acd900"><div class="ttname"><a href="group__projection.html#ga59f6d63e115356ceacbc105f05acd900">globalFOV</a></div><div class="ttdeci">static float globalFOV</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00121">engine.cpp:121</a></div></div>
+<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00278">278</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  279</span>{</div>
+<div class="line"><span class="lineno">  280</span> </div>
+<div class="line"><span class="lineno">  281</span>  <span class="comment">// Prevent a divide by zero, when window is too short</span></div>
+<div class="line"><span class="lineno">  282</span>  <span class="comment">// (you cant make a window with zero width).</span></div>
+<div class="line"><span class="lineno">  283</span>  <span class="keywordflow">if</span> (h == 0)</div>
+<div class="line"><span class="lineno">  284</span>    h = 1;</div>
+<div class="line"><span class="lineno">  285</span> </div>
+<div class="line"><span class="lineno">  286</span>  <span class="comment">// compute window&#39;s aspect ratio</span></div>
+<div class="line"><span class="lineno">  287</span>  <span class="keywordtype">float</span> ratio = (float) w * 1.0f / (<span class="keywordtype">float</span>) h;</div>
+<div class="line"><span class="lineno">  288</span> </div>
+<div class="line"><span class="lineno">  289</span>  <span class="comment">// Set the projection matrix as current</span></div>
+<div class="line"><span class="lineno">  290</span>  glMatrixMode (GL_PROJECTION);</div>
+<div class="line"><span class="lineno">  291</span>  <span class="comment">// Load Identity Matrix</span></div>
+<div class="line"><span class="lineno">  292</span>  glLoadIdentity ();</div>
+<div class="line"><span class="lineno">  293</span> </div>
+<div class="line"><span class="lineno">  294</span>  <span class="comment">// Set the viewport to be the entire window</span></div>
+<div class="line"><span class="lineno">  295</span>  glViewport (0, 0, w, h);</div>
+<div class="line"><span class="lineno">  296</span> </div>
+<div class="line"><span class="lineno">  297</span>  <span class="comment">// Set perspective</span></div>
+<div class="line"><span class="lineno">  298</span>  gluPerspective (<a class="code hl_variable" href="group__projection.html#ga59f6d63e115356ceacbc105f05acd900">globalFOV</a>, ratio, <a class="code hl_variable" href="group__projection.html#ga4ce7b2ac871b1ff992a5048c9efedb4f">globalNear</a>, <a class="code hl_variable" href="group__projection.html#ga0d7ac28f9a90c72a02d5f7c6f1182be9">globalFar</a>); <span class="comment">//fox,near,far</span></div>
+<div class="line"><span class="lineno">  299</span> </div>
+<div class="line"><span class="lineno">  300</span>  <span class="comment">// return to the model view matrix mode</span></div>
+<div class="line"><span class="lineno">  301</span>  glMatrixMode (GL_MODELVIEW);</div>
+<div class="line"><span class="lineno">  302</span>}</div>
+<div class="ttc" id="agroup__projection_html_ga0d7ac28f9a90c72a02d5f7c6f1182be9"><div class="ttname"><a href="group__projection.html#ga0d7ac28f9a90c72a02d5f7c6f1182be9">globalFar</a></div><div class="ttdeci">static float globalFar</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00139">engine.cpp:139</a></div></div>
+<div class="ttc" id="agroup__projection_html_ga4ce7b2ac871b1ff992a5048c9efedb4f"><div class="ttname"><a href="group__projection.html#ga4ce7b2ac871b1ff992a5048c9efedb4f">globalNear</a></div><div class="ttdeci">static float globalNear</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00138">engine.cpp:138</a></div></div>
+<div class="ttc" id="agroup__projection_html_ga59f6d63e115356ceacbc105f05acd900"><div class="ttname"><a href="group__projection.html#ga59f6d63e115356ceacbc105f05acd900">globalFOV</a></div><div class="ttdeci">static float globalFOV</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00137">engine.cpp:137</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="engine_8cpp_source.html#l00123">globalFar</a>, <a class="el" href="engine_8cpp_source.html#l00121">globalFOV</a>, and <a class="el" href="engine_8cpp_source.html#l00122">globalNear</a>.</p>
+<p class="reference">References <a class="el" href="engine_8cpp_source.html#l00139">globalFar</a>, <a class="el" href="engine_8cpp_source.html#l00137">globalFOV</a>, and <a class="el" href="engine_8cpp_source.html#l00138">globalNear</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00718">engine_run()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00749">engine_run()</a>.</p>
 <div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="group__engine_ga33e20b37682a0492a9e95d13bef17f02_icgraph.svg" width="352" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__engine_ga33e20b37682a0492a9e95d13bef17f02_icgraph.svg" width="352" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -303,63 +304,67 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00718">718</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  719</span>{</div>
-<div class="line"><span class="lineno">  720</span> </div>
-<div class="line"><span class="lineno">  721</span>  <span class="keywordflow">if</span> (argc &gt; 0)</div>
-<div class="line"><span class="lineno">  722</span>    <a class="code hl_function" href="group__engine.html#ga2b6a8884687b3fe271b099a450a82d24">xml_load_and_set_env</a> (argv[1]);</div>
-<div class="line"><span class="lineno">  723</span> </div>
-<div class="line"><span class="lineno">  724</span>  <span class="comment">// init GLUT and the window</span></div>
-<div class="line"><span class="lineno">  725</span>  glutInit (&amp;argc, argv);</div>
-<div class="line"><span class="lineno">  726</span>  glutInitDisplayMode (GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);</div>
-<div class="line"><span class="lineno">  727</span>  glutInitWindowPosition (100, 100);</div>
-<div class="line"><span class="lineno">  728</span>  glutInitWindowSize (800, 800);</div>
-<div class="line"><span class="lineno">  729</span>  glutCreateWindow (<span class="stringliteral">&quot;engine&quot;</span>);</div>
-<div class="line"><span class="lineno">  730</span> </div>
-<div class="line"><span class="lineno">  731</span>  <span class="comment">// Required callback registry</span></div>
-<div class="line"><span class="lineno">  732</span>  glutDisplayFunc (<a class="code hl_function" href="group__engine.html#ga91c42686f3245f22fb6b17ba5372d92c">renderScene</a>);</div>
-<div class="line"><span class="lineno">  733</span>  glutReshapeFunc (<a class="code hl_function" href="group__engine.html#ga33e20b37682a0492a9e95d13bef17f02">changeSize</a>);</div>
-<div class="line"><span class="lineno">  734</span> </div>
-<div class="line"><span class="lineno">  735</span>  <span class="comment">// Callback registration for keyboard processing</span></div>
-<div class="line"><span class="lineno">  736</span>  glutKeyboardFunc (<a class="code hl_function" href="group__input.html#gac7632fff72011e8c11ae504a4596a7f7">keyboardFunc</a>);</div>
-<div class="line"><span class="lineno">  737</span> </div>
-<div class="line"><span class="lineno">  738</span>  <span class="comment">// Callback registration for mouse processing</span></div>
-<div class="line"><span class="lineno">  739</span>  glutMouseFunc (<a class="code hl_function" href="group__input.html#gad48076b61c0ddb6bd4fadf644bf59ff1">mouseFunc</a>);</div>
-<div class="line"><span class="lineno">  740</span>  glutMotionFunc (<a class="code hl_function" href="group__input.html#ga2bebb17428cb218231ad556de2a20ed6">motionFunc</a>);</div>
-<div class="line"><span class="lineno">  741</span> </div>
-<div class="line"><span class="lineno">  742</span>  <span class="comment">//  OpenGL settings</span></div>
-<div class="line"><span class="lineno">  743</span>  glEnable (GL_DEPTH_TEST);</div>
-<div class="line"><span class="lineno">  744</span>  glEnable (GL_CULL_FACE);</div>
-<div class="line"><span class="lineno">  745</span>  glPolygonMode (GL_FRONT, GL_LINE);</div>
-<div class="line"><span class="lineno">  746</span> </div>
-<div class="line"><span class="lineno">  747</span>  <span class="comment">// enter GLUT&#39;s main cycle</span></div>
-<div class="line"><span class="lineno">  748</span>  glutMainLoop ();</div>
-<div class="line"><span class="lineno">  749</span>}</div>
-<div class="ttc" id="agroup__engine_html_ga2b6a8884687b3fe271b099a450a82d24"><div class="ttname"><a href="group__engine.html#ga2b6a8884687b3fe271b099a450a82d24">xml_load_and_set_env</a></div><div class="ttdeci">void xml_load_and_set_env(const char *filename)</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00440">engine.cpp:440</a></div></div>
-<div class="ttc" id="agroup__engine_html_ga33e20b37682a0492a9e95d13bef17f02"><div class="ttname"><a href="group__engine.html#ga33e20b37682a0492a9e95d13bef17f02">changeSize</a></div><div class="ttdeci">void changeSize(int w, int h)</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00255">engine.cpp:255</a></div></div>
-<div class="ttc" id="agroup__engine_html_ga91c42686f3245f22fb6b17ba5372d92c"><div class="ttname"><a href="group__engine.html#ga91c42686f3245f22fb6b17ba5372d92c">renderScene</a></div><div class="ttdeci">void renderScene()</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00411">engine.cpp:411</a></div></div>
-<div class="ttc" id="agroup__input_html_ga2bebb17428cb218231ad556de2a20ed6"><div class="ttname"><a href="group__input.html#ga2bebb17428cb218231ad556de2a20ed6">motionFunc</a></div><div class="ttdeci">void motionFunc(int x, int y)</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00686">engine.cpp:686</a></div></div>
-<div class="ttc" id="agroup__input_html_gac7632fff72011e8c11ae504a4596a7f7"><div class="ttname"><a href="group__input.html#gac7632fff72011e8c11ae504a4596a7f7">keyboardFunc</a></div><div class="ttdeci">void keyboardFunc(unsigned char key, int xmouse, int ymouse)</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00448">engine.cpp:448</a></div></div>
-<div class="ttc" id="agroup__input_html_gad48076b61c0ddb6bd4fadf644bf59ff1"><div class="ttname"><a href="group__input.html#gad48076b61c0ddb6bd4fadf644bf59ff1">mouseFunc</a></div><div class="ttdeci">void mouseFunc(int button, int state, int x, int y)</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00608">engine.cpp:608</a></div></div>
+<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00749">749</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  750</span>{</div>
+<div class="line"><span class="lineno">  751</span> </div>
+<div class="line"><span class="lineno">  752</span>  <span class="keywordflow">if</span> (argc != 2)</div>
+<div class="line"><span class="lineno">  753</span>    {</div>
+<div class="line"><span class="lineno">  754</span>      fprintf (stderr, <span class="stringliteral">&quot;Number of arguments is not one\n&quot;</span>);</div>
+<div class="line"><span class="lineno">  755</span>      exit (1);</div>
+<div class="line"><span class="lineno">  756</span>    }</div>
+<div class="line"><span class="lineno">  757</span> </div>
+<div class="line"><span class="lineno">  758</span>  <span class="comment">// init GLUT and the window</span></div>
+<div class="line"><span class="lineno">  759</span>  glutInit (&amp;argc, argv);</div>
+<div class="line"><span class="lineno">  760</span>  glutInitDisplayMode (GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);</div>
+<div class="line"><span class="lineno">  761</span>  glutInitWindowPosition (100, 100);</div>
+<div class="line"><span class="lineno">  762</span>  glutInitWindowSize (800, 800);</div>
+<div class="line"><span class="lineno">  763</span>  glutCreateWindow (<span class="stringliteral">&quot;engine&quot;</span>);</div>
+<div class="line"><span class="lineno">  764</span> </div>
+<div class="line"><span class="lineno">  765</span>  <span class="comment">// Required callback registry</span></div>
+<div class="line"><span class="lineno">  766</span>  glutDisplayFunc (<a class="code hl_function" href="group__engine.html#ga91c42686f3245f22fb6b17ba5372d92c">renderScene</a>);</div>
+<div class="line"><span class="lineno">  767</span>  glutReshapeFunc (<a class="code hl_function" href="group__engine.html#ga33e20b37682a0492a9e95d13bef17f02">changeSize</a>);</div>
+<div class="line"><span class="lineno">  768</span> </div>
+<div class="line"><span class="lineno">  769</span>  <span class="comment">// Callback registration for keyboard processing</span></div>
+<div class="line"><span class="lineno">  770</span>  glutKeyboardFunc (<a class="code hl_function" href="group__input.html#gac7632fff72011e8c11ae504a4596a7f7">keyboardFunc</a>);</div>
+<div class="line"><span class="lineno">  771</span> </div>
+<div class="line"><span class="lineno">  772</span>  <span class="comment">// Callback registration for mouse processing</span></div>
+<div class="line"><span class="lineno">  773</span>  glutMouseFunc (<a class="code hl_function" href="group__input.html#gad48076b61c0ddb6bd4fadf644bf59ff1">mouseFunc</a>);</div>
+<div class="line"><span class="lineno">  774</span>  glutMotionFunc (<a class="code hl_function" href="group__input.html#ga2bebb17428cb218231ad556de2a20ed6">motionFunc</a>);</div>
+<div class="line"><span class="lineno">  775</span> </div>
+<div class="line"><span class="lineno">  776</span>  <span class="comment">//  OpenGL settings</span></div>
+<div class="line"><span class="lineno">  777</span>  glEnable (GL_DEPTH_TEST);</div>
+<div class="line"><span class="lineno">  778</span>  glEnableClientState (GL_VERTEX_ARRAY);</div>
+<div class="line"><span class="lineno">  779</span>  glEnable (GL_CULL_FACE);</div>
+<div class="line"><span class="lineno">  780</span>  glPolygonMode (GL_FRONT, GL_LINE);</div>
+<div class="line"><span class="lineno">  781</span> </div>
+<div class="line"><span class="lineno">  782</span>  <span class="comment">// enter GLUT&#39;s main cycle</span></div>
+<div class="line"><span class="lineno">  783</span>  glewInit ();</div>
+<div class="line"><span class="lineno">  784</span>  <a class="code hl_function" href="group__engine.html#ga2b6a8884687b3fe271b099a450a82d24">xml_load_and_set_env</a> (argv[1]);</div>
+<div class="line"><span class="lineno">  785</span>  glutMainLoop ();</div>
+<div class="line"><span class="lineno">  786</span>}</div>
+<div class="ttc" id="agroup__engine_html_ga2b6a8884687b3fe271b099a450a82d24"><div class="ttname"><a href="group__engine.html#ga2b6a8884687b3fe271b099a450a82d24">xml_load_and_set_env</a></div><div class="ttdeci">void xml_load_and_set_env(const char *filename)</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00457">engine.cpp:457</a></div></div>
+<div class="ttc" id="agroup__engine_html_ga33e20b37682a0492a9e95d13bef17f02"><div class="ttname"><a href="group__engine.html#ga33e20b37682a0492a9e95d13bef17f02">changeSize</a></div><div class="ttdeci">void changeSize(int w, int h)</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00278">engine.cpp:278</a></div></div>
+<div class="ttc" id="agroup__engine_html_ga91c42686f3245f22fb6b17ba5372d92c"><div class="ttname"><a href="group__engine.html#ga91c42686f3245f22fb6b17ba5372d92c">renderScene</a></div><div class="ttdeci">void renderScene()</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00428">engine.cpp:428</a></div></div>
+<div class="ttc" id="agroup__input_html_ga2bebb17428cb218231ad556de2a20ed6"><div class="ttname"><a href="group__input.html#ga2bebb17428cb218231ad556de2a20ed6">motionFunc</a></div><div class="ttdeci">void motionFunc(int x, int y)</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00717">engine.cpp:717</a></div></div>
+<div class="ttc" id="agroup__input_html_gac7632fff72011e8c11ae504a4596a7f7"><div class="ttname"><a href="group__input.html#gac7632fff72011e8c11ae504a4596a7f7">keyboardFunc</a></div><div class="ttdeci">void keyboardFunc(unsigned char key, int xmouse, int ymouse)</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00465">engine.cpp:465</a></div></div>
+<div class="ttc" id="agroup__input_html_gad48076b61c0ddb6bd4fadf644bf59ff1"><div class="ttname"><a href="group__input.html#gad48076b61c0ddb6bd4fadf644bf59ff1">mouseFunc</a></div><div class="ttdeci">void mouseFunc(int button, int state, int x, int y)</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00669">engine.cpp:669</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="engine_8cpp_source.html#l00255">changeSize()</a>, <a class="el" href="engine_8cpp_source.html#l00448">keyboardFunc()</a>, <a class="el" href="engine_8cpp_source.html#l00686">motionFunc()</a>, <a class="el" href="engine_8cpp_source.html#l00608">mouseFunc()</a>, <a class="el" href="engine_8cpp_source.html#l00411">renderScene()</a>, and <a class="el" href="engine_8cpp_source.html#l00440">xml_load_and_set_env()</a>.</p>
+<p class="reference">References <a class="el" href="engine_8cpp_source.html#l00278">changeSize()</a>, <a class="el" href="engine_8cpp_source.html#l00465">keyboardFunc()</a>, <a class="el" href="engine_8cpp_source.html#l00717">motionFunc()</a>, <a class="el" href="engine_8cpp_source.html#l00669">mouseFunc()</a>, <a class="el" href="engine_8cpp_source.html#l00428">renderScene()</a>, and <a class="el" href="engine_8cpp_source.html#l00457">xml_load_and_set_env()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00751">main()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00788">main()</a>.</p>
 <div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-2-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-2-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-2-content" class="dyncontent" style="display:none;">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="group__engine_ga98eaf946471acbd931de5d52ca83b3d1_cgraph.svg" width="100%" height="584"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="group__engine_ga98eaf946471acbd931de5d52ca83b3d1_cgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
 </div>
 <div id="dynsection-3" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-3-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-3-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-3-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="group__engine_ga98eaf946471acbd931de5d52ca83b3d1_icgraph.svg" width="208" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__engine_ga98eaf946471acbd931de5d52ca83b3d1_icgraph.svg" width="208" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -379,115 +384,114 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00127">127</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  128</span>{</div>
-<div class="line"><span class="lineno">  129</span>  <span class="comment">/*rotation*/</span></div>
-<div class="line"><span class="lineno">  130</span>  <a class="code hl_variable" href="group__engine.html#ga2e8f792b2bea2085eabf137c2a5db166">globalAngleStep</a> = <a class="code hl_variable" href="group__engine.html#gafbb57ef1726ff61d49254b383fcb0eb3">DEFAULT_GLOBAL_ANGLE_STEP</a>;</div>
-<div class="line"><span class="lineno">  131</span>  <a class="code hl_variable" href="group__engine.html#ga466fc31ceeef83b53e03a820891b1ca2">globalAngle</a> = 0;</div>
-<div class="line"><span class="lineno">  132</span>  <a class="code hl_variable" href="group__engine.html#gaddd518403add69d85e781edfff4c94cc">globalRotateX</a> = 0;</div>
-<div class="line"><span class="lineno">  133</span>  <a class="code hl_variable" href="group__engine.html#ga79577108f7a530d0ad847b9f779663b0">globalRotateY</a> = 0;</div>
-<div class="line"><span class="lineno">  134</span>  <a class="code hl_variable" href="group__engine.html#gabf991ada5cb4710283b06356b09b0828">globalRotateZ</a> = 0;</div>
-<div class="line"><span class="lineno">  135</span> </div>
-<div class="line"><span class="lineno">  136</span>  <span class="comment">/*translation*/</span></div>
-<div class="line"><span class="lineno">  137</span>  <a class="code hl_variable" href="group__engine.html#ga3dccccfb75086f82e8e8cb4b4f17a3bc">globalTranslateStep</a> = <a class="code hl_variable" href="group__engine.html#ga39e693af19a42919db1a9776c4233d5b">DEFAULT_GLOBAL_TRANSLATE_STEP</a>;</div>
-<div class="line"><span class="lineno">  138</span>  <a class="code hl_variable" href="group__engine.html#ga38677f95037f4575ab422e6980f920e0">globalTranslateX</a> = 0;</div>
-<div class="line"><span class="lineno">  139</span>  <a class="code hl_variable" href="group__engine.html#ga1bd69a3237cca1b346bec2ac742a0a8e">globalTranslateY</a> = 0;</div>
-<div class="line"><span class="lineno">  140</span>  <a class="code hl_variable" href="group__engine.html#gae5197ff392fbb6687d3ad586f589e309">globalTranslateZ</a> = 0;</div>
-<div class="line"><span class="lineno">  141</span> </div>
-<div class="line"><span class="lineno">  142</span>  <span class="comment">/*scaling*/</span></div>
-<div class="line"><span class="lineno">  143</span>  <a class="code hl_variable" href="group__engine.html#ga5906958820a0271f052da739c634a994">globalScaleStep</a> = <a class="code hl_variable" href="group__engine.html#gaae06616879cc2b7af69a67cb77ff0636">DEFAULT_GLOBAL_SCALE_STEP</a>;</div>
-<div class="line"><span class="lineno">  144</span>  <a class="code hl_variable" href="group__engine.html#ga76ca2b2b73be400347bb4b460405f1f2">globalScaleX</a> = 1;</div>
-<div class="line"><span class="lineno">  145</span>  <a class="code hl_variable" href="group__engine.html#ga5c609aa58ab1231665e34d751cd592ae">globalScaleY</a> = 1;</div>
-<div class="line"><span class="lineno">  146</span>  <a class="code hl_variable" href="group__engine.html#ga6759b1a14e7b7edc9cc5f5caaee5cb88">globalScaleZ</a> = 1;</div>
-<div class="line"><span class="lineno">  147</span> </div>
-<div class="line"><span class="lineno">  148</span>  <span class="comment">/*position*/</span></div>
-<div class="line"><span class="lineno">  149</span>  <a class="code hl_variable" href="group__position.html#ga9673727a896669866bb7f5a53dd6a41c">globalEyeStep</a> = <a class="code hl_variable" href="group__position.html#ga5622007d32c9f02637b15e267ea5e66d">DEFAULT_GLOBAL_EYE_STEP</a>;</div>
-<div class="line"><span class="lineno">  150</span>  <a class="code hl_variable" href="group__position.html#ga718827325d2f8ecfb7db4767a124d99b">globalEyeX</a> = <a class="code hl_variable" href="group__position.html#gac405408e87c2764abe6ccf07bc3e59e2">DEFAULT_GLOBAL_EYE_X</a>;</div>
-<div class="line"><span class="lineno">  151</span>  <a class="code hl_variable" href="group__position.html#ga249dfe7a961b98a6109c56ceec57d1ad">globalEyeY</a> = <a class="code hl_variable" href="group__position.html#ga434a33b9dda24c1da34daf37de1f97ce">DEFAULT_GLOBAL_EYE_Y</a>;</div>
-<div class="line"><span class="lineno">  152</span>  <a class="code hl_variable" href="group__position.html#gab7a6de09906647c4f67ee4dd4076842b">globalEyeZ</a> = <a class="code hl_variable" href="group__position.html#ga66e088ca33532c7abf22b05512009c52">DEFAULT_GLOBAL_EYE_Z</a>;</div>
-<div class="line"><span class="lineno">  153</span> </div>
-<div class="line"><span class="lineno">  154</span>  <a class="code hl_variable" href="group__spherical.html#gaee0ddcd277ec7a7a451dbd5b17f98187">globalRadius</a> = <a class="code hl_variable" href="group__spherical.html#ga9046d488bde40feb5c8cd6372f12d5cf">DEFAULT_GLOBAL_RADIUS</a>;</div>
-<div class="line"><span class="lineno">  155</span>  <a class="code hl_variable" href="group__spherical.html#gadaab4529e17c31628ede6500a0f9dd07">globalAzimuth</a> = <a class="code hl_variable" href="group__spherical.html#ga8847a748f16dded3615f8f4b48ab2ef4">DEFAULT_GLOBAL_AZIMUTH</a>;</div>
-<div class="line"><span class="lineno">  156</span>  <a class="code hl_variable" href="group__spherical.html#ga2788cc0fae99c064d291338b8fbe8484">globalElevation</a> = <a class="code hl_variable" href="group__spherical.html#ga3f93d1092ee04ee1206b02259e320784">DEFAULT_GLOBAL_ELEVATION</a>;</div>
+<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00143">143</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  144</span>{</div>
+<div class="line"><span class="lineno">  145</span>  <span class="comment">/*rotation*/</span></div>
+<div class="line"><span class="lineno">  146</span>  <a class="code hl_variable" href="group__engine.html#ga2e8f792b2bea2085eabf137c2a5db166">globalAngleStep</a> = <a class="code hl_variable" href="group__engine.html#gafbb57ef1726ff61d49254b383fcb0eb3">DEFAULT_GLOBAL_ANGLE_STEP</a>;</div>
+<div class="line"><span class="lineno">  147</span>  <a class="code hl_variable" href="group__engine.html#ga466fc31ceeef83b53e03a820891b1ca2">globalAngle</a> = 0;</div>
+<div class="line"><span class="lineno">  148</span>  <a class="code hl_variable" href="group__engine.html#gaddd518403add69d85e781edfff4c94cc">globalRotateX</a> = 0;</div>
+<div class="line"><span class="lineno">  149</span>  <a class="code hl_variable" href="group__engine.html#ga79577108f7a530d0ad847b9f779663b0">globalRotateY</a> = 0;</div>
+<div class="line"><span class="lineno">  150</span>  <a class="code hl_variable" href="group__engine.html#gabf991ada5cb4710283b06356b09b0828">globalRotateZ</a> = 0;</div>
+<div class="line"><span class="lineno">  151</span> </div>
+<div class="line"><span class="lineno">  152</span>  <span class="comment">/*translation*/</span></div>
+<div class="line"><span class="lineno">  153</span>  <a class="code hl_variable" href="group__engine.html#ga3dccccfb75086f82e8e8cb4b4f17a3bc">globalTranslateStep</a> = <a class="code hl_variable" href="group__engine.html#ga39e693af19a42919db1a9776c4233d5b">DEFAULT_GLOBAL_TRANSLATE_STEP</a>;</div>
+<div class="line"><span class="lineno">  154</span>  <a class="code hl_variable" href="group__engine.html#ga38677f95037f4575ab422e6980f920e0">globalTranslateX</a> = 0;</div>
+<div class="line"><span class="lineno">  155</span>  <a class="code hl_variable" href="group__engine.html#ga1bd69a3237cca1b346bec2ac742a0a8e">globalTranslateY</a> = 0;</div>
+<div class="line"><span class="lineno">  156</span>  <a class="code hl_variable" href="group__engine.html#gae5197ff392fbb6687d3ad586f589e309">globalTranslateZ</a> = 0;</div>
 <div class="line"><span class="lineno">  157</span> </div>
-<div class="line"><span class="lineno">  158</span>  <span class="comment">/*lookAt*/</span></div>
-<div class="line"><span class="lineno">  159</span>  <a class="code hl_variable" href="group__look_at.html#ga24788a09c1fd390f1b6abee92c090c5c">globalCenterStep</a> = <a class="code hl_variable" href="group__look_at.html#ga3f847a1dda79418433019cbee15c313e">DEFAULT_GLOBAL_CENTER_STEP</a>;</div>
-<div class="line"><span class="lineno">  160</span>  <a class="code hl_variable" href="group__look_at.html#ga2cb5db8bdad416592fa643be93c764be">globalCenterX</a> = <a class="code hl_variable" href="group__look_at.html#gaf1a9b548d1f24649e0ba3cf4af735456">DEFAULT_GLOBAL_CENTER_X</a>;</div>
-<div class="line"><span class="lineno">  161</span>  <a class="code hl_variable" href="group__look_at.html#gaf3f8074b4e6ebaf6687f0777fd500e51">globalCenterY</a> = <a class="code hl_variable" href="group__look_at.html#ga054a4c2a70619b372f56ef9a45a82493">DEFAULT_GLOBAL_CENTER_Y</a>;</div>
-<div class="line"><span class="lineno">  162</span>  <a class="code hl_variable" href="group__look_at.html#gaa63e0d164754e930baf0d8d08106febb">globalCenterZ</a> = <a class="code hl_variable" href="group__look_at.html#gadedc332e2d5c7cdc0295a051833eb4f9">DEFAULT_GLOBAL_CENTER_Z</a>;</div>
+<div class="line"><span class="lineno">  158</span>  <span class="comment">/*scaling*/</span></div>
+<div class="line"><span class="lineno">  159</span>  <a class="code hl_variable" href="group__engine.html#ga5906958820a0271f052da739c634a994">globalScaleStep</a> = <a class="code hl_variable" href="group__engine.html#gaae06616879cc2b7af69a67cb77ff0636">DEFAULT_GLOBAL_SCALE_STEP</a>;</div>
+<div class="line"><span class="lineno">  160</span>  <a class="code hl_variable" href="group__engine.html#ga76ca2b2b73be400347bb4b460405f1f2">globalScaleX</a> = 1;</div>
+<div class="line"><span class="lineno">  161</span>  <a class="code hl_variable" href="group__engine.html#ga5c609aa58ab1231665e34d751cd592ae">globalScaleY</a> = 1;</div>
+<div class="line"><span class="lineno">  162</span>  <a class="code hl_variable" href="group__engine.html#ga6759b1a14e7b7edc9cc5f5caaee5cb88">globalScaleZ</a> = 1;</div>
 <div class="line"><span class="lineno">  163</span> </div>
-<div class="line"><span class="lineno">  164</span>  <span class="comment">/*up*/</span></div>
-<div class="line"><span class="lineno">  165</span> </div>
-<div class="line"><span class="lineno">  166</span>  <a class="code hl_variable" href="group__up.html#ga05d6061a888c03cd994582410976b8c5">globalUpStep</a> = <a class="code hl_variable" href="group__up.html#gacc7ac1ab6cb80fe4ac3385f34321d33a">DEFAULT_GLOBAL_UP_STEP</a>;</div>
-<div class="line"><span class="lineno">  167</span>  <a class="code hl_variable" href="group__up.html#ga72f95312c48395a912ce37b15c5ff841">globalUpX</a> = <a class="code hl_variable" href="group__up.html#gaa7c5ea30e53e8277f3453748b3ec65b2">DEFAULT_GLOBAL_UP_X</a>;</div>
-<div class="line"><span class="lineno">  168</span>  <a class="code hl_variable" href="group__up.html#gaa2f1ed4a70974b3b22481d3124e1dbf2">globalUpY</a> = <a class="code hl_variable" href="group__up.html#ga1d99792fd6031999dbee0ddc59d70f6f">DEFAULT_GLOBAL_UP_Y</a>;</div>
-<div class="line"><span class="lineno">  169</span>  <a class="code hl_variable" href="group__up.html#ga9b87730968b220018fd7f1a53728e46e">globalUpZ</a> = <a class="code hl_variable" href="group__up.html#ga310ca5fbbd5424d2678ec570136e46ae">DEFAULT_GLOBAL_UP_Z</a>;</div>
-<div class="line"><span class="lineno">  170</span> </div>
-<div class="line"><span class="lineno">  171</span>  <span class="comment">/*projection*/</span></div>
-<div class="line"><span class="lineno">  172</span>  <a class="code hl_variable" href="group__projection.html#ga59f6d63e115356ceacbc105f05acd900">globalFOV</a> = <a class="code hl_variable" href="group__projection.html#ga9344f8711dfb5b6484b85d74ecfc5aa9">DEFAULT_GLOBAL_FOV</a>;</div>
-<div class="line"><span class="lineno">  173</span>  <a class="code hl_variable" href="group__projection.html#ga4ce7b2ac871b1ff992a5048c9efedb4f">globalNear</a> = <a class="code hl_variable" href="group__projection.html#gac45b46967400f1ff08d5eb9009b5275e">DEFAULT_GLOBAL_NEAR</a>;</div>
-<div class="line"><span class="lineno">  174</span>  <a class="code hl_variable" href="group__projection.html#ga0d7ac28f9a90c72a02d5f7c6f1182be9">globalFar</a> = <a class="code hl_variable" href="group__projection.html#ga77c5e8ffdba32056cc34a418d778962b">DEFAULT_GLOBAL_FAR</a>;</div>
-<div class="line"><span class="lineno">  175</span>}</div>
-<div class="ttc" id="agroup__engine_html_ga1bd69a3237cca1b346bec2ac742a0a8e"><div class="ttname"><a href="group__engine.html#ga1bd69a3237cca1b346bec2ac742a0a8e">globalTranslateY</a></div><div class="ttdeci">static float globalTranslateY</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00033">engine.cpp:33</a></div></div>
-<div class="ttc" id="agroup__engine_html_ga2e8f792b2bea2085eabf137c2a5db166"><div class="ttname"><a href="group__engine.html#ga2e8f792b2bea2085eabf137c2a5db166">globalAngleStep</a></div><div class="ttdeci">static float globalAngleStep</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00023">engine.cpp:23</a></div></div>
-<div class="ttc" id="agroup__engine_html_ga38677f95037f4575ab422e6980f920e0"><div class="ttname"><a href="group__engine.html#ga38677f95037f4575ab422e6980f920e0">globalTranslateX</a></div><div class="ttdeci">static float globalTranslateX</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00032">engine.cpp:32</a></div></div>
-<div class="ttc" id="agroup__engine_html_ga39e693af19a42919db1a9776c4233d5b"><div class="ttname"><a href="group__engine.html#ga39e693af19a42919db1a9776c4233d5b">DEFAULT_GLOBAL_TRANSLATE_STEP</a></div><div class="ttdeci">const unsigned int DEFAULT_GLOBAL_TRANSLATE_STEP</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00030">engine.cpp:30</a></div></div>
-<div class="ttc" id="agroup__engine_html_ga3dccccfb75086f82e8e8cb4b4f17a3bc"><div class="ttname"><a href="group__engine.html#ga3dccccfb75086f82e8e8cb4b4f17a3bc">globalTranslateStep</a></div><div class="ttdeci">static float globalTranslateStep</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00031">engine.cpp:31</a></div></div>
-<div class="ttc" id="agroup__engine_html_ga466fc31ceeef83b53e03a820891b1ca2"><div class="ttname"><a href="group__engine.html#ga466fc31ceeef83b53e03a820891b1ca2">globalAngle</a></div><div class="ttdeci">static float globalAngle</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00024">engine.cpp:24</a></div></div>
-<div class="ttc" id="agroup__engine_html_ga5906958820a0271f052da739c634a994"><div class="ttname"><a href="group__engine.html#ga5906958820a0271f052da739c634a994">globalScaleStep</a></div><div class="ttdeci">float globalScaleStep</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00038">engine.cpp:38</a></div></div>
-<div class="ttc" id="agroup__engine_html_ga5c609aa58ab1231665e34d751cd592ae"><div class="ttname"><a href="group__engine.html#ga5c609aa58ab1231665e34d751cd592ae">globalScaleY</a></div><div class="ttdeci">static float globalScaleY</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00040">engine.cpp:40</a></div></div>
-<div class="ttc" id="agroup__engine_html_ga6759b1a14e7b7edc9cc5f5caaee5cb88"><div class="ttname"><a href="group__engine.html#ga6759b1a14e7b7edc9cc5f5caaee5cb88">globalScaleZ</a></div><div class="ttdeci">static float globalScaleZ</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00041">engine.cpp:41</a></div></div>
-<div class="ttc" id="agroup__engine_html_ga76ca2b2b73be400347bb4b460405f1f2"><div class="ttname"><a href="group__engine.html#ga76ca2b2b73be400347bb4b460405f1f2">globalScaleX</a></div><div class="ttdeci">static float globalScaleX</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00039">engine.cpp:39</a></div></div>
-<div class="ttc" id="agroup__engine_html_ga79577108f7a530d0ad847b9f779663b0"><div class="ttname"><a href="group__engine.html#ga79577108f7a530d0ad847b9f779663b0">globalRotateY</a></div><div class="ttdeci">static float globalRotateY</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00026">engine.cpp:26</a></div></div>
-<div class="ttc" id="agroup__engine_html_gaae06616879cc2b7af69a67cb77ff0636"><div class="ttname"><a href="group__engine.html#gaae06616879cc2b7af69a67cb77ff0636">DEFAULT_GLOBAL_SCALE_STEP</a></div><div class="ttdeci">const unsigned int DEFAULT_GLOBAL_SCALE_STEP</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00037">engine.cpp:37</a></div></div>
-<div class="ttc" id="agroup__engine_html_gabf991ada5cb4710283b06356b09b0828"><div class="ttname"><a href="group__engine.html#gabf991ada5cb4710283b06356b09b0828">globalRotateZ</a></div><div class="ttdeci">static float globalRotateZ</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00027">engine.cpp:27</a></div></div>
-<div class="ttc" id="agroup__engine_html_gaddd518403add69d85e781edfff4c94cc"><div class="ttname"><a href="group__engine.html#gaddd518403add69d85e781edfff4c94cc">globalRotateX</a></div><div class="ttdeci">static float globalRotateX</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00025">engine.cpp:25</a></div></div>
-<div class="ttc" id="agroup__engine_html_gae5197ff392fbb6687d3ad586f589e309"><div class="ttname"><a href="group__engine.html#gae5197ff392fbb6687d3ad586f589e309">globalTranslateZ</a></div><div class="ttdeci">static float globalTranslateZ</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00034">engine.cpp:34</a></div></div>
-<div class="ttc" id="agroup__engine_html_gafbb57ef1726ff61d49254b383fcb0eb3"><div class="ttname"><a href="group__engine.html#gafbb57ef1726ff61d49254b383fcb0eb3">DEFAULT_GLOBAL_ANGLE_STEP</a></div><div class="ttdeci">const unsigned int DEFAULT_GLOBAL_ANGLE_STEP</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00022">engine.cpp:22</a></div></div>
-<div class="ttc" id="agroup__look_at_html_ga054a4c2a70619b372f56ef9a45a82493"><div class="ttname"><a href="group__look_at.html#ga054a4c2a70619b372f56ef9a45a82493">DEFAULT_GLOBAL_CENTER_Y</a></div><div class="ttdeci">static float DEFAULT_GLOBAL_CENTER_Y</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00093">engine.cpp:93</a></div></div>
-<div class="ttc" id="agroup__look_at_html_ga24788a09c1fd390f1b6abee92c090c5c"><div class="ttname"><a href="group__look_at.html#ga24788a09c1fd390f1b6abee92c090c5c">globalCenterStep</a></div><div class="ttdeci">float globalCenterStep</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00096">engine.cpp:96</a></div></div>
-<div class="ttc" id="agroup__look_at_html_ga2cb5db8bdad416592fa643be93c764be"><div class="ttname"><a href="group__look_at.html#ga2cb5db8bdad416592fa643be93c764be">globalCenterX</a></div><div class="ttdeci">static float globalCenterX</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00097">engine.cpp:97</a></div></div>
-<div class="ttc" id="agroup__look_at_html_ga3f847a1dda79418433019cbee15c313e"><div class="ttname"><a href="group__look_at.html#ga3f847a1dda79418433019cbee15c313e">DEFAULT_GLOBAL_CENTER_STEP</a></div><div class="ttdeci">const unsigned int DEFAULT_GLOBAL_CENTER_STEP</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00091">engine.cpp:91</a></div></div>
-<div class="ttc" id="agroup__look_at_html_gaa63e0d164754e930baf0d8d08106febb"><div class="ttname"><a href="group__look_at.html#gaa63e0d164754e930baf0d8d08106febb">globalCenterZ</a></div><div class="ttdeci">static float globalCenterZ</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00099">engine.cpp:99</a></div></div>
-<div class="ttc" id="agroup__look_at_html_gadedc332e2d5c7cdc0295a051833eb4f9"><div class="ttname"><a href="group__look_at.html#gadedc332e2d5c7cdc0295a051833eb4f9">DEFAULT_GLOBAL_CENTER_Z</a></div><div class="ttdeci">static float DEFAULT_GLOBAL_CENTER_Z</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00094">engine.cpp:94</a></div></div>
-<div class="ttc" id="agroup__look_at_html_gaf1a9b548d1f24649e0ba3cf4af735456"><div class="ttname"><a href="group__look_at.html#gaf1a9b548d1f24649e0ba3cf4af735456">DEFAULT_GLOBAL_CENTER_X</a></div><div class="ttdeci">static float DEFAULT_GLOBAL_CENTER_X</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00092">engine.cpp:92</a></div></div>
-<div class="ttc" id="agroup__look_at_html_gaf3f8074b4e6ebaf6687f0777fd500e51"><div class="ttname"><a href="group__look_at.html#gaf3f8074b4e6ebaf6687f0777fd500e51">globalCenterY</a></div><div class="ttdeci">static float globalCenterY</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00098">engine.cpp:98</a></div></div>
-<div class="ttc" id="agroup__position_html_ga249dfe7a961b98a6109c56ceec57d1ad"><div class="ttname"><a href="group__position.html#ga249dfe7a961b98a6109c56ceec57d1ad">globalEyeY</a></div><div class="ttdeci">static double globalEyeY</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00085">engine.cpp:85</a></div></div>
-<div class="ttc" id="agroup__position_html_ga434a33b9dda24c1da34daf37de1f97ce"><div class="ttname"><a href="group__position.html#ga434a33b9dda24c1da34daf37de1f97ce">DEFAULT_GLOBAL_EYE_Y</a></div><div class="ttdeci">static float DEFAULT_GLOBAL_EYE_Y</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00080">engine.cpp:80</a></div></div>
-<div class="ttc" id="agroup__position_html_ga5622007d32c9f02637b15e267ea5e66d"><div class="ttname"><a href="group__position.html#ga5622007d32c9f02637b15e267ea5e66d">DEFAULT_GLOBAL_EYE_STEP</a></div><div class="ttdeci">const unsigned int DEFAULT_GLOBAL_EYE_STEP</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00078">engine.cpp:78</a></div></div>
-<div class="ttc" id="agroup__position_html_ga66e088ca33532c7abf22b05512009c52"><div class="ttname"><a href="group__position.html#ga66e088ca33532c7abf22b05512009c52">DEFAULT_GLOBAL_EYE_Z</a></div><div class="ttdeci">static float DEFAULT_GLOBAL_EYE_Z</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00081">engine.cpp:81</a></div></div>
-<div class="ttc" id="agroup__position_html_ga718827325d2f8ecfb7db4767a124d99b"><div class="ttname"><a href="group__position.html#ga718827325d2f8ecfb7db4767a124d99b">globalEyeX</a></div><div class="ttdeci">static double globalEyeX</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00084">engine.cpp:84</a></div></div>
-<div class="ttc" id="agroup__position_html_ga9673727a896669866bb7f5a53dd6a41c"><div class="ttname"><a href="group__position.html#ga9673727a896669866bb7f5a53dd6a41c">globalEyeStep</a></div><div class="ttdeci">static double globalEyeStep</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00083">engine.cpp:83</a></div></div>
-<div class="ttc" id="agroup__position_html_gab7a6de09906647c4f67ee4dd4076842b"><div class="ttname"><a href="group__position.html#gab7a6de09906647c4f67ee4dd4076842b">globalEyeZ</a></div><div class="ttdeci">static double globalEyeZ</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00086">engine.cpp:86</a></div></div>
-<div class="ttc" id="agroup__position_html_gac405408e87c2764abe6ccf07bc3e59e2"><div class="ttname"><a href="group__position.html#gac405408e87c2764abe6ccf07bc3e59e2">DEFAULT_GLOBAL_EYE_X</a></div><div class="ttdeci">static float DEFAULT_GLOBAL_EYE_X</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00079">engine.cpp:79</a></div></div>
-<div class="ttc" id="agroup__projection_html_ga77c5e8ffdba32056cc34a418d778962b"><div class="ttname"><a href="group__projection.html#ga77c5e8ffdba32056cc34a418d778962b">DEFAULT_GLOBAL_FAR</a></div><div class="ttdeci">static float DEFAULT_GLOBAL_FAR</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00119">engine.cpp:119</a></div></div>
-<div class="ttc" id="agroup__projection_html_ga9344f8711dfb5b6484b85d74ecfc5aa9"><div class="ttname"><a href="group__projection.html#ga9344f8711dfb5b6484b85d74ecfc5aa9">DEFAULT_GLOBAL_FOV</a></div><div class="ttdeci">static float DEFAULT_GLOBAL_FOV</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00117">engine.cpp:117</a></div></div>
-<div class="ttc" id="agroup__projection_html_gac45b46967400f1ff08d5eb9009b5275e"><div class="ttname"><a href="group__projection.html#gac45b46967400f1ff08d5eb9009b5275e">DEFAULT_GLOBAL_NEAR</a></div><div class="ttdeci">static float DEFAULT_GLOBAL_NEAR</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00118">engine.cpp:118</a></div></div>
-<div class="ttc" id="agroup__spherical_html_ga2788cc0fae99c064d291338b8fbe8484"><div class="ttname"><a href="group__spherical.html#ga2788cc0fae99c064d291338b8fbe8484">globalElevation</a></div><div class="ttdeci">double globalElevation</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00056">engine.cpp:56</a></div></div>
-<div class="ttc" id="agroup__spherical_html_ga3f93d1092ee04ee1206b02259e320784"><div class="ttname"><a href="group__spherical.html#ga3f93d1092ee04ee1206b02259e320784">DEFAULT_GLOBAL_ELEVATION</a></div><div class="ttdeci">double DEFAULT_GLOBAL_ELEVATION</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00052">engine.cpp:52</a></div></div>
-<div class="ttc" id="agroup__spherical_html_ga8847a748f16dded3615f8f4b48ab2ef4"><div class="ttname"><a href="group__spherical.html#ga8847a748f16dded3615f8f4b48ab2ef4">DEFAULT_GLOBAL_AZIMUTH</a></div><div class="ttdeci">double DEFAULT_GLOBAL_AZIMUTH</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00051">engine.cpp:51</a></div></div>
-<div class="ttc" id="agroup__spherical_html_ga9046d488bde40feb5c8cd6372f12d5cf"><div class="ttname"><a href="group__spherical.html#ga9046d488bde40feb5c8cd6372f12d5cf">DEFAULT_GLOBAL_RADIUS</a></div><div class="ttdeci">double DEFAULT_GLOBAL_RADIUS</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00050">engine.cpp:50</a></div></div>
-<div class="ttc" id="agroup__spherical_html_gadaab4529e17c31628ede6500a0f9dd07"><div class="ttname"><a href="group__spherical.html#gadaab4529e17c31628ede6500a0f9dd07">globalAzimuth</a></div><div class="ttdeci">double globalAzimuth</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00055">engine.cpp:55</a></div></div>
-<div class="ttc" id="agroup__spherical_html_gaee0ddcd277ec7a7a451dbd5b17f98187"><div class="ttname"><a href="group__spherical.html#gaee0ddcd277ec7a7a451dbd5b17f98187">globalRadius</a></div><div class="ttdeci">double globalRadius</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00054">engine.cpp:54</a></div></div>
-<div class="ttc" id="agroup__up_html_ga05d6061a888c03cd994582410976b8c5"><div class="ttname"><a href="group__up.html#ga05d6061a888c03cd994582410976b8c5">globalUpStep</a></div><div class="ttdeci">float globalUpStep</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00109">engine.cpp:109</a></div></div>
-<div class="ttc" id="agroup__up_html_ga1d99792fd6031999dbee0ddc59d70f6f"><div class="ttname"><a href="group__up.html#ga1d99792fd6031999dbee0ddc59d70f6f">DEFAULT_GLOBAL_UP_Y</a></div><div class="ttdeci">static float DEFAULT_GLOBAL_UP_Y</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00106">engine.cpp:106</a></div></div>
-<div class="ttc" id="agroup__up_html_ga310ca5fbbd5424d2678ec570136e46ae"><div class="ttname"><a href="group__up.html#ga310ca5fbbd5424d2678ec570136e46ae">DEFAULT_GLOBAL_UP_Z</a></div><div class="ttdeci">static float DEFAULT_GLOBAL_UP_Z</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00107">engine.cpp:107</a></div></div>
-<div class="ttc" id="agroup__up_html_ga72f95312c48395a912ce37b15c5ff841"><div class="ttname"><a href="group__up.html#ga72f95312c48395a912ce37b15c5ff841">globalUpX</a></div><div class="ttdeci">static float globalUpX</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00110">engine.cpp:110</a></div></div>
-<div class="ttc" id="agroup__up_html_ga9b87730968b220018fd7f1a53728e46e"><div class="ttname"><a href="group__up.html#ga9b87730968b220018fd7f1a53728e46e">globalUpZ</a></div><div class="ttdeci">static float globalUpZ</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00112">engine.cpp:112</a></div></div>
-<div class="ttc" id="agroup__up_html_gaa2f1ed4a70974b3b22481d3124e1dbf2"><div class="ttname"><a href="group__up.html#gaa2f1ed4a70974b3b22481d3124e1dbf2">globalUpY</a></div><div class="ttdeci">static float globalUpY</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00111">engine.cpp:111</a></div></div>
-<div class="ttc" id="agroup__up_html_gaa7c5ea30e53e8277f3453748b3ec65b2"><div class="ttname"><a href="group__up.html#gaa7c5ea30e53e8277f3453748b3ec65b2">DEFAULT_GLOBAL_UP_X</a></div><div class="ttdeci">static float DEFAULT_GLOBAL_UP_X</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00105">engine.cpp:105</a></div></div>
-<div class="ttc" id="agroup__up_html_gacc7ac1ab6cb80fe4ac3385f34321d33a"><div class="ttname"><a href="group__up.html#gacc7ac1ab6cb80fe4ac3385f34321d33a">DEFAULT_GLOBAL_UP_STEP</a></div><div class="ttdeci">const unsigned int DEFAULT_GLOBAL_UP_STEP</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00104">engine.cpp:104</a></div></div>
+<div class="line"><span class="lineno">  164</span>  <span class="comment">/*position*/</span></div>
+<div class="line"><span class="lineno">  165</span>  <a class="code hl_variable" href="group__position.html#ga9673727a896669866bb7f5a53dd6a41c">globalEyeStep</a> = <a class="code hl_variable" href="group__position.html#ga5622007d32c9f02637b15e267ea5e66d">DEFAULT_GLOBAL_EYE_STEP</a>;</div>
+<div class="line"><span class="lineno">  166</span>  <a class="code hl_variable" href="group__position.html#ga718827325d2f8ecfb7db4767a124d99b">globalEyeX</a> = <a class="code hl_variable" href="group__position.html#gac405408e87c2764abe6ccf07bc3e59e2">DEFAULT_GLOBAL_EYE_X</a>;</div>
+<div class="line"><span class="lineno">  167</span>  <a class="code hl_variable" href="group__position.html#ga249dfe7a961b98a6109c56ceec57d1ad">globalEyeY</a> = <a class="code hl_variable" href="group__position.html#ga434a33b9dda24c1da34daf37de1f97ce">DEFAULT_GLOBAL_EYE_Y</a>;</div>
+<div class="line"><span class="lineno">  168</span>  <a class="code hl_variable" href="group__position.html#gab7a6de09906647c4f67ee4dd4076842b">globalEyeZ</a> = <a class="code hl_variable" href="group__position.html#ga66e088ca33532c7abf22b05512009c52">DEFAULT_GLOBAL_EYE_Z</a>;</div>
+<div class="line"><span class="lineno">  169</span> </div>
+<div class="line"><span class="lineno">  170</span>  <a class="code hl_variable" href="group__spherical.html#gaee0ddcd277ec7a7a451dbd5b17f98187">globalRadius</a> = <a class="code hl_variable" href="group__spherical.html#ga9046d488bde40feb5c8cd6372f12d5cf">DEFAULT_GLOBAL_RADIUS</a>;</div>
+<div class="line"><span class="lineno">  171</span>  <a class="code hl_variable" href="group__spherical.html#gadaab4529e17c31628ede6500a0f9dd07">globalAzimuth</a> = <a class="code hl_variable" href="group__spherical.html#ga8847a748f16dded3615f8f4b48ab2ef4">DEFAULT_GLOBAL_AZIMUTH</a>;</div>
+<div class="line"><span class="lineno">  172</span>  <a class="code hl_variable" href="group__spherical.html#ga2788cc0fae99c064d291338b8fbe8484">globalElevation</a> = <a class="code hl_variable" href="group__spherical.html#ga3f93d1092ee04ee1206b02259e320784">DEFAULT_GLOBAL_ELEVATION</a>;</div>
+<div class="line"><span class="lineno">  173</span> </div>
+<div class="line"><span class="lineno">  174</span>  <span class="comment">/*lookAt*/</span></div>
+<div class="line"><span class="lineno">  175</span>  <a class="code hl_variable" href="group__look_at.html#ga24788a09c1fd390f1b6abee92c090c5c">globalCenterStep</a> = <a class="code hl_variable" href="group__look_at.html#ga3f847a1dda79418433019cbee15c313e">DEFAULT_GLOBAL_CENTER_STEP</a>;</div>
+<div class="line"><span class="lineno">  176</span>  <a class="code hl_variable" href="group__look_at.html#ga2cb5db8bdad416592fa643be93c764be">globalCenterX</a> = <a class="code hl_variable" href="group__look_at.html#gaf1a9b548d1f24649e0ba3cf4af735456">DEFAULT_GLOBAL_CENTER_X</a>;</div>
+<div class="line"><span class="lineno">  177</span>  <a class="code hl_variable" href="group__look_at.html#gaf3f8074b4e6ebaf6687f0777fd500e51">globalCenterY</a> = <a class="code hl_variable" href="group__look_at.html#ga054a4c2a70619b372f56ef9a45a82493">DEFAULT_GLOBAL_CENTER_Y</a>;</div>
+<div class="line"><span class="lineno">  178</span>  <a class="code hl_variable" href="group__look_at.html#gaa63e0d164754e930baf0d8d08106febb">globalCenterZ</a> = <a class="code hl_variable" href="group__look_at.html#gadedc332e2d5c7cdc0295a051833eb4f9">DEFAULT_GLOBAL_CENTER_Z</a>;</div>
+<div class="line"><span class="lineno">  179</span> </div>
+<div class="line"><span class="lineno">  180</span>  <span class="comment">/*up*/</span></div>
+<div class="line"><span class="lineno">  181</span> </div>
+<div class="line"><span class="lineno">  182</span>  <a class="code hl_variable" href="group__up.html#ga05d6061a888c03cd994582410976b8c5">globalUpStep</a> = <a class="code hl_variable" href="group__up.html#gacc7ac1ab6cb80fe4ac3385f34321d33a">DEFAULT_GLOBAL_UP_STEP</a>;</div>
+<div class="line"><span class="lineno">  183</span>  <a class="code hl_variable" href="group__up.html#ga72f95312c48395a912ce37b15c5ff841">globalUpX</a> = <a class="code hl_variable" href="group__up.html#gaa7c5ea30e53e8277f3453748b3ec65b2">DEFAULT_GLOBAL_UP_X</a>;</div>
+<div class="line"><span class="lineno">  184</span>  <a class="code hl_variable" href="group__up.html#gaa2f1ed4a70974b3b22481d3124e1dbf2">globalUpY</a> = <a class="code hl_variable" href="group__up.html#ga1d99792fd6031999dbee0ddc59d70f6f">DEFAULT_GLOBAL_UP_Y</a>;</div>
+<div class="line"><span class="lineno">  185</span>  <a class="code hl_variable" href="group__up.html#ga9b87730968b220018fd7f1a53728e46e">globalUpZ</a> = <a class="code hl_variable" href="group__up.html#ga310ca5fbbd5424d2678ec570136e46ae">DEFAULT_GLOBAL_UP_Z</a>;</div>
+<div class="line"><span class="lineno">  186</span> </div>
+<div class="line"><span class="lineno">  187</span>  <span class="comment">/*projection*/</span></div>
+<div class="line"><span class="lineno">  188</span>  <a class="code hl_variable" href="group__projection.html#ga59f6d63e115356ceacbc105f05acd900">globalFOV</a> = <a class="code hl_variable" href="group__projection.html#ga9344f8711dfb5b6484b85d74ecfc5aa9">DEFAULT_GLOBAL_FOV</a>;</div>
+<div class="line"><span class="lineno">  189</span>  <a class="code hl_variable" href="group__projection.html#ga4ce7b2ac871b1ff992a5048c9efedb4f">globalNear</a> = <a class="code hl_variable" href="group__projection.html#gac45b46967400f1ff08d5eb9009b5275e">DEFAULT_GLOBAL_NEAR</a>;</div>
+<div class="line"><span class="lineno">  190</span>  <a class="code hl_variable" href="group__projection.html#ga0d7ac28f9a90c72a02d5f7c6f1182be9">globalFar</a> = <a class="code hl_variable" href="group__projection.html#ga77c5e8ffdba32056cc34a418d778962b">DEFAULT_GLOBAL_FAR</a>;</div>
+<div class="line"><span class="lineno">  191</span>}</div>
+<div class="ttc" id="agroup__engine_html_ga1bd69a3237cca1b346bec2ac742a0a8e"><div class="ttname"><a href="group__engine.html#ga1bd69a3237cca1b346bec2ac742a0a8e">globalTranslateY</a></div><div class="ttdeci">static float globalTranslateY</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00039">engine.cpp:39</a></div></div>
+<div class="ttc" id="agroup__engine_html_ga2e8f792b2bea2085eabf137c2a5db166"><div class="ttname"><a href="group__engine.html#ga2e8f792b2bea2085eabf137c2a5db166">globalAngleStep</a></div><div class="ttdeci">static float globalAngleStep</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00029">engine.cpp:29</a></div></div>
+<div class="ttc" id="agroup__engine_html_ga38677f95037f4575ab422e6980f920e0"><div class="ttname"><a href="group__engine.html#ga38677f95037f4575ab422e6980f920e0">globalTranslateX</a></div><div class="ttdeci">static float globalTranslateX</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00038">engine.cpp:38</a></div></div>
+<div class="ttc" id="agroup__engine_html_ga39e693af19a42919db1a9776c4233d5b"><div class="ttname"><a href="group__engine.html#ga39e693af19a42919db1a9776c4233d5b">DEFAULT_GLOBAL_TRANSLATE_STEP</a></div><div class="ttdeci">const unsigned int DEFAULT_GLOBAL_TRANSLATE_STEP</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00036">engine.cpp:36</a></div></div>
+<div class="ttc" id="agroup__engine_html_ga3dccccfb75086f82e8e8cb4b4f17a3bc"><div class="ttname"><a href="group__engine.html#ga3dccccfb75086f82e8e8cb4b4f17a3bc">globalTranslateStep</a></div><div class="ttdeci">static float globalTranslateStep</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00037">engine.cpp:37</a></div></div>
+<div class="ttc" id="agroup__engine_html_ga466fc31ceeef83b53e03a820891b1ca2"><div class="ttname"><a href="group__engine.html#ga466fc31ceeef83b53e03a820891b1ca2">globalAngle</a></div><div class="ttdeci">static float globalAngle</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00030">engine.cpp:30</a></div></div>
+<div class="ttc" id="agroup__engine_html_ga5906958820a0271f052da739c634a994"><div class="ttname"><a href="group__engine.html#ga5906958820a0271f052da739c634a994">globalScaleStep</a></div><div class="ttdeci">float globalScaleStep</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00044">engine.cpp:44</a></div></div>
+<div class="ttc" id="agroup__engine_html_ga5c609aa58ab1231665e34d751cd592ae"><div class="ttname"><a href="group__engine.html#ga5c609aa58ab1231665e34d751cd592ae">globalScaleY</a></div><div class="ttdeci">static float globalScaleY</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00046">engine.cpp:46</a></div></div>
+<div class="ttc" id="agroup__engine_html_ga6759b1a14e7b7edc9cc5f5caaee5cb88"><div class="ttname"><a href="group__engine.html#ga6759b1a14e7b7edc9cc5f5caaee5cb88">globalScaleZ</a></div><div class="ttdeci">static float globalScaleZ</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00047">engine.cpp:47</a></div></div>
+<div class="ttc" id="agroup__engine_html_ga76ca2b2b73be400347bb4b460405f1f2"><div class="ttname"><a href="group__engine.html#ga76ca2b2b73be400347bb4b460405f1f2">globalScaleX</a></div><div class="ttdeci">static float globalScaleX</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00045">engine.cpp:45</a></div></div>
+<div class="ttc" id="agroup__engine_html_ga79577108f7a530d0ad847b9f779663b0"><div class="ttname"><a href="group__engine.html#ga79577108f7a530d0ad847b9f779663b0">globalRotateY</a></div><div class="ttdeci">static float globalRotateY</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00032">engine.cpp:32</a></div></div>
+<div class="ttc" id="agroup__engine_html_gaae06616879cc2b7af69a67cb77ff0636"><div class="ttname"><a href="group__engine.html#gaae06616879cc2b7af69a67cb77ff0636">DEFAULT_GLOBAL_SCALE_STEP</a></div><div class="ttdeci">const unsigned int DEFAULT_GLOBAL_SCALE_STEP</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00043">engine.cpp:43</a></div></div>
+<div class="ttc" id="agroup__engine_html_gabf991ada5cb4710283b06356b09b0828"><div class="ttname"><a href="group__engine.html#gabf991ada5cb4710283b06356b09b0828">globalRotateZ</a></div><div class="ttdeci">static float globalRotateZ</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00033">engine.cpp:33</a></div></div>
+<div class="ttc" id="agroup__engine_html_gaddd518403add69d85e781edfff4c94cc"><div class="ttname"><a href="group__engine.html#gaddd518403add69d85e781edfff4c94cc">globalRotateX</a></div><div class="ttdeci">static float globalRotateX</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00031">engine.cpp:31</a></div></div>
+<div class="ttc" id="agroup__engine_html_gae5197ff392fbb6687d3ad586f589e309"><div class="ttname"><a href="group__engine.html#gae5197ff392fbb6687d3ad586f589e309">globalTranslateZ</a></div><div class="ttdeci">static float globalTranslateZ</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00040">engine.cpp:40</a></div></div>
+<div class="ttc" id="agroup__engine_html_gafbb57ef1726ff61d49254b383fcb0eb3"><div class="ttname"><a href="group__engine.html#gafbb57ef1726ff61d49254b383fcb0eb3">DEFAULT_GLOBAL_ANGLE_STEP</a></div><div class="ttdeci">const unsigned int DEFAULT_GLOBAL_ANGLE_STEP</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00028">engine.cpp:28</a></div></div>
+<div class="ttc" id="agroup__look_at_html_ga054a4c2a70619b372f56ef9a45a82493"><div class="ttname"><a href="group__look_at.html#ga054a4c2a70619b372f56ef9a45a82493">DEFAULT_GLOBAL_CENTER_Y</a></div><div class="ttdeci">static float DEFAULT_GLOBAL_CENTER_Y</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00109">engine.cpp:109</a></div></div>
+<div class="ttc" id="agroup__look_at_html_ga24788a09c1fd390f1b6abee92c090c5c"><div class="ttname"><a href="group__look_at.html#ga24788a09c1fd390f1b6abee92c090c5c">globalCenterStep</a></div><div class="ttdeci">float globalCenterStep</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00112">engine.cpp:112</a></div></div>
+<div class="ttc" id="agroup__look_at_html_ga2cb5db8bdad416592fa643be93c764be"><div class="ttname"><a href="group__look_at.html#ga2cb5db8bdad416592fa643be93c764be">globalCenterX</a></div><div class="ttdeci">static float globalCenterX</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00113">engine.cpp:113</a></div></div>
+<div class="ttc" id="agroup__look_at_html_ga3f847a1dda79418433019cbee15c313e"><div class="ttname"><a href="group__look_at.html#ga3f847a1dda79418433019cbee15c313e">DEFAULT_GLOBAL_CENTER_STEP</a></div><div class="ttdeci">const unsigned int DEFAULT_GLOBAL_CENTER_STEP</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00107">engine.cpp:107</a></div></div>
+<div class="ttc" id="agroup__look_at_html_gaa63e0d164754e930baf0d8d08106febb"><div class="ttname"><a href="group__look_at.html#gaa63e0d164754e930baf0d8d08106febb">globalCenterZ</a></div><div class="ttdeci">static float globalCenterZ</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00115">engine.cpp:115</a></div></div>
+<div class="ttc" id="agroup__look_at_html_gadedc332e2d5c7cdc0295a051833eb4f9"><div class="ttname"><a href="group__look_at.html#gadedc332e2d5c7cdc0295a051833eb4f9">DEFAULT_GLOBAL_CENTER_Z</a></div><div class="ttdeci">static float DEFAULT_GLOBAL_CENTER_Z</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00110">engine.cpp:110</a></div></div>
+<div class="ttc" id="agroup__look_at_html_gaf1a9b548d1f24649e0ba3cf4af735456"><div class="ttname"><a href="group__look_at.html#gaf1a9b548d1f24649e0ba3cf4af735456">DEFAULT_GLOBAL_CENTER_X</a></div><div class="ttdeci">static float DEFAULT_GLOBAL_CENTER_X</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00108">engine.cpp:108</a></div></div>
+<div class="ttc" id="agroup__look_at_html_gaf3f8074b4e6ebaf6687f0777fd500e51"><div class="ttname"><a href="group__look_at.html#gaf3f8074b4e6ebaf6687f0777fd500e51">globalCenterY</a></div><div class="ttdeci">static float globalCenterY</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00114">engine.cpp:114</a></div></div>
+<div class="ttc" id="agroup__position_html_ga249dfe7a961b98a6109c56ceec57d1ad"><div class="ttname"><a href="group__position.html#ga249dfe7a961b98a6109c56ceec57d1ad">globalEyeY</a></div><div class="ttdeci">static double globalEyeY</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00101">engine.cpp:101</a></div></div>
+<div class="ttc" id="agroup__position_html_ga434a33b9dda24c1da34daf37de1f97ce"><div class="ttname"><a href="group__position.html#ga434a33b9dda24c1da34daf37de1f97ce">DEFAULT_GLOBAL_EYE_Y</a></div><div class="ttdeci">static float DEFAULT_GLOBAL_EYE_Y</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00096">engine.cpp:96</a></div></div>
+<div class="ttc" id="agroup__position_html_ga5622007d32c9f02637b15e267ea5e66d"><div class="ttname"><a href="group__position.html#ga5622007d32c9f02637b15e267ea5e66d">DEFAULT_GLOBAL_EYE_STEP</a></div><div class="ttdeci">const unsigned int DEFAULT_GLOBAL_EYE_STEP</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00094">engine.cpp:94</a></div></div>
+<div class="ttc" id="agroup__position_html_ga66e088ca33532c7abf22b05512009c52"><div class="ttname"><a href="group__position.html#ga66e088ca33532c7abf22b05512009c52">DEFAULT_GLOBAL_EYE_Z</a></div><div class="ttdeci">static float DEFAULT_GLOBAL_EYE_Z</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00097">engine.cpp:97</a></div></div>
+<div class="ttc" id="agroup__position_html_ga718827325d2f8ecfb7db4767a124d99b"><div class="ttname"><a href="group__position.html#ga718827325d2f8ecfb7db4767a124d99b">globalEyeX</a></div><div class="ttdeci">static double globalEyeX</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00100">engine.cpp:100</a></div></div>
+<div class="ttc" id="agroup__position_html_ga9673727a896669866bb7f5a53dd6a41c"><div class="ttname"><a href="group__position.html#ga9673727a896669866bb7f5a53dd6a41c">globalEyeStep</a></div><div class="ttdeci">static double globalEyeStep</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00099">engine.cpp:99</a></div></div>
+<div class="ttc" id="agroup__position_html_gab7a6de09906647c4f67ee4dd4076842b"><div class="ttname"><a href="group__position.html#gab7a6de09906647c4f67ee4dd4076842b">globalEyeZ</a></div><div class="ttdeci">static double globalEyeZ</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00102">engine.cpp:102</a></div></div>
+<div class="ttc" id="agroup__position_html_gac405408e87c2764abe6ccf07bc3e59e2"><div class="ttname"><a href="group__position.html#gac405408e87c2764abe6ccf07bc3e59e2">DEFAULT_GLOBAL_EYE_X</a></div><div class="ttdeci">static float DEFAULT_GLOBAL_EYE_X</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00095">engine.cpp:95</a></div></div>
+<div class="ttc" id="agroup__projection_html_ga77c5e8ffdba32056cc34a418d778962b"><div class="ttname"><a href="group__projection.html#ga77c5e8ffdba32056cc34a418d778962b">DEFAULT_GLOBAL_FAR</a></div><div class="ttdeci">static float DEFAULT_GLOBAL_FAR</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00135">engine.cpp:135</a></div></div>
+<div class="ttc" id="agroup__projection_html_ga9344f8711dfb5b6484b85d74ecfc5aa9"><div class="ttname"><a href="group__projection.html#ga9344f8711dfb5b6484b85d74ecfc5aa9">DEFAULT_GLOBAL_FOV</a></div><div class="ttdeci">static float DEFAULT_GLOBAL_FOV</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00133">engine.cpp:133</a></div></div>
+<div class="ttc" id="agroup__projection_html_gac45b46967400f1ff08d5eb9009b5275e"><div class="ttname"><a href="group__projection.html#gac45b46967400f1ff08d5eb9009b5275e">DEFAULT_GLOBAL_NEAR</a></div><div class="ttdeci">static float DEFAULT_GLOBAL_NEAR</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00134">engine.cpp:134</a></div></div>
+<div class="ttc" id="agroup__spherical_html_ga2788cc0fae99c064d291338b8fbe8484"><div class="ttname"><a href="group__spherical.html#ga2788cc0fae99c064d291338b8fbe8484">globalElevation</a></div><div class="ttdeci">double globalElevation</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00072">engine.cpp:72</a></div></div>
+<div class="ttc" id="agroup__spherical_html_ga3f93d1092ee04ee1206b02259e320784"><div class="ttname"><a href="group__spherical.html#ga3f93d1092ee04ee1206b02259e320784">DEFAULT_GLOBAL_ELEVATION</a></div><div class="ttdeci">double DEFAULT_GLOBAL_ELEVATION</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00068">engine.cpp:68</a></div></div>
+<div class="ttc" id="agroup__spherical_html_ga8847a748f16dded3615f8f4b48ab2ef4"><div class="ttname"><a href="group__spherical.html#ga8847a748f16dded3615f8f4b48ab2ef4">DEFAULT_GLOBAL_AZIMUTH</a></div><div class="ttdeci">double DEFAULT_GLOBAL_AZIMUTH</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00067">engine.cpp:67</a></div></div>
+<div class="ttc" id="agroup__spherical_html_ga9046d488bde40feb5c8cd6372f12d5cf"><div class="ttname"><a href="group__spherical.html#ga9046d488bde40feb5c8cd6372f12d5cf">DEFAULT_GLOBAL_RADIUS</a></div><div class="ttdeci">double DEFAULT_GLOBAL_RADIUS</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00066">engine.cpp:66</a></div></div>
+<div class="ttc" id="agroup__spherical_html_gadaab4529e17c31628ede6500a0f9dd07"><div class="ttname"><a href="group__spherical.html#gadaab4529e17c31628ede6500a0f9dd07">globalAzimuth</a></div><div class="ttdeci">double globalAzimuth</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00071">engine.cpp:71</a></div></div>
+<div class="ttc" id="agroup__spherical_html_gaee0ddcd277ec7a7a451dbd5b17f98187"><div class="ttname"><a href="group__spherical.html#gaee0ddcd277ec7a7a451dbd5b17f98187">globalRadius</a></div><div class="ttdeci">double globalRadius</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00070">engine.cpp:70</a></div></div>
+<div class="ttc" id="agroup__up_html_ga05d6061a888c03cd994582410976b8c5"><div class="ttname"><a href="group__up.html#ga05d6061a888c03cd994582410976b8c5">globalUpStep</a></div><div class="ttdeci">float globalUpStep</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00125">engine.cpp:125</a></div></div>
+<div class="ttc" id="agroup__up_html_ga1d99792fd6031999dbee0ddc59d70f6f"><div class="ttname"><a href="group__up.html#ga1d99792fd6031999dbee0ddc59d70f6f">DEFAULT_GLOBAL_UP_Y</a></div><div class="ttdeci">static float DEFAULT_GLOBAL_UP_Y</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00122">engine.cpp:122</a></div></div>
+<div class="ttc" id="agroup__up_html_ga310ca5fbbd5424d2678ec570136e46ae"><div class="ttname"><a href="group__up.html#ga310ca5fbbd5424d2678ec570136e46ae">DEFAULT_GLOBAL_UP_Z</a></div><div class="ttdeci">static float DEFAULT_GLOBAL_UP_Z</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00123">engine.cpp:123</a></div></div>
+<div class="ttc" id="agroup__up_html_ga72f95312c48395a912ce37b15c5ff841"><div class="ttname"><a href="group__up.html#ga72f95312c48395a912ce37b15c5ff841">globalUpX</a></div><div class="ttdeci">static float globalUpX</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00126">engine.cpp:126</a></div></div>
+<div class="ttc" id="agroup__up_html_ga9b87730968b220018fd7f1a53728e46e"><div class="ttname"><a href="group__up.html#ga9b87730968b220018fd7f1a53728e46e">globalUpZ</a></div><div class="ttdeci">static float globalUpZ</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00128">engine.cpp:128</a></div></div>
+<div class="ttc" id="agroup__up_html_gaa2f1ed4a70974b3b22481d3124e1dbf2"><div class="ttname"><a href="group__up.html#gaa2f1ed4a70974b3b22481d3124e1dbf2">globalUpY</a></div><div class="ttdeci">static float globalUpY</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00127">engine.cpp:127</a></div></div>
+<div class="ttc" id="agroup__up_html_gaa7c5ea30e53e8277f3453748b3ec65b2"><div class="ttname"><a href="group__up.html#gaa7c5ea30e53e8277f3453748b3ec65b2">DEFAULT_GLOBAL_UP_X</a></div><div class="ttdeci">static float DEFAULT_GLOBAL_UP_X</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00121">engine.cpp:121</a></div></div>
+<div class="ttc" id="agroup__up_html_gacc7ac1ab6cb80fe4ac3385f34321d33a"><div class="ttname"><a href="group__up.html#gacc7ac1ab6cb80fe4ac3385f34321d33a">DEFAULT_GLOBAL_UP_STEP</a></div><div class="ttdeci">const unsigned int DEFAULT_GLOBAL_UP_STEP</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00120">engine.cpp:120</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="engine_8cpp_source.html#l00022">DEFAULT_GLOBAL_ANGLE_STEP</a>, <a class="el" href="engine_8cpp_source.html#l00051">DEFAULT_GLOBAL_AZIMUTH</a>, <a class="el" href="engine_8cpp_source.html#l00091">DEFAULT_GLOBAL_CENTER_STEP</a>, <a class="el" href="engine_8cpp_source.html#l00092">DEFAULT_GLOBAL_CENTER_X</a>, <a class="el" href="engine_8cpp_source.html#l00093">DEFAULT_GLOBAL_CENTER_Y</a>, <a class="el" href="engine_8cpp_source.html#l00094">DEFAULT_GLOBAL_CENTER_Z</a>, <a class="el" href="engine_8cpp_source.html#l00052">DEFAULT_GLOBAL_ELEVATION</a>, <a class="el" href="engine_8cpp_source.html#l00078">DEFAULT_GLOBAL_EYE_STEP</a>, <a class="el" href="engine_8cpp_source.html#l00079">DEFAULT_GLOBAL_EYE_X</a>, <a class="el" href="engine_8cpp_source.html#l00080">DEFAULT_GLOBAL_EYE_Y</a>, <a class="el" href="engine_8cpp_source.html#l00081">DEFAULT_GLOBAL_EYE_Z</a>, <a class="el" href="engine_8cpp_source.html#l00119">DEFAULT_GLOBAL_FAR</a>, <a class="el" href="engine_8cpp_source.html#l00117">DEFAULT_GLOBAL_FOV</a>, <a class="el" href="engine_8cpp_source.html#l00118">DEFAULT_GLOBAL_NEAR</a>, <a class="el" href="engine_8cpp_source.html#l00050">DEFAULT_GLOBAL_RADIUS</a>, <a class="el" href="engine_8cpp_source.html#l00037">DEFAULT_GLOBAL_SCALE_STEP</a>, <a class="el" href="engine_8cpp_source.html#l00030">DEFAULT_GLOBAL_TRANSLATE_STEP</a>, <a class="el" href="engine_8cpp_source.html#l00104">DEFAULT_GLOBAL_UP_STEP</a>, <a class="el" href="engine_8cpp_source.html#l00105">DEFAULT_GLOBAL_UP_X</a>, <a class="el" href="engine_8cpp_source.html#l00106">DEFAULT_GLOBAL_UP_Y</a>, <a class="el" href="engine_8cpp_source.html#l00107">DEFAULT_GLOBAL_UP_Z</a>, <a class="el" href="engine_8cpp_source.html#l00024">globalAngle</a>, <a class="el" href="engine_8cpp_source.html#l00023">globalAngleStep</a>, <a class="el" href="engine_8cpp_source.html#l00055">globalAzimuth</a>, <a class="el" href="engine_8cpp_source.html#l00096">globalCenterStep</a>, <a class="el" href="engine_8cpp_source.html#l00097">globalCenterX</a>, <a class="el" href="engine_8cpp_source.html#l00098">globalCenterY</a>, <a class="el" href="engine_8cpp_source.html#l00099">globalCenterZ</a>, <a class="el" href="engine_8cpp_source.html#l00056">globalElevation</a>, <a class="el" href="engine_8cpp_source.html#l00083">globalEyeStep</a>, <a class="el" href="engine_8cpp_source.html#l00084">globalEyeX</a>, <a class="el" href="engine_8cpp_source.html#l00085">globalEyeY</a>, <a class="el" href="engine_8cpp_source.html#l00086">globalEyeZ</a>, <a class="el" href="engine_8cpp_source.html#l00123">globalFar</a>, <a class="el" href="engine_8cpp_source.html#l00121">globalFOV</a>, <a class="el" href="engine_8cpp_source.html#l00122">globalNear</a>, <a class="el" href="engine_8cpp_source.html#l00054">globalRadius</a>, <a class="el" href="engine_8cpp_source.html#l00025">globalRotateX</a>, <a class="el" href="engine_8cpp_source.html#l00026">globalRotateY</a>, <a class="el" href="engine_8cpp_source.html#l00027">globalRotateZ</a>, <a class="el" href="engine_8cpp_source.html#l00038">globalScaleStep</a>, <a class="el" href="engine_8cpp_source.html#l00039">globalScaleX</a>, <a class="el" href="engine_8cpp_source.html#l00040">globalScaleY</a>, <a class="el" href="engine_8cpp_source.html#l00041">globalScaleZ</a>, <a class="el" href="engine_8cpp_source.html#l00031">globalTranslateStep</a>, <a class="el" href="engine_8cpp_source.html#l00032">globalTranslateX</a>, <a class="el" href="engine_8cpp_source.html#l00033">globalTranslateY</a>, <a class="el" href="engine_8cpp_source.html#l00034">globalTranslateZ</a>, <a class="el" href="engine_8cpp_source.html#l00109">globalUpStep</a>, <a class="el" href="engine_8cpp_source.html#l00110">globalUpX</a>, <a class="el" href="engine_8cpp_source.html#l00111">globalUpY</a>, and <a class="el" href="engine_8cpp_source.html#l00112">globalUpZ</a>.</p>
+<p class="reference">References <a class="el" href="engine_8cpp_source.html#l00028">DEFAULT_GLOBAL_ANGLE_STEP</a>, <a class="el" href="engine_8cpp_source.html#l00067">DEFAULT_GLOBAL_AZIMUTH</a>, <a class="el" href="engine_8cpp_source.html#l00107">DEFAULT_GLOBAL_CENTER_STEP</a>, <a class="el" href="engine_8cpp_source.html#l00108">DEFAULT_GLOBAL_CENTER_X</a>, <a class="el" href="engine_8cpp_source.html#l00109">DEFAULT_GLOBAL_CENTER_Y</a>, <a class="el" href="engine_8cpp_source.html#l00110">DEFAULT_GLOBAL_CENTER_Z</a>, <a class="el" href="engine_8cpp_source.html#l00068">DEFAULT_GLOBAL_ELEVATION</a>, <a class="el" href="engine_8cpp_source.html#l00094">DEFAULT_GLOBAL_EYE_STEP</a>, <a class="el" href="engine_8cpp_source.html#l00095">DEFAULT_GLOBAL_EYE_X</a>, <a class="el" href="engine_8cpp_source.html#l00096">DEFAULT_GLOBAL_EYE_Y</a>, <a class="el" href="engine_8cpp_source.html#l00097">DEFAULT_GLOBAL_EYE_Z</a>, <a class="el" href="engine_8cpp_source.html#l00135">DEFAULT_GLOBAL_FAR</a>, <a class="el" href="engine_8cpp_source.html#l00133">DEFAULT_GLOBAL_FOV</a>, <a class="el" href="engine_8cpp_source.html#l00134">DEFAULT_GLOBAL_NEAR</a>, <a class="el" href="engine_8cpp_source.html#l00066">DEFAULT_GLOBAL_RADIUS</a>, <a class="el" href="engine_8cpp_source.html#l00043">DEFAULT_GLOBAL_SCALE_STEP</a>, <a class="el" href="engine_8cpp_source.html#l00036">DEFAULT_GLOBAL_TRANSLATE_STEP</a>, <a class="el" href="engine_8cpp_source.html#l00120">DEFAULT_GLOBAL_UP_STEP</a>, <a class="el" href="engine_8cpp_source.html#l00121">DEFAULT_GLOBAL_UP_X</a>, <a class="el" href="engine_8cpp_source.html#l00122">DEFAULT_GLOBAL_UP_Y</a>, <a class="el" href="engine_8cpp_source.html#l00123">DEFAULT_GLOBAL_UP_Z</a>, <a class="el" href="engine_8cpp_source.html#l00030">globalAngle</a>, <a class="el" href="engine_8cpp_source.html#l00029">globalAngleStep</a>, <a class="el" href="engine_8cpp_source.html#l00071">globalAzimuth</a>, <a class="el" href="engine_8cpp_source.html#l00112">globalCenterStep</a>, <a class="el" href="engine_8cpp_source.html#l00113">globalCenterX</a>, <a class="el" href="engine_8cpp_source.html#l00114">globalCenterY</a>, <a class="el" href="engine_8cpp_source.html#l00115">globalCenterZ</a>, <a class="el" href="engine_8cpp_source.html#l00072">globalElevation</a>, <a class="el" href="engine_8cpp_source.html#l00099">globalEyeStep</a>, <a class="el" href="engine_8cpp_source.html#l00100">globalEyeX</a>, <a class="el" href="engine_8cpp_source.html#l00101">globalEyeY</a>, <a class="el" href="engine_8cpp_source.html#l00102">globalEyeZ</a>, <a class="el" href="engine_8cpp_source.html#l00139">globalFar</a>, <a class="el" href="engine_8cpp_source.html#l00137">globalFOV</a>, <a class="el" href="engine_8cpp_source.html#l00138">globalNear</a>, <a class="el" href="engine_8cpp_source.html#l00070">globalRadius</a>, <a class="el" href="engine_8cpp_source.html#l00031">globalRotateX</a>, <a class="el" href="engine_8cpp_source.html#l00032">globalRotateY</a>, <a class="el" href="engine_8cpp_source.html#l00033">globalRotateZ</a>, <a class="el" href="engine_8cpp_source.html#l00044">globalScaleStep</a>, <a class="el" href="engine_8cpp_source.html#l00045">globalScaleX</a>, <a class="el" href="engine_8cpp_source.html#l00046">globalScaleY</a>, <a class="el" href="engine_8cpp_source.html#l00047">globalScaleZ</a>, <a class="el" href="engine_8cpp_source.html#l00037">globalTranslateStep</a>, <a class="el" href="engine_8cpp_source.html#l00038">globalTranslateX</a>, <a class="el" href="engine_8cpp_source.html#l00039">globalTranslateY</a>, <a class="el" href="engine_8cpp_source.html#l00040">globalTranslateZ</a>, <a class="el" href="engine_8cpp_source.html#l00125">globalUpStep</a>, <a class="el" href="engine_8cpp_source.html#l00126">globalUpX</a>, <a class="el" href="engine_8cpp_source.html#l00127">globalUpY</a>, and <a class="el" href="engine_8cpp_source.html#l00128">globalUpZ</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00448">keyboardFunc()</a>, and <a class="el" href="engine_8cpp_source.html#l00440">xml_load_and_set_env()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00465">keyboardFunc()</a>, and <a class="el" href="engine_8cpp_source.html#l00457">xml_load_and_set_env()</a>.</p>
 <div id="dynsection-4" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-4-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-4-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-4-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="group__engine_ga8679d9b303f36964bf51dba0993caeaa_icgraph.svg" width="616" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__engine_ga8679d9b303f36964bf51dba0993caeaa_icgraph.svg" width="616" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -518,21 +522,20 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00751">751</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  752</span>{</div>
-<div class="line"><span class="lineno">  753</span>  <a class="code hl_function" href="group__engine.html#ga98eaf946471acbd931de5d52ca83b3d1">engine_run</a> (argc, argv);</div>
-<div class="line"><span class="lineno">  754</span>  <span class="keywordflow">return</span> 1;</div>
-<div class="line"><span class="lineno">  755</span>}</div>
-<div class="ttc" id="agroup__engine_html_ga98eaf946471acbd931de5d52ca83b3d1"><div class="ttname"><a href="group__engine.html#ga98eaf946471acbd931de5d52ca83b3d1">engine_run</a></div><div class="ttdeci">void engine_run(int argc, char **argv)</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00718">engine.cpp:718</a></div></div>
+<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00788">788</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  789</span>{</div>
+<div class="line"><span class="lineno">  790</span>  <a class="code hl_function" href="group__engine.html#ga98eaf946471acbd931de5d52ca83b3d1">engine_run</a> (argc, argv);</div>
+<div class="line"><span class="lineno">  791</span>  <span class="keywordflow">return</span> 1;</div>
+<div class="line"><span class="lineno">  792</span>}</div>
+<div class="ttc" id="agroup__engine_html_ga98eaf946471acbd931de5d52ca83b3d1"><div class="ttname"><a href="group__engine.html#ga98eaf946471acbd931de5d52ca83b3d1">engine_run</a></div><div class="ttdeci">void engine_run(int argc, char **argv)</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00749">engine.cpp:749</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="engine_8cpp_source.html#l00718">engine_run()</a>.</p>
+<p class="reference">References <a class="el" href="engine_8cpp_source.html#l00749">engine_run()</a>.</p>
 <div id="dynsection-5" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-5-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-5-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-5-content" class="dyncontent" style="display:none;">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="group__engine_ga3c04138a5bfe5d72780bb7e82a18e627_cgraph.svg" width="100%" height="584"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="group__engine_ga3c04138a5bfe5d72780bb7e82a18e627_cgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
 </div>
 
 </div>
@@ -552,65 +555,31 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00390">390</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  391</span>{</div>
-<div class="line"><span class="lineno">  392</span>  <a class="code hl_function" href="group__spherical.html#gab5ff5216bffd1e15798677f24213213d">spherical2Cartesian</a> (<a class="code hl_variable" href="group__spherical.html#gaee0ddcd277ec7a7a451dbd5b17f98187">globalRadius</a>, <a class="code hl_variable" href="group__spherical.html#ga2788cc0fae99c064d291338b8fbe8484">globalElevation</a>, <a class="code hl_variable" href="group__spherical.html#gadaab4529e17c31628ede6500a0f9dd07">globalAzimuth</a>, &amp;<a class="code hl_variable" href="group__position.html#ga718827325d2f8ecfb7db4767a124d99b">globalEyeX</a>, &amp;<a class="code hl_variable" href="group__position.html#ga249dfe7a961b98a6109c56ceec57d1ad">globalEyeY</a>, &amp;<a class="code hl_variable" href="group__position.html#gab7a6de09906647c4f67ee4dd4076842b">globalEyeZ</a>);</div>
-<div class="line"><span class="lineno">  393</span>  glutPostRedisplay ();</div>
-<div class="line"><span class="lineno">  394</span>}</div>
-<div class="ttc" id="agroup__spherical_html_gab5ff5216bffd1e15798677f24213213d"><div class="ttname"><a href="group__spherical.html#gab5ff5216bffd1e15798677f24213213d">spherical2Cartesian</a></div><div class="ttdeci">void spherical2Cartesian(double radius, double elevation, double azimuth, double *x, double *y, double *z)</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00059">engine.cpp:59</a></div></div>
+<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00422">422</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  423</span>{</div>
+<div class="line"><span class="lineno">  424</span>  <a class="code hl_function" href="group__spherical.html#gab5ff5216bffd1e15798677f24213213d">spherical2Cartesian</a> (<a class="code hl_variable" href="group__spherical.html#gaee0ddcd277ec7a7a451dbd5b17f98187">globalRadius</a>, <a class="code hl_variable" href="group__spherical.html#ga2788cc0fae99c064d291338b8fbe8484">globalElevation</a>, <a class="code hl_variable" href="group__spherical.html#gadaab4529e17c31628ede6500a0f9dd07">globalAzimuth</a>, &amp;<a class="code hl_variable" href="group__position.html#ga718827325d2f8ecfb7db4767a124d99b">globalEyeX</a>, &amp;<a class="code hl_variable" href="group__position.html#ga249dfe7a961b98a6109c56ceec57d1ad">globalEyeY</a>, &amp;<a class="code hl_variable" href="group__position.html#gab7a6de09906647c4f67ee4dd4076842b">globalEyeZ</a>);</div>
+<div class="line"><span class="lineno">  425</span>  glutPostRedisplay ();</div>
+<div class="line"><span class="lineno">  426</span>}</div>
+<div class="ttc" id="agroup__spherical_html_gab5ff5216bffd1e15798677f24213213d"><div class="ttname"><a href="group__spherical.html#gab5ff5216bffd1e15798677f24213213d">spherical2Cartesian</a></div><div class="ttdeci">void spherical2Cartesian(double radius, double elevation, double azimuth, double *x, double *y, double *z)</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00075">engine.cpp:75</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="engine_8cpp_source.html#l00055">globalAzimuth</a>, <a class="el" href="engine_8cpp_source.html#l00056">globalElevation</a>, <a class="el" href="engine_8cpp_source.html#l00084">globalEyeX</a>, <a class="el" href="engine_8cpp_source.html#l00085">globalEyeY</a>, <a class="el" href="engine_8cpp_source.html#l00086">globalEyeZ</a>, <a class="el" href="engine_8cpp_source.html#l00054">globalRadius</a>, and <a class="el" href="engine_8cpp_source.html#l00059">spherical2Cartesian()</a>.</p>
+<p class="reference">References <a class="el" href="engine_8cpp_source.html#l00071">globalAzimuth</a>, <a class="el" href="engine_8cpp_source.html#l00072">globalElevation</a>, <a class="el" href="engine_8cpp_source.html#l00100">globalEyeX</a>, <a class="el" href="engine_8cpp_source.html#l00101">globalEyeY</a>, <a class="el" href="engine_8cpp_source.html#l00102">globalEyeZ</a>, <a class="el" href="engine_8cpp_source.html#l00070">globalRadius</a>, and <a class="el" href="engine_8cpp_source.html#l00075">spherical2Cartesian()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00448">keyboardFunc()</a>, <a class="el" href="engine_8cpp_source.html#l00686">motionFunc()</a>, and <a class="el" href="engine_8cpp_source.html#l00608">mouseFunc()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00465">keyboardFunc()</a>, <a class="el" href="engine_8cpp_source.html#l00717">motionFunc()</a>, and <a class="el" href="engine_8cpp_source.html#l00669">mouseFunc()</a>.</p>
 <div id="dynsection-6" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-6-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-6-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-6-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="group__engine_gab9813926390dc5773baf0b20dc2ea16e_cgraph.svg" width="292" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__engine_gab9813926390dc5773baf0b20dc2ea16e_cgraph.svg" width="292" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div id="dynsection-7" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-7-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-7-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-7-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="group__engine_gab9813926390dc5773baf0b20dc2ea16e_icgraph.svg" width="499" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__engine_gab9813926390dc5773baf0b20dc2ea16e_icgraph.svg" width="499" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
-</div>
-</div>
-<a id="gaf049ec1caddd7a032fc8b48641e12f1e" name="gaf049ec1caddd7a032fc8b48641e12f1e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gaf049ec1caddd7a032fc8b48641e12f1e">&#9670;&nbsp;</a></span>renderGreenPlane()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void renderGreenPlane </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00396">396</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  397</span>{</div>
-<div class="line"><span class="lineno">  398</span>  glColor3f (0.2f, 0.8f, 0.2f);</div>
-<div class="line"><span class="lineno">  399</span>  glBegin (GL_TRIANGLES);</div>
-<div class="line"><span class="lineno">  400</span>  glVertex3f (100.0f, 0, -100.0f);</div>
-<div class="line"><span class="lineno">  401</span>  glVertex3f (-100.0f, 0, -100.0f);</div>
-<div class="line"><span class="lineno">  402</span>  glVertex3f (-100.0f, 0, 100.0f);</div>
-<div class="line"><span class="lineno">  403</span> </div>
-<div class="line"><span class="lineno">  404</span>  glVertex3f (100.0f, 0, -100.0f);</div>
-<div class="line"><span class="lineno">  405</span>  glVertex3f (-100.0f, 0, 100.0f);</div>
-<div class="line"><span class="lineno">  406</span>  glVertex3f (100.0f, 0, 100.0f);</div>
-<div class="line"><span class="lineno">  407</span>  glEnd ();</div>
-<div class="line"><span class="lineno">  408</span>  glColor3f (1, 1, 1);</div>
-<div class="line"><span class="lineno">  409</span>}</div>
-</div><!-- fragment -->
 </div>
 </div>
 <a id="ga91c42686f3245f22fb6b17ba5372d92c" name="ga91c42686f3245f22fb6b17ba5372d92c"></a>
@@ -629,56 +598,54 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00411">411</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  412</span>{</div>
-<div class="line"><span class="lineno">  413</span> </div>
-<div class="line"><span class="lineno">  414</span>  <span class="comment">// clear buffers</span></div>
-<div class="line"><span class="lineno">  415</span>  glClear (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);</div>
-<div class="line"><span class="lineno">  416</span> </div>
-<div class="line"><span class="lineno">  417</span>  <span class="comment">// helps in avoiding rounding mistakes, discards old matrix, read more</span></div>
-<div class="line"><span class="lineno">  418</span>  glLoadIdentity ();</div>
-<div class="line"><span class="lineno">  419</span> </div>
-<div class="line"><span class="lineno">  420</span> </div>
-<div class="line"><span class="lineno">  421</span>  <span class="comment">// set the camera</span></div>
-<div class="line"><span class="lineno">  422</span>  gluLookAt (<a class="code hl_variable" href="group__position.html#ga718827325d2f8ecfb7db4767a124d99b">globalEyeX</a>, <a class="code hl_variable" href="group__position.html#ga249dfe7a961b98a6109c56ceec57d1ad">globalEyeY</a>, <a class="code hl_variable" href="group__position.html#gab7a6de09906647c4f67ee4dd4076842b">globalEyeZ</a>,</div>
-<div class="line"><span class="lineno">  423</span>             <a class="code hl_variable" href="group__look_at.html#ga2cb5db8bdad416592fa643be93c764be">globalCenterX</a>, <a class="code hl_variable" href="group__look_at.html#gaf3f8074b4e6ebaf6687f0777fd500e51">globalCenterY</a>, <a class="code hl_variable" href="group__look_at.html#gaa63e0d164754e930baf0d8d08106febb">globalCenterZ</a>,</div>
-<div class="line"><span class="lineno">  424</span>             <a class="code hl_variable" href="group__up.html#ga72f95312c48395a912ce37b15c5ff841">globalUpX</a>, <a class="code hl_variable" href="group__up.html#gaa2f1ed4a70974b3b22481d3124e1dbf2">globalUpY</a>, <a class="code hl_variable" href="group__up.html#ga9b87730968b220018fd7f1a53728e46e">globalUpZ</a>);</div>
-<div class="line"><span class="lineno">  425</span> </div>
-<div class="line"><span class="lineno">  426</span>  <span class="comment">/*draw absolute (before any transformation) axes*/</span></div>
-<div class="line"><span class="lineno">  427</span>  <a class="code hl_function" href="engine_8cpp.html#a634dba686e70e7ff3f10c37d11f463da">draw_axes</a> ();</div>
-<div class="line"><span class="lineno">  428</span> </div>
-<div class="line"><span class="lineno">  429</span>  <span class="comment">// put the geometric transformations here</span></div>
-<div class="line"><span class="lineno">  430</span>  glRotatef (<a class="code hl_variable" href="group__engine.html#ga466fc31ceeef83b53e03a820891b1ca2">globalAngle</a>, <a class="code hl_variable" href="group__engine.html#gaddd518403add69d85e781edfff4c94cc">globalRotateX</a>, <a class="code hl_variable" href="group__engine.html#ga79577108f7a530d0ad847b9f779663b0">globalRotateY</a>, <a class="code hl_variable" href="group__engine.html#gabf991ada5cb4710283b06356b09b0828">globalRotateZ</a>);</div>
-<div class="line"><span class="lineno">  431</span>  glTranslatef (<a class="code hl_variable" href="group__engine.html#ga38677f95037f4575ab422e6980f920e0">globalTranslateX</a>, <a class="code hl_variable" href="group__engine.html#ga1bd69a3237cca1b346bec2ac742a0a8e">globalTranslateY</a>, <a class="code hl_variable" href="group__engine.html#gae5197ff392fbb6687d3ad586f589e309">globalTranslateZ</a>);</div>
-<div class="line"><span class="lineno">  432</span>  glScalef (<a class="code hl_variable" href="group__engine.html#ga76ca2b2b73be400347bb4b460405f1f2">globalScaleX</a>, <a class="code hl_variable" href="group__engine.html#ga5c609aa58ab1231665e34d751cd592ae">globalScaleY</a>, <a class="code hl_variable" href="group__engine.html#ga6759b1a14e7b7edc9cc5f5caaee5cb88">globalScaleZ</a>);</div>
+<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00428">428</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  429</span>{</div>
+<div class="line"><span class="lineno">  430</span> </div>
+<div class="line"><span class="lineno">  431</span>  <span class="comment">// clear buffers</span></div>
+<div class="line"><span class="lineno">  432</span>  glClear (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);</div>
 <div class="line"><span class="lineno">  433</span> </div>
-<div class="line"><span class="lineno">  434</span>  <a class="code hl_function" href="group___operations.html#ga887f20c10a27832ea24178203a47fcc2">operations_render</a> (&amp;<a class="code hl_variable" href="group__model_engine.html#ga5e4458752ec64e54ed9ef910aaac54e9">globalOperations</a>);</div>
-<div class="line"><span class="lineno">  435</span> </div>
-<div class="line"><span class="lineno">  436</span>  <span class="comment">// End of frame</span></div>
-<div class="line"><span class="lineno">  437</span>  glutSwapBuffers ();</div>
-<div class="line"><span class="lineno">  438</span>}</div>
-<div class="ttc" id="aengine_8cpp_html_a634dba686e70e7ff3f10c37d11f463da"><div class="ttname"><a href="engine_8cpp.html#a634dba686e70e7ff3f10c37d11f463da">draw_axes</a></div><div class="ttdeci">void draw_axes()</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00361">engine.cpp:361</a></div></div>
-<div class="ttc" id="agroup___operations_html_ga887f20c10a27832ea24178203a47fcc2"><div class="ttname"><a href="group___operations.html#ga887f20c10a27832ea24178203a47fcc2">operations_render</a></div><div class="ttdeci">void operations_render(std::vector&lt; float &gt; *operations)</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00283">engine.cpp:283</a></div></div>
-<div class="ttc" id="agroup__model_engine_html_ga5e4458752ec64e54ed9ef910aaac54e9"><div class="ttname"><a href="group__model_engine.html#ga5e4458752ec64e54ed9ef910aaac54e9">globalOperations</a></div><div class="ttdeci">static std::vector&lt; float &gt; globalOperations</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00187">engine.cpp:187</a></div></div>
+<div class="line"><span class="lineno">  434</span>  <span class="comment">// helps in avoiding rounding mistakes, discards old matrix, read more</span></div>
+<div class="line"><span class="lineno">  435</span>  glLoadIdentity ();</div>
+<div class="line"><span class="lineno">  436</span> </div>
+<div class="line"><span class="lineno">  437</span> </div>
+<div class="line"><span class="lineno">  438</span>  <span class="comment">// set the camera</span></div>
+<div class="line"><span class="lineno">  439</span>  gluLookAt (<a class="code hl_variable" href="group__position.html#ga718827325d2f8ecfb7db4767a124d99b">globalEyeX</a>, <a class="code hl_variable" href="group__position.html#ga249dfe7a961b98a6109c56ceec57d1ad">globalEyeY</a>, <a class="code hl_variable" href="group__position.html#gab7a6de09906647c4f67ee4dd4076842b">globalEyeZ</a>,</div>
+<div class="line"><span class="lineno">  440</span>             <a class="code hl_variable" href="group__look_at.html#ga2cb5db8bdad416592fa643be93c764be">globalCenterX</a>, <a class="code hl_variable" href="group__look_at.html#gaf3f8074b4e6ebaf6687f0777fd500e51">globalCenterY</a>, <a class="code hl_variable" href="group__look_at.html#gaa63e0d164754e930baf0d8d08106febb">globalCenterZ</a>,</div>
+<div class="line"><span class="lineno">  441</span>             <a class="code hl_variable" href="group__up.html#ga72f95312c48395a912ce37b15c5ff841">globalUpX</a>, <a class="code hl_variable" href="group__up.html#gaa2f1ed4a70974b3b22481d3124e1dbf2">globalUpY</a>, <a class="code hl_variable" href="group__up.html#ga9b87730968b220018fd7f1a53728e46e">globalUpZ</a>);</div>
+<div class="line"><span class="lineno">  442</span> </div>
+<div class="line"><span class="lineno">  443</span>  <span class="comment">/*draw absolute (before any transformation) axes*/</span></div>
+<div class="line"><span class="lineno">  444</span>  <a class="code hl_function" href="engine_8cpp.html#a634dba686e70e7ff3f10c37d11f463da">draw_axes</a> ();</div>
+<div class="line"><span class="lineno">  445</span> </div>
+<div class="line"><span class="lineno">  446</span>  <span class="comment">// put the geometric transformations here</span></div>
+<div class="line"><span class="lineno">  447</span>  glRotatef (<a class="code hl_variable" href="group__engine.html#ga466fc31ceeef83b53e03a820891b1ca2">globalAngle</a>, <a class="code hl_variable" href="group__engine.html#gaddd518403add69d85e781edfff4c94cc">globalRotateX</a>, <a class="code hl_variable" href="group__engine.html#ga79577108f7a530d0ad847b9f779663b0">globalRotateY</a>, <a class="code hl_variable" href="group__engine.html#gabf991ada5cb4710283b06356b09b0828">globalRotateZ</a>);</div>
+<div class="line"><span class="lineno">  448</span>  glTranslatef (<a class="code hl_variable" href="group__engine.html#ga38677f95037f4575ab422e6980f920e0">globalTranslateX</a>, <a class="code hl_variable" href="group__engine.html#ga1bd69a3237cca1b346bec2ac742a0a8e">globalTranslateY</a>, <a class="code hl_variable" href="group__engine.html#gae5197ff392fbb6687d3ad586f589e309">globalTranslateZ</a>);</div>
+<div class="line"><span class="lineno">  449</span>  glScalef (<a class="code hl_variable" href="group__engine.html#ga76ca2b2b73be400347bb4b460405f1f2">globalScaleX</a>, <a class="code hl_variable" href="group__engine.html#ga5c609aa58ab1231665e34d751cd592ae">globalScaleY</a>, <a class="code hl_variable" href="group__engine.html#ga6759b1a14e7b7edc9cc5f5caaee5cb88">globalScaleZ</a>);</div>
+<div class="line"><span class="lineno">  450</span> </div>
+<div class="line"><span class="lineno">  451</span>  <a class="code hl_function" href="group___operations.html#ga887f20c10a27832ea24178203a47fcc2">operations_render</a> (&amp;<a class="code hl_variable" href="group__model_engine.html#ga5e4458752ec64e54ed9ef910aaac54e9">globalOperations</a>);</div>
+<div class="line"><span class="lineno">  452</span> </div>
+<div class="line"><span class="lineno">  453</span>  <span class="comment">// End of frame</span></div>
+<div class="line"><span class="lineno">  454</span>  glutSwapBuffers ();</div>
+<div class="line"><span class="lineno">  455</span>}</div>
+<div class="ttc" id="aengine_8cpp_html_a634dba686e70e7ff3f10c37d11f463da"><div class="ttname"><a href="engine_8cpp.html#a634dba686e70e7ff3f10c37d11f463da">draw_axes</a></div><div class="ttdeci">void draw_axes()</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00394">engine.cpp:394</a></div></div>
+<div class="ttc" id="agroup___operations_html_ga887f20c10a27832ea24178203a47fcc2"><div class="ttname"><a href="group___operations.html#ga887f20c10a27832ea24178203a47fcc2">operations_render</a></div><div class="ttdeci">void operations_render(std::vector&lt; float &gt; *operations)</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00306">engine.cpp:306</a></div></div>
+<div class="ttc" id="agroup__model_engine_html_ga5e4458752ec64e54ed9ef910aaac54e9"><div class="ttname"><a href="group__model_engine.html#ga5e4458752ec64e54ed9ef910aaac54e9">globalOperations</a></div><div class="ttdeci">static std::vector&lt; float &gt; globalOperations</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00203">engine.cpp:203</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="engine_8cpp_source.html#l00361">draw_axes()</a>, <a class="el" href="engine_8cpp_source.html#l00024">globalAngle</a>, <a class="el" href="engine_8cpp_source.html#l00097">globalCenterX</a>, <a class="el" href="engine_8cpp_source.html#l00098">globalCenterY</a>, <a class="el" href="engine_8cpp_source.html#l00099">globalCenterZ</a>, <a class="el" href="engine_8cpp_source.html#l00084">globalEyeX</a>, <a class="el" href="engine_8cpp_source.html#l00085">globalEyeY</a>, <a class="el" href="engine_8cpp_source.html#l00086">globalEyeZ</a>, <a class="el" href="engine_8cpp_source.html#l00187">globalOperations</a>, <a class="el" href="engine_8cpp_source.html#l00025">globalRotateX</a>, <a class="el" href="engine_8cpp_source.html#l00026">globalRotateY</a>, <a class="el" href="engine_8cpp_source.html#l00027">globalRotateZ</a>, <a class="el" href="engine_8cpp_source.html#l00039">globalScaleX</a>, <a class="el" href="engine_8cpp_source.html#l00040">globalScaleY</a>, <a class="el" href="engine_8cpp_source.html#l00041">globalScaleZ</a>, <a class="el" href="engine_8cpp_source.html#l00032">globalTranslateX</a>, <a class="el" href="engine_8cpp_source.html#l00033">globalTranslateY</a>, <a class="el" href="engine_8cpp_source.html#l00034">globalTranslateZ</a>, <a class="el" href="engine_8cpp_source.html#l00110">globalUpX</a>, <a class="el" href="engine_8cpp_source.html#l00111">globalUpY</a>, <a class="el" href="engine_8cpp_source.html#l00112">globalUpZ</a>, and <a class="el" href="engine_8cpp_source.html#l00283">operations_render()</a>.</p>
+<p class="reference">References <a class="el" href="engine_8cpp_source.html#l00394">draw_axes()</a>, <a class="el" href="engine_8cpp_source.html#l00030">globalAngle</a>, <a class="el" href="engine_8cpp_source.html#l00113">globalCenterX</a>, <a class="el" href="engine_8cpp_source.html#l00114">globalCenterY</a>, <a class="el" href="engine_8cpp_source.html#l00115">globalCenterZ</a>, <a class="el" href="engine_8cpp_source.html#l00100">globalEyeX</a>, <a class="el" href="engine_8cpp_source.html#l00101">globalEyeY</a>, <a class="el" href="engine_8cpp_source.html#l00102">globalEyeZ</a>, <a class="el" href="engine_8cpp_source.html#l00203">globalOperations</a>, <a class="el" href="engine_8cpp_source.html#l00031">globalRotateX</a>, <a class="el" href="engine_8cpp_source.html#l00032">globalRotateY</a>, <a class="el" href="engine_8cpp_source.html#l00033">globalRotateZ</a>, <a class="el" href="engine_8cpp_source.html#l00045">globalScaleX</a>, <a class="el" href="engine_8cpp_source.html#l00046">globalScaleY</a>, <a class="el" href="engine_8cpp_source.html#l00047">globalScaleZ</a>, <a class="el" href="engine_8cpp_source.html#l00038">globalTranslateX</a>, <a class="el" href="engine_8cpp_source.html#l00039">globalTranslateY</a>, <a class="el" href="engine_8cpp_source.html#l00040">globalTranslateZ</a>, <a class="el" href="engine_8cpp_source.html#l00126">globalUpX</a>, <a class="el" href="engine_8cpp_source.html#l00127">globalUpY</a>, <a class="el" href="engine_8cpp_source.html#l00128">globalUpZ</a>, and <a class="el" href="engine_8cpp_source.html#l00306">operations_render()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00718">engine_run()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00749">engine_run()</a>.</p>
 <div id="dynsection-8" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-8-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-8-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-8-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="group__engine_ga91c42686f3245f22fb6b17ba5372d92c_cgraph.svg" width="500" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__engine_ga91c42686f3245f22fb6b17ba5372d92c_cgraph.svg" width="500" height="190"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div id="dynsection-9" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-9-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-9-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-9-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="group__engine_ga91c42686f3245f22fb6b17ba5372d92c_icgraph.svg" width="359" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__engine_ga91c42686f3245f22fb6b17ba5372d92c_icgraph.svg" width="359" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -709,19 +676,46 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00242">242</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  243</span>{</div>
-<div class="line"><span class="lineno">  244</span>  <span class="keywordflow">if</span> (!nVertices % 3)</div>
-<div class="line"><span class="lineno">  245</span>    {</div>
-<div class="line"><span class="lineno">  246</span>      fprintf (stderr, <span class="stringliteral">&quot;Number of coordinates is not divisible by 3&quot;</span>);</div>
-<div class="line"><span class="lineno">  247</span>      exit (-1);</div>
-<div class="line"><span class="lineno">  248</span>    }</div>
-<div class="line"><span class="lineno">  249</span>  glBegin (GL_TRIANGLES);</div>
-<div class="line"><span class="lineno">  250</span>  <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i = 0; i &lt; nVertices; i += 3)</div>
-<div class="line"><span class="lineno">  251</span>    glVertex3f (p[i], p[i + 1], p[i + 2]);</div>
-<div class="line"><span class="lineno">  252</span>  glEnd ();</div>
-<div class="line"><span class="lineno">  253</span>}</div>
+<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00265">265</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  266</span>{</div>
+<div class="line"><span class="lineno">  267</span>  <span class="keywordflow">if</span> (!nVertices % 3)</div>
+<div class="line"><span class="lineno">  268</span>    {</div>
+<div class="line"><span class="lineno">  269</span>      fprintf (stderr, <span class="stringliteral">&quot;Number of coordinates is not divisible by 3&quot;</span>);</div>
+<div class="line"><span class="lineno">  270</span>      exit (-1);</div>
+<div class="line"><span class="lineno">  271</span>    }</div>
+<div class="line"><span class="lineno">  272</span>  glBegin (GL_TRIANGLES);</div>
+<div class="line"><span class="lineno">  273</span>  <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i = 0; i &lt; nVertices; i += 3)</div>
+<div class="line"><span class="lineno">  274</span>    glVertex3f (p[i], p[i + 1], p[i + 2]);</div>
+<div class="line"><span class="lineno">  275</span>  glEnd ();</div>
+<div class="line"><span class="lineno">  276</span>}</div>
 </div><!-- fragment -->
+</div>
+</div>
+<a id="ga260fbd3d70764684657bbf1a617ddf99" name="ga260fbd3d70764684657bbf1a617ddf99"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga260fbd3d70764684657bbf1a617ddf99">&#9670;&nbsp;</a></span>vbo_indices()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">vector&lt; GLuint &gt; vbo_indices </td>
+          <td>(</td>
+          <td class="paramtype">100&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00306">operations_render()</a>, and <a class="el" href="engine_8cpp_source.html#l00248">renderAllModels()</a>.</p>
+<div id="dynsection-10" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-10-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-10-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-10-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="group__engine_ga260fbd3d70764684657bbf1a617ddf99_icgraph.svg" width="100%" height="385"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+</div>
+
 </div>
 </div>
 <a id="ga2b6a8884687b3fe271b099a450a82d24" name="ga2b6a8884687b3fe271b099a450a82d24"></a>
@@ -740,33 +734,31 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00440">440</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  441</span>{</div>
-<div class="line"><span class="lineno">  442</span>  <a class="code hl_function" href="group__xml.html#gac937a83a82258806ef77b02f97ef0834">operations_load_xml</a> (filename, &amp;<a class="code hl_variable" href="group__model_engine.html#ga5e4458752ec64e54ed9ef910aaac54e9">globalOperations</a>);</div>
-<div class="line"><span class="lineno">  443</span>  <a class="code hl_function" href="group___operations.html#ga887f20c10a27832ea24178203a47fcc2">operations_render</a> (&amp;<a class="code hl_variable" href="group__model_engine.html#ga5e4458752ec64e54ed9ef910aaac54e9">globalOperations</a>);</div>
-<div class="line"><span class="lineno">  444</span>  <a class="code hl_function" href="group__engine.html#ga8679d9b303f36964bf51dba0993caeaa">env_load_defaults</a> ();</div>
-<div class="line"><span class="lineno">  445</span>}</div>
-<div class="ttc" id="agroup__engine_html_ga8679d9b303f36964bf51dba0993caeaa"><div class="ttname"><a href="group__engine.html#ga8679d9b303f36964bf51dba0993caeaa">env_load_defaults</a></div><div class="ttdeci">void env_load_defaults()</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00127">engine.cpp:127</a></div></div>
+<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00457">457</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  458</span>{</div>
+<div class="line"><span class="lineno">  459</span>  <a class="code hl_function" href="group__xml.html#gac937a83a82258806ef77b02f97ef0834">operations_load_xml</a> (filename, &amp;<a class="code hl_variable" href="group__model_engine.html#ga5e4458752ec64e54ed9ef910aaac54e9">globalOperations</a>);</div>
+<div class="line"><span class="lineno">  460</span>  <a class="code hl_function" href="group___operations.html#ga887f20c10a27832ea24178203a47fcc2">operations_render</a> (&amp;<a class="code hl_variable" href="group__model_engine.html#ga5e4458752ec64e54ed9ef910aaac54e9">globalOperations</a>);</div>
+<div class="line"><span class="lineno">  461</span>  <a class="code hl_function" href="group__engine.html#ga8679d9b303f36964bf51dba0993caeaa">env_load_defaults</a> ();</div>
+<div class="line"><span class="lineno">  462</span>}</div>
+<div class="ttc" id="agroup__engine_html_ga8679d9b303f36964bf51dba0993caeaa"><div class="ttname"><a href="group__engine.html#ga8679d9b303f36964bf51dba0993caeaa">env_load_defaults</a></div><div class="ttdeci">void env_load_defaults()</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00143">engine.cpp:143</a></div></div>
 <div class="ttc" id="agroup__xml_html_gac937a83a82258806ef77b02f97ef0834"><div class="ttname"><a href="group__xml.html#gac937a83a82258806ef77b02f97ef0834">operations_load_xml</a></div><div class="ttdeci">void operations_load_xml(const char *filename, std::vector&lt; float &gt; *operations)</div><div class="ttdef"><b>Definition:</b> <a href="parsing_8cpp_source.html#l00133">parsing.cpp:133</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="engine_8cpp_source.html#l00127">env_load_defaults()</a>, <a class="el" href="engine_8cpp_source.html#l00187">globalOperations</a>, <a class="el" href="parsing_8cpp_source.html#l00133">operations_load_xml()</a>, and <a class="el" href="engine_8cpp_source.html#l00283">operations_render()</a>.</p>
+<p class="reference">References <a class="el" href="engine_8cpp_source.html#l00143">env_load_defaults()</a>, <a class="el" href="engine_8cpp_source.html#l00203">globalOperations</a>, <a class="el" href="parsing_8cpp_source.html#l00133">operations_load_xml()</a>, and <a class="el" href="engine_8cpp_source.html#l00306">operations_render()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00718">engine_run()</a>.</p>
-<div id="dynsection-10" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-10-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
-<div id="dynsection-10-summary" class="dynsummary" style="display:block;">
-</div>
-<div id="dynsection-10-content" class="dyncontent" style="display:none;">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="group__engine_ga2b6a8884687b3fe271b099a450a82d24_cgraph.svg" width="100%" height="518"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-</div>
+<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00749">engine_run()</a>.</p>
 <div id="dynsection-11" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-11-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+  <img id="dynsection-11-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-11-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-11-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="group__engine_ga2b6a8884687b3fe271b099a450a82d24_icgraph.svg" width="427" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="group__engine_ga2b6a8884687b3fe271b099a450a82d24_cgraph.svg" width="100%" height="556"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
 </div>
+<div id="dynsection-12" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-12-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-12-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-12-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__engine_ga2b6a8884687b3fe271b099a450a82d24_icgraph.svg" width="427" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -784,9 +776,9 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00022">22</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00028">28</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00127">env_load_defaults()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00143">env_load_defaults()</a>.</p>
 
 </div>
 </div>
@@ -802,9 +794,9 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00037">37</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00043">43</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00127">env_load_defaults()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00143">env_load_defaults()</a>.</p>
 
 </div>
 </div>
@@ -820,9 +812,9 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00030">30</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00036">36</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00127">env_load_defaults()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00143">env_load_defaults()</a>.</p>
 
 </div>
 </div>
@@ -846,9 +838,9 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00024">24</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00030">30</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00127">env_load_defaults()</a>, <a class="el" href="engine_8cpp_source.html#l00448">keyboardFunc()</a>, and <a class="el" href="engine_8cpp_source.html#l00411">renderScene()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00143">env_load_defaults()</a>, <a class="el" href="engine_8cpp_source.html#l00465">keyboardFunc()</a>, and <a class="el" href="engine_8cpp_source.html#l00428">renderScene()</a>.</p>
 
 </div>
 </div>
@@ -872,9 +864,9 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00023">23</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00029">29</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00127">env_load_defaults()</a>, and <a class="el" href="engine_8cpp_source.html#l00448">keyboardFunc()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00143">env_load_defaults()</a>, and <a class="el" href="engine_8cpp_source.html#l00465">keyboardFunc()</a>.</p>
 
 </div>
 </div>
@@ -898,9 +890,9 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00025">25</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00031">31</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00127">env_load_defaults()</a>, <a class="el" href="engine_8cpp_source.html#l00448">keyboardFunc()</a>, and <a class="el" href="engine_8cpp_source.html#l00411">renderScene()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00143">env_load_defaults()</a>, <a class="el" href="engine_8cpp_source.html#l00465">keyboardFunc()</a>, and <a class="el" href="engine_8cpp_source.html#l00428">renderScene()</a>.</p>
 
 </div>
 </div>
@@ -924,9 +916,9 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00026">26</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00032">32</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00127">env_load_defaults()</a>, <a class="el" href="engine_8cpp_source.html#l00448">keyboardFunc()</a>, and <a class="el" href="engine_8cpp_source.html#l00411">renderScene()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00143">env_load_defaults()</a>, <a class="el" href="engine_8cpp_source.html#l00465">keyboardFunc()</a>, and <a class="el" href="engine_8cpp_source.html#l00428">renderScene()</a>.</p>
 
 </div>
 </div>
@@ -950,9 +942,9 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00027">27</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00033">33</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00127">env_load_defaults()</a>, <a class="el" href="engine_8cpp_source.html#l00448">keyboardFunc()</a>, and <a class="el" href="engine_8cpp_source.html#l00411">renderScene()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00143">env_load_defaults()</a>, <a class="el" href="engine_8cpp_source.html#l00465">keyboardFunc()</a>, and <a class="el" href="engine_8cpp_source.html#l00428">renderScene()</a>.</p>
 
 </div>
 </div>
@@ -968,9 +960,9 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00038">38</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00044">44</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00127">env_load_defaults()</a>, and <a class="el" href="engine_8cpp_source.html#l00448">keyboardFunc()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00143">env_load_defaults()</a>, and <a class="el" href="engine_8cpp_source.html#l00465">keyboardFunc()</a>.</p>
 
 </div>
 </div>
@@ -994,9 +986,9 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00039">39</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00045">45</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00127">env_load_defaults()</a>, <a class="el" href="engine_8cpp_source.html#l00448">keyboardFunc()</a>, and <a class="el" href="engine_8cpp_source.html#l00411">renderScene()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00143">env_load_defaults()</a>, <a class="el" href="engine_8cpp_source.html#l00465">keyboardFunc()</a>, and <a class="el" href="engine_8cpp_source.html#l00428">renderScene()</a>.</p>
 
 </div>
 </div>
@@ -1020,9 +1012,9 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00040">40</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00046">46</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00127">env_load_defaults()</a>, <a class="el" href="engine_8cpp_source.html#l00448">keyboardFunc()</a>, and <a class="el" href="engine_8cpp_source.html#l00411">renderScene()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00143">env_load_defaults()</a>, <a class="el" href="engine_8cpp_source.html#l00465">keyboardFunc()</a>, and <a class="el" href="engine_8cpp_source.html#l00428">renderScene()</a>.</p>
 
 </div>
 </div>
@@ -1046,9 +1038,9 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00041">41</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00047">47</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00127">env_load_defaults()</a>, <a class="el" href="engine_8cpp_source.html#l00448">keyboardFunc()</a>, and <a class="el" href="engine_8cpp_source.html#l00411">renderScene()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00143">env_load_defaults()</a>, <a class="el" href="engine_8cpp_source.html#l00465">keyboardFunc()</a>, and <a class="el" href="engine_8cpp_source.html#l00428">renderScene()</a>.</p>
 
 </div>
 </div>
@@ -1072,9 +1064,9 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00031">31</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00037">37</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00127">env_load_defaults()</a>, and <a class="el" href="engine_8cpp_source.html#l00448">keyboardFunc()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00143">env_load_defaults()</a>, and <a class="el" href="engine_8cpp_source.html#l00465">keyboardFunc()</a>.</p>
 
 </div>
 </div>
@@ -1098,9 +1090,9 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00032">32</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00038">38</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00127">env_load_defaults()</a>, <a class="el" href="engine_8cpp_source.html#l00448">keyboardFunc()</a>, and <a class="el" href="engine_8cpp_source.html#l00411">renderScene()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00143">env_load_defaults()</a>, <a class="el" href="engine_8cpp_source.html#l00465">keyboardFunc()</a>, and <a class="el" href="engine_8cpp_source.html#l00428">renderScene()</a>.</p>
 
 </div>
 </div>
@@ -1124,9 +1116,9 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00033">33</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00039">39</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00127">env_load_defaults()</a>, <a class="el" href="engine_8cpp_source.html#l00448">keyboardFunc()</a>, and <a class="el" href="engine_8cpp_source.html#l00411">renderScene()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00143">env_load_defaults()</a>, <a class="el" href="engine_8cpp_source.html#l00465">keyboardFunc()</a>, and <a class="el" href="engine_8cpp_source.html#l00428">renderScene()</a>.</p>
 
 </div>
 </div>
@@ -1150,9 +1142,25 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00034">34</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00040">40</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00127">env_load_defaults()</a>, <a class="el" href="engine_8cpp_source.html#l00448">keyboardFunc()</a>, and <a class="el" href="engine_8cpp_source.html#l00411">renderScene()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00143">env_load_defaults()</a>, <a class="el" href="engine_8cpp_source.html#l00465">keyboardFunc()</a>, and <a class="el" href="engine_8cpp_source.html#l00428">renderScene()</a>.</p>
+
+</div>
+</div>
+<a id="gad9a24fe28e2326cb0445791525781160" name="gad9a24fe28e2326cb0445791525781160"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gad9a24fe28e2326cb0445791525781160">&#9670;&nbsp;</a></span>VBO</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned int VBO</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00058">58</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
 
 </div>
 </div>

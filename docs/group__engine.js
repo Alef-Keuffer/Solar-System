@@ -9,9 +9,9 @@ var group__engine =
     [ "env_load_defaults", "group__engine.html#ga8679d9b303f36964bf51dba0993caeaa", null ],
     [ "main", "group__engine.html#ga3c04138a5bfe5d72780bb7e82a18e627", null ],
     [ "redisplay", "group__engine.html#gab9813926390dc5773baf0b20dc2ea16e", null ],
-    [ "renderGreenPlane", "group__engine.html#gaf049ec1caddd7a032fc8b48641e12f1e", null ],
     [ "renderScene", "group__engine.html#ga91c42686f3245f22fb6b17ba5372d92c", null ],
     [ "renderTriangleVertexSeq", "group__engine.html#gaa790ed3f50ff9672fc05cd787d33a4ef", null ],
+    [ "vbo_indices", "group__engine.html#ga260fbd3d70764684657bbf1a617ddf99", null ],
     [ "xml_load_and_set_env", "group__engine.html#ga2b6a8884687b3fe271b099a450a82d24", null ],
     [ "DEFAULT_GLOBAL_ANGLE_STEP", "group__engine.html#gafbb57ef1726ff61d49254b383fcb0eb3", null ],
     [ "DEFAULT_GLOBAL_SCALE_STEP", "group__engine.html#gaae06616879cc2b7af69a67cb77ff0636", null ],
@@ -28,5 +28,6 @@ var group__engine =
     [ "globalTranslateStep", "group__engine.html#ga3dccccfb75086f82e8e8cb4b4f17a3bc", null ],
     [ "globalTranslateX", "group__engine.html#ga38677f95037f4575ab422e6980f920e0", null ],
     [ "globalTranslateY", "group__engine.html#ga1bd69a3237cca1b346bec2ac742a0a8e", null ],
-    [ "globalTranslateZ", "group__engine.html#gae5197ff392fbb6687d3ad586f589e309", null ]
+    [ "globalTranslateZ", "group__engine.html#gae5197ff392fbb6687d3ad586f589e309", null ],
+    [ "VBO", "group__engine.html#gad9a24fe28e2326cb0445791525781160", null ]
 ];
