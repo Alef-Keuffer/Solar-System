@@ -61,34 +61,6 @@ unsigned int VBO;
 /*! @addtogroup camera
  * @{*/
 
-/*! @addtogroup spherical
- * @{ */
-double DEFAULT_GLOBAL_RADIUS = 1;
-double DEFAULT_GLOBAL_AZIMUTH = 0;
-double DEFAULT_GLOBAL_ELEVATION = 0;
-
-double globalRadius = DEFAULT_GLOBAL_RADIUS;
-double globalAzimuth = DEFAULT_GLOBAL_AZIMUTH;
-double globalElevation = DEFAULT_GLOBAL_ELEVATION;
-bool globalMouseLeftButton = false;
-
-void spherical2Cartesian (double radius, double elevation, double azimuth, double *x, double *y, double *z)
-{
-
-  *x = radius * cos (elevation) * sin (azimuth);
-  *y = radius * sin (elevation);
-  *z = radius * cos (elevation) * cos (azimuth);
-}
-
-void cartesian2Spherical (double x, double y, double z, double *radius, double *azimuth, double *elevation)
-{
-  *radius = abs (sqrt (pow (x, 2) + pow (y, 2) + pow (z, 2)));
-  *elevation = asin (y / (*radius));
-  *azimuth = asin (x / (*radius * cos (*elevation)));
-
-}
-
-//! @} end of group spherical
 /*! @addtogroup position
  * @{*/
 const unsigned int DEFAULT_GLOBAL_EYE_STEP = 1;
