@@ -6,11 +6,11 @@
 #include <string.h>
 #include <stdlib.h>
 
-#define SPHERE "sphere"
-#define CUBE "box"
-#define CONE "cone"
-#define PLANE "plane"
-#define BEZIER "bezier"
+const char *SPHERE = "sphere";
+const char *CUBE = "box";
+const char *CONE = "cone";
+const char *PLANE = "plane";
+const char *BEZIER = "bezier";
 
 #include <vector>
 #include <string>
