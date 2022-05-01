@@ -13,7 +13,7 @@
 #include <fstream>
 #include <tuple>
 #include <fplll/nr/matrix.h>
-using glm::mat4, glm::vec4, glm::vec3, std::vector, std::tuple, std::string, std::ifstream, std::ios, std::stringstream, std::array;
+using glm::mat4, glm::vec4, glm::vec3, std::vector, std::tuple, std::string, std::ifstream, std::ios, std::stringstream, std::array, glm::mat4x3;
 
 const char *SPHERE = "sphere";
 const char *CUBE = "box";
@@ -438,7 +438,49 @@ void mult (const T1 &a, const T2 &b, T3 &r, const int m, const int p, const int 
     }
 }
 
+void get_curve (const float time, const mat4 &M, const array<vec3, 4> &control_points, glm::vec3 &pos, glm::vec3 &deriv)
+{
+  const auto t = glm::vec4 (pow (time, 3), pow (time, 2), time, 1);
+  const auto t_prime = glm::vec4 (3 * pow (time, 2), 2 * time, 1, 0);
+  mat4x3 K (control_points[0], control_points[1], control_points[2], control_points[3]);
+
+  const auto KM = K * M;
+  pos = KM * t;
+  deriv = KM * t_prime;
+}
+
+vec3 get_curve (const float time, const mat4 &M, const array<vec3, 4> &control_points)
+{
+  vec3 pos;
+  vec3 _;
+  get_curve (time, M, control_points, pos, _);
+  return pos;
+}
+
+auto get_curve (const mat4 &M)
+{
+  return [&M] (const array<vec3, 4> &control_points)
+  {
+    return [&M, &control_points] (const float time) -> vec3
+    {
+      return get_curve (time, M, control_points);
+    };
+  };
+}
+
 vec3 get_bezier_point (const float u, const float v, const array<vec3, 16> &P)
+{
+  auto MU = Mb * dec_polynomial (u);
+  auto B = get_curve (Mb);
+  return MU * (
+      B ({P[0], P[1], P[2], P[3]}) (v) * mat4x3 (P[0], P[4], P[8], P[12]) +
+      B ({P[4], P[5], P[6], P[7]}) (v) * mat4x3 (P[1], P[5], P[9], P[13]) +
+      B ({P[8], P[9], P[10], P[11]}) (v) * mat4x3 (P[2], P[6], P[10], P[14]) +
+      B ({P[12], P[13], P[14], P[15]}) (v) * mat4x3 (P[3], P[7], P[11], P[15])
+  );
+}
+
+vec3 get_bezier_point2 (const float u, const float v, const array<vec3, 16> &P)
 {
   // B(u,v) = U M P Mᵀ V
   vec4 U = dec_polynomial (u);
@@ -465,13 +507,15 @@ vector<vec3> get_bezier_surface (array<vec3, 16> control_points, int int_tessela
         {
           float u = (float) tu / (float) float_tesselation;
           // triângulo superior
-          pontos.push_back (get_bezier_point ((u + (1.0f / float_tesselation)), (v + (1.0f / float_tesselation)), control_points));
+          pontos.push_back (get_bezier_point ((u + (1.0f / float_tesselation)), (v + (1.0f
+                                                                                      / float_tesselation)), control_points));
           pontos.push_back (get_bezier_point (u, (v + (1.0f / float_tesselation)), control_points));
           pontos.push_back (get_bezier_point (u, v, control_points));
           // triângulo inferior
           pontos.push_back (get_bezier_point (u, v, control_points));
           pontos.push_back (get_bezier_point ((u + (1.0f / float_tesselation)), v, control_points));
-          pontos.push_back (get_bezier_point ((u + (1.0f / float_tesselation)), (v + (1.0f / float_tesselation)), control_points));
+          pontos.push_back (get_bezier_point ((u + (1.0f / float_tesselation)), (v + (1.0f
+                                                                                      / float_tesselation)), control_points));
         }
     }
   return pontos;
