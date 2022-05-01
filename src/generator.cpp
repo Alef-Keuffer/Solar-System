@@ -472,10 +472,10 @@ vector<glm::vec3> get_bezier_patch (array<glm::vec3, 16> control_points, int int
   return pontos;
 }
 
-vector<glm::vec3> get_bezier_surface (vector<array<glm::vec3, 16>> control_set, int int_tesselation) {
+vector<glm::vec3> get_bezier_surface (const vector<array<glm::vec3, 16>>& control_set, int int_tesselation) {
     vector<glm::vec3> pts;
-    for (int i = 0; i < control_set.size(); i++) {
-        vector<glm::vec3> temp = get_bezier_patch(control_set[i], int_tesselation);
+    for (auto & i : control_set) {
+        vector<glm::vec3> temp = get_bezier_patch(i, int_tesselation);
         pts.insert(pts.end(), temp.begin(), temp.end());
     }
 
@@ -487,10 +487,10 @@ void model_bezier_write(string filepath, int tesselation) {
     vector<glm::vec3> vertices = get_bezier_surface(control_points, tesselation);
     const unsigned int nVertices = vertices.size();
     vector<float> coords;
-    for (int i = 0; i < vertices.size(); i++) {
-        coords.push_back(vertices[i].x);
-        coords.push_back(vertices[i].y);
-        coords.push_back(vertices[i].z);
+    for (auto & vertice : vertices) {
+        coords.push_back(vertice.x);
+        coords.push_back(vertice.y);
+        coords.push_back(vertice.z);
     }
     points_write(filepath.c_str(), nVertices, coords.data());
 }
