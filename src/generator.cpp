@@ -426,16 +426,12 @@ template<typename T1, typename T2, typename T3>
 void mult (const T1 &a, const T2 &b, T3 &r, const int m, const int p, const int q)
 {
   for (auto i = 0; i < m; ++i)
-    {
-      for (auto j = 0; j < q; ++j)
-        {
-          r[m * i + j] *= 0;
-          for (auto k = 0; k < p; k++)
-            {
-              r[m * i + j] += a[m * i + k] * b[p * k + j];
-            }
-        }
-    }
+    for (auto j = 0; j < q; ++j)
+      {
+        r[m * i + j] *= 0;
+        for (auto k = 0; k < p; ++k)
+          r[m * i + j] += a[m * i + k] * b[p * k + j];
+      }
 }
 
 void get_curve (const float time, const mat4 &M, const array<vec3, 4> &control_points, glm::vec3 &pos, glm::vec3 &deriv)
