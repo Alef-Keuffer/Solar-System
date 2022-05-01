@@ -1,10 +1,6 @@
 var searchData=
 [
-  ['readmodeltobuffer_0',['readModelToBuffer',['../group__model_engine.html#ga943eb4ae9be9204315e7dc4ccb7b3ca6',1,'readModelToBuffer(const char *path, float *p, unsigned int n):&#160;engine.cpp'],['../main_8cpp.html#a943eb4ae9be9204315e7dc4ccb7b3ca6',1,'readModelToBuffer(const char *path, float *p, unsigned int n):&#160;main.cpp']]],
-  ['redisplay_1',['redisplay',['../group__engine.html#gab9813926390dc5773baf0b20dc2ea16e',1,'engine.cpp']]],
-  ['render3d_2',['render3d',['../main_8cpp.html#a26a1f548f94f1ae7cb50446eded247ce',1,'main.cpp']]],
-  ['renderallmodels_3',['renderAllModels',['../group__model_engine.html#gacf6e708a0a1874bf2d8fd951a6ede500',1,'engine.cpp']]],
-  ['rendermodel_4',['renderModel',['../group__model_engine.html#gae7de75a0850ac9069b4a3710b63a102c',1,'engine.cpp']]],
-  ['renderscene_5',['renderScene',['../group__engine.html#ga91c42686f3245f22fb6b17ba5372d92c',1,'renderScene():&#160;engine.cpp'],['../main_8cpp.html#a2a96aed746d13d9b42d7888e156045f6',1,'renderScene(void):&#160;main.cpp']]],
-  ['rendertrianglevertexseq_6',['renderTriangleVertexSeq',['../group__engine.html#gaa790ed3f50ff9672fc05cd787d33a4ef',1,'renderTriangleVertexSeq(float *p, unsigned int nVertices):&#160;engine.cpp'],['../main_8cpp.html#a398691ab8678e504e5d144ef8f004dff',1,'renderTriangleVertexSeq(float *p, int n):&#160;main.cpp']]]
+  ['points_5fvertex_0',['points_vertex',['../group__points.html#ga127fb8e56ec1e38505cdd9ea6efa2cf6',1,'generator.cpp']]],
+  ['points_5fwrite_1',['points_write',['../group__points.html#gab0ec2dac46ec7ee44911b8bcf1e9dad0',1,'generator.cpp']]],
+  ['processspecialkeys_2',['processSpecialKeys',['../main_8cpp.html#a22a15e4bdf7b2b913b6cb41cc85b0b79',1,'main.cpp']]]
 ];

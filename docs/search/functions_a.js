@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['vbo_5findices_0',['vbo_indices',['../group__engine.html#ga260fbd3d70764684657bbf1a617ddf99',1,'engine.cpp']]]
+  ['spherevertex_0',['sphereVertex',['../main_8cpp.html#a56f39b3037e5c23b0d7523d4a0aa364f',1,'main.cpp']]],
+  ['spherical2cartesian_1',['spherical2Cartesian',['../group__spherical.html#gab5ff5216bffd1e15798677f24213213d',1,'engine.cpp']]]
 ];

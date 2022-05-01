@@ -13,8 +13,8 @@
 <g id="node1" class="node">
 <title>Node1</title>
 <g id="a_node1"><a xlink:title=" ">
-<polygon fill="#bfbfbf" stroke="black" points="0,-76.5 0,-95.5 77,-95.5 77,-76.5 0,-76.5"/>
-<text text-anchor="middle" x="38.5" y="-83.5" font-family="Helvetica,sans-Serif" font-size="10.00">renderScene</text>
+<polygon fill="#bfbfbf" stroke="black" points="0,-57.5 0,-76.5 77,-76.5 77,-57.5 0,-57.5"/>
+<text text-anchor="middle" x="38.5" y="-64.5" font-family="Helvetica,sans-Serif" font-size="10.00">renderScene</text>
 </a>
 </g>
 </g>
@@ -30,8 +30,8 @@
 <!-- Node1&#45;&gt;Node2 -->
 <g id="edge1" class="edge">
 <title>Node1&#45;&gt;Node2</title>
-<path fill="none" stroke="midnightblue" d="M77,-91.7C90.78,-93.79 106.49,-96.18 120.76,-98.35"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="120.44,-101.84 130.85,-99.89 121.49,-94.92 120.44,-101.84"/>
+<path fill="none" stroke="midnightblue" d="M71.04,-76.59C86.88,-81.4 106.27,-87.3 123.28,-92.47"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="122.38,-95.85 132.97,-95.41 124.42,-89.16 122.38,-95.85"/>
 </g>
 <!-- Node3 -->
 <g id="node3" class="node">
@@ -45,8 +45,23 @@
 <!-- Node1&#45;&gt;Node3 -->
 <g id="edge2" class="edge">
 <title>Node1&#45;&gt;Node3</title>
-<path fill="none" stroke="midnightblue" d="M77,-80.3C85.16,-79.06 93.99,-77.72 102.79,-76.38"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="103.33,-79.84 112.69,-74.87 102.28,-72.92 103.33,-79.84"/>
+<path fill="none" stroke="midnightblue" d="M77,-67C85.07,-67 93.8,-67 102.51,-67"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="102.69,-70.5 112.69,-67 102.69,-63.5 102.69,-70.5"/>
+</g>
+<!-- Node8 -->
+<g id="node8" class="node">
+<title>Node8</title>
+<g id="a_node8"><a xlink:href="group__engine.html#gaf049ec1caddd7a032fc8b48641e12f1e" target="_top" xlink:title=" ">
+<polygon fill="white" stroke="black" points="113.5,-19.5 113.5,-38.5 217.5,-38.5 217.5,-19.5 113.5,-19.5"/>
+<text text-anchor="middle" x="165.5" y="-26.5" font-family="Helvetica,sans-Serif" font-size="10.00">renderGreenPlane</text>
+</a>
+</g>
+</g>
+<!-- Node1&#45;&gt;Node8 -->
+<g id="edge7" class="edge">
+<title>Node1&#45;&gt;Node8</title>
+<path fill="none" stroke="midnightblue" d="M71.04,-57.41C86.88,-52.6 106.27,-46.7 123.28,-41.53"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="124.42,-44.84 132.97,-38.59 122.38,-38.15 124.42,-44.84"/>
 </g>
 <!-- Node4 -->
 <g id="node4" class="node">
@@ -105,8 +120,8 @@
 <!-- Node3&#45;&gt;Node7 -->
 <g id="edge6" class="edge">
 <title>Node3&#45;&gt;Node7</title>
-<path fill="none" stroke="midnightblue" d="M187.17,-57.47C204.78,-49.48 230.84,-37.98 254,-29 259.28,-26.95 264.89,-24.9 270.43,-22.94"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="271.95,-26.11 280.25,-19.53 269.65,-19.5 271.95,-26.11"/>
+<path fill="none" stroke="midnightblue" d="M194.57,-57.41C202.25,-54.58 210.51,-51.34 218,-48 234.52,-40.63 237.39,-36.17 254,-29 258.84,-26.91 264,-24.89 269.14,-22.99"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="270.68,-26.16 278.93,-19.51 268.34,-19.56 270.68,-26.16"/>
 </g>
 </g>
 </svg>

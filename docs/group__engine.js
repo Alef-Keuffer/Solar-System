@@ -9,6 +9,7 @@ var group__engine =
     [ "env_load_defaults", "group__engine.html#ga8679d9b303f36964bf51dba0993caeaa", null ],
     [ "main", "group__engine.html#ga3c04138a5bfe5d72780bb7e82a18e627", null ],
     [ "redisplay", "group__engine.html#gab9813926390dc5773baf0b20dc2ea16e", null ],
+    [ "renderGreenPlane", "group__engine.html#gaf049ec1caddd7a032fc8b48641e12f1e", null ],
     [ "renderScene", "group__engine.html#ga91c42686f3245f22fb6b17ba5372d92c", null ],
     [ "renderTriangleVertexSeq", "group__engine.html#gaa790ed3f50ff9672fc05cd787d33a4ef", null ],
     [ "vbo_indices", "group__engine.html#ga260fbd3d70764684657bbf1a617ddf99", null ],

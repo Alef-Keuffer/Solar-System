@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['vbo_0',['VBO',['../group__engine.html#gad9a24fe28e2326cb0445791525781160',1,'engine.cpp']]],
-  ['vertices_1',['vertices',['../structmodel.html#aeda4520a3b906127f05c05c3aa6a5eea',1,'model']]]
+  ['rotate_0',['ROTATE',['../parsing_8cpp.html#af4ae699d8cd926769e89e26cd088b2c0',1,'ROTATE():&#160;parsing.cpp'],['../parsing_8h.html#af4ae699d8cd926769e89e26cd088b2c0',1,'ROTATE():&#160;parsing.h']]]
 ];

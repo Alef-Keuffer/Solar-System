@@ -105,7 +105,8 @@ $(document).ready(function(){initNavTree('generator_8cpp.html',''); initResizabl
 <div class="header">
   <div class="summary">
 <a href="#define-members">Macros</a> &#124;
-<a href="#func-members">Functions</a>  </div>
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle"><div class="title">generator.cpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
@@ -113,12 +114,19 @@ $(document).ready(function(){initNavTree('generator_8cpp.html',''); initResizabl
 <code>#include &lt;stdio.h&gt;</code><br />
 <code>#include &lt;string.h&gt;</code><br />
 <code>#include &lt;stdlib.h&gt;</code><br />
+<code>#include &lt;glm/glm.hpp&gt;</code><br />
+<code>#include &lt;vector&gt;</code><br />
+<code>#include &lt;string&gt;</code><br />
+<code>#include &lt;sstream&gt;</code><br />
+<code>#include &lt;fstream&gt;</code><br />
+<code>#include &lt;tuple&gt;</code><br />
+<code>#include &lt;fplll/nr/matrix.h&gt;</code><br />
 </div><div class="textblock"><div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Include dependency graph for generator.cpp:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="generator_8cpp__incl.svg" width="360" height="112"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="generator_8cpp__incl.svg" width="100%" height="384"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
 </div>
 </div>
 <p><a href="generator_8cpp_source.html">Go to the source code of this file.</a></p>
@@ -127,14 +135,6 @@ $(document).ready(function(){initNavTree('generator_8cpp.html',''); initResizabl
 Macros</h2></td></tr>
 <tr class="memitem:a525335710b53cb064ca56b936120431e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generator_8cpp.html#a525335710b53cb064ca56b936120431e">_USE_MATH_DEFINES</a></td></tr>
 <tr class="separator:a525335710b53cb064ca56b936120431e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad6372e14875f107f90642c7da8e10d12"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generator_8cpp.html#ad6372e14875f107f90642c7da8e10d12">SPHERE</a>&#160;&#160;&#160;&quot;sphere&quot;</td></tr>
-<tr class="separator:ad6372e14875f107f90642c7da8e10d12"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7ad9025325305d34028560362c0ab212"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generator_8cpp.html#a7ad9025325305d34028560362c0ab212">CUBE</a>&#160;&#160;&#160;&quot;box&quot;</td></tr>
-<tr class="separator:a7ad9025325305d34028560362c0ab212"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a876aed98907de39733d5c9ff83555e28"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generator_8cpp.html#a876aed98907de39733d5c9ff83555e28">CONE</a>&#160;&#160;&#160;&quot;cone&quot;</td></tr>
-<tr class="separator:a876aed98907de39733d5c9ff83555e28"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7ad8eaf8fe89c7f27a41cb7e1d0d28ab"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generator_8cpp.html#a7ad8eaf8fe89c7f27a41cb7e1d0d28ab">PLANE</a>&#160;&#160;&#160;&quot;plane&quot;</td></tr>
-<tr class="separator:a7ad8eaf8fe89c7f27a41cb7e1d0d28ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
@@ -166,12 +166,41 @@ Functions</h2></td></tr>
 <tr class="separator:ga8cfa785fa5a63f8e74b5d21f24721c4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaaa3b03bbb79c4d88b3eee338eeec15b2"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sphere.html#gaaa3b03bbb79c4d88b3eee338eeec15b2">model_sphere_vertices</a> (const float r, const unsigned int slices, const unsigned int stacks, float points[])</td></tr>
 <tr class="separator:gaaa3b03bbb79c4d88b3eee338eeec15b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf82b7cdec30ae2747eb9d5def16bc7a3"><td class="memItemLeft" align="right" valign="top">vector&lt; array&lt; vec3, 16 &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sphere.html#gaf82b7cdec30ae2747eb9d5def16bc7a3">read_Bezier</a> (string &amp;patch)</td></tr>
+<tr class="separator:gaf82b7cdec30ae2747eb9d5def16bc7a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1d35ad36990e6f400886d4e2e2b3751e"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:ga1d35ad36990e6f400886d4e2e2b3751e"><td class="memTemplItemLeft" align="right" valign="top">vec4&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__sphere.html#ga1d35ad36990e6f400886d4e2e2b3751e">dec_polynomial</a> (T n)</td></tr>
+<tr class="separator:ga1d35ad36990e6f400886d4e2e2b3751e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga3a6fe3f7faa5a5194d586dc99d1b4862"><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 , typename T3 &gt; </td></tr>
+<tr class="memitem:ga3a6fe3f7faa5a5194d586dc99d1b4862"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__sphere.html#ga3a6fe3f7faa5a5194d586dc99d1b4862">mult</a> (const T1 &amp;a, const T2 &amp;b, T3 &amp;r, const int m, const int p, const int q)</td></tr>
+<tr class="separator:ga3a6fe3f7faa5a5194d586dc99d1b4862"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae1f2aea35fc8ca6d56097bc3b7824c07"><td class="memItemLeft" align="right" valign="top">vec3&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sphere.html#gae1f2aea35fc8ca6d56097bc3b7824c07">get_bezier_point</a> (const float u, const float v, const array&lt; vec3, 16 &gt; &amp;P)</td></tr>
+<tr class="separator:gae1f2aea35fc8ca6d56097bc3b7824c07"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga43727f23d266c85a2475ddbd478cee5d"><td class="memItemLeft" align="right" valign="top">vector&lt; vec3 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sphere.html#ga43727f23d266c85a2475ddbd478cee5d">get_bezier_surface</a> (array&lt; vec3, 16 &gt; control_points, int int_tesselation)</td></tr>
+<tr class="separator:ga43727f23d266c85a2475ddbd478cee5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga093e996c7f18f239228d66ffa2b35078"><td class="memItemLeft" align="right" valign="top">static unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sphere.html#ga093e996c7f18f239228d66ffa2b35078">model_sphere_nVertices</a> (const unsigned int slices, const unsigned int stacks)</td></tr>
 <tr class="separator:ga093e996c7f18f239228d66ffa2b35078"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gac12b373e99ed20d69a86f42d7fbba274"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sphere.html#gac12b373e99ed20d69a86f42d7fbba274">model_sphere_write</a> (const char *filepath, float radius, unsigned int slices, unsigned int stacks)</td></tr>
 <tr class="separator:gac12b373e99ed20d69a86f42d7fbba274"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0ddf1224851353fc92bfbff6f499fa97"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generator_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97">main</a> (int argc, char *argv[])</td></tr>
 <tr class="separator:a0ddf1224851353fc92bfbff6f499fa97"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:a5e4444a284dcd0e0625f94dfde200b90"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generator_8cpp.html#a5e4444a284dcd0e0625f94dfde200b90">SPHERE</a> = &quot;sphere&quot;</td></tr>
+<tr class="separator:a5e4444a284dcd0e0625f94dfde200b90"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0116cf973c39f8ad007b29a64ce0dc68"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generator_8cpp.html#a0116cf973c39f8ad007b29a64ce0dc68">CUBE</a> = &quot;box&quot;</td></tr>
+<tr class="separator:a0116cf973c39f8ad007b29a64ce0dc68"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6fef3a1a7a2e188e7a9ec3bfbbe73b53"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generator_8cpp.html#a6fef3a1a7a2e188e7a9ec3bfbbe73b53">CONE</a> = &quot;cone&quot;</td></tr>
+<tr class="separator:a6fef3a1a7a2e188e7a9ec3bfbbe73b53"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a01beb44cc7789a6fc47c32e854b88bdd"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generator_8cpp.html#a01beb44cc7789a6fc47c32e854b88bdd">PLANE</a> = &quot;plane&quot;</td></tr>
+<tr class="separator:a01beb44cc7789a6fc47c32e854b88bdd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad6e4c65827e21bb35c9daed4a0f6fb18"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generator_8cpp.html#ad6e4c65827e21bb35c9daed4a0f6fb18">BEZIER</a> = &quot;bezier&quot;</td></tr>
+<tr class="separator:ad6e4c65827e21bb35c9daed4a0f6fb18"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga89587b0c09b0779db10187dfaf4a584a"><td class="memItemLeft" align="right" valign="top">const auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sphere.html#ga89587b0c09b0779db10187dfaf4a584a">Mcr</a></td></tr>
+<tr class="separator:ga89587b0c09b0779db10187dfaf4a584a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0a594e66b5130c860750be6fdd407e25"><td class="memItemLeft" align="right" valign="top">const auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sphere.html#ga0a594e66b5130c860750be6fdd407e25">Mb</a></td></tr>
+<tr class="separator:ga0a594e66b5130c860750be6fdd407e25"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
 <a id="a525335710b53cb064ca56b936120431e" name="a525335710b53cb064ca56b936120431e"></a>
@@ -187,70 +216,6 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="generator_8cpp_source.html#l00001">1</a> of file <a class="el" href="generator_8cpp_source.html">generator.cpp</a>.</p>
-
-</div>
-</div>
-<a id="a876aed98907de39733d5c9ff83555e28" name="a876aed98907de39733d5c9ff83555e28"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a876aed98907de39733d5c9ff83555e28">&#9670;&nbsp;</a></span>CONE</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define CONE&#160;&#160;&#160;&quot;cone&quot;</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="generator_8cpp_source.html#l00011">11</a> of file <a class="el" href="generator_8cpp_source.html">generator.cpp</a>.</p>
-
-</div>
-</div>
-<a id="a7ad9025325305d34028560362c0ab212" name="a7ad9025325305d34028560362c0ab212"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7ad9025325305d34028560362c0ab212">&#9670;&nbsp;</a></span>CUBE</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define CUBE&#160;&#160;&#160;&quot;box&quot;</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="generator_8cpp_source.html#l00010">10</a> of file <a class="el" href="generator_8cpp_source.html">generator.cpp</a>.</p>
-
-</div>
-</div>
-<a id="a7ad8eaf8fe89c7f27a41cb7e1d0d28ab" name="a7ad8eaf8fe89c7f27a41cb7e1d0d28ab"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7ad8eaf8fe89c7f27a41cb7e1d0d28ab">&#9670;&nbsp;</a></span>PLANE</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define PLANE&#160;&#160;&#160;&quot;plane&quot;</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="generator_8cpp_source.html#l00012">12</a> of file <a class="el" href="generator_8cpp_source.html">generator.cpp</a>.</p>
-
-</div>
-</div>
-<a id="ad6372e14875f107f90642c7da8e10d12" name="ad6372e14875f107f90642c7da8e10d12"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad6372e14875f107f90642c7da8e10d12">&#9670;&nbsp;</a></span>SPHERE</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define SPHERE&#160;&#160;&#160;&quot;sphere&quot;</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="generator_8cpp_source.html#l00009">9</a> of file <a class="el" href="generator_8cpp_source.html">generator.cpp</a>.</p>
 
 </div>
 </div>
@@ -281,32 +246,38 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="generator_8cpp_source.html#l00313">313</a> of file <a class="el" href="generator_8cpp_source.html">generator.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  313</span>                                 {</div>
-<div class="line"><span class="lineno">  314</span>    <span class="keywordflow">if</span> (argc &lt; 5) { printf(<span class="stringliteral">&quot;Not enough arguments&quot;</span>); }</div>
-<div class="line"><span class="lineno">  315</span>    <span class="keywordflow">else</span> {</div>
-<div class="line"><span class="lineno">  316</span>        <span class="keyword">const</span> <span class="keywordtype">char</span> *filepath = argv[argc - 1];</div>
-<div class="line"><span class="lineno">  317</span>        <span class="keyword">const</span> <span class="keywordtype">char</span> *polygon = argv[1];</div>
-<div class="line"><span class="lineno">  318</span> </div>
-<div class="line"><span class="lineno">  319</span>        <span class="keywordflow">if</span> (!strcmp(<a class="code hl_define" href="generator_8cpp.html#a7ad8eaf8fe89c7f27a41cb7e1d0d28ab">PLANE</a>, polygon))</div>
-<div class="line"><span class="lineno">  320</span>            <a class="code hl_function" href="group__plane.html#ga5e8bda3b029f10d274a294c697a622cd">model_plane_write</a>(filepath, strtof(argv[2], <span class="keyword">nullptr</span>), strtoul(argv[3], <span class="keyword">nullptr</span>, 10));</div>
-<div class="line"><span class="lineno">  321</span>        <span class="keywordflow">if</span> (!strcmp(<a class="code hl_define" href="generator_8cpp.html#a7ad9025325305d34028560362c0ab212">CUBE</a>, polygon)) <a class="code hl_function" href="group__cube.html#gad6fe75a034b53925563817d6efd139a0">model_cube_write</a>(filepath, atof(argv[2]), strtoul(argv[3], <span class="keyword">nullptr</span>, 10));</div>
-<div class="line"><span class="lineno">  322</span>        <span class="keywordflow">if</span> (!strcmp(<a class="code hl_define" href="generator_8cpp.html#a876aed98907de39733d5c9ff83555e28">CONE</a>, polygon))</div>
-<div class="line"><span class="lineno">  323</span>            <a class="code hl_function" href="group__cone.html#ga91bcf93d6d83f4837ac94093d869af78">model_cone_write</a>(filepath, atof(argv[2]), atof(argv[3]), atoi(argv[4]), atoi(argv[5]));</div>
-<div class="line"><span class="lineno">  324</span>        <span class="keywordflow">if</span> (!strcmp(<a class="code hl_define" href="generator_8cpp.html#ad6372e14875f107f90642c7da8e10d12">SPHERE</a>, polygon)) <a class="code hl_function" href="group__sphere.html#gac12b373e99ed20d69a86f42d7fbba274">model_sphere_write</a>(filepath, atof(argv[2]), atoi(argv[3]), atoi(argv[4]));</div>
-<div class="line"><span class="lineno">  325</span>    }</div>
-<div class="line"><span class="lineno">  326</span>    <span class="keywordflow">return</span> 1;</div>
-<div class="line"><span class="lineno">  327</span>}</div>
-<div class="ttc" id="agenerator_8cpp_html_a7ad8eaf8fe89c7f27a41cb7e1d0d28ab"><div class="ttname"><a href="generator_8cpp.html#a7ad8eaf8fe89c7f27a41cb7e1d0d28ab">PLANE</a></div><div class="ttdeci">#define PLANE</div><div class="ttdef"><b>Definition:</b> <a href="generator_8cpp_source.html#l00012">generator.cpp:12</a></div></div>
-<div class="ttc" id="agenerator_8cpp_html_a7ad9025325305d34028560362c0ab212"><div class="ttname"><a href="generator_8cpp.html#a7ad9025325305d34028560362c0ab212">CUBE</a></div><div class="ttdeci">#define CUBE</div><div class="ttdef"><b>Definition:</b> <a href="generator_8cpp_source.html#l00010">generator.cpp:10</a></div></div>
-<div class="ttc" id="agenerator_8cpp_html_a876aed98907de39733d5c9ff83555e28"><div class="ttname"><a href="generator_8cpp.html#a876aed98907de39733d5c9ff83555e28">CONE</a></div><div class="ttdeci">#define CONE</div><div class="ttdef"><b>Definition:</b> <a href="generator_8cpp_source.html#l00011">generator.cpp:11</a></div></div>
-<div class="ttc" id="agenerator_8cpp_html_ad6372e14875f107f90642c7da8e10d12"><div class="ttname"><a href="generator_8cpp.html#ad6372e14875f107f90642c7da8e10d12">SPHERE</a></div><div class="ttdeci">#define SPHERE</div><div class="ttdef"><b>Definition:</b> <a href="generator_8cpp_source.html#l00009">generator.cpp:9</a></div></div>
-<div class="ttc" id="agroup__cone_html_ga91bcf93d6d83f4837ac94093d869af78"><div class="ttname"><a href="group__cone.html#ga91bcf93d6d83f4837ac94093d869af78">model_cone_write</a></div><div class="ttdeci">void model_cone_write(const char *filepath, const float radius, const float height, const unsigned int slices, const unsigned int stacks)</div><div class="ttdef"><b>Definition:</b> <a href="generator_8cpp_source.html#l00239">generator.cpp:239</a></div></div>
-<div class="ttc" id="agroup__cube_html_gad6fe75a034b53925563817d6efd139a0"><div class="ttname"><a href="group__cube.html#gad6fe75a034b53925563817d6efd139a0">model_cube_write</a></div><div class="ttdeci">void model_cube_write(const char *filepath, const float length, const unsigned int divisions)</div><div class="ttdef"><b>Definition:</b> <a href="generator_8cpp_source.html#l00159">generator.cpp:159</a></div></div>
-<div class="ttc" id="agroup__plane_html_ga5e8bda3b029f10d274a294c697a622cd"><div class="ttname"><a href="group__plane.html#ga5e8bda3b029f10d274a294c697a622cd">model_plane_write</a></div><div class="ttdeci">void model_plane_write(const char *filepath, const float length, const unsigned int divisions)</div><div class="ttdef"><b>Definition:</b> <a href="generator_8cpp_source.html#l00079">generator.cpp:79</a></div></div>
-<div class="ttc" id="agroup__sphere_html_gac12b373e99ed20d69a86f42d7fbba274"><div class="ttname"><a href="group__sphere.html#gac12b373e99ed20d69a86f42d7fbba274">model_sphere_write</a></div><div class="ttdeci">void model_sphere_write(const char *filepath, float radius, unsigned int slices, unsigned int stacks)</div><div class="ttdef"><b>Definition:</b> <a href="generator_8cpp_source.html#l00301">generator.cpp:301</a></div></div>
+<p class="definition">Definition at line <a class="el" href="generator_8cpp_source.html#l00505">505</a> of file <a class="el" href="generator_8cpp_source.html">generator.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  506</span>{</div>
+<div class="line"><span class="lineno">  507</span>  <span class="keywordflow">if</span> (argc &lt; 5)</div>
+<div class="line"><span class="lineno">  508</span>    {</div>
+<div class="line"><span class="lineno">  509</span>      printf (<span class="stringliteral">&quot;Not enough arguments&quot;</span>);</div>
+<div class="line"><span class="lineno">  510</span>    }</div>
+<div class="line"><span class="lineno">  511</span>  <span class="keywordflow">else</span></div>
+<div class="line"><span class="lineno">  512</span>    {</div>
+<div class="line"><span class="lineno">  513</span>      <span class="keyword">const</span> <span class="keywordtype">char</span> *filepath = argv[argc - 1];</div>
+<div class="line"><span class="lineno">  514</span>      <span class="keyword">const</span> <span class="keywordtype">char</span> *polygon = argv[1];</div>
+<div class="line"><span class="lineno">  515</span> </div>
+<div class="line"><span class="lineno">  516</span>      <span class="keywordflow">if</span> (!strcmp (<a class="code hl_variable" href="generator_8cpp.html#a01beb44cc7789a6fc47c32e854b88bdd">PLANE</a>, polygon))</div>
+<div class="line"><span class="lineno">  517</span>        <a class="code hl_function" href="group__plane.html#ga5e8bda3b029f10d274a294c697a622cd">model_plane_write</a> (filepath, strtof (argv[2], <span class="keyword">nullptr</span>), strtoul (argv[3], <span class="keyword">nullptr</span>, 10));</div>
+<div class="line"><span class="lineno">  518</span>      <span class="keywordflow">if</span> (!strcmp (<a class="code hl_variable" href="generator_8cpp.html#a0116cf973c39f8ad007b29a64ce0dc68">CUBE</a>, polygon))</div>
+<div class="line"><span class="lineno">  519</span>        <a class="code hl_function" href="group__cube.html#gad6fe75a034b53925563817d6efd139a0">model_cube_write</a> (filepath, atof (argv[2]), strtoul (argv[3], <span class="keyword">nullptr</span>, 10));</div>
+<div class="line"><span class="lineno">  520</span>      <span class="keywordflow">if</span> (!strcmp (<a class="code hl_variable" href="generator_8cpp.html#a6fef3a1a7a2e188e7a9ec3bfbbe73b53">CONE</a>, polygon))</div>
+<div class="line"><span class="lineno">  521</span>        <a class="code hl_function" href="group__cone.html#ga91bcf93d6d83f4837ac94093d869af78">model_cone_write</a> (filepath, atof (argv[2]), atof (argv[3]), atoi (argv[4]), atoi (argv[5]));</div>
+<div class="line"><span class="lineno">  522</span>      <span class="keywordflow">if</span> (!strcmp (<a class="code hl_variable" href="generator_8cpp.html#a5e4444a284dcd0e0625f94dfde200b90">SPHERE</a>, polygon))</div>
+<div class="line"><span class="lineno">  523</span>        <a class="code hl_function" href="group__sphere.html#gac12b373e99ed20d69a86f42d7fbba274">model_sphere_write</a> (filepath, atof (argv[2]), atoi (argv[3]), atoi (argv[4]));</div>
+<div class="line"><span class="lineno">  524</span>    }</div>
+<div class="line"><span class="lineno">  525</span>  <span class="keywordflow">return</span> 1;</div>
+<div class="line"><span class="lineno">  526</span>}</div>
+<div class="ttc" id="agenerator_8cpp_html_a0116cf973c39f8ad007b29a64ce0dc68"><div class="ttname"><a href="generator_8cpp.html#a0116cf973c39f8ad007b29a64ce0dc68">CUBE</a></div><div class="ttdeci">const char * CUBE</div><div class="ttdef"><b>Definition:</b> <a href="generator_8cpp_source.html#l00019">generator.cpp:19</a></div></div>
+<div class="ttc" id="agenerator_8cpp_html_a01beb44cc7789a6fc47c32e854b88bdd"><div class="ttname"><a href="generator_8cpp.html#a01beb44cc7789a6fc47c32e854b88bdd">PLANE</a></div><div class="ttdeci">const char * PLANE</div><div class="ttdef"><b>Definition:</b> <a href="generator_8cpp_source.html#l00021">generator.cpp:21</a></div></div>
+<div class="ttc" id="agenerator_8cpp_html_a5e4444a284dcd0e0625f94dfde200b90"><div class="ttname"><a href="generator_8cpp.html#a5e4444a284dcd0e0625f94dfde200b90">SPHERE</a></div><div class="ttdeci">const char * SPHERE</div><div class="ttdef"><b>Definition:</b> <a href="generator_8cpp_source.html#l00018">generator.cpp:18</a></div></div>
+<div class="ttc" id="agenerator_8cpp_html_a6fef3a1a7a2e188e7a9ec3bfbbe73b53"><div class="ttname"><a href="generator_8cpp.html#a6fef3a1a7a2e188e7a9ec3bfbbe73b53">CONE</a></div><div class="ttdeci">const char * CONE</div><div class="ttdef"><b>Definition:</b> <a href="generator_8cpp_source.html#l00020">generator.cpp:20</a></div></div>
+<div class="ttc" id="agroup__cone_html_ga91bcf93d6d83f4837ac94093d869af78"><div class="ttname"><a href="group__cone.html#ga91bcf93d6d83f4837ac94093d869af78">model_cone_write</a></div><div class="ttdeci">void model_cone_write(const char *filepath, const float radius, const float height, const unsigned int slices, const unsigned int stacks)</div><div class="ttdef"><b>Definition:</b> <a href="generator_8cpp_source.html#l00266">generator.cpp:266</a></div></div>
+<div class="ttc" id="agroup__cube_html_gad6fe75a034b53925563817d6efd139a0"><div class="ttname"><a href="group__cube.html#gad6fe75a034b53925563817d6efd139a0">model_cube_write</a></div><div class="ttdeci">void model_cube_write(const char *filepath, const float length, const unsigned int divisions)</div><div class="ttdef"><b>Definition:</b> <a href="generator_8cpp_source.html#l00180">generator.cpp:180</a></div></div>
+<div class="ttc" id="agroup__plane_html_ga5e8bda3b029f10d274a294c697a622cd"><div class="ttname"><a href="group__plane.html#ga5e8bda3b029f10d274a294c697a622cd">model_plane_write</a></div><div class="ttdeci">void model_plane_write(const char *filepath, const float length, const unsigned int divisions)</div><div class="ttdef"><b>Definition:</b> <a href="generator_8cpp_source.html#l00095">generator.cpp:95</a></div></div>
+<div class="ttc" id="agroup__sphere_html_gac12b373e99ed20d69a86f42d7fbba274"><div class="ttname"><a href="group__sphere.html#gac12b373e99ed20d69a86f42d7fbba274">model_sphere_write</a></div><div class="ttdeci">void model_sphere_write(const char *filepath, float radius, unsigned int slices, unsigned int stacks)</div><div class="ttdef"><b>Definition:</b> <a href="generator_8cpp_source.html#l00492">generator.cpp:492</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="generator_8cpp_source.html#l00011">CONE</a>, <a class="el" href="generator_8cpp_source.html#l00010">CUBE</a>, <a class="el" href="generator_8cpp_source.html#l00239">model_cone_write()</a>, <a class="el" href="generator_8cpp_source.html#l00159">model_cube_write()</a>, <a class="el" href="generator_8cpp_source.html#l00079">model_plane_write()</a>, <a class="el" href="generator_8cpp_source.html#l00301">model_sphere_write()</a>, <a class="el" href="generator_8cpp_source.html#l00012">PLANE</a>, and <a class="el" href="generator_8cpp_source.html#l00009">SPHERE</a>.</p>
+<p class="reference">References <a class="el" href="generator_8cpp_source.html#l00020">CONE</a>, <a class="el" href="generator_8cpp_source.html#l00019">CUBE</a>, <a class="el" href="generator_8cpp_source.html#l00266">model_cone_write()</a>, <a class="el" href="generator_8cpp_source.html#l00180">model_cube_write()</a>, <a class="el" href="generator_8cpp_source.html#l00095">model_plane_write()</a>, <a class="el" href="generator_8cpp_source.html#l00492">model_sphere_write()</a>, <a class="el" href="generator_8cpp_source.html#l00021">PLANE</a>, and <a class="el" href="generator_8cpp_source.html#l00018">SPHERE</a>.</p>
 <div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
@@ -314,6 +285,95 @@ Functions</h2></td></tr>
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
 <div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="generator_8cpp_a0ddf1224851353fc92bfbff6f499fa97_cgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
 </div>
+
+</div>
+</div>
+<h2 class="groupheader">Variable Documentation</h2>
+<a id="ad6e4c65827e21bb35c9daed4a0f6fb18" name="ad6e4c65827e21bb35c9daed4a0f6fb18"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad6e4c65827e21bb35c9daed4a0f6fb18">&#9670;&nbsp;</a></span>BEZIER</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* BEZIER = &quot;bezier&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="generator_8cpp_source.html#l00022">22</a> of file <a class="el" href="generator_8cpp_source.html">generator.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a6fef3a1a7a2e188e7a9ec3bfbbe73b53" name="a6fef3a1a7a2e188e7a9ec3bfbbe73b53"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6fef3a1a7a2e188e7a9ec3bfbbe73b53">&#9670;&nbsp;</a></span>CONE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* CONE = &quot;cone&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="generator_8cpp_source.html#l00020">20</a> of file <a class="el" href="generator_8cpp_source.html">generator.cpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="generator_8cpp_source.html#l00505">main()</a>.</p>
+
+</div>
+</div>
+<a id="a0116cf973c39f8ad007b29a64ce0dc68" name="a0116cf973c39f8ad007b29a64ce0dc68"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0116cf973c39f8ad007b29a64ce0dc68">&#9670;&nbsp;</a></span>CUBE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* CUBE = &quot;box&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="generator_8cpp_source.html#l00019">19</a> of file <a class="el" href="generator_8cpp_source.html">generator.cpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="generator_8cpp_source.html#l00505">main()</a>.</p>
+
+</div>
+</div>
+<a id="a01beb44cc7789a6fc47c32e854b88bdd" name="a01beb44cc7789a6fc47c32e854b88bdd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a01beb44cc7789a6fc47c32e854b88bdd">&#9670;&nbsp;</a></span>PLANE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* PLANE = &quot;plane&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="generator_8cpp_source.html#l00021">21</a> of file <a class="el" href="generator_8cpp_source.html">generator.cpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="generator_8cpp_source.html#l00505">main()</a>.</p>
+
+</div>
+</div>
+<a id="a5e4444a284dcd0e0625f94dfde200b90" name="a5e4444a284dcd0e0625f94dfde200b90"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5e4444a284dcd0e0625f94dfde200b90">&#9670;&nbsp;</a></span>SPHERE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* SPHERE = &quot;sphere&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="generator_8cpp_source.html#l00018">18</a> of file <a class="el" href="generator_8cpp_source.html">generator.cpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="generator_8cpp_source.html#l00505">main()</a>.</p>
 
 </div>
 </div>

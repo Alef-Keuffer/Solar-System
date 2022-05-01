@@ -16,6 +16,7 @@ var engine_8cpp =
     [ "readModelToBuffer", "group__model_engine.html#ga943eb4ae9be9204315e7dc4ccb7b3ca6", null ],
     [ "redisplay", "group__engine.html#gab9813926390dc5773baf0b20dc2ea16e", null ],
     [ "renderAllModels", "group__model_engine.html#gacf6e708a0a1874bf2d8fd951a6ede500", null ],
+    [ "renderGreenPlane", "group__engine.html#gaf049ec1caddd7a032fc8b48641e12f1e", null ],
     [ "renderModel", "group__model_engine.html#gae7de75a0850ac9069b4a3710b63a102c", null ],
     [ "renderScene", "group__engine.html#ga91c42686f3245f22fb6b17ba5372d92c", null ],
     [ "renderTriangleVertexSeq", "group__engine.html#gaa790ed3f50ff9672fc05cd787d33a4ef", null ],

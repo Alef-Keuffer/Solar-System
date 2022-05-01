@@ -1,7 +1,8 @@
 <map id="renderScene" name="renderScene">
-<area shape="rect" id="node1" title=" " alt="" coords="5,56,108,83"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,81,108,108"/>
 <area shape="rect" id="node2" href="$engine_8cpp.html#a634dba686e70e7ff3f10c37d11f463da" title=" " alt="" coords="180,31,272,57"/>
 <area shape="rect" id="node3" href="$group___operations.html#ga887f20c10a27832ea24178203a47fcc2" title=" " alt="" coords="156,81,296,108"/>
+<area shape="rect" id="node8" href="$group__engine.html#gaf049ec1caddd7a032fc8b48641e12f1e" title=" " alt="" coords="157,132,295,159"/>
 <area shape="rect" id="node4" href="$group__model_engine.html#ga56beba311d0a6fcbda9aeb516fe67f8f" title=" " alt="" coords="373,5,466,32"/>
 <area shape="rect" id="node5" href="$group__spherical.html#ga2a22d15f7463ccd8f8d1aa65e7578983" title=" " alt="" coords="344,56,495,83"/>
 <area shape="rect" id="node6" href="$group__model_engine.html#gae7de75a0850ac9069b4a3710b63a102c" title=" " alt="" coords="367,107,471,133"/>

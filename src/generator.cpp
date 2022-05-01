@@ -415,13 +415,11 @@ template<typename T> inline vec4 dec_polynomial (T n)
   return {pow (n, 3), pow (n, 2), n, 1};
 }
 /*!
- *
- * @tparam T
  * @param a a[m][p]
- * @param m
  * @param b b[p][q]
+ * @param[out] r r[m][q]
+ * @param m
  * @param q
- * @param r[out] r[m][q]
  * @param p
  */
 template<typename T1, typename T2, typename T3>

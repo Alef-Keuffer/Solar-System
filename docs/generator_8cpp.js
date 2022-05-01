@@ -1,10 +1,9 @@
 var generator_8cpp =
 [
     [ "_USE_MATH_DEFINES", "generator_8cpp.html#a525335710b53cb064ca56b936120431e", null ],
-    [ "CONE", "generator_8cpp.html#a876aed98907de39733d5c9ff83555e28", null ],
-    [ "CUBE", "generator_8cpp.html#a7ad9025325305d34028560362c0ab212", null ],
-    [ "PLANE", "generator_8cpp.html#a7ad8eaf8fe89c7f27a41cb7e1d0d28ab", null ],
-    [ "SPHERE", "generator_8cpp.html#ad6372e14875f107f90642c7da8e10d12", null ],
+    [ "dec_polynomial", "group__sphere.html#ga1d35ad36990e6f400886d4e2e2b3751e", null ],
+    [ "get_bezier_point", "group__sphere.html#gae1f2aea35fc8ca6d56097bc3b7824c07", null ],
+    [ "get_bezier_surface", "group__sphere.html#ga43727f23d266c85a2475ddbd478cee5d", null ],
     [ "main", "generator_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97", null ],
     [ "model_cone_nVertices", "group__cone.html#ga5b5f2964e2c773066361e823daa9211d", null ],
     [ "model_cone_vertex", "group__cone.html#ga30e1b3df23e49e33821bac9f6bf679db", null ],
@@ -20,6 +19,15 @@ var generator_8cpp =
     [ "model_sphere_vertex", "group__sphere.html#ga8cfa785fa5a63f8e74b5d21f24721c4c", null ],
     [ "model_sphere_vertices", "group__sphere.html#gaaa3b03bbb79c4d88b3eee338eeec15b2", null ],
     [ "model_sphere_write", "group__sphere.html#gac12b373e99ed20d69a86f42d7fbba274", null ],
+    [ "mult", "group__sphere.html#ga3a6fe3f7faa5a5194d586dc99d1b4862", null ],
     [ "points_vertex", "group__points.html#ga127fb8e56ec1e38505cdd9ea6efa2cf6", null ],
-    [ "points_write", "group__points.html#gab0ec2dac46ec7ee44911b8bcf1e9dad0", null ]
+    [ "points_write", "group__points.html#gab0ec2dac46ec7ee44911b8bcf1e9dad0", null ],
+    [ "read_Bezier", "group__sphere.html#gaf82b7cdec30ae2747eb9d5def16bc7a3", null ],
+    [ "BEZIER", "generator_8cpp.html#ad6e4c65827e21bb35c9daed4a0f6fb18", null ],
+    [ "CONE", "generator_8cpp.html#a6fef3a1a7a2e188e7a9ec3bfbbe73b53", null ],
+    [ "CUBE", "generator_8cpp.html#a0116cf973c39f8ad007b29a64ce0dc68", null ],
+    [ "Mb", "group__sphere.html#ga0a594e66b5130c860750be6fdd407e25", null ],
+    [ "Mcr", "group__sphere.html#ga89587b0c09b0779db10187dfaf4a584a", null ],
+    [ "PLANE", "generator_8cpp.html#a01beb44cc7789a6fc47c32e854b88bdd", null ],
+    [ "SPHERE", "generator_8cpp.html#a5e4444a284dcd0e0625f94dfde200b90", null ]
 ];
