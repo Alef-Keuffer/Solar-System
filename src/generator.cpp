@@ -345,7 +345,7 @@ const auto Mb = mat4 (
     -3, 3, 0, 0,
     1, 0, 0, 0);
 
-vector<array<vec3, 16>> read_Bezier (const char* patch)
+vector<array<vec3, 16>> read_Bezier (const char *patch)
 {
   string buffer;
   ifstream myFile;
@@ -371,7 +371,7 @@ vector<array<vec3, 16>> read_Bezier (const char* patch)
           getline (myFile, buffer, ',');
           patchIndexes.push_back (stoi (buffer));
         }
-        getline (myFile, buffer);
+      getline (myFile, buffer);
       patchIndexes.push_back (stoi (buffer));
       patches.push_back (patchIndexes);
     }
@@ -386,11 +386,11 @@ vector<array<vec3, 16>> read_Bezier (const char* patch)
     {
       vec3 v;
       getline (myFile, buffer, ',');
-      v.x = stof (buffer);
+      v[0] = stof (buffer);
       getline (myFile, buffer, ',');
-      v.y = stof (buffer);
-      getline (myFile, buffer, ',');
-      v.z = stof (buffer);
+      v[1] = stof (buffer);
+      getline (myFile, buffer);
+      v[2] = stof (buffer);
       control.push_back (v);
     }
 
@@ -411,10 +411,10 @@ vector<array<vec3, 16>> read_Bezier (const char* patch)
 
   myFile.close ();
 
-  std::cout << "read_Bezier read:" << std::endl;
+  /*std::cout << "read_Bezier read:" << std::endl;
   for (auto arr : pointsInPatches)
-    for (auto p: arr)
-      std::cout << glm::to_string(p) << std::endl;
+    for (auto p : arr)
+      std::cout << glm::to_string (p) << std::endl;*/
   return pointsInPatches;
 }
 
@@ -476,16 +476,32 @@ auto get_curve (const mat4 &M)
   };
 }
 
-vec3 get_bezier_point (const float u, const float v, const array<vec3, 16> &P)
+vec3 get_bezier_point4 (const float u, const float v, const array<vec3, 16> &P)
 {
   auto MU = Mb * dec_polynomial (u);
   auto B = get_curve (Mb); // bezier curve
-  vec3 r = {0,0,0};
+  vec3 r = {0, 0, 0};
   for (int j = 0; j < 3; ++j)
     for (int i = 0; i < 3; ++i)
-      r +=   B({P[j], P[j+1], P[j+2], P[j+3]})(v) * P[4*i+j]
-           * B({P[i], P[i+1], P[i+2], P[i+3]})(u);
+      r += B ({P[j], P[j + 1], P[j + 2], P[j + 3]}) (v)
+           * P[4 * j + i]
+           * B ({P[i], P[i + 1], P[i + 2], P[i + 3]}) (u);
   return r;
+}
+
+vec3 get_bezier_point (const float u, const float v, const array<vec3, 16> &P)
+{
+
+  vec3 P0u, P1u, P2u, P3u;
+  vec3 _;
+  get_curve (u, Mb, {P[0], P[1], P[2], P[3]}, P0u, _);
+  get_curve (u, Mb, {P[4], P[5], P[6], P[7]}, P1u, _);
+  get_curve (u, Mb, {P[8], P[9], P[10], P[11]}, P2u, _);
+  get_curve (u, Mb, {P[12], P[13], P[14], P[15]}, P3u, _);
+
+  vec3 Puv;
+  get_curve (v, Mb, {P0u, P1u, P2u, P3u}, Puv, _);
+  return Puv;
 }
 
 vec3 get_bezier_point3 (const float u, const float v, const array<vec3, 16> &P)
@@ -493,11 +509,11 @@ vec3 get_bezier_point3 (const float u, const float v, const array<vec3, 16> &P)
   auto MU = Mb * dec_polynomial (u);
   auto B = get_curve (Mb); // bezier curve
   return (
-      B ({P[0], P[1], P[2], P[3]}) (v) * mat4x3 (P[0], P[4], P[8], P[12]) +
-      B ({P[4], P[5], P[6], P[7]}) (v) * mat4x3 (P[1], P[5], P[9], P[13]) +
-      B ({P[8], P[9], P[10], P[11]}) (v) * mat4x3 (P[2], P[6], P[10], P[14]) +
-      B ({P[12], P[13], P[14], P[15]}) (v) * mat4x3 (P[3], P[7], P[11], P[15])
-  ) * MU ;
+             B ({P[0], P[1], P[2], P[3]}) (v) * mat4x3 (P[0], P[4], P[8], P[12]) +
+             B ({P[4], P[5], P[6], P[7]}) (v) * mat4x3 (P[1], P[5], P[9], P[13]) +
+             B ({P[8], P[9], P[10], P[11]}) (v) * mat4x3 (P[2], P[6], P[10], P[14]) +
+             B ({P[12], P[13], P[14], P[15]}) (v) * mat4x3 (P[3], P[7], P[11], P[15])
+         ) * MU;
 }
 
 vec3 get_bezier_point2 (const float u, const float v, const array<vec3, 16> &P)
@@ -520,24 +536,24 @@ vector<vec3> get_bezier_patch (array<vec3, 16> control_points, int int_tesselati
 {
   vector<vec3> pontos;
   float float_tesselation = (float) int_tesselation;
-  for (int tv = 0; tv < int_tesselation; tv++)
+  const auto step = 1.0 / float_tesselation;
+  for (int v = 0; v < int_tesselation; v++)
     {
-      float v = (float) tv / float_tesselation;
-      for (int tu = 0; tu < int_tesselation; tu++)
+      for (int u = 0; u < int_tesselation; u++)
         {
-          float u = (float) tu / (float) float_tesselation;
           // triângulo superior
-          pontos.push_back (get_bezier_point ((u + (1.0f / float_tesselation)), (v + (1.0f
-                                                                                      / float_tesselation)), control_points));
-          pontos.push_back (get_bezier_point (u, (v + (1.0f / float_tesselation)), control_points));
-          pontos.push_back (get_bezier_point (u, v, control_points));
+          pontos.push_back (get_bezier_point (u * step, v * step, control_points));
+          pontos.push_back (get_bezier_point (u * step, v * step + step, control_points));
+          pontos.push_back (get_bezier_point (u * step + step, v * step, control_points));
           // triângulo inferior
-          pontos.push_back (get_bezier_point (u, v, control_points));
-          pontos.push_back (get_bezier_point ((u + (1.0f / float_tesselation)), v, control_points));
-          pontos.push_back (get_bezier_point ((u + (1.0f / float_tesselation)), (v + (1.0f
-                                                                                      / float_tesselation)), control_points));
+          pontos.push_back (get_bezier_point (u * step + step, v * step, control_points));
+          pontos.push_back (get_bezier_point (u * step + step, v * step + step, control_points));
+          pontos.push_back (get_bezier_point (u * step, v * step + step, control_points));
         }
     }
+  /*std::cout << "get_bezier_patch got:" << std::endl;
+  for (auto p : pontos)
+    std::cout << glm::to_string (p) << std::endl;*/
   return pontos;
 }
 
@@ -553,7 +569,7 @@ vector<glm::vec3> get_bezier_surface (const vector<array<glm::vec3, 16>> &contro
   return pts;
 }
 
-void model_bezier_write (int tesselation,const char* in_patch_file, const char* out_3d_file)
+void model_bezier_write (int tesselation, const char *in_patch_file, const char *out_3d_file)
 {
   vector<array<glm::vec3, 16>> control_points = read_Bezier (in_patch_file);
   vector<glm::vec3> vertices = get_bezier_surface (control_points, tesselation);

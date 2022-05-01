@@ -399,6 +399,9 @@ void redisplay ()
 
 void renderScene ()
 {
+  float fps;
+  int time;
+  char s[64];
 
   // clear buffers
   glClear (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -421,6 +424,17 @@ void renderScene ()
   glScalef (globalScaleX, globalScaleY, globalScaleZ);
 
   operations_render (&globalOperations);
+
+  frame++;
+  time = glutGet (GLUT_ELAPSED_TIME);
+  if (time - timebase > 1000)
+    {
+      fps = frame * 1000.0 / (time - timebase);
+      timebase = time;
+      frame = 0;
+      sprintf (s, "FPS: %f6.2", fps);
+      glutSetWindowTitle (s);
+    }
 
   // End of frame
   glutSwapBuffers ();
