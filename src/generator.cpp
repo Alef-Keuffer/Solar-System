@@ -500,46 +500,53 @@ vector<vec3> get_bezier_patch (array<vec3, 16> control_points, int int_tesselati
 {
   vector<vec3> pontos;
   float float_tesselation = (float) int_tesselation;
-  for (int tv = 0; tv < int_tesselation; tv++) {
+  for (int tv = 0; tv < int_tesselation; tv++)
+    {
       float v = (float) tv / float_tesselation;
-      for (int tu = 0; tu < int_tesselation; tu++) {
+      for (int tu = 0; tu < int_tesselation; tu++)
+        {
           float u = (float) tu / (float) float_tesselation;
           // triângulo superior
-          pontos.push_back (get_bezier_point ((u + (1.0f / float_tesselation)), (v + (1.0f / float_tesselation)), control_points));
+          pontos.push_back (get_bezier_point ((u + (1.0f / float_tesselation)), (v + (1.0f
+                                                                                      / float_tesselation)), control_points));
           pontos.push_back (get_bezier_point (u, (v + (1.0f / float_tesselation)), control_points));
           pontos.push_back (get_bezier_point (u, v, control_points));
           // triângulo inferior
           pontos.push_back (get_bezier_point (u, v, control_points));
           pontos.push_back (get_bezier_point ((u + (1.0f / float_tesselation)), v, control_points));
-          pontos.push_back (get_bezier_point ((u + (1.0f / float_tesselation)), (v + (1.0f / float_tesselation)), control_points));
+          pontos.push_back (get_bezier_point ((u + (1.0f / float_tesselation)), (v + (1.0f
+                                                                                      / float_tesselation)), control_points));
         }
     }
   return pontos;
 }
 
-vector<glm::vec3> get_bezier_surface (const vector<array<glm::vec3, 16>>& control_set, int int_tesselation) {
-    vector<glm::vec3> pts;
-    for (auto & i : control_set) {
-        vector<glm::vec3> temp = get_bezier_patch(i, int_tesselation);
-        pts.insert(pts.end(), temp.begin(), temp.end());
+vector<glm::vec3> get_bezier_surface (const vector<array<glm::vec3, 16>> &control_set, int int_tesselation)
+{
+  vector<glm::vec3> pts;
+  for (auto &i : control_set)
+    {
+      vector<glm::vec3> temp = get_bezier_patch (i, int_tesselation);
+      pts.insert (pts.end (), temp.begin (), temp.end ());
     }
 
-    return pts;
+  return pts;
 }
 
-void model_bezier_write(string filepath, int tesselation) {
-    vector<array<glm::vec3, 16>> control_points = read_Bezier(filepath);
-    vector<glm::vec3> vertices = get_bezier_surface(control_points, tesselation);
-    const unsigned int nVertices = vertices.size();
-    vector<float> coords;
-    for (auto & vertice : vertices) {
-        coords.push_back(vertice.x);
-        coords.push_back(vertice.y);
-        coords.push_back(vertice.z);
+void model_bezier_write (string filepath, int tesselation)
+{
+  vector<array<glm::vec3, 16>> control_points = read_Bezier (filepath);
+  vector<glm::vec3> vertices = get_bezier_surface (control_points, tesselation);
+  const unsigned int nVertices = vertices.size ();
+  vector<float> coords;
+  for (auto &vertice : vertices)
+    {
+      coords.push_back (vertice.x);
+      coords.push_back (vertice.y);
+      coords.push_back (vertice.z);
     }
-    points_write(filepath.c_str(), nVertices, coords.data());
+  points_write (filepath.c_str (), nVertices, coords.data ());
 }
-
 
 /*
 *******************************************************************************
@@ -566,19 +573,27 @@ void model_sphere_write (const char *filepath, float radius, unsigned int slices
 
 //!@} end of group generator
 
-int main(int argc, char *argv[]) {
-    if (argc < 4) { printf("Not enough arguments"); }
-    else {
-        const char *filepath = argv[argc - 1];
-        const char *polygon = argv[1];
+int main (int argc, char *argv[])
+{
+  if (argc < 4)
+    {
+      printf ("Not enough arguments");
+    }
+  else
+    {
+      const char *filepath = argv[argc - 1];
+      const char *polygon = argv[1];
 
-        if (!strcmp(PLANE, polygon))
-            model_plane_write(filepath, strtof(argv[2], nullptr), strtoul(argv[3], nullptr, 10));
-        if (!strcmp(CUBE, polygon)) model_cube_write(filepath, atof(argv[2]), strtoul(argv[3], nullptr, 10));
-        if (!strcmp(CONE, polygon))
-            model_cone_write(filepath, atof(argv[2]), atof(argv[3]), atoi(argv[4]), atoi(argv[5]));
-        if (!strcmp(SPHERE, polygon)) model_sphere_write(filepath, atof(argv[2]), atoi(argv[3]), atoi(argv[4]));
-        if (!strcmp(BEZIER, polygon)) model_bezier_write(filepath, atoi(argv[2]));
+      if (!strcmp (PLANE, polygon))
+        model_plane_write (filepath, strtof (argv[2], nullptr), strtoul (argv[3], nullptr, 10));
+      if (!strcmp (CUBE, polygon))
+        model_cube_write (filepath, atof (argv[2]), strtoul (argv[3], nullptr, 10));
+      if (!strcmp (CONE, polygon))
+        model_cone_write (filepath, atof (argv[2]), atof (argv[3]), atoi (argv[4]), atoi (argv[5]));
+      if (!strcmp (SPHERE, polygon))
+        model_sphere_write (filepath, atof (argv[2]), atoi (argv[3]), atoi (argv[4]));
+      if (!strcmp (BEZIER, polygon))
+        model_bezier_write (filepath, atoi (argv[2]));
     }
   return 1;
 }
