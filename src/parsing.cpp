@@ -10,38 +10,54 @@ static const int SCALE = 3;
 static const int LOAD_MODEL = 4;
 static const int BEGIN_GROUP = 5;
 static const int END_GROUP = 6;
+static const int EXTENDED_TRANSLATE = 7;
 
 /*! @addtogroup Operations
  * @{
  * # Data structure for Operations
  *
- * The `elem` will be
+ * ⟨operations⟩ ::= ⟨position⟩⟨lookAt⟩⟨up⟩⟨projection⟩⟨grouping⟩⁺
+ *      ⟨position⟩,⟨lookAt⟩,⟨up⟩,⟨projection⟩ ::= ⟨float⟩⟨float⟩⟨float⟩
  *
- * -# `⟨TRANSFORM⟩ ⟨float⟩ ⟨float⟩ ⟨float⟩ [float]` or
- * -# `⟨LOAD_MODEL⟩ ⟨NUMBER_OF_CHARACTERS⟩ ⟨char⟩ ... ⟨char⟩`
+ * ⟨grouping⟩ ::= ⟨BEGIN_GROUP⟩⟨elem⟩⁺⟨END_GROUP⟩
  *
- * and `groups` will be
+ * ⟨elem⟩ ::= ⟨transformation⟩ | ⟨model_loading⟩ | <grouping>
  *
- * - `⟨BEGIN_GROUP⟩⟨BEGIN_GROUP⟩⃰  ⟨elem⟩⁺ ⟨END_GROUP⟩⃰ ⟨END_GROUP⟩`
+ * ⟨transformation⟩ ::= ⟨translation⟩ | ⟨rotation⟩ | ⟨scaling⟩
+ * ⟨translation⟩ ::= ⟨simple_translation⟩ | ⟨extended_translation⟩
+ *      ⟨simple_translation⟩ ::= ⟨TRANSLATE⟩⟨float⟩⟨float⟩⟨float⟩
+ *      ⟨extended_translation⟩ ::= ⟨EXTENDED_TRANSLATE⟩⟨time⟩⟨align⟩⟨end_of_extended_translate⟩
+ *          ⟨time⟩  ::= ⟨float⟩
+ *          ⟨align⟩ ::= ⟨bool⟩
+ * ⟨rotation⟩ ::= ⟨ROTATE⟩⟨float⟩⟨float⟩⟨float⟩[angle]
+ *      ⟨angle⟩ ::= ⟨float⟩
+ * ⟨scaling⟩ ::= ⟨SCALE⟩⟨float⟩⟨float⟩⟨float⟩
  *
- * for example (inside a group),
+ * ⟨model_loading⟩ ::= ⟨LOAD_MODEL⟩ ⟨number of characters⟩ ⟨char⟩ ... ⟨char⟩
+ *      ⟨number of characters⟩ ::= <int>
+ *
+ * example of ⟨grouping⟩:
  *
  * @code{.unparsed}LOAD_MODEL 7 'e' 'x' 'a' 'm' 'p' 'l' 'e'@endcode
  *
- * our operations (`world`) will be
- *
- * - `⟨position⟩⟨lookAt⟩⟨up⟩⟨projection⟩⟨group⟩⁺
- *
- * where `position`, `lookAt`, `up` and ⟨projection⟩ are
- *
- * - ⟨float⟩⟨float⟩⟨float⟩
- *
- * we'll use an array of floats, therefore we will need to cast to char when reading
+ * Note: we'll use an array of floats, therefore we will need to cast to char when reading
  * the model filename characters and to int when reading the number of characters.
  */
 
 /*! @addtogroup Transforms
  * @{*/
+
+void operations_push_extended_translate_attributes(tinyxml2::XMLElement *translate, std::vector<float> *operations) {
+    if (!translate)
+      {
+        fprintf(stderr,"Null transform\n");
+        exit(1);
+      }
+      int no_points = 0;
+    float time = translate->FloatAttribute ("time");
+    bool align = translate->BoolAttribute ("align");
+}
+
 void operations_push_transform_attributes(tinyxml2::XMLElement *transform, std::vector<float> *operations) {
     if (!transform) return;
 
@@ -112,6 +128,7 @@ void operations_push_models(tinyxml2::XMLElement *models, std::vector<float> *op
 void operations_push_groups(tinyxml2::XMLElement *group, std::vector<float> *operations) {
     operations->push_back(BEGIN_GROUP);
 
+    // Inside "transform" tag there can be multiple transformations.
     tinyxml2::XMLElement *transforms = group->FirstChildElement("transform");
     tinyxml2::XMLElement *models = group->FirstChildElement("models");
 
@@ -168,6 +185,7 @@ void operations_load_xml(const char *filename, std::vector<float> *operations) {
     tinyxml2::XMLElement *group = world->FirstChildElement("group");
     operations_push_groups(group, operations);
 }
+
 //! @} end of group xml
 
 /*! @addtogroup Printing
