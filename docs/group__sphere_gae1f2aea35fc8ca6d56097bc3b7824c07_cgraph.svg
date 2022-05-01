@@ -36,17 +36,17 @@
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
-<g id="a_node3"><a xlink:href="group__sphere.html#ga3a6fe3f7faa5a5194d586dc99d1b4862" target="_top" xlink:title=" ">
-<polygon fill="white" stroke="black" points="161.5,-0.5 161.5,-19.5 200.5,-19.5 200.5,-0.5 161.5,-0.5"/>
-<text text-anchor="middle" x="181" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">mult</text>
+<g id="a_node3"><a xlink:href="group__sphere.html#ga94a3dce1e09f57cc95655652f515cd03" target="_top" xlink:title=" ">
+<polygon fill="white" stroke="black" points="148.5,-0.5 148.5,-19.5 213.5,-19.5 213.5,-0.5 148.5,-0.5"/>
+<text text-anchor="middle" x="181" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">get_curve</text>
 </a>
 </g>
 </g>
 <!-- Node1&#45;&gt;Node3 -->
 <g id="edge2" class="edge">
 <title>Node1&#45;&gt;Node3</title>
-<path fill="none" stroke="midnightblue" d="M98.04,-21.98C115.9,-19.37 135.61,-16.49 151.22,-14.21"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="151.91,-17.64 161.3,-12.73 150.9,-10.72 151.91,-17.64"/>
+<path fill="none" stroke="midnightblue" d="M98.04,-21.98C111.28,-20.04 125.53,-17.96 138.37,-16.08"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="138.94,-19.54 148.33,-14.63 137.93,-12.61 138.94,-19.54"/>
 </g>
 </g>
 </svg>

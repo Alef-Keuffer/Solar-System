@@ -131,8 +131,16 @@ Functions</h2></td></tr>
 <tr class="memitem:ga3a6fe3f7faa5a5194d586dc99d1b4862"><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 , typename T3 &gt; </td></tr>
 <tr class="memitem:ga3a6fe3f7faa5a5194d586dc99d1b4862"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__sphere.html#ga3a6fe3f7faa5a5194d586dc99d1b4862">mult</a> (const T1 &amp;a, const T2 &amp;b, T3 &amp;r, const int m, const int p, const int q)</td></tr>
 <tr class="separator:ga3a6fe3f7faa5a5194d586dc99d1b4862"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga94a3dce1e09f57cc95655652f515cd03"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sphere.html#ga94a3dce1e09f57cc95655652f515cd03">get_curve</a> (const float time, const mat4 &amp;M, const array&lt; vec3, 4 &gt; &amp;control_points, glm::vec3 &amp;pos, glm::vec3 &amp;deriv)</td></tr>
+<tr class="separator:ga94a3dce1e09f57cc95655652f515cd03"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga43ee8fc382b0ea43a7da3f871d9c631e"><td class="memItemLeft" align="right" valign="top">vec3&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sphere.html#ga43ee8fc382b0ea43a7da3f871d9c631e">get_curve</a> (const float time, const mat4 &amp;M, const array&lt; vec3, 4 &gt; &amp;control_points)</td></tr>
+<tr class="separator:ga43ee8fc382b0ea43a7da3f871d9c631e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab3cc81b11ccbb5658bf6259105fbba3e"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sphere.html#gab3cc81b11ccbb5658bf6259105fbba3e">get_curve</a> (const mat4 &amp;M)</td></tr>
+<tr class="separator:gab3cc81b11ccbb5658bf6259105fbba3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gae1f2aea35fc8ca6d56097bc3b7824c07"><td class="memItemLeft" align="right" valign="top">vec3&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sphere.html#gae1f2aea35fc8ca6d56097bc3b7824c07">get_bezier_point</a> (const float u, const float v, const array&lt; vec3, 16 &gt; &amp;P)</td></tr>
 <tr class="separator:gae1f2aea35fc8ca6d56097bc3b7824c07"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf7178207483d6bc988bf678e3ec90c0f"><td class="memItemLeft" align="right" valign="top">vec3&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sphere.html#gaf7178207483d6bc988bf678e3ec90c0f">get_bezier_point2</a> (const float u, const float v, const array&lt; vec3, 16 &gt; &amp;P)</td></tr>
+<tr class="separator:gaf7178207483d6bc988bf678e3ec90c0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga43727f23d266c85a2475ddbd478cee5d"><td class="memItemLeft" align="right" valign="top">vector&lt; vec3 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sphere.html#ga43727f23d266c85a2475ddbd478cee5d">get_bezier_surface</a> (array&lt; vec3, 16 &gt; control_points, int int_tesselation)</td></tr>
 <tr class="separator:ga43727f23d266c85a2475ddbd478cee5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga093e996c7f18f239228d66ffa2b35078"><td class="memItemLeft" align="right" valign="top">static unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sphere.html#ga093e996c7f18f239228d66ffa2b35078">model_sphere_nVertices</a> (const unsigned int slices, const unsigned int stacks)</td></tr>
@@ -180,13 +188,14 @@ template&lt;typename T &gt; </div>
 <div class="line"><span class="lineno">  415</span>  <span class="keywordflow">return</span> {pow (n, 3), pow (n, 2), n, 1};</div>
 <div class="line"><span class="lineno">  416</span>}</div>
 </div><!-- fragment -->
-<p class="reference">Referenced by <a class="el" href="generator_8cpp_source.html#l00441">get_bezier_point()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="generator_8cpp_source.html#l00471">get_bezier_point()</a>, and <a class="el" href="generator_8cpp_source.html#l00483">get_bezier_point2()</a>.</p>
 <div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="group__sphere_ga1d35ad36990e6f400886d4e2e2b3751e_icgraph.svg" width="508" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__sphere_ga1d35ad36990e6f400886d4e2e2b3751e_icgraph.svg" width="516" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>
@@ -223,34 +232,31 @@ template&lt;typename T &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="generator_8cpp_source.html#l00441">441</a> of file <a class="el" href="generator_8cpp_source.html">generator.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  442</span>{</div>
-<div class="line"><span class="lineno">  443</span>  <span class="comment">// B(u,v) = U M P Mᵀ V</span></div>
-<div class="line"><span class="lineno">  444</span>  vec4 U = <a class="code hl_function" href="group__sphere.html#ga1d35ad36990e6f400886d4e2e2b3751e">dec_polynomial</a> (u);</div>
-<div class="line"><span class="lineno">  445</span>  vec4 V = <a class="code hl_function" href="group__sphere.html#ga1d35ad36990e6f400886d4e2e2b3751e">dec_polynomial</a> (v);</div>
-<div class="line"><span class="lineno">  446</span> </div>
-<div class="line"><span class="lineno">  447</span>  vector&lt;vec3&gt; VMP;</div>
-<div class="line"><span class="lineno">  448</span>  <span class="keyword">auto</span> VM = V * glm::transpose (<a class="code hl_variable" href="group__sphere.html#ga0a594e66b5130c860750be6fdd407e25">Mb</a>); <span class="comment">//1x4x1</span></div>
-<div class="line"><span class="lineno">  449</span>  <a class="code hl_function" href="group__sphere.html#ga3a6fe3f7faa5a5194d586dc99d1b4862">mult</a> (VM, P, VMP, 1, 4, 4);</div>
-<div class="line"><span class="lineno">  450</span> </div>
-<div class="line"><span class="lineno">  451</span>  vector&lt;vec3&gt; VMPMU;</div>
-<div class="line"><span class="lineno">  452</span>  <span class="keyword">auto</span> MU = <a class="code hl_variable" href="group__sphere.html#ga0a594e66b5130c860750be6fdd407e25">Mb</a> * U;</div>
-<div class="line"><span class="lineno">  453</span>  <a class="code hl_function" href="group__sphere.html#ga3a6fe3f7faa5a5194d586dc99d1b4862">mult</a> (VMP, MU, VMPMU, 1, 4, 1);</div>
-<div class="line"><span class="lineno">  454</span>  <span class="keywordflow">return</span> VMPMU[0];</div>
-<div class="line"><span class="lineno">  455</span>}</div>
+<p class="definition">Definition at line <a class="el" href="generator_8cpp_source.html#l00471">471</a> of file <a class="el" href="generator_8cpp_source.html">generator.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  472</span>{</div>
+<div class="line"><span class="lineno">  473</span>  <span class="keyword">auto</span> MU = <a class="code hl_variable" href="group__sphere.html#ga0a594e66b5130c860750be6fdd407e25">Mb</a> * <a class="code hl_function" href="group__sphere.html#ga1d35ad36990e6f400886d4e2e2b3751e">dec_polynomial</a> (u);</div>
+<div class="line"><span class="lineno">  474</span>  <span class="keyword">auto</span> B = <a class="code hl_function" href="group__sphere.html#ga94a3dce1e09f57cc95655652f515cd03">get_curve</a> (<a class="code hl_variable" href="group__sphere.html#ga0a594e66b5130c860750be6fdd407e25">Mb</a>);</div>
+<div class="line"><span class="lineno">  475</span>  <span class="keywordflow">return</span> MU * (</div>
+<div class="line"><span class="lineno">  476</span>      B ({P[0], P[1], P[2], P[3]}) (v) * mat4x3 (P[0], P[4], P[8], P[12]) +</div>
+<div class="line"><span class="lineno">  477</span>      B ({P[4], P[5], P[6], P[7]}) (v) * mat4x3 (P[1], P[5], P[9], P[13]) +</div>
+<div class="line"><span class="lineno">  478</span>      B ({P[8], P[9], P[10], P[11]}) (v) * mat4x3 (P[2], P[6], P[10], P[14]) +</div>
+<div class="line"><span class="lineno">  479</span>      B ({P[12], P[13], P[14], P[15]}) (v) * mat4x3 (P[3], P[7], P[11], P[15])</div>
+<div class="line"><span class="lineno">  480</span>  );</div>
+<div class="line"><span class="lineno">  481</span>}</div>
 <div class="ttc" id="agroup__sphere_html_ga0a594e66b5130c860750be6fdd407e25"><div class="ttname"><a href="group__sphere.html#ga0a594e66b5130c860750be6fdd407e25">Mb</a></div><div class="ttdeci">const auto Mb</div><div class="ttdef"><b>Definition:</b> <a href="generator_8cpp_source.html#l00341">generator.cpp:341</a></div></div>
 <div class="ttc" id="agroup__sphere_html_ga1d35ad36990e6f400886d4e2e2b3751e"><div class="ttname"><a href="group__sphere.html#ga1d35ad36990e6f400886d4e2e2b3751e">dec_polynomial</a></div><div class="ttdeci">vec4 dec_polynomial(T n)</div><div class="ttdef"><b>Definition:</b> <a href="generator_8cpp_source.html#l00413">generator.cpp:413</a></div></div>
-<div class="ttc" id="agroup__sphere_html_ga3a6fe3f7faa5a5194d586dc99d1b4862"><div class="ttname"><a href="group__sphere.html#ga3a6fe3f7faa5a5194d586dc99d1b4862">mult</a></div><div class="ttdeci">void mult(const T1 &amp;a, const T2 &amp;b, T3 &amp;r, const int m, const int p, const int q)</div><div class="ttdef"><b>Definition:</b> <a href="generator_8cpp_source.html#l00426">generator.cpp:426</a></div></div>
+<div class="ttc" id="agroup__sphere_html_ga94a3dce1e09f57cc95655652f515cd03"><div class="ttname"><a href="group__sphere.html#ga94a3dce1e09f57cc95655652f515cd03">get_curve</a></div><div class="ttdeci">void get_curve(const float time, const mat4 &amp;M, const array&lt; vec3, 4 &gt; &amp;control_points, glm::vec3 &amp;pos, glm::vec3 &amp;deriv)</div><div class="ttdef"><b>Definition:</b> <a href="generator_8cpp_source.html#l00441">generator.cpp:441</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="generator_8cpp_source.html#l00413">dec_polynomial()</a>, <a class="el" href="generator_8cpp_source.html#l00341">Mb</a>, and <a class="el" href="generator_8cpp_source.html#l00426">mult()</a>.</p>
+<p class="reference">References <a class="el" href="generator_8cpp_source.html#l00413">dec_polynomial()</a>, <a class="el" href="generator_8cpp_source.html#l00441">get_curve()</a>, and <a class="el" href="generator_8cpp_source.html#l00341">Mb</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="generator_8cpp_source.html#l00457">get_bezier_surface()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="generator_8cpp_source.html#l00499">get_bezier_surface()</a>.</p>
 <div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-2-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-2-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-2-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="group__sphere_gae1f2aea35fc8ca6d56097bc3b7824c07_cgraph.svg" width="315" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__sphere_gae1f2aea35fc8ca6d56097bc3b7824c07_cgraph.svg" width="315" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 <div id="dynsection-3" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-3-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
@@ -258,6 +264,67 @@ template&lt;typename T &gt; </div>
 </div>
 <div id="dynsection-3-content" class="dyncontent" style="display:none;">
 <div class="center"><iframe scrolling="no" frameborder="0" src="group__sphere_gae1f2aea35fc8ca6d56097bc3b7824c07_icgraph.svg" width="335" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="gaf7178207483d6bc988bf678e3ec90c0f" name="gaf7178207483d6bc988bf678e3ec90c0f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaf7178207483d6bc988bf678e3ec90c0f">&#9670;&nbsp;</a></span>get_bezier_point2()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">vec3 get_bezier_point2 </td>
+          <td>(</td>
+          <td class="paramtype">const float&#160;</td>
+          <td class="paramname"><em>u</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float&#160;</td>
+          <td class="paramname"><em>v</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const array&lt; vec3, 16 &gt; &amp;&#160;</td>
+          <td class="paramname"><em>P</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="generator_8cpp_source.html#l00483">483</a> of file <a class="el" href="generator_8cpp_source.html">generator.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  484</span>{</div>
+<div class="line"><span class="lineno">  485</span>  <span class="comment">// B(u,v) = U M P Mᵀ V</span></div>
+<div class="line"><span class="lineno">  486</span>  vec4 U = <a class="code hl_function" href="group__sphere.html#ga1d35ad36990e6f400886d4e2e2b3751e">dec_polynomial</a> (u);</div>
+<div class="line"><span class="lineno">  487</span>  vec4 V = <a class="code hl_function" href="group__sphere.html#ga1d35ad36990e6f400886d4e2e2b3751e">dec_polynomial</a> (v);</div>
+<div class="line"><span class="lineno">  488</span> </div>
+<div class="line"><span class="lineno">  489</span>  vector&lt;vec3&gt; VMP;</div>
+<div class="line"><span class="lineno">  490</span>  <span class="keyword">auto</span> VM = V * glm::transpose (<a class="code hl_variable" href="group__sphere.html#ga0a594e66b5130c860750be6fdd407e25">Mb</a>); <span class="comment">//1x4x1</span></div>
+<div class="line"><span class="lineno">  491</span>  <a class="code hl_function" href="group__sphere.html#ga3a6fe3f7faa5a5194d586dc99d1b4862">mult</a> (VM, P, VMP, 1, 4, 4);</div>
+<div class="line"><span class="lineno">  492</span> </div>
+<div class="line"><span class="lineno">  493</span>  vector&lt;vec3&gt; VMPMU;</div>
+<div class="line"><span class="lineno">  494</span>  <span class="keyword">auto</span> MU = <a class="code hl_variable" href="group__sphere.html#ga0a594e66b5130c860750be6fdd407e25">Mb</a> * U;</div>
+<div class="line"><span class="lineno">  495</span>  <a class="code hl_function" href="group__sphere.html#ga3a6fe3f7faa5a5194d586dc99d1b4862">mult</a> (VMP, MU, VMPMU, 1, 4, 1);</div>
+<div class="line"><span class="lineno">  496</span>  <span class="keywordflow">return</span> VMPMU[0];</div>
+<div class="line"><span class="lineno">  497</span>}</div>
+<div class="ttc" id="agroup__sphere_html_ga3a6fe3f7faa5a5194d586dc99d1b4862"><div class="ttname"><a href="group__sphere.html#ga3a6fe3f7faa5a5194d586dc99d1b4862">mult</a></div><div class="ttdeci">void mult(const T1 &amp;a, const T2 &amp;b, T3 &amp;r, const int m, const int p, const int q)</div><div class="ttdef"><b>Definition:</b> <a href="generator_8cpp_source.html#l00426">generator.cpp:426</a></div></div>
+</div><!-- fragment -->
+<p class="reference">References <a class="el" href="generator_8cpp_source.html#l00413">dec_polynomial()</a>, <a class="el" href="generator_8cpp_source.html#l00341">Mb</a>, and <a class="el" href="generator_8cpp_source.html#l00426">mult()</a>.</p>
+<div id="dynsection-4" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-4-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-4-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-4-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__sphere_gaf7178207483d6bc988bf678e3ec90c0f_cgraph.svg" width="323" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>
@@ -288,37 +355,198 @@ template&lt;typename T &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="generator_8cpp_source.html#l00457">457</a> of file <a class="el" href="generator_8cpp_source.html">generator.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  458</span>{</div>
-<div class="line"><span class="lineno">  459</span>  vector&lt;vec3&gt; pontos;</div>
-<div class="line"><span class="lineno">  460</span>  <span class="keywordtype">float</span> float_tesselation = (float) int_tesselation;</div>
-<div class="line"><span class="lineno">  461</span>  <span class="keywordflow">for</span> (<span class="keywordtype">int</span> tv = 0; tv &lt; int_tesselation; ++tv)</div>
-<div class="line"><span class="lineno">  462</span>    {</div>
-<div class="line"><span class="lineno">  463</span>      <span class="keywordtype">float</span> v = (float) tv / float_tesselation;</div>
-<div class="line"><span class="lineno">  464</span>      <span class="keywordflow">for</span> (<span class="keywordtype">int</span> tu = 0; tu &lt; int_tesselation; ++tu)</div>
-<div class="line"><span class="lineno">  465</span>        {</div>
-<div class="line"><span class="lineno">  466</span>          <span class="keywordtype">float</span> u = (float) tu / (<span class="keywordtype">float</span>) float_tesselation;</div>
-<div class="line"><span class="lineno">  467</span>          <span class="comment">// triângulo superior</span></div>
-<div class="line"><span class="lineno">  468</span>          pontos.push_back (<a class="code hl_function" href="group__sphere.html#gae1f2aea35fc8ca6d56097bc3b7824c07">get_bezier_point</a> ((u + (1.0f / float_tesselation)), (v + (1.0f / float_tesselation)), control_points));</div>
-<div class="line"><span class="lineno">  469</span>          pontos.push_back (<a class="code hl_function" href="group__sphere.html#gae1f2aea35fc8ca6d56097bc3b7824c07">get_bezier_point</a> (u, (v + (1.0f / float_tesselation)), control_points));</div>
-<div class="line"><span class="lineno">  470</span>          pontos.push_back (<a class="code hl_function" href="group__sphere.html#gae1f2aea35fc8ca6d56097bc3b7824c07">get_bezier_point</a> (u, v, control_points));</div>
-<div class="line"><span class="lineno">  471</span>          <span class="comment">// triângulo inferior</span></div>
-<div class="line"><span class="lineno">  472</span>          pontos.push_back (<a class="code hl_function" href="group__sphere.html#gae1f2aea35fc8ca6d56097bc3b7824c07">get_bezier_point</a> (u, v, control_points));</div>
-<div class="line"><span class="lineno">  473</span>          pontos.push_back (<a class="code hl_function" href="group__sphere.html#gae1f2aea35fc8ca6d56097bc3b7824c07">get_bezier_point</a> ((u + (1.0f / float_tesselation)), v, control_points));</div>
-<div class="line"><span class="lineno">  474</span>          pontos.push_back (<a class="code hl_function" href="group__sphere.html#gae1f2aea35fc8ca6d56097bc3b7824c07">get_bezier_point</a> ((u + (1.0f / float_tesselation)), (v + (1.0f / float_tesselation)), control_points));</div>
-<div class="line"><span class="lineno">  475</span>        }</div>
-<div class="line"><span class="lineno">  476</span>    }</div>
-<div class="line"><span class="lineno">  477</span>  <span class="keywordflow">return</span> pontos;</div>
-<div class="line"><span class="lineno">  478</span>}</div>
-<div class="ttc" id="agroup__sphere_html_gae1f2aea35fc8ca6d56097bc3b7824c07"><div class="ttname"><a href="group__sphere.html#gae1f2aea35fc8ca6d56097bc3b7824c07">get_bezier_point</a></div><div class="ttdeci">vec3 get_bezier_point(const float u, const float v, const array&lt; vec3, 16 &gt; &amp;P)</div><div class="ttdef"><b>Definition:</b> <a href="generator_8cpp_source.html#l00441">generator.cpp:441</a></div></div>
+<p class="definition">Definition at line <a class="el" href="generator_8cpp_source.html#l00499">499</a> of file <a class="el" href="generator_8cpp_source.html">generator.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  500</span>{</div>
+<div class="line"><span class="lineno">  501</span>  vector&lt;vec3&gt; pontos;</div>
+<div class="line"><span class="lineno">  502</span>  <span class="keywordtype">float</span> float_tesselation = (float) int_tesselation;</div>
+<div class="line"><span class="lineno">  503</span>  <span class="keywordflow">for</span> (<span class="keywordtype">int</span> tv = 0; tv &lt; int_tesselation; ++tv)</div>
+<div class="line"><span class="lineno">  504</span>    {</div>
+<div class="line"><span class="lineno">  505</span>      <span class="keywordtype">float</span> v = (float) tv / float_tesselation;</div>
+<div class="line"><span class="lineno">  506</span>      <span class="keywordflow">for</span> (<span class="keywordtype">int</span> tu = 0; tu &lt; int_tesselation; ++tu)</div>
+<div class="line"><span class="lineno">  507</span>        {</div>
+<div class="line"><span class="lineno">  508</span>          <span class="keywordtype">float</span> u = (float) tu / (<span class="keywordtype">float</span>) float_tesselation;</div>
+<div class="line"><span class="lineno">  509</span>          <span class="comment">// triângulo superior</span></div>
+<div class="line"><span class="lineno">  510</span>          pontos.push_back (<a class="code hl_function" href="group__sphere.html#gae1f2aea35fc8ca6d56097bc3b7824c07">get_bezier_point</a> ((u + (1.0f / float_tesselation)), (v + (1.0f</div>
+<div class="line"><span class="lineno">  511</span>                                                                                      / float_tesselation)), control_points));</div>
+<div class="line"><span class="lineno">  512</span>          pontos.push_back (<a class="code hl_function" href="group__sphere.html#gae1f2aea35fc8ca6d56097bc3b7824c07">get_bezier_point</a> (u, (v + (1.0f / float_tesselation)), control_points));</div>
+<div class="line"><span class="lineno">  513</span>          pontos.push_back (<a class="code hl_function" href="group__sphere.html#gae1f2aea35fc8ca6d56097bc3b7824c07">get_bezier_point</a> (u, v, control_points));</div>
+<div class="line"><span class="lineno">  514</span>          <span class="comment">// triângulo inferior</span></div>
+<div class="line"><span class="lineno">  515</span>          pontos.push_back (<a class="code hl_function" href="group__sphere.html#gae1f2aea35fc8ca6d56097bc3b7824c07">get_bezier_point</a> (u, v, control_points));</div>
+<div class="line"><span class="lineno">  516</span>          pontos.push_back (<a class="code hl_function" href="group__sphere.html#gae1f2aea35fc8ca6d56097bc3b7824c07">get_bezier_point</a> ((u + (1.0f / float_tesselation)), v, control_points));</div>
+<div class="line"><span class="lineno">  517</span>          pontos.push_back (<a class="code hl_function" href="group__sphere.html#gae1f2aea35fc8ca6d56097bc3b7824c07">get_bezier_point</a> ((u + (1.0f / float_tesselation)), (v + (1.0f</div>
+<div class="line"><span class="lineno">  518</span>                                                                                      / float_tesselation)), control_points));</div>
+<div class="line"><span class="lineno">  519</span>        }</div>
+<div class="line"><span class="lineno">  520</span>    }</div>
+<div class="line"><span class="lineno">  521</span>  <span class="keywordflow">return</span> pontos;</div>
+<div class="line"><span class="lineno">  522</span>}</div>
+<div class="ttc" id="agroup__sphere_html_gae1f2aea35fc8ca6d56097bc3b7824c07"><div class="ttname"><a href="group__sphere.html#gae1f2aea35fc8ca6d56097bc3b7824c07">get_bezier_point</a></div><div class="ttdeci">vec3 get_bezier_point(const float u, const float v, const array&lt; vec3, 16 &gt; &amp;P)</div><div class="ttdef"><b>Definition:</b> <a href="generator_8cpp_source.html#l00471">generator.cpp:471</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="generator_8cpp_source.html#l00441">get_bezier_point()</a>.</p>
-<div id="dynsection-4" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-4-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
-<div id="dynsection-4-summary" class="dynsummary" style="display:block;">
+<p class="reference">References <a class="el" href="generator_8cpp_source.html#l00471">get_bezier_point()</a>.</p>
+<div id="dynsection-5" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-5-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-5-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-4-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="group__sphere_ga43727f23d266c85a2475ddbd478cee5d_cgraph.svg" width="508" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div id="dynsection-5-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__sphere_ga43727f23d266c85a2475ddbd478cee5d_cgraph.svg" width="508" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="ga43ee8fc382b0ea43a7da3f871d9c631e" name="ga43ee8fc382b0ea43a7da3f871d9c631e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga43ee8fc382b0ea43a7da3f871d9c631e">&#9670;&nbsp;</a></span>get_curve() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">vec3 get_curve </td>
+          <td>(</td>
+          <td class="paramtype">const float&#160;</td>
+          <td class="paramname"><em>time</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const mat4 &amp;&#160;</td>
+          <td class="paramname"><em>M</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const array&lt; vec3, 4 &gt; &amp;&#160;</td>
+          <td class="paramname"><em>control_points</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="generator_8cpp_source.html#l00452">452</a> of file <a class="el" href="generator_8cpp_source.html">generator.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  453</span>{</div>
+<div class="line"><span class="lineno">  454</span>  vec3 pos;</div>
+<div class="line"><span class="lineno">  455</span>  vec3 _;</div>
+<div class="line"><span class="lineno">  456</span>  <a class="code hl_function" href="group__sphere.html#ga94a3dce1e09f57cc95655652f515cd03">get_curve</a> (time, M, control_points, pos, _);</div>
+<div class="line"><span class="lineno">  457</span>  <span class="keywordflow">return</span> pos;</div>
+<div class="line"><span class="lineno">  458</span>}</div>
+</div><!-- fragment -->
+<p class="reference">References <a class="el" href="generator_8cpp_source.html#l00441">get_curve()</a>.</p>
+<div id="dynsection-6" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-6-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-6-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-6-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__sphere_ga43ee8fc382b0ea43a7da3f871d9c631e_cgraph.svg" width="232" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="ga94a3dce1e09f57cc95655652f515cd03" name="ga94a3dce1e09f57cc95655652f515cd03"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga94a3dce1e09f57cc95655652f515cd03">&#9670;&nbsp;</a></span>get_curve() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void get_curve </td>
+          <td>(</td>
+          <td class="paramtype">const float&#160;</td>
+          <td class="paramname"><em>time</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const mat4 &amp;&#160;</td>
+          <td class="paramname"><em>M</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const array&lt; vec3, 4 &gt; &amp;&#160;</td>
+          <td class="paramname"><em>control_points</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">glm::vec3 &amp;&#160;</td>
+          <td class="paramname"><em>pos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">glm::vec3 &amp;&#160;</td>
+          <td class="paramname"><em>deriv</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="generator_8cpp_source.html#l00441">441</a> of file <a class="el" href="generator_8cpp_source.html">generator.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  442</span>{</div>
+<div class="line"><span class="lineno">  443</span>  <span class="keyword">const</span> <span class="keyword">auto</span> t = glm::vec4 (pow (time, 3), pow (time, 2), time, 1);</div>
+<div class="line"><span class="lineno">  444</span>  <span class="keyword">const</span> <span class="keyword">auto</span> t_prime = glm::vec4 (3 * pow (time, 2), 2 * time, 1, 0);</div>
+<div class="line"><span class="lineno">  445</span>  mat4x3 K (control_points[0], control_points[1], control_points[2], control_points[3]);</div>
+<div class="line"><span class="lineno">  446</span> </div>
+<div class="line"><span class="lineno">  447</span>  <span class="keyword">const</span> <span class="keyword">auto</span> KM = K * M;</div>
+<div class="line"><span class="lineno">  448</span>  pos = KM * t;</div>
+<div class="line"><span class="lineno">  449</span>  deriv = KM * t_prime;</div>
+<div class="line"><span class="lineno">  450</span>}</div>
+</div><!-- fragment -->
+<p class="reference">Referenced by <a class="el" href="generator_8cpp_source.html#l00471">get_bezier_point()</a>, and <a class="el" href="generator_8cpp_source.html#l00452">get_curve()</a>.</p>
+<div id="dynsection-7" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-7-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-7-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-7-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__sphere_ga94a3dce1e09f57cc95655652f515cd03_icgraph.svg" width="470" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="gab3cc81b11ccbb5658bf6259105fbba3e" name="gab3cc81b11ccbb5658bf6259105fbba3e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gab3cc81b11ccbb5658bf6259105fbba3e">&#9670;&nbsp;</a></span>get_curve() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto get_curve </td>
+          <td>(</td>
+          <td class="paramtype">const mat4 &amp;&#160;</td>
+          <td class="paramname"><em>M</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="generator_8cpp_source.html#l00460">460</a> of file <a class="el" href="generator_8cpp_source.html">generator.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  461</span>{</div>
+<div class="line"><span class="lineno">  462</span>  <span class="keywordflow">return</span> [&amp;M] (<span class="keyword">const</span> array&lt;vec3, 4&gt; &amp;control_points)</div>
+<div class="line"><span class="lineno">  463</span>  {</div>
+<div class="line"><span class="lineno">  464</span>    <span class="keywordflow">return</span> [&amp;M, &amp;control_points] (<span class="keyword">const</span> <span class="keywordtype">float</span> time) -&gt; vec3</div>
+<div class="line"><span class="lineno">  465</span>    {</div>
+<div class="line"><span class="lineno">  466</span>      <span class="keywordflow">return</span> <a class="code hl_function" href="group__sphere.html#ga94a3dce1e09f57cc95655652f515cd03">get_curve</a> (time, M, control_points);</div>
+<div class="line"><span class="lineno">  467</span>    };</div>
+<div class="line"><span class="lineno">  468</span>  };</div>
+<div class="line"><span class="lineno">  469</span>}</div>
+</div><!-- fragment -->
+<p class="reference">References <a class="el" href="generator_8cpp_source.html#l00441">get_curve()</a>.</p>
+<div id="dynsection-8" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-8-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-8-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-8-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__sphere_gab3cc81b11ccbb5658bf6259105fbba3e_cgraph.svg" width="232" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>
@@ -357,17 +585,17 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="generator_8cpp_source.html#l00487">487</a> of file <a class="el" href="generator_8cpp_source.html">generator.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  488</span>{</div>
-<div class="line"><span class="lineno">  489</span>  <span class="keywordflow">return</span> slices * stacks * 6;</div>
-<div class="line"><span class="lineno">  490</span>}</div>
+<p class="definition">Definition at line <a class="el" href="generator_8cpp_source.html#l00531">531</a> of file <a class="el" href="generator_8cpp_source.html">generator.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  532</span>{</div>
+<div class="line"><span class="lineno">  533</span>  <span class="keywordflow">return</span> slices * stacks * 6;</div>
+<div class="line"><span class="lineno">  534</span>}</div>
 </div><!-- fragment -->
-<p class="reference">Referenced by <a class="el" href="generator_8cpp_source.html#l00492">model_sphere_write()</a>.</p>
-<div id="dynsection-5" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-5-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
-<div id="dynsection-5-summary" class="dynsummary" style="display:block;">
+<p class="reference">Referenced by <a class="el" href="generator_8cpp_source.html#l00536">model_sphere_write()</a>.</p>
+<div id="dynsection-9" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-9-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-9-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-5-content" class="dyncontent" style="display:none;">
+<div id="dynsection-9-content" class="dyncontent" style="display:none;">
 <div class="center"><iframe scrolling="no" frameborder="0" src="group__sphere_ga093e996c7f18f239228d66ffa2b35078_icgraph.svg" width="499" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
@@ -447,18 +675,18 @@ template&lt;typename T &gt; </div>
 <p class="reference">References <a class="el" href="generator_8cpp_source.html#l00029">points_vertex()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="generator_8cpp_source.html#l00299">model_sphere_vertices()</a>.</p>
-<div id="dynsection-6" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-6-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
-<div id="dynsection-6-summary" class="dynsummary" style="display:block;">
+<div id="dynsection-10" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-10-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-10-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-6-content" class="dyncontent" style="display:none;">
+<div id="dynsection-10-content" class="dyncontent" style="display:none;">
 <div class="center"><iframe scrolling="no" frameborder="0" src="group__sphere_ga8cfa785fa5a63f8e74b5d21f24721c4c_cgraph.svg" width="332" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
-<div id="dynsection-7" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-7-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
-<div id="dynsection-7-summary" class="dynsummary" style="display:block;">
+<div id="dynsection-11" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-11-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-11-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-7-content" class="dyncontent" style="display:none;">
+<div id="dynsection-11-content" class="dyncontent" style="display:none;">
 <div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="group__sphere_ga8cfa785fa5a63f8e74b5d21f24721c4c_icgraph.svg" width="100%" height="300"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
 </div>
 
@@ -543,19 +771,19 @@ template&lt;typename T &gt; </div>
 </div><!-- fragment -->
 <p class="reference">References <a class="el" href="generator_8cpp_source.html#l00281">model_sphere_vertex()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="generator_8cpp_source.html#l00492">model_sphere_write()</a>.</p>
-<div id="dynsection-8" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-8-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
-<div id="dynsection-8-summary" class="dynsummary" style="display:block;">
+<p class="reference">Referenced by <a class="el" href="generator_8cpp_source.html#l00536">model_sphere_write()</a>.</p>
+<div id="dynsection-12" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-12-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-12-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-8-content" class="dyncontent" style="display:none;">
+<div id="dynsection-12-content" class="dyncontent" style="display:none;">
 <div class="center"><iframe scrolling="no" frameborder="0" src="group__sphere_gaaa3b03bbb79c4d88b3eee338eeec15b2_cgraph.svg" width="554" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
-<div id="dynsection-9" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-9-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
-<div id="dynsection-9-summary" class="dynsummary" style="display:block;">
+<div id="dynsection-13" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-13-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-13-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-9-content" class="dyncontent" style="display:none;">
+<div id="dynsection-13-content" class="dyncontent" style="display:none;">
 <div class="center"><iframe scrolling="no" frameborder="0" src="group__sphere_gaaa3b03bbb79c4d88b3eee338eeec15b2_icgraph.svg" width="490" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
@@ -599,32 +827,32 @@ template&lt;typename T &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="generator_8cpp_source.html#l00492">492</a> of file <a class="el" href="generator_8cpp_source.html">generator.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  493</span>{</div>
-<div class="line"><span class="lineno">  494</span>  <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> nVertices = <a class="code hl_function" href="group__sphere.html#ga093e996c7f18f239228d66ffa2b35078">model_sphere_nVertices</a> (slices, stacks);</div>
-<div class="line"><span class="lineno">  495</span>  <span class="keywordtype">float</span> points[3 * nVertices];</div>
-<div class="line"><span class="lineno">  496</span>  <a class="code hl_function" href="group__sphere.html#gaaa3b03bbb79c4d88b3eee338eeec15b2">model_sphere_vertices</a> (radius, slices, stacks, points);</div>
-<div class="line"><span class="lineno">  497</span>  <a class="code hl_function" href="group__points.html#gab0ec2dac46ec7ee44911b8bcf1e9dad0">points_write</a> (filepath, nVertices, points);</div>
-<div class="line"><span class="lineno">  498</span>}</div>
+<p class="definition">Definition at line <a class="el" href="generator_8cpp_source.html#l00536">536</a> of file <a class="el" href="generator_8cpp_source.html">generator.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  537</span>{</div>
+<div class="line"><span class="lineno">  538</span>  <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> nVertices = <a class="code hl_function" href="group__sphere.html#ga093e996c7f18f239228d66ffa2b35078">model_sphere_nVertices</a> (slices, stacks);</div>
+<div class="line"><span class="lineno">  539</span>  <span class="keywordtype">float</span> points[3 * nVertices];</div>
+<div class="line"><span class="lineno">  540</span>  <a class="code hl_function" href="group__sphere.html#gaaa3b03bbb79c4d88b3eee338eeec15b2">model_sphere_vertices</a> (radius, slices, stacks, points);</div>
+<div class="line"><span class="lineno">  541</span>  <a class="code hl_function" href="group__points.html#gab0ec2dac46ec7ee44911b8bcf1e9dad0">points_write</a> (filepath, nVertices, points);</div>
+<div class="line"><span class="lineno">  542</span>}</div>
 <div class="ttc" id="agroup__points_html_gab0ec2dac46ec7ee44911b8bcf1e9dad0"><div class="ttname"><a href="group__points.html#gab0ec2dac46ec7ee44911b8bcf1e9dad0">points_write</a></div><div class="ttdeci">void points_write(const char *filename, const unsigned int nVertices, const float points[])</div><div class="ttdef"><b>Definition:</b> <a href="generator_8cpp_source.html#l00037">generator.cpp:37</a></div></div>
-<div class="ttc" id="agroup__sphere_html_ga093e996c7f18f239228d66ffa2b35078"><div class="ttname"><a href="group__sphere.html#ga093e996c7f18f239228d66ffa2b35078">model_sphere_nVertices</a></div><div class="ttdeci">static unsigned int model_sphere_nVertices(const unsigned int slices, const unsigned int stacks)</div><div class="ttdef"><b>Definition:</b> <a href="generator_8cpp_source.html#l00487">generator.cpp:487</a></div></div>
+<div class="ttc" id="agroup__sphere_html_ga093e996c7f18f239228d66ffa2b35078"><div class="ttname"><a href="group__sphere.html#ga093e996c7f18f239228d66ffa2b35078">model_sphere_nVertices</a></div><div class="ttdeci">static unsigned int model_sphere_nVertices(const unsigned int slices, const unsigned int stacks)</div><div class="ttdef"><b>Definition:</b> <a href="generator_8cpp_source.html#l00531">generator.cpp:531</a></div></div>
 <div class="ttc" id="agroup__sphere_html_gaaa3b03bbb79c4d88b3eee338eeec15b2"><div class="ttname"><a href="group__sphere.html#gaaa3b03bbb79c4d88b3eee338eeec15b2">model_sphere_vertices</a></div><div class="ttdeci">static void model_sphere_vertices(const float r, const unsigned int slices, const unsigned int stacks, float points[])</div><div class="ttdef"><b>Definition:</b> <a href="generator_8cpp_source.html#l00299">generator.cpp:299</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="generator_8cpp_source.html#l00487">model_sphere_nVertices()</a>, <a class="el" href="generator_8cpp_source.html#l00299">model_sphere_vertices()</a>, and <a class="el" href="generator_8cpp_source.html#l00037">points_write()</a>.</p>
+<p class="reference">References <a class="el" href="generator_8cpp_source.html#l00531">model_sphere_nVertices()</a>, <a class="el" href="generator_8cpp_source.html#l00299">model_sphere_vertices()</a>, and <a class="el" href="generator_8cpp_source.html#l00037">points_write()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="generator_8cpp_source.html#l00505">main()</a>.</p>
-<div id="dynsection-10" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-10-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
-<div id="dynsection-10-summary" class="dynsummary" style="display:block;">
+<p class="reference">Referenced by <a class="el" href="generator_8cpp_source.html#l00549">main()</a>.</p>
+<div id="dynsection-14" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-14-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-14-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-10-content" class="dyncontent" style="display:none;">
+<div id="dynsection-14-content" class="dyncontent" style="display:none;">
 <div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="group__sphere_gac12b373e99ed20d69a86f42d7fbba274_cgraph.svg" width="100%" height="404"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
 </div>
-<div id="dynsection-11" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-11-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
-<div id="dynsection-11-summary" class="dynsummary" style="display:block;">
+<div id="dynsection-15" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-15-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-15-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-11-content" class="dyncontent" style="display:none;">
+<div id="dynsection-15-content" class="dyncontent" style="display:none;">
 <div class="center"><iframe scrolling="no" frameborder="0" src="group__sphere_gac12b373e99ed20d69a86f42d7fbba274_icgraph.svg" width="268" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
@@ -708,13 +936,14 @@ template&lt;typename T1 , typename T2 , typename T3 &gt; </div>
 <div class="line"><span class="lineno">  438</span>    }</div>
 <div class="line"><span class="lineno">  439</span>}</div>
 </div><!-- fragment -->
-<p class="reference">Referenced by <a class="el" href="generator_8cpp_source.html#l00441">get_bezier_point()</a>.</p>
-<div id="dynsection-12" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-12-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
-<div id="dynsection-12-summary" class="dynsummary" style="display:block;">
+<p class="reference">Referenced by <a class="el" href="generator_8cpp_source.html#l00483">get_bezier_point2()</a>.</p>
+<div id="dynsection-16" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-16-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-16-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-12-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="group__sphere_ga3a6fe3f7faa5a5194d586dc99d1b4862_icgraph.svg" width="435" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div id="dynsection-16-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__sphere_ga3a6fe3f7faa5a5194d586dc99d1b4862_icgraph.svg" width="250" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>
@@ -823,7 +1052,7 @@ template&lt;typename T1 , typename T2 , typename T3 &gt; </div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="generator_8cpp_source.html#l00341">341</a> of file <a class="el" href="generator_8cpp_source.html">generator.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="generator_8cpp_source.html#l00441">get_bezier_point()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="generator_8cpp_source.html#l00471">get_bezier_point()</a>, and <a class="el" href="generator_8cpp_source.html#l00483">get_bezier_point2()</a>.</p>
 
 </div>
 </div>
