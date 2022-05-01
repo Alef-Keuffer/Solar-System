@@ -6,14 +6,15 @@
 #include <string.h>
 #include <stdlib.h>
 #include <glm/glm.hpp>
+#include <glm/gtx/string_cast.hpp>
 
 #include <vector>
 #include <string>
 #include <sstream>
 #include <fstream>
 #include <tuple>
-#include <fplll/nr/matrix.h>
-using glm::mat4, glm::vec4, glm::vec3, std::vector, std::tuple, std::string, std::ifstream, std::ios, std::stringstream, std::array, glm::mat4x3;
+#include <iostream>
+using glm::mat4, glm::vec4, glm::vec3, std::vector, std::tuple, std::string, std::ifstream, std::ios, std::stringstream, std::array, glm::mat4x3, glm::to_string;
 
 const char *SPHERE = "sphere";
 const char *CUBE = "box";
@@ -344,7 +345,7 @@ const auto Mb = mat4 (
     -3, 3, 0, 0,
     1, 0, 0, 0);
 
-vector<array<vec3, 16>> read_Bezier (string &patch)
+vector<array<vec3, 16>> read_Bezier (const char* patch)
 {
   string buffer;
   ifstream myFile;
@@ -365,11 +366,13 @@ vector<array<vec3, 16>> read_Bezier (string &patch)
       Ciclo interno lê os índices dos pontos de controlo de cada patch, sabendo que cada
       patch terá 16 pontos de controlo.
       */
-      for (int i = 0; i < 16; i++)
+      for (int i = 0; i < 15; i++)
         {
           getline (myFile, buffer, ',');
           patchIndexes.push_back (stoi (buffer));
         }
+        getline (myFile, buffer);
+      patchIndexes.push_back (stoi (buffer));
       patches.push_back (patchIndexes);
     }
 
@@ -407,6 +410,11 @@ vector<array<vec3, 16>> read_Bezier (string &patch)
     }
 
   myFile.close ();
+
+  std::cout << "read_Bezier read:" << std::endl;
+  for (auto arr : pointsInPatches)
+    for (auto p: arr)
+      std::cout << glm::to_string(p) << std::endl;
   return pointsInPatches;
 }
 
@@ -471,13 +479,25 @@ auto get_curve (const mat4 &M)
 vec3 get_bezier_point (const float u, const float v, const array<vec3, 16> &P)
 {
   auto MU = Mb * dec_polynomial (u);
-  auto B = get_curve (Mb);
-  return MU * (
+  auto B = get_curve (Mb); // bezier curve
+  vec3 r = {0,0,0};
+  for (int j = 0; j < 3; ++j)
+    for (int i = 0; i < 3; ++i)
+      r +=   B({P[j], P[j+1], P[j+2], P[j+3]})(v) * P[4*i+j]
+           * B({P[i], P[i+1], P[i+2], P[i+3]})(u);
+  return r;
+}
+
+vec3 get_bezier_point3 (const float u, const float v, const array<vec3, 16> &P)
+{
+  auto MU = Mb * dec_polynomial (u);
+  auto B = get_curve (Mb); // bezier curve
+  return (
       B ({P[0], P[1], P[2], P[3]}) (v) * mat4x3 (P[0], P[4], P[8], P[12]) +
       B ({P[4], P[5], P[6], P[7]}) (v) * mat4x3 (P[1], P[5], P[9], P[13]) +
       B ({P[8], P[9], P[10], P[11]}) (v) * mat4x3 (P[2], P[6], P[10], P[14]) +
       B ({P[12], P[13], P[14], P[15]}) (v) * mat4x3 (P[3], P[7], P[11], P[15])
-  );
+  ) * MU ;
 }
 
 vec3 get_bezier_point2 (const float u, const float v, const array<vec3, 16> &P)
@@ -533,9 +553,9 @@ vector<glm::vec3> get_bezier_surface (const vector<array<glm::vec3, 16>> &contro
   return pts;
 }
 
-void model_bezier_write (string filepath, int tesselation)
+void model_bezier_write (int tesselation,const char* in_patch_file, const char* out_3d_file)
 {
-  vector<array<glm::vec3, 16>> control_points = read_Bezier (filepath);
+  vector<array<glm::vec3, 16>> control_points = read_Bezier (in_patch_file);
   vector<glm::vec3> vertices = get_bezier_surface (control_points, tesselation);
   const unsigned int nVertices = vertices.size ();
   vector<float> coords;
@@ -545,7 +565,7 @@ void model_bezier_write (string filepath, int tesselation)
       coords.push_back (vertice.y);
       coords.push_back (vertice.z);
     }
-  points_write (filepath.c_str (), nVertices, coords.data ());
+  points_write (out_3d_file, nVertices, coords.data ());
 }
 
 /*
@@ -581,19 +601,19 @@ int main (int argc, char *argv[])
     }
   else
     {
-      const char *filepath = argv[argc - 1];
+      const char *out_file_path = argv[argc - 1];
       const char *polygon = argv[1];
 
       if (!strcmp (PLANE, polygon))
-        model_plane_write (filepath, strtof (argv[2], nullptr), strtoul (argv[3], nullptr, 10));
+        model_plane_write (out_file_path, strtof (argv[2], nullptr), strtoul (argv[3], nullptr, 10));
       if (!strcmp (CUBE, polygon))
-        model_cube_write (filepath, atof (argv[2]), strtoul (argv[3], nullptr, 10));
+        model_cube_write (out_file_path, atof (argv[2]), strtoul (argv[3], nullptr, 10));
       if (!strcmp (CONE, polygon))
-        model_cone_write (filepath, atof (argv[2]), atof (argv[3]), atoi (argv[4]), atoi (argv[5]));
+        model_cone_write (out_file_path, atof (argv[2]), atof (argv[3]), atoi (argv[4]), atoi (argv[5]));
       if (!strcmp (SPHERE, polygon))
-        model_sphere_write (filepath, atof (argv[2]), atoi (argv[3]), atoi (argv[4]));
+        model_sphere_write (out_file_path, atof (argv[2]), atoi (argv[3]), atoi (argv[4]));
       if (!strcmp (BEZIER, polygon))
-        model_bezier_write (filepath, atoi (argv[2]));
+        model_bezier_write (atoi (argv[2]), argv[3], out_file_path);
     }
-  return 1;
+  return 0;
 }
