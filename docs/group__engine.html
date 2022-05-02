@@ -250,7 +250,7 @@ Variables</h2></td></tr>
 </div><!-- fragment -->
 <p class="reference">References <a class="el" href="engine_8cpp_source.html#l00114">globalFar</a>, <a class="el" href="engine_8cpp_source.html#l00112">globalFOV</a>, and <a class="el" href="engine_8cpp_source.html#l00113">globalNear</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00864">engine_run()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00863">engine_run()</a>.</p>
 <div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
@@ -287,61 +287,60 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00864">864</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  865</span>{</div>
-<div class="line"><span class="lineno">  866</span> </div>
-<div class="line"><span class="lineno">  867</span>  <span class="keywordflow">if</span> (argc != 2)</div>
-<div class="line"><span class="lineno">  868</span>    {</div>
-<div class="line"><span class="lineno">  869</span>      fprintf (stderr, <span class="stringliteral">&quot;Number of arguments is not one\n&quot;</span>);</div>
-<div class="line"><span class="lineno">  870</span>      exit (1);</div>
-<div class="line"><span class="lineno">  871</span>    }</div>
-<div class="line"><span class="lineno">  872</span> </div>
-<div class="line"><span class="lineno">  873</span>  <span class="comment">// init GLUT and the window</span></div>
-<div class="line"><span class="lineno">  874</span>  glutInit (&amp;argc, argv);</div>
-<div class="line"><span class="lineno">  875</span>  glutInitDisplayMode (GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);</div>
-<div class="line"><span class="lineno">  876</span>  glutInitWindowPosition (100, 100);</div>
-<div class="line"><span class="lineno">  877</span>  glutInitWindowSize (800, 800);</div>
-<div class="line"><span class="lineno">  878</span>  glutCreateWindow (<span class="stringliteral">&quot;engine&quot;</span>);</div>
-<div class="line"><span class="lineno">  879</span> </div>
-<div class="line"><span class="lineno">  880</span>  <span class="comment">// Required callback registry</span></div>
-<div class="line"><span class="lineno">  881</span>  glutDisplayFunc (<a class="code hl_function" href="group__engine.html#ga91c42686f3245f22fb6b17ba5372d92c">renderScene</a>);</div>
-<div class="line"><span class="lineno">  882</span>  glutReshapeFunc (<a class="code hl_function" href="group__engine.html#ga33e20b37682a0492a9e95d13bef17f02">changeSize</a>);</div>
-<div class="line"><span class="lineno">  883</span> </div>
-<div class="line"><span class="lineno">  884</span>  <span class="comment">// Callback registration for keyboard processing</span></div>
-<div class="line"><span class="lineno">  885</span>  glutKeyboardFunc (<a class="code hl_function" href="group__input.html#gac7632fff72011e8c11ae504a4596a7f7">keyboardFunc</a>);</div>
-<div class="line"><span class="lineno">  886</span> </div>
-<div class="line"><span class="lineno">  887</span>  <span class="comment">// Callback registration for mouse processing</span></div>
-<div class="line"><span class="lineno">  888</span>  glutMouseFunc (<a class="code hl_function" href="group__input.html#gad48076b61c0ddb6bd4fadf644bf59ff1">mouseFunc</a>);</div>
-<div class="line"><span class="lineno">  889</span>  glutMotionFunc (<a class="code hl_function" href="group__input.html#ga2bebb17428cb218231ad556de2a20ed6">motionFunc</a>);</div>
-<div class="line"><span class="lineno">  890</span> </div>
-<div class="line"><span class="lineno">  891</span>  <span class="comment">//  OpenGL settings</span></div>
-<div class="line"><span class="lineno">  892</span>  glEnable (GL_DEPTH_TEST);</div>
-<div class="line"><span class="lineno">  893</span>  glEnableClientState (GL_VERTEX_ARRAY);</div>
-<div class="line"><span class="lineno">  894</span>  <span class="comment">// glEnable (GL_CULL_FACE);</span></div>
-<div class="line"><span class="lineno">  895</span>  glPolygonMode (GL_FRONT_AND_BACK, GL_LINE);</div>
-<div class="line"><span class="lineno">  896</span> </div>
-<div class="line"><span class="lineno">  897</span>  <span class="comment">// enter GLUT&#39;s main cycle</span></div>
-<div class="line"><span class="lineno">  898</span>  glewInit ();</div>
-<div class="line"><span class="lineno">  899</span>  <a class="code hl_function" href="group__engine.html#ga2b6a8884687b3fe271b099a450a82d24">xml_load_and_set_env</a> (argv[1]);</div>
-<div class="line"><span class="lineno">  900</span>  glutMainLoop ();</div>
-<div class="line"><span class="lineno">  901</span>}</div>
-<div class="ttc" id="agroup__engine_html_ga2b6a8884687b3fe271b099a450a82d24"><div class="ttname"><a href="group__engine.html#ga2b6a8884687b3fe271b099a450a82d24">xml_load_and_set_env</a></div><div class="ttdeci">void xml_load_and_set_env(const char *filename)</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00539">engine.cpp:539</a></div></div>
+<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00863">863</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  864</span>{</div>
+<div class="line"><span class="lineno">  865</span> </div>
+<div class="line"><span class="lineno">  866</span>  <span class="keywordflow">if</span> (argc != 2)</div>
+<div class="line"><span class="lineno">  867</span>    {</div>
+<div class="line"><span class="lineno">  868</span>      fprintf (stderr, <span class="stringliteral">&quot;Number of arguments is not one\n&quot;</span>);</div>
+<div class="line"><span class="lineno">  869</span>      exit (1);</div>
+<div class="line"><span class="lineno">  870</span>    }</div>
+<div class="line"><span class="lineno">  871</span> </div>
+<div class="line"><span class="lineno">  872</span>  <span class="comment">// init GLUT and the window</span></div>
+<div class="line"><span class="lineno">  873</span>  glutInit (&amp;argc, argv);</div>
+<div class="line"><span class="lineno">  874</span>  glutInitDisplayMode (GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);</div>
+<div class="line"><span class="lineno">  875</span>  glutInitWindowPosition (100, 100);</div>
+<div class="line"><span class="lineno">  876</span>  glutInitWindowSize (800, 800);</div>
+<div class="line"><span class="lineno">  877</span>  glutCreateWindow (<span class="stringliteral">&quot;engine&quot;</span>);</div>
+<div class="line"><span class="lineno">  878</span> </div>
+<div class="line"><span class="lineno">  879</span>  <span class="comment">// Required callback registry</span></div>
+<div class="line"><span class="lineno">  880</span>  glutDisplayFunc (<a class="code hl_function" href="group__engine.html#ga91c42686f3245f22fb6b17ba5372d92c">renderScene</a>);</div>
+<div class="line"><span class="lineno">  881</span>  glutReshapeFunc (<a class="code hl_function" href="group__engine.html#ga33e20b37682a0492a9e95d13bef17f02">changeSize</a>);</div>
+<div class="line"><span class="lineno">  882</span> </div>
+<div class="line"><span class="lineno">  883</span>  <span class="comment">// Callback registration for keyboard processing</span></div>
+<div class="line"><span class="lineno">  884</span>  glutKeyboardFunc (<a class="code hl_function" href="group__input.html#gac7632fff72011e8c11ae504a4596a7f7">keyboardFunc</a>);</div>
+<div class="line"><span class="lineno">  885</span> </div>
+<div class="line"><span class="lineno">  886</span>  <span class="comment">// Callback registration for mouse processing</span></div>
+<div class="line"><span class="lineno">  887</span>  glutMouseFunc (<a class="code hl_function" href="group__input.html#gad48076b61c0ddb6bd4fadf644bf59ff1">mouseFunc</a>);</div>
+<div class="line"><span class="lineno">  888</span>  glutMotionFunc (<a class="code hl_function" href="group__input.html#ga2bebb17428cb218231ad556de2a20ed6">motionFunc</a>);</div>
+<div class="line"><span class="lineno">  889</span> </div>
+<div class="line"><span class="lineno">  890</span>  <span class="comment">//  OpenGL settings</span></div>
+<div class="line"><span class="lineno">  891</span>  glEnable (GL_DEPTH_TEST);</div>
+<div class="line"><span class="lineno">  892</span>  glEnableClientState (GL_VERTEX_ARRAY);</div>
+<div class="line"><span class="lineno">  893</span>  <span class="comment">// glEnable (GL_CULL_FACE);</span></div>
+<div class="line"><span class="lineno">  894</span>  glPolygonMode (GL_FRONT_AND_BACK, GL_LINE);</div>
+<div class="line"><span class="lineno">  895</span> </div>
+<div class="line"><span class="lineno">  896</span>  <span class="comment">// enter GLUT&#39;s main cycle</span></div>
+<div class="line"><span class="lineno">  897</span>  glewInit ();</div>
+<div class="line"><span class="lineno">  898</span>  <a class="code hl_function" href="group__engine.html#ga2b6a8884687b3fe271b099a450a82d24">xml_load_and_set_env</a> (argv[1]);</div>
+<div class="line"><span class="lineno">  899</span>  glutMainLoop ();</div>
+<div class="line"><span class="lineno">  900</span>}</div>
+<div class="ttc" id="agroup__engine_html_ga2b6a8884687b3fe271b099a450a82d24"><div class="ttname"><a href="group__engine.html#ga2b6a8884687b3fe271b099a450a82d24">xml_load_and_set_env</a></div><div class="ttdeci">void xml_load_and_set_env(const char *filename)</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00538">engine.cpp:538</a></div></div>
 <div class="ttc" id="agroup__engine_html_ga33e20b37682a0492a9e95d13bef17f02"><div class="ttname"><a href="group__engine.html#ga33e20b37682a0492a9e95d13bef17f02">changeSize</a></div><div class="ttdeci">void changeSize(int w, int h)</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00282">engine.cpp:282</a></div></div>
 <div class="ttc" id="agroup__engine_html_ga91c42686f3245f22fb6b17ba5372d92c"><div class="ttname"><a href="group__engine.html#ga91c42686f3245f22fb6b17ba5372d92c">renderScene</a></div><div class="ttdeci">void renderScene()</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00495">engine.cpp:495</a></div></div>
-<div class="ttc" id="agroup__input_html_ga2bebb17428cb218231ad556de2a20ed6"><div class="ttname"><a href="group__input.html#ga2bebb17428cb218231ad556de2a20ed6">motionFunc</a></div><div class="ttdeci">void motionFunc(int x, int y)</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00832">engine.cpp:832</a></div></div>
-<div class="ttc" id="agroup__input_html_gac7632fff72011e8c11ae504a4596a7f7"><div class="ttname"><a href="group__input.html#gac7632fff72011e8c11ae504a4596a7f7">keyboardFunc</a></div><div class="ttdeci">void keyboardFunc(unsigned char key, int xmouse, int ymouse)</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00547">engine.cpp:547</a></div></div>
-<div class="ttc" id="agroup__input_html_gad48076b61c0ddb6bd4fadf644bf59ff1"><div class="ttname"><a href="group__input.html#gad48076b61c0ddb6bd4fadf644bf59ff1">mouseFunc</a></div><div class="ttdeci">void mouseFunc(int button, int state, int x, int y)</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00751">engine.cpp:751</a></div></div>
+<div class="ttc" id="agroup__input_html_ga2bebb17428cb218231ad556de2a20ed6"><div class="ttname"><a href="group__input.html#ga2bebb17428cb218231ad556de2a20ed6">motionFunc</a></div><div class="ttdeci">void motionFunc(int x, int y)</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00831">engine.cpp:831</a></div></div>
+<div class="ttc" id="agroup__input_html_gac7632fff72011e8c11ae504a4596a7f7"><div class="ttname"><a href="group__input.html#gac7632fff72011e8c11ae504a4596a7f7">keyboardFunc</a></div><div class="ttdeci">void keyboardFunc(unsigned char key, int xmouse, int ymouse)</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00546">engine.cpp:546</a></div></div>
+<div class="ttc" id="agroup__input_html_gad48076b61c0ddb6bd4fadf644bf59ff1"><div class="ttname"><a href="group__input.html#gad48076b61c0ddb6bd4fadf644bf59ff1">mouseFunc</a></div><div class="ttdeci">void mouseFunc(int button, int state, int x, int y)</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00750">engine.cpp:750</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="engine_8cpp_source.html#l00282">changeSize()</a>, <a class="el" href="engine_8cpp_source.html#l00547">keyboardFunc()</a>, <a class="el" href="engine_8cpp_source.html#l00832">motionFunc()</a>, <a class="el" href="engine_8cpp_source.html#l00751">mouseFunc()</a>, <a class="el" href="engine_8cpp_source.html#l00495">renderScene()</a>, and <a class="el" href="engine_8cpp_source.html#l00539">xml_load_and_set_env()</a>.</p>
+<p class="reference">References <a class="el" href="engine_8cpp_source.html#l00282">changeSize()</a>, <a class="el" href="engine_8cpp_source.html#l00546">keyboardFunc()</a>, <a class="el" href="engine_8cpp_source.html#l00831">motionFunc()</a>, <a class="el" href="engine_8cpp_source.html#l00750">mouseFunc()</a>, <a class="el" href="engine_8cpp_source.html#l00495">renderScene()</a>, and <a class="el" href="engine_8cpp_source.html#l00538">xml_load_and_set_env()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00903">main()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00902">main()</a>.</p>
 <div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-2-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-2-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-2-content" class="dyncontent" style="display:none;">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="group__engine_ga98eaf946471acbd931de5d52ca83b3d1_cgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="group__engine_ga98eaf946471acbd931de5d52ca83b3d1_cgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
 </div>
 <div id="dynsection-3" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-3-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
@@ -469,7 +468,7 @@ Variables</h2></td></tr>
 </div><!-- fragment -->
 <p class="reference">References <a class="el" href="engine_8cpp_source.html#l00031">DEFAULT_GLOBAL_ANGLE_STEP</a>, <a class="el" href="engine_8cpp_source.html#l00120">DEFAULT_GLOBAL_AZIMUTH</a>, <a class="el" href="engine_8cpp_source.html#l00082">DEFAULT_GLOBAL_CENTER_STEP</a>, <a class="el" href="engine_8cpp_source.html#l00083">DEFAULT_GLOBAL_CENTER_X</a>, <a class="el" href="engine_8cpp_source.html#l00084">DEFAULT_GLOBAL_CENTER_Y</a>, <a class="el" href="engine_8cpp_source.html#l00085">DEFAULT_GLOBAL_CENTER_Z</a>, <a class="el" href="engine_8cpp_source.html#l00121">DEFAULT_GLOBAL_ELEVATION</a>, <a class="el" href="engine_8cpp_source.html#l00069">DEFAULT_GLOBAL_EYE_STEP</a>, <a class="el" href="engine_8cpp_source.html#l00070">DEFAULT_GLOBAL_EYE_X</a>, <a class="el" href="engine_8cpp_source.html#l00071">DEFAULT_GLOBAL_EYE_Y</a>, <a class="el" href="engine_8cpp_source.html#l00072">DEFAULT_GLOBAL_EYE_Z</a>, <a class="el" href="engine_8cpp_source.html#l00110">DEFAULT_GLOBAL_FAR</a>, <a class="el" href="engine_8cpp_source.html#l00108">DEFAULT_GLOBAL_FOV</a>, <a class="el" href="engine_8cpp_source.html#l00109">DEFAULT_GLOBAL_NEAR</a>, <a class="el" href="engine_8cpp_source.html#l00119">DEFAULT_GLOBAL_RADIUS</a>, <a class="el" href="engine_8cpp_source.html#l00046">DEFAULT_GLOBAL_SCALE_STEP</a>, <a class="el" href="engine_8cpp_source.html#l00039">DEFAULT_GLOBAL_TRANSLATE_STEP</a>, <a class="el" href="engine_8cpp_source.html#l00095">DEFAULT_GLOBAL_UP_STEP</a>, <a class="el" href="engine_8cpp_source.html#l00096">DEFAULT_GLOBAL_UP_X</a>, <a class="el" href="engine_8cpp_source.html#l00097">DEFAULT_GLOBAL_UP_Y</a>, <a class="el" href="engine_8cpp_source.html#l00098">DEFAULT_GLOBAL_UP_Z</a>, <a class="el" href="engine_8cpp_source.html#l00033">globalAngle</a>, <a class="el" href="engine_8cpp_source.html#l00032">globalAngleStep</a>, <a class="el" href="engine_8cpp_source.html#l00124">globalAzimuth</a>, <a class="el" href="engine_8cpp_source.html#l00087">globalCenterStep</a>, <a class="el" href="engine_8cpp_source.html#l00088">globalCenterX</a>, <a class="el" href="engine_8cpp_source.html#l00089">globalCenterY</a>, <a class="el" href="engine_8cpp_source.html#l00090">globalCenterZ</a>, <a class="el" href="engine_8cpp_source.html#l00125">globalElevation</a>, <a class="el" href="engine_8cpp_source.html#l00074">globalEyeStep</a>, <a class="el" href="engine_8cpp_source.html#l00075">globalEyeX</a>, <a class="el" href="engine_8cpp_source.html#l00076">globalEyeY</a>, <a class="el" href="engine_8cpp_source.html#l00077">globalEyeZ</a>, <a class="el" href="engine_8cpp_source.html#l00114">globalFar</a>, <a class="el" href="engine_8cpp_source.html#l00112">globalFOV</a>, <a class="el" href="engine_8cpp_source.html#l00113">globalNear</a>, <a class="el" href="engine_8cpp_source.html#l00123">globalRadius</a>, <a class="el" href="engine_8cpp_source.html#l00034">globalRotateX</a>, <a class="el" href="engine_8cpp_source.html#l00035">globalRotateY</a>, <a class="el" href="engine_8cpp_source.html#l00036">globalRotateZ</a>, <a class="el" href="engine_8cpp_source.html#l00047">globalScaleStep</a>, <a class="el" href="engine_8cpp_source.html#l00048">globalScaleX</a>, <a class="el" href="engine_8cpp_source.html#l00049">globalScaleY</a>, <a class="el" href="engine_8cpp_source.html#l00050">globalScaleZ</a>, <a class="el" href="engine_8cpp_source.html#l00040">globalTranslateStep</a>, <a class="el" href="engine_8cpp_source.html#l00041">globalTranslateX</a>, <a class="el" href="engine_8cpp_source.html#l00042">globalTranslateY</a>, <a class="el" href="engine_8cpp_source.html#l00043">globalTranslateZ</a>, <a class="el" href="engine_8cpp_source.html#l00100">globalUpStep</a>, <a class="el" href="engine_8cpp_source.html#l00101">globalUpX</a>, <a class="el" href="engine_8cpp_source.html#l00102">globalUpY</a>, and <a class="el" href="engine_8cpp_source.html#l00103">globalUpZ</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00547">keyboardFunc()</a>, and <a class="el" href="engine_8cpp_source.html#l00539">xml_load_and_set_env()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00546">keyboardFunc()</a>, and <a class="el" href="engine_8cpp_source.html#l00538">xml_load_and_set_env()</a>.</p>
 <div id="dynsection-4" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-4-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-4-summary" class="dynsummary" style="display:block;">
@@ -506,21 +505,20 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00903">903</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  904</span>{</div>
-<div class="line"><span class="lineno">  905</span>  <a class="code hl_function" href="group__engine.html#ga98eaf946471acbd931de5d52ca83b3d1">engine_run</a> (argc, argv);</div>
-<div class="line"><span class="lineno">  906</span>  <span class="keywordflow">return</span> 1;</div>
-<div class="line"><span class="lineno">  907</span>}</div>
-<div class="ttc" id="agroup__engine_html_ga98eaf946471acbd931de5d52ca83b3d1"><div class="ttname"><a href="group__engine.html#ga98eaf946471acbd931de5d52ca83b3d1">engine_run</a></div><div class="ttdeci">void engine_run(int argc, char **argv)</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00864">engine.cpp:864</a></div></div>
+<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00902">902</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  903</span>{</div>
+<div class="line"><span class="lineno">  904</span>  <a class="code hl_function" href="group__engine.html#ga98eaf946471acbd931de5d52ca83b3d1">engine_run</a> (argc, argv);</div>
+<div class="line"><span class="lineno">  905</span>  <span class="keywordflow">return</span> 1;</div>
+<div class="line"><span class="lineno">  906</span>}</div>
+<div class="ttc" id="agroup__engine_html_ga98eaf946471acbd931de5d52ca83b3d1"><div class="ttname"><a href="group__engine.html#ga98eaf946471acbd931de5d52ca83b3d1">engine_run</a></div><div class="ttdeci">void engine_run(int argc, char **argv)</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00863">engine.cpp:863</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="engine_8cpp_source.html#l00864">engine_run()</a>.</p>
+<p class="reference">References <a class="el" href="engine_8cpp_source.html#l00863">engine_run()</a>.</p>
 <div id="dynsection-5" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-5-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-5-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-5-content" class="dyncontent" style="display:none;">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="group__engine_ga3c04138a5bfe5d72780bb7e82a18e627_cgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="group__engine_ga3c04138a5bfe5d72780bb7e82a18e627_cgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
 </div>
 
 </div>
@@ -549,7 +547,7 @@ Variables</h2></td></tr>
 </div><!-- fragment -->
 <p class="reference">References <a class="el" href="engine_8cpp_source.html#l00124">globalAzimuth</a>, <a class="el" href="engine_8cpp_source.html#l00125">globalElevation</a>, <a class="el" href="engine_8cpp_source.html#l00075">globalEyeX</a>, <a class="el" href="engine_8cpp_source.html#l00076">globalEyeY</a>, <a class="el" href="engine_8cpp_source.html#l00077">globalEyeZ</a>, <a class="el" href="engine_8cpp_source.html#l00123">globalRadius</a>, and <a class="el" href="engine_8cpp_source.html#l00128">spherical2Cartesian()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00547">keyboardFunc()</a>, <a class="el" href="engine_8cpp_source.html#l00832">motionFunc()</a>, <a class="el" href="engine_8cpp_source.html#l00751">mouseFunc()</a>, and <a class="el" href="engine_8cpp_source.html#l00495">renderScene()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00546">keyboardFunc()</a>, <a class="el" href="engine_8cpp_source.html#l00831">motionFunc()</a>, <a class="el" href="engine_8cpp_source.html#l00750">mouseFunc()</a>, and <a class="el" href="engine_8cpp_source.html#l00495">renderScene()</a>.</p>
 <div id="dynsection-6" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-6-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-6-summary" class="dynsummary" style="display:block;">
@@ -562,8 +560,7 @@ Variables</h2></td></tr>
 <div id="dynsection-7-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-7-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="group__engine_gab9813926390dc5773baf0b20dc2ea16e_icgraph.svg" width="499" height="190"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__engine_gab9813926390dc5773baf0b20dc2ea16e_icgraph.svg" width="499" height="190"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -598,15 +595,6 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">  491</span>  glColor3f (1, 1, 1);</div>
 <div class="line"><span class="lineno">  492</span>}</div>
 </div><!-- fragment -->
-<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00495">renderScene()</a>.</p>
-<div id="dynsection-8" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-8-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
-<div id="dynsection-8-summary" class="dynsummary" style="display:block;">
-</div>
-<div id="dynsection-8-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="group__engine_gaf049ec1caddd7a032fc8b48641e12f1e_icgraph.svg" width="546" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-
 </div>
 </div>
 <a id="ga91c42686f3245f22fb6b17ba5372d92c" name="ga91c42686f3245f22fb6b17ba5372d92c"></a>
@@ -650,48 +638,45 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">  517</span>  glTranslatef (<a class="code hl_variable" href="group__engine.html#ga38677f95037f4575ab422e6980f920e0">globalTranslateX</a>, <a class="code hl_variable" href="group__engine.html#ga1bd69a3237cca1b346bec2ac742a0a8e">globalTranslateY</a>, <a class="code hl_variable" href="group__engine.html#gae5197ff392fbb6687d3ad586f589e309">globalTranslateZ</a>);</div>
 <div class="line"><span class="lineno">  518</span>  glScalef (<a class="code hl_variable" href="group__engine.html#ga76ca2b2b73be400347bb4b460405f1f2">globalScaleX</a>, <a class="code hl_variable" href="group__engine.html#ga5c609aa58ab1231665e34d751cd592ae">globalScaleY</a>, <a class="code hl_variable" href="group__engine.html#ga6759b1a14e7b7edc9cc5f5caaee5cb88">globalScaleZ</a>);</div>
 <div class="line"><span class="lineno">  519</span> </div>
-<div class="line"><span class="lineno">  520</span>  <a class="code hl_function" href="group__engine.html#gaf049ec1caddd7a032fc8b48641e12f1e">renderGreenPlane</a> ();</div>
-<div class="line"><span class="lineno">  521</span>  <a class="code hl_function" href="group___operations.html#ga887f20c10a27832ea24178203a47fcc2">operations_render</a> (&amp;<a class="code hl_variable" href="group__model_engine.html#ga5e4458752ec64e54ed9ef910aaac54e9">globalOperations</a>);</div>
-<div class="line"><span class="lineno">  522</span> </div>
-<div class="line"><span class="lineno">  523</span>  <a class="code hl_variable" href="group__engine.html#gad30f972f2e6e3e5ecab0dee38ae6cdb8">frame</a>++;</div>
-<div class="line"><span class="lineno">  524</span>  time = glutGet (GLUT_ELAPSED_TIME);</div>
-<div class="line"><span class="lineno">  525</span>  <span class="keywordflow">if</span> (time - <a class="code hl_variable" href="group__engine.html#ga68a5ac52085606068a4d5ae94b0aa7e8">timebase</a> &gt; 1000)</div>
-<div class="line"><span class="lineno">  526</span>    {</div>
-<div class="line"><span class="lineno">  527</span>      fps = <a class="code hl_variable" href="group__engine.html#gad30f972f2e6e3e5ecab0dee38ae6cdb8">frame</a> * 1000.0 / (time - <a class="code hl_variable" href="group__engine.html#ga68a5ac52085606068a4d5ae94b0aa7e8">timebase</a>);</div>
-<div class="line"><span class="lineno">  528</span>      <a class="code hl_variable" href="group__engine.html#ga68a5ac52085606068a4d5ae94b0aa7e8">timebase</a> = time;</div>
-<div class="line"><span class="lineno">  529</span>      <a class="code hl_variable" href="group__engine.html#gad30f972f2e6e3e5ecab0dee38ae6cdb8">frame</a> = 0;</div>
-<div class="line"><span class="lineno">  530</span>      sprintf (s, <span class="stringliteral">&quot;FPS: %f6.2&quot;</span>, fps);</div>
-<div class="line"><span class="lineno">  531</span>      glutSetWindowTitle (s);</div>
-<div class="line"><span class="lineno">  532</span>    }</div>
-<div class="line"><span class="lineno">  533</span> </div>
-<div class="line"><span class="lineno">  534</span>  <span class="comment">// End of frame</span></div>
-<div class="line"><span class="lineno">  535</span>  <a class="code hl_function" href="group__engine.html#gab9813926390dc5773baf0b20dc2ea16e">redisplay</a> ();</div>
-<div class="line"><span class="lineno">  536</span>  glutSwapBuffers ();</div>
-<div class="line"><span class="lineno">  537</span>}</div>
+<div class="line"><span class="lineno">  520</span>  <a class="code hl_function" href="group___operations.html#ga887f20c10a27832ea24178203a47fcc2">operations_render</a> (&amp;<a class="code hl_variable" href="group__model_engine.html#ga5e4458752ec64e54ed9ef910aaac54e9">globalOperations</a>);</div>
+<div class="line"><span class="lineno">  521</span> </div>
+<div class="line"><span class="lineno">  522</span>  <a class="code hl_variable" href="group__engine.html#gad30f972f2e6e3e5ecab0dee38ae6cdb8">frame</a>++;</div>
+<div class="line"><span class="lineno">  523</span>  time = glutGet (GLUT_ELAPSED_TIME);</div>
+<div class="line"><span class="lineno">  524</span>  <span class="keywordflow">if</span> (time - <a class="code hl_variable" href="group__engine.html#ga68a5ac52085606068a4d5ae94b0aa7e8">timebase</a> &gt; 1000)</div>
+<div class="line"><span class="lineno">  525</span>    {</div>
+<div class="line"><span class="lineno">  526</span>      fps = <a class="code hl_variable" href="group__engine.html#gad30f972f2e6e3e5ecab0dee38ae6cdb8">frame</a> * 1000.0 / (time - <a class="code hl_variable" href="group__engine.html#ga68a5ac52085606068a4d5ae94b0aa7e8">timebase</a>);</div>
+<div class="line"><span class="lineno">  527</span>      <a class="code hl_variable" href="group__engine.html#ga68a5ac52085606068a4d5ae94b0aa7e8">timebase</a> = time;</div>
+<div class="line"><span class="lineno">  528</span>      <a class="code hl_variable" href="group__engine.html#gad30f972f2e6e3e5ecab0dee38ae6cdb8">frame</a> = 0;</div>
+<div class="line"><span class="lineno">  529</span>      sprintf (s, <span class="stringliteral">&quot;FPS: %f6.2&quot;</span>, fps);</div>
+<div class="line"><span class="lineno">  530</span>      glutSetWindowTitle (s);</div>
+<div class="line"><span class="lineno">  531</span>    }</div>
+<div class="line"><span class="lineno">  532</span> </div>
+<div class="line"><span class="lineno">  533</span>  <span class="comment">// End of frame</span></div>
+<div class="line"><span class="lineno">  534</span>  <a class="code hl_function" href="group__engine.html#gab9813926390dc5773baf0b20dc2ea16e">redisplay</a> ();</div>
+<div class="line"><span class="lineno">  535</span>  glutSwapBuffers ();</div>
+<div class="line"><span class="lineno">  536</span>}</div>
 <div class="ttc" id="aengine_8cpp_html_a634dba686e70e7ff3f10c37d11f463da"><div class="ttname"><a href="engine_8cpp.html#a634dba686e70e7ff3f10c37d11f463da">draw_axes</a></div><div class="ttdeci">void draw_axes()</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00448">engine.cpp:448</a></div></div>
 <div class="ttc" id="agroup___operations_html_ga887f20c10a27832ea24178203a47fcc2"><div class="ttname"><a href="group___operations.html#ga887f20c10a27832ea24178203a47fcc2">operations_render</a></div><div class="ttdeci">void operations_render(std::vector&lt; float &gt; *operations)</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00317">engine.cpp:317</a></div></div>
 <div class="ttc" id="agroup__engine_html_ga68a5ac52085606068a4d5ae94b0aa7e8"><div class="ttname"><a href="group__engine.html#ga68a5ac52085606068a4d5ae94b0aa7e8">timebase</a></div><div class="ttdeci">int timebase</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00494">engine.cpp:494</a></div></div>
 <div class="ttc" id="agroup__engine_html_gab9813926390dc5773baf0b20dc2ea16e"><div class="ttname"><a href="group__engine.html#gab9813926390dc5773baf0b20dc2ea16e">redisplay</a></div><div class="ttdeci">void redisplay()</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00473">engine.cpp:473</a></div></div>
 <div class="ttc" id="agroup__engine_html_gad30f972f2e6e3e5ecab0dee38ae6cdb8"><div class="ttname"><a href="group__engine.html#gad30f972f2e6e3e5ecab0dee38ae6cdb8">frame</a></div><div class="ttdeci">int frame</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00494">engine.cpp:494</a></div></div>
-<div class="ttc" id="agroup__engine_html_gaf049ec1caddd7a032fc8b48641e12f1e"><div class="ttname"><a href="group__engine.html#gaf049ec1caddd7a032fc8b48641e12f1e">renderGreenPlane</a></div><div class="ttdeci">void renderGreenPlane()</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00479">engine.cpp:479</a></div></div>
 <div class="ttc" id="agroup__model_engine_html_ga5e4458752ec64e54ed9ef910aaac54e9"><div class="ttname"><a href="group__model_engine.html#ga5e4458752ec64e54ed9ef910aaac54e9">globalOperations</a></div><div class="ttdeci">static std::vector&lt; float &gt; globalOperations</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00206">engine.cpp:206</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="engine_8cpp_source.html#l00448">draw_axes()</a>, <a class="el" href="engine_8cpp_source.html#l00494">frame</a>, <a class="el" href="engine_8cpp_source.html#l00033">globalAngle</a>, <a class="el" href="engine_8cpp_source.html#l00088">globalCenterX</a>, <a class="el" href="engine_8cpp_source.html#l00089">globalCenterY</a>, <a class="el" href="engine_8cpp_source.html#l00090">globalCenterZ</a>, <a class="el" href="engine_8cpp_source.html#l00075">globalEyeX</a>, <a class="el" href="engine_8cpp_source.html#l00076">globalEyeY</a>, <a class="el" href="engine_8cpp_source.html#l00077">globalEyeZ</a>, <a class="el" href="engine_8cpp_source.html#l00206">globalOperations</a>, <a class="el" href="engine_8cpp_source.html#l00034">globalRotateX</a>, <a class="el" href="engine_8cpp_source.html#l00035">globalRotateY</a>, <a class="el" href="engine_8cpp_source.html#l00036">globalRotateZ</a>, <a class="el" href="engine_8cpp_source.html#l00048">globalScaleX</a>, <a class="el" href="engine_8cpp_source.html#l00049">globalScaleY</a>, <a class="el" href="engine_8cpp_source.html#l00050">globalScaleZ</a>, <a class="el" href="engine_8cpp_source.html#l00041">globalTranslateX</a>, <a class="el" href="engine_8cpp_source.html#l00042">globalTranslateY</a>, <a class="el" href="engine_8cpp_source.html#l00043">globalTranslateZ</a>, <a class="el" href="engine_8cpp_source.html#l00101">globalUpX</a>, <a class="el" href="engine_8cpp_source.html#l00102">globalUpY</a>, <a class="el" href="engine_8cpp_source.html#l00103">globalUpZ</a>, <a class="el" href="engine_8cpp_source.html#l00317">operations_render()</a>, <a class="el" href="engine_8cpp_source.html#l00473">redisplay()</a>, <a class="el" href="engine_8cpp_source.html#l00479">renderGreenPlane()</a>, and <a class="el" href="engine_8cpp_source.html#l00494">timebase</a>.</p>
+<p class="reference">References <a class="el" href="engine_8cpp_source.html#l00448">draw_axes()</a>, <a class="el" href="engine_8cpp_source.html#l00494">frame</a>, <a class="el" href="engine_8cpp_source.html#l00033">globalAngle</a>, <a class="el" href="engine_8cpp_source.html#l00088">globalCenterX</a>, <a class="el" href="engine_8cpp_source.html#l00089">globalCenterY</a>, <a class="el" href="engine_8cpp_source.html#l00090">globalCenterZ</a>, <a class="el" href="engine_8cpp_source.html#l00075">globalEyeX</a>, <a class="el" href="engine_8cpp_source.html#l00076">globalEyeY</a>, <a class="el" href="engine_8cpp_source.html#l00077">globalEyeZ</a>, <a class="el" href="engine_8cpp_source.html#l00206">globalOperations</a>, <a class="el" href="engine_8cpp_source.html#l00034">globalRotateX</a>, <a class="el" href="engine_8cpp_source.html#l00035">globalRotateY</a>, <a class="el" href="engine_8cpp_source.html#l00036">globalRotateZ</a>, <a class="el" href="engine_8cpp_source.html#l00048">globalScaleX</a>, <a class="el" href="engine_8cpp_source.html#l00049">globalScaleY</a>, <a class="el" href="engine_8cpp_source.html#l00050">globalScaleZ</a>, <a class="el" href="engine_8cpp_source.html#l00041">globalTranslateX</a>, <a class="el" href="engine_8cpp_source.html#l00042">globalTranslateY</a>, <a class="el" href="engine_8cpp_source.html#l00043">globalTranslateZ</a>, <a class="el" href="engine_8cpp_source.html#l00101">globalUpX</a>, <a class="el" href="engine_8cpp_source.html#l00102">globalUpY</a>, <a class="el" href="engine_8cpp_source.html#l00103">globalUpZ</a>, <a class="el" href="engine_8cpp_source.html#l00317">operations_render()</a>, <a class="el" href="engine_8cpp_source.html#l00473">redisplay()</a>, and <a class="el" href="engine_8cpp_source.html#l00494">timebase</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00864">engine_run()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00863">engine_run()</a>.</p>
+<div id="dynsection-8" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-8-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-8-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-8-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="group__engine_ga91c42686f3245f22fb6b17ba5372d92c_cgraph.svg" width="100%" height="594"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+</div>
 <div id="dynsection-9" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-9-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+  <img id="dynsection-9-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-9-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-9-content" class="dyncontent" style="display:none;">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="group__engine_ga91c42686f3245f22fb6b17ba5372d92c_cgraph.svg" width="100%" height="594"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-</div>
-<div id="dynsection-10" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-10-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
-<div id="dynsection-10-summary" class="dynsummary" style="display:block;">
-</div>
-<div id="dynsection-10-content" class="dyncontent" style="display:none;">
 <div class="center"><iframe scrolling="no" frameborder="0" src="group__engine_ga91c42686f3245f22fb6b17ba5372d92c_icgraph.svg" width="359" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
@@ -755,11 +740,11 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00317">operations_render()</a>, and <a class="el" href="engine_8cpp_source.html#l00252">renderAllModels()</a>.</p>
-<div id="dynsection-11" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-11-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
-<div id="dynsection-11-summary" class="dynsummary" style="display:block;">
+<div id="dynsection-10" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-10-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-10-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-11-content" class="dyncontent" style="display:none;">
+<div id="dynsection-10-content" class="dyncontent" style="display:none;">
 <div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="group__engine_ga260fbd3d70764684657bbf1a617ddf99_icgraph.svg" width="100%" height="385"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
 </div>
 
@@ -781,31 +766,30 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00539">539</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  540</span>{</div>
-<div class="line"><span class="lineno">  541</span>  <a class="code hl_function" href="group__xml.html#gac937a83a82258806ef77b02f97ef0834">operations_load_xml</a> (filename, &amp;<a class="code hl_variable" href="group__model_engine.html#ga5e4458752ec64e54ed9ef910aaac54e9">globalOperations</a>);</div>
-<div class="line"><span class="lineno">  542</span>  <a class="code hl_function" href="group___operations.html#ga887f20c10a27832ea24178203a47fcc2">operations_render</a> (&amp;<a class="code hl_variable" href="group__model_engine.html#ga5e4458752ec64e54ed9ef910aaac54e9">globalOperations</a>);</div>
-<div class="line"><span class="lineno">  543</span>  <a class="code hl_function" href="group__engine.html#ga8679d9b303f36964bf51dba0993caeaa">env_load_defaults</a> ();</div>
-<div class="line"><span class="lineno">  544</span>}</div>
+<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00538">538</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  539</span>{</div>
+<div class="line"><span class="lineno">  540</span>  <a class="code hl_function" href="group__xml.html#gac937a83a82258806ef77b02f97ef0834">operations_load_xml</a> (filename, &amp;<a class="code hl_variable" href="group__model_engine.html#ga5e4458752ec64e54ed9ef910aaac54e9">globalOperations</a>);</div>
+<div class="line"><span class="lineno">  541</span>  <a class="code hl_function" href="group___operations.html#ga887f20c10a27832ea24178203a47fcc2">operations_render</a> (&amp;<a class="code hl_variable" href="group__model_engine.html#ga5e4458752ec64e54ed9ef910aaac54e9">globalOperations</a>);</div>
+<div class="line"><span class="lineno">  542</span>  <a class="code hl_function" href="group__engine.html#ga8679d9b303f36964bf51dba0993caeaa">env_load_defaults</a> ();</div>
+<div class="line"><span class="lineno">  543</span>}</div>
 <div class="ttc" id="agroup__engine_html_ga8679d9b303f36964bf51dba0993caeaa"><div class="ttname"><a href="group__engine.html#ga8679d9b303f36964bf51dba0993caeaa">env_load_defaults</a></div><div class="ttdeci">void env_load_defaults()</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00146">engine.cpp:146</a></div></div>
 <div class="ttc" id="agroup__xml_html_gac937a83a82258806ef77b02f97ef0834"><div class="ttname"><a href="group__xml.html#gac937a83a82258806ef77b02f97ef0834">operations_load_xml</a></div><div class="ttdeci">void operations_load_xml(const char *filename, std::vector&lt; float &gt; *operations)</div><div class="ttdef"><b>Definition:</b> <a href="parsing_8cpp_source.html#l00202">parsing.cpp:202</a></div></div>
 </div><!-- fragment -->
 <p class="reference">References <a class="el" href="engine_8cpp_source.html#l00146">env_load_defaults()</a>, <a class="el" href="engine_8cpp_source.html#l00206">globalOperations</a>, <a class="el" href="parsing_8cpp_source.html#l00202">operations_load_xml()</a>, and <a class="el" href="engine_8cpp_source.html#l00317">operations_render()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00864">engine_run()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00863">engine_run()</a>.</p>
+<div id="dynsection-11" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-11-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-11-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-11-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="group__engine_ga2b6a8884687b3fe271b099a450a82d24_cgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+</div>
 <div id="dynsection-12" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-12-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+  <img id="dynsection-12-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-12-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-12-content" class="dyncontent" style="display:none;">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="group__engine_ga2b6a8884687b3fe271b099a450a82d24_cgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-</div>
-<div id="dynsection-13" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-13-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
-<div id="dynsection-13-summary" class="dynsummary" style="display:block;">
-</div>
-<div id="dynsection-13-content" class="dyncontent" style="display:none;">
 <div class="center"><iframe scrolling="no" frameborder="0" src="group__engine_ga2b6a8884687b3fe271b099a450a82d24_icgraph.svg" width="427" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
@@ -906,7 +890,7 @@ Variables</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00033">33</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00146">env_load_defaults()</a>, <a class="el" href="engine_8cpp_source.html#l00547">keyboardFunc()</a>, and <a class="el" href="engine_8cpp_source.html#l00495">renderScene()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00146">env_load_defaults()</a>, <a class="el" href="engine_8cpp_source.html#l00546">keyboardFunc()</a>, and <a class="el" href="engine_8cpp_source.html#l00495">renderScene()</a>.</p>
 
 </div>
 </div>
@@ -932,7 +916,7 @@ Variables</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00032">32</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00146">env_load_defaults()</a>, and <a class="el" href="engine_8cpp_source.html#l00547">keyboardFunc()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00146">env_load_defaults()</a>, and <a class="el" href="engine_8cpp_source.html#l00546">keyboardFunc()</a>.</p>
 
 </div>
 </div>
@@ -958,7 +942,7 @@ Variables</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00034">34</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00146">env_load_defaults()</a>, <a class="el" href="engine_8cpp_source.html#l00547">keyboardFunc()</a>, and <a class="el" href="engine_8cpp_source.html#l00495">renderScene()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00146">env_load_defaults()</a>, <a class="el" href="engine_8cpp_source.html#l00546">keyboardFunc()</a>, and <a class="el" href="engine_8cpp_source.html#l00495">renderScene()</a>.</p>
 
 </div>
 </div>
@@ -984,7 +968,7 @@ Variables</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00035">35</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00146">env_load_defaults()</a>, <a class="el" href="engine_8cpp_source.html#l00547">keyboardFunc()</a>, and <a class="el" href="engine_8cpp_source.html#l00495">renderScene()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00146">env_load_defaults()</a>, <a class="el" href="engine_8cpp_source.html#l00546">keyboardFunc()</a>, and <a class="el" href="engine_8cpp_source.html#l00495">renderScene()</a>.</p>
 
 </div>
 </div>
@@ -1010,7 +994,7 @@ Variables</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00036">36</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00146">env_load_defaults()</a>, <a class="el" href="engine_8cpp_source.html#l00547">keyboardFunc()</a>, and <a class="el" href="engine_8cpp_source.html#l00495">renderScene()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00146">env_load_defaults()</a>, <a class="el" href="engine_8cpp_source.html#l00546">keyboardFunc()</a>, and <a class="el" href="engine_8cpp_source.html#l00495">renderScene()</a>.</p>
 
 </div>
 </div>
@@ -1028,7 +1012,7 @@ Variables</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00047">47</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00146">env_load_defaults()</a>, and <a class="el" href="engine_8cpp_source.html#l00547">keyboardFunc()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00146">env_load_defaults()</a>, and <a class="el" href="engine_8cpp_source.html#l00546">keyboardFunc()</a>.</p>
 
 </div>
 </div>
@@ -1054,7 +1038,7 @@ Variables</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00048">48</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00146">env_load_defaults()</a>, <a class="el" href="engine_8cpp_source.html#l00547">keyboardFunc()</a>, and <a class="el" href="engine_8cpp_source.html#l00495">renderScene()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00146">env_load_defaults()</a>, <a class="el" href="engine_8cpp_source.html#l00546">keyboardFunc()</a>, and <a class="el" href="engine_8cpp_source.html#l00495">renderScene()</a>.</p>
 
 </div>
 </div>
@@ -1080,7 +1064,7 @@ Variables</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00049">49</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00146">env_load_defaults()</a>, <a class="el" href="engine_8cpp_source.html#l00547">keyboardFunc()</a>, and <a class="el" href="engine_8cpp_source.html#l00495">renderScene()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00146">env_load_defaults()</a>, <a class="el" href="engine_8cpp_source.html#l00546">keyboardFunc()</a>, and <a class="el" href="engine_8cpp_source.html#l00495">renderScene()</a>.</p>
 
 </div>
 </div>
@@ -1106,7 +1090,7 @@ Variables</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00050">50</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00146">env_load_defaults()</a>, <a class="el" href="engine_8cpp_source.html#l00547">keyboardFunc()</a>, and <a class="el" href="engine_8cpp_source.html#l00495">renderScene()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00146">env_load_defaults()</a>, <a class="el" href="engine_8cpp_source.html#l00546">keyboardFunc()</a>, and <a class="el" href="engine_8cpp_source.html#l00495">renderScene()</a>.</p>
 
 </div>
 </div>
@@ -1132,7 +1116,7 @@ Variables</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00040">40</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00146">env_load_defaults()</a>, and <a class="el" href="engine_8cpp_source.html#l00547">keyboardFunc()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00146">env_load_defaults()</a>, and <a class="el" href="engine_8cpp_source.html#l00546">keyboardFunc()</a>.</p>
 
 </div>
 </div>
@@ -1158,7 +1142,7 @@ Variables</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00041">41</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00146">env_load_defaults()</a>, <a class="el" href="engine_8cpp_source.html#l00547">keyboardFunc()</a>, and <a class="el" href="engine_8cpp_source.html#l00495">renderScene()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00146">env_load_defaults()</a>, <a class="el" href="engine_8cpp_source.html#l00546">keyboardFunc()</a>, and <a class="el" href="engine_8cpp_source.html#l00495">renderScene()</a>.</p>
 
 </div>
 </div>
@@ -1184,7 +1168,7 @@ Variables</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00042">42</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00146">env_load_defaults()</a>, <a class="el" href="engine_8cpp_source.html#l00547">keyboardFunc()</a>, and <a class="el" href="engine_8cpp_source.html#l00495">renderScene()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00146">env_load_defaults()</a>, <a class="el" href="engine_8cpp_source.html#l00546">keyboardFunc()</a>, and <a class="el" href="engine_8cpp_source.html#l00495">renderScene()</a>.</p>
 
 </div>
 </div>
@@ -1210,7 +1194,7 @@ Variables</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00043">43</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00146">env_load_defaults()</a>, <a class="el" href="engine_8cpp_source.html#l00547">keyboardFunc()</a>, and <a class="el" href="engine_8cpp_source.html#l00495">renderScene()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00146">env_load_defaults()</a>, <a class="el" href="engine_8cpp_source.html#l00546">keyboardFunc()</a>, and <a class="el" href="engine_8cpp_source.html#l00495">renderScene()</a>.</p>
 
 </div>
 </div>

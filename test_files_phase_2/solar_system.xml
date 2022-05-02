@@ -30,7 +30,7 @@
         <group>
             <transform>
                 <rotate time="20" x="0" y="1" z="0"/>
-                <translate x="MERCURY" y="0" z="0"/>
+                <translate x="193.5" y="0" z="0"/>
             </transform>
             <models>
                 <model file="mercury.3d"/>
@@ -39,7 +39,7 @@
         <group>
             <transform>
                 <rotate time="15" x="0" y="1" z="0"/>
-                <translate x="VENUS" y="0" z="0"/>
+                <translate x="596.25" y="0" z="0"/>
             </transform>
             <models>
                 <model file="venus.3d"/>
@@ -48,7 +48,7 @@
         <group>
             <transform>
                 <rotate time="12" x="0" y="1" z="0"/>
-                <translate x="EARTH" y="0" z="0"/>
+                <translate x="2249.625" y="0" z="0"/>
             </transform>
             <models>
                 <model file="earth.3d"/>
@@ -57,7 +57,7 @@
         <group>
             <transform>
                 <rotate time="31" x="0" y="1" z="0"/>
-                <translate x="MARS" y="0" z="0"/>
+                <translate x="10312.3125" y="0" z="0"/>
             </transform>
             <models>
                 <model file="mars.3d"/>
@@ -66,7 +66,7 @@
         <group>
             <transform>
                 <rotate time="22" x="0" y="1" z="0"/>
-                <translate x="JUPITER" y="0" z="0"/>
+                <translate x="57179.71875" y="0" z="0"/>
             </transform>
             <models>
                 <model file="jupiter.3d"/>
@@ -75,7 +75,7 @@
         <group>
             <transform>
                 <rotate time="29" x="0" y="1" z="0"/>
-                <translate x="SATURN" y="0" z="0"/>
+                <translate x="372058.171875" y="0" z="0"/>
             </transform>
             <models>
                 <model file="saturn.3d"/>
@@ -84,7 +84,7 @@
         <group>
             <transform>
                 <rotate time="44" x="0" y="1" z="0"/>
-                <translate x="URANUS" y="0" z="0"/>
+                <translate x="2790863.7890625" y="0" z="0"/>
             </transform>
             <models>
                 <model file="uranus.3d"/>
@@ -93,7 +93,7 @@
         <group>
             <transform>
                 <rotate time="59" x="0" y="1" z="0"/>
-                <translate x="NEPTUNE" y="0" z="0"/>
+                <translate x="23722724.70703125" y="0" z="0"/>
             </transform>
             <models>
                 <model file="neptune.3d"/>
