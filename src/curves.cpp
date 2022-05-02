@@ -125,19 +125,6 @@ get_curve_global_point (const float gt, const mat4 &M, const vector<vec3> &contr
   get_curve (local_t, M, Q, pos, deriv);
 }
 
-void align_pos_mat (float time, const mat4 &M, const array<vec3, 4> &control_points, vec3 &pos, mat4 &rot)
-{
-  vec3 X_i;
-  vec3 Y_0 = {0, 1, 0};
-  get_curve (time, M, control_points, pos, X_i);
-  auto Z_i = cross (Y_0, X_i);
-  auto Y_i = cross (X_i, Z_i);
-  Z_i = cross (Y_i, X_i);
-
-  vec4 zero_one = {0, 0, 0, 1};
-  rot = {{X_i, 0}, {Y_i, 0}, {Z_i, 0}, zero_one};
-}
-
 void
 align_global_pos_mat (float global_time, const mat4 &M, const vector<vec3> &global_control_points, vec3 &pos, mat4 &rot)
 {

@@ -12,7 +12,6 @@ find_package(GLEW REQUIRED)
 find_package(GLUT REQUIRED)
 find_package(DevIL REQUIRED)
 find_package(glm REQUIRED)
-find_package(tinyxml2 REQUIRED)
 
 link_libraries(glm ${OPENGL_LIBRARIES} ${GLEW_LIBRARIES} ${GLUT_LIBRARIES} ${IL_LIBRARIES})
 
