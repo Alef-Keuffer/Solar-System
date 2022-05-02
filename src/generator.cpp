@@ -14,6 +14,9 @@
 #include <fstream>
 #include <tuple>
 #include <iostream>
+
+#include "curves.h"
+
 using glm::mat4, glm::vec4, glm::vec3, std::vector, std::tuple, std::string, std::ifstream, std::ios, std::stringstream, std::array, glm::mat4x3, glm::to_string;
 
 const char *SPHERE = "sphere";
@@ -21,7 +24,6 @@ const char *CUBE = "box";
 const char *CONE = "cone";
 const char *PLANE = "plane";
 const char *BEZIER = "bezier";
-
 /*! @addtogroup generator
 * @{*/
 
@@ -333,18 +335,6 @@ Bezier patches
 *******************************************************************************
 */
 
-const auto Mcr = mat4 (
-    -0.5f, 1.5f, -1.5f, 0.5f,
-    1.0f, -2.5f, 2.0f, -0.5f,
-    -0.5f, 0.0f, 0.5f, 0.0f,
-    0.0f, 1.0f, 0.0f, 0.0f);
-
-const auto Mb = mat4 (
-    -1, 3, -3, 1,
-    3, -6, 3, 0,
-    -3, 3, 0, 0,
-    1, 0, 0, 0);
-
 vector<array<vec3, 16>> read_Bezier (const char *patch)
 {
   string buffer;
@@ -416,157 +406,6 @@ vector<array<vec3, 16>> read_Bezier (const char *patch)
     for (auto p : arr)
       std::cout << glm::to_string (p) << std::endl;*/
   return pointsInPatches;
-}
-
-template<typename T> inline vec4 dec_polynomial (T n)
-{
-  return {pow (n, 3), pow (n, 2), n, 1};
-}
-/*!
- * @param a a[m][p]
- * @param b b[p][q]
- * @param[out] r r[m][q]
- * @param m
- * @param q
- * @param p
- */
-template<typename T1, typename T2, typename T3>
-void mult (const T1 &a, const T2 &b, T3 &r, const int m, const int p, const int q)
-{
-  for (auto i = 0; i < m; ++i)
-    {
-      for (auto j = 0; j < q; ++j)
-        {
-          r[m * i + j] *= 0;
-          for (auto k = 0; k < p; k++)
-            {
-              r[m * i + j] += a[m * i + k] * b[p * k + j];
-            }
-        }
-    }
-}
-
-void get_curve (const float time, const mat4 &M, const array<vec3, 4> &control_points, glm::vec3 &pos, glm::vec3 &deriv)
-{
-  const auto t = glm::vec4 (pow (time, 3), pow (time, 2), time, 1);
-  const auto t_prime = glm::vec4 (3 * pow (time, 2), 2 * time, 1, 0);
-  mat4x3 K (control_points[0], control_points[1], control_points[2], control_points[3]);
-
-  const auto KM = K * M;
-  pos = KM * t;
-  deriv = KM * t_prime;
-}
-
-vec3 get_curve (const float time, const mat4 &M, const array<vec3, 4> &control_points)
-{
-  vec3 pos;
-  vec3 _;
-  get_curve (time, M, control_points, pos, _);
-  return pos;
-}
-
-auto get_curve (const mat4 &M)
-{
-  return [&M] (const array<vec3, 4> &control_points)
-  {
-    return [&M, &control_points] (const float time) -> vec3
-    {
-      return get_curve (time, M, control_points);
-    };
-  };
-}
-
-vec3 get_bezier_point4 (const float u, const float v, const array<vec3, 16> &P)
-{
-  auto MU = Mb * dec_polynomial (u);
-  auto B = get_curve (Mb); // bezier curve
-  vec3 r = {0, 0, 0};
-  for (int j = 0; j < 3; ++j)
-    for (int i = 0; i < 3; ++i)
-      r += B ({P[j], P[j + 1], P[j + 2], P[j + 3]}) (v)
-           * P[4 * j + i]
-           * B ({P[i], P[i + 1], P[i + 2], P[i + 3]}) (u);
-  return r;
-}
-
-vec3 get_bezier_point (const float u, const float v, const array<vec3, 16> &P)
-{
-
-  vec3 P0u, P1u, P2u, P3u;
-  vec3 _;
-  get_curve (u, Mb, {P[0], P[1], P[2], P[3]}, P0u, _);
-  get_curve (u, Mb, {P[4], P[5], P[6], P[7]}, P1u, _);
-  get_curve (u, Mb, {P[8], P[9], P[10], P[11]}, P2u, _);
-  get_curve (u, Mb, {P[12], P[13], P[14], P[15]}, P3u, _);
-
-  vec3 Puv;
-  get_curve (v, Mb, {P0u, P1u, P2u, P3u}, Puv, _);
-  return Puv;
-}
-
-vec3 get_bezier_point3 (const float u, const float v, const array<vec3, 16> &P)
-{
-  auto MU = Mb * dec_polynomial (u);
-  auto B = get_curve (Mb); // bezier curve
-  return (
-             B ({P[0], P[1], P[2], P[3]}) (v) * mat4x3 (P[0], P[4], P[8], P[12]) +
-             B ({P[4], P[5], P[6], P[7]}) (v) * mat4x3 (P[1], P[5], P[9], P[13]) +
-             B ({P[8], P[9], P[10], P[11]}) (v) * mat4x3 (P[2], P[6], P[10], P[14]) +
-             B ({P[12], P[13], P[14], P[15]}) (v) * mat4x3 (P[3], P[7], P[11], P[15])
-         ) * MU;
-}
-
-vec3 get_bezier_point2 (const float u, const float v, const array<vec3, 16> &P)
-{
-  // B(u,v) = U M P Mᵀ V
-  vec4 U = dec_polynomial (u);
-  vec4 V = dec_polynomial (v);
-
-  vector<vec3> VMP;
-  auto VM = V * glm::transpose (Mb); //1x4x1
-  mult (VM, P, VMP, 1, 4, 4);
-
-  vector<vec3> VMPMU;
-  auto MU = Mb * U;
-  mult (VMP, MU, VMPMU, 1, 4, 1);
-  return VMPMU[0];
-}
-
-vector<vec3> get_bezier_patch (array<vec3, 16> control_points, int int_tesselation)
-{
-  vector<vec3> pontos;
-  float float_tesselation = (float) int_tesselation;
-  const auto step = 1.0 / float_tesselation;
-  for (int v = 0; v < int_tesselation; v++)
-    {
-      for (int u = 0; u < int_tesselation; u++)
-        {
-          // triângulo superior
-          pontos.push_back (get_bezier_point (u * step, v * step, control_points));
-          pontos.push_back (get_bezier_point (u * step, v * step + step, control_points));
-          pontos.push_back (get_bezier_point (u * step + step, v * step, control_points));
-          // triângulo inferior
-          pontos.push_back (get_bezier_point (u * step + step, v * step, control_points));
-          pontos.push_back (get_bezier_point (u * step + step, v * step + step, control_points));
-          pontos.push_back (get_bezier_point (u * step, v * step + step, control_points));
-        }
-    }
-  /*std::cout << "get_bezier_patch got:" << std::endl;
-  for (auto p : pontos)
-    std::cout << glm::to_string (p) << std::endl;*/
-  return pontos;
-}
-
-vector<glm::vec3> get_bezier_surface (const vector<array<glm::vec3, 16>> &control_set, int int_tesselation)
-{
-  vector<glm::vec3> pts;
-  for (auto &i : control_set)
-    {
-      vector<glm::vec3> temp = get_bezier_patch (i, int_tesselation);
-      pts.insert (pts.end (), temp.begin (), temp.end ());
-    }
-
-  return pts;
 }
 
 void model_bezier_write (int tesselation, const char *in_patch_file, const char *out_3d_file)

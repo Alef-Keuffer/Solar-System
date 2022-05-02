@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['dec_5fpolynomial_0',['dec_polynomial',['../group__sphere.html#ga1d35ad36990e6f400886d4e2e2b3751e',1,'generator.cpp']]],
+  ['dec_5fpolynomial_0',['dec_polynomial',['../curves_8cpp.html#a1d35ad36990e6f400886d4e2e2b3751e',1,'curves.cpp']]],
   ['draw_5faxes_1',['draw_axes',['../engine_8cpp.html#a634dba686e70e7ff3f10c37d11f463da',1,'engine.cpp']]],
   ['drawaxes_2',['drawAxes',['../main_8cpp.html#a5cf8f277aca9c9b30baa6b6f2ce12660',1,'main.cpp']]],
   ['drawcone_3',['drawCone',['../main_8cpp.html#ab6e5b61214cdc09a3bc74d1d3795c5f9',1,'main.cpp']]],

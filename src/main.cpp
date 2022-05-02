@@ -718,18 +718,27 @@ void processSpecialKeys(int key, int xx, int yy) {
 
 }
 
-int main2(int argc, char **argv) {
+int main2() {
     tinyxml2::XMLDocument doc;
-    doc.LoadFile("./test_files_phase_1/test_1_1.xml");
+    doc.LoadFile("test.xml");
 
     const float title = doc.FirstChildElement("world")->FirstChildElement("camera")->FirstChildElement(
             "position")->FloatAttribute("x");
+
+    const float time = doc.FirstChildElement("world")->FirstChildElement("group")->FirstChildElement(
+            "translate")->FloatAttribute("time");
+
+    const bool alignAttr = doc.FirstChildElement("world")->FirstChildElement("group")->FirstChildElement(
+            "translate")->BoolAttribute("align");
+    const bool alignText = doc.FirstChildElement("world")->FirstChildElement("group")->FirstChildElement(
+            "translate")->BoolText("align");
+
     printf("%f", title);
     return 1;
 }
 
 
-int main(int argc, char **argv) {
+int render_pyramid(int argc, char **argv) {
 
 // init GLUT and the window
     glutInit(&argc, argv);
@@ -755,4 +764,9 @@ int main(int argc, char **argv) {
     glutMainLoop();
 
     return 1;
+}
+
+int main(int argc, char **argv) {
+  main2();
+  return 0;
 }

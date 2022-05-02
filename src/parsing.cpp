@@ -2,20 +2,13 @@
 #include <stdio.h>
 #include <string.h>
 #include "tinyxml2.h"
-
+#include "parsing.h"
 /*I think this is usually done with macros, but I want to know why not do what I'm doing*/
-static const int TRANSLATE = 1;
-static const int ROTATE = 2;
-static const int SCALE = 3;
-static const int LOAD_MODEL = 4;
-static const int BEGIN_GROUP = 5;
-static const int END_GROUP = 6;
-static const int EXTENDED_TRANSLATE = 7;
 
 /*! @addtogroup Operations
  * @{
  * # Data structure for Operations
- *
+ * @code{.unparsed}
  * ⟨operations⟩ ::= ⟨position⟩⟨lookAt⟩⟨up⟩⟨projection⟩⟨grouping⟩⁺
  *      ⟨position⟩,⟨lookAt⟩,⟨up⟩,⟨projection⟩ ::= ⟨float⟩⟨float⟩⟨float⟩
  *
@@ -26,15 +19,21 @@ static const int EXTENDED_TRANSLATE = 7;
  * ⟨transformation⟩ ::= ⟨translation⟩ | ⟨rotation⟩ | ⟨scaling⟩
  * ⟨translation⟩ ::= ⟨simple_translation⟩ | ⟨extended_translation⟩
  *      ⟨simple_translation⟩ ::= ⟨TRANSLATE⟩⟨float⟩⟨float⟩⟨float⟩
- *      ⟨extended_translation⟩ ::= ⟨EXTENDED_TRANSLATE⟩⟨time⟩⟨align⟩⟨end_of_extended_translate⟩
+ *      ⟨extended_translation⟩ ::= ⟨EXTENDED_TRANSLATE⟩⟨time⟩⟨align⟩⟨number_of_points⟩⟨vec3f⟩⁺
  *          ⟨time⟩  ::= ⟨float⟩
  *          ⟨align⟩ ::= ⟨bool⟩
- * ⟨rotation⟩ ::= ⟨ROTATE⟩⟨float⟩⟨float⟩⟨float⟩[angle]
- *      ⟨angle⟩ ::= ⟨float⟩
+ *          ⟨number_of_points⟩ ::= ⟨int⟩
+ * ⟨rotation⟩ ::= ⟨simple_rotation⟩ | ⟨extended_rotation⟩
+ *      ⟨simple_rotation⟩ ::= ⟨ROTATE⟩⟨float⟩⟨float⟩⟨float⟩[angle]
+ *          ⟨angle⟩ ::= ⟨float⟩
+ *      ⟨extended_rotation⟩ ::= ⟨EXTENDED_ROTATE⟩⟨vec3f⟩
  * ⟨scaling⟩ ::= ⟨SCALE⟩⟨float⟩⟨float⟩⟨float⟩
  *
- * ⟨model_loading⟩ ::= ⟨LOAD_MODEL⟩ ⟨number of characters⟩ ⟨char⟩ ... ⟨char⟩
+ * ⟨model_loading⟩ ::= ⟨LOAD_MODEL⟩ ⟨number of characters⟩ ⟨char⟩⁺
  *      ⟨number of characters⟩ ::= <int>
+ *
+ * ⟨vec3f⟩ ::= ⟨float⟩⟨float⟩⟨float⟩
+ * @endcode
  *
  * example of ⟨grouping⟩:
  *
@@ -46,18 +45,6 @@ static const int EXTENDED_TRANSLATE = 7;
 
 /*! @addtogroup Transforms
  * @{*/
-
-void operations_push_extended_translate_attributes (tinyxml2::XMLElement *translate, std::vector<float> *operations)
-{
-  if (!translate)
-    {
-      fprintf (stderr, "Null transform\n");
-      exit (1);
-    }
-  int no_points = 0;
-  float time = translate->FloatAttribute ("time");
-  bool align = translate->BoolAttribute ("align");
-}
 
 void operations_push_transform_attributes (tinyxml2::XMLElement *transform, std::vector<float> *operations)
 {
@@ -73,29 +60,78 @@ void operations_push_transform_attributes (tinyxml2::XMLElement *transform, std:
   operations->push_back (transform->FloatAttribute ("z"));
 }
 
+void
+operations_push_extended_translate_attributes (tinyxml2::XMLElement *extended_translate, std::vector<float> *operations)
+{
+  if (!extended_translate)
+    {
+      fprintf (stderr, "Null transform\n");
+      exit (1);
+    }
+
+  float time = extended_translate->FloatAttribute ("time");
+  bool align = extended_translate->BoolAttribute ("align");
+  int number_of_points = 0;
+
+  operations->push_back ((float) time);
+  operations->push_back ((float) align);
+  operations->push_back (0);
+  auto index_of_number_of_points = operations->size () - 1;
+
+  for (auto child = extended_translate->FirstChildElement ("point"); child; child = child->NextSiblingElement ("point"))
+    {
+      number_of_points++;
+      operations_push_transform_attributes (child, operations);
+    }
+    operations->at (index_of_number_of_points) = number_of_points;
+}
+
+void operations_push_transformation (tinyxml2::XMLElement *transformation, std::vector<float> *operations)
+{
+  const char *transform_name = transformation->Value ();
+
+  if (!strcmp ("translate", transform_name))
+    {
+      if (transformation->Attribute ("time") != NULL)
+        {
+          operations->push_back (EXTENDED_TRANSLATE);
+          operations_push_extended_translate_attributes (transformation, operations);
+        }
+      else
+        {
+          operations->push_back (TRANSLATE);
+          operations_push_transform_attributes (transformation, operations);
+        }
+    }
+  else if (!strcmp ("rotate", transform_name))
+    {
+      if (transformation->Attribute ("time")) {
+        operations->push_back (EXTENDED_ROTATE);
+        float time = transformation->FloatAttribute ("time");
+        operations->push_back (time);
+        operations_push_transform_attributes (transformation, operations);
+      }
+      else {
+        operations->push_back (ROTATE);
+        operations_push_transform_attributes (transformation, operations);
+      }
+    }
+  else if (!strcmp ("scale", transform_name)) {
+    operations->push_back (SCALE);
+    operations_push_transform_attributes (transformation, operations);
+  }
+  else
+    {
+      fprintf (stderr, "Unknown transform: \"%s\"", transform_name);
+      exit (1);
+    }
+}
+
 void operations_push_transforms (tinyxml2::XMLElement *transforms, std::vector<float> *operations)
 {
   tinyxml2::XMLElement *transform = transforms->FirstChildElement ();
-
   do
-    {
-      const char *transformValue = transform->Value ();
-
-      if (!strcmp ("translate", transformValue))
-        operations->push_back (TRANSLATE);
-      else if (!strcmp ("rotate", transformValue))
-        operations->push_back (ROTATE);
-      else if (!strcmp ("scale", transformValue))
-        operations->push_back (SCALE);
-      else
-        {
-          fprintf (stderr, "Unknown transform: \"%s\"", transformValue);
-          exit (1);
-        }
-
-      operations_push_transform_attributes (transform, operations);
-
-    }
+      operations_push_transformation(transform,operations);
   while ((transform = transform->NextSiblingElement ()));
 }
 //! @} end of group Transforms

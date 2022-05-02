@@ -21,6 +21,9 @@ foreach(l ${OPENGL_LIBRARIES} ${GLEW_LIBRARIES} ${GLUT_LIBRARIES} ${IL_LIBRARIES
 endforeach()
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
+add_library(curves src/curves.cpp src/curves.h)
+link_libraries(curves)
+
 add_executable(${PROJECT_NAME} src/main.cpp)
 
 add_executable(generator src/generator.cpp)

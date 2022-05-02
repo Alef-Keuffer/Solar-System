@@ -151,10 +151,10 @@ Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="generator_8cpp_source.html#l00092">92</a> of file <a class="el" href="generator_8cpp_source.html">generator.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   93</span>{ <span class="keywordflow">return</span> divisions * divisions * 12; }</div>
+<p class="definition">Definition at line <a class="el" href="generator_8cpp_source.html#l00095">95</a> of file <a class="el" href="generator_8cpp_source.html">generator.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   96</span>{ <span class="keywordflow">return</span> divisions * divisions * 12; }</div>
 </div><!-- fragment -->
-<p class="reference">Referenced by <a class="el" href="generator_8cpp_source.html#l00095">model_plane_write()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="generator_8cpp_source.html#l00098">model_plane_write()</a>.</p>
 <div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
@@ -197,44 +197,44 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="generator_8cpp_source.html#l00058">58</a> of file <a class="el" href="generator_8cpp_source.html">generator.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   59</span>{</div>
-<div class="line"><span class="lineno">   60</span>  <span class="keyword">const</span> <span class="keywordtype">float</span> o = -length / 2.0f;</div>
-<div class="line"><span class="lineno">   61</span>  <span class="keyword">const</span> <span class="keywordtype">float</span> d = length / (float) divisions;</div>
-<div class="line"><span class="lineno">   62</span> </div>
-<div class="line"><span class="lineno">   63</span>  <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> pos = 0;</div>
-<div class="line"><span class="lineno">   64</span> </div>
-<div class="line"><span class="lineno">   65</span>  <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> m = 1; m &lt;= divisions; m++)</div>
-<div class="line"><span class="lineno">   66</span>    {</div>
-<div class="line"><span class="lineno">   67</span>      <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> n = 1; n &lt;= divisions; n++)</div>
-<div class="line"><span class="lineno">   68</span>        {</div>
-<div class="line"><span class="lineno">   69</span>          <span class="keywordtype">float</span> i = (float) m;</div>
-<div class="line"><span class="lineno">   70</span>          <span class="keywordtype">float</span> j = (float) n;</div>
-<div class="line"><span class="lineno">   71</span> </div>
-<div class="line"><span class="lineno">   72</span>          <a class="code hl_function" href="group__points.html#ga127fb8e56ec1e38505cdd9ea6efa2cf6">points_vertex</a> (o + d * (i - 1), 0, o + d * (j - 1), &amp;pos, points); <span class="comment">//P1</span></div>
-<div class="line"><span class="lineno">   73</span>          <a class="code hl_function" href="group__points.html#ga127fb8e56ec1e38505cdd9ea6efa2cf6">points_vertex</a> (o + d * (i - 1), 0, o + d * j, &amp;pos, points); <span class="comment">//P1&#39;z</span></div>
-<div class="line"><span class="lineno">   74</span>          <a class="code hl_function" href="group__points.html#ga127fb8e56ec1e38505cdd9ea6efa2cf6">points_vertex</a> (o + d * i, 0, o + d * (j - 1), &amp;pos, points); <span class="comment">//P1&#39;x</span></div>
-<div class="line"><span class="lineno">   75</span> </div>
-<div class="line"><span class="lineno">   76</span>          <a class="code hl_function" href="group__points.html#ga127fb8e56ec1e38505cdd9ea6efa2cf6">points_vertex</a> (o + d * i, 0, o + d * (j - 1), &amp;pos, points); <span class="comment">//P1&#39;x</span></div>
-<div class="line"><span class="lineno">   77</span>          <a class="code hl_function" href="group__points.html#ga127fb8e56ec1e38505cdd9ea6efa2cf6">points_vertex</a> (o + d * (i - 1), 0, o + d * j, &amp;pos, points); <span class="comment">//P1&#39;z</span></div>
-<div class="line"><span class="lineno">   78</span>          <a class="code hl_function" href="group__points.html#ga127fb8e56ec1e38505cdd9ea6efa2cf6">points_vertex</a> (o + d * i, 0, o + d * j, &amp;pos, points); <span class="comment">//P2</span></div>
-<div class="line"><span class="lineno">   79</span> </div>
-<div class="line"><span class="lineno">   80</span>          <span class="comment">/*Cull face*/</span></div>
-<div class="line"><span class="lineno">   81</span>          <a class="code hl_function" href="group__points.html#ga127fb8e56ec1e38505cdd9ea6efa2cf6">points_vertex</a> (o + d * (i - 1), 0, o + d * j, &amp;pos, points); <span class="comment">//P1&#39;z</span></div>
-<div class="line"><span class="lineno">   82</span>          <a class="code hl_function" href="group__points.html#ga127fb8e56ec1e38505cdd9ea6efa2cf6">points_vertex</a> (o + d * (i - 1), 0, o + d * (j - 1), &amp;pos, points); <span class="comment">//P1</span></div>
-<div class="line"><span class="lineno">   83</span>          <a class="code hl_function" href="group__points.html#ga127fb8e56ec1e38505cdd9ea6efa2cf6">points_vertex</a> (o + d * i, 0, o + d * (j - 1), &amp;pos, points); <span class="comment">//P1&#39;x</span></div>
-<div class="line"><span class="lineno">   84</span> </div>
-<div class="line"><span class="lineno">   85</span>          <a class="code hl_function" href="group__points.html#ga127fb8e56ec1e38505cdd9ea6efa2cf6">points_vertex</a> (o + d * (i - 1), 0, o + d * j, &amp;pos, points); <span class="comment">//P1&#39;z</span></div>
+<p class="definition">Definition at line <a class="el" href="generator_8cpp_source.html#l00061">61</a> of file <a class="el" href="generator_8cpp_source.html">generator.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   62</span>{</div>
+<div class="line"><span class="lineno">   63</span>  <span class="keyword">const</span> <span class="keywordtype">float</span> o = -length / 2.0f;</div>
+<div class="line"><span class="lineno">   64</span>  <span class="keyword">const</span> <span class="keywordtype">float</span> d = length / (float) divisions;</div>
+<div class="line"><span class="lineno">   65</span> </div>
+<div class="line"><span class="lineno">   66</span>  <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> pos = 0;</div>
+<div class="line"><span class="lineno">   67</span> </div>
+<div class="line"><span class="lineno">   68</span>  <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> m = 1; m &lt;= divisions; m++)</div>
+<div class="line"><span class="lineno">   69</span>    {</div>
+<div class="line"><span class="lineno">   70</span>      <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> n = 1; n &lt;= divisions; n++)</div>
+<div class="line"><span class="lineno">   71</span>        {</div>
+<div class="line"><span class="lineno">   72</span>          <span class="keywordtype">float</span> i = (float) m;</div>
+<div class="line"><span class="lineno">   73</span>          <span class="keywordtype">float</span> j = (float) n;</div>
+<div class="line"><span class="lineno">   74</span> </div>
+<div class="line"><span class="lineno">   75</span>          <a class="code hl_function" href="group__points.html#ga127fb8e56ec1e38505cdd9ea6efa2cf6">points_vertex</a> (o + d * (i - 1), 0, o + d * (j - 1), &amp;pos, points); <span class="comment">//P1</span></div>
+<div class="line"><span class="lineno">   76</span>          <a class="code hl_function" href="group__points.html#ga127fb8e56ec1e38505cdd9ea6efa2cf6">points_vertex</a> (o + d * (i - 1), 0, o + d * j, &amp;pos, points); <span class="comment">//P1&#39;z</span></div>
+<div class="line"><span class="lineno">   77</span>          <a class="code hl_function" href="group__points.html#ga127fb8e56ec1e38505cdd9ea6efa2cf6">points_vertex</a> (o + d * i, 0, o + d * (j - 1), &amp;pos, points); <span class="comment">//P1&#39;x</span></div>
+<div class="line"><span class="lineno">   78</span> </div>
+<div class="line"><span class="lineno">   79</span>          <a class="code hl_function" href="group__points.html#ga127fb8e56ec1e38505cdd9ea6efa2cf6">points_vertex</a> (o + d * i, 0, o + d * (j - 1), &amp;pos, points); <span class="comment">//P1&#39;x</span></div>
+<div class="line"><span class="lineno">   80</span>          <a class="code hl_function" href="group__points.html#ga127fb8e56ec1e38505cdd9ea6efa2cf6">points_vertex</a> (o + d * (i - 1), 0, o + d * j, &amp;pos, points); <span class="comment">//P1&#39;z</span></div>
+<div class="line"><span class="lineno">   81</span>          <a class="code hl_function" href="group__points.html#ga127fb8e56ec1e38505cdd9ea6efa2cf6">points_vertex</a> (o + d * i, 0, o + d * j, &amp;pos, points); <span class="comment">//P2</span></div>
+<div class="line"><span class="lineno">   82</span> </div>
+<div class="line"><span class="lineno">   83</span>          <span class="comment">/*Cull face*/</span></div>
+<div class="line"><span class="lineno">   84</span>          <a class="code hl_function" href="group__points.html#ga127fb8e56ec1e38505cdd9ea6efa2cf6">points_vertex</a> (o + d * (i - 1), 0, o + d * j, &amp;pos, points); <span class="comment">//P1&#39;z</span></div>
+<div class="line"><span class="lineno">   85</span>          <a class="code hl_function" href="group__points.html#ga127fb8e56ec1e38505cdd9ea6efa2cf6">points_vertex</a> (o + d * (i - 1), 0, o + d * (j - 1), &amp;pos, points); <span class="comment">//P1</span></div>
 <div class="line"><span class="lineno">   86</span>          <a class="code hl_function" href="group__points.html#ga127fb8e56ec1e38505cdd9ea6efa2cf6">points_vertex</a> (o + d * i, 0, o + d * (j - 1), &amp;pos, points); <span class="comment">//P1&#39;x</span></div>
-<div class="line"><span class="lineno">   87</span>          <a class="code hl_function" href="group__points.html#ga127fb8e56ec1e38505cdd9ea6efa2cf6">points_vertex</a> (o + d * i, 0, o + d * j, &amp;pos, points); <span class="comment">//P2</span></div>
-<div class="line"><span class="lineno">   88</span>        }</div>
-<div class="line"><span class="lineno">   89</span>    }</div>
-<div class="line"><span class="lineno">   90</span>}</div>
-<div class="ttc" id="agroup__points_html_ga127fb8e56ec1e38505cdd9ea6efa2cf6"><div class="ttname"><a href="group__points.html#ga127fb8e56ec1e38505cdd9ea6efa2cf6">points_vertex</a></div><div class="ttdeci">void points_vertex(const float x, const float y, const float z, unsigned int *pos, float points[])</div><div class="ttdef"><b>Definition:</b> <a href="generator_8cpp_source.html#l00029">generator.cpp:29</a></div></div>
+<div class="line"><span class="lineno">   87</span> </div>
+<div class="line"><span class="lineno">   88</span>          <a class="code hl_function" href="group__points.html#ga127fb8e56ec1e38505cdd9ea6efa2cf6">points_vertex</a> (o + d * (i - 1), 0, o + d * j, &amp;pos, points); <span class="comment">//P1&#39;z</span></div>
+<div class="line"><span class="lineno">   89</span>          <a class="code hl_function" href="group__points.html#ga127fb8e56ec1e38505cdd9ea6efa2cf6">points_vertex</a> (o + d * i, 0, o + d * (j - 1), &amp;pos, points); <span class="comment">//P1&#39;x</span></div>
+<div class="line"><span class="lineno">   90</span>          <a class="code hl_function" href="group__points.html#ga127fb8e56ec1e38505cdd9ea6efa2cf6">points_vertex</a> (o + d * i, 0, o + d * j, &amp;pos, points); <span class="comment">//P2</span></div>
+<div class="line"><span class="lineno">   91</span>        }</div>
+<div class="line"><span class="lineno">   92</span>    }</div>
+<div class="line"><span class="lineno">   93</span>}</div>
+<div class="ttc" id="agroup__points_html_ga127fb8e56ec1e38505cdd9ea6efa2cf6"><div class="ttname"><a href="group__points.html#ga127fb8e56ec1e38505cdd9ea6efa2cf6">points_vertex</a></div><div class="ttdeci">void points_vertex(const float x, const float y, const float z, unsigned int *pos, float points[])</div><div class="ttdef"><b>Definition:</b> <a href="generator_8cpp_source.html#l00032">generator.cpp:32</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="generator_8cpp_source.html#l00029">points_vertex()</a>.</p>
+<p class="reference">References <a class="el" href="generator_8cpp_source.html#l00032">points_vertex()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="generator_8cpp_source.html#l00095">model_plane_write()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="generator_8cpp_source.html#l00098">model_plane_write()</a>.</p>
 <div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-2-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-2-summary" class="dynsummary" style="display:block;">
@@ -284,20 +284,20 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="generator_8cpp_source.html#l00095">95</a> of file <a class="el" href="generator_8cpp_source.html">generator.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   96</span>{</div>
-<div class="line"><span class="lineno">   97</span>  <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> nVertices = <a class="code hl_function" href="group__plane.html#ga2dc797b7bd5ac0ed0f270d481d977a55">model_plane_nVertices</a> (divisions);</div>
-<div class="line"><span class="lineno">   98</span>  <span class="keywordtype">float</span> points[3 * nVertices];</div>
-<div class="line"><span class="lineno">   99</span>  <a class="code hl_function" href="group__plane.html#ga2860798c8a53cfdf27dcecdfb1616940">model_plane_vertices</a> (length, divisions, points);</div>
-<div class="line"><span class="lineno">  100</span>  <a class="code hl_function" href="group__points.html#gab0ec2dac46ec7ee44911b8bcf1e9dad0">points_write</a> (filepath, nVertices, points);</div>
-<div class="line"><span class="lineno">  101</span>}</div>
-<div class="ttc" id="agroup__plane_html_ga2860798c8a53cfdf27dcecdfb1616940"><div class="ttname"><a href="group__plane.html#ga2860798c8a53cfdf27dcecdfb1616940">model_plane_vertices</a></div><div class="ttdeci">void model_plane_vertices(const float length, const unsigned int divisions, float *points)</div><div class="ttdef"><b>Definition:</b> <a href="generator_8cpp_source.html#l00058">generator.cpp:58</a></div></div>
-<div class="ttc" id="agroup__plane_html_ga2dc797b7bd5ac0ed0f270d481d977a55"><div class="ttname"><a href="group__plane.html#ga2dc797b7bd5ac0ed0f270d481d977a55">model_plane_nVertices</a></div><div class="ttdeci">unsigned int model_plane_nVertices(const unsigned int divisions)</div><div class="ttdef"><b>Definition:</b> <a href="generator_8cpp_source.html#l00092">generator.cpp:92</a></div></div>
-<div class="ttc" id="agroup__points_html_gab0ec2dac46ec7ee44911b8bcf1e9dad0"><div class="ttname"><a href="group__points.html#gab0ec2dac46ec7ee44911b8bcf1e9dad0">points_write</a></div><div class="ttdeci">void points_write(const char *filename, const unsigned int nVertices, const float points[])</div><div class="ttdef"><b>Definition:</b> <a href="generator_8cpp_source.html#l00037">generator.cpp:37</a></div></div>
+<p class="definition">Definition at line <a class="el" href="generator_8cpp_source.html#l00098">98</a> of file <a class="el" href="generator_8cpp_source.html">generator.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   99</span>{</div>
+<div class="line"><span class="lineno">  100</span>  <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> nVertices = <a class="code hl_function" href="group__plane.html#ga2dc797b7bd5ac0ed0f270d481d977a55">model_plane_nVertices</a> (divisions);</div>
+<div class="line"><span class="lineno">  101</span>  <span class="keywordtype">float</span> points[3 * nVertices];</div>
+<div class="line"><span class="lineno">  102</span>  <a class="code hl_function" href="group__plane.html#ga2860798c8a53cfdf27dcecdfb1616940">model_plane_vertices</a> (length, divisions, points);</div>
+<div class="line"><span class="lineno">  103</span>  <a class="code hl_function" href="group__points.html#gab0ec2dac46ec7ee44911b8bcf1e9dad0">points_write</a> (filepath, nVertices, points);</div>
+<div class="line"><span class="lineno">  104</span>}</div>
+<div class="ttc" id="agroup__plane_html_ga2860798c8a53cfdf27dcecdfb1616940"><div class="ttname"><a href="group__plane.html#ga2860798c8a53cfdf27dcecdfb1616940">model_plane_vertices</a></div><div class="ttdeci">void model_plane_vertices(const float length, const unsigned int divisions, float *points)</div><div class="ttdef"><b>Definition:</b> <a href="generator_8cpp_source.html#l00061">generator.cpp:61</a></div></div>
+<div class="ttc" id="agroup__plane_html_ga2dc797b7bd5ac0ed0f270d481d977a55"><div class="ttname"><a href="group__plane.html#ga2dc797b7bd5ac0ed0f270d481d977a55">model_plane_nVertices</a></div><div class="ttdeci">unsigned int model_plane_nVertices(const unsigned int divisions)</div><div class="ttdef"><b>Definition:</b> <a href="generator_8cpp_source.html#l00095">generator.cpp:95</a></div></div>
+<div class="ttc" id="agroup__points_html_gab0ec2dac46ec7ee44911b8bcf1e9dad0"><div class="ttname"><a href="group__points.html#gab0ec2dac46ec7ee44911b8bcf1e9dad0">points_write</a></div><div class="ttdeci">void points_write(const char *filename, const unsigned int nVertices, const float points[])</div><div class="ttdef"><b>Definition:</b> <a href="generator_8cpp_source.html#l00040">generator.cpp:40</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="generator_8cpp_source.html#l00092">model_plane_nVertices()</a>, <a class="el" href="generator_8cpp_source.html#l00058">model_plane_vertices()</a>, and <a class="el" href="generator_8cpp_source.html#l00037">points_write()</a>.</p>
+<p class="reference">References <a class="el" href="generator_8cpp_source.html#l00095">model_plane_nVertices()</a>, <a class="el" href="generator_8cpp_source.html#l00061">model_plane_vertices()</a>, and <a class="el" href="generator_8cpp_source.html#l00040">points_write()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="generator_8cpp_source.html#l00549">main()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="generator_8cpp_source.html#l00451">main()</a>.</p>
 <div id="dynsection-4" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-4-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-4-summary" class="dynsummary" style="display:block;">

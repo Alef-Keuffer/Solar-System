@@ -16,8 +16,10 @@
 
 #include "parsing.h"
 
-#define _USE_MATH_DEFINES
-#include <math.h>
+#include <cmath>
+#include "curves.h"
+#include <glm/glm.hpp>
+#include <iostream>
 
 /* Required!
 We probably don't need all this brings into scope, but it's not relevant.
@@ -181,7 +183,7 @@ Model allocModel (const char *path)
   if (!fp)
     {
       fprintf (stderr, "failed to open model: %s\n", path);
-      exit(1);
+      exit (1);
     }
 
   unsigned int nVertices;
@@ -215,6 +217,7 @@ void renderModel (Model model, GLuint vbo_ix)
   glBindBuffer (GL_ARRAY_BUFFER, vbo_ix);
   glVertexPointer (3, GL_FLOAT, 0, 0);
   glDrawArrays (GL_TRIANGLES, 0, model->nVertices);
+  glBindBuffer (GL_ARRAY_BUFFER, 0); //unbind
 }
 
 void renderAllModels ()
@@ -274,11 +277,20 @@ void changeSize (int w, int h)
 }
 //!@} end of group engine
 
+void advance_in_rotation (const float rotation_time, const vec3 &axis_of_rotation)
+{
+  const float gt = fmodf ((float) glutGet (GLUT_ELAPSED_TIME), (float) (rotation_time * 1000)) / (rotation_time * 1000);
+  const float angle = 360 * gt;
+  glRotatef (angle, axis_of_rotation.x, axis_of_rotation.y, axis_of_rotation.z);
+}
+
 //! @ingroup Operations
 void operations_render (std::vector<float> *operations)
 {
   unsigned int i = 0;
   static bool hasPushedModels = false;
+  static bool hasLoadedCurves = false;
+  static vector<vector<vec3>> curves;
 
   DEFAULT_GLOBAL_EYE_X = operations->at (i);
   DEFAULT_GLOBAL_EYE_Y = operations->at (i + 1);
@@ -303,7 +315,7 @@ void operations_render (std::vector<float> *operations)
   DEFAULT_GLOBAL_NEAR = operations->at (i + 1);
   DEFAULT_GLOBAL_FAR = operations->at (i + 2);
 
-  unsigned int modelNo = 0;
+  unsigned int model_num = 0;
 
   for (i += 3; i < operations->size (); i++)
     {
@@ -316,12 +328,49 @@ void operations_render (std::vector<float> *operations)
                        operations->at (i + 4));
           i += 4;
           continue;
+          case EXTENDED_ROTATE:
+            {
+              advance_in_rotation (
+                  operations->at (i + 1),
+                  {
+                      operations->at (i + 2),
+                      operations->at (i + 3),
+                      operations->at (i + 4)
+                  });
+              i += 4; //time, axis_of_rotation
+              continue;
+            }
           case TRANSLATE:
             glTranslatef (operations->at (i + 1),
                           operations->at (i + 2),
                           operations->at (i + 3));
           i += 3;
           continue;
+          case EXTENDED_TRANSLATE:
+            {
+              int number_of_points = (int) operations->at (i + 3);
+              vector<vec3> new_curve (number_of_points);
+              if (!hasLoadedCurves)
+                {
+                  for (int j = 0; j < number_of_points; ++j)
+                    {
+                      int idx = 3*j;
+                      new_curve.at (j)[0] = operations->at (i + 4 + idx);
+                      new_curve.at (j)[1] = operations->at (i + 4 + idx + 1);
+                      new_curve.at (j)[2] = operations->at (i + 4 + idx + 2);
+                    }
+                  curves.push_back (new_curve);
+                }
+              auto curve = curves.back ();
+              renderCurve (Mcr, curve);
+              advance_in_curve (
+                  operations->at (i + 1),
+                  (bool) operations->at (i + 2),
+                  Mcr,
+                  curves.back ());
+              i += 3 + number_of_points * 3; // 3 - time,align,number_of_points,points...
+              continue;
+            }
           case SCALE:
             glScalef (operations->at (i + 1),
                       operations->at (i + 2),
@@ -335,32 +384,36 @@ void operations_render (std::vector<float> *operations)
             glPopMatrix ();
           continue;
           case LOAD_MODEL:
-            int stringSize = (int) operations->at (i + 1);
-          if (!hasPushedModels)
             {
-              char modelName[stringSize + 1];
+              int stringSize = (int) operations->at (i + 1);
+              if (!hasPushedModels)
+                {
+                  char modelName[stringSize + 1];
 
-              int j;
-              for (j = 0; j < stringSize; j++)
-                modelName[j] = (char) operations->at (i + 2 + j);
+                  int j;
+                  for (j = 0; j < stringSize; j++)
+                    modelName[j] = (char) operations->at (i + 2 + j);
 
-              modelName[j] = 0;
+                  modelName[j] = 0;
 
-              globalModels.push_back (allocModel (modelName));
-              glGenBuffers (1, &vbo_indices[modelNo]);
-              glBindBuffer (GL_ARRAY_BUFFER, vbo_indices[modelNo]);
-              Model m = globalModels.back ();
-              glBufferData (GL_ARRAY_BUFFER, sizeof (float) * 3 * m->nVertices, m->vertices, GL_STATIC_DRAW);
-              free(m->vertices);
+                  globalModels.push_back (allocModel (modelName));
+                  glGenBuffers (1, &vbo_indices[model_num]);
+                  glBindBuffer (GL_ARRAY_BUFFER, vbo_indices[model_num]);
+                  Model m = globalModels.back ();
+                  glBufferData (GL_ARRAY_BUFFER, sizeof (float) * 3 * m->nVertices, m->vertices, GL_STATIC_DRAW);
+                  glBindBuffer (GL_ARRAY_BUFFER, 0); //unbind
+                  free (m->vertices);
+                }
+
+              renderModel (globalModels[model_num], vbo_indices[model_num]);
+              model_num++;
+              i += stringSize + 1; //just to be explicit
+              continue;
             }
-
-          renderModel (globalModels[modelNo], vbo_indices[modelNo]);
-          modelNo++;
-          i += stringSize + 1; //just to be explicit
-          continue;
         }
     }
   hasPushedModels = true;
+  hasLoadedCurves = true;
 }
 
 void draw_axes ()
@@ -415,9 +468,6 @@ void renderScene ()
              globalCenterX, globalCenterY, globalCenterZ,
              globalUpX, globalUpY, globalUpZ);
 
-  /*draw absolute (before any transformation) axes*/
-  draw_axes ();
-
   // put the geometric transformations here
   glRotatef (globalAngle, globalRotateX, globalRotateY, globalRotateZ);
   glTranslatef (globalTranslateX, globalTranslateY, globalTranslateZ);
@@ -437,6 +487,7 @@ void renderScene ()
     }
 
   // End of frame
+  redisplay ();
   glutSwapBuffers ();
 }
 

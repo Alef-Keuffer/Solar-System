@@ -5,10 +5,14 @@
 
 void operations_load_xml(const char *filename, std::vector<float> *operations);
 
-const int TRANSLATE = 1;
-const int ROTATE = 2;
-const int SCALE = 3;
-const int LOAD_MODEL = 4;
-const int BEGIN_GROUP = 5;
-const int END_GROUP = 6;
+enum {
+  TRANSLATE = 1,
+  ROTATE,
+  SCALE,
+  LOAD_MODEL,
+  BEGIN_GROUP,
+  END_GROUP,
+  EXTENDED_TRANSLATE,
+  EXTENDED_ROTATE
+};
 #endif //PROJ_PARSING_H

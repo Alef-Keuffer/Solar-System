@@ -104,8 +104,7 @@ $(document).ready(function(){initNavTree('parsing_8cpp.html',''); initResizable(
 
 <div class="header">
   <div class="summary">
-<a href="#func-members">Functions</a> &#124;
-<a href="#var-members">Variables</a>  </div>
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle"><div class="title">parsing.cpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
@@ -113,12 +112,14 @@ $(document).ready(function(){initNavTree('parsing_8cpp.html',''); initResizable(
 <code>#include &lt;stdio.h&gt;</code><br />
 <code>#include &lt;string.h&gt;</code><br />
 <code>#include &quot;tinyxml2.h&quot;</code><br />
+<code>#include &quot;<a class="el" href="parsing_8h_source.html">parsing.h</a>&quot;</code><br />
 </div><div class="textblock"><div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Include dependency graph for parsing.cpp:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="parsing_8cpp__incl.svg" width="376" height="112"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="parsing_8cpp__incl.svg" width="415" height="187"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </div>
 <p><a href="parsing_8cpp_source.html">Go to the source code of this file.</a></p>
@@ -127,6 +128,10 @@ $(document).ready(function(){initNavTree('parsing_8cpp.html',''); initResizable(
 Functions</h2></td></tr>
 <tr class="memitem:gaa15fe56d7980e7877845f3bc09125017"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___transforms.html#gaa15fe56d7980e7877845f3bc09125017">operations_push_transform_attributes</a> (tinyxml2::XMLElement *transform, std::vector&lt; float &gt; *operations)</td></tr>
 <tr class="separator:gaa15fe56d7980e7877845f3bc09125017"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga5078bb9f7411d7f9f26c535a52ae7c6b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___transforms.html#ga5078bb9f7411d7f9f26c535a52ae7c6b">operations_push_extended_translate_attributes</a> (tinyxml2::XMLElement *extended_translate, std::vector&lt; float &gt; *operations)</td></tr>
+<tr class="separator:ga5078bb9f7411d7f9f26c535a52ae7c6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga3ceb952cabab7fc6918d4a676d53508d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___transforms.html#ga3ceb952cabab7fc6918d4a676d53508d">operations_push_transformation</a> (tinyxml2::XMLElement *transformation, std::vector&lt; float &gt; *operations)</td></tr>
+<tr class="separator:ga3ceb952cabab7fc6918d4a676d53508d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaaa78b92f0257bb4755731622692de0cb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___transforms.html#gaaa78b92f0257bb4755731622692de0cb">operations_push_transforms</a> (tinyxml2::XMLElement *transforms, std::vector&lt; float &gt; *operations)</td></tr>
 <tr class="separator:gaaa78b92f0257bb4755731622692de0cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga5dc84f3f40c0bb6ad63dc2da3793ddd9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___models.html#ga5dc84f3f40c0bb6ad63dc2da3793ddd9">operations_push_model</a> (tinyxml2::XMLElement *<a class="el" href="structmodel.html">model</a>, std::vector&lt; float &gt; *operations)</td></tr>
@@ -143,21 +148,6 @@ Functions</h2></td></tr>
 <tr class="separator:a46d5190ea0181cc625329b5221e9dce9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a75c2e94360fa8e46050b4f66fe444d6b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parsing_8cpp.html#a75c2e94360fa8e46050b4f66fe444d6b">main2</a> (int argc, char *argv[])</td></tr>
 <tr class="separator:a75c2e94360fa8e46050b4f66fe444d6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
-Variables</h2></td></tr>
-<tr class="memitem:a5ca818cc3b6e31a94c8f90cd2ffe39e4"><td class="memItemLeft" align="right" valign="top">static const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parsing_8cpp.html#a5ca818cc3b6e31a94c8f90cd2ffe39e4">TRANSLATE</a> = 1</td></tr>
-<tr class="separator:a5ca818cc3b6e31a94c8f90cd2ffe39e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af4ae699d8cd926769e89e26cd088b2c0"><td class="memItemLeft" align="right" valign="top">static const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parsing_8cpp.html#af4ae699d8cd926769e89e26cd088b2c0">ROTATE</a> = 2</td></tr>
-<tr class="separator:af4ae699d8cd926769e89e26cd088b2c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8334f0c0c56b96debb10231b86050ead"><td class="memItemLeft" align="right" valign="top">static const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parsing_8cpp.html#a8334f0c0c56b96debb10231b86050ead">SCALE</a> = 3</td></tr>
-<tr class="separator:a8334f0c0c56b96debb10231b86050ead"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa51361de9fa3f1deb5ea0db3378699ad"><td class="memItemLeft" align="right" valign="top">static const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parsing_8cpp.html#aa51361de9fa3f1deb5ea0db3378699ad">LOAD_MODEL</a> = 4</td></tr>
-<tr class="separator:aa51361de9fa3f1deb5ea0db3378699ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae38a16613cd19c49df2093ac07acf4c2"><td class="memItemLeft" align="right" valign="top">static const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parsing_8cpp.html#ae38a16613cd19c49df2093ac07acf4c2">BEGIN_GROUP</a> = 5</td></tr>
-<tr class="separator:ae38a16613cd19c49df2093ac07acf4c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa439df53a792b65747b73e9941f8f54a"><td class="memItemLeft" align="right" valign="top">static const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parsing_8cpp.html#aa439df53a792b65747b73e9941f8f54a">END_GROUP</a> = 6</td></tr>
-<tr class="separator:aa439df53a792b65747b73e9941f8f54a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="a46d5190ea0181cc625329b5221e9dce9" name="a46d5190ea0181cc625329b5221e9dce9"></a>
@@ -176,31 +166,33 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="parsing_8cpp_source.html#l00256">256</a> of file <a class="el" href="parsing_8cpp_source.html">parsing.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  256</span>                                    {</div>
-<div class="line"><span class="lineno">  257</span>    tinyxml2::XMLDocument doc;</div>
-<div class="line"><span class="lineno">  258</span> </div>
-<div class="line"><span class="lineno">  259</span>    <span class="keywordflow">if</span> (doc.LoadFile(filename)) {</div>
-<div class="line"><span class="lineno">  260</span>        fprintf(stderr, <span class="stringliteral">&quot;%s&quot;</span>, doc.ErrorName());</div>
-<div class="line"><span class="lineno">  261</span>        exit(1);</div>
-<div class="line"><span class="lineno">  262</span>    }</div>
-<div class="line"><span class="lineno">  263</span> </div>
-<div class="line"><span class="lineno">  264</span>    std::vector&lt;float&gt; operations;</div>
-<div class="line"><span class="lineno">  265</span>    <a class="code hl_function" href="group__xml.html#gac937a83a82258806ef77b02f97ef0834">operations_load_xml</a>(filename, &amp;operations);</div>
-<div class="line"><span class="lineno">  266</span>    <a class="code hl_function" href="group___printing.html#ga8ad288d2a741eb3d632a6d3e005c4347">operations_print</a>(&amp;operations);</div>
-<div class="line"><span class="lineno">  267</span>}</div>
-<div class="ttc" id="agroup___printing_html_ga8ad288d2a741eb3d632a6d3e005c4347"><div class="ttname"><a href="group___printing.html#ga8ad288d2a741eb3d632a6d3e005c4347">operations_print</a></div><div class="ttdeci">void operations_print(std::vector&lt; float &gt; *operations)</div><div class="ttdef"><b>Definition:</b> <a href="parsing_8cpp_source.html#l00175">parsing.cpp:175</a></div></div>
-<div class="ttc" id="agroup__xml_html_gac937a83a82258806ef77b02f97ef0834"><div class="ttname"><a href="group__xml.html#gac937a83a82258806ef77b02f97ef0834">operations_load_xml</a></div><div class="ttdeci">void operations_load_xml(const char *filename, std::vector&lt; float &gt; *operations)</div><div class="ttdef"><b>Definition:</b> <a href="parsing_8cpp_source.html#l00133">parsing.cpp:133</a></div></div>
+<p class="definition">Definition at line <a class="el" href="parsing_8cpp_source.html#l00336">336</a> of file <a class="el" href="parsing_8cpp_source.html">parsing.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  337</span>{</div>
+<div class="line"><span class="lineno">  338</span>  tinyxml2::XMLDocument doc;</div>
+<div class="line"><span class="lineno">  339</span> </div>
+<div class="line"><span class="lineno">  340</span>  <span class="keywordflow">if</span> (doc.LoadFile (filename))</div>
+<div class="line"><span class="lineno">  341</span>    {</div>
+<div class="line"><span class="lineno">  342</span>      fprintf (stderr, <span class="stringliteral">&quot;%s&quot;</span>, doc.ErrorName ());</div>
+<div class="line"><span class="lineno">  343</span>      exit (1);</div>
+<div class="line"><span class="lineno">  344</span>    }</div>
+<div class="line"><span class="lineno">  345</span> </div>
+<div class="line"><span class="lineno">  346</span>  std::vector&lt;float&gt; operations;</div>
+<div class="line"><span class="lineno">  347</span>  <a class="code hl_function" href="group__xml.html#gac937a83a82258806ef77b02f97ef0834">operations_load_xml</a> (filename, &amp;operations);</div>
+<div class="line"><span class="lineno">  348</span>  <a class="code hl_function" href="group___printing.html#ga8ad288d2a741eb3d632a6d3e005c4347">operations_print</a> (&amp;operations);</div>
+<div class="line"><span class="lineno">  349</span>}</div>
+<div class="ttc" id="agroup___printing_html_ga8ad288d2a741eb3d632a6d3e005c4347"><div class="ttname"><a href="group___printing.html#ga8ad288d2a741eb3d632a6d3e005c4347">operations_print</a></div><div class="ttdeci">void operations_print(std::vector&lt; float &gt; *operations)</div><div class="ttdef"><b>Definition:</b> <a href="parsing_8cpp_source.html#l00252">parsing.cpp:252</a></div></div>
+<div class="ttc" id="agroup__xml_html_gac937a83a82258806ef77b02f97ef0834"><div class="ttname"><a href="group__xml.html#gac937a83a82258806ef77b02f97ef0834">operations_load_xml</a></div><div class="ttdeci">void operations_load_xml(const char *filename, std::vector&lt; float &gt; *operations)</div><div class="ttdef"><b>Definition:</b> <a href="parsing_8cpp_source.html#l00202">parsing.cpp:202</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="parsing_8cpp_source.html#l00133">operations_load_xml()</a>, and <a class="el" href="parsing_8cpp_source.html#l00175">operations_print()</a>.</p>
+<p class="reference">References <a class="el" href="parsing_8cpp_source.html#l00202">operations_load_xml()</a>, and <a class="el" href="parsing_8cpp_source.html#l00252">operations_print()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="parsing_8cpp_source.html#l00269">main2()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="parsing_8cpp_source.html#l00351">main2()</a>.</p>
 <div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="parsing_8cpp_a46d5190ea0181cc625329b5221e9dce9_cgraph.svg" width="100%" height="423"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="parsing_8cpp_a46d5190ea0181cc625329b5221e9dce9_cgraph.svg" width="100%" height="435"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 </div>
 <div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-2-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
@@ -238,178 +230,22 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="parsing_8cpp_source.html#l00269">269</a> of file <a class="el" href="parsing_8cpp_source.html">parsing.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  269</span>                                  {</div>
-<div class="line"><span class="lineno">  270</span>    <a class="code hl_function" href="parsing_8cpp.html#a46d5190ea0181cc625329b5221e9dce9">example1</a>(<span class="stringliteral">&quot;test_files_phase_2/test_2_3.xml&quot;</span>);</div>
-<div class="line"><span class="lineno">  271</span>    <span class="keywordflow">return</span> 1;</div>
-<div class="line"><span class="lineno">  272</span>}</div>
-<div class="ttc" id="aparsing_8cpp_html_a46d5190ea0181cc625329b5221e9dce9"><div class="ttname"><a href="parsing_8cpp.html#a46d5190ea0181cc625329b5221e9dce9">example1</a></div><div class="ttdeci">void example1(const char *filename)</div><div class="ttdef"><b>Definition:</b> <a href="parsing_8cpp_source.html#l00256">parsing.cpp:256</a></div></div>
+<p class="definition">Definition at line <a class="el" href="parsing_8cpp_source.html#l00351">351</a> of file <a class="el" href="parsing_8cpp_source.html">parsing.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  352</span>{</div>
+<div class="line"><span class="lineno">  353</span>  <a class="code hl_function" href="parsing_8cpp.html#a46d5190ea0181cc625329b5221e9dce9">example1</a> (<span class="stringliteral">&quot;test_files_phase_2/test_2_3.xml&quot;</span>);</div>
+<div class="line"><span class="lineno">  354</span>  <span class="keywordflow">return</span> 1;</div>
+<div class="line"><span class="lineno">  355</span>}</div>
+<div class="ttc" id="aparsing_8cpp_html_a46d5190ea0181cc625329b5221e9dce9"><div class="ttname"><a href="parsing_8cpp.html#a46d5190ea0181cc625329b5221e9dce9">example1</a></div><div class="ttdeci">void example1(const char *filename)</div><div class="ttdef"><b>Definition:</b> <a href="parsing_8cpp_source.html#l00336">parsing.cpp:336</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="parsing_8cpp_source.html#l00256">example1()</a>.</p>
+<p class="reference">References <a class="el" href="parsing_8cpp_source.html#l00336">example1()</a>.</p>
 <div id="dynsection-3" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-3-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-3-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-3-content" class="dyncontent" style="display:none;">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="parsing_8cpp_a75c2e94360fa8e46050b4f66fe444d6b_cgraph.svg" width="100%" height="423"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
-</div>
-
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="parsing_8cpp_a75c2e94360fa8e46050b4f66fe444d6b_cgraph.svg" width="100%" height="435"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
-<h2 class="groupheader">Variable Documentation</h2>
-<a id="ae38a16613cd19c49df2093ac07acf4c2" name="ae38a16613cd19c49df2093ac07acf4c2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae38a16613cd19c49df2093ac07acf4c2">&#9670;&nbsp;</a></span>BEGIN_GROUP</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">const int BEGIN_GROUP = 5</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="parsing_8cpp_source.html#l00011">11</a> of file <a class="el" href="parsing_8cpp_source.html">parsing.cpp</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="parsing_8cpp_source.html#l00175">operations_print()</a>, and <a class="el" href="parsing_8cpp_source.html#l00112">operations_push_groups()</a>.</p>
-
-</div>
-</div>
-<a id="aa439df53a792b65747b73e9941f8f54a" name="aa439df53a792b65747b73e9941f8f54a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa439df53a792b65747b73e9941f8f54a">&#9670;&nbsp;</a></span>END_GROUP</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">const int END_GROUP = 6</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="parsing_8cpp_source.html#l00012">12</a> of file <a class="el" href="parsing_8cpp_source.html">parsing.cpp</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="parsing_8cpp_source.html#l00175">operations_print()</a>, and <a class="el" href="parsing_8cpp_source.html#l00112">operations_push_groups()</a>.</p>
-
-</div>
-</div>
-<a id="aa51361de9fa3f1deb5ea0db3378699ad" name="aa51361de9fa3f1deb5ea0db3378699ad"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa51361de9fa3f1deb5ea0db3378699ad">&#9670;&nbsp;</a></span>LOAD_MODEL</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">const int LOAD_MODEL = 4</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="parsing_8cpp_source.html#l00010">10</a> of file <a class="el" href="parsing_8cpp_source.html">parsing.cpp</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="parsing_8cpp_source.html#l00175">operations_print()</a>, and <a class="el" href="parsing_8cpp_source.html#l00084">operations_push_model()</a>.</p>
-
-</div>
-</div>
-<a id="af4ae699d8cd926769e89e26cd088b2c0" name="af4ae699d8cd926769e89e26cd088b2c0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af4ae699d8cd926769e89e26cd088b2c0">&#9670;&nbsp;</a></span>ROTATE</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">const int ROTATE = 2</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="parsing_8cpp_source.html#l00008">8</a> of file <a class="el" href="parsing_8cpp_source.html">parsing.cpp</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="parsing_8cpp_source.html#l00175">operations_print()</a>, and <a class="el" href="parsing_8cpp_source.html#l00057">operations_push_transforms()</a>.</p>
-
-</div>
-</div>
-<a id="a8334f0c0c56b96debb10231b86050ead" name="a8334f0c0c56b96debb10231b86050ead"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8334f0c0c56b96debb10231b86050ead">&#9670;&nbsp;</a></span>SCALE</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">const int SCALE = 3</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="parsing_8cpp_source.html#l00009">9</a> of file <a class="el" href="parsing_8cpp_source.html">parsing.cpp</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="parsing_8cpp_source.html#l00175">operations_print()</a>, and <a class="el" href="parsing_8cpp_source.html#l00057">operations_push_transforms()</a>.</p>
-
-</div>
-</div>
-<a id="a5ca818cc3b6e31a94c8f90cd2ffe39e4" name="a5ca818cc3b6e31a94c8f90cd2ffe39e4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5ca818cc3b6e31a94c8f90cd2ffe39e4">&#9670;&nbsp;</a></span>TRANSLATE</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">const int TRANSLATE = 1</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="parsing_8cpp_source.html#l00007">7</a> of file <a class="el" href="parsing_8cpp_source.html">parsing.cpp</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="parsing_8cpp_source.html#l00175">operations_print()</a>, and <a class="el" href="parsing_8cpp_source.html#l00057">operations_push_transforms()</a>.</p>
 
 </div>
 </div>

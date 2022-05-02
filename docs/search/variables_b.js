@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['scale_0',['SCALE',['../parsing_8cpp.html#a8334f0c0c56b96debb10231b86050ead',1,'SCALE():&#160;parsing.cpp'],['../parsing_8h.html#a8334f0c0c56b96debb10231b86050ead',1,'SCALE():&#160;parsing.h']]],
-  ['sphere_1',['SPHERE',['../generator_8cpp.html#a5e4444a284dcd0e0625f94dfde200b90',1,'generator.cpp']]]
+  ['vbo_0',['VBO',['../group__engine.html#gad9a24fe28e2326cb0445791525781160',1,'engine.cpp']]],
+  ['vertices_1',['vertices',['../structmodel.html#aeda4520a3b906127f05c05c3aa6a5eea',1,'model']]]
 ];

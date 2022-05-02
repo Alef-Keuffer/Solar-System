@@ -826,47 +826,62 @@ $(document).ready(function(){initNavTree('main_8cpp_source.html',''); initResiza
 <div class="line"><a id="l00718" name="l00718"></a><span class="lineno">  718</span> </div>
 <div class="line"><a id="l00719" name="l00719"></a><span class="lineno">  719</span>}</div>
 <div class="line"><a id="l00720" name="l00720"></a><span class="lineno">  720</span> </div>
-<div class="line"><a id="l00721" name="l00721"></a><span class="lineno"><a class="line" href="main_8cpp.html#a398405351f04ca4ed39e969ff655925d">  721</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="main_8cpp.html#a398405351f04ca4ed39e969ff655925d">main2</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> **argv) {</div>
+<div class="line"><a id="l00721" name="l00721"></a><span class="lineno"><a class="line" href="main_8cpp.html#a0e663f52efbc8593793d628b4259ce9b">  721</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="main_8cpp.html#a0e663f52efbc8593793d628b4259ce9b">main2</a>() {</div>
 <div class="line"><a id="l00722" name="l00722"></a><span class="lineno">  722</span>    tinyxml2::XMLDocument doc;</div>
-<div class="line"><a id="l00723" name="l00723"></a><span class="lineno">  723</span>    doc.LoadFile(<span class="stringliteral">&quot;./test_files_phase_1/test_1_1.xml&quot;</span>);</div>
+<div class="line"><a id="l00723" name="l00723"></a><span class="lineno">  723</span>    doc.LoadFile(<span class="stringliteral">&quot;test.xml&quot;</span>);</div>
 <div class="line"><a id="l00724" name="l00724"></a><span class="lineno">  724</span> </div>
 <div class="line"><a id="l00725" name="l00725"></a><span class="lineno">  725</span>    <span class="keyword">const</span> <span class="keywordtype">float</span> title = doc.FirstChildElement(<span class="stringliteral">&quot;world&quot;</span>)-&gt;FirstChildElement(<span class="stringliteral">&quot;camera&quot;</span>)-&gt;FirstChildElement(</div>
 <div class="line"><a id="l00726" name="l00726"></a><span class="lineno">  726</span>            <span class="stringliteral">&quot;position&quot;</span>)-&gt;FloatAttribute(<span class="stringliteral">&quot;x&quot;</span>);</div>
-<div class="line"><a id="l00727" name="l00727"></a><span class="lineno">  727</span>    printf(<span class="stringliteral">&quot;%f&quot;</span>, title);</div>
-<div class="line"><a id="l00728" name="l00728"></a><span class="lineno">  728</span>    <span class="keywordflow">return</span> 1;</div>
-<div class="line"><a id="l00729" name="l00729"></a><span class="lineno">  729</span>}</div>
+<div class="line"><a id="l00727" name="l00727"></a><span class="lineno">  727</span> </div>
+<div class="line"><a id="l00728" name="l00728"></a><span class="lineno">  728</span>    <span class="keyword">const</span> <span class="keywordtype">float</span> time = doc.FirstChildElement(<span class="stringliteral">&quot;world&quot;</span>)-&gt;FirstChildElement(<span class="stringliteral">&quot;group&quot;</span>)-&gt;FirstChildElement(</div>
+<div class="line"><a id="l00729" name="l00729"></a><span class="lineno">  729</span>            <span class="stringliteral">&quot;translate&quot;</span>)-&gt;FloatAttribute(<span class="stringliteral">&quot;time&quot;</span>);</div>
 <div class="line"><a id="l00730" name="l00730"></a><span class="lineno">  730</span> </div>
-<div class="line"><a id="l00731" name="l00731"></a><span class="lineno">  731</span> </div>
-<div class="line"><a id="l00732" name="l00732"></a><span class="lineno"><a class="line" href="main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627">  732</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627">main</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> **argv) {</div>
-<div class="line"><a id="l00733" name="l00733"></a><span class="lineno">  733</span> </div>
-<div class="line"><a id="l00734" name="l00734"></a><span class="lineno">  734</span><span class="comment">// init GLUT and the window</span></div>
-<div class="line"><a id="l00735" name="l00735"></a><span class="lineno">  735</span>    glutInit(&amp;argc, argv);</div>
-<div class="line"><a id="l00736" name="l00736"></a><span class="lineno">  736</span>    glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);</div>
-<div class="line"><a id="l00737" name="l00737"></a><span class="lineno">  737</span>    glutInitWindowPosition(100, 100);</div>
-<div class="line"><a id="l00738" name="l00738"></a><span class="lineno">  738</span>    glutInitWindowSize(800, 800);</div>
-<div class="line"><a id="l00739" name="l00739"></a><span class="lineno">  739</span>    glutCreateWindow(<span class="stringliteral">&quot;proj&quot;</span>);</div>
+<div class="line"><a id="l00731" name="l00731"></a><span class="lineno">  731</span>    <span class="keyword">const</span> <span class="keywordtype">bool</span> alignAttr = doc.FirstChildElement(<span class="stringliteral">&quot;world&quot;</span>)-&gt;FirstChildElement(<span class="stringliteral">&quot;group&quot;</span>)-&gt;FirstChildElement(</div>
+<div class="line"><a id="l00732" name="l00732"></a><span class="lineno">  732</span>            <span class="stringliteral">&quot;translate&quot;</span>)-&gt;BoolAttribute(<span class="stringliteral">&quot;align&quot;</span>);</div>
+<div class="line"><a id="l00733" name="l00733"></a><span class="lineno">  733</span>    <span class="keyword">const</span> <span class="keywordtype">bool</span> alignText = doc.FirstChildElement(<span class="stringliteral">&quot;world&quot;</span>)-&gt;FirstChildElement(<span class="stringliteral">&quot;group&quot;</span>)-&gt;FirstChildElement(</div>
+<div class="line"><a id="l00734" name="l00734"></a><span class="lineno">  734</span>            <span class="stringliteral">&quot;translate&quot;</span>)-&gt;BoolText(<span class="stringliteral">&quot;align&quot;</span>);</div>
+<div class="line"><a id="l00735" name="l00735"></a><span class="lineno">  735</span> </div>
+<div class="line"><a id="l00736" name="l00736"></a><span class="lineno">  736</span>    printf(<span class="stringliteral">&quot;%f&quot;</span>, title);</div>
+<div class="line"><a id="l00737" name="l00737"></a><span class="lineno">  737</span>    <span class="keywordflow">return</span> 1;</div>
+<div class="line"><a id="l00738" name="l00738"></a><span class="lineno">  738</span>}</div>
+<div class="line"><a id="l00739" name="l00739"></a><span class="lineno">  739</span> </div>
 <div class="line"><a id="l00740" name="l00740"></a><span class="lineno">  740</span> </div>
-<div class="line"><a id="l00741" name="l00741"></a><span class="lineno">  741</span><span class="comment">// Required callback registry</span></div>
-<div class="line"><a id="l00742" name="l00742"></a><span class="lineno">  742</span>    glutDisplayFunc(<a class="code hl_function" href="main_8cpp.html#a2a96aed746d13d9b42d7888e156045f6">renderScene</a>);</div>
-<div class="line"><a id="l00743" name="l00743"></a><span class="lineno">  743</span>    glutReshapeFunc(<a class="code hl_function" href="main_8cpp.html#a33e20b37682a0492a9e95d13bef17f02">changeSize</a>);</div>
-<div class="line"><a id="l00744" name="l00744"></a><span class="lineno">  744</span> </div>
-<div class="line"><a id="l00745" name="l00745"></a><span class="lineno">  745</span><span class="comment">// Callback registration for keyboard processing</span></div>
-<div class="line"><a id="l00746" name="l00746"></a><span class="lineno">  746</span>    glutKeyboardFunc(<a class="code hl_function" href="main_8cpp.html#ac7632fff72011e8c11ae504a4596a7f7">keyboardFunc</a>);</div>
-<div class="line"><a id="l00747" name="l00747"></a><span class="lineno">  747</span>    glutSpecialFunc(<a class="code hl_function" href="main_8cpp.html#a22a15e4bdf7b2b913b6cb41cc85b0b79">processSpecialKeys</a>);</div>
-<div class="line"><a id="l00748" name="l00748"></a><span class="lineno">  748</span> </div>
-<div class="line"><a id="l00749" name="l00749"></a><span class="lineno">  749</span><span class="comment">//  OpenGL settings</span></div>
-<div class="line"><a id="l00750" name="l00750"></a><span class="lineno">  750</span>    glEnable(GL_DEPTH_TEST);</div>
-<div class="line"><a id="l00751" name="l00751"></a><span class="lineno">  751</span>    glEnable(GL_CULL_FACE);</div>
-<div class="line"><a id="l00752" name="l00752"></a><span class="lineno">  752</span>    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);</div>
+<div class="line"><a id="l00741" name="l00741"></a><span class="lineno"><a class="line" href="main_8cpp.html#aca02828d2c21e8acd8c9c384921ae964">  741</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="main_8cpp.html#aca02828d2c21e8acd8c9c384921ae964">render_pyramid</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> **argv) {</div>
+<div class="line"><a id="l00742" name="l00742"></a><span class="lineno">  742</span> </div>
+<div class="line"><a id="l00743" name="l00743"></a><span class="lineno">  743</span><span class="comment">// init GLUT and the window</span></div>
+<div class="line"><a id="l00744" name="l00744"></a><span class="lineno">  744</span>    glutInit(&amp;argc, argv);</div>
+<div class="line"><a id="l00745" name="l00745"></a><span class="lineno">  745</span>    glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);</div>
+<div class="line"><a id="l00746" name="l00746"></a><span class="lineno">  746</span>    glutInitWindowPosition(100, 100);</div>
+<div class="line"><a id="l00747" name="l00747"></a><span class="lineno">  747</span>    glutInitWindowSize(800, 800);</div>
+<div class="line"><a id="l00748" name="l00748"></a><span class="lineno">  748</span>    glutCreateWindow(<span class="stringliteral">&quot;proj&quot;</span>);</div>
+<div class="line"><a id="l00749" name="l00749"></a><span class="lineno">  749</span> </div>
+<div class="line"><a id="l00750" name="l00750"></a><span class="lineno">  750</span><span class="comment">// Required callback registry</span></div>
+<div class="line"><a id="l00751" name="l00751"></a><span class="lineno">  751</span>    glutDisplayFunc(<a class="code hl_function" href="main_8cpp.html#a2a96aed746d13d9b42d7888e156045f6">renderScene</a>);</div>
+<div class="line"><a id="l00752" name="l00752"></a><span class="lineno">  752</span>    glutReshapeFunc(<a class="code hl_function" href="main_8cpp.html#a33e20b37682a0492a9e95d13bef17f02">changeSize</a>);</div>
 <div class="line"><a id="l00753" name="l00753"></a><span class="lineno">  753</span> </div>
-<div class="line"><a id="l00754" name="l00754"></a><span class="lineno">  754</span><span class="comment">// enter GLUT&#39;s main cycle</span></div>
-<div class="line"><a id="l00755" name="l00755"></a><span class="lineno">  755</span>    glutMainLoop();</div>
-<div class="line"><a id="l00756" name="l00756"></a><span class="lineno">  756</span> </div>
-<div class="line"><a id="l00757" name="l00757"></a><span class="lineno">  757</span>    <span class="keywordflow">return</span> 1;</div>
-<div class="line"><a id="l00758" name="l00758"></a><span class="lineno">  758</span>}</div>
+<div class="line"><a id="l00754" name="l00754"></a><span class="lineno">  754</span><span class="comment">// Callback registration for keyboard processing</span></div>
+<div class="line"><a id="l00755" name="l00755"></a><span class="lineno">  755</span>    glutKeyboardFunc(<a class="code hl_function" href="main_8cpp.html#ac7632fff72011e8c11ae504a4596a7f7">keyboardFunc</a>);</div>
+<div class="line"><a id="l00756" name="l00756"></a><span class="lineno">  756</span>    glutSpecialFunc(<a class="code hl_function" href="main_8cpp.html#a22a15e4bdf7b2b913b6cb41cc85b0b79">processSpecialKeys</a>);</div>
+<div class="line"><a id="l00757" name="l00757"></a><span class="lineno">  757</span> </div>
+<div class="line"><a id="l00758" name="l00758"></a><span class="lineno">  758</span><span class="comment">//  OpenGL settings</span></div>
+<div class="line"><a id="l00759" name="l00759"></a><span class="lineno">  759</span>    glEnable(GL_DEPTH_TEST);</div>
+<div class="line"><a id="l00760" name="l00760"></a><span class="lineno">  760</span>    glEnable(GL_CULL_FACE);</div>
+<div class="line"><a id="l00761" name="l00761"></a><span class="lineno">  761</span>    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);</div>
+<div class="line"><a id="l00762" name="l00762"></a><span class="lineno">  762</span> </div>
+<div class="line"><a id="l00763" name="l00763"></a><span class="lineno">  763</span><span class="comment">// enter GLUT&#39;s main cycle</span></div>
+<div class="line"><a id="l00764" name="l00764"></a><span class="lineno">  764</span>    glutMainLoop();</div>
+<div class="line"><a id="l00765" name="l00765"></a><span class="lineno">  765</span> </div>
+<div class="line"><a id="l00766" name="l00766"></a><span class="lineno">  766</span>    <span class="keywordflow">return</span> 1;</div>
+<div class="line"><a id="l00767" name="l00767"></a><span class="lineno">  767</span>}</div>
+<div class="line"><a id="l00768" name="l00768"></a><span class="lineno">  768</span> </div>
+<div class="line"><a id="l00769" name="l00769"></a><span class="lineno"><a class="line" href="main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627">  769</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627">main</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> **argv) {</div>
+<div class="line"><a id="l00770" name="l00770"></a><span class="lineno">  770</span>  <a class="code hl_function" href="main_8cpp.html#a0e663f52efbc8593793d628b4259ce9b">main2</a>();</div>
+<div class="line"><a id="l00771" name="l00771"></a><span class="lineno">  771</span>  <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a id="l00772" name="l00772"></a><span class="lineno">  772</span>}</div>
 <div class="ttc" id="amain_8cpp_html_a05d6061a888c03cd994582410976b8c5"><div class="ttname"><a href="main_8cpp.html#a05d6061a888c03cd994582410976b8c5">globalUpStep</a></div><div class="ttdeci">float globalUpStep</div><div class="ttdef"><b>Definition:</b> <a href="main_8cpp_source.html#l00068">main.cpp:68</a></div></div>
 <div class="ttc" id="amain_8cpp_html_a0b2824a69f6ed13079d0db5cce3576e5"><div class="ttname"><a href="main_8cpp.html#a0b2824a69f6ed13079d0db5cce3576e5">DEFAULT_GLOBAL_EYE_Y</a></div><div class="ttdeci">#define DEFAULT_GLOBAL_EYE_Y</div><div class="ttdef"><b>Definition:</b> <a href="main_8cpp_source.html#l00045">main.cpp:45</a></div></div>
 <div class="ttc" id="amain_8cpp_html_a0d7ac28f9a90c72a02d5f7c6f1182be9"><div class="ttname"><a href="main_8cpp.html#a0d7ac28f9a90c72a02d5f7c6f1182be9">globalFar</a></div><div class="ttdeci">static float globalFar</div><div class="ttdef"><b>Definition:</b> <a href="main_8cpp_source.html#l00082">main.cpp:82</a></div></div>
+<div class="ttc" id="amain_8cpp_html_a0e663f52efbc8593793d628b4259ce9b"><div class="ttname"><a href="main_8cpp.html#a0e663f52efbc8593793d628b4259ce9b">main2</a></div><div class="ttdeci">int main2()</div><div class="ttdef"><b>Definition:</b> <a href="main_8cpp_source.html#l00721">main.cpp:721</a></div></div>
 <div class="ttc" id="amain_8cpp_html_a1bd69a3237cca1b346bec2ac742a0a8e"><div class="ttname"><a href="main_8cpp.html#a1bd69a3237cca1b346bec2ac742a0a8e">globalTranslateY</a></div><div class="ttdeci">float globalTranslateY</div><div class="ttdef"><b>Definition:</b> <a href="main_8cpp_source.html#l00027">main.cpp:27</a></div></div>
 <div class="ttc" id="amain_8cpp_html_a1fb94788a65c65ff8878334c0350fb78"><div class="ttname"><a href="main_8cpp.html#a1fb94788a65c65ff8878334c0350fb78">DEFAULT_GLOBAL_EYE_X</a></div><div class="ttdeci">#define DEFAULT_GLOBAL_EYE_X</div><div class="ttdef"><b>Definition:</b> <a href="main_8cpp_source.html#l00044">main.cpp:44</a></div></div>
 <div class="ttc" id="amain_8cpp_html_a20b11b1e0d9f7a43ac9a961276272c62"><div class="ttname"><a href="main_8cpp.html#a20b11b1e0d9f7a43ac9a961276272c62">globalBackgroundColorG</a></div><div class="ttdeci">float globalBackgroundColorG</div><div class="ttdef"><b>Definition:</b> <a href="main_8cpp_source.html#l00039">main.cpp:39</a></div></div>
@@ -881,9 +896,8 @@ $(document).ready(function(){initNavTree('main_8cpp_source.html',''); initResiza
 <div class="ttc" id="amain_8cpp_html_a2e8f792b2bea2085eabf137c2a5db166"><div class="ttname"><a href="main_8cpp.html#a2e8f792b2bea2085eabf137c2a5db166">globalAngleStep</a></div><div class="ttdeci">float globalAngleStep</div><div class="ttdef"><b>Definition:</b> <a href="main_8cpp_source.html#l00018">main.cpp:18</a></div></div>
 <div class="ttc" id="amain_8cpp_html_a33e20b37682a0492a9e95d13bef17f02"><div class="ttname"><a href="main_8cpp.html#a33e20b37682a0492a9e95d13bef17f02">changeSize</a></div><div class="ttdeci">void changeSize(int w, int h)</div><div class="ttdef"><b>Definition:</b> <a href="main_8cpp_source.html#l00119">main.cpp:119</a></div></div>
 <div class="ttc" id="amain_8cpp_html_a38677f95037f4575ab422e6980f920e0"><div class="ttname"><a href="main_8cpp.html#a38677f95037f4575ab422e6980f920e0">globalTranslateX</a></div><div class="ttdeci">float globalTranslateX</div><div class="ttdef"><b>Definition:</b> <a href="main_8cpp_source.html#l00026">main.cpp:26</a></div></div>
-<div class="ttc" id="amain_8cpp_html_a398405351f04ca4ed39e969ff655925d"><div class="ttname"><a href="main_8cpp.html#a398405351f04ca4ed39e969ff655925d">main2</a></div><div class="ttdeci">int main2(int argc, char **argv)</div><div class="ttdef"><b>Definition:</b> <a href="main_8cpp_source.html#l00721">main.cpp:721</a></div></div>
 <div class="ttc" id="amain_8cpp_html_a398691ab8678e504e5d144ef8f004dff"><div class="ttname"><a href="main_8cpp.html#a398691ab8678e504e5d144ef8f004dff">renderTriangleVertexSeq</a></div><div class="ttdeci">void renderTriangleVertexSeq(float *p, int n)</div><div class="ttdef"><b>Definition:</b> <a href="main_8cpp_source.html#l00108">main.cpp:108</a></div></div>
-<div class="ttc" id="amain_8cpp_html_a3c04138a5bfe5d72780bb7e82a18e627"><div class="ttname"><a href="main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627">main</a></div><div class="ttdeci">int main(int argc, char **argv)</div><div class="ttdef"><b>Definition:</b> <a href="main_8cpp_source.html#l00732">main.cpp:732</a></div></div>
+<div class="ttc" id="amain_8cpp_html_a3c04138a5bfe5d72780bb7e82a18e627"><div class="ttname"><a href="main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627">main</a></div><div class="ttdeci">int main(int argc, char **argv)</div><div class="ttdef"><b>Definition:</b> <a href="main_8cpp_source.html#l00769">main.cpp:769</a></div></div>
 <div class="ttc" id="amain_8cpp_html_a3c1e3779aa4cd498aec201b2e9568883"><div class="ttname"><a href="main_8cpp.html#a3c1e3779aa4cd498aec201b2e9568883">globalEyeY</a></div><div class="ttdeci">float globalEyeY</div><div class="ttdef"><b>Definition:</b> <a href="main_8cpp_source.html#l00060">main.cpp:60</a></div></div>
 <div class="ttc" id="amain_8cpp_html_a3dccccfb75086f82e8e8cb4b4f17a3bc"><div class="ttname"><a href="main_8cpp.html#a3dccccfb75086f82e8e8cb4b4f17a3bc">globalTranslateStep</a></div><div class="ttdeci">float globalTranslateStep</div><div class="ttdef"><b>Definition:</b> <a href="main_8cpp_source.html#l00025">main.cpp:25</a></div></div>
 <div class="ttc" id="amain_8cpp_html_a4631f01f48d2b53823f6512e10b54ad0"><div class="ttname"><a href="main_8cpp.html#a4631f01f48d2b53823f6512e10b54ad0">DEFAULT_GLOBAL_CENTER_X</a></div><div class="ttdeci">#define DEFAULT_GLOBAL_CENTER_X</div><div class="ttdef"><b>Definition:</b> <a href="main_8cpp_source.html#l00049">main.cpp:49</a></div></div>
@@ -925,6 +939,7 @@ $(document).ready(function(){initNavTree('main_8cpp_source.html',''); initResiza
 <div class="ttc" id="amain_8cpp_html_ab6e5b61214cdc09a3bc74d1d3795c5f9"><div class="ttname"><a href="main_8cpp.html#ab6e5b61214cdc09a3bc74d1d3795c5f9">drawCone</a></div><div class="ttdeci">void drawCone(float r, float height, unsigned int slices, unsigned int stacks)</div><div class="ttdef"><b>Definition:</b> <a href="main_8cpp_source.html#l00192">main.cpp:192</a></div></div>
 <div class="ttc" id="amain_8cpp_html_abf991ada5cb4710283b06356b09b0828"><div class="ttname"><a href="main_8cpp.html#abf991ada5cb4710283b06356b09b0828">globalRotateZ</a></div><div class="ttdeci">float globalRotateZ</div><div class="ttdef"><b>Definition:</b> <a href="main_8cpp_source.html#l00022">main.cpp:22</a></div></div>
 <div class="ttc" id="amain_8cpp_html_ac7632fff72011e8c11ae504a4596a7f7"><div class="ttname"><a href="main_8cpp.html#ac7632fff72011e8c11ae504a4596a7f7">keyboardFunc</a></div><div class="ttdeci">void keyboardFunc(unsigned char key, int xmouse, int ymouse)</div><div class="ttdef"><b>Definition:</b> <a href="main_8cpp_source.html#l00457">main.cpp:457</a></div></div>
+<div class="ttc" id="amain_8cpp_html_aca02828d2c21e8acd8c9c384921ae964"><div class="ttname"><a href="main_8cpp.html#aca02828d2c21e8acd8c9c384921ae964">render_pyramid</a></div><div class="ttdeci">int render_pyramid(int argc, char **argv)</div><div class="ttdef"><b>Definition:</b> <a href="main_8cpp_source.html#l00741">main.cpp:741</a></div></div>
 <div class="ttc" id="amain_8cpp_html_acfb24428dfc64308040ecbdf8b4e9756"><div class="ttname"><a href="main_8cpp.html#acfb24428dfc64308040ecbdf8b4e9756">DEFAULT_GLOBAL_ANGLE_STEP</a></div><div class="ttdeci">#define DEFAULT_GLOBAL_ANGLE_STEP</div><div class="ttdef"><b>Definition:</b> <a href="main_8cpp_source.html#l00013">main.cpp:13</a></div></div>
 <div class="ttc" id="amain_8cpp_html_ad21208759cddec6278d3dc75895ab785"><div class="ttname"><a href="main_8cpp.html#ad21208759cddec6278d3dc75895ab785">DEFAULT_GLOBAL_TRANSLATE_STEP</a></div><div class="ttdeci">#define DEFAULT_GLOBAL_TRANSLATE_STEP</div><div class="ttdef"><b>Definition:</b> <a href="main_8cpp_source.html#l00014">main.cpp:14</a></div></div>
 <div class="ttc" id="amain_8cpp_html_addd518403add69d85e781edfff4c94cc"><div class="ttname"><a href="main_8cpp.html#addd518403add69d85e781edfff4c94cc">globalRotateX</a></div><div class="ttdeci">float globalRotateX</div><div class="ttdef"><b>Definition:</b> <a href="main_8cpp_source.html#l00020">main.cpp:20</a></div></div>

@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['load_5fmodel_0',['LOAD_MODEL',['../parsing_8cpp.html#aa51361de9fa3f1deb5ea0db3378699ad',1,'LOAD_MODEL():&#160;parsing.cpp'],['../parsing_8h.html#aa51361de9fa3f1deb5ea0db3378699ad',1,'LOAD_MODEL():&#160;parsing.h']]]
+  ['mb_0',['Mb',['../curves_8cpp.html#aa24e89a6a33c157674a3620855b4aa1d',1,'Mb():&#160;curves.cpp'],['../curves_8h.html#aa24e89a6a33c157674a3620855b4aa1d',1,'Mb():&#160;curves.h']]],
+  ['mcr_1',['Mcr',['../curves_8cpp.html#a05f434afe270e6b7b2b6eacfa5923c13',1,'Mcr():&#160;curves.cpp'],['../curves_8h.html#a05f434afe270e6b7b2b6eacfa5923c13',1,'Mcr():&#160;curves.cpp']]]
 ];

@@ -163,12 +163,12 @@ Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="generator_8cpp_source.html#l00261">261</a> of file <a class="el" href="generator_8cpp_source.html">generator.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  262</span>{</div>
-<div class="line"><span class="lineno">  263</span>  <span class="keywordflow">return</span> slices * stacks * 9;</div>
-<div class="line"><span class="lineno">  264</span>}</div>
+<p class="definition">Definition at line <a class="el" href="generator_8cpp_source.html#l00264">264</a> of file <a class="el" href="generator_8cpp_source.html">generator.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  265</span>{</div>
+<div class="line"><span class="lineno">  266</span>  <span class="keywordflow">return</span> slices * stacks * 9;</div>
+<div class="line"><span class="lineno">  267</span>}</div>
 </div><!-- fragment -->
-<p class="reference">Referenced by <a class="el" href="generator_8cpp_source.html#l00266">model_cone_write()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="generator_8cpp_source.html#l00269">model_cone_write()</a>.</p>
 <div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
@@ -245,27 +245,27 @@ Functions</h2></td></tr>
 </p>
 <p >See the <a href="https://www.math3d.org/7oeSkmuns">3d model</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="generator_8cpp_source.html#l00209">209</a> of file <a class="el" href="generator_8cpp_source.html">generator.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  211</span>{</div>
-<div class="line"><span class="lineno">  212</span>  <span class="comment">/*</span></div>
-<div class="line"><span class="lineno">  213</span><span class="comment">     x = r ⋅ (h/height) ⋅ cos(θ)</span></div>
-<div class="line"><span class="lineno">  214</span><span class="comment">     y = 2 ⋅ (height + h)</span></div>
-<div class="line"><span class="lineno">  215</span><span class="comment">     z = r ⋅ (h/height) ⋅ sin(θ)</span></div>
-<div class="line"><span class="lineno">  216</span><span class="comment"></span> </div>
-<div class="line"><span class="lineno">  217</span><span class="comment">     r ≥ 0</span></div>
-<div class="line"><span class="lineno">  218</span><span class="comment">     θ ∈ {-π      + i⋅s : s = 2π/slices      ∧ i ∈ {0,...,slices} }</span></div>
-<div class="line"><span class="lineno">  219</span><span class="comment">     h ∈ {-height + j⋅t : t =  height/stacks ∧ j ∈ {0,...,stacks} }</span></div>
-<div class="line"><span class="lineno">  220</span><span class="comment"></span> </div>
-<div class="line"><span class="lineno">  221</span><span class="comment">     check:</span></div>
-<div class="line"><span class="lineno">  222</span><span class="comment">         1. https://www.math3d.org/7oeSkmuns</span></div>
-<div class="line"><span class="lineno">  223</span><span class="comment">   */</span></div>
-<div class="line"><span class="lineno">  224</span>  <a class="code hl_function" href="group__points.html#ga127fb8e56ec1e38505cdd9ea6efa2cf6">points_vertex</a> (r * h / height * cos (theta), height + h, r * h / height * sin (theta), pos, points);</div>
-<div class="line"><span class="lineno">  225</span>}</div>
-<div class="ttc" id="agroup__points_html_ga127fb8e56ec1e38505cdd9ea6efa2cf6"><div class="ttname"><a href="group__points.html#ga127fb8e56ec1e38505cdd9ea6efa2cf6">points_vertex</a></div><div class="ttdeci">void points_vertex(const float x, const float y, const float z, unsigned int *pos, float points[])</div><div class="ttdef"><b>Definition:</b> <a href="generator_8cpp_source.html#l00029">generator.cpp:29</a></div></div>
+<p class="definition">Definition at line <a class="el" href="generator_8cpp_source.html#l00212">212</a> of file <a class="el" href="generator_8cpp_source.html">generator.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  214</span>{</div>
+<div class="line"><span class="lineno">  215</span>  <span class="comment">/*</span></div>
+<div class="line"><span class="lineno">  216</span><span class="comment">     x = r ⋅ (h/height) ⋅ cos(θ)</span></div>
+<div class="line"><span class="lineno">  217</span><span class="comment">     y = 2 ⋅ (height + h)</span></div>
+<div class="line"><span class="lineno">  218</span><span class="comment">     z = r ⋅ (h/height) ⋅ sin(θ)</span></div>
+<div class="line"><span class="lineno">  219</span><span class="comment"></span> </div>
+<div class="line"><span class="lineno">  220</span><span class="comment">     r ≥ 0</span></div>
+<div class="line"><span class="lineno">  221</span><span class="comment">     θ ∈ {-π      + i⋅s : s = 2π/slices      ∧ i ∈ {0,...,slices} }</span></div>
+<div class="line"><span class="lineno">  222</span><span class="comment">     h ∈ {-height + j⋅t : t =  height/stacks ∧ j ∈ {0,...,stacks} }</span></div>
+<div class="line"><span class="lineno">  223</span><span class="comment"></span> </div>
+<div class="line"><span class="lineno">  224</span><span class="comment">     check:</span></div>
+<div class="line"><span class="lineno">  225</span><span class="comment">         1. https://www.math3d.org/7oeSkmuns</span></div>
+<div class="line"><span class="lineno">  226</span><span class="comment">   */</span></div>
+<div class="line"><span class="lineno">  227</span>  <a class="code hl_function" href="group__points.html#ga127fb8e56ec1e38505cdd9ea6efa2cf6">points_vertex</a> (r * h / height * cos (theta), height + h, r * h / height * sin (theta), pos, points);</div>
+<div class="line"><span class="lineno">  228</span>}</div>
+<div class="ttc" id="agroup__points_html_ga127fb8e56ec1e38505cdd9ea6efa2cf6"><div class="ttname"><a href="group__points.html#ga127fb8e56ec1e38505cdd9ea6efa2cf6">points_vertex</a></div><div class="ttdeci">void points_vertex(const float x, const float y, const float z, unsigned int *pos, float points[])</div><div class="ttdef"><b>Definition:</b> <a href="generator_8cpp_source.html#l00032">generator.cpp:32</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="generator_8cpp_source.html#l00029">points_vertex()</a>.</p>
+<p class="reference">References <a class="el" href="generator_8cpp_source.html#l00032">points_vertex()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="generator_8cpp_source.html#l00227">model_cone_vertices()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="generator_8cpp_source.html#l00230">model_cone_vertices()</a>.</p>
 <div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-2-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-2-summary" class="dynsummary" style="display:block;">
@@ -327,43 +327,43 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="generator_8cpp_source.html#l00227">227</a> of file <a class="el" href="generator_8cpp_source.html">generator.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  229</span>{</div>
-<div class="line"><span class="lineno">  230</span> </div>
-<div class="line"><span class="lineno">  231</span>  <span class="keyword">const</span> <span class="keywordtype">float</span> s = 2.0f * (float) M_PI / (<span class="keywordtype">float</span>) slices;</div>
-<div class="line"><span class="lineno">  232</span>  <span class="keyword">const</span> <span class="keywordtype">float</span> t = height / (float) stacks;</div>
-<div class="line"><span class="lineno">  233</span>  <span class="keyword">const</span> <span class="keywordtype">float</span> theta = -M_PI;</div>
-<div class="line"><span class="lineno">  234</span>  <span class="keyword">const</span> <span class="keywordtype">float</span> h = -height;</div>
-<div class="line"><span class="lineno">  235</span> </div>
-<div class="line"><span class="lineno">  236</span>  <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> pos = 0;</div>
-<div class="line"><span class="lineno">  237</span> </div>
-<div class="line"><span class="lineno">  238</span>  <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> m = 1; m &lt;= slices; m++)</div>
-<div class="line"><span class="lineno">  239</span>    {</div>
-<div class="line"><span class="lineno">  240</span>      <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> n = 1; n &lt;= stacks; n++)</div>
-<div class="line"><span class="lineno">  241</span>        {</div>
-<div class="line"><span class="lineno">  242</span>          <span class="keywordtype">float</span> i = (float) m;</div>
-<div class="line"><span class="lineno">  243</span>          <span class="keywordtype">float</span> j = (float) n;</div>
-<div class="line"><span class="lineno">  244</span> </div>
-<div class="line"><span class="lineno">  245</span>          <span class="comment">//base</span></div>
-<div class="line"><span class="lineno">  246</span>          <a class="code hl_function" href="group__points.html#ga127fb8e56ec1e38505cdd9ea6efa2cf6">points_vertex</a> (0, 0, 0, &amp;pos, points); <span class="comment">//O</span></div>
-<div class="line"><span class="lineno">  247</span>          <a class="code hl_function" href="group__cone.html#ga30e1b3df23e49e33821bac9f6bf679db">model_cone_vertex</a> (r, height, theta + s * (i - 1), h, &amp;pos, points); <span class="comment">//P1</span></div>
-<div class="line"><span class="lineno">  248</span>          <a class="code hl_function" href="group__cone.html#ga30e1b3df23e49e33821bac9f6bf679db">model_cone_vertex</a> (r, height, theta + s * i, h, &amp;pos, points); <span class="comment">//P2</span></div>
-<div class="line"><span class="lineno">  249</span> </div>
-<div class="line"><span class="lineno">  250</span>          <a class="code hl_function" href="group__cone.html#ga30e1b3df23e49e33821bac9f6bf679db">model_cone_vertex</a> (r, height, theta + s * i, h + t * (j - 1), &amp;pos, points); <span class="comment">// P2</span></div>
-<div class="line"><span class="lineno">  251</span>          <a class="code hl_function" href="group__cone.html#ga30e1b3df23e49e33821bac9f6bf679db">model_cone_vertex</a> (r, height, theta + s * (i - 1), h + t * j, &amp;pos, points); <span class="comment">// P1&#39;</span></div>
-<div class="line"><span class="lineno">  252</span>          <a class="code hl_function" href="group__cone.html#ga30e1b3df23e49e33821bac9f6bf679db">model_cone_vertex</a> (r, height, theta + s * i, h + t * j, &amp;pos, points); <span class="comment">//P2&#39;</span></div>
-<div class="line"><span class="lineno">  253</span> </div>
-<div class="line"><span class="lineno">  254</span>          <a class="code hl_function" href="group__cone.html#ga30e1b3df23e49e33821bac9f6bf679db">model_cone_vertex</a> (r, height, theta + s * i, h + t * (j - 1), &amp;pos, points); <span class="comment">// P2</span></div>
-<div class="line"><span class="lineno">  255</span>          <a class="code hl_function" href="group__cone.html#ga30e1b3df23e49e33821bac9f6bf679db">model_cone_vertex</a> (r, height, theta + s * (i - 1), h + t * (j - 1), &amp;pos, points); <span class="comment">// P1</span></div>
-<div class="line"><span class="lineno">  256</span>          <a class="code hl_function" href="group__cone.html#ga30e1b3df23e49e33821bac9f6bf679db">model_cone_vertex</a> (r, height, theta + s * (i - 1), h + t * j, &amp;pos, points); <span class="comment">// P1&#39;</span></div>
-<div class="line"><span class="lineno">  257</span>        }</div>
-<div class="line"><span class="lineno">  258</span>    }</div>
-<div class="line"><span class="lineno">  259</span>}</div>
-<div class="ttc" id="agroup__cone_html_ga30e1b3df23e49e33821bac9f6bf679db"><div class="ttname"><a href="group__cone.html#ga30e1b3df23e49e33821bac9f6bf679db">model_cone_vertex</a></div><div class="ttdeci">static void model_cone_vertex(const float r, const float height, const float theta, const float h, unsigned int *pos, float *points)</div><div class="ttdef"><b>Definition:</b> <a href="generator_8cpp_source.html#l00209">generator.cpp:209</a></div></div>
+<p class="definition">Definition at line <a class="el" href="generator_8cpp_source.html#l00230">230</a> of file <a class="el" href="generator_8cpp_source.html">generator.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  232</span>{</div>
+<div class="line"><span class="lineno">  233</span> </div>
+<div class="line"><span class="lineno">  234</span>  <span class="keyword">const</span> <span class="keywordtype">float</span> s = 2.0f * (float) M_PI / (<span class="keywordtype">float</span>) slices;</div>
+<div class="line"><span class="lineno">  235</span>  <span class="keyword">const</span> <span class="keywordtype">float</span> t = height / (float) stacks;</div>
+<div class="line"><span class="lineno">  236</span>  <span class="keyword">const</span> <span class="keywordtype">float</span> theta = -M_PI;</div>
+<div class="line"><span class="lineno">  237</span>  <span class="keyword">const</span> <span class="keywordtype">float</span> h = -height;</div>
+<div class="line"><span class="lineno">  238</span> </div>
+<div class="line"><span class="lineno">  239</span>  <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> pos = 0;</div>
+<div class="line"><span class="lineno">  240</span> </div>
+<div class="line"><span class="lineno">  241</span>  <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> m = 1; m &lt;= slices; m++)</div>
+<div class="line"><span class="lineno">  242</span>    {</div>
+<div class="line"><span class="lineno">  243</span>      <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> n = 1; n &lt;= stacks; n++)</div>
+<div class="line"><span class="lineno">  244</span>        {</div>
+<div class="line"><span class="lineno">  245</span>          <span class="keywordtype">float</span> i = (float) m;</div>
+<div class="line"><span class="lineno">  246</span>          <span class="keywordtype">float</span> j = (float) n;</div>
+<div class="line"><span class="lineno">  247</span> </div>
+<div class="line"><span class="lineno">  248</span>          <span class="comment">//base</span></div>
+<div class="line"><span class="lineno">  249</span>          <a class="code hl_function" href="group__points.html#ga127fb8e56ec1e38505cdd9ea6efa2cf6">points_vertex</a> (0, 0, 0, &amp;pos, points); <span class="comment">//O</span></div>
+<div class="line"><span class="lineno">  250</span>          <a class="code hl_function" href="group__cone.html#ga30e1b3df23e49e33821bac9f6bf679db">model_cone_vertex</a> (r, height, theta + s * (i - 1), h, &amp;pos, points); <span class="comment">//P1</span></div>
+<div class="line"><span class="lineno">  251</span>          <a class="code hl_function" href="group__cone.html#ga30e1b3df23e49e33821bac9f6bf679db">model_cone_vertex</a> (r, height, theta + s * i, h, &amp;pos, points); <span class="comment">//P2</span></div>
+<div class="line"><span class="lineno">  252</span> </div>
+<div class="line"><span class="lineno">  253</span>          <a class="code hl_function" href="group__cone.html#ga30e1b3df23e49e33821bac9f6bf679db">model_cone_vertex</a> (r, height, theta + s * i, h + t * (j - 1), &amp;pos, points); <span class="comment">// P2</span></div>
+<div class="line"><span class="lineno">  254</span>          <a class="code hl_function" href="group__cone.html#ga30e1b3df23e49e33821bac9f6bf679db">model_cone_vertex</a> (r, height, theta + s * (i - 1), h + t * j, &amp;pos, points); <span class="comment">// P1&#39;</span></div>
+<div class="line"><span class="lineno">  255</span>          <a class="code hl_function" href="group__cone.html#ga30e1b3df23e49e33821bac9f6bf679db">model_cone_vertex</a> (r, height, theta + s * i, h + t * j, &amp;pos, points); <span class="comment">//P2&#39;</span></div>
+<div class="line"><span class="lineno">  256</span> </div>
+<div class="line"><span class="lineno">  257</span>          <a class="code hl_function" href="group__cone.html#ga30e1b3df23e49e33821bac9f6bf679db">model_cone_vertex</a> (r, height, theta + s * i, h + t * (j - 1), &amp;pos, points); <span class="comment">// P2</span></div>
+<div class="line"><span class="lineno">  258</span>          <a class="code hl_function" href="group__cone.html#ga30e1b3df23e49e33821bac9f6bf679db">model_cone_vertex</a> (r, height, theta + s * (i - 1), h + t * (j - 1), &amp;pos, points); <span class="comment">// P1</span></div>
+<div class="line"><span class="lineno">  259</span>          <a class="code hl_function" href="group__cone.html#ga30e1b3df23e49e33821bac9f6bf679db">model_cone_vertex</a> (r, height, theta + s * (i - 1), h + t * j, &amp;pos, points); <span class="comment">// P1&#39;</span></div>
+<div class="line"><span class="lineno">  260</span>        }</div>
+<div class="line"><span class="lineno">  261</span>    }</div>
+<div class="line"><span class="lineno">  262</span>}</div>
+<div class="ttc" id="agroup__cone_html_ga30e1b3df23e49e33821bac9f6bf679db"><div class="ttname"><a href="group__cone.html#ga30e1b3df23e49e33821bac9f6bf679db">model_cone_vertex</a></div><div class="ttdeci">static void model_cone_vertex(const float r, const float height, const float theta, const float h, unsigned int *pos, float *points)</div><div class="ttdef"><b>Definition:</b> <a href="generator_8cpp_source.html#l00212">generator.cpp:212</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="generator_8cpp_source.html#l00209">model_cone_vertex()</a>, and <a class="el" href="generator_8cpp_source.html#l00029">points_vertex()</a>.</p>
+<p class="reference">References <a class="el" href="generator_8cpp_source.html#l00212">model_cone_vertex()</a>, and <a class="el" href="generator_8cpp_source.html#l00032">points_vertex()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="generator_8cpp_source.html#l00266">model_cone_write()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="generator_8cpp_source.html#l00269">model_cone_write()</a>.</p>
 <div id="dynsection-4" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-4-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-4-summary" class="dynsummary" style="display:block;">
@@ -425,20 +425,20 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="generator_8cpp_source.html#l00266">266</a> of file <a class="el" href="generator_8cpp_source.html">generator.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  268</span>{</div>
-<div class="line"><span class="lineno">  269</span>  <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> nVertices = <a class="code hl_function" href="group__cone.html#ga5b5f2964e2c773066361e823daa9211d">model_cone_nVertices</a> (stacks, slices);</div>
-<div class="line"><span class="lineno">  270</span>  <span class="keywordtype">float</span> points[3 * nVertices];</div>
-<div class="line"><span class="lineno">  271</span>  <a class="code hl_function" href="group__cone.html#gaed448e670b4c08b141dc96be90fc444a">model_cone_vertices</a> (radius, height, slices, stacks, points);</div>
-<div class="line"><span class="lineno">  272</span>  <a class="code hl_function" href="group__points.html#gab0ec2dac46ec7ee44911b8bcf1e9dad0">points_write</a> (filepath, nVertices, points);</div>
-<div class="line"><span class="lineno">  273</span>}</div>
-<div class="ttc" id="agroup__cone_html_ga5b5f2964e2c773066361e823daa9211d"><div class="ttname"><a href="group__cone.html#ga5b5f2964e2c773066361e823daa9211d">model_cone_nVertices</a></div><div class="ttdeci">static unsigned int model_cone_nVertices(const unsigned int stacks, const unsigned int slices)</div><div class="ttdef"><b>Definition:</b> <a href="generator_8cpp_source.html#l00261">generator.cpp:261</a></div></div>
-<div class="ttc" id="agroup__cone_html_gaed448e670b4c08b141dc96be90fc444a"><div class="ttname"><a href="group__cone.html#gaed448e670b4c08b141dc96be90fc444a">model_cone_vertices</a></div><div class="ttdeci">void model_cone_vertices(const float r, const float height, const unsigned int slices, const unsigned int stacks, float points[])</div><div class="ttdef"><b>Definition:</b> <a href="generator_8cpp_source.html#l00227">generator.cpp:227</a></div></div>
-<div class="ttc" id="agroup__points_html_gab0ec2dac46ec7ee44911b8bcf1e9dad0"><div class="ttname"><a href="group__points.html#gab0ec2dac46ec7ee44911b8bcf1e9dad0">points_write</a></div><div class="ttdeci">void points_write(const char *filename, const unsigned int nVertices, const float points[])</div><div class="ttdef"><b>Definition:</b> <a href="generator_8cpp_source.html#l00037">generator.cpp:37</a></div></div>
+<p class="definition">Definition at line <a class="el" href="generator_8cpp_source.html#l00269">269</a> of file <a class="el" href="generator_8cpp_source.html">generator.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  271</span>{</div>
+<div class="line"><span class="lineno">  272</span>  <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> nVertices = <a class="code hl_function" href="group__cone.html#ga5b5f2964e2c773066361e823daa9211d">model_cone_nVertices</a> (stacks, slices);</div>
+<div class="line"><span class="lineno">  273</span>  <span class="keywordtype">float</span> points[3 * nVertices];</div>
+<div class="line"><span class="lineno">  274</span>  <a class="code hl_function" href="group__cone.html#gaed448e670b4c08b141dc96be90fc444a">model_cone_vertices</a> (radius, height, slices, stacks, points);</div>
+<div class="line"><span class="lineno">  275</span>  <a class="code hl_function" href="group__points.html#gab0ec2dac46ec7ee44911b8bcf1e9dad0">points_write</a> (filepath, nVertices, points);</div>
+<div class="line"><span class="lineno">  276</span>}</div>
+<div class="ttc" id="agroup__cone_html_ga5b5f2964e2c773066361e823daa9211d"><div class="ttname"><a href="group__cone.html#ga5b5f2964e2c773066361e823daa9211d">model_cone_nVertices</a></div><div class="ttdeci">static unsigned int model_cone_nVertices(const unsigned int stacks, const unsigned int slices)</div><div class="ttdef"><b>Definition:</b> <a href="generator_8cpp_source.html#l00264">generator.cpp:264</a></div></div>
+<div class="ttc" id="agroup__cone_html_gaed448e670b4c08b141dc96be90fc444a"><div class="ttname"><a href="group__cone.html#gaed448e670b4c08b141dc96be90fc444a">model_cone_vertices</a></div><div class="ttdeci">void model_cone_vertices(const float r, const float height, const unsigned int slices, const unsigned int stacks, float points[])</div><div class="ttdef"><b>Definition:</b> <a href="generator_8cpp_source.html#l00230">generator.cpp:230</a></div></div>
+<div class="ttc" id="agroup__points_html_gab0ec2dac46ec7ee44911b8bcf1e9dad0"><div class="ttname"><a href="group__points.html#gab0ec2dac46ec7ee44911b8bcf1e9dad0">points_write</a></div><div class="ttdeci">void points_write(const char *filename, const unsigned int nVertices, const float points[])</div><div class="ttdef"><b>Definition:</b> <a href="generator_8cpp_source.html#l00040">generator.cpp:40</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="generator_8cpp_source.html#l00261">model_cone_nVertices()</a>, <a class="el" href="generator_8cpp_source.html#l00227">model_cone_vertices()</a>, and <a class="el" href="generator_8cpp_source.html#l00037">points_write()</a>.</p>
+<p class="reference">References <a class="el" href="generator_8cpp_source.html#l00264">model_cone_nVertices()</a>, <a class="el" href="generator_8cpp_source.html#l00230">model_cone_vertices()</a>, and <a class="el" href="generator_8cpp_source.html#l00040">points_write()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="generator_8cpp_source.html#l00549">main()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="generator_8cpp_source.html#l00451">main()</a>.</p>
 <div id="dynsection-6" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-6-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-6-summary" class="dynsummary" style="display:block;">

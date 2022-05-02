@@ -169,15 +169,15 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="generator_8cpp_source.html#l00029">29</a> of file <a class="el" href="generator_8cpp_source.html">generator.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   30</span>{</div>
-<div class="line"><span class="lineno">   31</span>  points[*pos] = x;</div>
-<div class="line"><span class="lineno">   32</span>  points[*pos + 1] = y;</div>
-<div class="line"><span class="lineno">   33</span>  points[*pos + 2] = z;</div>
-<div class="line"><span class="lineno">   34</span>  *pos += 3;</div>
-<div class="line"><span class="lineno">   35</span>}</div>
+<p class="definition">Definition at line <a class="el" href="generator_8cpp_source.html#l00032">32</a> of file <a class="el" href="generator_8cpp_source.html">generator.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   33</span>{</div>
+<div class="line"><span class="lineno">   34</span>  points[*pos] = x;</div>
+<div class="line"><span class="lineno">   35</span>  points[*pos + 1] = y;</div>
+<div class="line"><span class="lineno">   36</span>  points[*pos + 2] = z;</div>
+<div class="line"><span class="lineno">   37</span>  *pos += 3;</div>
+<div class="line"><span class="lineno">   38</span>}</div>
 </div><!-- fragment -->
-<p class="reference">Referenced by <a class="el" href="generator_8cpp_source.html#l00209">model_cone_vertex()</a>, <a class="el" href="generator_8cpp_source.html#l00227">model_cone_vertices()</a>, <a class="el" href="generator_8cpp_source.html#l00106">model_cube_vertices()</a>, <a class="el" href="generator_8cpp_source.html#l00058">model_plane_vertices()</a>, and <a class="el" href="generator_8cpp_source.html#l00281">model_sphere_vertex()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="generator_8cpp_source.html#l00212">model_cone_vertex()</a>, <a class="el" href="generator_8cpp_source.html#l00230">model_cone_vertices()</a>, <a class="el" href="generator_8cpp_source.html#l00109">model_cube_vertices()</a>, <a class="el" href="generator_8cpp_source.html#l00061">model_plane_vertices()</a>, and <a class="el" href="generator_8cpp_source.html#l00284">model_sphere_vertex()</a>.</p>
 <div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
@@ -220,28 +220,29 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="generator_8cpp_source.html#l00037">37</a> of file <a class="el" href="generator_8cpp_source.html">generator.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   38</span>{</div>
-<div class="line"><span class="lineno">   39</span>  FILE *fp = fopen (filename, <span class="stringliteral">&quot;w&quot;</span>);</div>
-<div class="line"><span class="lineno">   40</span>  <span class="keywordflow">if</span> (!fp)</div>
-<div class="line"><span class="lineno">   41</span>    {</div>
-<div class="line"><span class="lineno">   42</span>      fprintf (stderr, <span class="stringliteral">&quot;failed to open file&quot;</span>);</div>
-<div class="line"><span class="lineno">   43</span>      exit (1);</div>
-<div class="line"><span class="lineno">   44</span>    }</div>
-<div class="line"><span class="lineno">   45</span> </div>
-<div class="line"><span class="lineno">   46</span>  fwrite (&amp;nVertices, <span class="keyword">sizeof</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>), 1, fp);</div>
-<div class="line"><span class="lineno">   47</span>  fwrite (points, 3 * <span class="keyword">sizeof</span> (<span class="keywordtype">float</span>), nVertices, fp);</div>
+<p class="definition">Definition at line <a class="el" href="generator_8cpp_source.html#l00040">40</a> of file <a class="el" href="generator_8cpp_source.html">generator.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   41</span>{</div>
+<div class="line"><span class="lineno">   42</span>  FILE *fp = fopen (filename, <span class="stringliteral">&quot;w&quot;</span>);</div>
+<div class="line"><span class="lineno">   43</span>  <span class="keywordflow">if</span> (!fp)</div>
+<div class="line"><span class="lineno">   44</span>    {</div>
+<div class="line"><span class="lineno">   45</span>      fprintf (stderr, <span class="stringliteral">&quot;failed to open file&quot;</span>);</div>
+<div class="line"><span class="lineno">   46</span>      exit (1);</div>
+<div class="line"><span class="lineno">   47</span>    }</div>
 <div class="line"><span class="lineno">   48</span> </div>
-<div class="line"><span class="lineno">   49</span>  fclose (fp);</div>
-<div class="line"><span class="lineno">   50</span>}</div>
+<div class="line"><span class="lineno">   49</span>  fwrite (&amp;nVertices, <span class="keyword">sizeof</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>), 1, fp);</div>
+<div class="line"><span class="lineno">   50</span>  fwrite (points, 3 * <span class="keyword">sizeof</span> (<span class="keywordtype">float</span>), nVertices, fp);</div>
+<div class="line"><span class="lineno">   51</span> </div>
+<div class="line"><span class="lineno">   52</span>  fclose (fp);</div>
+<div class="line"><span class="lineno">   53</span>}</div>
 </div><!-- fragment -->
-<p class="reference">Referenced by <a class="el" href="generator_8cpp_source.html#l00266">model_cone_write()</a>, <a class="el" href="generator_8cpp_source.html#l00180">model_cube_write()</a>, <a class="el" href="generator_8cpp_source.html#l00095">model_plane_write()</a>, and <a class="el" href="generator_8cpp_source.html#l00536">model_sphere_write()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="generator_8cpp_source.html#l00411">model_bezier_write()</a>, <a class="el" href="generator_8cpp_source.html#l00269">model_cone_write()</a>, <a class="el" href="generator_8cpp_source.html#l00183">model_cube_write()</a>, <a class="el" href="generator_8cpp_source.html#l00098">model_plane_write()</a>, and <a class="el" href="generator_8cpp_source.html#l00438">model_sphere_write()</a>.</p>
 <div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-2-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-2-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-2-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="group__points_gab0ec2dac46ec7ee44911b8bcf1e9dad0_icgraph.svg" width="419" height="190"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__points_gab0ec2dac46ec7ee44911b8bcf1e9dad0_icgraph.svg" width="419" height="240"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>
