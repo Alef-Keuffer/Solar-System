@@ -30,7 +30,7 @@
  * ⟨scaling⟩ ::= ⟨SCALE⟩⟨float⟩⟨float⟩⟨float⟩
  * ⟨texture⟩ ::= ⟨TEXTURE⟩ ⟨number of characters⟩ ⟨char⟩⁺
  * ⟨color⟩   ::= ( ⟨DIFFUSE⟩ | ⟨AMBIENT⟩ | ⟨SPECULAR⟩ | ⟨EMISSIVE⟩ ) ⟨color_spec⟩ | ⟨SHININESS⟩ ⟨float ∈ [0, 128]⟩
- *      ⟨color_spec⟩ ::= ⟨red⟩ | ⟨green⟩ | ⟨blue⟩
+ *      ⟨color_spec⟩ ::= ⟨red⟩⟨green⟩⟨blue⟩
  *          NOTE: ⟨color_spec⟩ ∈ {0,...,255}
  * ⟨light⟩ ::= ⟨point⟩ | ⟨directional⟩ | ⟨spotlight⟩
  *      ⟨point⟩ ::= ⟨vec3f⟩
