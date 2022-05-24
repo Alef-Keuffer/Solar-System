@@ -183,16 +183,16 @@ void env_load_defaults ()
 /*! @addtogroup modelEngine
  * @{*/
 typedef struct model {
-  GLuint vbo;
-  GLuint normals;
-  GLsizei nVertices;
+  GLuint vbo{};
+  GLuint normals{};
+  GLsizei nVertices{};
   struct {
     vec3 diffuse;
     vec3 ambient;
     vec3 emissive;
     vec3 specular;
     uint shininess;
-  } material;
+  } material{};
   // 0 default value means it's optional with 0 meaning it's not being used by a particular model.
   GLuint tbo = 0; // texture buffer object
   GLuint tc = 0; // texture coordinates
@@ -200,15 +200,6 @@ typedef struct model {
 
 static std::vector<Model> globalModels;
 static std::vector<float> globalOperations;
-static bool operations_hasBeenInitialized = false;
-
-struct modelVerticesInfo {
-  float *vertices;
-  GLsizei nVertices;
-  float *normals;
-  bool hasTexture = false;
-  float *textureCoordinates;
-};
 
 Model allocModel (const char *path)
 {
@@ -261,35 +252,7 @@ void renderModel (Model model)
   glBindBuffer (GL_ARRAY_BUFFER, 0); //unbind
 }
 
-void renderAllModels ()
-{
-  for (auto & globalModel : globalModels)
-    {
-      renderModel (globalModel);
-    }
-}
-
-size_t readModelToBuffer (const char *path, float *p, unsigned int n)
-{
-  FILE *fp = fopen (path, "r");
-  size_t r = fread (p, sizeof (float), n, fp);
-  fclose (fp);
-  return r;
-}
 //!@} end of group modelEngine
-
-void renderTriangleVertexSeq (float *p, unsigned int nVertices)
-{
-  if (!nVertices % 3)
-    {
-      fprintf (stderr, "Number of coordinates is not divisible by 3");
-      exit (-1);
-    }
-  glBegin (GL_TRIANGLES);
-  for (unsigned int i = 0; i < nVertices; i += 3)
-    glVertex3f (p[i], p[i + 1], p[i + 2]);
-  glEnd ();
-}
 
 void changeSize (int w, int h)
 {
