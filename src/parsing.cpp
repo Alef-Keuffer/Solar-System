@@ -14,7 +14,7 @@
  *
  * ⟨grouping⟩ ::= ⟨BEGIN_GROUP⟩⟨elem⟩⁺⟨END_GROUP⟩
  *
- * ⟨elem⟩ ::= ⟨transformation⟩ | ⟨model_loading⟩ | ⟨texture⟩ | ⟨grouping⟩
+ * ⟨elem⟩ ::= ⟨transformation⟩ | ⟨model_loading⟩ | ⟨texture⟩ | ⟨color⟩ | ⟨grouping⟩
  *
  * ⟨transformation⟩ ::= ⟨translation⟩ | ⟨rotation⟩ | ⟨scaling⟩
  * ⟨translation⟩ ::= ⟨simple_translation⟩ | ⟨extended_translation⟩
@@ -29,6 +29,9 @@
  *      ⟨extended_rotation⟩ ::= ⟨EXTENDED_ROTATE⟩⟨vec3f⟩
  * ⟨scaling⟩ ::= ⟨SCALE⟩⟨float⟩⟨float⟩⟨float⟩
  * ⟨texture⟩ ::= ⟨TEXTURE⟩ ⟨number of characters⟩ ⟨char⟩⁺
+ * ⟨color⟩   ::= ( ⟨DIFFUSE⟩ | ⟨AMBIENT⟩ | ⟨SPECULAR⟩ | ⟨EMISSIVE⟩ ) ⟨color_spec⟩ | ⟨SHININESS⟩ ⟨float ∈ [0, 128]⟩
+ *      ⟨color_spec⟩ ::= ⟨red⟩ | ⟨green⟩ | ⟨blue⟩
+ *          NOTE: ⟨color_spec⟩ ∈ {0,...,255}
  *
  * ⟨model_loading⟩ ::= ⟨LOAD_MODEL⟩ ⟨number of characters⟩ ⟨char⟩⁺
  *      ⟨number of characters⟩ ::= <int>
