@@ -20,9 +20,6 @@
 #include "parsing.h"
 #include "curves.h"
 
-/* Required!
-We probably don't need all this brings into scope, but it's not relevant.
-*/
 using std::vector, std::tuple;
 using glm::mat4, glm::vec4, glm::vec3, glm::cross;
 
