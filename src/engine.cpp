@@ -189,7 +189,18 @@ void env_load_defaults ()
  * @{*/
 typedef struct model {
   GLuint vbo;
-  unsigned int nVertices;
+  GLuint normals;
+  GLsizei nVertices;
+  struct {
+    vec3 diffuse;
+    vec3 ambient;
+    vec3 emissive;
+    vec3 specular;
+    uint shininess;
+  } material;
+  // 0 default value means it's optional with 0 meaning it's not being used by a particular model.
+  GLuint tbo = 0; // texture buffer object
+  GLuint tc = 0; // texture coordinates
 } *Model;
 
 static std::vector<Model> globalModels;
@@ -416,7 +427,6 @@ void operations_render (std::vector<float> *operations)
                       fprintf (stderr, "Failed malloc of model\n");
                       exit (1);
                     }
-
 
                   glGenBuffers (1, &model->vbo);
                   glBindBuffer (GL_ARRAY_BUFFER, model->vbo);
