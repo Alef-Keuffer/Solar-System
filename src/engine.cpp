@@ -58,8 +58,6 @@ glGenBuffer will place a buffer object name for VBO mode (no index) in this vari
 Each model needs an index, so there must be a globally accessible vector for all models.
 */
 vector<GLuint> vbo_indices (100);
-unsigned int VBO;
-
 
 /*! @addtogroup camera
  * @{*/
