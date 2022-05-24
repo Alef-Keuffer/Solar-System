@@ -14,7 +14,7 @@
  *
  * ⟨grouping⟩ ::= ⟨BEGIN_GROUP⟩⟨elem⟩⁺⟨END_GROUP⟩
  *
- * ⟨elem⟩ ::= ⟨transformation⟩ | ⟨model_loading⟩ | <grouping>
+ * ⟨elem⟩ ::= ⟨transformation⟩ | ⟨model_loading⟩ | ⟨grouping⟩
  *
  * ⟨transformation⟩ ::= ⟨translation⟩ | ⟨rotation⟩ | ⟨scaling⟩
  * ⟨translation⟩ ::= ⟨simple_translation⟩ | ⟨extended_translation⟩
