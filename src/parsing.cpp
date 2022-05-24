@@ -31,11 +31,12 @@
  * ⟨texture⟩ ::= ⟨TEXTURE⟩ ⟨number of characters⟩ ⟨char⟩⁺
  * ⟨color⟩   ::= ( ⟨DIFFUSE⟩ | ⟨AMBIENT⟩ | ⟨SPECULAR⟩ | ⟨EMISSIVE⟩ ) ⟨color_spec⟩ | ⟨SHININESS⟩ ⟨float ∈ [0, 128]⟩
  *      ⟨color_spec⟩ ::= ⟨red⟩⟨green⟩⟨blue⟩
- *          NOTE: ⟨color_spec⟩ ∈ {0,...,255}
+ *          ⟨red⟩,⟨green⟩,⟨blue⟩ ::= ⟨float⟩ ∈ {0,...,255}
  * ⟨light⟩ ::= ⟨point⟩ | ⟨directional⟩ | ⟨spotlight⟩
  *      ⟨point⟩ ::= ⟨vec3f⟩
  *      ⟨directional⟩ ::= ⟨vec3f⟩
- *      ⟨spotlight⟩ ::= ⟨vec3f⟩⟨vec3f⟩⟨cutoff ∈ [0,90] ∪ {180}⟩
+ *      ⟨spotlight⟩ ::= ⟨vec3f⟩⟨vec3f⟩⟨cutoff⟩
+ *          ⟨cutoff⟩ ::= ⟨float⟩ ∈ [0,90] ∪ {180}
  * ⟨model_loading⟩ ::= ⟨LOAD_MODEL⟩ ⟨number of characters⟩ ⟨char⟩⁺
  *      ⟨number of characters⟩ ::= <int>
  *
