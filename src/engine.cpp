@@ -24,7 +24,8 @@
 /* Required!
 We probably don't need all this brings into scope, but it's not relevant.
 */
-using namespace std;
+using std::vector;
+using glm::mat4, glm::vec4, glm::vec3, glm::cross;
 
 /*rotation*/
 const unsigned int DEFAULT_GLOBAL_ANGLE_STEP = 16;
@@ -112,7 +113,35 @@ static float globalFOV = DEFAULT_GLOBAL_FOV;
 static float globalNear = DEFAULT_GLOBAL_NEAR;
 static float globalFar = DEFAULT_GLOBAL_FAR;
 //!@} end of group projection
-//!@} end of group camera
+
+/*! @addtogroup spherical
+ * @{ */
+double DEFAULT_GLOBAL_RADIUS = 1;
+double DEFAULT_GLOBAL_AZIMUTH = 0;
+double DEFAULT_GLOBAL_ELEVATION = 0;
+
+double globalRadius = DEFAULT_GLOBAL_RADIUS;
+double globalAzimuth = DEFAULT_GLOBAL_AZIMUTH;
+double globalElevation = DEFAULT_GLOBAL_ELEVATION;
+bool globalMouseLeftButton = false;
+
+void spherical2Cartesian (double radius, double elevation, double azimuth, double *x, double *y, double *z)
+{
+
+  *x = radius * cos (elevation) * sin (azimuth) + globalCenterX;
+  *y = radius * sin (elevation) + globalCenterY;
+  *z = radius * cos (elevation) * cos (azimuth) + globalCenterZ;
+}
+
+void cartesian2Spherical (double x, double y, double z, double *radius, double *azimuth, double *elevation)
+{
+  *radius = abs (sqrt (pow (x, 2) + pow (y, 2) + pow (z, 2)));
+  *elevation = asin (y / (*radius));
+  *azimuth = asin (x / (*radius * cos (*elevation)));
+}
+
+//! @} end of group spherical
+//! @} end of group camera
 
 void env_load_defaults ()
 {
@@ -421,22 +450,19 @@ void draw_axes ()
   /*draw absolute (before any transformation) axes*/
   glBegin (GL_LINES);
   /*X-axis in red*/
-  glColor3f (1.0f, 0.0f, 0.0f);
-  glVertex3f (
-      -100.0f, 0.0f, 0.0f);
-  glVertex3f (100.0f, 0.0f, 0.0f);
+  glColor3f (1, 0, 0);
+  glVertex3f (100, 0, 0);
+  glVertex3f (-100, 0, 0);
 
   /*Y-Axis in Green*/
-  glColor3f (0.0f, 1.0f, 0.0f);
-  glVertex3f (0.0f,
-              -100.0f, 0.0f);
-  glVertex3f (0.0f, 100.0f, 0.0f);
+  glColor3f (0, 1, 0);
+  glVertex3f (0, 100, 0);
+  glVertex3f (0, -100, 0);
 
   /*Z-Axis in Blue*/
-  glColor3f (0.0f, 0.0f, 1.0f);
-  glVertex3f (0.0f, 0.0f,
-              -100.0f);
-  glVertex3f (0.0f, 0.0f, 100.0f);
+  glColor3f (0, 0, 1);
+  glVertex3f (0, 0, 100);
+  glVertex3f (0, 0, -100);
   glColor3d (1, 1, 1);
   glEnd ();
   /*end of draw absolute (before any transformation) axes*/
@@ -450,6 +476,22 @@ void redisplay ()
   glutPostRedisplay ();
 }
 
+void renderGreenPlane ()
+{
+  glColor3f (0.2f, 0.8f, 0.2f);
+  glBegin (GL_TRIANGLES);
+  glVertex3f (100.0f, 0, -100.0f);
+  glVertex3f (-100.0f, 0, -100.0f);
+  glVertex3f (-100.0f, 0, 100.0f);
+
+  glVertex3f (100.0f, 0, -100.0f);
+  glVertex3f (-100.0f, 0, 100.0f);
+  glVertex3f (100.0f, 0, 100.0f);
+  glEnd ();
+  glColor3f (1, 1, 1);
+}
+
+int timebase = 0, frame = 0;
 void renderScene ()
 {
   float fps;
@@ -462,6 +504,8 @@ void renderScene ()
   // helps in avoiding rounding mistakes, discards old matrix, read more
   glLoadIdentity ();
 
+  /*draw absolute (before any transformation) axes*/
+  draw_axes ();
 
   // set the camera
   gluLookAt (globalEyeX, globalEyeY, globalEyeZ,
@@ -742,8 +786,41 @@ void mouseFunc (int button, int state, int x, int y)
         {
           if (state == GLUT_DOWN)
             {
-              globalEyeX = x;
-              globalEyeZ = y;
+              int window_width = glutGet (GLUT_WINDOW_WIDTH);
+              int window_height = glutGet (GLUT_WINDOW_HEIGHT);
+
+              GLbyte color[4];
+              GLfloat depth;
+              GLuint index;
+
+              //glReadPixels (x, window_height - y - 1, 1, 1, GL_RGBA, GL_UNSIGNED_BYTE, color);
+              glReadPixels (x, window_height - y - 1, 1, 1, GL_DEPTH_COMPONENT, GL_FLOAT, &depth);
+              //glReadPixels (x, window_height - y - 1, 1, 1, GL_STENCIL_INDEX, GL_UNSIGNED_INT, &index);
+
+              double ox, oy, oz;
+
+              double model[16];
+              glGetDoublev (GL_MODELVIEW_MATRIX, model);
+              double proj[16];
+              glGetDoublev (GL_PROJECTION_MATRIX, proj);
+              int view[4];
+              glGetIntegerv (GL_VIEWPORT, view);
+              gluUnProject (x, window_height - y - 1, depth,
+                            model,
+                            proj,
+                            view,
+                            &ox, &oy, &oz);
+              fprintf (stderr, "%d %d\n", x, y);
+              //globalTranslateX = -ox;
+              //globalTranslateZ = -oz;
+              /*cartesian2Spherical (ox, globalEyeY, oz,
+                                   &globalRadius, &globalAzimuth, &globalElevation);*/
+              //              globalTranslateX = ox;
+              //              globalTranslateZ = oz;
+              globalCenterX = ox;
+              globalCenterZ = oz;
+
+              fprintf (stderr, "%f %f %f\n", ox, oy, oz);
             }
         }
     }
@@ -813,8 +890,8 @@ void engine_run (int argc, char **argv)
   //  OpenGL settings
   glEnable (GL_DEPTH_TEST);
   glEnableClientState (GL_VERTEX_ARRAY);
-  glEnable (GL_CULL_FACE);
-  glPolygonMode (GL_FRONT, GL_LINE);
+  // glEnable (GL_CULL_FACE);
+  glPolygonMode (GL_FRONT_AND_BACK, GL_LINE);
 
   // enter GLUT's main cycle
   glewInit ();
