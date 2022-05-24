@@ -210,9 +210,12 @@ static bool operations_hasBeenInitialized = false;
 struct modelVerticesInfo {
   float *vertices;
   GLsizei nVertices;
+  float *normals;
+  bool hasTexture = false;
+  float *textureCoordinates;
 };
 
-modelVerticesInfo modelVertices (const char *path)
+Model allocModel (const char *path)
 {
   FILE *fp = fopen (path, "r");
   if (!fp)
@@ -222,13 +225,31 @@ modelVerticesInfo modelVertices (const char *path)
     }
 
   GLsizei nVertices;
-  fread (&nVertices, sizeof (nVertices), 1, fp);
-  float *modelBuf = (float *) malloc (3 * nVertices * sizeof (float));
+  fread (&nVertices, sizeof (float), 1, fp);
 
+  auto *modelBuf = (float *) malloc (3 * nVertices * sizeof (float));
   fread (modelBuf, 3 * sizeof (float), nVertices, fp);
+
+  //fread (normalsArray, 3 * sizeof (float), nVertices, fp);
+  //fread (textureCoordinatesArray, 2 * sizeof (float), nVertices, fp);
+
   fclose (fp);
 
-  return modelVerticesInfo{modelBuf,nVertices};
+  auto model = (Model) malloc (sizeof (Model));
+  if (model == nullptr)
+    {
+      fprintf (stderr, "Failed malloc of model\n");
+      exit (1);
+    }
+
+  glGenBuffers (1, &model->vbo);
+  glBindBuffer (GL_ARRAY_BUFFER, model->vbo);
+  model->nVertices = nVertices;
+  glBufferData (GL_ARRAY_BUFFER, (GLsizei)sizeof (float) * 3 * model->nVertices, modelBuf, GL_STATIC_DRAW);
+  glBindBuffer (GL_ARRAY_BUFFER, 0); //unbind
+  free (modelBuf);
+
+  return model;
 }
 
 void renderModel (Model model)
@@ -421,22 +442,7 @@ void operations_render (std::vector<float> *operations)
 
                   modelName[j] = '\0';
 
-                  Model model = (Model) malloc (sizeof (Model));
-                  if (model == NULL)
-                    {
-                      fprintf (stderr, "Failed malloc of model\n");
-                      exit (1);
-                    }
-
-                  glGenBuffers (1, &model->vbo);
-                  glBindBuffer (GL_ARRAY_BUFFER, model->vbo);
-                  modelVerticesInfo model_vertices_info = modelVertices(modelName);
-                  model->nVertices = model_vertices_info.nVertices;
-                  glBufferData (GL_ARRAY_BUFFER, sizeof (float) * 3 * model->nVertices, model_vertices_info.vertices, GL_STATIC_DRAW);
-                  glBindBuffer (GL_ARRAY_BUFFER, 0); //unbind
-                  free (model_vertices_info.vertices);
-
-                  globalModels.push_back (model);
+                  globalModels.push_back (allocModel(modelName));
                 }
 
               renderModel (globalModels[model_num]);
