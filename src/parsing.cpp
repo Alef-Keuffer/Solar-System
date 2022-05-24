@@ -29,10 +29,10 @@
  *      ⟨extended_rotation⟩ ::= ⟨EXTENDED_ROTATE⟩⟨vec3f⟩
  * ⟨scaling⟩ ::= ⟨SCALE⟩⟨float⟩⟨float⟩⟨float⟩
  * ⟨texture⟩ ::= ⟨TEXTURE⟩ ⟨number of characters⟩ ⟨char⟩⁺
- * ⟨color⟩   ::= ( ⟨DIFFUSE⟩ | ⟨AMBIENT⟩ | ⟨SPECULAR⟩ | ⟨EMISSIVE⟩ ) ⟨color_vec3f⟩ | ⟨SHININESS⟩ ⟨cutoff⟩
+ * ⟨color⟩   ::= ( ⟨DIFFUSE⟩ | ⟨AMBIENT⟩ | ⟨SPECULAR⟩ | ⟨EMISSIVE⟩ ) ⟨color_vec3f⟩ | ⟨SHININESS⟩ ⟨shininess_float⟩
  *      ⟨color_vec3f⟩ ::= ⟨red⟩⟨green⟩⟨blue⟩
  *          ⟨red⟩,⟨green⟩,⟨blue⟩ ::= ⟨float⟩ ∈ {0,...,255}
- *      ⟨cutoff⟩ ::= ⟨float⟩ ∈ [0, 128]
+ *      ⟨shininess_float⟩ ::= ⟨float⟩ ∈ [0, 128]
  * ⟨light⟩ ::= ⟨point⟩ | ⟨directional⟩ | ⟨spotlight⟩
  *      ⟨point⟩ ::= ⟨vec3f⟩
  *      ⟨directional⟩ ::= ⟨vec3f⟩
