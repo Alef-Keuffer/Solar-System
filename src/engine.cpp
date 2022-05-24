@@ -10,17 +10,15 @@
 
 #endif
 
-#include <tinyxml2.h>
-#include <stdio.h>
+#include <cstdio>
 #include <vector>
+#include <cmath>
+#include <tuple>
+
+#include <glm/glm.hpp>
 
 #include "parsing.h"
-
-#include <cmath>
 #include "curves.h"
-#include <glm/glm.hpp>
-#include <iostream>
-#include <tuple>
 
 /* Required!
 We probably don't need all this brings into scope, but it's not relevant.
