@@ -20,11 +20,12 @@
 #include "curves.h"
 #include <glm/glm.hpp>
 #include <iostream>
+#include <tuple>
 
 /* Required!
 We probably don't need all this brings into scope, but it's not relevant.
 */
-using std::vector;
+using std::vector, std::tuple;
 using glm::mat4, glm::vec4, glm::vec3, glm::cross;
 
 /*rotation*/
@@ -49,15 +50,6 @@ static float globalScaleX = 1;
 static float globalScaleY = 1;
 static float globalScaleZ = 1;
 
-/*
-VBO related variables.
-*/
-
-/*
-glGenBuffer will place a buffer object name for VBO mode (no index) in this variable.
-Each model needs an index, so there must be a globally accessible vector for all models.
-*/
-vector<GLuint> vbo_indices (100);
 
 /*! @addtogroup camera
  * @{*/
@@ -196,7 +188,7 @@ void env_load_defaults ()
 /*! @addtogroup modelEngine
  * @{*/
 typedef struct model {
-  float *vertices;
+  GLuint vbo;
   unsigned int nVertices;
 } *Model;
 
@@ -204,36 +196,31 @@ static std::vector<Model> globalModels;
 static std::vector<float> globalOperations;
 static bool operations_hasBeenInitialized = false;
 
-Model allocModel (const char *path)
+struct modelVerticesInfo {
+  float *vertices;
+  GLsizei nVertices;
+};
+
+modelVerticesInfo modelVertices (const char *path)
 {
   FILE *fp = fopen (path, "r");
   if (!fp)
     {
       fprintf (stderr, "failed to open model: %s\n", path);
-      exit (1);
+      exit (EXIT_FAILURE);
     }
 
-  unsigned int nVertices;
-  fread (&nVertices, sizeof (unsigned int), 1, fp);
+  GLsizei nVertices;
+  fread (&nVertices, sizeof (nVertices), 1, fp);
   float *modelBuf = (float *) malloc (3 * nVertices * sizeof (float));
 
   fread (modelBuf, 3 * sizeof (float), nVertices, fp);
   fclose (fp);
 
-  Model model = (Model) malloc (sizeof (Model));
-  if (model == NULL)
-    {
-      fprintf (stderr, "Failed loading model\n");
-      exit (1);
-    }
-
-  model->nVertices = nVertices;
-  model->vertices = modelBuf;
-
-  return model;
+  return modelVerticesInfo{modelBuf,nVertices};
 }
 
-void renderModel (Model model, GLuint vbo_ix)
+void renderModel (Model model)
 {
   if (!model->nVertices % 3)
     {
@@ -241,7 +228,7 @@ void renderModel (Model model, GLuint vbo_ix)
       exit (1);
     }
 
-  glBindBuffer (GL_ARRAY_BUFFER, vbo_ix);
+  glBindBuffer (GL_ARRAY_BUFFER, model->vbo);
   glVertexPointer (3, GL_FLOAT, 0, 0);
   glDrawArrays (GL_TRIANGLES, 0, model->nVertices);
   glBindBuffer (GL_ARRAY_BUFFER, 0); //unbind
@@ -249,9 +236,9 @@ void renderModel (Model model, GLuint vbo_ix)
 
 void renderAllModels ()
 {
-  for (int i = 0; i < globalModels.size (); i++)
+  for (auto & globalModel : globalModels)
     {
-      renderModel (globalModels[i], vbo_indices[i]);
+      renderModel (globalModel);
     }
 }
 
@@ -421,19 +408,29 @@ void operations_render (std::vector<float> *operations)
                   for (j = 0; j < stringSize; j++)
                     modelName[j] = (char) operations->at (i + 2 + j);
 
-                  modelName[j] = 0;
+                  modelName[j] = '\0';
 
-                  globalModels.push_back (allocModel (modelName));
-                  glGenBuffers (1, &vbo_indices[model_num]);
-                  glBindBuffer (GL_ARRAY_BUFFER, vbo_indices[model_num]);
-                  Model m = globalModels.back ();
-                  glBufferData (GL_ARRAY_BUFFER, sizeof (float) * 3 * m->nVertices, m->vertices, GL_STATIC_DRAW);
+                  Model model = (Model) malloc (sizeof (Model));
+                  if (model == NULL)
+                    {
+                      fprintf (stderr, "Failed malloc of model\n");
+                      exit (1);
+                    }
+
+
+                  glGenBuffers (1, &model->vbo);
+                  glBindBuffer (GL_ARRAY_BUFFER, model->vbo);
+                  modelVerticesInfo model_vertices_info = modelVertices(modelName);
+                  model->nVertices = model_vertices_info.nVertices;
+                  glBufferData (GL_ARRAY_BUFFER, sizeof (float) * 3 * model->nVertices, model_vertices_info.vertices, GL_STATIC_DRAW);
                   glBindBuffer (GL_ARRAY_BUFFER, 0); //unbind
-                  free (m->vertices);
+                  free (model_vertices_info.vertices);
+
+                  globalModels.push_back (model);
                 }
 
-              renderModel (globalModels[model_num], vbo_indices[model_num]);
-              model_num++;
+              renderModel (globalModels[model_num]);
+              ++model_num;
               i += stringSize + 1; //just to be explicit
               continue;
             }
