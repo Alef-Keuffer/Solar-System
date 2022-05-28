@@ -16,10 +16,14 @@ enum {
   EXTENDED_TRANSLATE,
   EXTENDED_ROTATE,
   TEXTURE,
+  color_start,
   DIFFUSE,
   AMBIENT,
   SPECULAR,
   EMISSIVE,
-  SHININESS
+  SHININESS,
+  color_end,
 };
+
+typedef unsigned char operation_t;
 #endif //PROJ_PARSING_H

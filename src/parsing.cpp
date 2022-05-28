@@ -54,7 +54,10 @@
 /*! @addtogroup Transforms
  * @{*/
 
-void operations_push_transform_attributes (tinyxml2::XMLElement *transform, std::vector<float> *operations)
+using std::vector;
+using tinyxml2::XMLElement;
+
+void operations_push_transform_attributes (const XMLElement *transform, std::vector<float> *operations)
 {
   if (!transform)
     return;
@@ -69,7 +72,7 @@ void operations_push_transform_attributes (tinyxml2::XMLElement *transform, std:
 }
 
 void
-operations_push_extended_translate_attributes (tinyxml2::XMLElement *extended_translate, std::vector<float> *operations)
+operations_push_extended_translate_attributes (const XMLElement *extended_translate, std::vector<float> *operations)
 {
   if (!extended_translate)
     {
@@ -94,7 +97,7 @@ operations_push_extended_translate_attributes (tinyxml2::XMLElement *extended_tr
     operations->at (index_of_number_of_points) = number_of_points;
 }
 
-void operations_push_transformation (tinyxml2::XMLElement *transformation, std::vector<float> *operations)
+void operations_push_transformation (const XMLElement *transformation, vector<float> *operations)
 {
   const char *transform_name = transformation->Value ();
 
@@ -135,7 +138,7 @@ void operations_push_transformation (tinyxml2::XMLElement *transformation, std::
     }
 }
 
-void operations_push_transforms (tinyxml2::XMLElement *transforms, std::vector<float> *operations)
+void operations_push_transforms (XMLElement *transforms, std::vector<float> *operations)
 {
   tinyxml2::XMLElement *transform = transforms->FirstChildElement ();
   do
@@ -148,16 +151,23 @@ void operations_push_transforms (tinyxml2::XMLElement *transforms, std::vector<f
  * @{
  */
 
-void operations_push_model (tinyxml2::XMLElement *model, std::vector<float> *operations)
+int operations_push_string_attribute (const XMLElement *element, vector<float> *operations, const char *attribute_name)
 {
-  unsigned int i = 0;
-  const char *string = model->Attribute ("file");
+  const char *element_attribute_value = element->Attribute (attribute_name);
+  int i = 0;
+  do
+    operations->push_back (element_attribute_value[i++]);
+  while (element_attribute_value[i]);
+  // add number of characters of element attribute string value
+  operations->insert (operations->end () - i, (float) i);
+  return i;
+}
 
+void operations_push_model (const XMLElement *model, vector<float> *operations)
+{
   operations->push_back (BEGIN_MODEL);
 
-  do
-    operations->push_back (string[i++]);
-  while (string[i]);
+  int i = operations_push_string_attribute (model,operations,"file");
 
   if (i <= 0)
     {
@@ -165,12 +175,44 @@ void operations_push_model (tinyxml2::XMLElement *model, std::vector<float> *ope
       exit (1);
     }
 
-  //i--;
+    //texture
+    const XMLElement *texture = model->FirstChildElement ("texture");
+    if(texture != nullptr)
+      {
+        operations->push_back (TEXTURE);
+        operations_push_string_attribute (texture,operations,"file");
+      }
+    //color (material colors)
+    const XMLElement *color = model->FirstChildElement ("color");
+    if (color != nullptr)
+      {
+        const int n = 4;
+        const char* colorNames[n] = {"diffuse", "ambient", "specular", "emissive"};
+        const operation_t colorTypes[n] = {DIFFUSE, AMBIENT, SPECULAR, EMISSIVE};
+        for (int c = 0; c < n; ++c)
+          {
+            const XMLElement *color_comp = color->FirstChildElement (colorNames[c]);
+            if (color_comp != nullptr)
+              {
+                operations->push_back (colorTypes[c]);
+                operations->insert (operations->end (),
+                                    {color_comp->FloatAttribute ("R"),
+                                     color_comp->FloatAttribute ("G"),
+                                     color_comp->FloatAttribute ("B")});
+              }
+          }
+        const XMLElement *shininess = color->FirstChildElement ("shininess");
+        if (shininess != nullptr)
+          {
+            operations->push_back (SHININESS);
+            operations->push_back (shininess->FloatAttribute ("value"));
+          }
+      }
 
-  operations->insert (operations->end () - i, (float) i);
+  operations->push_back (END_MODEL);
 }
 
-void operations_push_models (tinyxml2::XMLElement *models, std::vector<float> *operations)
+void operations_push_models (XMLElement *models, std::vector<float> *operations)
 {
   tinyxml2::XMLElement *model = models->FirstChildElement ("model");
   do
@@ -286,7 +328,7 @@ void operations_print (std::vector<float> *operations)
 
   for (i += 3; i < operations->size (); i++)
     {
-      switch ((int) operations->at (i))
+      switch ((operation_t) operations->at (i))
         {
           case ROTATE:
             fprintf (stderr,
@@ -320,26 +362,30 @@ void operations_print (std::vector<float> *operations)
             fprintf (stderr, "END_GROUP\n");
           continue;
           case BEGIN_MODEL:
-            int stringSize = (int) operations->at (i + 1);
-          char model[stringSize + 1];
+            {
+              int stringSize = (int) operations->at (i + 1);
+              char model[stringSize + 1];
 
-          int j;
-          for (j = 0; j < stringSize; j++)
-            model[j] = (char) operations->at (i + 2 + j);
+              int j;
+              for (j = 0; j < stringSize; j++)
+                model[j] = (char) operations->at (i + 2 + j);
 
-          model[j] = 0;
+              model[j] = 0;
 
-          fprintf (stderr, "BEGIN_MODEL(%s)\n", model);
-          i += 1 + j - 1; //just to be explicit
+              fprintf (stderr, "BEGIN_MODEL(%s)\n", model);
+              i += 1 + j - 1; //just to be explicit
+            }
           continue;
+          default:
+            {
+              fprintf(stderr,"Unknown opeartion %d",(int) operations->at (i));
+              exit(EXIT_FAILURE);
+            }
         }
     }
 }
 //! @} end of group Printing
 //! @} end of group Operations
-
-
-
 
 void example1 (const char *filename)
 {
