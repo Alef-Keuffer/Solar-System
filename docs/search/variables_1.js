@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['cone_0',['CONE',['../generator_8cpp.html#a6fef3a1a7a2e188e7a9ec3bfbbe73b53',1,'generator.cpp']]],
-  ['cube_1',['CUBE',['../generator_8cpp.html#a0116cf973c39f8ad007b29a64ce0dc68',1,'generator.cpp']]]
+  ['bezier_0',['BEZIER',['../generator_8cpp.html#ad6e4c65827e21bb35c9daed4a0f6fb18',1,'generator.cpp']]]
 ];

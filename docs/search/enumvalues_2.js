@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['load_5fmodel_0',['LOAD_MODEL',['../parsing_8h.html#a06fc87d81c62e9abb8790b6e5713c55ba4b3991c5c50cf91377b0a37163ae4f35',1,'parsing.h']]]
+  ['diffuse_0',['DIFFUSE',['../parsing_8h.html#adf764cbdea00d65edcd07bb9953ad2b7ae24747f0d4ad269225adda5df5feaa2c',1,'parsing.h']]],
+  ['directional_1',['DIRECTIONAL',['../parsing_8h.html#adf764cbdea00d65edcd07bb9953ad2b7ac1fbb1e261b4d7aab1e57e564a486fb0',1,'parsing.h']]]
 ];

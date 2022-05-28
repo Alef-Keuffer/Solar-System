@@ -118,6 +118,8 @@ $(document).ready(function(){initNavTree('group__xml.html',''); initResizable();
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:ga13d09c76a06c071031512828eb7bc4fa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xml.html#ga13d09c76a06c071031512828eb7bc4fa">operations_push_lights</a> (const XMLElement *lights, vector&lt; float &gt; *operations)</td></tr>
+<tr class="separator:ga13d09c76a06c071031512828eb7bc4fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gac937a83a82258806ef77b02f97ef0834"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xml.html#gac937a83a82258806ef77b02f97ef0834">operations_load_xml</a> (const char *filename, std::vector&lt; float &gt; *operations)</td></tr>
 <tr class="separator:gac937a83a82258806ef77b02f97ef0834"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -149,63 +151,70 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="parsing_8cpp_source.html#l00202">202</a> of file <a class="el" href="parsing_8cpp_source.html">parsing.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  203</span>{</div>
-<div class="line"><span class="lineno">  204</span>  tinyxml2::XMLDocument doc;</div>
-<div class="line"><span class="lineno">  205</span> </div>
-<div class="line"><span class="lineno">  206</span>  <span class="keywordflow">if</span> (doc.LoadFile (filename))</div>
-<div class="line"><span class="lineno">  207</span>    {</div>
-<div class="line"><span class="lineno">  208</span>      <span class="keywordflow">if</span> (doc.ErrorID () == tinyxml2::XML_ERROR_FILE_NOT_FOUND)</div>
-<div class="line"><span class="lineno">  209</span>        fprintf (stderr, <span class="stringliteral">&quot;Failed loading file: &#39;%s&#39;\n&quot;</span>, filename);</div>
-<div class="line"><span class="lineno">  210</span>      fprintf (stderr, <span class="stringliteral">&quot;%s&quot;</span>, doc.ErrorName ());</div>
-<div class="line"><span class="lineno">  211</span>      exit (1);</div>
-<div class="line"><span class="lineno">  212</span>    }</div>
-<div class="line"><span class="lineno">  213</span> </div>
-<div class="line"><span class="lineno">  214</span>  fprintf (stderr, <span class="stringliteral">&quot;Loaded file: &#39;%s&#39;\n&quot;</span>, filename);</div>
-<div class="line"><span class="lineno">  215</span>  tinyxml2::XMLElement *world = doc.FirstChildElement (<span class="stringliteral">&quot;world&quot;</span>);</div>
-<div class="line"><span class="lineno">  216</span> </div>
-<div class="line"><span class="lineno">  217</span>  <span class="comment">/*camera*/</span></div>
-<div class="line"><span class="lineno">  218</span>  tinyxml2::XMLElement *camera = world-&gt;FirstChildElement (<span class="stringliteral">&quot;camera&quot;</span>);</div>
-<div class="line"><span class="lineno">  219</span> </div>
-<div class="line"><span class="lineno">  220</span>  tinyxml2::XMLElement *position = camera-&gt;FirstChildElement (<span class="stringliteral">&quot;position&quot;</span>);</div>
-<div class="line"><span class="lineno">  221</span>  <a class="code hl_function" href="group___transforms.html#gaa15fe56d7980e7877845f3bc09125017">operations_push_transform_attributes</a> (position, operations);</div>
-<div class="line"><span class="lineno">  222</span> </div>
-<div class="line"><span class="lineno">  223</span>  tinyxml2::XMLElement *lookAt = camera-&gt;FirstChildElement (<span class="stringliteral">&quot;lookAt&quot;</span>);</div>
-<div class="line"><span class="lineno">  224</span>  <a class="code hl_function" href="group___transforms.html#gaa15fe56d7980e7877845f3bc09125017">operations_push_transform_attributes</a> (lookAt, operations);</div>
-<div class="line"><span class="lineno">  225</span> </div>
-<div class="line"><span class="lineno">  226</span>  tinyxml2::XMLElement *up = camera-&gt;FirstChildElement (<span class="stringliteral">&quot;up&quot;</span>);</div>
-<div class="line"><span class="lineno">  227</span>  <span class="keywordflow">if</span> (up)</div>
-<div class="line"><span class="lineno">  228</span>    <a class="code hl_function" href="group___transforms.html#gaa15fe56d7980e7877845f3bc09125017">operations_push_transform_attributes</a> (up, operations);</div>
-<div class="line"><span class="lineno">  229</span>  <span class="keywordflow">else</span></div>
-<div class="line"><span class="lineno">  230</span>    operations-&gt;insert (operations-&gt;end (), {0, 1, 0});</div>
-<div class="line"><span class="lineno">  231</span> </div>
-<div class="line"><span class="lineno">  232</span>  tinyxml2::XMLElement *projection = camera-&gt;FirstChildElement (<span class="stringliteral">&quot;projection&quot;</span>);</div>
-<div class="line"><span class="lineno">  233</span>  <span class="keywordflow">if</span> (projection)</div>
-<div class="line"><span class="lineno">  234</span>    {</div>
-<div class="line"><span class="lineno">  235</span>      operations-&gt;push_back (projection-&gt;FloatAttribute (<span class="stringliteral">&quot;fov&quot;</span>));</div>
-<div class="line"><span class="lineno">  236</span>      operations-&gt;push_back (projection-&gt;FloatAttribute (<span class="stringliteral">&quot;near&quot;</span>));</div>
-<div class="line"><span class="lineno">  237</span>      operations-&gt;push_back (projection-&gt;FloatAttribute (<span class="stringliteral">&quot;far&quot;</span>));</div>
-<div class="line"><span class="lineno">  238</span>    }</div>
-<div class="line"><span class="lineno">  239</span>  <span class="keywordflow">else</span></div>
-<div class="line"><span class="lineno">  240</span>    operations-&gt;insert (operations-&gt;end (), {60, 1, 1000});</div>
-<div class="line"><span class="lineno">  241</span>  <span class="comment">/*end of camera*/</span></div>
-<div class="line"><span class="lineno">  242</span> </div>
-<div class="line"><span class="lineno">  243</span>  <span class="comment">// groups</span></div>
-<div class="line"><span class="lineno">  244</span>  tinyxml2::XMLElement *group = world-&gt;FirstChildElement (<span class="stringliteral">&quot;group&quot;</span>);</div>
-<div class="line"><span class="lineno">  245</span>  <a class="code hl_function" href="group___groups.html#ga72c2d5ef943a89f829c08f6707e7669d">operations_push_groups</a> (group, operations);</div>
-<div class="line"><span class="lineno">  246</span>}</div>
-<div class="ttc" id="agroup___groups_html_ga72c2d5ef943a89f829c08f6707e7669d"><div class="ttname"><a href="group___groups.html#ga72c2d5ef943a89f829c08f6707e7669d">operations_push_groups</a></div><div class="ttdeci">void operations_push_groups(tinyxml2::XMLElement *group, std::vector&lt; float &gt; *operations)</div><div class="ttdef"><b>Definition:</b> <a href="parsing_8cpp_source.html#l00176">parsing.cpp:176</a></div></div>
-<div class="ttc" id="agroup___transforms_html_gaa15fe56d7980e7877845f3bc09125017"><div class="ttname"><a href="group___transforms.html#gaa15fe56d7980e7877845f3bc09125017">operations_push_transform_attributes</a></div><div class="ttdeci">void operations_push_transform_attributes(tinyxml2::XMLElement *transform, std::vector&lt; float &gt; *operations)</div><div class="ttdef"><b>Definition:</b> <a href="parsing_8cpp_source.html#l00049">parsing.cpp:49</a></div></div>
+<p class="definition">Definition at line <a class="el" href="parsing_8cpp_source.html#l00296">296</a> of file <a class="el" href="parsing_8cpp_source.html">parsing.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  297</span>{</div>
+<div class="line"><span class="lineno">  298</span>  tinyxml2::XMLDocument doc;</div>
+<div class="line"><span class="lineno">  299</span> </div>
+<div class="line"><span class="lineno">  300</span>  <span class="keywordflow">if</span> (doc.LoadFile (filename))</div>
+<div class="line"><span class="lineno">  301</span>    {</div>
+<div class="line"><span class="lineno">  302</span>      <span class="keywordflow">if</span> (doc.ErrorID () == tinyxml2::XML_ERROR_FILE_NOT_FOUND)</div>
+<div class="line"><span class="lineno">  303</span>        fprintf (stderr, <span class="stringliteral">&quot;Failed loading file: &#39;%s&#39;\n&quot;</span>, filename);</div>
+<div class="line"><span class="lineno">  304</span>      fprintf (stderr, <span class="stringliteral">&quot;%s&quot;</span>, doc.ErrorName ());</div>
+<div class="line"><span class="lineno">  305</span>      exit (1);</div>
+<div class="line"><span class="lineno">  306</span>    }</div>
+<div class="line"><span class="lineno">  307</span> </div>
+<div class="line"><span class="lineno">  308</span>  fprintf (stderr, <span class="stringliteral">&quot;Loaded file: &#39;%s&#39;\n&quot;</span>, filename);</div>
+<div class="line"><span class="lineno">  309</span>  tinyxml2::XMLElement *world = doc.FirstChildElement (<span class="stringliteral">&quot;world&quot;</span>);</div>
+<div class="line"><span class="lineno">  310</span> </div>
+<div class="line"><span class="lineno">  311</span>  <span class="comment">/*camera*/</span></div>
+<div class="line"><span class="lineno">  312</span>  tinyxml2::XMLElement *camera = world-&gt;FirstChildElement (<span class="stringliteral">&quot;camera&quot;</span>);</div>
+<div class="line"><span class="lineno">  313</span> </div>
+<div class="line"><span class="lineno">  314</span>  tinyxml2::XMLElement *position = camera-&gt;FirstChildElement (<span class="stringliteral">&quot;position&quot;</span>);</div>
+<div class="line"><span class="lineno">  315</span>  <a class="code hl_function" href="group___transforms.html#ga322e67bfbfd0f7db581a853b85fea9c1">operations_push_transform_attributes</a> (position, operations);</div>
+<div class="line"><span class="lineno">  316</span> </div>
+<div class="line"><span class="lineno">  317</span>  tinyxml2::XMLElement *lookAt = camera-&gt;FirstChildElement (<span class="stringliteral">&quot;lookAt&quot;</span>);</div>
+<div class="line"><span class="lineno">  318</span>  <a class="code hl_function" href="group___transforms.html#ga322e67bfbfd0f7db581a853b85fea9c1">operations_push_transform_attributes</a> (lookAt, operations);</div>
+<div class="line"><span class="lineno">  319</span> </div>
+<div class="line"><span class="lineno">  320</span>  tinyxml2::XMLElement *up = camera-&gt;FirstChildElement (<span class="stringliteral">&quot;up&quot;</span>);</div>
+<div class="line"><span class="lineno">  321</span>  <span class="keywordflow">if</span> (up)</div>
+<div class="line"><span class="lineno">  322</span>    <a class="code hl_function" href="group___transforms.html#ga322e67bfbfd0f7db581a853b85fea9c1">operations_push_transform_attributes</a> (up, operations);</div>
+<div class="line"><span class="lineno">  323</span>  <span class="keywordflow">else</span></div>
+<div class="line"><span class="lineno">  324</span>    operations-&gt;insert (operations-&gt;end (), {0, 1, 0});</div>
+<div class="line"><span class="lineno">  325</span> </div>
+<div class="line"><span class="lineno">  326</span>  tinyxml2::XMLElement *projection = camera-&gt;FirstChildElement (<span class="stringliteral">&quot;projection&quot;</span>);</div>
+<div class="line"><span class="lineno">  327</span>  <span class="keywordflow">if</span> (projection)</div>
+<div class="line"><span class="lineno">  328</span>    {</div>
+<div class="line"><span class="lineno">  329</span>      operations-&gt;push_back (projection-&gt;FloatAttribute (<span class="stringliteral">&quot;fov&quot;</span>));</div>
+<div class="line"><span class="lineno">  330</span>      operations-&gt;push_back (projection-&gt;FloatAttribute (<span class="stringliteral">&quot;near&quot;</span>));</div>
+<div class="line"><span class="lineno">  331</span>      operations-&gt;push_back (projection-&gt;FloatAttribute (<span class="stringliteral">&quot;far&quot;</span>));</div>
+<div class="line"><span class="lineno">  332</span>    }</div>
+<div class="line"><span class="lineno">  333</span>  <span class="keywordflow">else</span></div>
+<div class="line"><span class="lineno">  334</span>    operations-&gt;insert (operations-&gt;end (), {60, 1, 1000});</div>
+<div class="line"><span class="lineno">  335</span>  <span class="comment">/*end of camera*/</span></div>
+<div class="line"><span class="lineno">  336</span> </div>
+<div class="line"><span class="lineno">  337</span>  <span class="comment">// lights</span></div>
+<div class="line"><span class="lineno">  338</span>  <span class="keyword">const</span> XMLElement *lights = world-&gt;FirstChildElement (<span class="stringliteral">&quot;lights&quot;</span>);</div>
+<div class="line"><span class="lineno">  339</span>  <span class="keywordflow">if</span> (lights != <span class="keyword">nullptr</span>)</div>
+<div class="line"><span class="lineno">  340</span>    <a class="code hl_function" href="group__xml.html#ga13d09c76a06c071031512828eb7bc4fa">operations_push_lights</a> (lights,operations);</div>
+<div class="line"><span class="lineno">  341</span> </div>
+<div class="line"><span class="lineno">  342</span>  <span class="comment">// groups</span></div>
+<div class="line"><span class="lineno">  343</span>  tinyxml2::XMLElement *group = world-&gt;FirstChildElement (<span class="stringliteral">&quot;group&quot;</span>);</div>
+<div class="line"><span class="lineno">  344</span>  <a class="code hl_function" href="group___groups.html#ga72c2d5ef943a89f829c08f6707e7669d">operations_push_groups</a> (group, operations);</div>
+<div class="line"><span class="lineno">  345</span>}</div>
+<div class="ttc" id="agroup___groups_html_ga72c2d5ef943a89f829c08f6707e7669d"><div class="ttname"><a href="group___groups.html#ga72c2d5ef943a89f829c08f6707e7669d">operations_push_groups</a></div><div class="ttdeci">void operations_push_groups(tinyxml2::XMLElement *group, std::vector&lt; float &gt; *operations)</div><div class="ttdef"><b>Definition:</b> <a href="parsing_8cpp_source.html#l00226">parsing.cpp:226</a></div></div>
+<div class="ttc" id="agroup___transforms_html_ga322e67bfbfd0f7db581a853b85fea9c1"><div class="ttname"><a href="group___transforms.html#ga322e67bfbfd0f7db581a853b85fea9c1">operations_push_transform_attributes</a></div><div class="ttdeci">void operations_push_transform_attributes(const XMLElement *transform, std::vector&lt; float &gt; *operations)</div><div class="ttdef"><b>Definition:</b> <a href="parsing_8cpp_source.html#l00060">parsing.cpp:60</a></div></div>
+<div class="ttc" id="agroup__xml_html_ga13d09c76a06c071031512828eb7bc4fa"><div class="ttname"><a href="group__xml.html#ga13d09c76a06c071031512828eb7bc4fa">operations_push_lights</a></div><div class="ttdeci">void operations_push_lights(const XMLElement *lights, vector&lt; float &gt; *operations)</div><div class="ttdef"><b>Definition:</b> <a href="parsing_8cpp_source.html#l00253">parsing.cpp:253</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="parsing_8cpp_source.html#l00176">operations_push_groups()</a>, and <a class="el" href="parsing_8cpp_source.html#l00049">operations_push_transform_attributes()</a>.</p>
+<p class="reference">References <a class="el" href="parsing_8cpp_source.html#l00226">operations_push_groups()</a>, <a class="el" href="parsing_8cpp_source.html#l00253">operations_push_lights()</a>, and <a class="el" href="parsing_8cpp_source.html#l00060">operations_push_transform_attributes()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="parsing_8cpp_source.html#l00336">example1()</a>, and <a class="el" href="engine_8cpp_source.html#l00538">xml_load_and_set_env()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="parsing_8cpp_source.html#l00439">example1()</a>, and <a class="el" href="engine_8cpp_source.html#l00672">xml_load_and_set_env()</a>.</p>
 <div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="group__xml_gac937a83a82258806ef77b02f97ef0834_cgraph.svg" width="100%" height="406"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="group__xml_gac937a83a82258806ef77b02f97ef0834_cgraph.svg" width="100%" height="503"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 </div>
 <div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-2-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
@@ -213,6 +222,92 @@ Functions</h2></td></tr>
 </div>
 <div id="dynsection-2-content" class="dyncontent" style="display:none;">
 <div class="center"><iframe scrolling="no" frameborder="0" src="group__xml_gac937a83a82258806ef77b02f97ef0834_icgraph.svg" width="634" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="ga13d09c76a06c071031512828eb7bc4fa" name="ga13d09c76a06c071031512828eb7bc4fa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga13d09c76a06c071031512828eb7bc4fa">&#9670;&nbsp;</a></span>operations_push_lights()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void operations_push_lights </td>
+          <td>(</td>
+          <td class="paramtype">const XMLElement *&#160;</td>
+          <td class="paramname"><em>lights</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vector&lt; float &gt; *&#160;</td>
+          <td class="paramname"><em>operations</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="parsing_8cpp_source.html#l00253">253</a> of file <a class="el" href="parsing_8cpp_source.html">parsing.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  254</span>{</div>
+<div class="line"><span class="lineno">  255</span>  <span class="keyword">const</span> XMLElement *light = lights-&gt;FirstChildElement ();</div>
+<div class="line"><span class="lineno">  256</span>  <span class="keywordflow">do</span></div>
+<div class="line"><span class="lineno">  257</span>    {</div>
+<div class="line"><span class="lineno">  258</span>      <span class="keyword">const</span> <span class="keywordtype">char</span>* lightType = light-&gt;Attribute (<span class="stringliteral">&quot;type&quot;</span>);</div>
+<div class="line"><span class="lineno">  259</span>      <span class="keywordflow">if</span> (!strcmp(lightType,<span class="stringliteral">&quot;point&quot;</span>)) {</div>
+<div class="line"><span class="lineno">  260</span>        operations-&gt;push_back (<a class="code hl_enumvalue" href="parsing_8h.html#adf764cbdea00d65edcd07bb9953ad2b7a15108ccafa3232b9067f889b6156f565">POINT</a>);</div>
+<div class="line"><span class="lineno">  261</span>        operations-&gt;insert(operations-&gt;end(),</div>
+<div class="line"><span class="lineno">  262</span>                           {light-&gt;FloatAttribute (<span class="stringliteral">&quot;posX&quot;</span>),</div>
+<div class="line"><span class="lineno">  263</span>                            light-&gt;FloatAttribute (<span class="stringliteral">&quot;posY&quot;</span>),</div>
+<div class="line"><span class="lineno">  264</span>                            light-&gt;FloatAttribute (<span class="stringliteral">&quot;posZ&quot;</span>)});</div>
+<div class="line"><span class="lineno">  265</span> </div>
+<div class="line"><span class="lineno">  266</span>      }</div>
+<div class="line"><span class="lineno">  267</span>      <span class="keywordflow">else</span> <span class="keywordflow">if</span> (!strcmp(lightType,<span class="stringliteral">&quot;directional&quot;</span>))</div>
+<div class="line"><span class="lineno">  268</span>        {</div>
+<div class="line"><span class="lineno">  269</span>          operations-&gt;push_back (<a class="code hl_enumvalue" href="parsing_8h.html#adf764cbdea00d65edcd07bb9953ad2b7ac1fbb1e261b4d7aab1e57e564a486fb0">DIRECTIONAL</a>);</div>
+<div class="line"><span class="lineno">  270</span>          operations-&gt;insert(operations-&gt;end(),</div>
+<div class="line"><span class="lineno">  271</span>                             {light-&gt;FloatAttribute (<span class="stringliteral">&quot;dirX&quot;</span>),</div>
+<div class="line"><span class="lineno">  272</span>                              light-&gt;FloatAttribute (<span class="stringliteral">&quot;dirY&quot;</span>),</div>
+<div class="line"><span class="lineno">  273</span>                              light-&gt;FloatAttribute (<span class="stringliteral">&quot;dirZ&quot;</span>)});</div>
+<div class="line"><span class="lineno">  274</span>        }</div>
+<div class="line"><span class="lineno">  275</span>      <span class="keywordflow">else</span> <span class="keywordflow">if</span> (!strcmp(lightType,<span class="stringliteral">&quot;spotlight&quot;</span>))</div>
+<div class="line"><span class="lineno">  276</span>        {</div>
+<div class="line"><span class="lineno">  277</span>          operations-&gt;push_back (<a class="code hl_enumvalue" href="parsing_8h.html#adf764cbdea00d65edcd07bb9953ad2b7a3821057f47b0e1f45de81c3109f913db">SPOTLIGHT</a>);</div>
+<div class="line"><span class="lineno">  278</span>          operations-&gt;insert(operations-&gt;end(),</div>
+<div class="line"><span class="lineno">  279</span>                             {light-&gt;FloatAttribute (<span class="stringliteral">&quot;posX&quot;</span>),</div>
+<div class="line"><span class="lineno">  280</span>                              light-&gt;FloatAttribute (<span class="stringliteral">&quot;posY&quot;</span>),</div>
+<div class="line"><span class="lineno">  281</span>                              light-&gt;FloatAttribute (<span class="stringliteral">&quot;posZ&quot;</span>),</div>
+<div class="line"><span class="lineno">  282</span>                              light-&gt;FloatAttribute (<span class="stringliteral">&quot;dirX&quot;</span>),</div>
+<div class="line"><span class="lineno">  283</span>                              light-&gt;FloatAttribute (<span class="stringliteral">&quot;dirY&quot;</span>),</div>
+<div class="line"><span class="lineno">  284</span>                              light-&gt;FloatAttribute (<span class="stringliteral">&quot;dirZ&quot;</span>),</div>
+<div class="line"><span class="lineno">  285</span>                              light-&gt;FloatAttribute (<span class="stringliteral">&quot;cutoff&quot;</span>)});</div>
+<div class="line"><span class="lineno">  286</span>        }</div>
+<div class="line"><span class="lineno">  287</span>      <span class="keywordflow">else</span></div>
+<div class="line"><span class="lineno">  288</span>        {</div>
+<div class="line"><span class="lineno">  289</span>          fprintf(stderr, <span class="stringliteral">&quot;Unkown light type: %s\n&quot;</span>,lightType);</div>
+<div class="line"><span class="lineno">  290</span>          exit(EXIT_FAILURE);</div>
+<div class="line"><span class="lineno">  291</span>        }</div>
+<div class="line"><span class="lineno">  292</span>    }</div>
+<div class="line"><span class="lineno">  293</span>  <span class="keywordflow">while</span> ((light = light-&gt;NextSiblingElement ()));</div>
+<div class="line"><span class="lineno">  294</span>}</div>
+<div class="ttc" id="aparsing_8h_html_adf764cbdea00d65edcd07bb9953ad2b7a15108ccafa3232b9067f889b6156f565"><div class="ttname"><a href="parsing_8h.html#adf764cbdea00d65edcd07bb9953ad2b7a15108ccafa3232b9067f889b6156f565">POINT</a></div><div class="ttdeci">@ POINT</div><div class="ttdef"><b>Definition:</b> <a href="parsing_8h_source.html#l00024">parsing.h:24</a></div></div>
+<div class="ttc" id="aparsing_8h_html_adf764cbdea00d65edcd07bb9953ad2b7a3821057f47b0e1f45de81c3109f913db"><div class="ttname"><a href="parsing_8h.html#adf764cbdea00d65edcd07bb9953ad2b7a3821057f47b0e1f45de81c3109f913db">SPOTLIGHT</a></div><div class="ttdeci">@ SPOTLIGHT</div><div class="ttdef"><b>Definition:</b> <a href="parsing_8h_source.html#l00027">parsing.h:26</a></div></div>
+<div class="ttc" id="aparsing_8h_html_adf764cbdea00d65edcd07bb9953ad2b7ac1fbb1e261b4d7aab1e57e564a486fb0"><div class="ttname"><a href="parsing_8h.html#adf764cbdea00d65edcd07bb9953ad2b7ac1fbb1e261b4d7aab1e57e564a486fb0">DIRECTIONAL</a></div><div class="ttdeci">@ DIRECTIONAL</div><div class="ttdef"><b>Definition:</b> <a href="parsing_8h_source.html#l00025">parsing.h:25</a></div></div>
+</div><!-- fragment -->
+<p class="reference">References <a class="el" href="parsing_8h_source.html#l00025">DIRECTIONAL</a>, <a class="el" href="parsing_8h_source.html#l00024">POINT</a>, and <a class="el" href="parsing_8h_source.html#l00026">SPOTLIGHT</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="parsing_8cpp_source.html#l00296">operations_load_xml()</a>.</p>
+<div id="dynsection-3" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-3-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-3-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-3-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="group__xml_ga13d09c76a06c071031512828eb7bc4fa_icgraph.svg" width="100%" height="366"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 </div>
 
 </div>

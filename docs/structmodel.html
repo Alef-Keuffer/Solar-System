@@ -114,53 +114,233 @@ $(document).ready(function(){initNavTree('structmodel.html',''); initResizable()
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="structmodel__coll__graph.svg" width="200" height="127"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="structmodel__coll__graph.svg" width="536" height="171"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:aeda4520a3b906127f05c05c3aa6a5eea"><td class="memItemLeft" align="right" valign="top">float *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structmodel.html#aeda4520a3b906127f05c05c3aa6a5eea">vertices</a></td></tr>
-<tr class="separator:aeda4520a3b906127f05c05c3aa6a5eea"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac7a1c78e27dd01024b8fcff624b4ef20"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structmodel.html#ac7a1c78e27dd01024b8fcff624b4ef20">nVertices</a></td></tr>
-<tr class="separator:ac7a1c78e27dd01024b8fcff624b4ef20"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae122038028ab471bfa2b266189e90404"><td class="memItemLeft" align="right" valign="top">GLsizei&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structmodel.html#ae122038028ab471bfa2b266189e90404">nVertices</a> {}</td></tr>
+<tr class="separator:ae122038028ab471bfa2b266189e90404"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab22ca782aa5b8d3bd578be477ac37fe7"><td class="memItemLeft" align="right" valign="top">GLuint&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structmodel.html#ab22ca782aa5b8d3bd578be477ac37fe7">vbo</a> {}</td></tr>
+<tr class="separator:ab22ca782aa5b8d3bd578be477ac37fe7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa02ac56a51e39aa9e42df9eafd2e9302"><td class="memItemLeft" align="right" valign="top">GLuint&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structmodel.html#aa02ac56a51e39aa9e42df9eafd2e9302">normals</a> {}</td></tr>
+<tr class="separator:aa02ac56a51e39aa9e42df9eafd2e9302"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8cb7a6506a1a71331a6402636f358d2b"><td class="memItemLeft" >struct {</td></tr>
+<tr class="memitem:a172f0a5ac8ab3d458d76daa450d867a6"><td class="memItemLeft" >&#160;&#160;&#160;vec3&#160;&#160;&#160;<a class="el" href="structmodel.html#ae384c50b4554078318454461ab38c522">diffuse</a> {200,200,200}</td></tr>
+<tr class="separator:a172f0a5ac8ab3d458d76daa450d867a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac2b18cd769a72f66c83e540b8d747914"><td class="memItemLeft" >&#160;&#160;&#160;vec3&#160;&#160;&#160;<a class="el" href="structmodel.html#a00b5f9a4d259fc06bacda6d4bbb8223a">ambient</a> {50,50,50}</td></tr>
+<tr class="separator:ac2b18cd769a72f66c83e540b8d747914"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a23e3a79cc1eba59624b112a5098ded68"><td class="memItemLeft" >&#160;&#160;&#160;vec3&#160;&#160;&#160;<a class="el" href="structmodel.html#ad6a1a4207f594386be3b13f1e60b1a51">specular</a> {0,0,0}</td></tr>
+<tr class="separator:a23e3a79cc1eba59624b112a5098ded68"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a67815c5045ad0ff10f49c99ce1f21086"><td class="memItemLeft" >&#160;&#160;&#160;vec3&#160;&#160;&#160;<a class="el" href="structmodel.html#a32bd67ed225795e5016ad3606ad65d89">emissive</a> {0,0,0}</td></tr>
+<tr class="separator:a67815c5045ad0ff10f49c99ce1f21086"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abeaa89319cab67eb34dc415c92245585"><td class="memItemLeft" >&#160;&#160;&#160;GLfloat&#160;&#160;&#160;<a class="el" href="structmodel.html#a162a855dcc61ec108bda595d07a2fd8c">shininess</a> = 0</td></tr>
+<tr class="separator:abeaa89319cab67eb34dc415c92245585"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8cb7a6506a1a71331a6402636f358d2b"><td class="memItemLeft" valign="top">}&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structmodel.html#a8cb7a6506a1a71331a6402636f358d2b">material</a></td></tr>
+<tr class="separator:a8cb7a6506a1a71331a6402636f358d2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6642bf44750e13f4720fcab39d428950"><td class="memItemLeft" align="right" valign="top">GLuint&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structmodel.html#a6642bf44750e13f4720fcab39d428950">tbo</a> = 0</td></tr>
+<tr class="separator:a6642bf44750e13f4720fcab39d428950"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a32d49fddff5d56f60779be5ee6f71159"><td class="memItemLeft" align="right" valign="top">GLuint&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structmodel.html#a32d49fddff5d56f60779be5ee6f71159">tc</a> = 0</td></tr>
+<tr class="separator:a32d49fddff5d56f60779be5ee6f71159"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00200">200</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00188">188</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
 </div><h2 class="groupheader">Member Data Documentation</h2>
-<a id="ac7a1c78e27dd01024b8fcff624b4ef20" name="ac7a1c78e27dd01024b8fcff624b4ef20"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac7a1c78e27dd01024b8fcff624b4ef20">&#9670;&nbsp;</a></span>nVertices</h2>
+<a id="a00b5f9a4d259fc06bacda6d4bbb8223a" name="a00b5f9a4d259fc06bacda6d4bbb8223a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a00b5f9a4d259fc06bacda6d4bbb8223a">&#9670;&nbsp;</a></span>ambient</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">unsigned int model::nVertices</td>
+          <td class="memname">vec3 model::ambient {50,50,50}</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00202">202</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00194">194</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00209">allocModel()</a>, <a class="el" href="engine_8cpp_source.html#l00317">operations_render()</a>, and <a class="el" href="engine_8cpp_source.html#l00238">renderModel()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00298">renderModel()</a>.</p>
 
 </div>
 </div>
-<a id="aeda4520a3b906127f05c05c3aa6a5eea" name="aeda4520a3b906127f05c05c3aa6a5eea"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aeda4520a3b906127f05c05c3aa6a5eea">&#9670;&nbsp;</a></span>vertices</h2>
+<a id="ae384c50b4554078318454461ab38c522" name="ae384c50b4554078318454461ab38c522"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae384c50b4554078318454461ab38c522">&#9670;&nbsp;</a></span>diffuse</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">float* model::vertices</td>
+          <td class="memname">vec3 model::diffuse {200,200,200}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00193">193</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00298">renderModel()</a>.</p>
+
+</div>
+</div>
+<a id="a32bd67ed225795e5016ad3606ad65d89" name="a32bd67ed225795e5016ad3606ad65d89"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a32bd67ed225795e5016ad3606ad65d89">&#9670;&nbsp;</a></span>emissive</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">vec3 model::emissive {0,0,0}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00196">196</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00298">renderModel()</a>.</p>
+
+</div>
+</div>
+<a id="a8cb7a6506a1a71331a6402636f358d2b" name="a8cb7a6506a1a71331a6402636f358d2b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8cb7a6506a1a71331a6402636f358d2b">&#9670;&nbsp;</a></span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct  { ... }  model::material</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00298">renderModel()</a>.</p>
+
+</div>
+</div>
+<a id="aa02ac56a51e39aa9e42df9eafd2e9302" name="aa02ac56a51e39aa9e42df9eafd2e9302"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa02ac56a51e39aa9e42df9eafd2e9302">&#9670;&nbsp;</a></span>normals</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GLuint model::normals {}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00191">191</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00298">renderModel()</a>.</p>
+
+</div>
+</div>
+<a id="ae122038028ab471bfa2b266189e90404" name="ae122038028ab471bfa2b266189e90404"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae122038028ab471bfa2b266189e90404">&#9670;&nbsp;</a></span>nVertices</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GLsizei model::nVertices {}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00189">189</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00207">allocModel()</a>, and <a class="el" href="engine_8cpp_source.html#l00298">renderModel()</a>.</p>
+
+</div>
+</div>
+<a id="a162a855dcc61ec108bda595d07a2fd8c" name="a162a855dcc61ec108bda595d07a2fd8c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a162a855dcc61ec108bda595d07a2fd8c">&#9670;&nbsp;</a></span>shininess</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GLfloat model::shininess = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00197">197</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00298">renderModel()</a>.</p>
+
+</div>
+</div>
+<a id="ad6a1a4207f594386be3b13f1e60b1a51" name="ad6a1a4207f594386be3b13f1e60b1a51"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad6a1a4207f594386be3b13f1e60b1a51">&#9670;&nbsp;</a></span>specular</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">vec3 model::specular {0,0,0}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00195">195</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00298">renderModel()</a>.</p>
+
+</div>
+</div>
+<a id="a6642bf44750e13f4720fcab39d428950" name="a6642bf44750e13f4720fcab39d428950"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6642bf44750e13f4720fcab39d428950">&#9670;&nbsp;</a></span>tbo</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GLuint model::tbo = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00200">200</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00265">addTexture()</a>, and <a class="el" href="engine_8cpp_source.html#l00298">renderModel()</a>.</p>
+
+</div>
+</div>
+<a id="a32d49fddff5d56f60779be5ee6f71159" name="a32d49fddff5d56f60779be5ee6f71159"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a32d49fddff5d56f60779be5ee6f71159">&#9670;&nbsp;</a></span>tc</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GLuint model::tc = 0</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00201">201</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00209">allocModel()</a>, and <a class="el" href="engine_8cpp_source.html#l00317">operations_render()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00298">renderModel()</a>.</p>
+
+</div>
+</div>
+<a id="ab22ca782aa5b8d3bd578be477ac37fe7" name="ab22ca782aa5b8d3bd578be477ac37fe7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab22ca782aa5b8d3bd578be477ac37fe7">&#9670;&nbsp;</a></span>vbo</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GLuint model::vbo {}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00190">190</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00207">allocModel()</a>, and <a class="el" href="engine_8cpp_source.html#l00298">renderModel()</a>.</p>
 
 </div>
 </div>

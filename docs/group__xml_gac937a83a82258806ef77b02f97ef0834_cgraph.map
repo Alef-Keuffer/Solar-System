@@ -1,10 +1,12 @@
 <map id="operations_load_xml" name="operations_load_xml">
-<area shape="rect" id="node1" title=" " alt="" coords="5,97,164,123"/>
-<area shape="rect" id="node2" href="$group___groups.html#ga72c2d5ef943a89f829c08f6707e7669d" title=" " alt="" coords="212,71,392,98"/>
-<area shape="rect" id="node8" href="$group___transforms.html#gaa15fe56d7980e7877845f3bc09125017" title=" " alt="" coords="1221,64,1421,105"/>
-<area shape="rect" id="node3" href="$group___models.html#gaca17d77a06e750f5cd95c1b79e1a8a30" title=" " alt="" coords="451,21,635,47"/>
-<area shape="rect" id="node5" href="$group___transforms.html#gaaa78b92f0257bb4755731622692de0cb" title=" " alt="" coords="440,71,647,98"/>
-<area shape="rect" id="node4" href="$group___models.html#ga5dc84f3f40c0bb6ad63dc2da3793ddd9" title=" " alt="" coords="723,21,900,47"/>
-<area shape="rect" id="node6" href="$group___transforms.html#ga3ceb952cabab7fc6918d4a676d53508d" title=" " alt="" coords="695,71,928,98"/>
-<area shape="rect" id="node7" href="$group___transforms.html#ga5078bb9f7411d7f9f26c535a52ae7c6b" title=" " alt="" coords="976,5,1173,47"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,187,164,214"/>
+<area shape="rect" id="node2" href="$group___groups.html#ga72c2d5ef943a89f829c08f6707e7669d" title=" " alt="" coords="212,127,392,154"/>
+<area shape="rect" id="node9" href="$group___transforms.html#ga322e67bfbfd0f7db581a853b85fea9c1" title=" " alt="" coords="1221,129,1421,171"/>
+<area shape="rect" id="node10" href="$group__xml.html#ga13d09c76a06c071031512828eb7bc4fa" title=" " alt="" coords="216,238,388,265"/>
+<area shape="rect" id="node3" href="$group___models.html#gae6874961000e3d9274674e4f9c21dd60" title=" " alt="" coords="451,58,635,85"/>
+<area shape="rect" id="node6" href="$group___transforms.html#gad83b646af5265ef92c21db557652be7d" title=" " alt="" coords="440,127,647,154"/>
+<area shape="rect" id="node4" href="$group___models.html#gaea4cf479be9d482699b0a7871a19efed" title=" " alt="" coords="723,22,900,49"/>
+<area shape="rect" id="node5" href="$group___models.html#gaa7a60aeaf83f15158c6896c1b817eeee" title=" " alt="" coords="988,5,1161,47"/>
+<area shape="rect" id="node7" href="$group___transforms.html#gafa423b24e0a976a40fa25bde5279d6da" title=" " alt="" coords="695,127,928,154"/>
+<area shape="rect" id="node8" href="$group___transforms.html#ga9fb2cf393283a6c4e01669d004e011cb" title=" " alt="" coords="976,71,1173,112"/>
 </map>

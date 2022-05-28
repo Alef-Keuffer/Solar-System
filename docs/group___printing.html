@@ -139,95 +139,103 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="parsing_8cpp_source.html#l00252">252</a> of file <a class="el" href="parsing_8cpp_source.html">parsing.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  253</span>{</div>
-<div class="line"><span class="lineno">  254</span>  <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i = 0;</div>
-<div class="line"><span class="lineno">  255</span>  fprintf (stderr,</div>
-<div class="line"><span class="lineno">  256</span>           <span class="stringliteral">&quot;POSITION(%.2f %.2f %.2f)\n&quot;</span>,</div>
-<div class="line"><span class="lineno">  257</span>           operations-&gt;at (i),</div>
-<div class="line"><span class="lineno">  258</span>           operations-&gt;at (i + 1),</div>
-<div class="line"><span class="lineno">  259</span>           operations-&gt;at (i + 2));</div>
-<div class="line"><span class="lineno">  260</span>  i += 3;</div>
-<div class="line"><span class="lineno">  261</span>  fprintf (stderr,</div>
-<div class="line"><span class="lineno">  262</span>           <span class="stringliteral">&quot;LOOK_AT(%.2f %.2f %.2f)\n&quot;</span>,</div>
-<div class="line"><span class="lineno">  263</span>           operations-&gt;at (i),</div>
-<div class="line"><span class="lineno">  264</span>           operations-&gt;at (i + 1),</div>
-<div class="line"><span class="lineno">  265</span>           operations-&gt;at (i + 2));</div>
-<div class="line"><span class="lineno">  266</span>  i += 3;</div>
-<div class="line"><span class="lineno">  267</span>  fprintf (stderr,</div>
-<div class="line"><span class="lineno">  268</span>           <span class="stringliteral">&quot;UP(%.2f %.2f %.2f)\n&quot;</span>,</div>
-<div class="line"><span class="lineno">  269</span>           operations-&gt;at (i),</div>
-<div class="line"><span class="lineno">  270</span>           operations-&gt;at (i + 1),</div>
-<div class="line"><span class="lineno">  271</span>           operations-&gt;at (i + 2));</div>
-<div class="line"><span class="lineno">  272</span>  i += 3;</div>
-<div class="line"><span class="lineno">  273</span>  fprintf (stderr,</div>
-<div class="line"><span class="lineno">  274</span>           <span class="stringliteral">&quot;PROJECTION(%.2f %.2f %.2f)\n&quot;</span>,</div>
-<div class="line"><span class="lineno">  275</span>           operations-&gt;at (i),</div>
-<div class="line"><span class="lineno">  276</span>           operations-&gt;at (i + 1),</div>
-<div class="line"><span class="lineno">  277</span>           operations-&gt;at (i + 2));</div>
-<div class="line"><span class="lineno">  278</span> </div>
-<div class="line"><span class="lineno">  279</span>  <span class="keywordflow">for</span> (i += 3; i &lt; operations-&gt;size (); i++)</div>
-<div class="line"><span class="lineno">  280</span>    {</div>
-<div class="line"><span class="lineno">  281</span>      <span class="keywordflow">switch</span> ((<span class="keywordtype">int</span>) operations-&gt;at (i))</div>
-<div class="line"><span class="lineno">  282</span>        {</div>
-<div class="line"><span class="lineno">  283</span>          <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="parsing_8h.html#a06fc87d81c62e9abb8790b6e5713c55ba3dcfe0046eb5876e287dbf0914819b16">ROTATE</a>:</div>
-<div class="line"><span class="lineno">  284</span>            fprintf (stderr,</div>
-<div class="line"><span class="lineno">  285</span>                     <span class="stringliteral">&quot;ROTATE(%.2f %.2f %.2f %.2f)\n&quot;</span>,</div>
-<div class="line"><span class="lineno">  286</span>                     operations-&gt;at (i + 1),</div>
-<div class="line"><span class="lineno">  287</span>                     operations-&gt;at (i + 2),</div>
-<div class="line"><span class="lineno">  288</span>                     operations-&gt;at (i + 3),</div>
-<div class="line"><span class="lineno">  289</span>                     operations-&gt;at (i + 4));</div>
-<div class="line"><span class="lineno">  290</span>          i += 4;</div>
-<div class="line"><span class="lineno">  291</span>          <span class="keywordflow">continue</span>;</div>
-<div class="line"><span class="lineno">  292</span>          <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="parsing_8h.html#a06fc87d81c62e9abb8790b6e5713c55babc6501410409b0638909b580970b35f7">TRANSLATE</a>:</div>
-<div class="line"><span class="lineno">  293</span>            fprintf (stderr,</div>
-<div class="line"><span class="lineno">  294</span>                     <span class="stringliteral">&quot;TRANSLATE(%.2f %.2f %.2f)\n&quot;</span>,</div>
-<div class="line"><span class="lineno">  295</span>                     operations-&gt;at (i + 1),</div>
-<div class="line"><span class="lineno">  296</span>                     operations-&gt;at (i + 2),</div>
-<div class="line"><span class="lineno">  297</span>                     operations-&gt;at (i + 3));</div>
-<div class="line"><span class="lineno">  298</span>          i += 3;</div>
-<div class="line"><span class="lineno">  299</span>          <span class="keywordflow">continue</span>;</div>
-<div class="line"><span class="lineno">  300</span>          <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="parsing_8h.html#a06fc87d81c62e9abb8790b6e5713c55ba593be05a10070b4e7e0856e20590eaaf">SCALE</a>:</div>
-<div class="line"><span class="lineno">  301</span>            fprintf (stderr,</div>
-<div class="line"><span class="lineno">  302</span>                     <span class="stringliteral">&quot;SCALE(%.2f %.2f %.2f)\n&quot;</span>,</div>
-<div class="line"><span class="lineno">  303</span>                     operations-&gt;at (i + 1),</div>
-<div class="line"><span class="lineno">  304</span>                     operations-&gt;at (i + 2),</div>
-<div class="line"><span class="lineno">  305</span>                     operations-&gt;at (i + 3));</div>
-<div class="line"><span class="lineno">  306</span>          i += 3;</div>
-<div class="line"><span class="lineno">  307</span>          <span class="keywordflow">continue</span>;</div>
-<div class="line"><span class="lineno">  308</span>          <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="parsing_8h.html#a06fc87d81c62e9abb8790b6e5713c55ba04bc111dd865aa7ee4650ead482dfc7f">BEGIN_GROUP</a>:</div>
-<div class="line"><span class="lineno">  309</span>            fprintf (stderr, <span class="stringliteral">&quot;BEGIN_GROUP\n&quot;</span>);</div>
-<div class="line"><span class="lineno">  310</span>          <span class="keywordflow">continue</span>;</div>
-<div class="line"><span class="lineno">  311</span>          <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="parsing_8h.html#a06fc87d81c62e9abb8790b6e5713c55bad8484e02f6123a1ce51bf55c92ab775c">END_GROUP</a>:</div>
-<div class="line"><span class="lineno">  312</span>            fprintf (stderr, <span class="stringliteral">&quot;END_GROUP\n&quot;</span>);</div>
-<div class="line"><span class="lineno">  313</span>          <span class="keywordflow">continue</span>;</div>
-<div class="line"><span class="lineno">  314</span>          <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="parsing_8h.html#a06fc87d81c62e9abb8790b6e5713c55ba4b3991c5c50cf91377b0a37163ae4f35">LOAD_MODEL</a>:</div>
-<div class="line"><span class="lineno">  315</span>            <span class="keywordtype">int</span> stringSize = (int) operations-&gt;at (i + 1);</div>
-<div class="line"><span class="lineno">  316</span>          <span class="keywordtype">char</span> <a class="code hl_struct" href="structmodel.html">model</a>[stringSize + 1];</div>
-<div class="line"><span class="lineno">  317</span> </div>
-<div class="line"><span class="lineno">  318</span>          <span class="keywordtype">int</span> j;</div>
-<div class="line"><span class="lineno">  319</span>          <span class="keywordflow">for</span> (j = 0; j &lt; stringSize; j++)</div>
-<div class="line"><span class="lineno">  320</span>            <a class="code hl_struct" href="structmodel.html">model</a>[j] = (<span class="keywordtype">char</span>) operations-&gt;at (i + 2 + j);</div>
-<div class="line"><span class="lineno">  321</span> </div>
-<div class="line"><span class="lineno">  322</span>          <a class="code hl_struct" href="structmodel.html">model</a>[j] = 0;</div>
-<div class="line"><span class="lineno">  323</span> </div>
-<div class="line"><span class="lineno">  324</span>          fprintf (stderr, <span class="stringliteral">&quot;LOAD_MODEL(%s)\n&quot;</span>, <a class="code hl_struct" href="structmodel.html">model</a>);</div>
-<div class="line"><span class="lineno">  325</span>          i += 1 + j - 1; <span class="comment">//just to be explicit</span></div>
-<div class="line"><span class="lineno">  326</span>          <span class="keywordflow">continue</span>;</div>
-<div class="line"><span class="lineno">  327</span>        }</div>
-<div class="line"><span class="lineno">  328</span>    }</div>
-<div class="line"><span class="lineno">  329</span>}</div>
-<div class="ttc" id="aparsing_8h_html_a06fc87d81c62e9abb8790b6e5713c55ba04bc111dd865aa7ee4650ead482dfc7f"><div class="ttname"><a href="parsing_8h.html#a06fc87d81c62e9abb8790b6e5713c55ba04bc111dd865aa7ee4650ead482dfc7f">BEGIN_GROUP</a></div><div class="ttdeci">@ BEGIN_GROUP</div><div class="ttdef"><b>Definition:</b> <a href="parsing_8h_source.html#l00013">parsing.h:13</a></div></div>
-<div class="ttc" id="aparsing_8h_html_a06fc87d81c62e9abb8790b6e5713c55ba3dcfe0046eb5876e287dbf0914819b16"><div class="ttname"><a href="parsing_8h.html#a06fc87d81c62e9abb8790b6e5713c55ba3dcfe0046eb5876e287dbf0914819b16">ROTATE</a></div><div class="ttdeci">@ ROTATE</div><div class="ttdef"><b>Definition:</b> <a href="parsing_8h_source.html#l00010">parsing.h:10</a></div></div>
-<div class="ttc" id="aparsing_8h_html_a06fc87d81c62e9abb8790b6e5713c55ba4b3991c5c50cf91377b0a37163ae4f35"><div class="ttname"><a href="parsing_8h.html#a06fc87d81c62e9abb8790b6e5713c55ba4b3991c5c50cf91377b0a37163ae4f35">LOAD_MODEL</a></div><div class="ttdeci">@ LOAD_MODEL</div><div class="ttdef"><b>Definition:</b> <a href="parsing_8h_source.html#l00012">parsing.h:12</a></div></div>
-<div class="ttc" id="aparsing_8h_html_a06fc87d81c62e9abb8790b6e5713c55ba593be05a10070b4e7e0856e20590eaaf"><div class="ttname"><a href="parsing_8h.html#a06fc87d81c62e9abb8790b6e5713c55ba593be05a10070b4e7e0856e20590eaaf">SCALE</a></div><div class="ttdeci">@ SCALE</div><div class="ttdef"><b>Definition:</b> <a href="parsing_8h_source.html#l00011">parsing.h:11</a></div></div>
-<div class="ttc" id="aparsing_8h_html_a06fc87d81c62e9abb8790b6e5713c55babc6501410409b0638909b580970b35f7"><div class="ttname"><a href="parsing_8h.html#a06fc87d81c62e9abb8790b6e5713c55babc6501410409b0638909b580970b35f7">TRANSLATE</a></div><div class="ttdeci">@ TRANSLATE</div><div class="ttdef"><b>Definition:</b> <a href="parsing_8h_source.html#l00009">parsing.h:9</a></div></div>
-<div class="ttc" id="aparsing_8h_html_a06fc87d81c62e9abb8790b6e5713c55bad8484e02f6123a1ce51bf55c92ab775c"><div class="ttname"><a href="parsing_8h.html#a06fc87d81c62e9abb8790b6e5713c55bad8484e02f6123a1ce51bf55c92ab775c">END_GROUP</a></div><div class="ttdeci">@ END_GROUP</div><div class="ttdef"><b>Definition:</b> <a href="parsing_8h_source.html#l00014">parsing.h:14</a></div></div>
-<div class="ttc" id="astructmodel_html"><div class="ttname"><a href="structmodel.html">model</a></div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00200">engine.cpp:200</a></div></div>
+<p class="definition">Definition at line <a class="el" href="parsing_8cpp_source.html#l00351">351</a> of file <a class="el" href="parsing_8cpp_source.html">parsing.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  352</span>{</div>
+<div class="line"><span class="lineno">  353</span>  <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i = 0;</div>
+<div class="line"><span class="lineno">  354</span>  fprintf (stderr,</div>
+<div class="line"><span class="lineno">  355</span>           <span class="stringliteral">&quot;POSITION(%.2f %.2f %.2f)\n&quot;</span>,</div>
+<div class="line"><span class="lineno">  356</span>           operations-&gt;at (i),</div>
+<div class="line"><span class="lineno">  357</span>           operations-&gt;at (i + 1),</div>
+<div class="line"><span class="lineno">  358</span>           operations-&gt;at (i + 2));</div>
+<div class="line"><span class="lineno">  359</span>  i += 3;</div>
+<div class="line"><span class="lineno">  360</span>  fprintf (stderr,</div>
+<div class="line"><span class="lineno">  361</span>           <span class="stringliteral">&quot;LOOK_AT(%.2f %.2f %.2f)\n&quot;</span>,</div>
+<div class="line"><span class="lineno">  362</span>           operations-&gt;at (i),</div>
+<div class="line"><span class="lineno">  363</span>           operations-&gt;at (i + 1),</div>
+<div class="line"><span class="lineno">  364</span>           operations-&gt;at (i + 2));</div>
+<div class="line"><span class="lineno">  365</span>  i += 3;</div>
+<div class="line"><span class="lineno">  366</span>  fprintf (stderr,</div>
+<div class="line"><span class="lineno">  367</span>           <span class="stringliteral">&quot;UP(%.2f %.2f %.2f)\n&quot;</span>,</div>
+<div class="line"><span class="lineno">  368</span>           operations-&gt;at (i),</div>
+<div class="line"><span class="lineno">  369</span>           operations-&gt;at (i + 1),</div>
+<div class="line"><span class="lineno">  370</span>           operations-&gt;at (i + 2));</div>
+<div class="line"><span class="lineno">  371</span>  i += 3;</div>
+<div class="line"><span class="lineno">  372</span>  fprintf (stderr,</div>
+<div class="line"><span class="lineno">  373</span>           <span class="stringliteral">&quot;PROJECTION(%.2f %.2f %.2f)\n&quot;</span>,</div>
+<div class="line"><span class="lineno">  374</span>           operations-&gt;at (i),</div>
+<div class="line"><span class="lineno">  375</span>           operations-&gt;at (i + 1),</div>
+<div class="line"><span class="lineno">  376</span>           operations-&gt;at (i + 2));</div>
+<div class="line"><span class="lineno">  377</span> </div>
+<div class="line"><span class="lineno">  378</span>  <span class="keywordflow">for</span> (i += 3; i &lt; operations-&gt;size (); i++)</div>
+<div class="line"><span class="lineno">  379</span>    {</div>
+<div class="line"><span class="lineno">  380</span>      <span class="keywordflow">switch</span> ((<a class="code hl_typedef" href="parsing_8h.html#abeddee44f42e841422ce7c4852e4aa6a">operation_t</a>) operations-&gt;at (i))</div>
+<div class="line"><span class="lineno">  381</span>        {</div>
+<div class="line"><span class="lineno">  382</span>          <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="parsing_8h.html#adf764cbdea00d65edcd07bb9953ad2b7a3dcfe0046eb5876e287dbf0914819b16">ROTATE</a>:</div>
+<div class="line"><span class="lineno">  383</span>            fprintf (stderr,</div>
+<div class="line"><span class="lineno">  384</span>                     <span class="stringliteral">&quot;ROTATE(%.2f %.2f %.2f %.2f)\n&quot;</span>,</div>
+<div class="line"><span class="lineno">  385</span>                     operations-&gt;at (i + 1),</div>
+<div class="line"><span class="lineno">  386</span>                     operations-&gt;at (i + 2),</div>
+<div class="line"><span class="lineno">  387</span>                     operations-&gt;at (i + 3),</div>
+<div class="line"><span class="lineno">  388</span>                     operations-&gt;at (i + 4));</div>
+<div class="line"><span class="lineno">  389</span>          i += 4;</div>
+<div class="line"><span class="lineno">  390</span>          <span class="keywordflow">continue</span>;</div>
+<div class="line"><span class="lineno">  391</span>          <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="parsing_8h.html#adf764cbdea00d65edcd07bb9953ad2b7abc6501410409b0638909b580970b35f7">TRANSLATE</a>:</div>
+<div class="line"><span class="lineno">  392</span>            fprintf (stderr,</div>
+<div class="line"><span class="lineno">  393</span>                     <span class="stringliteral">&quot;TRANSLATE(%.2f %.2f %.2f)\n&quot;</span>,</div>
+<div class="line"><span class="lineno">  394</span>                     operations-&gt;at (i + 1),</div>
+<div class="line"><span class="lineno">  395</span>                     operations-&gt;at (i + 2),</div>
+<div class="line"><span class="lineno">  396</span>                     operations-&gt;at (i + 3));</div>
+<div class="line"><span class="lineno">  397</span>          i += 3;</div>
+<div class="line"><span class="lineno">  398</span>          <span class="keywordflow">continue</span>;</div>
+<div class="line"><span class="lineno">  399</span>          <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="parsing_8h.html#adf764cbdea00d65edcd07bb9953ad2b7a593be05a10070b4e7e0856e20590eaaf">SCALE</a>:</div>
+<div class="line"><span class="lineno">  400</span>            fprintf (stderr,</div>
+<div class="line"><span class="lineno">  401</span>                     <span class="stringliteral">&quot;SCALE(%.2f %.2f %.2f)\n&quot;</span>,</div>
+<div class="line"><span class="lineno">  402</span>                     operations-&gt;at (i + 1),</div>
+<div class="line"><span class="lineno">  403</span>                     operations-&gt;at (i + 2),</div>
+<div class="line"><span class="lineno">  404</span>                     operations-&gt;at (i + 3));</div>
+<div class="line"><span class="lineno">  405</span>          i += 3;</div>
+<div class="line"><span class="lineno">  406</span>          <span class="keywordflow">continue</span>;</div>
+<div class="line"><span class="lineno">  407</span>          <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="parsing_8h.html#adf764cbdea00d65edcd07bb9953ad2b7a04bc111dd865aa7ee4650ead482dfc7f">BEGIN_GROUP</a>:</div>
+<div class="line"><span class="lineno">  408</span>            fprintf (stderr, <span class="stringliteral">&quot;BEGIN_GROUP\n&quot;</span>);</div>
+<div class="line"><span class="lineno">  409</span>          <span class="keywordflow">continue</span>;</div>
+<div class="line"><span class="lineno">  410</span>          <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="parsing_8h.html#adf764cbdea00d65edcd07bb9953ad2b7ad8484e02f6123a1ce51bf55c92ab775c">END_GROUP</a>:</div>
+<div class="line"><span class="lineno">  411</span>            fprintf (stderr, <span class="stringliteral">&quot;END_GROUP\n&quot;</span>);</div>
+<div class="line"><span class="lineno">  412</span>          <span class="keywordflow">continue</span>;</div>
+<div class="line"><span class="lineno">  413</span>          <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="parsing_8h.html#adf764cbdea00d65edcd07bb9953ad2b7ad9bcd61d589aff5701ab40177a678c79">BEGIN_MODEL</a>:</div>
+<div class="line"><span class="lineno">  414</span>            {</div>
+<div class="line"><span class="lineno">  415</span>              <span class="keywordtype">int</span> stringSize = (int) operations-&gt;at (i + 1);</div>
+<div class="line"><span class="lineno">  416</span>              <span class="keywordtype">char</span> <a class="code hl_struct" href="structmodel.html">model</a>[stringSize + 1];</div>
+<div class="line"><span class="lineno">  417</span> </div>
+<div class="line"><span class="lineno">  418</span>              <span class="keywordtype">int</span> j;</div>
+<div class="line"><span class="lineno">  419</span>              <span class="keywordflow">for</span> (j = 0; j &lt; stringSize; j++)</div>
+<div class="line"><span class="lineno">  420</span>                <a class="code hl_struct" href="structmodel.html">model</a>[j] = (<span class="keywordtype">char</span>) operations-&gt;at (i + 2 + j);</div>
+<div class="line"><span class="lineno">  421</span> </div>
+<div class="line"><span class="lineno">  422</span>              <a class="code hl_struct" href="structmodel.html">model</a>[j] = 0;</div>
+<div class="line"><span class="lineno">  423</span> </div>
+<div class="line"><span class="lineno">  424</span>              fprintf (stderr, <span class="stringliteral">&quot;BEGIN_MODEL(%s)\n&quot;</span>, <a class="code hl_struct" href="structmodel.html">model</a>);</div>
+<div class="line"><span class="lineno">  425</span>              i += 1 + j - 1; <span class="comment">//just to be explicit</span></div>
+<div class="line"><span class="lineno">  426</span>            }</div>
+<div class="line"><span class="lineno">  427</span>          <span class="keywordflow">continue</span>;</div>
+<div class="line"><span class="lineno">  428</span>          <span class="keywordflow">default</span>:</div>
+<div class="line"><span class="lineno">  429</span>            {</div>
+<div class="line"><span class="lineno">  430</span>              fprintf(stderr,<span class="stringliteral">&quot;Unknown opeartion %d&quot;</span>,(<span class="keywordtype">int</span>) operations-&gt;at (i));</div>
+<div class="line"><span class="lineno">  431</span>              exit(EXIT_FAILURE);</div>
+<div class="line"><span class="lineno">  432</span>            }</div>
+<div class="line"><span class="lineno">  433</span>        }</div>
+<div class="line"><span class="lineno">  434</span>    }</div>
+<div class="line"><span class="lineno">  435</span>}</div>
+<div class="ttc" id="aparsing_8h_html_abeddee44f42e841422ce7c4852e4aa6a"><div class="ttname"><a href="parsing_8h.html#abeddee44f42e841422ce7c4852e4aa6a">operation_t</a></div><div class="ttdeci">unsigned char operation_t</div><div class="ttdef"><b>Definition:</b> <a href="parsing_8h_source.html#l00029">parsing.h:29</a></div></div>
+<div class="ttc" id="aparsing_8h_html_adf764cbdea00d65edcd07bb9953ad2b7a04bc111dd865aa7ee4650ead482dfc7f"><div class="ttname"><a href="parsing_8h.html#adf764cbdea00d65edcd07bb9953ad2b7a04bc111dd865aa7ee4650ead482dfc7f">BEGIN_GROUP</a></div><div class="ttdeci">@ BEGIN_GROUP</div><div class="ttdef"><b>Definition:</b> <a href="parsing_8h_source.html#l00014">parsing.h:14</a></div></div>
+<div class="ttc" id="aparsing_8h_html_adf764cbdea00d65edcd07bb9953ad2b7a3dcfe0046eb5876e287dbf0914819b16"><div class="ttname"><a href="parsing_8h.html#adf764cbdea00d65edcd07bb9953ad2b7a3dcfe0046eb5876e287dbf0914819b16">ROTATE</a></div><div class="ttdeci">@ ROTATE</div><div class="ttdef"><b>Definition:</b> <a href="parsing_8h_source.html#l00010">parsing.h:10</a></div></div>
+<div class="ttc" id="aparsing_8h_html_adf764cbdea00d65edcd07bb9953ad2b7a593be05a10070b4e7e0856e20590eaaf"><div class="ttname"><a href="parsing_8h.html#adf764cbdea00d65edcd07bb9953ad2b7a593be05a10070b4e7e0856e20590eaaf">SCALE</a></div><div class="ttdeci">@ SCALE</div><div class="ttdef"><b>Definition:</b> <a href="parsing_8h_source.html#l00011">parsing.h:11</a></div></div>
+<div class="ttc" id="aparsing_8h_html_adf764cbdea00d65edcd07bb9953ad2b7abc6501410409b0638909b580970b35f7"><div class="ttname"><a href="parsing_8h.html#adf764cbdea00d65edcd07bb9953ad2b7abc6501410409b0638909b580970b35f7">TRANSLATE</a></div><div class="ttdeci">@ TRANSLATE</div><div class="ttdef"><b>Definition:</b> <a href="parsing_8h_source.html#l00009">parsing.h:9</a></div></div>
+<div class="ttc" id="aparsing_8h_html_adf764cbdea00d65edcd07bb9953ad2b7ad8484e02f6123a1ce51bf55c92ab775c"><div class="ttname"><a href="parsing_8h.html#adf764cbdea00d65edcd07bb9953ad2b7ad8484e02f6123a1ce51bf55c92ab775c">END_GROUP</a></div><div class="ttdeci">@ END_GROUP</div><div class="ttdef"><b>Definition:</b> <a href="parsing_8h_source.html#l00015">parsing.h:15</a></div></div>
+<div class="ttc" id="aparsing_8h_html_adf764cbdea00d65edcd07bb9953ad2b7ad9bcd61d589aff5701ab40177a678c79"><div class="ttname"><a href="parsing_8h.html#adf764cbdea00d65edcd07bb9953ad2b7ad9bcd61d589aff5701ab40177a678c79">BEGIN_MODEL</a></div><div class="ttdeci">@ BEGIN_MODEL</div><div class="ttdef"><b>Definition:</b> <a href="parsing_8h_source.html#l00012">parsing.h:12</a></div></div>
+<div class="ttc" id="astructmodel_html"><div class="ttname"><a href="structmodel.html">model</a></div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00188">engine.cpp:188</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="parsing_8h_source.html#l00013">BEGIN_GROUP</a>, <a class="el" href="parsing_8h_source.html#l00014">END_GROUP</a>, <a class="el" href="parsing_8h_source.html#l00012">LOAD_MODEL</a>, <a class="el" href="parsing_8h_source.html#l00010">ROTATE</a>, <a class="el" href="parsing_8h_source.html#l00011">SCALE</a>, and <a class="el" href="parsing_8h_source.html#l00009">TRANSLATE</a>.</p>
+<p class="reference">References <a class="el" href="parsing_8h_source.html#l00014">BEGIN_GROUP</a>, <a class="el" href="parsing_8h_source.html#l00012">BEGIN_MODEL</a>, <a class="el" href="parsing_8h_source.html#l00015">END_GROUP</a>, <a class="el" href="parsing_8h_source.html#l00010">ROTATE</a>, <a class="el" href="parsing_8h_source.html#l00011">SCALE</a>, and <a class="el" href="parsing_8h_source.html#l00009">TRANSLATE</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="parsing_8cpp_source.html#l00336">example1()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="parsing_8cpp_source.html#l00439">example1()</a>.</p>
 <div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">

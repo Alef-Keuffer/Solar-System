@@ -2,7 +2,6 @@ var curves_8cpp =
 [
     [ "advance_in_curve", "curves_8cpp.html#af213e79ca700e91ea886085a4149a848", null ],
     [ "align_global_pos_mat", "curves_8cpp.html#aca4aaefe66ab2cbc9d44054ab8929c0d", null ],
-    [ "align_pos_mat", "curves_8cpp.html#a0c802ab9d11b7a2c78ffe876b88c4325", null ],
     [ "dec_polynomial", "curves_8cpp.html#a1d35ad36990e6f400886d4e2e2b3751e", null ],
     [ "get_bezier_patch", "curves_8cpp.html#acd318fe2ec3011922c3f4d9d7590b168", null ],
     [ "get_bezier_point", "curves_8cpp.html#ae1f2aea35fc8ca6d56097bc3b7824c07", null ],

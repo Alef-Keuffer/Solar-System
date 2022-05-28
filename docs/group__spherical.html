@@ -193,14 +193,14 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00136">136</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  137</span>{</div>
-<div class="line"><span class="lineno">  138</span>  *radius = abs (sqrt (pow (x, 2) + pow (y, 2) + pow (z, 2)));</div>
-<div class="line"><span class="lineno">  139</span>  *elevation = asin (y / (*radius));</div>
-<div class="line"><span class="lineno">  140</span>  *azimuth = asin (x / (*radius * cos (*elevation)));</div>
-<div class="line"><span class="lineno">  141</span>}</div>
+<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00124">124</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  125</span>{</div>
+<div class="line"><span class="lineno">  126</span>  *radius = abs (sqrt (pow (x, 2) + pow (y, 2) + pow (z, 2)));</div>
+<div class="line"><span class="lineno">  127</span>  *elevation = asin (y / (*radius));</div>
+<div class="line"><span class="lineno">  128</span>  *azimuth = asin (x / (*radius * cos (*elevation)));</div>
+<div class="line"><span class="lineno">  129</span>}</div>
 </div><!-- fragment -->
-<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00317">operations_render()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00373">operations_render()</a>.</p>
 <div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
@@ -261,20 +261,20 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00128">128</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  129</span>{</div>
-<div class="line"><span class="lineno">  130</span> </div>
-<div class="line"><span class="lineno">  131</span>  *x = radius * cos (elevation) * sin (azimuth) + <a class="code hl_variable" href="group__look_at.html#ga2cb5db8bdad416592fa643be93c764be">globalCenterX</a>;</div>
-<div class="line"><span class="lineno">  132</span>  *y = radius * sin (elevation) + <a class="code hl_variable" href="group__look_at.html#gaf3f8074b4e6ebaf6687f0777fd500e51">globalCenterY</a>;</div>
-<div class="line"><span class="lineno">  133</span>  *z = radius * cos (elevation) * cos (azimuth) + <a class="code hl_variable" href="group__look_at.html#gaa63e0d164754e930baf0d8d08106febb">globalCenterZ</a>;</div>
-<div class="line"><span class="lineno">  134</span>}</div>
-<div class="ttc" id="agroup__look_at_html_ga2cb5db8bdad416592fa643be93c764be"><div class="ttname"><a href="group__look_at.html#ga2cb5db8bdad416592fa643be93c764be">globalCenterX</a></div><div class="ttdeci">static float globalCenterX</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00088">engine.cpp:88</a></div></div>
-<div class="ttc" id="agroup__look_at_html_gaa63e0d164754e930baf0d8d08106febb"><div class="ttname"><a href="group__look_at.html#gaa63e0d164754e930baf0d8d08106febb">globalCenterZ</a></div><div class="ttdeci">static float globalCenterZ</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00090">engine.cpp:90</a></div></div>
-<div class="ttc" id="agroup__look_at_html_gaf3f8074b4e6ebaf6687f0777fd500e51"><div class="ttname"><a href="group__look_at.html#gaf3f8074b4e6ebaf6687f0777fd500e51">globalCenterY</a></div><div class="ttdeci">static float globalCenterY</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00089">engine.cpp:89</a></div></div>
+<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00116">116</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  117</span>{</div>
+<div class="line"><span class="lineno">  118</span> </div>
+<div class="line"><span class="lineno">  119</span>  *x = radius * cos (elevation) * sin (azimuth) + <a class="code hl_variable" href="group__look_at.html#ga2cb5db8bdad416592fa643be93c764be">globalCenterX</a>;</div>
+<div class="line"><span class="lineno">  120</span>  *y = radius * sin (elevation) + <a class="code hl_variable" href="group__look_at.html#gaf3f8074b4e6ebaf6687f0777fd500e51">globalCenterY</a>;</div>
+<div class="line"><span class="lineno">  121</span>  *z = radius * cos (elevation) * cos (azimuth) + <a class="code hl_variable" href="group__look_at.html#gaa63e0d164754e930baf0d8d08106febb">globalCenterZ</a>;</div>
+<div class="line"><span class="lineno">  122</span>}</div>
+<div class="ttc" id="agroup__look_at_html_ga2cb5db8bdad416592fa643be93c764be"><div class="ttname"><a href="group__look_at.html#ga2cb5db8bdad416592fa643be93c764be">globalCenterX</a></div><div class="ttdeci">static float globalCenterX</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00076">engine.cpp:76</a></div></div>
+<div class="ttc" id="agroup__look_at_html_gaa63e0d164754e930baf0d8d08106febb"><div class="ttname"><a href="group__look_at.html#gaa63e0d164754e930baf0d8d08106febb">globalCenterZ</a></div><div class="ttdeci">static float globalCenterZ</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00078">engine.cpp:78</a></div></div>
+<div class="ttc" id="agroup__look_at_html_gaf3f8074b4e6ebaf6687f0777fd500e51"><div class="ttname"><a href="group__look_at.html#gaf3f8074b4e6ebaf6687f0777fd500e51">globalCenterY</a></div><div class="ttdeci">static float globalCenterY</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00077">engine.cpp:77</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="engine_8cpp_source.html#l00088">globalCenterX</a>, <a class="el" href="engine_8cpp_source.html#l00089">globalCenterY</a>, and <a class="el" href="engine_8cpp_source.html#l00090">globalCenterZ</a>.</p>
+<p class="reference">References <a class="el" href="engine_8cpp_source.html#l00076">globalCenterX</a>, <a class="el" href="engine_8cpp_source.html#l00077">globalCenterY</a>, and <a class="el" href="engine_8cpp_source.html#l00078">globalCenterZ</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00473">redisplay()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00607">redisplay()</a>.</p>
 <div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-2-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-2-summary" class="dynsummary" style="display:block;">
@@ -298,9 +298,9 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00120">120</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00108">108</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00146">env_load_defaults()</a>, and <a class="el" href="engine_8cpp_source.html#l00317">operations_render()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00134">env_load_defaults()</a>, and <a class="el" href="engine_8cpp_source.html#l00373">operations_render()</a>.</p>
 
 </div>
 </div>
@@ -316,9 +316,9 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00121">121</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00109">109</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00146">env_load_defaults()</a>, and <a class="el" href="engine_8cpp_source.html#l00317">operations_render()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00134">env_load_defaults()</a>, and <a class="el" href="engine_8cpp_source.html#l00373">operations_render()</a>.</p>
 
 </div>
 </div>
@@ -334,9 +334,9 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00119">119</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00107">107</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00146">env_load_defaults()</a>, and <a class="el" href="engine_8cpp_source.html#l00317">operations_render()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00134">env_load_defaults()</a>, and <a class="el" href="engine_8cpp_source.html#l00373">operations_render()</a>.</p>
 
 </div>
 </div>
@@ -352,9 +352,9 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00124">124</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00112">112</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00146">env_load_defaults()</a>, <a class="el" href="engine_8cpp_source.html#l00831">motionFunc()</a>, and <a class="el" href="engine_8cpp_source.html#l00473">redisplay()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00134">env_load_defaults()</a>, <a class="el" href="engine_8cpp_source.html#l00965">motionFunc()</a>, and <a class="el" href="engine_8cpp_source.html#l00607">redisplay()</a>.</p>
 
 </div>
 </div>
@@ -370,9 +370,9 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00125">125</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00113">113</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00146">env_load_defaults()</a>, <a class="el" href="engine_8cpp_source.html#l00831">motionFunc()</a>, and <a class="el" href="engine_8cpp_source.html#l00473">redisplay()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00134">env_load_defaults()</a>, <a class="el" href="engine_8cpp_source.html#l00965">motionFunc()</a>, and <a class="el" href="engine_8cpp_source.html#l00607">redisplay()</a>.</p>
 
 </div>
 </div>
@@ -388,9 +388,9 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00126">126</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00114">114</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00831">motionFunc()</a>, and <a class="el" href="engine_8cpp_source.html#l00750">mouseFunc()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00965">motionFunc()</a>, and <a class="el" href="engine_8cpp_source.html#l00884">mouseFunc()</a>.</p>
 
 </div>
 </div>
@@ -406,9 +406,9 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00123">123</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00111">111</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00146">env_load_defaults()</a>, <a class="el" href="engine_8cpp_source.html#l00750">mouseFunc()</a>, and <a class="el" href="engine_8cpp_source.html#l00473">redisplay()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00134">env_load_defaults()</a>, <a class="el" href="engine_8cpp_source.html#l00884">mouseFunc()</a>, and <a class="el" href="engine_8cpp_source.html#l00607">redisplay()</a>.</p>
 
 </div>
 </div>
