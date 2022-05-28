@@ -301,8 +301,21 @@ void renderModel (Model model)
 
   glBindBuffer (GL_ARRAY_BUFFER, model->vbo);
   glVertexPointer (3, GL_FLOAT, 0, 0);
+
+  glBindBuffer (GL_ARRAY_BUFFER, model->normals);
+  glNormalPointer (GL_FLOAT, 0, 0);
+
+  glBindTexture (GL_TEXTURE_2D,model->tbo);
+
+  glBindBuffer (GL_ARRAY_BUFFER, model->tc);
+  glTexCoordPointer(2,GL_FLOAT,0,0);
+
+  // drawing
   glDrawArrays (GL_TRIANGLES, 0, model->nVertices);
-  glBindBuffer (GL_ARRAY_BUFFER, 0); //unbind
+
+  // unbinding
+  glBindBuffer (GL_ARRAY_BUFFER, 0);
+  //glBindTexture (GL_TEXTURE_2D, 0);
 }
 
 //!@} end of group modelEngine
