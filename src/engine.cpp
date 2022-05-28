@@ -183,9 +183,9 @@ void env_load_defaults ()
 /*! @addtogroup modelEngine
  * @{*/
 typedef struct model {
+  GLsizei nVertices{};
   GLuint vbo{};
   GLuint normals{};
-  GLsizei nVertices{};
   struct {
     vec3 diffuse;
     vec3 ambient;
@@ -210,17 +210,6 @@ Model allocModel (const char *path)
       exit (EXIT_FAILURE);
     }
 
-  GLsizei nVertices;
-  fread (&nVertices, sizeof (float), 1, fp);
-
-  auto *modelBuf = (float *) malloc (3 * nVertices * sizeof (float));
-  fread (modelBuf, 3 * sizeof (float), nVertices, fp);
-
-  //fread (normalsArray, 3 * sizeof (float), nVertices, fp);
-  //fread (textureCoordinatesArray, 2 * sizeof (float), nVertices, fp);
-
-  fclose (fp);
-
   auto model = (Model) malloc (sizeof (Model));
   if (model == nullptr)
     {
@@ -228,13 +217,45 @@ Model allocModel (const char *path)
       exit (1);
     }
 
+  GLsizei nVertices;
+  fread (&nVertices, sizeof (float), 1, fp);
+
+  auto *arrayOfVertices = (float *) malloc (3 * nVertices * sizeof (float));
+  fread (arrayOfVertices, 3 * sizeof (float), nVertices, fp);
+/*
+  auto *arrayOfNormals = (float *) malloc (3 * nVertices * sizeof (float));
+  fread (arrayOfNormals, 3 * sizeof (float), nVertices, fp);
+  float *test_for_texture;
+  size_t hasTexture = fread (test_for_texture, sizeof (float), 1, fp);
+  float *arrayOfTextureCoordinates;
+  if (hasTexture) {
+    arrayOfTextureCoordinates = (float *) malloc (3 * nVertices * sizeof (float));
+    fread(arrayOfTextureCoordinates,2* sizeof (float), nVertices, fp);
+  }*/
+  fclose (fp);
+
+  model->nVertices = nVertices;
+
+  const GLsizei sizeOfVertexArray = (GLsizei)sizeof (arrayOfVertices[0]) * 3 * model->nVertices;
   glGenBuffers (1, &model->vbo);
   glBindBuffer (GL_ARRAY_BUFFER, model->vbo);
-  model->nVertices = nVertices;
-  glBufferData (GL_ARRAY_BUFFER, (GLsizei)sizeof (float) * 3 * model->nVertices, modelBuf, GL_STATIC_DRAW);
-  glBindBuffer (GL_ARRAY_BUFFER, 0); //unbind
-  free (modelBuf);
+  glBufferData (GL_ARRAY_BUFFER, sizeOfVertexArray, arrayOfVertices, GL_STATIC_DRAW);
+  free (arrayOfVertices);
+/*
+  const GLsizei sizeOfNormalsArray = (GLsizei)sizeof (arrayOfNormals[0]) * 3 * model->nVertices;
+  glGenBuffers (1, &model->normals);
+  glBindBuffer (GL_ARRAY_BUFFER, model->normals);
+  glBufferData (GL_ARRAY_BUFFER, sizeOfNormalsArray, arrayOfNormals, GL_STATIC_DRAW);
 
+  if (hasTexture) {
+    const GLsizei sizeOfTextureCoordinateArray = (GLsizei)sizeof (arrayOfVertices[0]) * 3 * model->nVertices;
+    glGenBuffers (1, &model->tc);
+    glBindBuffer (GL_ARRAY_BUFFER, model->tc);
+    glBufferData (GL_ARRAY_BUFFER, sizeOfTextureCoordinateArray, arrayOfTextureCoordinates, GL_STATIC_DRAW);
+  }
+  */
+
+  glBindBuffer (GL_ARRAY_BUFFER, 0); //unbind array buffer
   return model;
 }
 

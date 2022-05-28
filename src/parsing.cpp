@@ -9,12 +9,18 @@
  * @{
  * # Data structure for Operations
  * @code{.unparsed}
- * ⟨operations⟩ ::= ⟨position⟩⟨lookAt⟩⟨up⟩⟨projection⟩⟨grouping⟩⁺
- *      ⟨position⟩,⟨lookAt⟩,⟨up⟩,⟨projection⟩ ::= ⟨float⟩⟨float⟩⟨float⟩
+ * ⟨operations⟩ ::= ⟨position⟩⟨lookAt⟩⟨up⟩⟨projection⟩⟨light⟩⃰ ⟨grouping⟩⁺
+ *      ⟨position⟩,⟨lookAt⟩,⟨up⟩,⟨projection⟩ ::= ⟨vec3f⟩
+ *
+ * ⟨light⟩ ::= ⟨point⟩ | ⟨directional⟩ | ⟨spotlight⟩
+ *      ⟨point⟩ ::= ⟨vec3f⟩
+ *      ⟨directional⟩ ::= ⟨vec3f⟩
+ *      ⟨spotlight⟩ ::= ⟨vec3f⟩⟨vec3f⟩⟨cutoff⟩
+ *          ⟨cutoff⟩ ::= ⟨float⟩ ∈ [0,90] ∪ {180}
  *
  * ⟨grouping⟩ ::= ⟨BEGIN_GROUP⟩⟨elem⟩⁺⟨END_GROUP⟩
  *
- * ⟨elem⟩ ::= ⟨transformation⟩ | ⟨model_loading⟩ | ⟨texture⟩ | ⟨color⟩ | ⟨light⟩ | ⟨grouping⟩
+ * ⟨elem⟩ ::= ⟨transformation⟩ | ⟨model_loading⟩ | ⟨texture⟩ | ⟨color⟩ | ⟨grouping⟩
  *
  * ⟨transformation⟩ ::= ⟨translation⟩ | ⟨rotation⟩ | ⟨scaling⟩
  * ⟨translation⟩ ::= ⟨simple_translation⟩ | ⟨extended_translation⟩
@@ -33,13 +39,8 @@
  *      ⟨color_vec3f⟩ ::= ⟨red⟩⟨green⟩⟨blue⟩
  *          ⟨red⟩,⟨green⟩,⟨blue⟩ ::= ⟨float⟩ ∈ {0,...,255}
  *      ⟨shininess_float⟩ ::= ⟨float⟩ ∈ [0, 128]
- * ⟨light⟩ ::= ⟨point⟩ | ⟨directional⟩ | ⟨spotlight⟩
- *      ⟨point⟩ ::= ⟨vec3f⟩
- *      ⟨directional⟩ ::= ⟨vec3f⟩
- *      ⟨spotlight⟩ ::= ⟨vec3f⟩⟨vec3f⟩⟨cutoff⟩
- *          ⟨cutoff⟩ ::= ⟨float⟩ ∈ [0,90] ∪ {180}
  * ⟨model_loading⟩ ::= ⟨LOAD_MODEL⟩ ⟨number of characters⟩ ⟨char⟩⁺
- *      ⟨number of characters⟩ ::= <int>
+ *      ⟨number of characters⟩ ::= ⟨int⟩
  *
  * ⟨vec3f⟩ ::= ⟨float⟩⟨float⟩⟨float⟩
  * @endcode
