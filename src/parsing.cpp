@@ -11,39 +11,37 @@
  * @code{.unparsed}
  * ⟨operations⟩ ::= ⟨position⟩⟨lookAt⟩⟨up⟩⟨projection⟩⟨light⟩⃰ ⟨grouping⟩⁺
  *      ⟨position⟩,⟨lookAt⟩,⟨up⟩,⟨projection⟩ ::= ⟨vec3f⟩
- *
- * ⟨light⟩ ::= ⟨point⟩ | ⟨directional⟩ | ⟨spotlight⟩
- *      ⟨point⟩ ::= ⟨POINT⟩⟨vec3f⟩
- *      ⟨directional⟩ ::= ⟨DIRECTIONAL⟩⟨vec3f⟩
- *      ⟨spotlight⟩ ::= ⟨SPOTLIGHT⟩⟨vec3f⟩⟨vec3f⟩⟨cutoff⟩
- *          ⟨cutoff⟩ ::= ⟨float⟩ ∈ [0,90] ∪ {180}
+ *       ⟨light⟩ ::= ⟨point⟩ | ⟨directional⟩ | ⟨spotlight⟩
+ *            ⟨point⟩ ::= ⟨POINT⟩⟨vec3f⟩
+ *            ⟨directional⟩ ::= ⟨DIRECTIONAL⟩⟨vec3f⟩
+ *            ⟨spotlight⟩ ::= ⟨SPOTLIGHT⟩⟨vec3f⟩⟨vec3f⟩⟨cutoff⟩
+ *                ⟨cutoff⟩ ::= ⟨float⟩ ∈ [0,90] ∪ {180}
  *
  * ⟨grouping⟩ ::= ⟨BEGIN_GROUP⟩⟨elem⟩⁺⟨END_GROUP⟩
- *
- * ⟨elem⟩ ::= ⟨transformation⟩ | ⟨model_loading⟩ | ⟨texture⟩ | ⟨color⟩ | ⟨grouping⟩
+ *      ⟨elem⟩ ::= ⟨transformation⟩ | ⟨model_loading⟩ | ⟨grouping⟩
  *
  * ⟨transformation⟩ ::= ⟨translation⟩ | ⟨rotation⟩ | ⟨scaling⟩
- * ⟨translation⟩ ::= ⟨simple_translation⟩ | ⟨extended_translation⟩
- *      ⟨simple_translation⟩ ::= ⟨TRANSLATE⟩⟨float⟩⟨float⟩⟨float⟩
- *      ⟨extended_translation⟩ ::= ⟨EXTENDED_TRANSLATE⟩⟨time⟩⟨align⟩⟨number_of_points⟩⟨vec3f⟩⁺
- *          ⟨time⟩  ::= ⟨float⟩
- *          ⟨align⟩ ::= ⟨bool⟩
- *          ⟨number_of_points⟩ ::= ⟨int⟩
- * ⟨rotation⟩ ::= ⟨simple_rotation⟩ | ⟨extended_rotation⟩
- *      ⟨simple_rotation⟩ ::= ⟨ROTATE⟩⟨float⟩⟨float⟩⟨float⟩[angle]
- *          ⟨angle⟩ ::= ⟨float⟩
- *      ⟨extended_rotation⟩ ::= ⟨EXTENDED_ROTATE⟩⟨vec3f⟩
- * ⟨scaling⟩ ::= ⟨SCALE⟩⟨float⟩⟨float⟩⟨float⟩
+ *      ⟨translation⟩ ::= ⟨simple_translation⟩ | ⟨extended_translation⟩
+ *           ⟨simple_translation⟩ ::= ⟨TRANSLATE⟩⟨float⟩⟨float⟩⟨float⟩
+ *           ⟨extended_translation⟩ ::= ⟨EXTENDED_TRANSLATE⟩⟨time⟩⟨align⟩⟨number_of_points⟩⟨vec3f⟩⁺
+ *               ⟨time⟩  ::= ⟨float⟩
+ *               ⟨align⟩ ::= ⟨bool⟩
+ *               ⟨number_of_points⟩ ::= ⟨int⟩
+ *      ⟨rotation⟩ ::= ⟨simple_rotation⟩ | ⟨extended_rotation⟩
+ *           ⟨simple_rotation⟩ ::= ⟨ROTATE⟩⟨float⟩⟨float⟩⟨float⟩[angle]
+ *               ⟨angle⟩ ::= ⟨float⟩
+ *           ⟨extended_rotation⟩ ::= ⟨EXTENDED_ROTATE⟩⟨vec3f⟩
+ *      ⟨scaling⟩ ::= ⟨SCALE⟩⟨float⟩⟨float⟩⟨float⟩
+ *
+ * ⟨model_loading⟩ ::= ⟨LOAD_MODEL⟩ ⟨number of characters⟩ ⟨char⟩⁺ [texture] [color]
+ *      ⟨number of characters⟩ ::= ⟨int⟩
  *
  * ⟨texture⟩ ::= ⟨TEXTURE⟩ ⟨number of characters⟩ ⟨char⟩⁺
- *
- * ⟨color⟩   ::= ( ⟨DIFFUSE⟩ | ⟨AMBIENT⟩ | ⟨SPECULAR⟩ | ⟨EMISSIVE⟩ ) ⟨color_vec3f⟩ | ⟨SHININESS⟩ ⟨shininess_float⟩
+ * ⟨color⟩   ::=  (⟨DIFFUSE⟩ | ⟨AMBIENT⟩ | ⟨SPECULAR⟩ | ⟨EMISSIVE⟩) ⟨color_vec3f⟩
+ *              | ⟨SHININESS⟩ ⟨shininess_float⟩
  *      ⟨color_vec3f⟩ ::= ⟨red⟩⟨green⟩⟨blue⟩
  *          ⟨red⟩,⟨green⟩,⟨blue⟩ ::= ⟨float⟩ ∈ {0,...,255}
  *      ⟨shininess_float⟩ ::= ⟨float⟩ ∈ [0, 128]
- *
- * ⟨model_loading⟩ ::= ⟨LOAD_MODEL⟩ ⟨number of characters⟩ ⟨char⟩⁺
- *      ⟨number of characters⟩ ::= ⟨int⟩
  *
  * ⟨vec3f⟩ ::= ⟨float⟩⟨float⟩⟨float⟩
  * @endcode
