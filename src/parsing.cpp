@@ -34,7 +34,7 @@
  *           ⟨extended_rotation⟩ ::= ⟨EXTENDED_ROTATE⟩⟨vec3f⟩
  *      ⟨scaling⟩ ::= ⟨SCALE⟩⟨float⟩⟨float⟩⟨float⟩
  *
- * ⟨model_loading⟩ ::= ⟨LOAD_MODEL⟩ ⟨number of characters⟩ ⟨char⟩⁺ [texture] [color]
+ * ⟨model_loading⟩ ::= ⟨BEGIN_MODEL⟩ ⟨number of characters⟩ ⟨char⟩⁺ [texture] [color] ⟨END_MODEL⟩
  *      ⟨number of characters⟩ ::= ⟨int⟩
  *
  * ⟨texture⟩ ::= ⟨TEXTURE⟩ ⟨number of characters⟩ ⟨char⟩⁺
@@ -46,10 +46,6 @@
  *
  * ⟨vec3f⟩ ::= ⟨float⟩⟨float⟩⟨float⟩
  * @endcode
- *
- * example of ⟨grouping⟩:
- *
- * @code{.unparsed}LOAD_MODEL 7 'e' 'x' 'a' 'm' 'p' 'l' 'e'@endcode
  *
  * Note: we'll use an array of floats, therefore we will need to cast to char when reading
  * the model filename characters and to int when reading the number of characters.
@@ -157,7 +153,7 @@ void operations_push_model (tinyxml2::XMLElement *model, std::vector<float> *ope
   unsigned int i = 0;
   const char *string = model->Attribute ("file");
 
-  operations->push_back (LOAD_MODEL);
+  operations->push_back (BEGIN_MODEL);
 
   do
     operations->push_back (string[i++]);
@@ -323,7 +319,7 @@ void operations_print (std::vector<float> *operations)
           case END_GROUP:
             fprintf (stderr, "END_GROUP\n");
           continue;
-          case LOAD_MODEL:
+          case BEGIN_MODEL:
             int stringSize = (int) operations->at (i + 1);
           char model[stringSize + 1];
 
@@ -333,7 +329,7 @@ void operations_print (std::vector<float> *operations)
 
           model[j] = 0;
 
-          fprintf (stderr, "LOAD_MODEL(%s)\n", model);
+          fprintf (stderr, "BEGIN_MODEL(%s)\n", model);
           i += 1 + j - 1; //just to be explicit
           continue;
         }

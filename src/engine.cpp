@@ -289,6 +289,8 @@ Model addTexture(Model m, const char *path) {
   glGenerateMipmap (GL_TEXTURE_2D);
 
   glBindTexture (GL_TEXTURE_2D, 0);
+
+  return m;
 }
 
 void renderModel (Model model)
@@ -453,25 +455,76 @@ void operations_render (std::vector<float> *operations)
           case END_GROUP:
             glPopMatrix ();
           continue;
-          case LOAD_MODEL:
+          case TEXTURE:
+            {
+              int stringSize = (int) operations->at (i + 1);
+              char textureFilePath[stringSize + 1];
+              int j;
+              for (j = 0; j < stringSize; ++j)
+                textureFilePath[j] = (char) operations->at (i + 2 + j);
+              textureFilePath[j] = '\0';
+              addTexture (globalModels.back(), textureFilePath);
+              i += stringSize + 1; //just to be explicit
+            }
+            continue;
+          case DIFFUSE:
+            {
+              globalModels.back()->material.diffuse = vec3(operations->at (i+1),
+                                                           operations->at (i+2),
+                                                           operations->at (i+3));
+              i+=3;
+            }
+            continue;
+          case AMBIENT:
+            {
+              globalModels.back()->material.ambient = vec3(operations->at (i+1),
+                                                           operations->at (i+2),
+                                                           operations->at (i+3));
+              i+=3;
+            }
+            continue;
+          case SPECULAR:
+            {
+              globalModels.back()->material.specular = vec3(operations->at (i+1),
+                                                           operations->at (i+2),
+                                                           operations->at (i+3));
+              i+=3;
+            }
+            continue;
+          case EMISSIVE:
+            {
+              globalModels.back()->material.emissive = vec3(operations->at (i+1),
+                                                            operations->at (i+2),
+                                                            operations->at (i+3));
+              i+=3;
+            }
+            continue;
+          case SHININESS:
+            {
+              globalModels.back ()->material.shininess = (uint) operations->at (i + 1);
+              i += 1;
+            }
+            continue;
+          case BEGIN_MODEL:
             {
               int stringSize = (int) operations->at (i + 1);
               if (!hasPushedModels)
                 {
                   char modelName[stringSize + 1];
-
                   int j;
-                  for (j = 0; j < stringSize; j++)
+                  for (j = 0; j < stringSize; ++j)
                     modelName[j] = (char) operations->at (i + 2 + j);
-
                   modelName[j] = '\0';
 
                   globalModels.push_back (allocModel(modelName));
                 }
-
-              renderModel (globalModels[model_num]);
               ++model_num;
               i += stringSize + 1; //just to be explicit
+              continue;
+            }
+          case END_MODEL:
+            {
+              renderModel (globalModels.back ());
               continue;
             }
         }
