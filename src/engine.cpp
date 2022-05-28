@@ -478,46 +478,46 @@ void operations_render (std::vector<float> *operations)
               textureFilePath[j] = '\0';
               addTexture (globalModels.back(), textureFilePath);
               i += stringSize + 1; //just to be explicit
-            }
             continue;
+            }
           case DIFFUSE:
             {
               globalModels.back()->material.diffuse = vec3(operations->at (i+1),
                                                            operations->at (i+2),
                                                            operations->at (i+3));
               i+=3;
-            }
             continue;
+            }
           case AMBIENT:
             {
               globalModels.back()->material.ambient = vec3(operations->at (i+1),
                                                            operations->at (i+2),
                                                            operations->at (i+3));
               i+=3;
-            }
             continue;
+            }
           case SPECULAR:
             {
               globalModels.back()->material.specular = vec3(operations->at (i+1),
                                                            operations->at (i+2),
                                                            operations->at (i+3));
               i+=3;
-            }
             continue;
+            }
           case EMISSIVE:
             {
               globalModels.back()->material.emissive = vec3(operations->at (i+1),
                                                             operations->at (i+2),
                                                             operations->at (i+3));
               i+=3;
+              continue;
             }
-            continue;
           case SHININESS:
             {
               globalModels.back ()->material.shininess = operations->at (i + 1);
               i += 1;
+              continue;
             }
-            continue;
           case BEGIN_MODEL:
             {
               int stringSize = (int) operations->at (i + 1);
@@ -548,6 +548,7 @@ void operations_render (std::vector<float> *operations)
                               1.0};
               glLightfv (GL_LIGHT0, GL_POSITION, pos);
               i += 3;
+              continue;
             }
           case DIRECTIONAL:
             {
@@ -557,6 +558,7 @@ void operations_render (std::vector<float> *operations)
                               0.0};
               glLightfv (GL_LIGHT0, GL_POSITION, dir);
               i += 3;
+              continue;
             }
           case SPOTLIGHT:
             {
@@ -572,6 +574,7 @@ void operations_render (std::vector<float> *operations)
               glLightfv (GL_LIGHT0, GL_SPOT_DIRECTION, dir);
               glLightf (GL_LIGHT0, GL_SPOT_CUTOFF, cutoff);
               i += 7;
+              continue;
             }
         }
     }
