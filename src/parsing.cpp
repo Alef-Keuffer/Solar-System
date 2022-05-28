@@ -8,6 +8,7 @@
 /*! @addtogroup Operations
  * @{
  * # Data structure for Operations
+ * 
  * @code{.unparsed}
  * ⟨operations⟩ ::= ⟨position⟩⟨lookAt⟩⟨up⟩⟨projection⟩⟨light⟩⃰ ⟨grouping⟩⁺
  *      ⟨position⟩,⟨lookAt⟩,⟨up⟩,⟨projection⟩ ::= ⟨vec3f⟩
