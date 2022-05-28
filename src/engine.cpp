@@ -15,6 +15,7 @@
 #include <cmath>
 #include <tuple>
 
+#include <IL/il.h>
 #include <glm/glm.hpp>
 
 #include "parsing.h"
