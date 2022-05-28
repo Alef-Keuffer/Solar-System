@@ -17,12 +17,14 @@
 
 #include <IL/il.h>
 #include <glm/glm.hpp>
+#include <glm/gtc/type_ptr.hpp>
+
 
 #include "parsing.h"
 #include "curves.h"
 
 using std::vector, std::tuple;
-using glm::mat4, glm::vec4, glm::vec3, glm::cross;
+using glm::mat4, glm::vec4, glm::vec3, glm::cross, glm::value_ptr;
 
 /*rotation*/
 const unsigned int DEFAULT_GLOBAL_ANGLE_STEP = 16;
@@ -192,7 +194,7 @@ typedef struct model {
     vec3 ambient{50,50,50};
     vec3 specular{0,0,0};
     vec3 emissive{0,0,0};
-    uint shininess = 0;
+    GLfloat shininess = 0;
   } material{};
   // 0 default value means it's optional with 0 meaning it's not being used by a particular model.
   GLuint tbo = 0; // texture buffer object
@@ -301,16 +303,27 @@ void renderModel (Model model)
       exit (1);
     }
 
+  // vertex buffer object
   glBindBuffer (GL_ARRAY_BUFFER, model->vbo);
-  glVertexPointer (3, GL_FLOAT, 0, 0);
+  glVertexPointer (3, GL_FLOAT, 0, nullptr);
 
+  // normals
   glBindBuffer (GL_ARRAY_BUFFER, model->normals);
-  glNormalPointer (GL_FLOAT, 0, 0);
+  glNormalPointer (GL_FLOAT, 0, nullptr);
 
+  // texture buffer object
   glBindTexture (GL_TEXTURE_2D,model->tbo);
 
+  // texture coordinates
   glBindBuffer (GL_ARRAY_BUFFER, model->tc);
-  glTexCoordPointer(2,GL_FLOAT,0,0);
+  glTexCoordPointer(2,GL_FLOAT,0,nullptr);
+
+  // material colors
+  glMaterialfv (GL_FRONT, GL_DIFFUSE, value_ptr(model->material.diffuse));
+  glMaterialfv (GL_FRONT, GL_AMBIENT, value_ptr(model->material.ambient));
+  glMaterialfv (GL_FRONT, GL_SPECULAR, value_ptr(model->material.specular));
+  glMaterialfv (GL_FRONT, GL_EMISSION, value_ptr(model->material.emissive));
+  glMaterialf (GL_FRONT, GL_SHININESS, model->material.shininess);
 
   // drawing
   glDrawArrays (GL_TRIANGLES, 0, model->nVertices);
@@ -501,7 +514,7 @@ void operations_render (std::vector<float> *operations)
             continue;
           case SHININESS:
             {
-              globalModels.back ()->material.shininess = (uint) operations->at (i + 1);
+              globalModels.back ()->material.shininess = operations->at (i + 1);
               i += 1;
             }
             continue;
@@ -526,6 +539,39 @@ void operations_render (std::vector<float> *operations)
             {
               renderModel (globalModels.back ());
               continue;
+            }
+          case POINT:
+            {
+              float pos[4] = {operations->at(i+1),
+                              operations->at(i+2),
+                              operations->at(i+3),
+                              1.0};
+              glLightfv (GL_LIGHT0, GL_POSITION, pos);
+              i += 3;
+            }
+          case DIRECTIONAL:
+            {
+              float dir[4] = {operations->at (i + 1),
+                              operations->at(i+2),
+                              operations->at(i+3),
+                              0.0};
+              glLightfv (GL_LIGHT0, GL_POSITION, dir);
+              i += 3;
+            }
+          case SPOTLIGHT:
+            {
+              const float pos[4] = {operations->at(i+1),
+                              operations->at(i+2),
+                              operations->at(i+3),
+                              1.0};
+              const float dir[3] = {operations->at(i+4),
+                              operations->at(i+5),
+                              operations->at(i+6)};
+              const float cutoff = operations->at(i+7);
+              glLightfv (GL_LIGHT0, GL_POSITION, pos);
+              glLightfv (GL_LIGHT0, GL_SPOT_DIRECTION, dir);
+              glLightf (GL_LIGHT0, GL_SPOT_CUTOFF, cutoff);
+              i += 7;
             }
         }
     }
