@@ -315,7 +315,7 @@ void renderModel (Model model)
 
   // unbinding
   glBindBuffer (GL_ARRAY_BUFFER, 0);
-  //glBindTexture (GL_TEXTURE_2D, 0);
+  glBindTexture (GL_TEXTURE_2D, 0);
 }
 
 //!@} end of group modelEngine
