@@ -187,11 +187,11 @@ typedef struct model {
   GLuint vbo{};
   GLuint normals{};
   struct {
-    vec3 diffuse;
-    vec3 ambient;
-    vec3 emissive;
-    vec3 specular;
-    uint shininess;
+    vec3 diffuse{200,200,200};
+    vec3 ambient{50,50,50};
+    vec3 specular{0,0,0};
+    vec3 emissive{0,0,0};
+    uint shininess = 0;
   } material{};
   // 0 default value means it's optional with 0 meaning it's not being used by a particular model.
   GLuint tbo = 0; // texture buffer object
