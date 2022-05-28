@@ -249,6 +249,50 @@ void operations_push_groups (tinyxml2::XMLElement *group, std::vector<float> *op
 /*! @addtogroup xml
  *@{*/
 
+
+void operations_push_lights (const XMLElement *lights, vector<float> *operations)
+{
+  const XMLElement *light = lights->FirstChildElement ();
+  do
+    {
+      const char* lightType = light->Attribute ("type");
+      if (!strcmp(lightType,"point")) {
+        operations->push_back (POINT);
+        operations->insert(operations->end(),
+                           {light->FloatAttribute ("posX"),
+                            light->FloatAttribute ("posY"),
+                            light->FloatAttribute ("posZ")});
+
+      }
+      else if (!strcmp(lightType,"directional"))
+        {
+          operations->push_back (DIRECTIONAL);
+          operations->insert(operations->end(),
+                             {light->FloatAttribute ("dirX"),
+                              light->FloatAttribute ("dirY"),
+                              light->FloatAttribute ("dirZ")});
+        }
+      else if (!strcmp(lightType,"spotlight"))
+        {
+          operations->push_back (SPOTLIGHT);
+          operations->insert(operations->end(),
+                             {light->FloatAttribute ("posX"),
+                              light->FloatAttribute ("posY"),
+                              light->FloatAttribute ("posZ"),
+                              light->FloatAttribute ("dirX"),
+                              light->FloatAttribute ("dirY"),
+                              light->FloatAttribute ("dirZ"),
+                              light->FloatAttribute ("cutoff")});
+        }
+      else
+        {
+          fprintf(stderr, "Unkown light type: %s\n",lightType);
+          exit(EXIT_FAILURE);
+        }
+    }
+  while ((light = light->NextSiblingElement ()));
+}
+
 void operations_load_xml (const char *filename, std::vector<float> *operations)
 {
   tinyxml2::XMLDocument doc;
@@ -289,6 +333,11 @@ void operations_load_xml (const char *filename, std::vector<float> *operations)
   else
     operations->insert (operations->end (), {60, 1, 1000});
   /*end of camera*/
+
+  // lights
+  const XMLElement *lights = world->FirstChildElement ("lights");
+  if (lights != nullptr)
+    operations_push_lights (lights,operations);
 
   // groups
   tinyxml2::XMLElement *group = world->FirstChildElement ("group");

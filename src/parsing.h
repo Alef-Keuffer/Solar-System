@@ -16,13 +16,14 @@ enum {
   EXTENDED_TRANSLATE,
   EXTENDED_ROTATE,
   TEXTURE,
-  color_start,
   DIFFUSE,
   AMBIENT,
   SPECULAR,
   EMISSIVE,
   SHININESS,
-  color_end,
+  POINT,
+  DIRECTIONAL,
+  SPOTLIGHT
 };
 
 typedef unsigned char operation_t;
