@@ -1033,6 +1033,7 @@ void engine_run (int argc, char **argv)
   glEnableClientState (GL_NORMAL_ARRAY);
   glEnableClientState(GL_TEXTURE_COORD_ARRAY);
   glEnableClientState (GL_TEXTURE_2D);
+  glEnable(GL_RESCALE_NORMAL);
   // glEnable (GL_CULL_FACE);
   glPolygonMode (GL_FRONT_AND_BACK, GL_LINE);
 
