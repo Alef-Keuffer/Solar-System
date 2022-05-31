@@ -11,9 +11,10 @@
 #endif
 
 #include <cstdio>
-#include <vector>
 #include <cmath>
+#include <vector>
 #include <tuple>
+
 
 #include <IL/il.h>
 #include <glm/glm.hpp>
@@ -113,7 +114,7 @@ double globalAzimuth = DEFAULT_GLOBAL_AZIMUTH;
 double globalElevation = DEFAULT_GLOBAL_ELEVATION;
 bool globalMouseLeftButton = false;
 
-void spherical2Cartesian (double radius, double elevation, double azimuth, double *x, double *y, double *z)
+void spherical2Cartesian (const double radius, const double elevation, const double azimuth, double *x, double *y, double *z)
 {
 
   *x = radius * cos (elevation) * sin (azimuth) + globalCenterX;
@@ -121,7 +122,7 @@ void spherical2Cartesian (double radius, double elevation, double azimuth, doubl
   *z = radius * cos (elevation) * cos (azimuth) + globalCenterZ;
 }
 
-void cartesian2Spherical (double x, double y, double z, double *radius, double *azimuth, double *elevation)
+void cartesian2Spherical (const double x, const double y, const double z, double *radius, double *azimuth, double *elevation)
 {
   *radius = abs (sqrt (pow (x, 2) + pow (y, 2) + pow (z, 2)));
   *elevation = asin (y / (*radius));
@@ -185,21 +186,48 @@ void env_load_defaults ()
 
 /*! @addtogroup modelEngine
  * @{*/
+/*typedef struct model {
+  GLsizei nVertices{};
+  GLuint vbo = 0;
+  GLuint normals = 0;
+  float diffuse[3] = {200,200,200};
+  float ambient[3] = {50,50,50};
+  float specular[3] = {0,0,0};
+  float emissive[3] = {0,0,0};
+  GLfloat shininess = 0.0F;
+  // 0 default value means it's optional with 0 meaning it's not being used by a particular model.
+  GLuint tbo = 0; // texture buffer object
+  GLuint tc = 0; // texture coordinates
+} *Model;*/
+
 typedef struct model {
   GLsizei nVertices{};
-  GLuint vbo{};
-  GLuint normals{};
-  struct {
-    vec3 diffuse{200,200,200};
-    vec3 ambient{50,50,50};
-    vec3 specular{0,0,0};
-    vec3 emissive{0,0,0};
-    GLfloat shininess = 0;
-  } material{};
+  GLuint vbo = 0;
+  GLuint normals = 0;
+  float diffuse[3] = {200,200,200};
+  float ambient[3] = {50,50,50};
+  float specular[3] = {0,0,0};
+  float emissive[3] = {0,0,0};
+  GLfloat shininess = 0.0F;
   // 0 default value means it's optional with 0 meaning it's not being used by a particular model.
   GLuint tbo = 0; // texture buffer object
   GLuint tc = 0; // texture coordinates
 } *Model;
+
+/*typedef struct model {
+  GLsizei nVertices;
+  GLuint vbo ;
+  GLuint normals;
+  float diffuse[3];
+  float ambient[3];
+  float specular[3];
+  float emissive[3];
+  GLfloat shininess;
+  // 0 default value means it's optional with 0 meaning it's not being used by a particular model.
+  GLuint tbo; // texture buffer object
+  GLuint tc; // texture coordinates
+} *Model;*/
+
 
 static std::vector<Model> globalModels;
 static std::vector<float> globalOperations;
@@ -224,17 +252,27 @@ Model allocModel (const char *path)
   fread (&nVertices, sizeof (float), 1, fp);
 
   auto *arrayOfVertices = (float *) malloc (3 * nVertices * sizeof (float));
-  fread (arrayOfVertices, 3 * sizeof (float), nVertices, fp);
-/*
+  const size_t nVerticesRead = fread (arrayOfVertices, 3 * sizeof (float), nVertices, fp);
+  if (nVerticesRead != nVertices) {
+    fprintf(stderr,"%zu = nVerticesRead != nVertices = %ul", nVerticesRead,nVertices);
+    exit(EXIT_FAILURE);
+  }
+
   auto *arrayOfNormals = (float *) malloc (3 * nVertices * sizeof (float));
-  fread (arrayOfNormals, 3 * sizeof (float), nVertices, fp);
-  float *test_for_texture;
-  size_t hasTexture = fread (test_for_texture, sizeof (float), 1, fp);
-  float *arrayOfTextureCoordinates;
-  if (hasTexture) {
-    arrayOfTextureCoordinates = (float *) malloc (3 * nVertices * sizeof (float));
-    fread(arrayOfTextureCoordinates,2* sizeof (float), nVertices, fp);
-  }*/
+  const size_t nNormalsRead = fread (arrayOfNormals, 3 * sizeof (float), nVertices, fp);
+  if (nNormalsRead != nVertices) {
+    fprintf(stderr,"%zu = nNormalsRead != nVertices = %ul", nNormalsRead,nVertices);
+    exit(EXIT_FAILURE);
+  }
+
+  auto *arrayOfTextureCoordinates =  (float *) malloc (2 * nVertices * sizeof (float));
+  const size_t nTextureCoordinatesRead = fread(arrayOfTextureCoordinates,2 * sizeof (float), nVertices, fp);
+  if (nTextureCoordinatesRead != nVertices) {
+    fprintf(stderr,"%zu = nTextureCoordinatesRead != nVertices = %ul", nTextureCoordinatesRead,nVertices);
+    exit(EXIT_FAILURE);
+  }
+
+
   fclose (fp);
 
   model->nVertices = nVertices;
@@ -244,39 +282,57 @@ Model allocModel (const char *path)
   glBindBuffer (GL_ARRAY_BUFFER, model->vbo);
   glBufferData (GL_ARRAY_BUFFER, sizeOfVertexArray, arrayOfVertices, GL_STATIC_DRAW);
   free (arrayOfVertices);
-/*
+
   const GLsizei sizeOfNormalsArray = (GLsizei)sizeof (arrayOfNormals[0]) * 3 * model->nVertices;
   glGenBuffers (1, &model->normals);
   glBindBuffer (GL_ARRAY_BUFFER, model->normals);
   glBufferData (GL_ARRAY_BUFFER, sizeOfNormalsArray, arrayOfNormals, GL_STATIC_DRAW);
+  free (arrayOfNormals);
 
-  if (hasTexture) {
-    const GLsizei sizeOfTextureCoordinateArray = (GLsizei)sizeof (arrayOfVertices[0]) * 3 * model->nVertices;
-    glGenBuffers (1, &model->tc);
-    glBindBuffer (GL_ARRAY_BUFFER, model->tc);
-    glBufferData (GL_ARRAY_BUFFER, sizeOfTextureCoordinateArray, arrayOfTextureCoordinates, GL_STATIC_DRAW);
-  }
-  */
+  const GLsizei sizeOfTextureCoordinateArray = (GLsizei)sizeof (arrayOfVertices[0]) * 3 * model->nVertices;
+  glGenBuffers (1, &model->tc);
+  glBindBuffer (GL_ARRAY_BUFFER, model->tc);
+  glBufferData (GL_ARRAY_BUFFER, sizeOfTextureCoordinateArray, arrayOfTextureCoordinates, GL_STATIC_DRAW);
+  free(arrayOfTextureCoordinates);
 
   glBindBuffer (GL_ARRAY_BUFFER, 0); //unbind array buffer
+
+//  model->material.diffuse = vec3(200,200,200);
+//  model->material.ambient = vec3(50,50,50);
+//  model->material.specular = vec3(0,0,0);
+//  model->material.emissive = vec3(0,0,0);
+
+    model->diffuse[0] = 1234;
+    model->diffuse[1] = 1234;
+    model->diffuse[2] = 1234;
+
+    model->ambient[0] = 1234;
+    model->ambient[1] = 1234;
+    model->ambient[2] = 1234;
+
+    model->specular[0] = 1234;
+    model->specular[1] = 1234;
+    model->specular[2] = 1234;
+
+    model->emissive[0] = 1234;
+    model->emissive[1] = 1234;
+    model->emissive[2] = 1234;
+
   return model;
 }
 
 Model addTexture(Model m, const char *path) {
-  unsigned int t;
-  GLsizei tw, th;
-  unsigned char *texData;
 
   ilInit ();
   ilEnable (IL_ORIGIN_SET);
   ilOriginFunc (IL_ORIGIN_LOWER_LEFT);
-  ilGenImages (1, &t);
-  ilBindImage (t);
+  ILuint image;
+  ilGenImages (1, &image);
+  ilBindImage (image);
   ilLoadImage ((ILstring) path);
-  tw = ilGetInteger (IL_IMAGE_WIDTH);
-  th = ilGetInteger (IL_IMAGE_HEIGHT);
+  const GLsizei texture_width = ilGetInteger (IL_IMAGE_WIDTH);
+  const GLsizei texture_height = ilGetInteger (IL_IMAGE_HEIGHT);
   ilConvertImage (IL_RGBA, IL_UNSIGNED_BYTE);
-  texData = ilGetData ();
 
   glGenTextures (1, &m->tbo);
 
@@ -287,7 +343,11 @@ Model addTexture(Model m, const char *path) {
   glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR_MIPMAP_LINEAR);
   glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
 
-  glTexImage2D (GL_TEXTURE_2D, 0, GL_RGBA, tw, th, 0, GL_RGBA, GL_UNSIGNED_BYTE, texData);
+  const ILubyte *texData = ilGetData ();
+  glTexImage2D (GL_TEXTURE_2D, 0, GL_RGBA,
+                texture_width, texture_height, 0,
+                GL_RGBA, GL_UNSIGNED_BYTE, texData);
+
   glGenerateMipmap (GL_TEXTURE_2D);
 
   glBindTexture (GL_TEXTURE_2D, 0);
@@ -295,7 +355,7 @@ Model addTexture(Model m, const char *path) {
   return m;
 }
 
-void renderModel (Model model)
+void renderModel (const struct model* model)
 {
   if (!model->nVertices % 3)
     {
@@ -319,11 +379,15 @@ void renderModel (Model model)
   glTexCoordPointer(2,GL_FLOAT,0,nullptr);
 
   // material colors
-  glMaterialfv (GL_FRONT, GL_DIFFUSE, value_ptr(model->material.diffuse));
-  glMaterialfv (GL_FRONT, GL_AMBIENT, value_ptr(model->material.ambient));
-  glMaterialfv (GL_FRONT, GL_SPECULAR, value_ptr(model->material.specular));
-  glMaterialfv (GL_FRONT, GL_EMISSION, value_ptr(model->material.emissive));
-  glMaterialf (GL_FRONT, GL_SHININESS, model->material.shininess);
+//  glMaterialfv (GL_FRONT, GL_DIFFUSE, value_ptr(model->material.diffuse));
+//  glMaterialfv (GL_FRONT, GL_AMBIENT, value_ptr(model->material.ambient));
+//  glMaterialfv (GL_FRONT, GL_SPECULAR, value_ptr(model->material.specular));
+//  glMaterialfv (GL_FRONT, GL_EMISSION, value_ptr(model->material.emissive));
+  glMaterialfv (GL_FRONT, GL_DIFFUSE, model->diffuse);
+  glMaterialfv (GL_FRONT, GL_AMBIENT, model->ambient);
+  glMaterialfv (GL_FRONT, GL_SPECULAR, model->specular);
+  glMaterialfv (GL_FRONT, GL_EMISSION, model->emissive);
+  glMaterialf (GL_FRONT, GL_SHININESS, model->shininess);
 
   // drawing
   glDrawArrays (GL_TRIANGLES, 0, model->nVertices);
@@ -335,7 +399,7 @@ void renderModel (Model model)
 
 //!@} end of group modelEngine
 
-void changeSize (int w, int h)
+void changeSize (const int w, int h)
 {
 
   // Prevent a divide by zero, when window is too short
@@ -370,7 +434,7 @@ void advance_in_rotation (const float rotation_time, const vec3 &axis_of_rotatio
 }
 
 //! @ingroup Operations
-void operations_render (std::vector<float> *operations)
+void operations_render (vector<float> *operations)
 {
   unsigned int i = 0;
   static bool hasPushedModels = false;
@@ -478,46 +542,46 @@ void operations_render (std::vector<float> *operations)
               textureFilePath[j] = '\0';
               addTexture (globalModels.back(), textureFilePath);
               i += stringSize + 1; //just to be explicit
-            continue;
             }
+            continue;
           case DIFFUSE:
             {
-              globalModels.back()->material.diffuse = vec3(operations->at (i+1),
-                                                           operations->at (i+2),
-                                                           operations->at (i+3));
+              globalModels.back()->diffuse[0] = operations->at (i+1);
+              globalModels.back()->diffuse[1] = operations->at (i+2);
+              globalModels.back()->diffuse[2] = operations->at (i+3);
               i+=3;
-            continue;
             }
+            continue;
           case AMBIENT:
             {
-              globalModels.back()->material.ambient = vec3(operations->at (i+1),
-                                                           operations->at (i+2),
-                                                           operations->at (i+3));
+              globalModels.back()->ambient[0] = operations->at (i+1);
+              globalModels.back()->ambient[1] = operations->at (i+2);
+              globalModels.back()->ambient[2] = operations->at (i+3);
               i+=3;
-            continue;
             }
+            continue;
           case SPECULAR:
             {
-              globalModels.back()->material.specular = vec3(operations->at (i+1),
-                                                           operations->at (i+2),
-                                                           operations->at (i+3));
+              globalModels.back()->specular[0] = operations->at (i+1);
+              globalModels.back()->specular[1] = operations->at (i+2);
+              globalModels.back()->specular[2] = operations->at (i+3);
               i+=3;
-            continue;
             }
+            continue;
           case EMISSIVE:
             {
-              globalModels.back()->material.emissive = vec3(operations->at (i+1),
-                                                            operations->at (i+2),
-                                                            operations->at (i+3));
+              globalModels.back()->emissive[0] = operations->at (i+1);
+              globalModels.back()->emissive[1] = operations->at (i+2);
+              globalModels.back()->emissive[2] = operations->at (i+3);
               i+=3;
-              continue;
             }
+            continue;
           case SHININESS:
             {
-              globalModels.back ()->material.shininess = operations->at (i + 1);
+              globalModels.back ()->shininess = operations->at (i + 1);
               i += 1;
-              continue;
             }
+            continue;
           case BEGIN_MODEL:
             {
               int stringSize = (int) operations->at (i + 1);
@@ -529,12 +593,13 @@ void operations_render (std::vector<float> *operations)
                     modelName[j] = (char) operations->at (i + 2 + j);
                   modelName[j] = '\0';
 
-                  globalModels.push_back (allocModel(modelName));
+                  struct model *m = allocModel(modelName);
+                  globalModels.push_back (m);
                 }
               ++model_num;
               i += stringSize + 1; //just to be explicit
-              continue;
             }
+            continue;
           case END_MODEL:
             {
               renderModel (globalModels.back ());
@@ -1008,6 +1073,7 @@ void engine_run (int argc, char **argv)
 
   // init GLUT and the window
   glutInit (&argc, argv);
+
   glutInitDisplayMode (GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);
   glutInitWindowPosition (100, 100);
   glutInitWindowSize (800, 800);

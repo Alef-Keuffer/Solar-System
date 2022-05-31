@@ -1,23 +1,24 @@
 #define _USE_MATH_DEFINES
 
-#include <math.h>
+#include <cmath>
 
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
+#include <cstdio>
+#include <cstring>
+#include <cstdlib>
 #include <glm/glm.hpp>
 #include <glm/gtx/string_cast.hpp>
 
 #include <vector>
 #include <string>
-#include <sstream>
 #include <fstream>
 #include <tuple>
 #include <iostream>
 
 #include "curves.h"
 
-using glm::mat4, glm::vec4, glm::vec3, std::vector, std::tuple, std::string, std::ifstream, std::ios, std::stringstream, std::array, glm::mat4x3, glm::to_string;
+using glm::mat4, glm::vec4, glm::vec3, glm::vec2, glm::mat4x3, glm::to_string, glm::normalize;
+using std::string, std::ifstream, std::ios, std::stringstream;
+using std::vector, std::tuple, std::array;
 
 const char *SPHERE = "sphere";
 const char *CUBE = "box";
@@ -26,6 +27,13 @@ const char *PLANE = "plane";
 const char *BEZIER = "bezier";
 /*! @addtogroup generator
 * @{*/
+
+struct baseModel {
+  int nVertices;
+  float *vertices;
+  float *normals;
+  float *texture_coordinates;
+};
 
 /*! @addtogroup points
  * @{*/
@@ -42,7 +50,7 @@ void points_write (const char *filename, const unsigned int nVertices, const flo
   FILE *fp = fopen (filename, "w");
   if (!fp)
     {
-      fprintf (stderr, "failed to open file");
+      fprintf (stderr, "failed to open file: %s", filename);
       exit (1);
     }
 
@@ -51,6 +59,26 @@ void points_write (const char *filename, const unsigned int nVertices, const flo
 
   fclose (fp);
 }
+
+void model_write (const char *filename, const vector<vec3> &points, const vector<vec3> &normals, const vector<vec2> &texture)
+{
+  FILE *fp = fopen (filename, "w");
+
+  if (!fp)
+    {
+      fprintf (stderr, "failed to open file: %s", filename);
+      exit (1);
+    }
+
+  const size_t nVertices = points.size();
+  fwrite (&nVertices, sizeof (unsigned int), 1, fp);
+  fwrite (points.data(), sizeof(points.back()), points.size(), fp);
+  fwrite (normals.data(), sizeof(normals.back()), normals.size(), fp);
+  fwrite (texture.data(), sizeof(texture.back()), texture.size(), fp);
+
+  fclose (fp);
+}
+
 //!@} end of group points
 
 /*! @addtogroup model
@@ -280,8 +308,18 @@ void model_cone_write (const char *filepath, const float radius, const float hei
 /*! @addtogroup sphere
 * @{*/
 
+static inline unsigned int model_sphere_nVertices (const unsigned int slices, const unsigned int stacks)
+{
+  return slices * stacks * 6;
+}
+
 static inline void
-model_sphere_vertex (const float r, const float theta, const float phi, unsigned int *pos, float *points)
+model_sphere_vertex (const float r,
+                     const float theta,
+                     const float phi,
+                     vector<vec3> &vertices,
+                     vector<vec3> &normals,
+                     vector<vec2> &texture)
 {
   /*
       x = r ⋅ sin(θ)cos(φ)
@@ -296,10 +334,17 @@ model_sphere_vertex (const float r, const float theta, const float phi, unsigned
           1. https://www.math3d.org/EumEEZBKe
           2. https://www.math3d.org/zE4n6xayX
    */
-  points_vertex (r * sin (theta) * cos (phi), r * sin (phi), r * cos (theta) * cos (phi), pos, points);
+  vertices.emplace_back(r * sin (theta) * cos (phi), r * sin (phi), r * cos (theta) * cos (phi));
+  normals.push_back (normalize(vertices.back()));
+  texture.emplace_back(phi/M_2_PI,theta/M_PI);
 }
 
-static void model_sphere_vertices (const float r, const unsigned int slices, const unsigned int stacks, float points[])
+static void model_sphere_vertices (const float r,
+                                   const unsigned int slices,
+                                   const unsigned int stacks,
+                                   vector<vec3> &vertices,
+                                   vector<vec3> &normals,
+                                   vector<vec2> &texture)
 {
   // https://www.math3d.org/EumEEZBKe
   // https://www.math3d.org/zE4n6xayX
@@ -309,8 +354,6 @@ static void model_sphere_vertices (const float r, const unsigned int slices, con
   const float theta = -M_PI;
   const float phi = -M_PI / 2.0f;
 
-  unsigned int pos = 0;
-
   for (unsigned int m = 1; m <= slices; m++)
     {
       for (unsigned int n = 1; n <= stacks; n++)
@@ -318,23 +361,38 @@ static void model_sphere_vertices (const float r, const unsigned int slices, con
           float i = (float) m;
           float j = (float) n;
 
-          model_sphere_vertex (r, theta + s * (i - 1), phi + t * j, &pos, points); // P1'
-          model_sphere_vertex (r, theta + s * i, phi + t * (j - 1), &pos, points); // P2
-          model_sphere_vertex (r, theta + s * i, phi + t * j, &pos, points); //P2'
+          model_sphere_vertex (r, theta + s * (i - 1), phi + t * j, vertices, normals, texture); // P1'
+          model_sphere_vertex (r, theta + s * i, phi + t * (j - 1), vertices, normals, texture); // P2
+          model_sphere_vertex (r, theta + s * i, phi + t * j, vertices, normals, texture); //P2'
 
-          model_sphere_vertex (r, theta + s * (i - 1), phi + t * (j - 1), &pos, points); // P1
-          model_sphere_vertex (r, theta + s * i, phi + t * (j - 1), &pos, points); // P2
-          model_sphere_vertex (r, theta + s * (i - 1), phi + t * j, &pos, points); // P1'
+          model_sphere_vertex (r, theta + s * (i - 1), phi + t * (j - 1), vertices, normals, texture); // P1
+          model_sphere_vertex (r, theta + s * i, phi + t * (j - 1), vertices, normals, texture); // P2
+          model_sphere_vertex (r, theta + s * (i - 1), phi + t * j, vertices, normals, texture); // P1'
         }
     }
 }
 
-/*
-*******************************************************************************
-Bezier patches
-*******************************************************************************
-*/
 
+
+void model_sphere_write (const char *filepath, const float radius, const unsigned int slices, const unsigned int stacks)
+{
+
+  const unsigned int nVertices = model_sphere_nVertices (slices, stacks);
+  vector<vec3> vertices;
+  vertices.reserve(nVertices);
+  vector<vec3> normals;
+  normals.reserve(nVertices);
+  vector<vec2> texture;
+  texture.reserve (nVertices);
+  model_sphere_vertices (radius, slices, stacks, vertices, normals, texture);
+  model_write (filepath, vertices, normals, texture);
+}
+//!@} end of group sphere
+
+//!@} end of group model
+
+/*! @addtogroup bezier
+ * @{ */
 vector<array<vec3, 16>> read_Bezier (const char *patch)
 {
   string buffer;
@@ -422,29 +480,7 @@ void model_bezier_write (int tesselation, const char *in_patch_file, const char 
     }
   points_write (out_3d_file, nVertices, coords.data ());
 }
-
-/*
-*******************************************************************************
-End of Bezier patches
-*******************************************************************************
-*/
-
-
-static inline unsigned int model_sphere_nVertices (const unsigned int slices, const unsigned int stacks)
-{
-  return slices * stacks * 6;
-}
-
-void model_sphere_write (const char *filepath, float radius, unsigned int slices, unsigned int stacks)
-{
-  const unsigned int nVertices = model_sphere_nVertices (slices, stacks);
-  float points[3 * nVertices];
-  model_sphere_vertices (radius, slices, stacks, points);
-  points_write (filepath, nVertices, points);
-}
-//!@} end of group sphere
-
-//!@} end of group model
+//!@} end of group bezier
 
 //!@} end of group generator
 

@@ -3,7 +3,6 @@
 #include <string.h>
 #include "tinyxml2.h"
 #include "parsing.h"
-/*I think this is usually done with macros, but I want to know why not do what I'm doing*/
 
 /*! @addtogroup Operations
  * @{
@@ -55,7 +54,7 @@
  * @{*/
 
 using std::vector;
-using tinyxml2::XMLElement;
+using tinyxml2::XMLElement, tinyxml2::XML_SUCCESS;
 
 void operations_push_transform_attributes (const XMLElement *transform, std::vector<float> *operations)
 {
@@ -65,6 +64,14 @@ void operations_push_transform_attributes (const XMLElement *transform, std::vec
   float angle = transform->FloatAttribute ("angle");
   if ((int) angle)
     operations->push_back (angle);
+
+/*  for (const char *x : {"x","y","z"}) {
+    float attributeValue;
+    if (transform->QueryFloatAttribute ("x",&attributeValue) != XML_SUCCESS) {
+
+    }
+    operations->push_back (transform->FloatAttribute ("x"));
+  }*/
 
   operations->push_back (transform->FloatAttribute ("x"));
   operations->push_back (transform->FloatAttribute ("y"));
