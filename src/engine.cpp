@@ -20,7 +20,6 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
-
 #include "parsing.h"
 #include "curves.h"
 
@@ -114,7 +113,8 @@ double globalAzimuth = DEFAULT_GLOBAL_AZIMUTH;
 double globalElevation = DEFAULT_GLOBAL_ELEVATION;
 bool globalMouseLeftButton = false;
 
-void spherical2Cartesian (const double radius, const double elevation, const double azimuth, double *x, double *y, double *z)
+void
+spherical2Cartesian (const double radius, const double elevation, const double azimuth, double *x, double *y, double *z)
 {
 
   *x = radius * cos (elevation) * sin (azimuth) + globalCenterX;
@@ -122,7 +122,8 @@ void spherical2Cartesian (const double radius, const double elevation, const dou
   *z = radius * cos (elevation) * cos (azimuth) + globalCenterZ;
 }
 
-void cartesian2Spherical (const double x, const double y, const double z, double *radius, double *azimuth, double *elevation)
+void
+cartesian2Spherical (const double x, const double y, const double z, double *radius, double *azimuth, double *elevation)
 {
   *radius = abs (sqrt (pow (x, 2) + pow (y, 2) + pow (z, 2)));
   *elevation = asin (y / (*radius));
@@ -192,10 +193,10 @@ struct model {
   GLuint vbo{};
   GLuint normals{};
   struct {
-    vec4 diffuse{200,200,200,1};
-    vec4 ambient{50,50,50,1};
-    vec4 specular{0,0,0,1};
-    vec4 emissive{0,0,0,1};
+    vec4 diffuse{200, 200, 200, 1};
+    vec4 ambient{50, 50, 50, 1};
+    vec4 specular{0, 0, 0, 1};
+    vec4 emissive{0, 0, 0, 1};
     GLfloat shininess = 0;
   } material{};
   // 0 default value means it's optional with 0 meaning it's not being used by a particular model.
@@ -222,54 +223,57 @@ struct model allocModel (const char *path)
 
   auto *arrayOfVertices = (float *) malloc (3 * nVertices * sizeof (float));
   const size_t nVerticesRead = fread (arrayOfVertices, 3 * sizeof (float), nVertices, fp);
-  if (nVerticesRead != nVertices) {
-    fprintf(stderr,"%zu = nVerticesRead != nVertices = %ul", nVerticesRead,nVertices);
-    exit(EXIT_FAILURE);
-  }
+  if (nVerticesRead != nVertices)
+    {
+      fprintf (stderr, "%zu = nVerticesRead != nVertices = %ul", nVerticesRead, nVertices);
+      exit (EXIT_FAILURE);
+    }
 
   auto *arrayOfNormals = (float *) malloc (3 * nVertices * sizeof (float));
   const size_t nNormalsRead = fread (arrayOfNormals, 3 * sizeof (float), nVertices, fp);
-  if (nNormalsRead != nVertices) {
-    fprintf(stderr,"%zu = nNormalsRead != nVertices = %ul", nNormalsRead,nVertices);
-    exit(EXIT_FAILURE);
-  }
+  if (nNormalsRead != nVertices)
+    {
+      fprintf (stderr, "%zu = nNormalsRead != nVertices = %ul", nNormalsRead, nVertices);
+      exit (EXIT_FAILURE);
+    }
 
-  auto *arrayOfTextureCoordinates =  (float *) malloc (2 * nVertices * sizeof (float));
-  const size_t nTextureCoordinatesRead = fread(arrayOfTextureCoordinates,2 * sizeof (float), nVertices, fp);
-  if (nTextureCoordinatesRead != nVertices) {
-    fprintf(stderr,"%zu = nTextureCoordinatesRead != nVertices = %ul", nTextureCoordinatesRead,nVertices);
-    exit(EXIT_FAILURE);
-  }
-
+  auto *arrayOfTextureCoordinates = (float *) malloc (2 * nVertices * sizeof (float));
+  const size_t nTextureCoordinatesRead = fread (arrayOfTextureCoordinates, 2 * sizeof (float), nVertices, fp);
+  if (nTextureCoordinatesRead != nVertices)
+    {
+      fprintf (stderr, "%zu = nTextureCoordinatesRead != nVertices = %ul", nTextureCoordinatesRead, nVertices);
+      exit (EXIT_FAILURE);
+    }
 
   fclose (fp);
 
   model.nVertices = nVertices;
 
-  const GLsizei sizeOfVertexArray = (GLsizei)sizeof (arrayOfVertices[0]) * 3 * model.nVertices;
+  const GLsizei sizeOfVertexArray = (GLsizei) sizeof (arrayOfVertices[0]) * 3 * model.nVertices;
   glGenBuffers (1, &model.vbo);
   glBindBuffer (GL_ARRAY_BUFFER, model.vbo);
   glBufferData (GL_ARRAY_BUFFER, sizeOfVertexArray, arrayOfVertices, GL_STATIC_DRAW);
   free (arrayOfVertices);
 
-  const GLsizei sizeOfNormalsArray = (GLsizei)sizeof (arrayOfNormals[0]) * 3 * model.nVertices;
+  const GLsizei sizeOfNormalsArray = (GLsizei) sizeof (arrayOfNormals[0]) * 3 * model.nVertices;
   glGenBuffers (1, &model.normals);
   glBindBuffer (GL_ARRAY_BUFFER, model.normals);
   glBufferData (GL_ARRAY_BUFFER, sizeOfNormalsArray, arrayOfNormals, GL_STATIC_DRAW);
   free (arrayOfNormals);
 
-  const GLsizei sizeOfTextureCoordinateArray = (GLsizei)sizeof (arrayOfVertices[0]) * 2 * model.nVertices;
+  const GLsizei sizeOfTextureCoordinateArray = (GLsizei) sizeof (arrayOfVertices[0]) * 2 * model.nVertices;
   glGenBuffers (1, &model.tc);
   glBindBuffer (GL_ARRAY_BUFFER, model.tc);
   glBufferData (GL_ARRAY_BUFFER, sizeOfTextureCoordinateArray, arrayOfTextureCoordinates, GL_STATIC_DRAW);
-  free(arrayOfTextureCoordinates);
+  free (arrayOfTextureCoordinates);
 
   glBindBuffer (GL_ARRAY_BUFFER, 0); //unbind array buffer
 
   return model;
 }
 
-void addTexture(struct model &m, const char *path) {
+void addTexture (struct model &m, const char *path)
+{
 
   ilInit ();
   ilEnable (IL_ORIGIN_SET);
@@ -318,17 +322,17 @@ void renderModel (const struct model &model)
   glNormalPointer (GL_FLOAT, 0, nullptr);
 
   // texture buffer object
-  glBindTexture (GL_TEXTURE_2D,model.tbo);
+  glBindTexture (GL_TEXTURE_2D, model.tbo);
 
   // texture coordinates
   glBindBuffer (GL_ARRAY_BUFFER, model.tc);
-  glTexCoordPointer(2,GL_FLOAT,0,nullptr);
+  glTexCoordPointer (2, GL_FLOAT, 0, nullptr);
 
   // material colors
-  glMaterialfv (GL_FRONT, GL_DIFFUSE, value_ptr(model.material.diffuse));
-  glMaterialfv (GL_FRONT, GL_AMBIENT, value_ptr(model.material.ambient));
-  glMaterialfv (GL_FRONT, GL_SPECULAR, value_ptr(model.material.specular));
-  glMaterialfv (GL_FRONT, GL_EMISSION, value_ptr(model.material.emissive));
+  glMaterialfv (GL_FRONT, GL_DIFFUSE, value_ptr (model.material.diffuse));
+  glMaterialfv (GL_FRONT, GL_AMBIENT, value_ptr (model.material.ambient));
+  glMaterialfv (GL_FRONT, GL_SPECULAR, value_ptr (model.material.specular));
+  glMaterialfv (GL_FRONT, GL_EMISSION, value_ptr (model.material.emissive));
 
   // drawing
   glDrawArrays (GL_TRIANGLES, 0, model.nVertices);
@@ -444,7 +448,7 @@ void operations_render (vector<float> *operations)
                 {
                   for (int j = 0; j < number_of_points; ++j)
                     {
-                      int idx = 3*j;
+                      int idx = 3 * j;
                       new_curve.at (j)[0] = operations->at (i + 4 + idx);
                       new_curve.at (j)[1] = operations->at (i + 4 + idx + 1);
                       new_curve.at (j)[2] = operations->at (i + 4 + idx + 2);
@@ -460,7 +464,7 @@ void operations_render (vector<float> *operations)
                   curves.back ());
               i += 3 + number_of_points * 3; // 3 - time,align,number_of_points,points...
             }
-              continue;
+          continue;
           case SCALE:
             glScalef (operations->at (i + 1),
                       operations->at (i + 2),
@@ -487,45 +491,45 @@ void operations_render (vector<float> *operations)
                 }
               i += stringSize + 1; //just to be explicit
             }
-            continue;
+          continue;
           case DIFFUSE:
             {
-              globalModels.back().material.diffuse[0] = operations->at (i+1);
-              globalModels.back().material.diffuse[1] = operations->at (i+2);
-              globalModels.back().material.diffuse[2] = operations->at (i+3);
-              i+=3;
+              globalModels.back ().material.diffuse[0] = operations->at (i + 1);
+              globalModels.back ().material.diffuse[1] = operations->at (i + 2);
+              globalModels.back ().material.diffuse[2] = operations->at (i + 3);
+              i += 3;
             }
-            continue;
+          continue;
           case AMBIENT:
             {
-              globalModels.back().material.ambient[0] = operations->at (i+1);
-              globalModels.back().material.ambient[1] = operations->at (i+2);
-              globalModels.back().material.ambient[2] = operations->at (i+3);
-              i+=3;
+              globalModels.back ().material.ambient[0] = operations->at (i + 1);
+              globalModels.back ().material.ambient[1] = operations->at (i + 2);
+              globalModels.back ().material.ambient[2] = operations->at (i + 3);
+              i += 3;
             }
-            continue;
+          continue;
           case SPECULAR:
             {
-              globalModels.back().material.specular[0] = operations->at (i+1);
-              globalModels.back().material.specular[1] = operations->at (i+2);
-              globalModels.back().material.specular[2] = operations->at (i+3);
-              i+=3;
+              globalModels.back ().material.specular[0] = operations->at (i + 1);
+              globalModels.back ().material.specular[1] = operations->at (i + 2);
+              globalModels.back ().material.specular[2] = operations->at (i + 3);
+              i += 3;
             }
-            continue;
+          continue;
           case EMISSIVE:
             {
-              globalModels.back().material.emissive[0] = operations->at (i+1);
-              globalModels.back().material.emissive[1] = operations->at (i+2);
-              globalModels.back().material.emissive[2] = operations->at (i+3);
-              i+=3;
+              globalModels.back ().material.emissive[0] = operations->at (i + 1);
+              globalModels.back ().material.emissive[1] = operations->at (i + 2);
+              globalModels.back ().material.emissive[2] = operations->at (i + 3);
+              i += 3;
             }
-            continue;
+          continue;
           case SHININESS:
             {
               globalModels.back ().material.shininess = operations->at (i + 1);
               i += 1;
             }
-            continue;
+          continue;
           case BEGIN_MODEL:
             {
               int stringSize = (int) operations->at (i + 1);
@@ -537,47 +541,47 @@ void operations_render (vector<float> *operations)
                     modelName[j] = (char) operations->at (i + 2 + j);
                   modelName[j] = '\0';
 
-                  globalModels.push_back (allocModel(modelName));
+                  globalModels.push_back (allocModel (modelName));
                 }
               ++model_num;
               i += stringSize + 1; //just to be explicit
             }
-            continue;
+          continue;
           case END_MODEL:
             {
               renderModel (globalModels.back ());
             }
-              continue;
+          continue;
           case POINT:
             {
-              const float pos[4] = {operations->at(i+1),
-                              operations->at(i+2),
-                              operations->at(i+3),
-                              1.0};
+              const float pos[4] = {operations->at (i + 1),
+                                    operations->at (i + 2),
+                                    operations->at (i + 3),
+                                    1.0};
               glLightfv (GL_LIGHT0, GL_POSITION, pos);
               i += 3;
             }
-              continue;
+          continue;
           case DIRECTIONAL:
             {
               const float dir[4] = {operations->at (i + 1),
-                              operations->at(i+2),
-                              operations->at(i+3),
-                              1.0};
+                                    operations->at (i + 2),
+                                    operations->at (i + 3),
+                                    1.0};
               glLightfv (GL_LIGHT0, GL_POSITION, dir);
               i += 3;
               continue;
             }
           case SPOTLIGHT:
             {
-              const float pos[4] = {operations->at(i+1),
-                              operations->at(i+2),
-                              operations->at(i+3),
-                              1.0};
-              const float dir[3] = {operations->at(i+4),
-                              operations->at(i+5),
-                              operations->at(i+6)};
-              const float cutoff = operations->at(i+7);
+              const float pos[4] = {operations->at (i + 1),
+                                    operations->at (i + 2),
+                                    operations->at (i + 3),
+                                    1.0};
+              const float dir[3] = {operations->at (i + 4),
+                                    operations->at (i + 5),
+                                    operations->at (i + 6)};
+              const float cutoff = operations->at (i + 7);
               glLightfv (GL_LIGHT0, GL_POSITION, pos);
               glLightfv (GL_LIGHT0, GL_SPOT_DIRECTION, dir);
               glLightf (GL_LIGHT0, GL_SPOT_CUTOFF, cutoff);
@@ -1036,15 +1040,15 @@ void engine_run (int argc, char **argv)
   //  OpenGL settings
   glEnable (GL_DEPTH_TEST);
   glEnable (GL_LIGHTING);
-  glEnable(GL_LIGHT0);
-  glEnable(GL_LIGHT1);
+  glEnable (GL_LIGHT0);
+  glEnable (GL_LIGHT1);
   glEnableClientState (GL_VERTEX_ARRAY);
   glEnableClientState (GL_NORMAL_ARRAY);
-  glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+  glEnableClientState (GL_TEXTURE_COORD_ARRAY);
   glEnableClientState (GL_TEXTURE_2D);
-  glEnable(GL_RESCALE_NORMAL);
-//  const float amb[4] = { 1.0f, 1.0f, 1.0f, 1.0f };
-//  glLightModelfv(GL_LIGHT_MODEL_AMBIENT, amb);
+  glEnable (GL_RESCALE_NORMAL);
+  //  const float amb[4] = { 1.0f, 1.0f, 1.0f, 1.0f };
+  //  glLightModelfv(GL_LIGHT_MODEL_AMBIENT, amb);
   // glEnable (GL_CULL_FACE);
   glPolygonMode (GL_FRONT_AND_BACK, GL_FILL);
 
