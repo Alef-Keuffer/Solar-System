@@ -335,7 +335,7 @@ model_sphere_vertex (const float r,
           2. https://www.math3d.org/zE4n6xayX
    */
   vertices.emplace_back(r * sin (theta) * cos (phi), r * sin (phi), r * cos (theta) * cos (phi));
-  normals.push_back (normalize(vertices.back()));
+  normals.emplace_back (sin (theta) * cos (phi), sin (phi), cos (theta) * cos (phi));
   texture.emplace_back(phi/M_2_PI,theta/M_PI);
 }
 
@@ -354,20 +354,20 @@ static void model_sphere_vertices (const float r,
   const float theta = -M_PI;
   const float phi = -M_PI / 2.0f;
 
-  for (unsigned int m = 1; m <= slices; m++)
+  for (unsigned int m = 1; m <= slices; ++m)
     {
-      for (unsigned int n = 1; n <= stacks; n++)
+      for (unsigned int n = 1; n <= stacks; ++n)
         {
-          float i = (float) m;
-          float j = (float) n;
+          float sl = (float) m;
+          float st = (float) n;
 
-          model_sphere_vertex (r, theta + s * (i - 1), phi + t * j, vertices, normals, texture); // P1'
-          model_sphere_vertex (r, theta + s * i, phi + t * (j - 1), vertices, normals, texture); // P2
-          model_sphere_vertex (r, theta + s * i, phi + t * j, vertices, normals, texture); //P2'
+          model_sphere_vertex (r, theta + s * (sl - 1), phi + t * st, vertices, normals, texture); // P1'
+          model_sphere_vertex (r, theta + s * sl, phi + t * (st - 1), vertices, normals, texture); // P2
+          model_sphere_vertex (r, theta + s * sl, phi + t * st, vertices, normals, texture); //P2'
 
-          model_sphere_vertex (r, theta + s * (i - 1), phi + t * (j - 1), vertices, normals, texture); // P1
-          model_sphere_vertex (r, theta + s * i, phi + t * (j - 1), vertices, normals, texture); // P2
-          model_sphere_vertex (r, theta + s * (i - 1), phi + t * j, vertices, normals, texture); // P1'
+          model_sphere_vertex (r, theta + s * (sl - 1), phi + t * (st - 1), vertices, normals, texture); // P1
+          model_sphere_vertex (r, theta + s * sl, phi + t * (st - 1), vertices, normals, texture); // P2
+          model_sphere_vertex (r, theta + s * (sl - 1), phi + t * st, vertices, normals, texture); // P1'
         }
     }
 }

@@ -54,28 +54,32 @@
  * @{*/
 
 using std::vector;
-using tinyxml2::XMLElement, tinyxml2::XML_SUCCESS;
+using tinyxml2::XMLElement, tinyxml2::XML_SUCCESS, tinyxml2::XMLError, tinyxml2::XML_NO_ATTRIBUTE;
 
 void operations_push_transform_attributes (const XMLElement *transform, std::vector<float> *operations)
 {
   if (!transform)
     return;
 
-  float angle = transform->FloatAttribute ("angle");
-  if ((int) angle)
+  float angle;
+  const XMLError e = transform->QueryFloatAttribute ("angle",&angle);
+  if (e == XML_SUCCESS)
     operations->push_back (angle);
+  else if (e != XML_NO_ATTRIBUTE)
+    {
+      fprintf(stderr, "Parsing error at %s\n", transform->GetText());
+      exit(EXIT_FAILURE);
+    }
 
-/*  for (const char *x : {"x","y","z"}) {
+  for (const char *x : {"x","y","z"}) {
     float attributeValue;
     if (transform->QueryFloatAttribute ("x",&attributeValue) != XML_SUCCESS) {
-
+      fprintf(stderr, "Parsing error at %s\n", transform->GetText());
+        exit (EXIT_FAILURE);
     }
-    operations->push_back (transform->FloatAttribute ("x"));
-  }*/
+    operations->push_back (transform->FloatAttribute (x));
+  }
 
-  operations->push_back (transform->FloatAttribute ("x"));
-  operations->push_back (transform->FloatAttribute ("y"));
-  operations->push_back (transform->FloatAttribute ("z"));
 }
 
 void
@@ -201,11 +205,12 @@ void operations_push_model (const XMLElement *model, vector<float> *operations)
             const XMLElement *color_comp = color->FirstChildElement (colorNames[c]);
             if (color_comp != nullptr)
               {
+                const float RGB_MAX = 255.0f;
                 operations->push_back (colorTypes[c]);
                 operations->insert (operations->end (),
-                                    {color_comp->FloatAttribute ("R"),
-                                     color_comp->FloatAttribute ("G"),
-                                     color_comp->FloatAttribute ("B")});
+                                    {color_comp->FloatAttribute ("R")/RGB_MAX,
+                                     color_comp->FloatAttribute ("G")/RGB_MAX,
+                                     color_comp->FloatAttribute ("B")/RGB_MAX});
               }
           }
         const XMLElement *shininess = color->FirstChildElement ("shininess");
