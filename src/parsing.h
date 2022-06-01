@@ -3,7 +3,7 @@
 
 #include <vector>
 
-void operations_load_xml(const char *filename, std::vector<float> *operations);
+void operations_load_xml(const char *filename, std::vector<float> &operations);
 
 enum {
   TRANSLATE = 1,

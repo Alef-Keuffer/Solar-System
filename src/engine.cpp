@@ -12,12 +12,16 @@
 
 #include <cstdio>
 #include <cmath>
+#include <algorithm>
+#include <iostream>
 #include <vector>
 #include <tuple>
 #include <map>
+#include <string>
 
 #include <IL/il.h>
 #include <glm/glm.hpp>
+#include <glm/gtx/string_cast.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
 #include "parsing.h"
@@ -25,6 +29,7 @@
 
 using std::vector, std::tuple, std::map;
 using glm::mat4, glm::vec4, glm::vec3, glm::cross, glm::value_ptr;
+using std::cerr, std::endl, glm::to_string, std::string;
 
 /*rotation*/
 const unsigned int DEFAULT_GLOBAL_ANGLE_STEP = 16;
@@ -207,19 +212,19 @@ struct model {
 static std::vector<struct model> globalModels;
 static std::vector<float> globalOperations;
 
-struct model allocModel (const char *path)
+struct model allocModel (const char *model3dFilePath)
 {
-  FILE *fp = fopen (path, "r");
+  FILE *fp = fopen (model3dFilePath, "r");
   if (!fp)
     {
-      fprintf (stderr, "failed to open model: %s\n", path);
+      fprintf (stderr, "failed to open model: %s\n", model3dFilePath);
       exit (EXIT_FAILURE);
     }
 
-  struct model model;
-
+  cerr << "[allocModel] model file = " << model3dFilePath << endl;
   GLsizei nVertices;
   fread (&nVertices, sizeof (nVertices), 1, fp);
+  cerr << "[allocModel] nVertices = " << nVertices << endl;
 
   auto *arrayOfVertices = (float *) malloc (3 * nVertices * sizeof (float));
   const size_t nVerticesRead = fread (arrayOfVertices, 3 * sizeof (float), nVertices, fp);
@@ -247,6 +252,8 @@ struct model allocModel (const char *path)
 
   fclose (fp);
 
+  struct model model;
+
   model.nVertices = nVertices;
 
   const GLsizei sizeOfVertexArray = (GLsizei) sizeof (arrayOfVertices[0]) * 3 * model.nVertices;
@@ -272,7 +279,7 @@ struct model allocModel (const char *path)
   return model;
 }
 
-void addTexture (struct model &m, const char *path)
+void addTexture (struct model &m, const char *const path)
 {
 
   ilInit ();
@@ -379,169 +386,222 @@ void advance_in_rotation (const float rotation_time, const vec3 &axis_of_rotatio
 }
 
 //! @ingroup Operations
-void operations_render (vector<float> *operations)
+void operations_render (vector<float> &operations)
 {
   unsigned int i = 0;
+  static bool isFirstTimeBeingExecuted = true;
   static bool hasPushedModels = false;
   static bool hasLoadedCurves = false;
   static vector<vector<vec3>> curves;
 
-  DEFAULT_GLOBAL_EYE_X = operations->at (i);
-  DEFAULT_GLOBAL_EYE_Y = operations->at (i + 1);
-  DEFAULT_GLOBAL_EYE_Z = operations->at (i + 2);
+  DEFAULT_GLOBAL_EYE_X = operations[i];
+  DEFAULT_GLOBAL_EYE_Y = operations[i + 1];
+  DEFAULT_GLOBAL_EYE_Z = operations[i + 2];
 
   cartesian2Spherical (
       DEFAULT_GLOBAL_EYE_X, DEFAULT_GLOBAL_EYE_Y, DEFAULT_GLOBAL_EYE_Z,
       &DEFAULT_GLOBAL_RADIUS, &DEFAULT_GLOBAL_AZIMUTH, &DEFAULT_GLOBAL_ELEVATION);
   i += 3;
 
-  DEFAULT_GLOBAL_CENTER_X = operations->at (i);
-  DEFAULT_GLOBAL_CENTER_Y = operations->at (i + 1);
-  DEFAULT_GLOBAL_CENTER_Z = operations->at (i + 2);
+  DEFAULT_GLOBAL_CENTER_X = operations[i];
+  DEFAULT_GLOBAL_CENTER_Y = operations[i + 1];
+  DEFAULT_GLOBAL_CENTER_Z = operations[i + 2];
   i += 3;
 
-  DEFAULT_GLOBAL_UP_X = operations->at (i);
-  DEFAULT_GLOBAL_UP_Y = operations->at (i + 1);
-  DEFAULT_GLOBAL_UP_Z = operations->at (i + 2);
+  DEFAULT_GLOBAL_UP_X = operations[i];
+  DEFAULT_GLOBAL_UP_Y = operations[i + 1];
+  DEFAULT_GLOBAL_UP_Z = operations[i + 2];
   i += 3;
 
-  DEFAULT_GLOBAL_FOV = operations->at (i);
-  DEFAULT_GLOBAL_NEAR = operations->at (i + 1);
-  DEFAULT_GLOBAL_FAR = operations->at (i + 2);
+  DEFAULT_GLOBAL_FOV = operations[i];
+  DEFAULT_GLOBAL_NEAR = operations[i + 1];
+  DEFAULT_GLOBAL_FAR = operations[i + 2];
 
   unsigned int model_num = 0;
 
-  for (i += 3; i < operations->size (); i++)
+  for (i += 3; i < operations.size (); i++)
     {
-      switch ((int) operations->at (i))
+      switch ((int) operations[i])
         {
           case ROTATE:
-            glRotatef (operations->at (i + 1),
-                       operations->at (i + 2),
-                       operations->at (i + 3),
-                       operations->at (i + 4));
-          i += 4; //angle, axis_of_rotation
+            {
+              const float rotation_angle = operations[i + 1];
+              const vec3 axis_of_rotation (operations[i + 2],
+                                           operations[i + 3],
+                                           operations[i + 4]);
+              glRotatef (operations[i + 1],
+                         operations[i + 2],
+                         operations[i + 3],
+                         operations[i + 4]);
+              if (isFirstTimeBeingExecuted)
+                cerr << "ROTATE (" << "rotation_angle:" << rotation_angle
+                     << ", axis of rotatation: " << to_string (axis_of_rotation) << ")" << endl;
+              i += 4; //angle, axis_of_rotation}
+            }
           continue;
           case EXTENDED_ROTATE:
             {
-              advance_in_rotation (
-                  operations->at (i + 1),
-                  {
-                      operations->at (i + 2),
-                      operations->at (i + 3),
-                      operations->at (i + 4)
-                  });
+              const float rotation_time = operations[i + 1];
+              const vec3 axis_of_rotation = {
+                  operations[i + 2],
+                  operations[i + 3],
+                  operations[i + 4]
+              };
+              advance_in_rotation (rotation_time, axis_of_rotation);
               i += 4; //time, axis_of_rotation
-              continue;
+              if (isFirstTimeBeingExecuted)
+                cerr << "EXTENDED_ROTATE (rotation_time: " << rotation_time
+                     << " seconds, axis_of_rotation: " << to_string (axis_of_rotation) << ")" << endl;
             }
+          continue;
           case TRANSLATE:
-            glTranslatef (operations->at (i + 1),
-                          operations->at (i + 2),
-                          operations->at (i + 3));
-          i += 3;
+            {
+              const vec3 translation (operations[i + 1],
+                                      operations[i + 2],
+                                      operations[i + 3]);
+              glTranslatef (translation[0],
+                            translation[1],
+                            translation[2]);
+              if (isFirstTimeBeingExecuted)
+                cerr << "TRANSLATE (" << to_string (translation) << ")" << endl;
+              i += 3;
+            }
           continue;
           case EXTENDED_TRANSLATE:
             {
-              int number_of_points = (int) operations->at (i + 3);
+              int number_of_points = (int) operations[i + 3];
               vector<vec3> new_curve (number_of_points);
               if (!hasLoadedCurves)
                 {
                   for (int j = 0; j < number_of_points; ++j)
                     {
                       int idx = 3 * j;
-                      new_curve.at (j)[0] = operations->at (i + 4 + idx);
-                      new_curve.at (j)[1] = operations->at (i + 4 + idx + 1);
-                      new_curve.at (j)[2] = operations->at (i + 4 + idx + 2);
+                      new_curve.at (j)[0] = operations[i + 4 + idx];
+                      new_curve.at (j)[1] = operations[i + 4 + idx + 1];
+                      new_curve.at (j)[2] = operations[i + 4 + idx + 2];
                     }
                   curves.push_back (new_curve);
                 }
               auto curve = curves.back ();
               renderCurve (Mcr, curve);
               advance_in_curve (
-                  operations->at (i + 1),
-                  (bool) operations->at (i + 2),
+                  operations[i + 1],
+                  (bool) operations[i + 2],
                   Mcr,
                   curves.back ());
               i += 3 + number_of_points * 3; // 3 - time,align,number_of_points,points...
             }
           continue;
           case SCALE:
-            glScalef (operations->at (i + 1),
-                      operations->at (i + 2),
-                      operations->at (i + 3));
-          i += 3;
+            {
+              const vec3 scale (operations[i + 1],
+                                operations[i + 2],
+                                operations[i + 3]);
+              glScalef (scale[0],
+                        scale[1],
+                        scale[2]);
+              i += 3;
+            }
           continue;
           case BEGIN_GROUP:
-            glPushMatrix ();
+            {
+              if (isFirstTimeBeingExecuted)
+                cerr << "BEGIN_GROUP" << endl;
+              glPushMatrix ();
+            }
           continue;
           case END_GROUP:
-            glPopMatrix ();
+            {
+              if (isFirstTimeBeingExecuted)
+                cerr << "END_GROUP" << endl;
+              glPopMatrix ();
+            }
           continue;
           case TEXTURE:
             {
-              const int stringSize = (int) operations->at (i + 1);
+              const int stringSize = (int) operations[i + 1];
               if (!hasPushedModels)
                 {
                   char textureFilePath[stringSize + 1];
                   int j;
                   for (j = 0; j < stringSize; ++j)
-                    textureFilePath[j] = (char) operations->at (i + 2 + j);
+                    textureFilePath[j] = (char) operations[i + 2 + j];
                   textureFilePath[j] = '\0';
                   addTexture (globalModels.back (), textureFilePath);
+                  if (isFirstTimeBeingExecuted)
+                    cerr << "TEXTURE (" << textureFilePath << ")" << endl;
                 }
               i += stringSize + 1; //just to be explicit
             }
           continue;
           case DIFFUSE:
             {
-              globalModels.back ().material.diffuse[0] = operations->at (i + 1);
-              globalModels.back ().material.diffuse[1] = operations->at (i + 2);
-              globalModels.back ().material.diffuse[2] = operations->at (i + 3);
+              vec4 &diffuse = globalModels.back ().material.diffuse;
+              diffuse[0] = operations[i + 1];
+              diffuse[1] = operations[i + 2];
+              diffuse[2] = operations[i + 3];
+              if (isFirstTimeBeingExecuted)
+                cerr << "DIFFUSE (" << to_string (diffuse) << ")" << endl;
               i += 3;
             }
           continue;
           case AMBIENT:
             {
-              globalModels.back ().material.ambient[0] = operations->at (i + 1);
-              globalModels.back ().material.ambient[1] = operations->at (i + 2);
-              globalModels.back ().material.ambient[2] = operations->at (i + 3);
+              vec4 &ambient = globalModels.back ().material.ambient;
+              ambient[0] = operations[i + 1];
+              ambient[1] = operations[i + 2];
+              ambient[2] = operations[i + 3];
+              if (isFirstTimeBeingExecuted)
+                cerr << "AMBIENT (" << to_string (ambient) << ")" << endl;
               i += 3;
             }
           continue;
           case SPECULAR:
             {
-              globalModels.back ().material.specular[0] = operations->at (i + 1);
-              globalModels.back ().material.specular[1] = operations->at (i + 2);
-              globalModels.back ().material.specular[2] = operations->at (i + 3);
+              vec4 &specular = globalModels.back ().material.specular;
+              specular[0] = operations[i + 1];
+              specular[1] = operations[i + 2];
+              specular[2] = operations[i + 3];
+              if (isFirstTimeBeingExecuted)
+                cerr << "SPECULAR (" << to_string (specular) << ")" << endl;
               i += 3;
             }
           continue;
           case EMISSIVE:
             {
-              globalModels.back ().material.emissive[0] = operations->at (i + 1);
-              globalModels.back ().material.emissive[1] = operations->at (i + 2);
-              globalModels.back ().material.emissive[2] = operations->at (i + 3);
+              vec4 &emissive = globalModels.back ().material.emissive;
+              emissive[0] = operations[i + 1];
+              emissive[1] = operations[i + 2];
+              emissive[2] = operations[i + 3];
+              if (isFirstTimeBeingExecuted)
+                cerr << "EMISSIVE (" << to_string (emissive) << ")" << endl;
               i += 3;
             }
           continue;
           case SHININESS:
             {
-              globalModels.back ().material.shininess = operations->at (i + 1);
+              float shininess =
+                  (globalModels.back ().material.shininess = operations[i + 1]
+                  );
+              if (isFirstTimeBeingExecuted)
+                cerr << "SHININESS (" << shininess << ")" << endl;
               i += 1;
             }
           continue;
           case BEGIN_MODEL:
             {
-              int stringSize = (int) operations->at (i + 1);
+              int stringSize = (int) operations[i + 1];
               if (!hasPushedModels)
                 {
                   char modelName[stringSize + 1];
                   int j;
                   for (j = 0; j < stringSize; ++j)
-                    modelName[j] = (char) operations->at (i + 2 + j);
+                    modelName[j] = (char) operations[i + 2 + j];
                   modelName[j] = '\0';
 
                   globalModels.push_back (allocModel (modelName));
+                  if (isFirstTimeBeingExecuted)
+                    cerr << "BEGIN_MODEL (" << modelName << ")" << endl;
                 }
               ++model_num;
               i += stringSize + 1; //just to be explicit
@@ -549,41 +609,55 @@ void operations_render (vector<float> *operations)
           continue;
           case END_MODEL:
             {
+              if (isFirstTimeBeingExecuted)
+                cerr << "END_MODEL" << endl;
               renderModel (globalModels.back ());
             }
           continue;
           case POINT:
             {
-              const float pos[4] = {operations->at (i + 1),
-                                    operations->at (i + 2),
-                                    operations->at (i + 3),
-                                    1.0};
-              glLightfv (GL_LIGHT0, GL_POSITION, pos);
+              const vec4 pos = {operations[i + 1],
+                                operations[i + 2],
+                                operations[i + 3],
+                                1.0};
+              if (isFirstTimeBeingExecuted)
+                cerr << "POINT (" << to_string (pos) << ")" << endl;
+              glLightfv (GL_LIGHT0, GL_POSITION, value_ptr (pos));
               i += 3;
             }
           continue;
           case DIRECTIONAL:
             {
-              const float dir[4] = {operations->at (i + 1),
-                                    operations->at (i + 2),
-                                    operations->at (i + 3),
-                                    1.0};
-              glLightfv (GL_LIGHT0, GL_POSITION, dir);
+              const vec4 dir = {operations[i + 1],
+                                operations[i + 2],
+                                operations[i + 3],
+                                1.0};
+              if (isFirstTimeBeingExecuted)
+                cerr << "DIRECTIONAL (" << to_string (dir) << ")" << endl;
+
+              glLightfv (GL_LIGHT0, GL_POSITION, value_ptr (dir));
               i += 3;
-              continue;
             }
+          continue;
           case SPOTLIGHT:
             {
-              const float pos[4] = {operations->at (i + 1),
-                                    operations->at (i + 2),
-                                    operations->at (i + 3),
-                                    1.0};
-              const float dir[3] = {operations->at (i + 4),
-                                    operations->at (i + 5),
-                                    operations->at (i + 6)};
-              const float cutoff = operations->at (i + 7);
-              glLightfv (GL_LIGHT0, GL_POSITION, pos);
-              glLightfv (GL_LIGHT0, GL_SPOT_DIRECTION, dir);
+              const vec4 pos = {operations[i + 1],
+                                operations[i + 2],
+                                operations[i + 3],
+                                1.0};
+              const vec4 dir = {operations[i + 4],
+                                operations[i + 5],
+                                operations[i + 6],
+                                1.0};
+              const float cutoff = operations[i + 7];
+              if (isFirstTimeBeingExecuted)
+                cerr << "SPOTLIGHT:"
+                        "\n\t(pos: " << to_string (pos) << ")"
+                                                           "\n\t(dir: " << to_string (dir) << ")"
+                                                                                              "\n\t(cutoff: " << cutoff
+                     << ")" << endl;
+              glLightfv (GL_LIGHT0, GL_POSITION, value_ptr (pos));
+              glLightfv (GL_LIGHT0, GL_SPOT_DIRECTION, value_ptr (dir));
               glLightf (GL_LIGHT0, GL_SPOT_CUTOFF, cutoff);
               i += 7;
               continue;
@@ -592,6 +666,7 @@ void operations_render (vector<float> *operations)
     }
   hasPushedModels = true;
   hasLoadedCurves = true;
+  isFirstTimeBeingExecuted = false;
 }
 
 void draw_axes ()
@@ -666,7 +741,7 @@ void renderScene ()
   glTranslatef (globalTranslateX, globalTranslateY, globalTranslateZ);
   glScalef (globalScaleX, globalScaleY, globalScaleZ);
 
-  operations_render (&globalOperations);
+  operations_render (globalOperations);
 
   frame++;
   time = glutGet (GLUT_ELAPSED_TIME);
@@ -684,10 +759,10 @@ void renderScene ()
   glutSwapBuffers ();
 }
 
-void xml_load_and_set_env (const char *filename)
+void xml_load_and_set_env (const char *const filename)
 {
-  operations_load_xml (filename, &globalOperations);
-  operations_render (&globalOperations);
+  operations_load_xml (filename, globalOperations);
+  operations_render (globalOperations);
   env_load_defaults ();
 }
 /*! @addtogroup input
@@ -1047,14 +1122,15 @@ void engine_run (int argc, char **argv)
   glEnableClientState (GL_TEXTURE_COORD_ARRAY);
   glEnableClientState (GL_TEXTURE_2D);
   glEnable (GL_RESCALE_NORMAL);
-  //  const float amb[4] = { 1.0f, 1.0f, 1.0f, 1.0f };
-  //  glLightModelfv(GL_LIGHT_MODEL_AMBIENT, amb);
+  const float amb[4] = {1.0f, 1.0f, 1.0f, 1.0f};
+  glLightModelfv (GL_LIGHT_MODEL_AMBIENT, amb);
   // glEnable (GL_CULL_FACE);
   glPolygonMode (GL_FRONT_AND_BACK, GL_FILL);
 
 
   // enter GLUT's main cycle
   glewInit ();
+
   xml_load_and_set_env (argv[1]);
   glutMainLoop ();
 }

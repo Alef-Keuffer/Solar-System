@@ -16,9 +16,13 @@
 
 #include "curves.h"
 
-using glm::mat4, glm::vec4, glm::vec3, glm::vec2, glm::mat4x3, glm::to_string, glm::normalize;
-using std::string, std::ifstream, std::ios, std::stringstream;
+using glm::mat4, glm::vec4, glm::vec3, glm::vec2, glm::mat4x3;
+using glm::normalize;
+
 using std::vector, std::tuple, std::array;
+
+using std::string, std::ifstream, std::ios, std::stringstream;
+using std::cerr, std::endl, glm::to_string;
 
 const char *SPHERE = "sphere";
 const char *CUBE = "box";
@@ -374,7 +378,10 @@ static void model_sphere_vertices (const float r,
 
 
 
-void model_sphere_write (const char *filepath, const float radius, const unsigned int slices, const unsigned int stacks)
+void model_sphere_write (const char * const filepath,
+                         const float radius,
+                         const unsigned int slices,
+                         const unsigned int stacks)
 {
 
   const unsigned int nVertices = model_sphere_nVertices (slices, stacks);
@@ -393,7 +400,7 @@ void model_sphere_write (const char *filepath, const float radius, const unsigne
 
 /*! @addtogroup bezier
  * @{ */
-vector<array<vec3, 16>> read_Bezier (const char *patch)
+vector<array<vec3, 16>> read_Bezier (const char * const patch)
 {
   string buffer;
   ifstream myFile;
@@ -401,7 +408,7 @@ vector<array<vec3, 16>> read_Bezier (const char *patch)
   myFile.open (patch, ios::in | ios::out);
   getline (myFile, buffer);
   // Número de patches presentes no ficheiro.
-  int n_patches = stoi (buffer);
+  const int n_patches = stoi (buffer);
 
   // Vetor de vetores de índices.
   vector<vector<int>> patches;
@@ -426,7 +433,7 @@ vector<array<vec3, 16>> read_Bezier (const char *patch)
 
   getline (myFile, buffer);
   // Número de pontos presentes no ficheiro.
-  int pts = stoi (buffer);
+  const int pts = stoi (buffer);
 
   // Vetor que guardará as coordenadas de pontos de controlo para superfície de Bézier.
   vector<vec3> control;
@@ -466,7 +473,7 @@ vector<array<vec3, 16>> read_Bezier (const char *patch)
   return pointsInPatches;
 }
 
-void model_bezier_write (int tesselation, const char *in_patch_file, const char *out_3d_file)
+void model_bezier_write (const int tesselation, const char * const in_patch_file, const char * const out_3d_file)
 {
   vector<array<glm::vec3, 16>> control_points = read_Bezier (in_patch_file);
   vector<glm::vec3> vertices = get_bezier_surface (control_points, tesselation);
@@ -488,23 +495,52 @@ int main (int argc, char *argv[])
 {
   if (argc < 4)
     {
-      printf ("Not enough arguments");
+      cerr << "Not enough arguments" << endl;
+      exit(EXIT_FAILURE);
     }
   else
     {
-      const char *out_file_path = argv[argc - 1];
-      const char *polygon = argv[1];
+      const char * const out_file_path = argv[argc - 1];
+      cerr << "output filepath: '" << out_file_path << "'" << endl;
+      const char * const polygon = argv[1];
+      cerr << "polgyon to generate: " << polygon << endl;
 
       if (!strcmp (PLANE, polygon))
         model_plane_write (out_file_path, strtof (argv[2], nullptr), strtoul (argv[3], nullptr, 10));
-      if (!strcmp (CUBE, polygon))
+      else if (!strcmp (CUBE, polygon))
         model_cube_write (out_file_path, atof (argv[2]), strtoul (argv[3], nullptr, 10));
-      if (!strcmp (CONE, polygon))
+      else if (!strcmp (CONE, polygon))
         model_cone_write (out_file_path, atof (argv[2]), atof (argv[3]), atoi (argv[4]), atoi (argv[5]));
-      if (!strcmp (SPHERE, polygon))
-        model_sphere_write (out_file_path, atof (argv[2]), atoi (argv[3]), atoi (argv[4]));
-      if (!strcmp (BEZIER, polygon))
+      else if (!strcmp (SPHERE, polygon))
+        {
+          const float radius = strtof (argv[2],nullptr);
+          if (radius <= 0.0)
+            {
+              cerr << "invalid radius(" << radius << ") for sphere" << endl;
+              exit(EXIT_FAILURE);
+            }
+          const unsigned long slices = strtoul(argv[3],nullptr,10);
+          if (slices <= 0 || slices == ULONG_MAX)
+            {
+              cerr << "invalid slices(" << slices << ") for sphere" << endl;
+              exit(EXIT_FAILURE);
+            }
+          const unsigned long stacks = strtoul (argv[4],nullptr,10);
+          if (stacks <= 0 || stacks == ULONG_MAX)
+            {
+              cerr << "invalid stacks(" << stacks << ") for sphere" << endl;
+              exit(EXIT_FAILURE);
+            }
+          cerr << "SPHERE(radius: " << radius << ", slices: " << slices << ", stacks: " << stacks << ")"  << endl;
+          model_sphere_write (out_file_path, radius, slices, stacks);
+        }
+      else if (!strcmp (BEZIER, polygon))
         model_bezier_write (atoi (argv[2]), argv[3], out_file_path);
+      else
+        {
+          cerr << "Unkown object type: " << polygon << endl;
+          exit(EXIT_FAILURE);
+        }
     }
   return 0;
 }

@@ -1,6 +1,9 @@
+#include <cstdio>
+#include <cstring>
+
 #include <vector>
-#include <stdio.h>
-#include <string.h>
+#include <iostream>
+
 #include "tinyxml2.h"
 #include "parsing.h"
 
@@ -54,36 +57,48 @@
  * @{*/
 
 using std::vector;
-using tinyxml2::XMLElement, tinyxml2::XML_SUCCESS, tinyxml2::XMLError, tinyxml2::XML_NO_ATTRIBUTE;
+using tinyxml2::XMLElement;
+using tinyxml2::XMLDocument, tinyxml2::XML_SUCCESS, tinyxml2::XMLError, tinyxml2::XML_NO_ATTRIBUTE;
+using std::cerr, std::endl;
 
-void operations_push_transform_attributes (const XMLElement *transform, std::vector<float> *operations)
+void operations_push_transform_attributes (
+    const XMLElement * const transform,
+    vector<float> &operations)
 {
   if (!transform)
-    return;
+    {
+      fprintf(stderr,"operations_push_transform_attributes: null transform\n");
+      return;
+    }
+
 
   float angle;
-  const XMLError e = transform->QueryFloatAttribute ("angle",&angle);
-  if (e == XML_SUCCESS)
-    operations->push_back (angle);
-  else if (e != XML_NO_ATTRIBUTE)
-    {
-      fprintf(stderr, "Parsing error at %s\n", transform->GetText());
-      exit(EXIT_FAILURE);
-    }
-
+  {
+    const XMLError e = transform->QueryFloatAttribute ("angle", &angle);
+    if (e == XML_SUCCESS)
+      operations.push_back (angle);
+    else if (e != XML_NO_ATTRIBUTE)
+      {
+        fprintf(stderr, "Parsing error %s at %s\n", transform->GetText(), XMLDocument::ErrorIDToName (e));
+        exit (EXIT_FAILURE);
+      }
+  }
   for (const char *x : {"x","y","z"}) {
     float attributeValue;
-    if (transform->QueryFloatAttribute ("x",&attributeValue) != XML_SUCCESS) {
-      fprintf(stderr, "Parsing error at %s\n", transform->GetText());
-        exit (EXIT_FAILURE);
+    XMLError e;
+    if ((e = transform->QueryFloatAttribute ("x",&attributeValue)) != XML_SUCCESS) {
+      fprintf(stderr, "Parsing error %s at %s\n", transform->GetText(), XMLDocument::ErrorIDToName (e));
+      exit (EXIT_FAILURE);
     }
-    operations->push_back (transform->FloatAttribute (x));
+    operations.push_back (transform->FloatAttribute (x));
   }
 
 }
 
 void
-operations_push_extended_translate_attributes (const XMLElement *extended_translate, std::vector<float> *operations)
+operations_push_extended_translate_attributes (
+    const XMLElement * const extended_translate,
+    vector<float> &operations)
 {
   if (!extended_translate)
     {
@@ -93,65 +108,70 @@ operations_push_extended_translate_attributes (const XMLElement *extended_transl
 
   float time = extended_translate->FloatAttribute ("time");
   bool align = extended_translate->BoolAttribute ("align");
+
+  operations.push_back ((float) time);
+  operations.push_back ((float) align);
+  operations.push_back (0);
+  auto index_of_number_of_points = operations.size () - 1;
+
   int number_of_points = 0;
-
-  operations->push_back ((float) time);
-  operations->push_back ((float) align);
-  operations->push_back (0);
-  auto index_of_number_of_points = operations->size () - 1;
-
   for (auto child = extended_translate->FirstChildElement ("point"); child; child = child->NextSiblingElement ("point"))
     {
-      number_of_points++;
+      ++number_of_points;
       operations_push_transform_attributes (child, operations);
     }
-    operations->at (index_of_number_of_points) = number_of_points;
+    operations[index_of_number_of_points] = (float)number_of_points;
 }
 
-void operations_push_transformation (const XMLElement *transformation, vector<float> *operations)
+void operations_push_transformation (const XMLElement * const transformation, vector<float> &operations)
 {
-  const char *transform_name = transformation->Value ();
+  const char * const transformation_name = transformation->Value ();
 
-  if (!strcmp ("translate", transform_name))
+  if (!strcmp ("translate", transformation_name))
     {
-      if (transformation->Attribute ("time") != NULL)
+      if (transformation->Attribute ("time") != nullptr)
         {
-          operations->push_back (EXTENDED_TRANSLATE);
+          operations.push_back (EXTENDED_TRANSLATE);
+           cerr << "[parsing] EXTENDED_TRANSLATE" << endl;
           operations_push_extended_translate_attributes (transformation, operations);
         }
       else
         {
-          operations->push_back (TRANSLATE);
+          operations.push_back (TRANSLATE);
+          cerr << "[parsing] TRANSLATE" << endl;
           operations_push_transform_attributes (transformation, operations);
         }
     }
-  else if (!strcmp ("rotate", transform_name))
+  else if (!strcmp ("rotate", transformation_name))
     {
       if (transformation->Attribute ("time")) {
-        operations->push_back (EXTENDED_ROTATE);
-        float time = transformation->FloatAttribute ("time");
-        operations->push_back (time);
+        operations.push_back (EXTENDED_ROTATE);
+        cerr << "[parsing] EXTENDED_ROTATE" << endl;
+        const float time = transformation->FloatAttribute ("time");
+        operations.push_back (time);
         operations_push_transform_attributes (transformation, operations);
       }
       else {
-        operations->push_back (ROTATE);
+        operations.push_back (ROTATE);
+        cerr << "[parsing] ROTATE" << endl;
         operations_push_transform_attributes (transformation, operations);
       }
     }
-  else if (!strcmp ("scale", transform_name)) {
-    operations->push_back (SCALE);
+  else if (!strcmp ("scale", transformation_name)) {
+    operations.push_back (SCALE);
+    cerr << "[parsing] SCALE" << endl;
     operations_push_transform_attributes (transformation, operations);
   }
   else
     {
-      fprintf (stderr, "Unknown transform: \"%s\"", transform_name);
+      fprintf (stderr, "Unknown transformation: \"%s\"", transformation_name);
       exit (1);
     }
 }
 
-void operations_push_transforms (XMLElement *transforms, std::vector<float> *operations)
+void operations_push_transforms (const XMLElement * const transforms, vector<float> &operations)
 {
-  tinyxml2::XMLElement *transform = transforms->FirstChildElement ();
+  const XMLElement *transform = transforms->FirstChildElement ();
   do
       operations_push_transformation(transform,operations);
   while ((transform = transform->NextSiblingElement ()));
@@ -162,21 +182,29 @@ void operations_push_transforms (XMLElement *transforms, std::vector<float> *ope
  * @{
  */
 
-int operations_push_string_attribute (const XMLElement *element, vector<float> *operations, const char *attribute_name)
+int operations_push_string_attribute (
+    const XMLElement * const element,
+    vector<float> &operations,
+    const char * const attribute_name)
 {
-  const char *element_attribute_value = element->Attribute (attribute_name);
+  const char * const element_attribute_value = element->Attribute (attribute_name);
+  if (element_attribute_value == nullptr)
+    {
+      cerr << "[parsing] [operations_push_string_attribute] failed: attrbute " << attribute_name << " does not exist" << endl;
+      exit(EXIT_FAILURE);
+    }
   int i = 0;
   do
-    operations->push_back (element_attribute_value[i++]);
+    operations.push_back (element_attribute_value[i++]);
   while (element_attribute_value[i]);
   // add number of characters of element attribute string value
-  operations->insert (operations->end () - i, (float) i);
+  operations.insert (operations.end () - i, (float) i);
   return i;
 }
 
-void operations_push_model (const XMLElement *model, vector<float> *operations)
+void operations_push_model (const XMLElement * const model, vector<float> &operations)
 {
-  operations->push_back (BEGIN_MODEL);
+  operations.push_back (BEGIN_MODEL);
 
   int i = operations_push_string_attribute (model,operations,"file");
 
@@ -187,46 +215,46 @@ void operations_push_model (const XMLElement *model, vector<float> *operations)
     }
 
     //texture
-    const XMLElement *texture = model->FirstChildElement ("texture");
+    const XMLElement * const texture = model->FirstChildElement ("texture");
     if(texture != nullptr)
       {
-        operations->push_back (TEXTURE);
+        operations.push_back (TEXTURE);
         operations_push_string_attribute (texture,operations,"file");
       }
     //color (material colors)
-    const XMLElement *color = model->FirstChildElement ("color");
+    const XMLElement * const color = model->FirstChildElement ("color");
     if (color != nullptr)
       {
         const int n = 4;
-        const char* colorNames[n] = {"diffuse", "ambient", "specular", "emissive"};
+        const char * const colorNames[n] = {"diffuse", "ambient", "specular", "emissive"};
         const operation_t colorTypes[n] = {DIFFUSE, AMBIENT, SPECULAR, EMISSIVE};
         for (int c = 0; c < n; ++c)
           {
-            const XMLElement *color_comp = color->FirstChildElement (colorNames[c]);
+            const XMLElement * const color_comp = color->FirstChildElement (colorNames[c]);
             if (color_comp != nullptr)
               {
                 const float RGB_MAX = 255.0f;
-                operations->push_back (colorTypes[c]);
-                operations->insert (operations->end (),
+                operations.push_back (colorTypes[c]);
+                operations.insert (operations.end (),
                                     {color_comp->FloatAttribute ("R")/RGB_MAX,
                                      color_comp->FloatAttribute ("G")/RGB_MAX,
                                      color_comp->FloatAttribute ("B")/RGB_MAX});
               }
           }
-        const XMLElement *shininess = color->FirstChildElement ("shininess");
+        const XMLElement * const shininess = color->FirstChildElement ("shininess");
         if (shininess != nullptr)
           {
-            operations->push_back (SHININESS);
-            operations->push_back (shininess->FloatAttribute ("value"));
+            operations.push_back (SHININESS);
+            operations.push_back (shininess->FloatAttribute ("value"));
           }
       }
 
-  operations->push_back (END_MODEL);
+  operations.push_back (END_MODEL);
 }
 
-void operations_push_models (XMLElement *models, std::vector<float> *operations)
+void operations_push_models (const XMLElement * const models, vector<float> &operations)
 {
-  tinyxml2::XMLElement *model = models->FirstChildElement ("model");
+  const XMLElement * model = models->FirstChildElement ("model");
   do
     operations_push_model (model, operations);
   while ((model = model->NextSiblingElement ("model")));
@@ -235,26 +263,26 @@ void operations_push_models (XMLElement *models, std::vector<float> *operations)
 
 /*! @addtogroup Groups
  * @{*/
-void operations_push_groups (tinyxml2::XMLElement *group, std::vector<float> *operations)
+void operations_push_groups (const XMLElement * const group, vector<float> &operations)
 {
-  operations->push_back (BEGIN_GROUP);
+  operations.push_back (BEGIN_GROUP);
 
   // Inside "transform" tag there can be multiple transformations.
-  tinyxml2::XMLElement *transforms = group->FirstChildElement ("transform");
-  tinyxml2::XMLElement *models = group->FirstChildElement ("models");
+  const XMLElement * const transforms = group->FirstChildElement ("transform");
+  const XMLElement * const models = group->FirstChildElement ("models");
 
   if (transforms)
     operations_push_transforms (transforms, operations);
   if (models)
     operations_push_models (models, operations);
 
-  tinyxml2::XMLElement *childGroup = group->FirstChildElement ("group");
+  const XMLElement * childGroup = group->FirstChildElement ("group");
   if (childGroup)
     do
       operations_push_groups (childGroup, operations);
     while ((childGroup = childGroup->NextSiblingElement ("group")));
 
-  operations->push_back (END_GROUP);
+  operations.push_back (END_GROUP);
 }
 //! @} end of group Groups
 
@@ -262,15 +290,15 @@ void operations_push_groups (tinyxml2::XMLElement *group, std::vector<float> *op
  *@{*/
 
 
-void operations_push_lights (const XMLElement *lights, vector<float> *operations)
+void operations_push_lights (const XMLElement * const lights, vector<float> &operations)
 {
-  const XMLElement *light = lights->FirstChildElement ();
+  const XMLElement * light = lights->FirstChildElement ();
   do
     {
-      const char* lightType = light->Attribute ("type");
+      const char * const lightType = light->Attribute ("type");
       if (!strcmp(lightType,"point")) {
-        operations->push_back (POINT);
-        operations->insert(operations->end(),
+        operations.push_back (POINT);
+        operations.insert(operations.end(),
                            {light->FloatAttribute ("posX"),
                             light->FloatAttribute ("posY"),
                             light->FloatAttribute ("posZ")});
@@ -278,16 +306,16 @@ void operations_push_lights (const XMLElement *lights, vector<float> *operations
       }
       else if (!strcmp(lightType,"directional"))
         {
-          operations->push_back (DIRECTIONAL);
-          operations->insert(operations->end(),
+          operations.push_back (DIRECTIONAL);
+          operations.insert(operations.end(),
                              {light->FloatAttribute ("dirX"),
                               light->FloatAttribute ("dirY"),
                               light->FloatAttribute ("dirZ")});
         }
       else if (!strcmp(lightType,"spotlight"))
         {
-          operations->push_back (SPOTLIGHT);
-          operations->insert(operations->end(),
+          operations.push_back (SPOTLIGHT);
+          operations.insert(operations.end(),
                              {light->FloatAttribute ("posX"),
                               light->FloatAttribute ("posY"),
                               light->FloatAttribute ("posZ"),
@@ -305,54 +333,54 @@ void operations_push_lights (const XMLElement *lights, vector<float> *operations
   while ((light = light->NextSiblingElement ()));
 }
 
-void operations_load_xml (const char *filename, std::vector<float> *operations)
+void operations_load_xml (const char * const filename, vector<float> &operations)
 {
-  tinyxml2::XMLDocument doc;
+  XMLDocument doc;
 
   if (doc.LoadFile (filename))
     {
       if (doc.ErrorID () == tinyxml2::XML_ERROR_FILE_NOT_FOUND)
         fprintf (stderr, "Failed loading file: '%s'\n", filename);
       fprintf (stderr, "%s", doc.ErrorName ());
-      exit (1);
+      exit (EXIT_FAILURE);
     }
 
   fprintf (stderr, "Loaded file: '%s'\n", filename);
-  tinyxml2::XMLElement *world = doc.FirstChildElement ("world");
+  const XMLElement * const world = doc.FirstChildElement ("world");
 
   /*camera*/
-  tinyxml2::XMLElement *camera = world->FirstChildElement ("camera");
+  const XMLElement * const camera = world->FirstChildElement ("camera");
 
-  tinyxml2::XMLElement *position = camera->FirstChildElement ("position");
+  const XMLElement * const position = camera->FirstChildElement ("position");
   operations_push_transform_attributes (position, operations);
 
-  tinyxml2::XMLElement *lookAt = camera->FirstChildElement ("lookAt");
+  const XMLElement * const lookAt = camera->FirstChildElement ("lookAt");
   operations_push_transform_attributes (lookAt, operations);
 
-  tinyxml2::XMLElement *up = camera->FirstChildElement ("up");
+  const XMLElement * const up = camera->FirstChildElement ("up");
   if (up)
     operations_push_transform_attributes (up, operations);
   else
-    operations->insert (operations->end (), {0, 1, 0});
+    operations.insert (operations.end (), {0, 1, 0});
 
-  tinyxml2::XMLElement *projection = camera->FirstChildElement ("projection");
+  const XMLElement * const projection = camera->FirstChildElement ("projection");
   if (projection)
     {
-      operations->push_back (projection->FloatAttribute ("fov"));
-      operations->push_back (projection->FloatAttribute ("near"));
-      operations->push_back (projection->FloatAttribute ("far"));
+      operations.push_back (projection->FloatAttribute ("fov"));
+      operations.push_back (projection->FloatAttribute ("near"));
+      operations.push_back (projection->FloatAttribute ("far"));
     }
   else
-    operations->insert (operations->end (), {60, 1, 1000});
+    operations.insert (operations.end (), {60, 1, 1000});
   /*end of camera*/
 
   // lights
-  const XMLElement *lights = world->FirstChildElement ("lights");
+  const XMLElement * const lights = world->FirstChildElement ("lights");
   if (lights != nullptr)
     operations_push_lights (lights,operations);
 
   // groups
-  tinyxml2::XMLElement *group = world->FirstChildElement ("group");
+  const XMLElement * const group = world->FirstChildElement ("group");
   operations_push_groups (group, operations);
 }
 
@@ -360,7 +388,7 @@ void operations_load_xml (const char *filename, std::vector<float> *operations)
 
 /*! @addtogroup Printing
  * @{*/
-void operations_print (std::vector<float> *operations)
+void operations_print (const vector<float> * const operations)
 {
   unsigned int i = 0;
   fprintf (stderr,
@@ -425,15 +453,15 @@ void operations_print (std::vector<float> *operations)
           case BEGIN_MODEL:
             {
               int stringSize = (int) operations->at (i + 1);
-              char model[stringSize + 1];
+              char modelName[stringSize + 1];
 
               int j;
               for (j = 0; j < stringSize; j++)
-                model[j] = (char) operations->at (i + 2 + j);
+                modelName[j] = (char) operations->at (i + 2 + j);
 
-              model[j] = 0;
+              modelName[j] = 0;
 
-              fprintf (stderr, "BEGIN_MODEL(%s)\n", model);
+              cerr << "BEGIN_MODEL (" << modelName << ")" << endl;
               i += 1 + j - 1; //just to be explicit
             }
           continue;
@@ -448,9 +476,9 @@ void operations_print (std::vector<float> *operations)
 //! @} end of group Printing
 //! @} end of group Operations
 
-void example1 (const char *filename)
+void example1 (const char * const filename)
 {
-  tinyxml2::XMLDocument doc;
+  XMLDocument doc;
 
   if (doc.LoadFile (filename))
     {
@@ -458,8 +486,8 @@ void example1 (const char *filename)
       exit (1);
     }
 
-  std::vector<float> operations;
-  operations_load_xml (filename, &operations);
+  vector<float> operations;
+  operations_load_xml (filename, operations);
   operations_print (&operations);
 }
 
