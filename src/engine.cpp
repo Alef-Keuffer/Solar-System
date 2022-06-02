@@ -193,13 +193,14 @@ void env_load_defaults ()
 /*! @addtogroup modelEngine
  * @{*/
 
+const auto RGB_MAX = 255.0;
 struct model {
   GLsizei nVertices{};
   GLuint vbo{};
   GLuint normals{};
   struct {
-    vec4 diffuse{200, 200, 200, 1};
-    vec4 ambient{50, 50, 50, 1};
+    vec4 diffuse = {200.0/RGB_MAX, 200.0/RGB_MAX, 200.0/RGB_MAX, 1};
+    vec4 ambient{50.0/RGB_MAX, 50.0/RGB_MAX, 50.0/RGB_MAX, 1};
     vec4 specular{0, 0, 0, 1};
     vec4 emissive{0, 0, 0, 1};
     GLfloat shininess = 0;
