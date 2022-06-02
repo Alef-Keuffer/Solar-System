@@ -568,7 +568,7 @@ void operations_render (vector<float> &operations)
           continue;
           case DIFFUSE:
             {
-              vec4 &diffuse = globalModels.back ().material.diffuse;
+              auto &diffuse = globalModels.back ().material.diffuse;
               diffuse[0] = operations[i + 1];
               diffuse[1] = operations[i + 2];
               diffuse[2] = operations[i + 3];
@@ -579,7 +579,7 @@ void operations_render (vector<float> &operations)
           continue;
           case AMBIENT:
             {
-              vec4 &ambient = globalModels.back ().material.ambient;
+              auto &ambient = globalModels.back ().material.ambient;
               ambient[0] = operations[i + 1];
               ambient[1] = operations[i + 2];
               ambient[2] = operations[i + 3];
@@ -590,7 +590,7 @@ void operations_render (vector<float> &operations)
           continue;
           case SPECULAR:
             {
-              vec4 &specular = globalModels.back ().material.specular;
+              auto &specular = globalModels.back ().material.specular;
               specular[0] = operations[i + 1];
               specular[1] = operations[i + 2];
               specular[2] = operations[i + 3];
@@ -601,7 +601,7 @@ void operations_render (vector<float> &operations)
           continue;
           case EMISSIVE:
             {
-              vec4 &emissive = globalModels.back ().material.emissive;
+              auto &emissive = globalModels.back ().material.emissive;
               emissive[0] = operations[i + 1];
               emissive[1] = operations[i + 2];
               emissive[2] = operations[i + 3];
