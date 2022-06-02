@@ -222,10 +222,12 @@ struct model allocModel (const char *model3dFilePath)
     }
 
   cerr << "[allocModel] model file = " << model3dFilePath << endl;
+  // read number of vertices
   GLsizei nVertices;
   fread (&nVertices, sizeof (nVertices), 1, fp);
   cerr << "[allocModel] nVertices = " << nVertices << endl;
 
+  // read vertices
   auto *arrayOfVertices = (float *) malloc (3 * nVertices * sizeof (float));
   const size_t nVerticesRead = fread (arrayOfVertices, 3 * sizeof (float), nVertices, fp);
   if (nVerticesRead != nVertices)
@@ -234,6 +236,7 @@ struct model allocModel (const char *model3dFilePath)
       exit (EXIT_FAILURE);
     }
 
+  // read normals
   auto *arrayOfNormals = (float *) malloc (3 * nVertices * sizeof (float));
   const size_t nNormalsRead = fread (arrayOfNormals, 3 * sizeof (float), nVertices, fp);
   if (nNormalsRead != nVertices)
@@ -242,6 +245,7 @@ struct model allocModel (const char *model3dFilePath)
       exit (EXIT_FAILURE);
     }
 
+  // read texture coordinates
   auto *arrayOfTextureCoordinates = (float *) malloc (2 * nVertices * sizeof (float));
   const size_t nTextureCoordinatesRead = fread (arrayOfTextureCoordinates, 2 * sizeof (float), nVertices, fp);
   if (nTextureCoordinatesRead != nVertices)
@@ -252,29 +256,33 @@ struct model allocModel (const char *model3dFilePath)
 
   fclose (fp);
 
-  struct model model;
 
+  struct model model;
   model.nVertices = nVertices;
 
+  // vertices buffer object array
   const GLsizei sizeOfVertexArray = (GLsizei) sizeof (arrayOfVertices[0]) * 3 * model.nVertices;
   glGenBuffers (1, &model.vbo);
   glBindBuffer (GL_ARRAY_BUFFER, model.vbo);
   glBufferData (GL_ARRAY_BUFFER, sizeOfVertexArray, arrayOfVertices, GL_STATIC_DRAW);
   free (arrayOfVertices);
 
+  // normals buffer object array
   const GLsizei sizeOfNormalsArray = (GLsizei) sizeof (arrayOfNormals[0]) * 3 * model.nVertices;
   glGenBuffers (1, &model.normals);
   glBindBuffer (GL_ARRAY_BUFFER, model.normals);
   glBufferData (GL_ARRAY_BUFFER, sizeOfNormalsArray, arrayOfNormals, GL_STATIC_DRAW);
   free (arrayOfNormals);
 
+  // texture coordinates buffer object array
   const GLsizei sizeOfTextureCoordinateArray = (GLsizei) sizeof (arrayOfVertices[0]) * 2 * model.nVertices;
   glGenBuffers (1, &model.tc);
   glBindBuffer (GL_ARRAY_BUFFER, model.tc);
   glBufferData (GL_ARRAY_BUFFER, sizeOfTextureCoordinateArray, arrayOfTextureCoordinates, GL_STATIC_DRAW);
   free (arrayOfTextureCoordinates);
 
-  glBindBuffer (GL_ARRAY_BUFFER, 0); //unbind array buffer
+  // unbind array buffer
+  glBindBuffer (GL_ARRAY_BUFFER, 0);
 
   return model;
 }
@@ -282,34 +290,54 @@ struct model allocModel (const char *model3dFilePath)
 void addTexture (struct model &m, const char *const path)
 {
 
-  ilInit ();
-  ilEnable (IL_ORIGIN_SET);
-  ilOriginFunc (IL_ORIGIN_LOWER_LEFT);
+  static bool isFirstTimeBeingExecuted = true;
+  if (isFirstTimeBeingExecuted)
+    {
+      // DevIL setup - done once (slide 5) [class11]
+      ilInit ();
+      ilEnable (IL_ORIGIN_SET);
+      ilOriginFunc (IL_ORIGIN_LOWER_LEFT);
+    }
+
+  // for each image (slide 5) [class11]
   ILuint image;
   ilGenImages (1, &image);
   ilBindImage (image);
   ilLoadImage ((ILstring) path);
-  const GLsizei texture_width = ilGetInteger (IL_IMAGE_WIDTH);
-  const GLsizei texture_height = ilGetInteger (IL_IMAGE_HEIGHT);
+
+  // convert to RGBA (slide 6) [class11]
   ilConvertImage (IL_RGBA, IL_UNSIGNED_BYTE);
 
+  // texture creation in OpenGL (slide 8) [class11]
+  // create a texture slot (slide 8) [class11]
   glGenTextures (1, &m.tbo);
 
+  // bind the slot (slide 8) [class11]
   glBindTexture (GL_TEXTURE_2D, m.tbo);
+
+  // define texture parameters (slide 8) [class11]
   glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
   glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 
   glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR_MIPMAP_LINEAR);
   glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
 
-  const ILubyte *texData = ilGetData ();
+  // get the required info (slide 7) [class11]
+  const ILubyte * const texData = ilGetData ();
+  const GLsizei texture_width = ilGetInteger (IL_IMAGE_WIDTH);
+  const GLsizei texture_height = ilGetInteger (IL_IMAGE_HEIGHT);
+
+  // send texture data to OpenGL (slide 8) [class11]
   glTexImage2D (GL_TEXTURE_2D, 0, GL_RGBA,
                 texture_width, texture_height, 0,
                 GL_RGBA, GL_UNSIGNED_BYTE, texData);
 
   glGenerateMipmap (GL_TEXTURE_2D);
 
+  // unbind texture
   glBindTexture (GL_TEXTURE_2D, 0);
+
+  isFirstTimeBeingExecuted = false;
 }
 
 void renderModel (const struct model &model)
@@ -320,32 +348,34 @@ void renderModel (const struct model &model)
       exit (1);
     }
 
-  // vertex buffer object
+  // vertex buffer object (slide 14) [class11]
   glBindBuffer (GL_ARRAY_BUFFER, model.vbo);
   glVertexPointer (3, GL_FLOAT, 0, nullptr);
 
-  // normals
+  // normals (slide 14) [class11]
   glBindBuffer (GL_ARRAY_BUFFER, model.normals);
   glNormalPointer (GL_FLOAT, 0, nullptr);
 
-  // texture buffer object
-  glBindTexture (GL_TEXTURE_2D, model.tbo);
-
-  // texture coordinates
+  // texture coordinates (slide 14) [class11]
   glBindBuffer (GL_ARRAY_BUFFER, model.tc);
   glTexCoordPointer (2, GL_FLOAT, 0, nullptr);
 
-  // material colors
+  // texture buffer object (slide 14) [class11]
+  glBindTexture (GL_TEXTURE_2D, model.tbo);
+
+  // define a material for the object(s) (slide 8) [class9]
   glMaterialfv (GL_FRONT, GL_DIFFUSE, value_ptr (model.material.diffuse));
   glMaterialfv (GL_FRONT, GL_AMBIENT, value_ptr (model.material.ambient));
   glMaterialfv (GL_FRONT, GL_SPECULAR, value_ptr (model.material.specular));
   glMaterialfv (GL_FRONT, GL_EMISSION, value_ptr (model.material.emissive));
+  glMaterialf (GL_FRONT, GL_SHININESS, model.material.shininess);
 
   // drawing
   glDrawArrays (GL_TRIANGLES, 0, model.nVertices);
 
-  // unbinding
+  // unbind array buffer
   glBindBuffer (GL_ARRAY_BUFFER, 0);
+  // unbind texture (slide 10) [class11]
   glBindTexture (GL_TEXTURE_2D, 0);
 }
 
@@ -355,7 +385,7 @@ void changeSize (const int w, int h)
 {
 
   // Prevent a divide by zero, when window is too short
-  // (you cant make a window with zero width).
+  // (you can't make a window with zero width).
   if (h == 0)
     h = 1;
 
@@ -364,6 +394,7 @@ void changeSize (const int w, int h)
 
   // Set the projection matrix as current
   glMatrixMode (GL_PROJECTION);
+
   // Load Identity Matrix
   glLoadIdentity ();
 
