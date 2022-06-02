@@ -165,7 +165,10 @@ void renderCurve (const mat4 M, const vector<vec3> &control_points, const unsign
     glPopMatrix();
 }
 
-void advance_in_curve (float translation_time, bool align, const mat4 &M, const vector<vec3> &global_control_points)
+void advance_in_curve (const float translation_time,
+                       const bool align,
+                       const mat4 &M,
+                       const vector<vec3> &global_control_points)
 {
   // (x%N)/N
   float gt = fmodf ((float) glutGet (GLUT_ELAPSED_TIME), (float) (translation_time * 1000)) / (translation_time * 1000);
