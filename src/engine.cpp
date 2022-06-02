@@ -199,8 +199,8 @@ struct model {
   GLuint vbo{};
   GLuint normals{};
   struct {
-    vec4 diffuse = {200.0/RGB_MAX, 200.0/RGB_MAX, 200.0/RGB_MAX, 1};
-    vec4 ambient{50.0/RGB_MAX, 50.0/RGB_MAX, 50.0/RGB_MAX, 1};
+    vec4 diffuse = {200.0 / RGB_MAX, 200.0 / RGB_MAX, 200.0 / RGB_MAX, 1};
+    vec4 ambient{50.0 / RGB_MAX, 50.0 / RGB_MAX, 50.0 / RGB_MAX, 1};
     vec4 specular{0, 0, 0, 1};
     vec4 emissive{0, 0, 0, 1};
     GLfloat shininess = 0;
@@ -256,7 +256,6 @@ struct model allocModel (const char *model3dFilePath)
     }
 
   fclose (fp);
-
 
   struct model model;
   model.nVertices = nVertices;
@@ -324,7 +323,7 @@ void addTexture (struct model &m, const char *const path)
   glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
 
   // get the required info (slide 7) [class11]
-  const ILubyte * const texData = ilGetData ();
+  const ILubyte *const texData = ilGetData ();
   const GLsizei texture_width = ilGetInteger (IL_IMAGE_WIDTH);
   const GLsizei texture_height = ilGetInteger (IL_IMAGE_HEIGHT);
 
@@ -424,6 +423,8 @@ void operations_render (vector<float> &operations)
   static bool isFirstTimeBeingExecuted = true;
   static bool hasPushedModels = false;
   static bool hasLoadedCurves = false;
+  static unsigned char nLights = 0;
+  assert (nLights < 8);
   static vector<vector<vec3>> curves;
 
   DEFAULT_GLOBAL_EYE_X = operations[i];
@@ -455,6 +456,7 @@ void operations_render (vector<float> &operations)
     {
       switch ((int) operations[i])
         {
+          // transformations
           case ROTATE:
             {
               const float rotation_angle = operations[i + 1];
@@ -501,13 +503,13 @@ void operations_render (vector<float> &operations)
           continue;
           case EXTENDED_TRANSLATE:
             {
-              int number_of_points = (int) operations[i + 3];
-              vector<vec3> new_curve (number_of_points);
+              const int number_of_points = (int) operations[i + 3];
               if (!hasLoadedCurves)
                 {
+                  vector<vec3> new_curve (number_of_points);
                   for (int j = 0; j < number_of_points; ++j)
                     {
-                      int idx = 3 * j;
+                      const int idx = 3 * j;
                       new_curve.at (j)[0] = operations[i + 4 + idx];
                       new_curve.at (j)[1] = operations[i + 4 + idx + 1];
                       new_curve.at (j)[2] = operations[i + 4 + idx + 2];
@@ -516,11 +518,15 @@ void operations_render (vector<float> &operations)
                 }
               auto curve = curves.back ();
               renderCurve (Mcr, curve);
-              advance_in_curve (
-                  operations[i + 1],
-                  (bool) operations[i + 2],
-                  Mcr,
-                  curves.back ());
+              const float translation_time = operations[i + 1];
+              const bool align = (bool) operations[i + 2];
+              advance_in_curve (translation_time, align, Mcr, curves.back ());
+              if (isFirstTimeBeingExecuted)
+                cerr << "EXTENDED_TRANSLATE ("
+                     << "translation_time: " << translation_time
+                     << ", align: " << align
+                     << ", number of points: " << number_of_points
+                     << ")" << endl;
               i += 3 + number_of_points * 3; // 3 - time,align,number_of_points,points...
             }
           continue;
@@ -535,6 +541,7 @@ void operations_render (vector<float> &operations)
               i += 3;
             }
           continue;
+          // grouping
           case BEGIN_GROUP:
             {
               if (isFirstTimeBeingExecuted)
@@ -549,6 +556,7 @@ void operations_render (vector<float> &operations)
               glPopMatrix ();
             }
           continue;
+          // texture
           case TEXTURE:
             {
               const int stringSize = (int) operations[i + 1];
@@ -566,6 +574,7 @@ void operations_render (vector<float> &operations)
               i += stringSize + 1; //just to be explicit
             }
           continue;
+          // object material components
           case DIFFUSE:
             {
               auto &diffuse = globalModels.back ().material.diffuse;
@@ -612,14 +621,13 @@ void operations_render (vector<float> &operations)
           continue;
           case SHININESS:
             {
-              float shininess =
-                  (globalModels.back ().material.shininess = operations[i + 1]
-                  );
+              float shininess = (globalModels.back ().material.shininess = operations[i + 1]);
               if (isFirstTimeBeingExecuted)
                 cerr << "SHININESS (" << shininess << ")" << endl;
               i += 1;
             }
           continue;
+          // model
           case BEGIN_MODEL:
             {
               int stringSize = (int) operations[i + 1];
@@ -646,15 +654,18 @@ void operations_render (vector<float> &operations)
               renderModel (globalModels.back ());
             }
           continue;
+          // light sources
           case POINT:
             {
               const vec4 pos = {operations[i + 1],
                                 operations[i + 2],
                                 operations[i + 3],
-                                1.0};
+                                0.0};
               if (isFirstTimeBeingExecuted)
                 cerr << "POINT (" << to_string (pos) << ")" << endl;
-              glLightfv (GL_LIGHT0, GL_POSITION, value_ptr (pos));
+              glLightfv (GL_LIGHT0 + nLights, GL_POSITION, value_ptr (pos));
+              if (isFirstTimeBeingExecuted)
+                ++nLights;
               i += 3;
             }
           continue;
@@ -663,11 +674,13 @@ void operations_render (vector<float> &operations)
               const vec4 dir = {operations[i + 1],
                                 operations[i + 2],
                                 operations[i + 3],
-                                1.0};
+                                0.0};
               if (isFirstTimeBeingExecuted)
                 cerr << "DIRECTIONAL (" << to_string (dir) << ")" << endl;
 
-              glLightfv (GL_LIGHT0, GL_POSITION, value_ptr (dir));
+              glLightfv (GL_LIGHT0 + nLights, GL_POSITION, value_ptr (dir));
+              if (isFirstTimeBeingExecuted)
+                ++nLights;
               i += 3;
             }
           continue;
@@ -688,9 +701,15 @@ void operations_render (vector<float> &operations)
                                                            "\n\t(dir: " << to_string (dir) << ")"
                                                                                               "\n\t(cutoff: " << cutoff
                      << ")" << endl;
-              glLightfv (GL_LIGHT0, GL_POSITION, value_ptr (pos));
-              glLightfv (GL_LIGHT0, GL_SPOT_DIRECTION, value_ptr (dir));
-              glLightf (GL_LIGHT0, GL_SPOT_CUTOFF, cutoff);
+              glLightfv (GL_LIGHT0 + nLights, GL_POSITION, value_ptr (pos));
+              if (isFirstTimeBeingExecuted)
+                ++nLights;
+              glLightfv (GL_LIGHT0 + nLights, GL_SPOT_DIRECTION, value_ptr (dir));
+              if (isFirstTimeBeingExecuted)
+                ++nLights;
+              glLightf (GL_LIGHT0 + nLights, GL_SPOT_CUTOFF, cutoff);
+              if (isFirstTimeBeingExecuted)
+                ++nLights;
               i += 7;
               continue;
             }
@@ -1146,18 +1165,32 @@ void engine_run (int argc, char **argv)
 
   //  OpenGL settings
   glEnable (GL_DEPTH_TEST);
+
+  // activate 2D texturing (slide 10) [class11]
+  glEnable (GL_TEXTURE_2D);
+
+  glEnable (GL_RESCALE_NORMAL);
+
+  // activate lighting (done once in initialization) (slides 5) [class9]
   glEnable (GL_LIGHTING);
   glEnable (GL_LIGHT0);
   glEnable (GL_LIGHT1);
+  glEnable (GL_LIGHT2);
+  glEnable (GL_LIGHT3);
+  glEnable (GL_LIGHT4);
+  glEnable (GL_LIGHT5);
+  glEnable (GL_LIGHT6);
+  glEnable (GL_LIGHT7);
+
+  // activate arrays (slide 12) [class11]
   glEnableClientState (GL_VERTEX_ARRAY);
   glEnableClientState (GL_NORMAL_ARRAY);
   glEnableClientState (GL_TEXTURE_COORD_ARRAY);
-  glEnableClientState (GL_TEXTURE_2D);
-  glEnable (GL_RESCALE_NORMAL);
-  const float amb[4] = {1.0f, 1.0f, 1.0f, 1.0f};
-  glLightModelfv (GL_LIGHT_MODEL_AMBIENT, amb);
+
+  //const float amb[4] = {1.0f, 1.0f, 1.0f, 1.0f};
+  //glLightModelfv (GL_LIGHT_MODEL_AMBIENT, amb);
   // glEnable (GL_CULL_FACE);
-  glPolygonMode (GL_FRONT_AND_BACK, GL_FILL);
+  //glPolygonMode (GL_FRONT_AND_BACK, GL_FILL);
 
 
   // enter GLUT's main cycle
