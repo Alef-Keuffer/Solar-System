@@ -218,7 +218,7 @@ struct model allocModel (const char *model3dFilePath)
   FILE *fp = fopen (model3dFilePath, "r");
   if (!fp)
     {
-      fprintf (stderr, "failed to open model: %s\n", model3dFilePath);
+      cerr << "failed to open model: " << model3dFilePath << endl;
       exit (EXIT_FAILURE);
     }
 
@@ -233,7 +233,7 @@ struct model allocModel (const char *model3dFilePath)
   const size_t nVerticesRead = fread (arrayOfVertices, 3 * sizeof (float), nVertices, fp);
   if (nVerticesRead != nVertices)
     {
-      fprintf (stderr, "%zu = nVerticesRead != nVertices = %ul", nVerticesRead, nVertices);
+      cerr << nVerticesRead << "= nVerticesRead != nVertices = " << nVertices << endl;
       exit (EXIT_FAILURE);
     }
 
@@ -242,7 +242,7 @@ struct model allocModel (const char *model3dFilePath)
   const size_t nNormalsRead = fread (arrayOfNormals, 3 * sizeof (float), nVertices, fp);
   if (nNormalsRead != nVertices)
     {
-      fprintf (stderr, "%zu = nNormalsRead != nVertices = %ul", nNormalsRead, nVertices);
+      cerr << nNormalsRead << " = nNormalsRead != nVertices = " << nVertices << endl;
       exit (EXIT_FAILURE);
     }
 
@@ -303,10 +303,20 @@ void addTexture (struct model &m, const char *const path)
   ILuint image;
   ilGenImages (1, &image);
   ilBindImage (image);
-  ilLoadImage ((ILstring) path);
+  const ILboolean has_loaded_successfully = ilLoadImage ((ILstring) path);
+  if (!has_loaded_successfully)
+    {
+      cerr << "[engine] failed to find texture file '" << path << "'" << endl;
+      exit (EXIT_FAILURE);
+    }
 
   // convert to RGBA (slide 6) [class11]
-  ilConvertImage (IL_RGBA, IL_UNSIGNED_BYTE);
+  const ILboolean has_converted_image_sucessfully = ilConvertImage (IL_RGBA, IL_UNSIGNED_BYTE);
+  if (!has_converted_image_sucessfully)
+    {
+      cerr << "[engine] failed to convert texture '" << path << "'" << endl;
+      exit (EXIT_FAILURE);
+    }
 
   // texture creation in OpenGL (slide 8) [class11]
   // create a texture slot (slide 8) [class11]
@@ -1140,9 +1150,11 @@ void engine_run (int argc, char **argv)
 
   if (argc != 2)
     {
-      fprintf (stderr, "Number of arguments is not one\n");
-      exit (1);
+      fprintf (stderr, "Engine only receives one argument, namley: the xml file defining what to draw\n");
+      exit (EXIT_FAILURE);
     }
+
+  g::xml_file.copy (argv[1],BUFSIZ);
 
   // init GLUT and the window
   glutInit (&argc, argv);
@@ -1169,6 +1181,12 @@ void engine_run (int argc, char **argv)
   // activate 2D texturing (slide 10) [class11]
   glEnable (GL_TEXTURE_2D);
 
+  /*
+   * For lighting to work properly when scales are applied to a model,
+   * the following code below should be added to the initialization.
+   * Activating this feature will result in normalizes normals after
+   * applying the geometric transformations, and before applying lighting.
+   */
   glEnable (GL_RESCALE_NORMAL);
 
   // activate lighting (done once in initialization) (slides 5) [class9]
@@ -1187,16 +1205,24 @@ void engine_run (int argc, char **argv)
   glEnableClientState (GL_NORMAL_ARRAY);
   glEnableClientState (GL_TEXTURE_COORD_ARRAY);
 
-  //const float amb[4] = {1.0f, 1.0f, 1.0f, 1.0f};
-  //glLightModelfv (GL_LIGHT_MODEL_AMBIENT, amb);
-  // glEnable (GL_CULL_FACE);
+
+  /*
+   * To allow for ambient colors to be reproduced without having
+   * to activate the ambient component for all lights, the following
+   * code should be added to the initialization:
+   */
+  const float amb[4] = {1.0f, 1.0f, 1.0f, 1.0f};
+  glLightModelfv (GL_LIGHT_MODEL_AMBIENT, amb);
+
+  // other details
+  //glEnable (GL_CULL_FACE);
   //glPolygonMode (GL_FRONT_AND_BACK, GL_FILL);
 
-
-  // enter GLUT's main cycle
   glewInit ();
 
   xml_load_and_set_env (argv[1]);
+
+  // enter GLUT's main cycle
   glutMainLoop ();
 }
 
