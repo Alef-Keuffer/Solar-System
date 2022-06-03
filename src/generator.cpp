@@ -160,7 +160,7 @@ void model_cube_vertices (const float length,
           auto const fdiv2 = (float) uidiv2;
           auto const fdivisions = (float) divisions;
 
-          // top
+          // y+
           vertices.emplace_back (o + d * (fdiv1 - 1), -o, o + d * (fdiv2 - 1));//P1
           vertices.emplace_back (o + d * (fdiv1 - 1), -o, o + d * fdiv2); //P1'z
           vertices.emplace_back (o + d * fdiv1, -o, o + d * (fdiv2 - 1)); //P1'x
@@ -183,7 +183,7 @@ void model_cube_vertices (const float length,
             texture.emplace_back ((fdiv1 - e[0]) / fdivisions, (fdiv2 - e[1]) / fdivisions);
 
 
-          // bottom
+          // y-
           vertices.emplace_back (o + d * (fdiv1 - 1), o, o + d * fdiv2); //P1'z
           vertices.emplace_back (o + d * (fdiv1 - 1), o, o + d * (fdiv2 - 1)); //P1
           vertices.emplace_back (o + d * fdiv1, o, o + d * (fdiv2 - 1)); //P1'x
@@ -205,7 +205,7 @@ void model_cube_vertices (const float length,
             texture.emplace_back ((fdiv1 - e[0]) / fdivisions, (fdiv2 - e[1]) / fdivisions);
 
 
-          // left
+          // x-
           vertices.emplace_back (o, o + d * (fdiv1 - 1), o + d * (fdiv2 - 1)); //P1
           vertices.emplace_back (o, o + d * (fdiv1 - 1), o + d * fdiv2); //P1'z
           vertices.emplace_back (o, o + d * fdiv1, o + d * (fdiv2 - 1)); //P1'x
@@ -228,7 +228,7 @@ void model_cube_vertices (const float length,
             texture.emplace_back ((fdiv1 - e[0]) / fdivisions, (fdiv2 - e[1]) / fdivisions);
 
 
-          // right
+          // x+
           vertices.emplace_back (-o, o + d * (fdiv1 - 1), o + d * fdiv2); //P1'z
           vertices.emplace_back (-o, o + d * (fdiv1 - 1), o + d * (fdiv2 - 1)); //P1
           vertices.emplace_back (-o, o + d * fdiv1, o + d * (fdiv2 - 1)); //P1'x
@@ -251,7 +251,7 @@ void model_cube_vertices (const float length,
             texture.emplace_back ((fdiv1 - e[0]) / fdivisions, (fdiv2 - e[1]) / fdivisions);
 
 
-          // front
+          // z-
           vertices.emplace_back (o + d * (fdiv1 - 1), o + d * (fdiv2 - 1), o); //P1
           vertices.emplace_back (o + d * (fdiv1 - 1), o + d * fdiv2, o); //P1'z
           vertices.emplace_back (o + d * fdiv1, o + d * (fdiv2 - 1), o); //P1'x
@@ -260,22 +260,23 @@ void model_cube_vertices (const float length,
           vertices.emplace_back (o + d * (fdiv1 - 1), o + d * fdiv2, o); //P1'z
           vertices.emplace_back (o + d * fdiv1, o + d * fdiv2, o); //P2
 
-          for (int k = 0; k < 6; ++k)
-            normals.emplace_back (0, 0, 1);
-
           for (auto e : {
-              vec2 (-1.0f, -1.0f),
-              vec2 (-1.0f, 0.0f),
-              vec2 (0.0f, -1.0f),
+              vec2 (-1.0f, -1.0f),//P1
+              vec2 (-1.0f, 0.0f),//P1'z
+              vec2 (0.0f, -1.0f),//P1'x
 
-              vec2 (0.0f, -1.0f),
-              vec2 (-1.0f, 0.0f),
-              vec2 (0.0f, 0.0f)
+              vec2 (0.0f, -1.0f),//P1'x
+              vec2 (-1.0f, 0.0f),//P1'z
+              vec2 (0.0f, 0.0f)//P2
           })
-            texture.emplace_back ((fdiv1 - e[0]) / fdivisions, (fdiv2 - e[1]) / fdivisions);
+            {
+              normals.emplace_back (0, 0, -1);
+              texture.emplace_back ((fdiv1 - e[0]) / fdivisions, (fdiv2 - e[1]) / fdivisions);
+            }
 
 
-          // back
+
+          // z+
           vertices.emplace_back (o + d * (fdiv1 - 1), o + d * fdiv2, -o); //P1'z
           vertices.emplace_back (o + d * (fdiv1 - 1), o + d * (fdiv2 - 1), -o); //P1
           vertices.emplace_back (o + d * fdiv1, o + d * (fdiv2 - 1), -o); //P1'x
@@ -285,7 +286,7 @@ void model_cube_vertices (const float length,
           vertices.emplace_back (o + d * fdiv1, o + d * fdiv2, -o); //P2
 
           for (int k = 0; k < 6; ++k)
-            normals.emplace_back (0, 0, -1);
+            normals.emplace_back (0, 0, 1);
 
           for (auto e : {
               vec2 (-1.0f, 0.0f),
