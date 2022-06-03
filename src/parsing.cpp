@@ -62,15 +62,14 @@ using tinyxml2::XMLDocument, tinyxml2::XML_SUCCESS, tinyxml2::XMLError, tinyxml2
 using std::cerr, std::endl;
 
 void operations_push_transform_attributes (
-    const XMLElement * const transform,
+    const XMLElement *const transform,
     vector<float> &operations)
 {
   if (!transform)
     {
-      fprintf(stderr,"operations_push_transform_attributes: null transform\n");
+      fprintf (stderr, "operations_push_transform_attributes: null transform\n");
       return;
     }
-
 
   float angle;
   {
@@ -79,25 +78,27 @@ void operations_push_transform_attributes (
       operations.push_back (angle);
     else if (e != XML_NO_ATTRIBUTE)
       {
-        fprintf(stderr, "Parsing error %s at %s\n", transform->GetText(), XMLDocument::ErrorIDToName (e));
+        fprintf (stderr, "Parsing error %s at %s\n", transform->GetText (), XMLDocument::ErrorIDToName (e));
         exit (EXIT_FAILURE);
       }
   }
-  for (const char *x : {"x","y","z"}) {
-    float attributeValue;
-    XMLError e;
-    if ((e = transform->QueryFloatAttribute ("x",&attributeValue)) != XML_SUCCESS) {
-      fprintf(stderr, "Parsing error %s at %s\n", transform->GetText(), XMLDocument::ErrorIDToName (e));
-      exit (EXIT_FAILURE);
+  for (const char *x : {"x", "y", "z"})
+    {
+      float attributeValue;
+      XMLError e;
+      if ((e = transform->QueryFloatAttribute ("x", &attributeValue)) != XML_SUCCESS)
+        {
+          fprintf (stderr, "Parsing error %s at %s\n", transform->GetText (), XMLDocument::ErrorIDToName (e));
+          exit (EXIT_FAILURE);
+        }
+      operations.push_back (transform->FloatAttribute (x));
     }
-    operations.push_back (transform->FloatAttribute (x));
-  }
 
 }
 
 void
 operations_push_extended_translate_attributes (
-    const XMLElement * const extended_translate,
+    const XMLElement *const extended_translate,
     vector<float> &operations)
 {
   if (!extended_translate)
@@ -183,14 +184,21 @@ void operations_push_transforms (const XMLElement * const transforms, vector<flo
  */
 
 int operations_push_string_attribute (
-    const XMLElement * const element,
+    const XMLElement *const element,
     vector<float> &operations,
-    const char * const attribute_name)
+    const char *const attribute_name)
 {
-  const char * const element_attribute_value = element->Attribute (attribute_name);
+
+  const char *const element_attribute_value = element->Attribute (attribute_name);
   if (element_attribute_value == nullptr)
     {
-      cerr << "[parsing] [operations_push_string_attribute] failed: attrbute " << attribute_name << " does not exist" << endl;
+      cerr << "[parsing] [operations_push_string_attribute] failed: attrbute " << attribute_name << " does not exist"
+           << endl;
+      exit (EXIT_FAILURE);
+    }
+  if (access(element_attribute_value,F_OK))
+    {
+      cerr << "file " << element_attribute_value << " not found" << endl;
       exit(EXIT_FAILURE);
     }
   int i = 0;
@@ -290,50 +298,81 @@ void operations_push_groups (const XMLElement * const group, vector<float> &oper
  *@{*/
 
 
-void operations_push_lights (const XMLElement * const lights, vector<float> &operations)
+void operations_push_lights (const XMLElement *const lights, vector<float> &operations)
 {
-  const XMLElement * light = lights->FirstChildElement ();
+  const XMLElement *light = lights->FirstChildElement ();
   do
     {
-      const char * const lightType = light->Attribute ("type");
-      if (!strcmp(lightType,"point")) {
-        operations.push_back (POINT);
-        operations.insert(operations.end(),
-                           {light->FloatAttribute ("posX"),
-                            light->FloatAttribute ("posY"),
-                            light->FloatAttribute ("posZ")});
+      const char *const lightType = light->Attribute ("type");
+      if (!strcmp (lightType, "point"))
+        {
+          operations.push_back (POINT);
+          float posX, posY, posZ;
+          if (light->QueryFloatAttribute ("posX", &posX)
+              | light->QueryFloatAttribute ("posY", &posY)
+              | light->QueryFloatAttribute ("posZ", &posZ))
+            {
+              cerr << "[parsing] Failed parsing POINT posX or posY or posZ" << endl;
+              exit (EXIT_FAILURE);
+            }
+          operations.insert (operations.end (), {posX, posY, posZ});
 
-      }
-      else if (!strcmp(lightType,"directional"))
+        }
+      else if (!strcmp (lightType, "directional"))
         {
           operations.push_back (DIRECTIONAL);
-          operations.insert(operations.end(),
-                             {light->FloatAttribute ("dirX"),
-                              light->FloatAttribute ("dirY"),
-                              light->FloatAttribute ("dirZ")});
+          float dirX, dirY, dirZ;
+          if (light->QueryFloatAttribute ("dirX", &dirX)
+              | light->QueryFloatAttribute ("dirY", &dirY)
+              | light->QueryFloatAttribute ("dirZ", &dirZ))
+            {
+              cerr << "[parsing] Failed parsing DIRECTIONAL dirX or dirY or dirZ" << endl;
+              exit (EXIT_FAILURE);
+            }
+          operations.insert (operations.end (), {dirX, dirY, dirZ});
         }
-      else if (!strcmp(lightType,"spotlight"))
+      else if (!strcmp (lightType, "spotlight"))
         {
           operations.push_back (SPOTLIGHT);
-          operations.insert(operations.end(),
-                             {light->FloatAttribute ("posX"),
-                              light->FloatAttribute ("posY"),
-                              light->FloatAttribute ("posZ"),
-                              light->FloatAttribute ("dirX"),
-                              light->FloatAttribute ("dirY"),
-                              light->FloatAttribute ("dirZ"),
-                              light->FloatAttribute ("cutoff")});
+          float posX, posY, posZ;
+          if (light->QueryFloatAttribute ("posX", &posX)
+              | light->QueryFloatAttribute ("posY", &posY)
+              | light->QueryFloatAttribute ("posZ", &posZ))
+            {
+              cerr << "[parsing] Failed parsing SPOTLIGHT posX or posY or posZ" << endl;
+              exit (EXIT_FAILURE);
+            }
+
+          float dirX, dirY, dirZ;
+          if (light->QueryFloatAttribute ("dirX", &dirX)
+              | light->QueryFloatAttribute ("dirY", &dirY)
+              | light->QueryFloatAttribute ("dirZ", &dirZ))
+            {
+              cerr << "[parsing] Failed parsing SPOTLIGHT dirX or dirY or dirZ" << endl;
+              exit (EXIT_FAILURE);
+            }
+          float cutoff;
+          if (light->QueryFloatAttribute ("cutoff", &cutoff))
+            {
+              cerr << "[parsing] Failed parsing SPOTLIGHT cutoff" << endl;
+              exit (EXIT_FAILURE);
+            }
+          operations.insert (operations.end (), {
+              posX, posY, posZ,
+              dirX, dirY, dirZ,
+              cutoff
+          });
         }
       else
         {
-          fprintf(stderr, "Unkown light type: %s\n",lightType);
-          exit(EXIT_FAILURE);
+          fprintf (stderr, "[parsing] Unkown light type: %s\n", lightType);
+          exit (EXIT_FAILURE);
         }
     }
   while ((light = light->NextSiblingElement ()));
 }
 
-void operations_load_xml (const char * const filename, vector<float> &operations)
+void operations_load_xml (const char *const filename, vector<float> &operations)
 {
   XMLDocument doc;
 
