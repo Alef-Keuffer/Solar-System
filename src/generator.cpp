@@ -64,7 +64,8 @@ void points_write (const char *filename, const unsigned int nVertices, const flo
   fclose (fp);
 }
 
-void model_write (const char *filename, const vector<vec3> &points, const vector<vec3> &normals, const vector<vec2> &texture)
+void
+model_write (const char *filename, const vector<vec3> &vertices, const vector<vec3> &normals, const vector<vec2> &texture)
 {
   FILE *fp = fopen (filename, "w");
 
@@ -74,13 +75,17 @@ void model_write (const char *filename, const vector<vec3> &points, const vector
       exit (1);
     }
 
-  const size_t nVertices = points.size();
-  fwrite (&nVertices, sizeof (unsigned int), 1, fp);
-  fwrite (points.data(), sizeof(points.back()), points.size(), fp);
-  fwrite (normals.data(), sizeof(normals.back()), normals.size(), fp);
-  fwrite (texture.data(), sizeof(texture.back()), texture.size(), fp);
+  const int nVertices = vertices.size();
+  const int nNormals = normals.size();
+  const int nTextures = texture.size();
+  fwrite (&nVertices, sizeof (nVertices), 1, fp);
+  fwrite (vertices.data (), sizeof (vertices.back ()), nVertices, fp);
+  fwrite (normals.data (), sizeof (normals.back ()), nNormals, fp);
+  fwrite (texture.data (), sizeof (texture.back ()), nTextures, fp);
 
   fclose (fp);
+
+  cerr << "[generator] Wrote " << nVertices << " vertices, " << nNormals << " normals, " << nTextures << " textures." << endl;
 }
 
 //!@} end of group points
@@ -138,73 +143,160 @@ void model_plane_write (const char *filepath, const float length, const unsigned
 
 /*! @addtogroup cube
 * @{*/
-void model_cube_vertices (const float length, const unsigned int divisions, float points[])
+void model_cube_vertices (const float length,
+                          const unsigned int divisions,
+                          vector<vec3> &vertices,
+                          vector<vec3> &normals,
+                          vector<vec2> &texture)
 {
   const float o = -length / 2.0f;
   const float d = length / (float) divisions;
 
-  unsigned int pos = 0;
-
-  for (unsigned int m = 1; m <= divisions; m++)
+  for (unsigned int uidiv1 = 1; uidiv1 <= divisions; uidiv1++)
     {
-      for (unsigned int n = 1; n <= divisions; n++)
+      for (unsigned int uidiv2 = 1; uidiv2 <= divisions; uidiv2++)
         {
-          float i = (float) m;
-          float j = (float) n;
+          auto const fdiv1 = (float) uidiv1;
+          auto const fdiv2 = (float) uidiv2;
+          auto const fdivisions = (float) divisions;
 
           // top
-          points_vertex (o + d * (i - 1), -o, o + d * (j - 1), &pos, points); //P1
-          points_vertex (o + d * (i - 1), -o, o + d * j, &pos, points); //P1'z
-          points_vertex (o + d * i, -o, o + d * (j - 1), &pos, points); //P1'x
+          vertices.emplace_back (o + d * (fdiv1 - 1), -o, o + d * (fdiv2 - 1));//P1
+          vertices.emplace_back (o + d * (fdiv1 - 1), -o, o + d * fdiv2); //P1'z
+          vertices.emplace_back (o + d * fdiv1, -o, o + d * (fdiv2 - 1)); //P1'x
 
-          points_vertex (o + d * i, -o, o + d * (j - 1), &pos, points); //P1'x
-          points_vertex (o + d * (i - 1), -o, o + d * j, &pos, points); //P1'z
-          points_vertex (o + d * i, -o, o + d * j, &pos, points); //P2
+          vertices.emplace_back (o + d * fdiv1, -o, o + d * (fdiv2 - 1)); //P1'x
+          vertices.emplace_back (o + d * (fdiv1 - 1), -o, o + d * fdiv2); //P1'z
+          vertices.emplace_back (o + d * fdiv1, -o, o + d * fdiv2); //P2
+
+
+          for (int k = 0; k < 6; ++k)
+            normals.emplace_back (0, 1, 0);
+          for (auto e : {
+              vec2 (-1.0f, -1.0f),
+              vec2 (-1.0f, 0.0f),
+              vec2 (0.0f, -1.0f),
+
+              vec2 (0.0f, -1.0f),
+              vec2 (-1.0f, 0.0f),
+              vec2 (0.0f, 0.0f)})
+            texture.emplace_back ((fdiv1 - e[0]) / fdivisions, (fdiv2 - e[1]) / fdivisions);
+
 
           // bottom
-          points_vertex (o + d * (i - 1), o, o + d * j, &pos, points); //P1'z
-          points_vertex (o + d * (i - 1), o, o + d * (j - 1), &pos, points); //P1
-          points_vertex (o + d * i, o, o + d * (j - 1), &pos, points); //P1'x
+          vertices.emplace_back (o + d * (fdiv1 - 1), o, o + d * fdiv2); //P1'z
+          vertices.emplace_back (o + d * (fdiv1 - 1), o, o + d * (fdiv2 - 1)); //P1
+          vertices.emplace_back (o + d * fdiv1, o, o + d * (fdiv2 - 1)); //P1'x
 
-          points_vertex (o + d * (i - 1), o, o + d * j, &pos, points); //P1'z
-          points_vertex (o + d * i, o, o + d * (j - 1), &pos, points); //P1'x
-          points_vertex (o + d * i, o, o + d * j, &pos, points); //P2
+          vertices.emplace_back (o + d * (fdiv1 - 1), o, o + d * fdiv2); //P1'z
+          vertices.emplace_back (o + d * fdiv1, o, o + d * (fdiv2 - 1)); //P1'x
+          vertices.emplace_back (o + d * fdiv1, o, o + d * fdiv2); //P2
+
+          for (int k = 0; k < 6; ++k)
+            normals.emplace_back (0, -1, 0);
+          for (auto e : {
+              vec2 (-1.0f, 0.0f),
+              vec2 (-1.0f, -1.0f),
+              vec2 (0.0f, -1.0f),
+
+              vec2 (-1.0f, 0.0f),
+              vec2 (0.0f, -1.0f),
+              vec2 (0.0f, 0.0f)})
+            texture.emplace_back ((fdiv1 - e[0]) / fdivisions, (fdiv2 - e[1]) / fdivisions);
+
 
           // left
-          points_vertex (o, o + d * (i - 1), o + d * (j - 1), &pos, points); //P1
-          points_vertex (o, o + d * (i - 1), o + d * j, &pos, points); //P1'z
-          points_vertex (o, o + d * i, o + d * (j - 1), &pos, points); //P1'x
+          vertices.emplace_back (o, o + d * (fdiv1 - 1), o + d * (fdiv2 - 1)); //P1
+          vertices.emplace_back (o, o + d * (fdiv1 - 1), o + d * fdiv2); //P1'z
+          vertices.emplace_back (o, o + d * fdiv1, o + d * (fdiv2 - 1)); //P1'x
 
-          points_vertex (o, o + d * i, o + d * (j - 1), &pos, points); //P1'x
-          points_vertex (o, o + d * (i - 1), o + d * j, &pos, points); //P1'z
-          points_vertex (o, o + d * i, o + d * j, &pos, points); //P2
+          vertices.emplace_back (o, o + d * fdiv1, o + d * (fdiv2 - 1)); //P1'x
+          vertices.emplace_back (o, o + d * (fdiv1 - 1), o + d * fdiv2); //P1'z
+          vertices.emplace_back (o, o + d * fdiv1, o + d * fdiv2); //P2
+
+          for (int k = 0; k < 6; ++k)
+            normals.emplace_back (-1, 0, 0);
+
+          for (auto e : {
+              vec2 (-1.0f, -1.0f),
+              vec2 (-1.0f, 0.0f),
+              vec2 (0.0f, -1.0f),
+
+              vec2 (0.0f, -1.0f),
+              vec2 (-1.0f, 0.0f),
+              vec2 (0.0f, 0.0f)})
+            texture.emplace_back ((fdiv1 - e[0]) / fdivisions, (fdiv2 - e[1]) / fdivisions);
+
 
           // right
-          points_vertex (-o, o + d * (i - 1), o + d * j, &pos, points); //P1'z
-          points_vertex (-o, o + d * (i - 1), o + d * (j - 1), &pos, points); //P1
-          points_vertex (-o, o + d * i, o + d * (j - 1), &pos, points); //P1'x
+          vertices.emplace_back (-o, o + d * (fdiv1 - 1), o + d * fdiv2); //P1'z
+          vertices.emplace_back (-o, o + d * (fdiv1 - 1), o + d * (fdiv2 - 1)); //P1
+          vertices.emplace_back (-o, o + d * fdiv1, o + d * (fdiv2 - 1)); //P1'x
 
-          points_vertex (-o, o + d * (i - 1), o + d * j, &pos, points); //P1'z
-          points_vertex (-o, o + d * i, o + d * (j - 1), &pos, points); //P1'x
-          points_vertex (-o, o + d * i, o + d * j, &pos, points); //P2
+          vertices.emplace_back (-o, o + d * (fdiv1 - 1), o + d * fdiv2); //P1'z
+          vertices.emplace_back (-o, o + d * fdiv1, o + d * (fdiv2 - 1)); //P1'x
+          vertices.emplace_back (-o, o + d * fdiv1, o + d * fdiv2); //P2
+
+          for (int k = 0; k < 6; ++k)
+            normals.emplace_back (1, 0, 0);
+
+          for (auto e : {
+              vec2 (-1.0f, 0.0f),
+              vec2 (-1.0f, -1.0f),
+              vec2 (0.0f, -1.0f),
+
+              vec2 (-1.0f, 0.0f),
+              vec2 (0.0f, -1.0f),
+              vec2 (0.0f, 0.0f)})
+            texture.emplace_back ((fdiv1 - e[0]) / fdivisions, (fdiv2 - e[1]) / fdivisions);
+
 
           // front
-          points_vertex (o + d * (i - 1), o + d * (j - 1), o, &pos, points); //P1
-          points_vertex (o + d * (i - 1), o + d * j, o, &pos, points); //P1'z
-          points_vertex (o + d * i, o + d * (j - 1), o, &pos, points); //P1'x
+          vertices.emplace_back (o + d * (fdiv1 - 1), o + d * (fdiv2 - 1), o); //P1
+          vertices.emplace_back (o + d * (fdiv1 - 1), o + d * fdiv2, o); //P1'z
+          vertices.emplace_back (o + d * fdiv1, o + d * (fdiv2 - 1), o); //P1'x
 
-          points_vertex (o + d * i, o + d * (j - 1), o, &pos, points); //P1'x
-          points_vertex (o + d * (i - 1), o + d * j, o, &pos, points); //P1'z
-          points_vertex (o + d * i, o + d * j, o, &pos, points); //P2
+          vertices.emplace_back (o + d * fdiv1, o + d * (fdiv2 - 1), o); //P1'x
+          vertices.emplace_back (o + d * (fdiv1 - 1), o + d * fdiv2, o); //P1'z
+          vertices.emplace_back (o + d * fdiv1, o + d * fdiv2, o); //P2
+
+          for (int k = 0; k < 6; ++k)
+            normals.emplace_back (0, 0, 1);
+
+          for (auto e : {
+              vec2 (-1.0f, -1.0f),
+              vec2 (-1.0f, 0.0f),
+              vec2 (0.0f, -1.0f),
+
+              vec2 (0.0f, -1.0f),
+              vec2 (-1.0f, 0.0f),
+              vec2 (0.0f, 0.0f)
+          })
+            texture.emplace_back ((fdiv1 - e[0]) / fdivisions, (fdiv2 - e[1]) / fdivisions);
+
 
           // back
-          points_vertex (o + d * (i - 1), o + d * j, -o, &pos, points); //P1'z
-          points_vertex (o + d * (i - 1), o + d * (j - 1), -o, &pos, points); //P1
-          points_vertex (o + d * i, o + d * (j - 1), -o, &pos, points); //P1'x
+          vertices.emplace_back (o + d * (fdiv1 - 1), o + d * fdiv2, -o); //P1'z
+          vertices.emplace_back (o + d * (fdiv1 - 1), o + d * (fdiv2 - 1), -o); //P1
+          vertices.emplace_back (o + d * fdiv1, o + d * (fdiv2 - 1), -o); //P1'x
 
-          points_vertex (o + d * (i - 1), o + d * j, -o, &pos, points); //P1'z
-          points_vertex (o + d * i, o + d * (j - 1), -o, &pos, points); //P1'x
-          points_vertex (o + d * i, o + d * j, -o, &pos, points); //P2
+          vertices.emplace_back (o + d * (fdiv1 - 1), o + d * fdiv2, -o); //P1'z
+          vertices.emplace_back (o + d * fdiv1, o + d * (fdiv2 - 1), -o); //P1'x
+          vertices.emplace_back (o + d * fdiv1, o + d * fdiv2, -o); //P2
+
+          for (int k = 0; k < 6; ++k)
+            normals.emplace_back (0, 0, -1);
+
+          for (auto e : {
+              vec2 (-1.0f, 0.0f),
+              vec2 (-1.0f, -1.0f),
+              vec2 (0.0f, -1.0f),
+
+              vec2 (-1.0f, 0.0f),
+              vec2 (0.0f, -1.0f),
+              vec2 (0.0f, 0.0f)
+          })
+            texture.emplace_back ((fdiv1 - e[0]) / fdivisions, (fdiv2 - e[1]) / fdivisions);
         }
     }
 }
@@ -212,12 +304,20 @@ void model_cube_vertices (const float length, const unsigned int divisions, floa
 unsigned int model_cube_nVertices (const unsigned int divisions)
 { return divisions * divisions * 36; }
 
-void model_cube_write (const char *filepath, const float length, const unsigned int divisions)
+void model_cube_write (const char *const filepath,
+                       const float length,
+                       const unsigned int divisions)
 {
   const unsigned int nVertices = model_cube_nVertices (divisions);
-  float points[3 * nVertices];
-  model_cube_vertices (length, divisions, points);
-  points_write (filepath, nVertices, points);
+  vector<vec3> vertices;
+  vertices.reserve (nVertices);
+  vector<vec3> normals;
+  normals.reserve (nVertices);
+  vector<vec2> texture;
+  texture.reserve (nVertices);
+
+  model_cube_vertices (length, divisions, vertices, normals, texture);
+  model_write (filepath, vertices, normals, texture);
 }
 
 //!@} end of group cube
@@ -241,7 +341,9 @@ void model_cube_write (const char *filepath, const float length, const unsigned 
  *  See the [3d model](https://www.math3d.org/7oeSkmuns).
  */
 static inline void
-model_cone_vertex (const float r, const float height, const float theta, const float h, unsigned int *pos,
+model_cone_vertex (const float r,
+                   const float height,
+                   const float theta, const float h, unsigned int *pos,
                    float *points)
 {
   /*
@@ -322,8 +424,7 @@ model_sphere_vertex (const float r,
                      const float theta,
                      const float phi,
                      vector<vec3> &vertices,
-                     vector<vec3> &normals,
-                     vector<vec2> &texture)
+                     vector<vec3> &normals)
 {
   /*
       x = r ⋅ sin(θ)cos(φ)
@@ -338,9 +439,8 @@ model_sphere_vertex (const float r,
           1. https://www.math3d.org/EumEEZBKe
           2. https://www.math3d.org/zE4n6xayX
    */
-  vertices.emplace_back(r * sin (theta) * cos (phi), r * sin (phi), r * cos (theta) * cos (phi));
+  vertices.emplace_back (r * sin (theta) * cos (phi), r * sin (phi), r * cos (theta) * cos (phi));
   normals.emplace_back (sin (theta) * cos (phi), sin (phi), cos (theta) * cos (phi));
-  texture.emplace_back(phi/M_2_PI,theta/M_PI);
 }
 
 static void model_sphere_vertices (const float r,
@@ -358,27 +458,36 @@ static void model_sphere_vertices (const float r,
   const float theta = -M_PI;
   const float phi = -M_PI / 2.0f;
 
-  for (unsigned int m = 1; m <= slices; ++m)
+  auto fslices = (float) slices;
+  auto fstacks = (float) stacks;
+
+  for (unsigned int slice = 1; slice <= slices; ++slice)
     {
-      for (unsigned int n = 1; n <= stacks; ++n)
+      for (unsigned int stack = 1; stack <= stacks; ++stack)
         {
-          float sl = (float) m;
-          float st = (float) n;
+          auto fslice = (float) slice;
+          auto fstack = (float) stack;
 
-          model_sphere_vertex (r, theta + s * (sl - 1), phi + t * st, vertices, normals, texture); // P1'
-          model_sphere_vertex (r, theta + s * sl, phi + t * (st - 1), vertices, normals, texture); // P2
-          model_sphere_vertex (r, theta + s * sl, phi + t * st, vertices, normals, texture); //P2'
+          texture.emplace_back ((fslice - 1) / fslices, fstack / fstacks); // P1'
+          texture.emplace_back (fslice / fslices, (fstack - 1) / fstacks); // P2
+          texture.emplace_back (fslice / fslices, fstack / fstacks); // P2'
 
-          model_sphere_vertex (r, theta + s * (sl - 1), phi + t * (st - 1), vertices, normals, texture); // P1
-          model_sphere_vertex (r, theta + s * sl, phi + t * (st - 1), vertices, normals, texture); // P2
-          model_sphere_vertex (r, theta + s * (sl - 1), phi + t * st, vertices, normals, texture); // P1'
+          texture.emplace_back ((fslice - 1) / fslices, (fstack - 1) / fstacks); // P1
+          texture.emplace_back (fslice / fslices, (fstack - 1) / fstacks); // P2
+          texture.emplace_back ((fslice - 1) / fslices, fstack / fstacks); // P1'
+
+          model_sphere_vertex (r, theta + s * (fslice - 1), phi + t * fstack, vertices, normals); // P1'
+          model_sphere_vertex (r, theta + s * fslice, phi + t * (fstack - 1), vertices, normals); // P2
+          model_sphere_vertex (r, theta + s * fslice, phi + t * fstack, vertices, normals); // P2'
+
+          model_sphere_vertex (r, theta + s * (fslice - 1), phi + t * (fstack - 1), vertices, normals); // P1
+          model_sphere_vertex (r, theta + s * fslice, phi + t * (fstack - 1), vertices, normals); // P2
+          model_sphere_vertex (r, theta + s * (fslice - 1), phi + t * fstack, vertices, normals); // P1'
         }
     }
 }
 
-
-
-void model_sphere_write (const char * const filepath,
+void model_sphere_write (const char *const filepath,
                          const float radius,
                          const unsigned int slices,
                          const unsigned int stacks)
@@ -386,9 +495,9 @@ void model_sphere_write (const char * const filepath,
 
   const unsigned int nVertices = model_sphere_nVertices (slices, stacks);
   vector<vec3> vertices;
-  vertices.reserve(nVertices);
+  vertices.reserve (nVertices);
   vector<vec3> normals;
-  normals.reserve(nVertices);
+  normals.reserve (nVertices);
   vector<vec2> texture;
   texture.reserve (nVertices);
   model_sphere_vertices (radius, slices, stacks, vertices, normals, texture);
@@ -400,7 +509,7 @@ void model_sphere_write (const char * const filepath,
 
 /*! @addtogroup bezier
  * @{ */
-vector<array<vec3, 16>> read_Bezier (const char * const patch)
+vector<array<vec3, 16>> read_Bezier (const char *const patch)
 {
   string buffer;
   ifstream myFile;
@@ -473,7 +582,7 @@ vector<array<vec3, 16>> read_Bezier (const char * const patch)
   return pointsInPatches;
 }
 
-void model_bezier_write (const int tesselation, const char * const in_patch_file, const char * const out_3d_file)
+void model_bezier_write (const int tesselation, const char *const in_patch_file, const char *const out_3d_file)
 {
   vector<array<glm::vec3, 16>> control_points = read_Bezier (in_patch_file);
   vector<glm::vec3> vertices = get_bezier_surface (control_points, tesselation);
@@ -496,13 +605,13 @@ int main (int argc, char *argv[])
   if (argc < 4)
     {
       cerr << "Not enough arguments" << endl;
-      exit(EXIT_FAILURE);
+      exit (EXIT_FAILURE);
     }
   else
     {
-      const char * const out_file_path = argv[argc - 1];
+      const char *const out_file_path = argv[argc - 1];
       cerr << "output filepath: '" << out_file_path << "'" << endl;
-      const char * const polygon = argv[1];
+      const char *const polygon = argv[1];
       cerr << "polgyon to generate: " << polygon << endl;
 
       if (!strcmp (PLANE, polygon))
@@ -513,25 +622,25 @@ int main (int argc, char *argv[])
         model_cone_write (out_file_path, atof (argv[2]), atof (argv[3]), atoi (argv[4]), atoi (argv[5]));
       else if (!strcmp (SPHERE, polygon))
         {
-          const float radius = strtof (argv[2],nullptr);
+          const float radius = strtof (argv[2], nullptr);
           if (radius <= 0.0)
             {
               cerr << "invalid radius(" << radius << ") for sphere" << endl;
-              exit(EXIT_FAILURE);
+              exit (EXIT_FAILURE);
             }
-          const unsigned long slices = strtoul(argv[3],nullptr,10);
-          if (slices <= 0 || slices == ULONG_MAX)
+          const unsigned int slices = std::stoi (argv[3], nullptr, 10);
+          if (slices <= 0)
             {
               cerr << "invalid slices(" << slices << ") for sphere" << endl;
-              exit(EXIT_FAILURE);
+              exit (EXIT_FAILURE);
             }
-          const unsigned long stacks = strtoul (argv[4],nullptr,10);
-          if (stacks <= 0 || stacks == ULONG_MAX)
+          const unsigned int stacks = std::stoi (argv[4], nullptr, 10);
+          if (stacks <= 0)
             {
               cerr << "invalid stacks(" << stacks << ") for sphere" << endl;
-              exit(EXIT_FAILURE);
+              exit (EXIT_FAILURE);
             }
-          cerr << "SPHERE(radius: " << radius << ", slices: " << slices << ", stacks: " << stacks << ")"  << endl;
+          cerr << "SPHERE(radius: " << radius << ", slices: " << slices << ", stacks: " << stacks << ")" << endl;
           model_sphere_write (out_file_path, radius, slices, stacks);
         }
       else if (!strcmp (BEZIER, polygon))
@@ -539,7 +648,7 @@ int main (int argc, char *argv[])
       else
         {
           cerr << "Unkown object type: " << polygon << endl;
-          exit(EXIT_FAILURE);
+          exit (EXIT_FAILURE);
         }
     }
   return 0;

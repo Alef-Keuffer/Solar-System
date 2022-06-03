@@ -17,7 +17,6 @@
 #include <vector>
 #include <tuple>
 #include <map>
-#include <string>
 
 #include <IL/il.h>
 #include <glm/glm.hpp>
@@ -30,6 +29,7 @@
 using std::vector, std::tuple, std::map;
 using glm::mat4, glm::vec4, glm::vec3, glm::cross, glm::value_ptr;
 using std::cerr, std::endl, glm::to_string, std::string;
+
 
 /*rotation*/
 const unsigned int DEFAULT_GLOBAL_ANGLE_STEP = 16;
@@ -287,7 +287,7 @@ struct model allocModel (const char *model3dFilePath)
   return model;
 }
 
-void addTexture (struct model &m, const char *const path)
+void associate_a_texture_to_model (struct model &m, const char *const path)
 {
 
   static bool isFirstTimeBeingExecuted = true;
@@ -358,6 +358,7 @@ void renderModel (const struct model &model)
       exit (1);
     }
 
+  glPushAttrib (GL_ALL_ATTRIB_BITS);
   // vertex buffer object (slide 14) [class11]
   glBindBuffer (GL_ARRAY_BUFFER, model.vbo);
   glVertexPointer (3, GL_FLOAT, 0, nullptr);
@@ -383,10 +384,13 @@ void renderModel (const struct model &model)
   // drawing
   glDrawArrays (GL_TRIANGLES, 0, model.nVertices);
 
+
   // unbind array buffer
   glBindBuffer (GL_ARRAY_BUFFER, 0);
   // unbind texture (slide 10) [class11]
   glBindTexture (GL_TEXTURE_2D, 0);
+
+  glPopAttrib();
 }
 
 //!@} end of group modelEngine
@@ -556,6 +560,7 @@ void operations_render (vector<float> &operations)
             {
               if (isFirstTimeBeingExecuted)
                 cerr << "BEGIN_GROUP" << endl;
+              glPushAttrib (GL_ALL_ATTRIB_BITS);
               glPushMatrix ();
             }
           continue;
@@ -563,6 +568,7 @@ void operations_render (vector<float> &operations)
             {
               if (isFirstTimeBeingExecuted)
                 cerr << "END_GROUP" << endl;
+              glPopAttrib();
               glPopMatrix ();
             }
           continue;
@@ -577,7 +583,7 @@ void operations_render (vector<float> &operations)
                   for (j = 0; j < stringSize; ++j)
                     textureFilePath[j] = (char) operations[i + 2 + j];
                   textureFilePath[j] = '\0';
-                  addTexture (globalModels.back (), textureFilePath);
+                  associate_a_texture_to_model (globalModels.back (), textureFilePath);
                   if (isFirstTimeBeingExecuted)
                     cerr << "TEXTURE (" << textureFilePath << ")" << endl;
                 }
@@ -732,25 +738,28 @@ void operations_render (vector<float> &operations)
 
 void draw_axes ()
 {
+  glDisable(GL_LIGHTING);
   /*draw absolute (before any transformation) axes*/
   glBegin (GL_LINES);
   /*X-axis in red*/
   glColor3f (1, 0, 0);
   glVertex3f (100, 0, 0);
-  glVertex3f (-100, 0, 0);
+  glVertex3f (0, 0, 0);
 
   /*Y-Axis in Green*/
   glColor3f (0, 1, 0);
   glVertex3f (0, 100, 0);
-  glVertex3f (0, -100, 0);
+  glVertex3f (0, 0, 0);
 
   /*Z-Axis in Blue*/
   glColor3f (0, 0, 1);
   glVertex3f (0, 0, 100);
-  glVertex3f (0, 0, -100);
+  glVertex3f (0, 0, 0);
+
   glColor3d (1, 1, 1);
   glEnd ();
   /*end of draw absolute (before any transformation) axes*/
+  glEnable(GL_LIGHTING);
 }
 
 /*!@addtogroup engine
@@ -790,20 +799,22 @@ void renderScene ()
   glLoadIdentity ();
 
   /*draw absolute (before any transformation) axes*/
-  draw_axes ();
 
   // set the camera
   gluLookAt (globalEyeX, globalEyeY, globalEyeZ,
              globalCenterX, globalCenterY, globalCenterZ,
              globalUpX, globalUpY, globalUpZ);
+  draw_axes ();
 
   // put the geometric transformations here
   glRotatef (globalAngle, globalRotateX, globalRotateY, globalRotateZ);
   glTranslatef (globalTranslateX, globalTranslateY, globalTranslateZ);
   glScalef (globalScaleX, globalScaleY, globalScaleZ);
 
+  // render models
   operations_render (globalOperations);
 
+  // calculate and display frame rate
   frame++;
   time = glutGet (GLUT_ELAPSED_TIME);
   if (time - timebase > 1000)
@@ -1154,7 +1165,6 @@ void engine_run (int argc, char **argv)
       exit (EXIT_FAILURE);
     }
 
-  g::xml_file.copy (argv[1],BUFSIZ);
 
   // init GLUT and the window
   glutInit (&argc, argv);
