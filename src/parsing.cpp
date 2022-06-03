@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <iostream>
+#include <csignal>
 
 #include "tinyxml2.h"
 #include "parsing.h"
@@ -121,20 +122,21 @@ operations_push_extended_translate_attributes (
       ++number_of_points;
       operations_push_transform_attributes (child, operations);
     }
-    operations[index_of_number_of_points] = (float)number_of_points;
+  operations[index_of_number_of_points] = (float) number_of_points;
 }
 
-void operations_push_transformation (const XMLElement * const transformation, vector<float> &operations)
+void operations_push_transformation (const XMLElement *const transformation, vector<float> &operations)
 {
-  const char * const transformation_name = transformation->Value ();
+  const char *const transformation_name = transformation->Value ();
 
   if (!strcmp ("translate", transformation_name))
     {
       if (transformation->Attribute ("time") != nullptr)
         {
           operations.push_back (EXTENDED_TRANSLATE);
-           cerr << "[parsing] EXTENDED_TRANSLATE" << endl;
+          cerr << "[parsing] EXTENDED_TRANSLATE" << endl;
           operations_push_extended_translate_attributes (transformation, operations);
+
         }
       else
         {
@@ -145,24 +147,27 @@ void operations_push_transformation (const XMLElement * const transformation, ve
     }
   else if (!strcmp ("rotate", transformation_name))
     {
-      if (transformation->Attribute ("time")) {
-        operations.push_back (EXTENDED_ROTATE);
-        cerr << "[parsing] EXTENDED_ROTATE" << endl;
-        const float time = transformation->FloatAttribute ("time");
-        operations.push_back (time);
-        operations_push_transform_attributes (transformation, operations);
-      }
-      else {
-        operations.push_back (ROTATE);
-        cerr << "[parsing] ROTATE" << endl;
-        operations_push_transform_attributes (transformation, operations);
-      }
+      if (transformation->Attribute ("time"))
+        {
+          operations.push_back (EXTENDED_ROTATE);
+          cerr << "[parsing] EXTENDED_ROTATE" << endl;
+          const float time = transformation->FloatAttribute ("time");
+          operations.push_back (time);
+          operations_push_transform_attributes (transformation, operations);
+        }
+      else
+        {
+          operations.push_back (ROTATE);
+          cerr << "[parsing] ROTATE" << endl;
+          operations_push_transform_attributes (transformation, operations);
+        }
     }
-  else if (!strcmp ("scale", transformation_name)) {
-    operations.push_back (SCALE);
-    cerr << "[parsing] SCALE" << endl;
-    operations_push_transform_attributes (transformation, operations);
-  }
+  else if (!strcmp ("scale", transformation_name))
+    {
+      operations.push_back (SCALE);
+      cerr << "[parsing] SCALE" << endl;
+      operations_push_transform_attributes (transformation, operations);
+    }
   else
     {
       fprintf (stderr, "Unknown transformation: \"%s\"", transformation_name);
@@ -170,11 +175,11 @@ void operations_push_transformation (const XMLElement * const transformation, ve
     }
 }
 
-void operations_push_transforms (const XMLElement * const transforms, vector<float> &operations)
+void operations_push_transforms (const XMLElement *const transforms, vector<float> &operations)
 {
   const XMLElement *transform = transforms->FirstChildElement ();
   do
-      operations_push_transformation(transform,operations);
+    operations_push_transformation (transform, operations);
   while ((transform = transform->NextSiblingElement ()));
 }
 //! @} end of group Transforms
@@ -210,11 +215,11 @@ int operations_push_string_attribute (
   return i;
 }
 
-void operations_push_model (const XMLElement * const model, vector<float> &operations)
+void operations_push_model (const XMLElement *const model, vector<float> &operations)
 {
   operations.push_back (BEGIN_MODEL);
 
-  int i = operations_push_string_attribute (model,operations,"file");
+  int i = operations_push_string_attribute (model, operations, "file");
 
   if (i <= 0)
     {
@@ -222,47 +227,47 @@ void operations_push_model (const XMLElement * const model, vector<float> &opera
       exit (1);
     }
 
-    //texture
-    const XMLElement * const texture = model->FirstChildElement ("texture");
-    if(texture != nullptr)
-      {
-        operations.push_back (TEXTURE);
-        operations_push_string_attribute (texture,operations,"file");
-      }
-    //color (material colors)
-    const XMLElement * const color = model->FirstChildElement ("color");
-    if (color != nullptr)
-      {
-        const int n = 4;
-        const char * const colorNames[n] = {"diffuse", "ambient", "specular", "emissive"};
-        const operation_t colorTypes[n] = {DIFFUSE, AMBIENT, SPECULAR, EMISSIVE};
-        for (int c = 0; c < n; ++c)
-          {
-            const XMLElement * const color_comp = color->FirstChildElement (colorNames[c]);
-            if (color_comp != nullptr)
-              {
-                const float RGB_MAX = 255.0f;
-                operations.push_back (colorTypes[c]);
-                operations.insert (operations.end (),
-                                    {color_comp->FloatAttribute ("R")/RGB_MAX,
-                                     color_comp->FloatAttribute ("G")/RGB_MAX,
-                                     color_comp->FloatAttribute ("B")/RGB_MAX});
-              }
-          }
-        const XMLElement * const shininess = color->FirstChildElement ("shininess");
-        if (shininess != nullptr)
-          {
-            operations.push_back (SHININESS);
-            operations.push_back (shininess->FloatAttribute ("value"));
-          }
-      }
+  //texture
+  const XMLElement *const texture = model->FirstChildElement ("texture");
+  if (texture != nullptr)
+    {
+      operations.push_back (TEXTURE);
+      operations_push_string_attribute (texture, operations, "file");
+    }
+  //color (material colors)
+  const XMLElement *const color = model->FirstChildElement ("color");
+  if (color != nullptr)
+    {
+      const int n = 4;
+      const char *const colorNames[n] = {"diffuse", "ambient", "specular", "emissive"};
+      const operation_t colorTypes[n] = {DIFFUSE, AMBIENT, SPECULAR, EMISSIVE};
+      for (int c = 0; c < n; ++c)
+        {
+          const XMLElement *const color_comp = color->FirstChildElement (colorNames[c]);
+          if (color_comp != nullptr)
+            {
+              const float RGB_MAX = 255.0f;
+              operations.push_back (colorTypes[c]);
+              operations.insert (operations.end (),
+                                 {color_comp->FloatAttribute ("R") / RGB_MAX,
+                                  color_comp->FloatAttribute ("G") / RGB_MAX,
+                                  color_comp->FloatAttribute ("B") / RGB_MAX});
+            }
+        }
+      const XMLElement *const shininess = color->FirstChildElement ("shininess");
+      if (shininess != nullptr)
+        {
+          operations.push_back (SHININESS);
+          operations.push_back (shininess->FloatAttribute ("value"));
+        }
+    }
 
   operations.push_back (END_MODEL);
 }
 
-void operations_push_models (const XMLElement * const models, vector<float> &operations)
+void operations_push_models (const XMLElement *const models, vector<float> &operations)
 {
-  const XMLElement * model = models->FirstChildElement ("model");
+  const XMLElement *model = models->FirstChildElement ("model");
   do
     operations_push_model (model, operations);
   while ((model = model->NextSiblingElement ("model")));
@@ -271,20 +276,20 @@ void operations_push_models (const XMLElement * const models, vector<float> &ope
 
 /*! @addtogroup Groups
  * @{*/
-void operations_push_groups (const XMLElement * const group, vector<float> &operations)
+void operations_push_groups (const XMLElement *const group, vector<float> &operations)
 {
   operations.push_back (BEGIN_GROUP);
 
   // Inside "transform" tag there can be multiple transformations.
-  const XMLElement * const transforms = group->FirstChildElement ("transform");
-  const XMLElement * const models = group->FirstChildElement ("models");
+  const XMLElement *const transforms = group->FirstChildElement ("transform");
+  const XMLElement *const models = group->FirstChildElement ("models");
 
   if (transforms)
     operations_push_transforms (transforms, operations);
   if (models)
     operations_push_models (models, operations);
 
-  const XMLElement * childGroup = group->FirstChildElement ("group");
+  const XMLElement *childGroup = group->FirstChildElement ("group");
   if (childGroup)
     do
       operations_push_groups (childGroup, operations);
@@ -385,24 +390,24 @@ void operations_load_xml (const char *const filename, vector<float> &operations)
     }
 
   fprintf (stderr, "Loaded file: '%s'\n", filename);
-  const XMLElement * const world = doc.FirstChildElement ("world");
+  const XMLElement *const world = doc.FirstChildElement ("world");
 
   /*camera*/
-  const XMLElement * const camera = world->FirstChildElement ("camera");
+  const XMLElement *const camera = world->FirstChildElement ("camera");
 
-  const XMLElement * const position = camera->FirstChildElement ("position");
+  const XMLElement *const position = camera->FirstChildElement ("position");
   operations_push_transform_attributes (position, operations);
 
-  const XMLElement * const lookAt = camera->FirstChildElement ("lookAt");
+  const XMLElement *const lookAt = camera->FirstChildElement ("lookAt");
   operations_push_transform_attributes (lookAt, operations);
 
-  const XMLElement * const up = camera->FirstChildElement ("up");
+  const XMLElement *const up = camera->FirstChildElement ("up");
   if (up)
     operations_push_transform_attributes (up, operations);
   else
     operations.insert (operations.end (), {0, 1, 0});
 
-  const XMLElement * const projection = camera->FirstChildElement ("projection");
+  const XMLElement *const projection = camera->FirstChildElement ("projection");
   if (projection)
     {
       operations.push_back (projection->FloatAttribute ("fov"));
@@ -414,12 +419,12 @@ void operations_load_xml (const char *const filename, vector<float> &operations)
   /*end of camera*/
 
   // lights
-  const XMLElement * const lights = world->FirstChildElement ("lights");
+  const XMLElement *const lights = world->FirstChildElement ("lights");
   if (lights != nullptr)
-    operations_push_lights (lights,operations);
+    operations_push_lights (lights, operations);
 
   // groups
-  const XMLElement * const group = world->FirstChildElement ("group");
+  const XMLElement *const group = world->FirstChildElement ("group");
   operations_push_groups (group, operations);
 }
 
@@ -427,7 +432,7 @@ void operations_load_xml (const char *const filename, vector<float> &operations)
 
 /*! @addtogroup Printing
  * @{*/
-void operations_print (const vector<float> * const operations)
+void operations_print (const vector<float> *const operations)
 {
   unsigned int i = 0;
   fprintf (stderr,
@@ -500,14 +505,14 @@ void operations_print (const vector<float> * const operations)
 
               modelName[j] = 0;
 
-              cerr << "BEGIN_MODEL (" << modelName << ")" << endl;
+              cerr << "[parsing] BEGIN_MODEL (" << modelName << ")" << endl;
               i += 1 + j - 1; //just to be explicit
             }
           continue;
           default:
             {
-              fprintf(stderr,"Unknown opeartion %d",(int) operations->at (i));
-              exit(EXIT_FAILURE);
+              fprintf (stderr, "[parsing] Unknown opeartion %d", (int) operations->at (i));
+              exit (EXIT_FAILURE);
             }
         }
     }
@@ -515,7 +520,7 @@ void operations_print (const vector<float> * const operations)
 //! @} end of group Printing
 //! @} end of group Operations
 
-void example1 (const char * const filename)
+void example1 (const char *const filename)
 {
   XMLDocument doc;
 
