@@ -96,7 +96,7 @@ model_write (const char *const filename,
   cerr << "[generator] Wrote "
        << nVertices << " vertices, "
        << nNormals << " normals, "
-       << nTextures << " textures to"
+       << nTextures << " textures to "
        << filename << endl;
 }
 
