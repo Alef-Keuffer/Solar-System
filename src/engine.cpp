@@ -30,7 +30,6 @@ using std::vector, std::tuple, std::map;
 using glm::mat4, glm::vec4, glm::vec3, glm::cross, glm::value_ptr;
 using std::cerr, std::endl, glm::to_string, std::string;
 
-
 /*rotation*/
 const unsigned int DEFAULT_GLOBAL_ANGLE_STEP = 16;
 static float globalAngleStep = DEFAULT_GLOBAL_ANGLE_STEP;
@@ -354,11 +353,10 @@ void renderModel (const struct model &model)
 {
   if (!model.nVertices % 3)
     {
-      fprintf (stderr, "Number of coordinates is not divisible by 3");
+      fprintf (stderr, "Number of coordinates (%d) is not divisible by 3", model.nVertices);
       exit (1);
     }
 
-  glPushAttrib (GL_ALL_ATTRIB_BITS);
   // vertex buffer object (slide 14) [class11]
   glBindBuffer (GL_ARRAY_BUFFER, model.vbo);
   glVertexPointer (3, GL_FLOAT, 0, nullptr);
@@ -374,6 +372,7 @@ void renderModel (const struct model &model)
   // texture buffer object (slide 14) [class11]
   glBindTexture (GL_TEXTURE_2D, model.tbo);
 
+  glPushAttrib (GL_ALL_ATTRIB_BITS);
   // define a material for the object(s) (slide 8) [class9]
   glMaterialfv (GL_FRONT, GL_DIFFUSE, value_ptr (model.material.diffuse));
   glMaterialfv (GL_FRONT, GL_AMBIENT, value_ptr (model.material.ambient));
@@ -383,14 +382,13 @@ void renderModel (const struct model &model)
 
   // drawing
   glDrawArrays (GL_TRIANGLES, 0, model.nVertices);
-
+  glPopAttrib ();
 
   // unbind array buffer
   glBindBuffer (GL_ARRAY_BUFFER, 0);
   // unbind texture (slide 10) [class11]
   glBindTexture (GL_TEXTURE_2D, 0);
 
-  glPopAttrib();
 }
 
 //!@} end of group modelEngine
@@ -571,7 +569,7 @@ void operations_render (vector<float> &operations)
             {
               if (isFirstTimeBeingExecuted)
                 cerr << "END_GROUP" << endl;
-              glPopAttrib();
+              glPopAttrib ();
               glPopMatrix ();
             }
           continue;
@@ -734,7 +732,7 @@ void operations_render (vector<float> &operations)
 
 void draw_axes ()
 {
-  glDisable(GL_LIGHTING);
+  glDisable (GL_LIGHTING);
   /*draw absolute (before any transformation) axes*/
   glBegin (GL_LINES);
   /*X-axis in red*/
@@ -755,7 +753,7 @@ void draw_axes ()
   glColor3d (1, 1, 1);
   glEnd ();
   /*end of draw absolute (before any transformation) axes*/
-  glEnable(GL_LIGHTING);
+  glEnable (GL_LIGHTING);
 }
 
 /*!@addtogroup engine
@@ -793,8 +791,6 @@ void renderScene ()
 
   // helps in avoiding rounding mistakes, discards old matrix, read more
   glLoadIdentity ();
-
-  /*draw absolute (before any transformation) axes*/
 
   // set the camera
   gluLookAt (globalEyeX, globalEyeY, globalEyeZ,
