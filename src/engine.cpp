@@ -594,53 +594,63 @@ void operations_render (vector<float> &operations)
           // object material components
           case DIFFUSE:
             {
-              auto &diffuse = globalModels.back ().material.diffuse;
-              diffuse[0] = operations[i + 1];
-              diffuse[1] = operations[i + 2];
-              diffuse[2] = operations[i + 3];
-              if (isFirstTimeBeingExecuted)
-                cerr << "DIFFUSE (" << to_string (diffuse) << ")" << endl;
+              if (!hasPushedModels)
+                {
+                  auto &diffuse = globalModels.back ().material.diffuse;
+                  diffuse[0] = operations[i + 1];
+                  diffuse[1] = operations[i + 2];
+                  diffuse[2] = operations[i + 3];
+                  cerr << "DIFFUSE (" << to_string (diffuse) << ")" << endl;
+                }
               i += 3;
             }
           continue;
           case AMBIENT:
             {
-              auto &ambient = globalModels.back ().material.ambient;
-              ambient[0] = operations[i + 1];
-              ambient[1] = operations[i + 2];
-              ambient[2] = operations[i + 3];
-              if (isFirstTimeBeingExecuted)
-                cerr << "AMBIENT (" << to_string (ambient) << ")" << endl;
+              if (!hasPushedModels)
+                {
+                  auto &ambient = globalModels.back ().material.ambient;
+                  ambient[0] = operations[i + 1];
+                  ambient[1] = operations[i + 2];
+                  ambient[2] = operations[i + 3];
+                  cerr << "AMBIENT (" << to_string (ambient) << ")" << endl;
+                }
               i += 3;
             }
           continue;
           case SPECULAR:
             {
-              auto &specular = globalModels.back ().material.specular;
-              specular[0] = operations[i + 1];
-              specular[1] = operations[i + 2];
-              specular[2] = operations[i + 3];
-              if (isFirstTimeBeingExecuted)
-                cerr << "SPECULAR (" << to_string (specular) << ")" << endl;
+              if (!hasPushedModels)
+                {
+                  auto &specular = globalModels.back ().material.specular;
+                  specular[0] = operations[i + 1];
+                  specular[1] = operations[i + 2];
+                  specular[2] = operations[i + 3];
+                  cerr << "SPECULAR (" << to_string (specular) << ")" << endl;
+                }
               i += 3;
             }
           continue;
           case EMISSIVE:
             {
-              auto &emissive = globalModels.back ().material.emissive;
-              emissive[0] = operations[i + 1];
-              emissive[1] = operations[i + 2];
-              emissive[2] = operations[i + 3];
-              if (isFirstTimeBeingExecuted)
-                cerr << "EMISSIVE (" << to_string (emissive) << ")" << endl;
+              if (!hasPushedModels)
+                {
+                  auto &emissive = globalModels.back ().material.emissive;
+                  emissive[0] = operations[i + 1];
+                  emissive[1] = operations[i + 2];
+                  emissive[2] = operations[i + 3];
+                  cerr << "EMISSIVE (" << to_string (emissive) << ")" << endl;
+                }
               i += 3;
             }
           continue;
           case SHININESS:
             {
-              float shininess = (globalModels.back ().material.shininess = operations[i + 1]);
-              if (isFirstTimeBeingExecuted)
-                cerr << "SHININESS (" << shininess << ")" << endl;
+              if (!hasPushedModels)
+                {
+                  float shininess = (globalModels.back ().material.shininess = operations[i + 1]);
+                  cerr << "SHININESS (" << shininess << ")" << endl;
+                }
               i += 1;
             }
           continue;
