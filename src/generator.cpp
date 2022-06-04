@@ -601,54 +601,133 @@ void model_bezier_write (const int tesselation, const char *const in_patch_file,
 
 //!@} end of group generator
 
-int main (int argc, char *argv[])
+int main (const int argc, const char * const argv[])
 {
   if (argc < 4)
     {
-      cerr << "Not enough arguments" << endl;
+      cerr << "[generator] Not enough arguments" << endl;
       exit (EXIT_FAILURE);
     }
   else
     {
       const char *const out_file_path = argv[argc - 1];
-      cerr << "output filepath: '" << out_file_path << "'" << endl;
+      cerr << "[generator] output filepath: '" << out_file_path << "'" << endl;
       const char *const polygon = argv[1];
-      cerr << "polgyon to generate: " << polygon << endl;
+      cerr << "[generator] polgyon to generate: " << polygon << endl;
 
       if (!strcmp (PLANE, polygon))
-        model_plane_write (out_file_path, strtof (argv[2], nullptr), strtoul (argv[3], nullptr, 10));
+        {
+          const float length = strtof (argv[2], nullptr);
+          if (length <= 0.0)
+            {
+              cerr << "[generator] invalid length(" << length << ") for plane" << endl;
+              exit (EXIT_FAILURE);
+            }
+          const int divisions = std::stoi (argv[3], nullptr, 10);
+          if (divisions <= 0)
+            {
+              cerr << "[generator] invalid number of divisions(" << divisions << ") for plane" << endl;
+              exit (EXIT_FAILURE);
+            }
+          cerr << "[generator] PLANE(length: " << length << ", divisions: " << divisions << ")" << endl;
+          model_plane_write (out_file_path, length, divisions);
+        }
+
       else if (!strcmp (CUBE, polygon))
-        model_cube_write (out_file_path, atof (argv[2]), strtoul (argv[3], nullptr, 10));
+        {
+          const float length = strtof (argv[2], nullptr);
+          if (length <= 0.0)
+            {
+              cerr << "[generator] invalid length(" << length << ") for cube" << endl;
+              exit (EXIT_FAILURE);
+            }
+          const int divisions = std::stoi (argv[3], nullptr, 10);
+          if (divisions <= 0)
+            {
+              cerr << "[generator] invalid number of divisions(" << divisions << ") for cube" << endl;
+              exit (EXIT_FAILURE);
+            }
+          cerr << "[generator] CUBE(length: " << length << ", divisions: " << divisions << ")" << endl;
+          model_cube_write (out_file_path, length, divisions);
+        }
       else if (!strcmp (CONE, polygon))
-        model_cone_write (out_file_path, atof (argv[2]), atof (argv[3]), atoi (argv[4]), atoi (argv[5]));
+        {
+          const float radius = strtof (argv[2], nullptr);
+          if (radius <= 0.0)
+            {
+              cerr << "[generator] invalid radius(" << radius << ") for cone" << endl;
+              exit (EXIT_FAILURE);
+            }
+          const float height = strtof (argv[3], nullptr);
+          if (height <= 0.0)
+            {
+              cerr << "[generator] invalid height(" << radius << ") for cone" << endl;
+              exit (EXIT_FAILURE);
+            }
+          const int slices = std::stoi (argv[3], nullptr, 10);
+          if (slices <= 0)
+            {
+              cerr << "[generator] invalid slices(" << slices << ") for cone" << endl;
+              exit (EXIT_FAILURE);
+            }
+          const int stacks = std::stoi (argv[4], nullptr, 10);
+          if (stacks <= 0)
+            {
+              cerr << "[generator] invalid stacks(" << stacks << ") for cone" << endl;
+              exit (EXIT_FAILURE);
+            }
+          cerr << "[generator] CONE(radius: " << radius
+               << ", height: " << height
+               << ", slices: " << slices
+               << ", stacks: " << stacks << ")" << endl;
+          model_cone_write (out_file_path, radius, height, slices, stacks);
+        }
       else if (!strcmp (SPHERE, polygon))
         {
           const float radius = strtof (argv[2], nullptr);
           if (radius <= 0.0)
             {
-              cerr << "invalid radius(" << radius << ") for sphere" << endl;
+              cerr << "[generator] invalid radius(" << radius << ") for sphere" << endl;
               exit (EXIT_FAILURE);
             }
-          const unsigned int slices = std::stoi (argv[3], nullptr, 10);
+          const int slices = std::stoi (argv[3], nullptr, 10);
           if (slices <= 0)
             {
-              cerr << "invalid slices(" << slices << ") for sphere" << endl;
+              cerr << "[generator] invalid slices(" << slices << ") for sphere" << endl;
               exit (EXIT_FAILURE);
             }
-          const unsigned int stacks = std::stoi (argv[4], nullptr, 10);
+          const int stacks = std::stoi (argv[4], nullptr, 10);
           if (stacks <= 0)
             {
-              cerr << "invalid stacks(" << stacks << ") for sphere" << endl;
+              cerr << "[generator] invalid stacks(" << stacks << ") for sphere" << endl;
               exit (EXIT_FAILURE);
             }
-          cerr << "SPHERE(radius: " << radius << ", slices: " << slices << ", stacks: " << stacks << ")" << endl;
+          cerr << "[generator] SPHERE(radius: " << radius
+               << ", slices: " << slices
+               << ", stacks: " << stacks << ")"
+               << endl;
           model_sphere_write (out_file_path, radius, slices, stacks);
         }
       else if (!strcmp (BEZIER, polygon))
-        model_bezier_write (atoi (argv[2]), argv[3], out_file_path);
+        {
+          const int tesselation = std::stoi (argv[2], nullptr, 10);
+          if (tesselation <= 0)
+            {
+              cerr << "[generator] invalid tesselation(" << tesselation << ") for bezier patch" << endl;
+              exit (EXIT_FAILURE);
+            }
+          const char *const input_patch_file_path = argv[3];
+          if (access (input_patch_file_path, F_OK))
+            {
+              cerr << "[generator] file " << input_patch_file_path << " for bezier patch not found" << endl;
+              exit (EXIT_FAILURE);
+            }
+          cerr << "BEZIER(tesselation: " << tesselation << "input file: " << input_patch_file_path << ")" << endl;
+          model_bezier_write (tesselation, input_patch_file_path, out_file_path);
+        }
       else
         {
-          cerr << "Unkown object type: " << polygon << endl;
+          cerr << "[generator] Unkown object type: " << polygon << endl;
           exit (EXIT_FAILURE);
         }
     }
