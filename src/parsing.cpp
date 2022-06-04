@@ -68,8 +68,8 @@ void operations_push_transform_attributes (
 {
   if (!transform)
     {
-      fprintf (stderr, "operations_push_transform_attributes: null transform\n");
-      return;
+      fprintf (stderr, "[parsing] operations_push_transform_attributes: null transform\n");
+      exit (EXIT_FAILURE);
     }
 
   float angle;
@@ -79,20 +79,20 @@ void operations_push_transform_attributes (
       operations.push_back (angle);
     else if (e != XML_NO_ATTRIBUTE)
       {
-        fprintf (stderr, "Parsing error %s at %s\n", transform->GetText (), XMLDocument::ErrorIDToName (e));
+        fprintf (stderr, "[parsing] Parsing error %s at %s\n", transform->GetText (), XMLDocument::ErrorIDToName (e));
         exit (EXIT_FAILURE);
       }
   }
-  for (const char *x : {"x", "y", "z"})
+  for (const char *const attribute_name : {"x", "y", "z"})
     {
       float attributeValue;
       XMLError e;
-      if ((e = transform->QueryFloatAttribute ("x", &attributeValue)) != XML_SUCCESS)
+      if ((e = transform->QueryFloatAttribute (attribute_name, &attributeValue)) != XML_SUCCESS)
         {
-          fprintf (stderr, "Parsing error %s at %s\n", transform->GetText (), XMLDocument::ErrorIDToName (e));
+          fprintf (stderr, "[parsing] Parsing error %s at %s\n", transform->GetText (), XMLDocument::ErrorIDToName (e));
           exit (EXIT_FAILURE);
         }
-      operations.push_back (transform->FloatAttribute (x));
+      operations.push_back (attributeValue);
     }
 
 }
@@ -104,16 +104,26 @@ operations_push_extended_translate_attributes (
 {
   if (!extended_translate)
     {
-      fprintf (stderr, "Null transform\n");
-      exit (1);
+      fprintf (stderr, "[parsing] Null transform\n");
+      exit (EXIT_FAILURE);
     }
 
-  float time = extended_translate->FloatAttribute ("time");
-  bool align = extended_translate->BoolAttribute ("align");
+  float time;
+  if (extended_translate->QueryFloatAttribute ("time", &time))
+    {
+      cerr << "[parsing] failed parsing time" << endl;
+      exit (EXIT_FAILURE);
+    }
+  bool align;
+  if (extended_translate->QueryBoolAttribute ("align", &align))
+    {
+      cerr << "[parsing] failed parsing align" << endl;
+      exit (EXIT_FAILURE);
+    }
 
   operations.push_back ((float) time);
   operations.push_back ((float) align);
-  operations.push_back (0);
+  operations.push_back (0); // create space to insert the number of points
   auto index_of_number_of_points = operations.size () - 1;
 
   int number_of_points = 0;
@@ -151,7 +161,12 @@ void operations_push_transformation (const XMLElement *const transformation, vec
         {
           operations.push_back (EXTENDED_ROTATE);
           cerr << "[parsing] EXTENDED_ROTATE" << endl;
-          const float time = transformation->FloatAttribute ("time");
+          float time;
+          if (transformation->QueryFloatAttribute ("time", &time))
+            {
+              cerr << "[parsing] failed parsing time" << endl;
+              exit (EXIT_FAILURE);
+            }
           operations.push_back (time);
           operations_push_transform_attributes (transformation, operations);
         }
@@ -170,8 +185,8 @@ void operations_push_transformation (const XMLElement *const transformation, vec
     }
   else
     {
-      fprintf (stderr, "Unknown transformation: \"%s\"", transformation_name);
-      exit (1);
+      fprintf (stderr, "[parsing] Unknown transformation: \"%s\"", transformation_name);
+      exit (EXIT_FAILURE);
     }
 }
 
@@ -201,10 +216,10 @@ int operations_push_string_attribute (
            << endl;
       exit (EXIT_FAILURE);
     }
-  if (access(element_attribute_value,F_OK))
+  if (access (element_attribute_value, F_OK))
     {
-      cerr << "file " << element_attribute_value << " not found" << endl;
-      exit(EXIT_FAILURE);
+      cerr << "[parsing] file " << element_attribute_value << " not found" << endl;
+      exit (EXIT_FAILURE);
     }
   int i = 0;
   do
@@ -219,13 +234,15 @@ void operations_push_model (const XMLElement *const model, vector<float> &operat
 {
   operations.push_back (BEGIN_MODEL);
 
-  int i = operations_push_string_attribute (model, operations, "file");
+  {
+    const int string_len = operations_push_string_attribute (model, operations, "file");
 
-  if (i <= 0)
-    {
-      fprintf (stderr, "filename is empty");
-      exit (1);
-    }
+    if (string_len <= 0)
+      {
+        fprintf (stderr, "[parsing] filename is empty");
+        exit (EXIT_FAILURE);
+      }
+  }
 
   //texture
   const XMLElement *const texture = model->FirstChildElement ("texture");
@@ -248,17 +265,39 @@ void operations_push_model (const XMLElement *const model, vector<float> &operat
             {
               const float RGB_MAX = 255.0f;
               operations.push_back (colorTypes[c]);
+              float R;
+              if (color_comp->QueryFloatAttribute ("R", &R))
+                {
+                  cerr << "[parsing] failed parsing R component" << endl;
+                  exit (EXIT_FAILURE);
+                }
+              float G;
+              if (color_comp->QueryFloatAttribute ("G", &G))
+                {
+                  cerr << "[parsing] failed parsing G component" << endl;
+                  exit (EXIT_FAILURE);
+                }
+              float B;
+              if (color_comp->QueryFloatAttribute ("B", &B))
+                {
+                  cerr << "[parsing] failed parsing B component" << endl;
+                  exit (EXIT_FAILURE);
+                }
               operations.insert (operations.end (),
-                                 {color_comp->FloatAttribute ("R") / RGB_MAX,
-                                  color_comp->FloatAttribute ("G") / RGB_MAX,
-                                  color_comp->FloatAttribute ("B") / RGB_MAX});
+                                 {R / RGB_MAX, G / RGB_MAX, B / RGB_MAX});
             }
         }
       const XMLElement *const shininess = color->FirstChildElement ("shininess");
       if (shininess != nullptr)
         {
           operations.push_back (SHININESS);
-          operations.push_back (shininess->FloatAttribute ("value"));
+          float value;
+          if (shininess->QueryFloatAttribute ("value", &value))
+            {
+              cerr << "[parsing] failed parsing value attribute of shininess" << endl;
+              exit (EXIT_FAILURE);
+            }
+          operations.push_back (value);
         }
     }
 
@@ -308,7 +347,12 @@ void operations_push_lights (const XMLElement *const lights, vector<float> &oper
   const XMLElement *light = lights->FirstChildElement ();
   do
     {
-      const char *const lightType = light->Attribute ("type");
+      const char *lightType;
+      if (light->QueryAttribute ("type", &lightType))
+        {
+          cerr << "failed parsing type attribute of light" << endl;
+          exit (EXIT_FAILURE);
+        }
       if (!strcmp (lightType, "point"))
         {
           operations.push_back (POINT);
@@ -384,12 +428,12 @@ void operations_load_xml (const char *const filename, vector<float> &operations)
   if (doc.LoadFile (filename))
     {
       if (doc.ErrorID () == tinyxml2::XML_ERROR_FILE_NOT_FOUND)
-        fprintf (stderr, "Failed loading file: '%s'\n", filename);
+        fprintf (stderr, "[parsing] Failed loading file: '%s'\n", filename);
       fprintf (stderr, "%s", doc.ErrorName ());
       exit (EXIT_FAILURE);
     }
 
-  fprintf (stderr, "Loaded file: '%s'\n", filename);
+  fprintf (stderr, "[parsing] Loaded file: '%s'\n", filename);
   const XMLElement *const world = doc.FirstChildElement ("world");
 
   /*camera*/
@@ -410,9 +454,25 @@ void operations_load_xml (const char *const filename, vector<float> &operations)
   const XMLElement *const projection = camera->FirstChildElement ("projection");
   if (projection)
     {
-      operations.push_back (projection->FloatAttribute ("fov"));
-      operations.push_back (projection->FloatAttribute ("near"));
-      operations.push_back (projection->FloatAttribute ("far"));
+      float fov;
+      if (projection->QueryFloatAttribute ("fov", &fov))
+        {
+          cerr << "[parsing] Failed parsing fov" << endl;
+          exit (EXIT_FAILURE);
+        }
+      float near;
+      if (projection->QueryFloatAttribute ("near", &near))
+        {
+          cerr << "[parsing] Failed parsing near" << endl;
+          exit (EXIT_FAILURE);
+        }
+      float far;
+      if (projection->QueryFloatAttribute ("far", &far))
+        {
+          cerr << "[parsing] Failed parsing far" << endl;
+          exit (EXIT_FAILURE);
+        }
+      operations.insert (operations.end (), {fov, near, far});
     }
   else
     operations.insert (operations.end (), {60, 1, 1000});
@@ -430,113 +490,4 @@ void operations_load_xml (const char *const filename, vector<float> &operations)
 
 //! @} end of group xml
 
-/*! @addtogroup Printing
- * @{*/
-void operations_print (const vector<float> *const operations)
-{
-  unsigned int i = 0;
-  fprintf (stderr,
-           "POSITION(%.2f %.2f %.2f)\n",
-           operations->at (i),
-           operations->at (i + 1),
-           operations->at (i + 2));
-  i += 3;
-  fprintf (stderr,
-           "LOOK_AT(%.2f %.2f %.2f)\n",
-           operations->at (i),
-           operations->at (i + 1),
-           operations->at (i + 2));
-  i += 3;
-  fprintf (stderr,
-           "UP(%.2f %.2f %.2f)\n",
-           operations->at (i),
-           operations->at (i + 1),
-           operations->at (i + 2));
-  i += 3;
-  fprintf (stderr,
-           "PROJECTION(%.2f %.2f %.2f)\n",
-           operations->at (i),
-           operations->at (i + 1),
-           operations->at (i + 2));
-
-  for (i += 3; i < operations->size (); i++)
-    {
-      switch ((operation_t) operations->at (i))
-        {
-          case ROTATE:
-            fprintf (stderr,
-                     "ROTATE(%.2f %.2f %.2f %.2f)\n",
-                     operations->at (i + 1),
-                     operations->at (i + 2),
-                     operations->at (i + 3),
-                     operations->at (i + 4));
-          i += 4;
-          continue;
-          case TRANSLATE:
-            fprintf (stderr,
-                     "TRANSLATE(%.2f %.2f %.2f)\n",
-                     operations->at (i + 1),
-                     operations->at (i + 2),
-                     operations->at (i + 3));
-          i += 3;
-          continue;
-          case SCALE:
-            fprintf (stderr,
-                     "SCALE(%.2f %.2f %.2f)\n",
-                     operations->at (i + 1),
-                     operations->at (i + 2),
-                     operations->at (i + 3));
-          i += 3;
-          continue;
-          case BEGIN_GROUP:
-            fprintf (stderr, "BEGIN_GROUP\n");
-          continue;
-          case END_GROUP:
-            fprintf (stderr, "END_GROUP\n");
-          continue;
-          case BEGIN_MODEL:
-            {
-              int stringSize = (int) operations->at (i + 1);
-              char modelName[stringSize + 1];
-
-              int j;
-              for (j = 0; j < stringSize; j++)
-                modelName[j] = (char) operations->at (i + 2 + j);
-
-              modelName[j] = 0;
-
-              cerr << "[parsing] BEGIN_MODEL (" << modelName << ")" << endl;
-              i += 1 + j - 1; //just to be explicit
-            }
-          continue;
-          default:
-            {
-              fprintf (stderr, "[parsing] Unknown opeartion %d", (int) operations->at (i));
-              exit (EXIT_FAILURE);
-            }
-        }
-    }
-}
-//! @} end of group Printing
 //! @} end of group Operations
-
-void example1 (const char *const filename)
-{
-  XMLDocument doc;
-
-  if (doc.LoadFile (filename))
-    {
-      fprintf (stderr, "%s", doc.ErrorName ());
-      exit (1);
-    }
-
-  vector<float> operations;
-  operations_load_xml (filename, operations);
-  operations_print (&operations);
-}
-
-int main2 (int argc, char *argv[])
-{
-  example1 ("test_files_phase_2/test_2_3.xml");
-  return 1;
-}
