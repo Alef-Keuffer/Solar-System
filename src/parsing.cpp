@@ -4,9 +4,16 @@
 #include <vector>
 #include <iostream>
 #include <csignal>
+#include <sys/wait.h>
+#include <pg_config.h>
+#include <wordexp.h>
 
 #include "tinyxml2.h"
 #include "parsing.h"
+
+char globalGeneratorExecutable[BUFSIZ];
+char *globalPWD;
+bool globalUsingGenerator = false;
 
 /*! @addtogroup Operations
  * @{
@@ -233,7 +240,6 @@ int operations_push_string_attribute (
 void operations_push_model (const XMLElement *const model, vector<float> &operations)
 {
   operations.push_back (BEGIN_MODEL);
-
   {
     const int string_len = operations_push_string_attribute (model, operations, "file");
 
@@ -243,6 +249,54 @@ void operations_push_model (const XMLElement *const model, vector<float> &operat
         exit (EXIT_FAILURE);
       }
   }
+
+  const char *const model_name = model->Attribute ("file");
+  if (model_name == nullptr)
+    {
+      cerr << "[parsing] [operations_push_string_attribute] failed: attrbute file does not exist" << endl;
+      exit (EXIT_FAILURE);
+    }
+
+  // generate model if specified
+  const XMLElement *const generator = model->FirstChildElement ("generator");
+
+  if (globalUsingGenerator && generator != nullptr)
+    {
+      cerr << "[parsing] generating model " << model_name << endl;
+      const char *generator_argv[10];
+      if (generator->QueryStringAttribute ("argv", generator_argv))
+        {
+          cerr << "failed parsing argv attribute of generator at model " << model_name << endl;
+          exit (EXIT_FAILURE);
+        }
+      int stat;
+      if ((stat = fork ()) == 0)
+        {
+          wordexp_t p;
+          wordexp("generator", &p, WRDE_NOCMD | WRDE_UNDEF);
+          if (wordexp (*generator_argv, &p, WRDE_NOCMD | WRDE_UNDEF | WRDE_APPEND))
+            {
+              cerr << "[parsing] failed argv expansion for model " << model_name << endl;
+              exit(EXIT_FAILURE);
+            }
+
+          execv(globalGeneratorExecutable, p.we_wordv);
+          perror ("[operations_push_model child] generator failed");
+          _exit (EXIT_FAILURE);
+        }
+      else if (stat == -1)
+        {
+          perror ("[operations_push_model] ");
+          exit (EXIT_FAILURE);
+        }
+      int status;
+      wait (&status);
+      if (WIFEXITED(status) && WEXITSTATUS(status))
+        {
+          perror ("[operations_push_model] generator failed");
+          exit (EXIT_FAILURE);
+        }
+    }
 
   //texture
   const XMLElement *const texture = model->FirstChildElement ("texture");
@@ -482,6 +536,27 @@ void operations_load_xml (const char *const filename, vector<float> &operations)
   const XMLElement *const lights = world->FirstChildElement ("lights");
   if (lights != nullptr)
     operations_push_lights (lights, operations);
+
+
+  // find generator if it exists
+  const XMLElement *const generator = world->FirstChildElement ("generator");
+  if (generator != nullptr)
+    {
+      const char **generator_executable;
+      if (generator->QueryStringAttribute ("dir", generator_executable))
+        {
+          cerr << "[parsing] failed parsing attribute dir of generator" << endl;
+          exit (EXIT_FAILURE);
+        }
+      if (access (*generator_executable, F_OK))
+        {
+          cerr << "[parsing] generator " << *generator_executable << " not found" << endl;
+          exit (EXIT_FAILURE);
+        }
+      cerr << "[parsing] using generator " << *generator_executable << endl;
+      strncpy (globalGeneratorExecutable, *generator_executable, BUFSIZ);
+      globalUsingGenerator = true;
+    }
 
   // groups
   const XMLElement *const group = world->FirstChildElement ("group");
