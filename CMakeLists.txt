@@ -35,6 +35,7 @@ target_link_libraries(parsing tinyxml2)
 #find_package(tinyxml2 REQUIRED)
 target_link_libraries(${PROJECT_NAME} tinyxml2)
 target_link_libraries(engine tinyxml2 parsing ${OPENGL_LIBRARIES} ${GLUT_LIBRARIES})
+add_dependencies(engine generator)
 
 foreach (folder test_files_phase_1 test_files_phase_2)
     file(GLOB files "${folder}/*.sh" "${folder}/*.zsh")
