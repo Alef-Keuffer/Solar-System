@@ -95,49 +95,81 @@ model_write (const char *filename, const vector<vec3> &vertices, const vector<ve
 
 /*! @addtogroup plane
 * @{*/
-void model_plane_vertices (const float length, const unsigned int divisions, float *points)
+void model_plane_vertices (const float length,
+                           const unsigned int divisions,
+                           vector<vec3> &points,
+                           vector<vec3> &normals,
+                           vector<vec2> &texture)
 {
   const float o = -length / 2.0f;
   const float d = length / (float) divisions;
 
-  unsigned int pos = 0;
-
-  for (unsigned int m = 1; m <= divisions; m++)
+  for (unsigned int uidiv1 = 1; uidiv1 <= divisions; ++uidiv1)
     {
-      for (unsigned int n = 1; n <= divisions; n++)
+      for (unsigned int uidiv2 = 1; uidiv2 <= divisions; ++uidiv2)
         {
-          float i = (float) m;
-          float j = (float) n;
+          auto const fdiv1 = (float) uidiv1;
+          auto const fdiv2 = (float) uidiv2;
+          auto const fdivisions = (float) divisions;
 
-          points_vertex (o + d * (i - 1), 0, o + d * (j - 1), &pos, points); //P1
-          points_vertex (o + d * (i - 1), 0, o + d * j, &pos, points); //P1'z
-          points_vertex (o + d * i, 0, o + d * (j - 1), &pos, points); //P1'x
+          points.emplace_back (o + d * (fdiv1 - 1), 0, o + d * (fdiv2 - 1)); //P1
+          points.emplace_back (o + d * (fdiv1 - 1), 0, o + d * fdiv2); //P1'z
+          points.emplace_back (o + d * fdiv1, 0, o + d * (fdiv2 - 1)); //P1'x
 
-          points_vertex (o + d * i, 0, o + d * (j - 1), &pos, points); //P1'x
-          points_vertex (o + d * (i - 1), 0, o + d * j, &pos, points); //P1'z
-          points_vertex (o + d * i, 0, o + d * j, &pos, points); //P2
+          points.emplace_back (o + d * fdiv1, 0, o + d * (fdiv2 - 1)); //P1'x
+          points.emplace_back (o + d * (fdiv1 - 1), 0, o + d * fdiv2); //P1'z
+          points.emplace_back (o + d * fdiv1, 0, o + d * fdiv2); //P2
+
+          for (int k = 0; k < 6; ++k)
+            normals.emplace_back (0, 1, 0);
+          for (auto e : {
+              vec2 (-1.0f, -1.0f),
+              vec2 (-1.0f, 0.0f),
+              vec2 (0.0f, -1.0f),
+
+              vec2 (0.0f, -1.0f),
+              vec2 (-1.0f, 0.0f),
+              vec2 (0.0f, 0.0f)})
+            texture.emplace_back ((fdiv1 - e[0]) / fdivisions, (fdiv2 - e[1]) / fdivisions);
 
           /*Cull face*/
-          points_vertex (o + d * (i - 1), 0, o + d * j, &pos, points); //P1'z
-          points_vertex (o + d * (i - 1), 0, o + d * (j - 1), &pos, points); //P1
-          points_vertex (o + d * i, 0, o + d * (j - 1), &pos, points); //P1'x
+          points.emplace_back (o + d * (fdiv1 - 1), 0, o + d * fdiv2); //P1'z
+          points.emplace_back (o + d * (fdiv1 - 1), 0, o + d * (fdiv2 - 1)); //P1
+          points.emplace_back (o + d * fdiv1, 0, o + d * (fdiv2 - 1)); //P1'x
 
-          points_vertex (o + d * (i - 1), 0, o + d * j, &pos, points); //P1'z
-          points_vertex (o + d * i, 0, o + d * (j - 1), &pos, points); //P1'x
-          points_vertex (o + d * i, 0, o + d * j, &pos, points); //P2
+          points.emplace_back (o + d * (fdiv1 - 1), 0, o + d * fdiv2); //P1'z
+          points.emplace_back (o + d * fdiv1, 0, o + d * (fdiv2 - 1)); //P1'x
+          points.emplace_back (o + d * fdiv1, 0, o + d * fdiv2); //P2
+
+          for (int k = 0; k < 6; ++k)
+            normals.emplace_back (0, -1, 0);
+          for (auto e : {
+              vec2 (-1.0f, 0.0f),
+              vec2 (-1.0f, -1.0f),
+              vec2 (0.0f, -1.0f),
+
+              vec2 (-1.0f, 0.0f),
+              vec2 (0.0f, -1.0f),
+              vec2 (0.0f, 0.0f)})
+            texture.emplace_back ((fdiv1 - e[0]) / fdivisions, (fdiv2 - e[1]) / fdivisions);
         }
     }
 }
 
-inline unsigned int model_plane_nVertices (const unsigned int divisions)
+static inline unsigned int model_plane_nVertices (const unsigned int divisions)
 { return divisions * divisions * 12; }
 
 void model_plane_write (const char *filepath, const float length, const unsigned int divisions)
 {
   const unsigned int nVertices = model_plane_nVertices (divisions);
-  float points[3 * nVertices];
-  model_plane_vertices (length, divisions, points);
-  points_write (filepath, nVertices, points);
+  vector<vec3> vertices;
+  vertices.reserve (nVertices);
+  vector<vec3> normals;
+  normals.reserve (nVertices);
+  vector<vec2> texture;
+  texture.reserve (nVertices);
+  model_plane_vertices (length, divisions, vertices, normals, texture);
+  model_write (filepath, vertices, normals, texture);
 }
 //!@} end of group plane
 
