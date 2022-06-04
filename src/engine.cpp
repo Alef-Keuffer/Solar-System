@@ -668,7 +668,7 @@ void operations_render (vector<float> &operations)
             {
               if (isFirstTimeBeingExecuted)
                 cerr << "END_MODEL" << endl;
-              renderModel (globalModels.back ());
+              renderModel (globalModels[model_num - 1]);
             }
           continue;
           // light sources
