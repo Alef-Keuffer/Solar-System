@@ -437,8 +437,7 @@ void operations_render (vector<float> &operations)
   static bool isFirstTimeBeingExecuted = true;
   static bool hasPushedModels = false;
   static bool hasLoadedCurves = false;
-  static unsigned char nLights = 0;
-  assert (nLights < 8);
+
   static vector<vector<vec3>> curves;
 
   DEFAULT_GLOBAL_EYE_X = operations[i];
@@ -465,9 +464,11 @@ void operations_render (vector<float> &operations)
   DEFAULT_GLOBAL_FAR = operations[i + 2];
 
   unsigned int model_num = 0;
+  unsigned char nLights = 0;
 
   for (i += 3; i < operations.size (); i++)
     {
+      assert(nLights < 8);
       switch ((int) operations[i])
         {
           // transformations
@@ -680,8 +681,7 @@ void operations_render (vector<float> &operations)
               if (isFirstTimeBeingExecuted)
                 cerr << "POINT (" << to_string (pos) << ")" << endl;
               glLightfv (GL_LIGHT0 + nLights, GL_POSITION, value_ptr (pos));
-              if (isFirstTimeBeingExecuted)
-                ++nLights;
+              ++nLights;
               i += 3;
             }
           continue;
@@ -695,8 +695,7 @@ void operations_render (vector<float> &operations)
                 cerr << "DIRECTIONAL (" << to_string (dir) << ")" << endl;
 
               glLightfv (GL_LIGHT0 + nLights, GL_POSITION, value_ptr (dir));
-              if (isFirstTimeBeingExecuted)
-                ++nLights;
+              ++nLights;
               i += 3;
             }
           continue;
@@ -718,14 +717,9 @@ void operations_render (vector<float> &operations)
                                                                                               "\n\t(cutoff: " << cutoff
                      << ")" << endl;
               glLightfv (GL_LIGHT0 + nLights, GL_POSITION, value_ptr (pos));
-              if (isFirstTimeBeingExecuted)
-                ++nLights;
               glLightfv (GL_LIGHT0 + nLights, GL_SPOT_DIRECTION, value_ptr (dir));
-              if (isFirstTimeBeingExecuted)
-                ++nLights;
               glLightf (GL_LIGHT0 + nLights, GL_SPOT_CUTOFF, cutoff);
-              if (isFirstTimeBeingExecuted)
-                ++nLights;
+              ++nLights;
               i += 7;
               continue;
             }
