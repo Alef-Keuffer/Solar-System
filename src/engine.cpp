@@ -553,6 +553,8 @@ void operations_render (vector<float> &operations)
               glScalef (scale[0],
                         scale[1],
                         scale[2]);
+              if (isFirstTimeBeingExecuted)
+                cerr << "SCALE (" << to_string (scale) << ")" << endl;
               i += 3;
             }
           continue;
