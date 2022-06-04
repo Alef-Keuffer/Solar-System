@@ -694,7 +694,7 @@ int main (const int argc, const char * const argv[])
       const char *const out_file_path = argv[argc - 1];
       cerr << "[generator] output filepath: '" << out_file_path << "'" << endl;
       const char *const polygon = argv[1];
-      cerr << "[generator] polgyon to generate: " << polygon << endl;
+      cerr << "[generator] polygon to generate: " << polygon << endl;
 
       if (!strcmp (PLANE, polygon))
         {
