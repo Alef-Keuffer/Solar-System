@@ -13,16 +13,20 @@
 #include <fstream>
 #include <tuple>
 #include <iostream>
+#include <csignal>
 
 #include "curves.h"
 
 using glm::mat4, glm::vec4, glm::vec3, glm::vec2, glm::mat4x3;
-using glm::normalize;
+using glm::normalize, glm::cross;
 
 using std::vector, std::tuple, std::array;
 
 using std::string, std::ifstream, std::ios, std::stringstream;
 using std::cerr, std::endl, glm::to_string;
+
+template<class T>
+concept arithmetic =  std::is_integral<T>::value or std::is_floating_point<T>::value;
 
 const char *SPHERE = "sphere";
 const char *CUBE = "box";
@@ -65,7 +69,10 @@ void points_write (const char *filename, const unsigned int nVertices, const flo
 }
 
 void
-model_write (const char *filename, const vector<vec3> &vertices, const vector<vec3> &normals, const vector<vec2> &texture)
+model_write (const char *const filename,
+             const vector<vec3> &vertices,
+             const vector<vec3> &normals,
+             const vector<vec2> &texture)
 {
   FILE *fp = fopen (filename, "w");
 
@@ -75,9 +82,10 @@ model_write (const char *filename, const vector<vec3> &vertices, const vector<ve
       exit (1);
     }
 
-  const int nVertices = vertices.size();
-  const int nNormals = normals.size();
-  const int nTextures = texture.size();
+  assert(vertices.size () < INT_MAX);
+  const int nVertices = vertices.size ();
+  const int nNormals = normals.size ();
+  const int nTextures = texture.size ();
   fwrite (&nVertices, sizeof (nVertices), 1, fp);
   fwrite (vertices.data (), sizeof (vertices.back ()), nVertices, fp);
   fwrite (normals.data (), sizeof (normals.back ()), nNormals, fp);
@@ -85,7 +93,11 @@ model_write (const char *filename, const vector<vec3> &vertices, const vector<ve
 
   fclose (fp);
 
-  cerr << "[generator] Wrote " << nVertices << " vertices, " << nNormals << " normals, " << nTextures << " textures." << endl;
+  cerr << "[generator] Wrote "
+       << nVertices << " vertices, "
+       << nNormals << " normals, "
+       << nTextures << " textures to"
+       << filename << endl;
 }
 
 //!@} end of group points
@@ -334,7 +346,7 @@ void model_cube_vertices (const float length,
     }
 }
 
-unsigned int model_cube_nVertices (const unsigned int divisions)
+static inline unsigned int model_cube_nVertices (const unsigned int divisions)
 { return divisions * divisions * 36; }
 
 void model_cube_write (const char *const filepath,
