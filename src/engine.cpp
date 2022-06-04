@@ -836,6 +836,8 @@ void xml_load_and_set_env (const char *const filename)
   operations_load_xml (filename, globalOperations);
   operations_render (globalOperations);
   env_load_defaults ();
+  cerr << "LOOK_AT(" << globalCenterX << "," << globalCenterY << "," << globalCenterZ << ")" << endl;
+  cerr << "POSITION(" << globalEyeX << "," << globalEyeY << "," << globalEyeZ << ")" << endl;
 }
 /*! @addtogroup input
  * @{*/
