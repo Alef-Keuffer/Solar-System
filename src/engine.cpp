@@ -118,7 +118,8 @@ double globalElevation = DEFAULT_GLOBAL_ELEVATION;
 bool globalMouseLeftButton = false;
 
 void
-spherical2Cartesian (const double radius, const double elevation, const double azimuth, double *x, double *y, double *z)
+spherical2Cartesian (const double radius, const double elevation, const double azimuth,
+                     double *x, double *y, double *z)
 {
 
   *x = radius * cos (elevation) * sin (azimuth) + globalCenterX;
@@ -127,11 +128,12 @@ spherical2Cartesian (const double radius, const double elevation, const double a
 }
 
 void
-cartesian2Spherical (const double x, const double y, const double z, double *radius, double *azimuth, double *elevation)
+cartesian2Spherical (const double x, const double y, const double z,
+                     double *radius, double *azimuth, double *elevation)
 {
-  *radius = abs (sqrt (pow (x, 2) + pow (y, 2) + pow (z, 2)));
-  *elevation = asin (y / (*radius));
-  *azimuth = asin (x / (*radius * cos (*elevation)));
+  *radius = abs (sqrt (pow ((x - globalCenterX), 2) + pow ((y - globalCenterY), 2) + pow ((z - globalCenterZ), 2)));
+  *elevation = asin ((y - globalCenterY) / (*radius));
+  *azimuth = asin ((x - globalCenterX) / (*radius * cos (*elevation)));
 }
 
 //! @} end of group spherical
@@ -198,7 +200,7 @@ struct model {
   GLuint vbo{};
   GLuint normals{};
   struct {
-    vec4 diffuse = {200.0 / RGB_MAX, 200.0 / RGB_MAX, 200.0 / RGB_MAX, 1};
+    vec4 diffuse{200.0 / RGB_MAX, 200.0 / RGB_MAX, 200.0 / RGB_MAX, 1};
     vec4 ambient{50.0 / RGB_MAX, 50.0 / RGB_MAX, 50.0 / RGB_MAX, 1};
     vec4 specular{0, 0, 0, 1};
     vec4 emissive{0, 0, 0, 1};
