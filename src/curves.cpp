@@ -3,7 +3,9 @@
 #include <GL/freeglut_std.h>
 #include "curves.h"
 
-using glm::mat4x3, glm::value_ptr;
+using glm::mat4, glm::mat4x3;
+using glm::vec4, glm::vec3, glm::vec2, glm::value_ptr;
+using std::array, std::vector;
 
 const mat4 Mcr = {
     -0.5f, 1.5f, -1.5f, 0.5f,
@@ -11,13 +13,13 @@ const mat4 Mcr = {
     -0.5f, 0.0f, 0.5f, 0.0f,
     0.0f, 1.0f, 0.0f, 0.0f};
 
-const mat4 Mb =  {
+const mat4 Mb = {
     -1, 3, -3, 1,
     3, -6, 3, 0,
     -3, 3, 0, 0,
     1, 0, 0, 0};
 
-template<typename T> inline vec4 dec_polynomial (T n)
+template<typename T> static inline vec4 dec_polynomial (T n)
 {
   return {pow (n, 3), pow (n, 2), n, 1};
 }
