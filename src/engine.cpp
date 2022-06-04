@@ -1221,7 +1221,6 @@ void engine_run (int argc, char **argv)
   glEnableClientState (GL_NORMAL_ARRAY);
   glEnableClientState (GL_TEXTURE_COORD_ARRAY);
 
-
   /*
    * To allow for ambient colors to be reproduced without having
    * to activate the ambient component for all lights, the following

@@ -682,7 +682,7 @@ void model_bezier_write (const int tesselation, const char *const in_patch_file,
 
 //!@} end of group generator
 
-int main (const int argc, const char * const argv[])
+int main (const int argc, const char *const argv[])
 {
   if (argc < 4)
     {
