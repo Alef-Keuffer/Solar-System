@@ -1,10 +1,8 @@
-#define _USE_MATH_DEFINES
-
 #include <cmath>
-
 #include <cstdio>
 #include <cstring>
 #include <cstdlib>
+
 #include <glm/glm.hpp>
 #include <glm/gtx/string_cast.hpp>
 
@@ -664,24 +662,183 @@ vector<array<vec3, 16>> read_Bezier (const char *const patch)
   return pointsInPatches;
 }
 
-void model_bezier_write (const int tesselation, const char *const in_patch_file, const char *const out_3d_file)
+template<typename T> static inline vec4 monic_3rd_polynomial_at (T n)
 {
-  vector<array<glm::vec3, 16>> control_points = read_Bezier (in_patch_file);
-  vector<glm::vec3> vertices = get_bezier_surface (control_points, tesselation);
-  const unsigned int nVertices = vertices.size ();
-  vector<float> coords;
-  for (auto &vertice : vertices)
+  return {pow (n, 3), pow (n, 2), n, 1};
+}
+
+template<typename T> static inline vec4 deriv_of_monic_3rd_polynomial_at (T n)
+{
+  return {3 * pow (n, 2), 2 * n, 1, 0};
+}
+
+mat4x3 mat (const array<vec3, 4> C)
+{
+  return {C[0], C[1], C[2], C[3]};
+}
+
+/*!
+ *
+ * @param[in] u first component of the 2d point.
+ * @param[in] v second component of the 2d point.
+ * @param[in] cp a set of control points that define the bezier patch.
+ * @param[out] coordinate_in_3d_space cartesian three-dimensional coordinate of the
+ *                                    point specified by Beziér patch coordinate.
+ * @param[out] normal vector normal to the patch specified.
+ */
+void get_bezier_point_at (
+    const float u,
+    const float v,
+    const array<vec3, 16> &cp,
+    vec3 &coordinate_in_3d_space,
+    vec3 &normal)
+{
+
+  // P_u notation at (slide 17)[Curves and Surfaces]
+
+  // P(u,v) = UM(Pi0(P0u) + Pi1(P1u) + Pi2(P2u) Pi3(P3u)) based on (page 6)[CURVES AND SURFACES]
+
+  // 4 sets of control points for 4 Bézier curves
+  array<vec3, 4> C_i0 = {cp[0], cp[1], cp[2], cp[3]};
+  array<vec3, 4> C_i1 = {cp[4], cp[5], cp[6], cp[7]};
+  array<vec3, 4> C_i2 = {cp[8], cp[9], cp[10], cp[11]};
+  array<vec3, 4> C_i3 = {cp[12], cp[13], cp[14], cp[15]};
+
+  // calculate P_i(u) at each Bézier curve defined by Ci
+  vec3 P0u, P1u, P2u, P3u, _;
+  get_curve_point_at (u, Mb, C_i0, P0u, _);
+  get_curve_point_at (u, Mb, C_i1, P1u, _);
+  get_curve_point_at (u, Mb, C_i2, P2u, _);
+  get_curve_point_at (u, Mb, C_i3, P3u, _);
+
+  // Calculate vector tangent to u⃗
+  const auto VM = monic_3rd_polynomial_at (v) * Mb;
+  const auto U_prime = deriv_of_monic_3rd_polynomial_at (u);
+  const auto tangent_u =
+      (mat (C_i0) * VM[0] + mat (C_i1) * VM[1] + mat (C_i2) * VM[2] + mat (C_i3) * VM[3]) * Mb * U_prime;
+
+  vec3 Puv, tangent_v;
+  get_curve_point_at (v, Mb, {P0u, P1u, P2u, P3u}, Puv, tangent_v);
+
+  normal = normalize (cross (tangent_u, tangent_v));
+  coordinate_in_3d_space = Puv;
+}
+
+static inline unsigned int model_bezier_patch_nVertices (const unsigned int tesselation)
+{
+  return tesselation * tesselation * 6;
+}
+
+static inline unsigned int model_bezier_surface_nVertices (
+    const unsigned int number_of_patches,
+    const unsigned int tesselation)
+{
+  return model_bezier_patch_nVertices (tesselation) * number_of_patches;
+}
+
+void get_bezier_patch (
+    const array<vec3, 16> control_points,
+    const int int_tesselation,
+    vector<vec3> &vertices,
+    vector<vec3> &normals,
+    vector<vec2> &texture)
+{
+  auto float_tesselation = (float) int_tesselation;
+  const auto step = 1.0 / float_tesselation;
+  for (int v = 0; v < int_tesselation; ++v)
     {
-      coords.push_back (vertice.x);
-      coords.push_back (vertice.y);
-      coords.push_back (vertice.z);
+      for (int u = 0; u < int_tesselation; ++u)
+        {
+          for (auto e : {
+              // upper triangle
+              array<float, 2>{0, 0},
+              array<float, 2>{0, 1},
+              array<float, 2>{1, 0},
+              // lower triangle
+              array<float, 2>{1, 0},
+              array<float, 2>{1, 1},
+              array<float, 2>{0, 1},
+          })
+            {
+              vec3 vertex, normal;
+              get_bezier_point_at (u * step + step * e[0], v * step + step * e[1], control_points, vertex, normal);
+
+              auto fu = (float) u;
+              auto fv = (float) v;
+              vertices.push_back (vertex);
+              normals.push_back (normal);
+              texture.emplace_back (-(u * step + step * e[0]),-(v * step + step * e[1]));
+            }
+
+          //          // upper triangle
+          //          vertices.push_back (get_bezier_point_at (u * step, v * step, control_points));
+          //          vertices.push_back (get_bezier_point_at (u * step, v * step + step, control_points));
+          //          vertices.push_back (get_bezier_point_at (u * step + step, v * step, control_points));
+          //          // lower triangle
+          //          vertices.push_back (get_bezier_point_at (u * step + step, v * step, control_points));
+          //          vertices.push_back (get_bezier_point_at (u * step + step, v * step + step, control_points));
+          //          vertices.push_back (get_bezier_point_at (u * step, v * step + step, control_points));
+        }
     }
-  points_write (out_3d_file, nVertices, coords.data ());
+  /*std::cout << "get_bezier_patch got:" << std::endl;
+  for (auto p : pontos)
+    std::cout << glm::to_string (p) << std::endl;*/
+}
+
+/*!
+ *
+ * @param control_elements 4 vertices define a bezier curve and 4 bezier curves define a bezier patch.
+ *                         A set of bezier patches define a bezier surface.
+ *                         Therefore, each control element of a bezier surface requires 16 vertices.
+ */
+void get_bezier_surface (
+    const vector<array<vec3, 16>> &control_elements,
+    const int tesselation,
+    vector<vec3> &vertices,
+    vector<vec3> &normals,
+    vector<vec2> &texture)
+{
+
+  for (auto &control_element : control_elements)
+    get_bezier_patch (control_element, tesselation, vertices, normals, texture);
+}
+
+void model_bezier_write (
+    const int tesselation,
+    const char *const in_patch_file,
+    const char *const out_3d_file)
+{
+  vector<array<vec3, 16>> control_points = read_Bezier (in_patch_file);
+
+  const unsigned int nVertices = model_bezier_surface_nVertices (control_points.size (), tesselation);
+  vector<vec3> vertices;
+  vertices.reserve (nVertices);
+  vector<vec3> normals;
+  normals.reserve (nVertices);
+  vector<vec2> texture;
+  texture.reserve (nVertices);
+
+  get_bezier_surface (control_points, tesselation, vertices, normals, texture);
+  if (nVertices != vertices.size ())
+    {
+      cerr << nVertices << " = nVertices != vertices.size () = " << vertices.size () << endl;
+      exit (EXIT_FAILURE);
+    }
+  //assert (nVertices == vertices.size ());
+
+  model_write (out_3d_file, vertices, normals, texture);
 }
 //!@} end of group bezier
 
 //!@} end of group generator
 
+/*!
+ * ⟨command⟩ ::= (⟨plane⟩ | ⟨cube⟩ | ⟨sphere⟩ | ⟨cone⟩ | ⟨patch⟩) ⟨out_file⟩
+ * ⟨patch⟩ ::= "bezier" ⟨patch_file⟩ ⟨tesselation⟩
+ * ⟨plane⟩ ::= "plane" ⟨length⟩ ⟨divisions⟩
+ * ⟨cube⟩ ::= "box" ⟨length⟩ ⟨divisions⟩
+ * ⟨cone⟩ ::= "cone" ⟨base_radius⟩ ⟨height⟩ ⟨slices⟩ ⟨stacks⟩
+ */
 int main (const int argc, const char *const argv[])
 {
   if (argc < 4)
@@ -751,7 +908,7 @@ int main (const int argc, const char *const argv[])
               cerr << "[generator] invalid slices(" << slices << ") for cone" << endl;
               exit (EXIT_FAILURE);
             }
-          const int stacks = std::stoi (argv[4], nullptr, 10);
+          const int stacks = std::stoi (argv[5], nullptr, 10);
           if (stacks <= 0)
             {
               cerr << "[generator] invalid stacks(" << stacks << ") for cone" << endl;
@@ -791,19 +948,19 @@ int main (const int argc, const char *const argv[])
         }
       else if (!strcmp (BEZIER, polygon))
         {
-          const int tesselation = std::stoi (argv[2], nullptr, 10);
+          const int tesselation = std::stoi (argv[3], nullptr, 10);
           if (tesselation <= 0)
             {
               cerr << "[generator] invalid tesselation(" << tesselation << ") for bezier patch" << endl;
               exit (EXIT_FAILURE);
             }
-          const char *const input_patch_file_path = argv[3];
+          const char *const input_patch_file_path = argv[2];
           if (access (input_patch_file_path, F_OK))
             {
               cerr << "[generator] file " << input_patch_file_path << " for bezier patch not found" << endl;
               exit (EXIT_FAILURE);
             }
-          cerr << "BEZIER(tesselation: " << tesselation << "input file: " << input_patch_file_path << ")" << endl;
+          cerr << "BEZIER(tesselation: " << tesselation << ", input file: " << input_patch_file_path << ")" << endl;
           model_bezier_write (tesselation, input_patch_file_path, out_file_path);
         }
       else
