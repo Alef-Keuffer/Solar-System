@@ -385,11 +385,15 @@ void model_cube_write (const char *const filepath,
  *
  *  See the [3d model](https://www.math3d.org/7oeSkmuns).
  */
+
+template<typename T>
+    requires arithmetic<T>
 static inline void
-model_cone_vertex (const float r,
-                   const float height,
-                   const float theta, const float h, unsigned int *pos,
-                   float *points)
+model_cone_vertex (const T r,
+                   const T height,
+                   const T theta,
+                   const T h,
+                   vector<vec3> &vertices)
 {
   /*
      x = r ⋅ (h/height) ⋅ cos(θ)
@@ -403,11 +407,18 @@ model_cone_vertex (const float r,
      check:
          1. https://www.math3d.org/7oeSkmuns
    */
-  points_vertex (r * h / height * cos (theta), height + h, r * h / height * sin (theta), pos, points);
+  vertices.emplace_back (r * h / height * cos (theta), height + h, r * h / height * sin (theta));
 }
 
-void model_cone_vertices (const float r, const float height, const unsigned int slices, const unsigned int stacks,
-                          float points[])
+template<typename T>
+    requires arithmetic<T>
+void model_cone_vertices (const T r,
+                          const T height,
+                          const unsigned int slices,
+                          const unsigned int stacks,
+                          vector<vec3> &vertices,
+                          vector<vec3> &normals,
+                          vector<vec2> &texture)
 {
 
   const float s = 2.0f * (float) M_PI / (float) slices;
@@ -415,27 +426,45 @@ void model_cone_vertices (const float r, const float height, const unsigned int 
   const float theta = -M_PI;
   const float h = -height;
 
-  unsigned int pos = 0;
-
-  for (unsigned int m = 1; m <= slices; m++)
+  for (unsigned int slice = 1; slice <= slices; ++slice)
     {
-      for (unsigned int n = 1; n <= stacks; n++)
+      for (unsigned int stack = 1; stack <= stacks; ++stack)
         {
-          float i = (float) m;
-          float j = (float) n;
+          auto const fslice = (float) slice;
+          auto const fstack = (float) stack;
+          auto const fslices = (float) slices;
+          auto const fstacks = (float) stacks;
 
           //base
-          points_vertex (0, 0, 0, &pos, points); //O
-          model_cone_vertex (r, height, theta + s * (i - 1), h, &pos, points); //P1
-          model_cone_vertex (r, height, theta + s * i, h, &pos, points); //P2
+          vertices.emplace_back (0, 0, 0); //O
+          model_cone_vertex (r, height, theta + s * (fslice - 1), h, vertices); //P1
+          model_cone_vertex (r, height, theta + s * fslice, h, vertices); //P2
 
-          model_cone_vertex (r, height, theta + s * i, h + t * (j - 1), &pos, points); // P2
-          model_cone_vertex (r, height, theta + s * (i - 1), h + t * j, &pos, points); // P1'
-          model_cone_vertex (r, height, theta + s * i, h + t * j, &pos, points); //P2'
+          for (int k = 0; k < 3; ++k)
+            normals.emplace_back (0, -1, 0);
 
-          model_cone_vertex (r, height, theta + s * i, h + t * (j - 1), &pos, points); // P2
-          model_cone_vertex (r, height, theta + s * (i - 1), h + t * (j - 1), &pos, points); // P1
-          model_cone_vertex (r, height, theta + s * (i - 1), h + t * j, &pos, points); // P1'
+          //
+          model_cone_vertex (r, height, theta + s * fslice, h + t * (fstack - 1), vertices); // P2
+          model_cone_vertex (r, height, theta + s * (fslice - 1), h + t * fstack, vertices); // P1'
+          model_cone_vertex (r, height, theta + s * fslice, h + t * fstack, vertices); //P2'
+
+          //
+          model_cone_vertex (r, height, theta + s * fslice, h + t * (fstack - 1), vertices); // P2
+          model_cone_vertex (r, height, theta + s * (fslice - 1), h + t * (fstack - 1), vertices); // P1
+          model_cone_vertex (r, height, theta + s * (fslice - 1), h + t * fstack, vertices); // P1'
+
+          const auto P1 = vertices.end ()[-2];
+          const auto P2 = vertices.end ()[-3];
+          const auto P1_prime = vertices.end ()[-1];
+          for (int k = 0; k < 6; ++k)
+            normals.push_back (normalize (cross (P2 - P1_prime, P1 - P1_prime)));
+
+          texture.emplace_back (0, 0);
+          texture.emplace_back (-1, 0);
+          texture.emplace_back (0, 0);
+
+          for (int k = 0; k < 6; ++k)
+            texture.emplace_back (fslice / fslices, fstack / fstacks);
         }
     }
 }
@@ -445,13 +474,21 @@ static inline unsigned int model_cone_nVertices (const unsigned int stacks, cons
   return slices * stacks * 9;
 }
 
-void model_cone_write (const char *filepath, const float radius, const float height, const unsigned int slices,
+void model_cone_write (const char *const filepath,
+                       const float radius,
+                       const float height,
+                       const unsigned int slices,
                        const unsigned int stacks)
 {
   const unsigned int nVertices = model_cone_nVertices (stacks, slices);
-  float points[3 * nVertices];
-  model_cone_vertices (radius, height, slices, stacks, points);
-  points_write (filepath, nVertices, points);
+  vector<vec3> vertices;
+  vertices.reserve (nVertices);
+  vector<vec3> normals;
+  normals.reserve (nVertices);
+  vector<vec2> texture;
+  texture.reserve (nVertices);
+  model_cone_vertices (radius, height, slices, stacks, vertices, normals, texture);
+  model_write (filepath, vertices, normals, texture);
 }
 
 //!@} end of group cone
@@ -708,7 +745,7 @@ int main (const int argc, const char * const argv[])
               cerr << "[generator] invalid height(" << radius << ") for cone" << endl;
               exit (EXIT_FAILURE);
             }
-          const int slices = std::stoi (argv[3], nullptr, 10);
+          const int slices = std::stoi (argv[4], nullptr, 10);
           if (slices <= 0)
             {
               cerr << "[generator] invalid slices(" << slices << ") for cone" << endl;
