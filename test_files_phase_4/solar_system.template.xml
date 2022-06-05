@@ -18,14 +18,16 @@
         <group>
             <models>
                 <model file="sky.3d"> <!-- generator box 2 3 box_nt.3d -->
-                    <!--                    <color>
-                                            <diffuse R="255" G="255" B="255"/>
-                                            <ambient R="255" G="255" B="255"/>
-                                            <specular R="255" G="255" B="255"/>
-                                            <emissive R="255" G="255" B="255"/>
-                                            <shininess value="128"/>
-                                        </color>-->
-                    <texture file="../test_files_phase_4/stars3.jpg"/>
+                    <color>
+                        <!--                        <diffuse R="255" G="255" B="255"/>-->
+                        <ambient R="255" G="255" B="255"/>
+                        <!--                        <specular R="255" G="255" B="255"/>-->
+                        <!--                        <emissive R="255" G="255" B="255"/>-->
+                        <shininess value="128"/>
+                    </color>
+                    <texture file="/home/useralef/Downloads/startmap.jpg"/>
+                    <!--                    <texture file="/home/useralef/Downloads/starmap_2020_16k.exr"/>-->
+
                 </model>
             </models>
         </group>

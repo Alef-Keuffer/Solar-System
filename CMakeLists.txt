@@ -1,5 +1,6 @@
 cmake_minimum_required(VERSION 3.5)
 set(CMAKE_CXX_STANDARD 20)
+# add_compile_definitions(USE_SYSTEM)
 
 # Project Name
 PROJECT(proj)
@@ -16,9 +17,9 @@ find_package(glm REQUIRED)
 
 link_libraries(glm ${OPENGL_LIBRARIES} ${GLEW_LIBRARIES} ${GLUT_LIBRARIES} ${IL_LIBRARIES})
 
-foreach(l ${OPENGL_LIBRARIES} ${GLEW_LIBRARIES} ${GLUT_LIBRARIES} ${IL_LIBRARIES})
+foreach (l ${OPENGL_LIBRARIES} ${GLEW_LIBRARIES} ${GLUT_LIBRARIES} ${IL_LIBRARIES})
     message(STATUS ${l})
-endforeach()
+endforeach ()
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
 add_library(curves src/curves.cpp src/curves.h)
@@ -31,6 +32,8 @@ add_executable(engine src/engine.cpp)
 
 add_library(parsing src/parsing.cpp src/parsing.h)
 target_link_libraries(parsing tinyxml2)
+
+add_library(util src/util.cpp src/util.h)
 
 #find_package(tinyxml2 REQUIRED)
 target_link_libraries(${PROJECT_NAME} tinyxml2)
@@ -83,19 +86,16 @@ add_custom_target(
         WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/test_files_phase_3
         DEPENDS engine generator
 )
-add_custom_target(
-        test_4_5
-        COMMAND engine test_4_5.xml
-        COMMAND rm -f *.3d
-        WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/test_files_phase_4
-        DEPENDS engine generator
-)
 
-add_custom_target(
-        test_4_7
-        COMMAND engine test_4_7.xml
-        COMMAND rm -f *.3d
-        WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/test_files_phase_4
-        DEPENDS engine generator
-)
-
+file(GLOB files "test_files_phase_4/*.xml")
+foreach (file ${files})
+    get_filename_component(tname ${file} NAME)
+    get_filename_component(pname ${file} NAME_WE)
+    add_custom_target(
+            ${pname}
+            COMMAND engine ${tname}
+            COMMAND rm -f *.3d
+            WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/test_files_phase_4
+            DEPENDS engine generator
+    )
+endforeach ()
