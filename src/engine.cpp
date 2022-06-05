@@ -764,17 +764,36 @@ void explMouse (int button, int state, int x, int y)
               GLuint index;
 
               //glReadPixels (x, window_height - y - 1, 1, 1, GL_RGBA, GL_UNSIGNED_BYTE, color);
+              // glReadPixels returns pixel data from the frame buffer
               glReadPixels (x, window_height - y - 1, 1, 1, GL_DEPTH_COMPONENT, GL_FLOAT, &depth);
               //glReadPixels (x, window_height - y - 1, 1, 1, GL_STENCIL_INDEX, GL_UNSIGNED_INT, &index);
 
               double ox, oy, oz;
 
-              double model[16];
+              GLdouble model[16];
               glGetDoublev (GL_MODELVIEW_MATRIX, model);
-              double proj[16];
+              GLdouble proj[16];
               glGetDoublev (GL_PROJECTION_MATRIX, proj);
-              int view[4];
+              GLint view[4];
               glGetIntegerv (GL_VIEWPORT, view);
+              /**
+               gluUnProject maps the specified window coordinates into object
+               coordinates using model, proj, and view. The result is stored in
+               objX, objY, and objZ. A return value of GLU_TRUE indicates success;
+               a return value of GLU_FALSE indicates failure.
+
+               To compute the coordinates objX objY objZ , gluUnProject multiplies
+               the normalized device coordinates by the inverse of (model × proj) as
+               follows:
+
+               objX                 (2winX - view0)/view2 - 1
+               objY    = INV P M    (2winX - view1)/view3 - 1
+               objZ                  2winZ                - 1
+               W                                            1
+
+               INV denotes matrix inversion. W is an unused variable, included for
+               consistent matrix notation.
+               */
               gluUnProject (x, window_height - y - 1, depth,
                             model,
                             proj,
