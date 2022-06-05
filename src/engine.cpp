@@ -691,10 +691,10 @@ void operations_render (vector<float> &operations)
           // light sources
           case POINT:
             {
-              static const vec4 pos = {operations[i + 1],
-                                       operations[i + 2],
-                                       operations[i + 3],
-                                       1.0};
+              const vec4 pos = {operations[i + 1],
+                                operations[i + 2],
+                                operations[i + 3],
+                                1.0};
               if (isFirstTimeBeingExecuted)
                 {
                   glEnable (GL_LIGHT0 + nLights);
@@ -710,10 +710,10 @@ void operations_render (vector<float> &operations)
           continue;
           case DIRECTIONAL:
             {
-              static const vec4 dir = {operations[i + 1],
-                                       operations[i + 2],
-                                       operations[i + 3],
-                                       0.0};
+              const vec4 dir = {operations[i + 1],
+                                operations[i + 2],
+                                operations[i + 3],
+                                0.0};
               if (isFirstTimeBeingExecuted)
                 {
                   glEnable (GL_LIGHT0 + nLights);
@@ -730,15 +730,15 @@ void operations_render (vector<float> &operations)
           continue;
           case SPOTLIGHT:
             {
-              static const vec4 pos = {operations[i + 1],
-                                       operations[i + 2],
-                                       operations[i + 3],
-                                       1.0};
-              static const vec4 dir = {operations[i + 4],
-                                       operations[i + 5],
-                                       operations[i + 6],
-                                       1.0};
-              static const float cutoff = operations[i + 7];
+              const vec4 pos = {operations[i + 1],
+                                operations[i + 2],
+                                operations[i + 3],
+                                1.0};
+              const vec4 dir = {operations[i + 4],
+                                operations[i + 5],
+                                operations[i + 6],
+                                1.0};
+              const float cutoff = operations[i + 7];
               if (isFirstTimeBeingExecuted)
                 {
                   glEnable (GL_LIGHT0 + nLights);
