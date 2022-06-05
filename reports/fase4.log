@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.5.15)  5 JUN 2022 19:20
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.5.15)  5 JUN 2022 23:12
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -673,12 +673,12 @@ LaTeX Font Info:    Font shape `OML/cmr/m/n' in size <10> not available
  [4
 
 ]
-<sphere_uv_map.jpg, id=159, 373.89688pt x 188.705pt>
+<sphere_uv_map.jpg, id=167, 373.89688pt x 188.705pt>
 File: sphere_uv_map.jpg Graphic file (type jpg)
 <use sphere_uv_map.jpg>
 Package pdftex.def Info: sphere_uv_map.jpg  used on input line 204.
 (pdftex.def)             Requested size: 373.89597pt x 188.70453pt.
-<cone_normal.png, id=160, 547.05646pt x 728.18886pt>
+<cone_normal.png, id=168, 547.05646pt x 728.18886pt>
 File: cone_normal.png Graphic file (type png)
 <use cone_normal.png>
 Package pdftex.def Info: cone_normal.png  used on input line 227.
@@ -689,7 +689,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{figure.2.1}) h
                                                   \__shipout_drop_firstpage_...
 l.231 
        <./sphere_uv_map.jpg>]
-<bezier_normal.jpg, id=181, 352.81813pt x 309.155pt>
+<bezier_normal.jpg, id=188, 352.81813pt x 309.155pt>
 File: bezier_normal.jpg Graphic file (type jpg)
 <use bezier_normal.jpg>
 Package pdftex.def Info: bezier_normal.jpg  used on input line 277.
@@ -700,12 +700,12 @@ pdfTeX warning (ext4): destination with the same identifier (name{figure.2.2}) h
                                                   \__shipout_drop_firstpage_...
 l.281 
        <./cone_normal.png>]
-<bezier_normal_2.jpg, id=209, 263.98625pt x 131.49126pt>
+<bezier_normal_2.jpg, id=216, 263.98625pt x 131.49126pt>
 File: bezier_normal_2.jpg Graphic file (type jpg)
 <use bezier_normal_2.jpg>
 Package pdftex.def Info: bezier_normal_2.jpg  used on input line 284.
 (pdftex.def)             Requested size: 263.9856pt x 131.49092pt.
-<bezier_texture.jpg, id=213, 283.0575pt x 181.17688pt>
+<bezier_texture.jpg, id=220, 283.0575pt x 181.17688pt>
 File: bezier_texture.jpg Graphic file (type jpg)
 <use bezier_texture.jpg>
 Package pdftex.def Info: bezier_texture.jpg  used on input line 296.
@@ -744,7 +744,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 412--415
 [10
 
 ]
-<galaxy.jpg, id=292, 1027.84pt x 513.92pt>
+<galaxy.jpg, id=299, 1027.84pt x 513.92pt>
 File: galaxy.jpg Graphic file (type jpg)
 <use galaxy.jpg>
 Package pdftex.def Info: galaxy.jpg  used on input line 434.
@@ -753,15 +753,30 @@ Package pdftex.def Info: galaxy.jpg  used on input line 434.
 pdfTeX warning (ext4): destination with the same identifier (name{figure.3.1}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.439 \chapter
-              {Exemplos de utilização} \label{chap:exemps} %referência cr... <./galaxy.jpg>]
+l.445 \chapter
+              {Exemplo de utilização} \label{chap:exemps} %referência cru... <./galaxy.jpg>]
 Cap\'{\i }tulo 4.
+<exemplo.png, id=306, 1437.87187pt x 786.68906pt>
+File: exemplo.png Graphic file (type png)
+<use exemplo.png>
+Package pdftex.def Info: exemplo.png  used on input line 452.
+(pdftex.def)             Requested size: 575.13857pt x 314.67004pt.
+
+Overfull \hbox (62.98897pt too wide) in paragraph at lines 452--453
+ [][] 
+ []
+
 [12
 
-]
+
+pdfTeX warning (ext4): destination with the same identifier (name{figure.4.1}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.457 \chapter
+              {Conclusão} \label{concl} <./exemplo.png (PNG copy)>]
 Cap\'{\i }tulo 5.
 
-Underfull \hbox (badness 10000) in paragraph at lines 453--454
+Underfull \hbox (badness 10000) in paragraph at lines 469--470
 
  []
 
@@ -769,16 +784,16 @@ Underfull \hbox (badness 10000) in paragraph at lines 453--454
 
 ]
 Ap\^endice A.
-Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on input line 480.
+Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on input line 496.
 [14
 
 ]
-Overfull \hbox (39.85602pt too wide) in paragraph at lines 536--537
+Overfull \hbox (39.85602pt too wide) in paragraph at lines 552--553
 [][][][][][]$[]$[][][]$[]$[][][][][][][][][][][][][][][][][][][][][][][][][][][][]$[]$[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (39.85602pt too wide) in paragraph at lines 537--538
+Overfull \hbox (39.85602pt too wide) in paragraph at lines 553--554
 [][][][][][]$[]$[][][]$[]$[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
@@ -786,21 +801,21 @@ Overfull \hbox (39.85602pt too wide) in paragraph at lines 537--538
 No file fase4.bbl.
 (./fase4.aux)
 Package rerunfilecheck Info: File `fase4.out' has not changed.
-(rerunfilecheck)             Checksum: AFFB658058CCAD3FD6024FB898B5C2A4;2441.
+(rerunfilecheck)             Checksum: FE72BA1EA3A35E5504A25795465F8F21;2720.
  ) 
 Here is how much of TeX's memory you used:
- 26306 strings out of 478300
- 498904 string characters out of 5845131
- 1005989 words of memory out of 5000000
- 43788 multiletter control sequences out of 15000+600000
+ 26317 strings out of 478300
+ 499059 string characters out of 5845131
+ 1006050 words of memory out of 5000000
+ 43796 multiletter control sequences out of 15000+600000
  485141 words of font info for 88 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  84i,8n,80p,526b,1884s stack positions out of 10000i,1000n,20000p,200000b,200000s
 {/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfrm1728.pfb>
-Output written on fase4.pdf (17 pages, 590652 bytes).
+Output written on fase4.pdf (17 pages, 2547137 bytes).
 PDF statistics:
- 523 PDF objects out of 1000 (max. 8388607)
- 454 compressed objects within 5 object streams
- 225 named destinations out of 1000 (max. 500000)
- 163 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 532 PDF objects out of 1000 (max. 8388607)
+ 462 compressed objects within 5 object streams
+ 227 named destinations out of 1000 (max. 500000)
+ 176 words of extra memory for PDF output out of 10000 (max. 10000000)
 

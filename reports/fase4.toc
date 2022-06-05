@@ -14,7 +14,8 @@
 \contentsline {section}{\numberline {3.1}Extensão ao XML}{10}{section.3.1}%
 \contentsline {section}{\numberline {3.2}Câmara FPS}{10}{section.3.2}%
 \contentsline {section}{\numberline {3.3}``\textit {Skybox}'' para sistema solar}{10}{section.3.3}%
-\contentsline {chapter}{\numberline {4}Exemplos de utilização}{12}{chapter.4}%
+\contentsline {section}{\numberline {3.4}Movimento no espaço através de periférico}{11}{section.3.4}%
+\contentsline {chapter}{\numberline {4}Exemplo de utilização}{12}{chapter.4}%
 \contentsline {chapter}{\numberline {5}Conclusão}{13}{chapter.5}%
 \contentsline {section}{\numberline {5.1}Comentários}{13}{section.5.1}%
 \contentsline {section}{\numberline {5.2}Trabalho Futuro}{13}{section.5.2}%
