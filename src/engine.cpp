@@ -1088,8 +1088,8 @@ void mouseFunc (int button, int state, int x, int y)
       if (button == 3)
         {
           globalRadius *= .8f;
-          if (globalRadius < 1.0f)
-            globalRadius = 1.0f;
+          if (globalRadius < .1f)
+            globalRadius = .1f;
         }
       else
         globalRadius *= 1.5;
@@ -1161,25 +1161,25 @@ void motionFunc (int x, int y)
 {
   if (globalMouseLeftButton)
     {
-      const double stepAlfa = 0.035;
+      const double stepAlfa = 0.04;
       const double stepBeta = 0.035;
 
-      if (x < globalXPrev)
+      if (x > globalXPrev) // moving mouse right
         globalAzimuth += stepAlfa;
-      else if (x > globalXPrev)
+      else if (x < globalXPrev) // moving mouse left
         globalAzimuth -= stepAlfa;
 
-      if (y < globalYPrev)
+      if (y > globalYPrev) // moving mouse up
         {
           globalElevation -= stepBeta;
-          if (globalElevation < -1.5)
-            globalElevation = -1.5;
+          if (globalElevation < .1)
+            globalElevation = .1;
         }
-      else if (y > globalYPrev)
+      else if (y < globalYPrev) // moving mouse down
         {
           globalElevation += stepBeta;
-          if (globalElevation > 1.5)
-            globalElevation = 1.5;
+          if (globalElevation > 3.1)
+            globalElevation = 3.1;
         }
 
       globalXPrev = x;
