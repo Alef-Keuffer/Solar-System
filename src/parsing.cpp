@@ -1,8 +1,10 @@
 #include <cstdio>
-#include <cstring>
+
+#include <string>
+#include <filesystem>
+#include <iostream>
 
 #include <vector>
-#include <iostream>
 
 #ifndef USE_SYSTEM
 #include <sys/wait.h>
@@ -16,49 +18,60 @@ using std::filesystem::current_path;
 #include "tinyxml2.h"
 #include "parsing.h"
 
-char globalGeneratorExecutable[BUFSIZ];
-bool globalUsingGenerator = false;
-
 /*! @addtogroup Operations
  * @{
  * # Data structure for Operations
- *
+ * ⟨position⟩⟨lookAt⟩⟨up⟩⟨projection⟩⟨light⟩⃰
  * @code{.unparsed}
- * ⟨operations⟩ ::= ⟨position⟩⟨lookAt⟩⟨up⟩⟨projection⟩⟨light⟩⃰ ⟨grouping⟩⁺
- *      ⟨position⟩,⟨lookAt⟩,⟨up⟩,⟨projection⟩ ::= ⟨vec3f⟩
- *       ⟨light⟩ ::= ⟨point⟩ | ⟨directional⟩ | ⟨spotlight⟩
- *            ⟨point⟩ ::= ⟨POINT⟩⟨vec3f⟩
- *            ⟨directional⟩ ::= ⟨DIRECTIONAL⟩⟨vec3f⟩
- *            ⟨spotlight⟩ ::= ⟨SPOTLIGHT⟩⟨vec3f⟩⟨vec3f⟩⟨cutoff⟩
- *                ⟨cutoff⟩ ::= ⟨float⟩ ∈ [0,90] ∪ {180}
+ * ⟨nfloat⟩ ::= ⟨float⟩ ∈ [0,1]
+ * ⟨nvec3f⟩ ::= ⟨nfloat⟩⟨nfloat⟩⟨nfloat⟩
+ * ⟨vec3f⟩  ::= ⟨float⟩⟨float⟩⟨float⟩
+ *
+ *
+ *
+ * ⟨operations⟩ ::= ⟨grouping⟩⁺
  *
  * ⟨grouping⟩ ::= ⟨BEGIN_GROUP⟩⟨elem⟩⁺⟨END_GROUP⟩
- *      ⟨elem⟩ ::= ⟨transformation⟩ | ⟨model_loading⟩ | ⟨grouping⟩
+ *      ⟨elem⟩ ::= ⟨transformation⟩| ⟨model_loading⟩ | ⟨light⟩
+ *                | ⟨position⟩ | ⟨lookAt⟩ | ⟨up⟩ | ⟨projection⟩
+ *                | ⟨grouping⟩
+ *
+ *      ⟨position⟩ ::= ⟨POSITION⟩ ⟨vec3f⟩
+ *      ⟨lookAt⟩ ::= ⟨lookAt⟩ ⟨vec3f⟩
+ *      ⟨up⟩ ::= ⟨UP⟩ ⟨vec3f⟩
+ *      ⟨projection⟩ ::= ⟨PROJECTION⟩ ⟨vec3f⟩
+
+ * ⟨light⟩ ::= ⟨point⟩ | ⟨directional⟩ | ⟨spotlight⟩
+ *     ⟨point⟩        ::= ⟨POINT⟩⟨nvec3f⟩
+ *     ⟨directional⟩  ::= ⟨DIRECTIONAL⟩⟨nvec3f⟩
+ *     ⟨spotlight⟩    ::= ⟨SPOTLIGHT⟩⟨nvec3f⟩⟨nvec3f⟩⟨cutoff⟩
+ *     ⟨cutoff⟩       ::= ⟨float⟩ ∈ [0,90] ∪ {180}
  *
  * ⟨transformation⟩ ::= ⟨translation⟩ | ⟨rotation⟩ | ⟨scaling⟩
+ *
  *      ⟨translation⟩ ::= ⟨simple_translation⟩ | ⟨extended_translation⟩
- *           ⟨simple_translation⟩ ::= ⟨TRANSLATE⟩⟨float⟩⟨float⟩⟨float⟩
+ *           ⟨simple_translation⟩   ::= ⟨TRANSLATE⟩⟨vec3f⟩
  *           ⟨extended_translation⟩ ::= ⟨EXTENDED_TRANSLATE⟩⟨time⟩⟨align⟩⟨number_of_points⟩⟨vec3f⟩⁺
- *               ⟨time⟩  ::= ⟨float⟩
- *               ⟨align⟩ ::= ⟨bool⟩
+ *               ⟨time⟩             ::= ⟨float⟩
+ *               ⟨align⟩            ::= ⟨bool⟩
  *               ⟨number_of_points⟩ ::= ⟨int⟩
+ *
  *      ⟨rotation⟩ ::= ⟨simple_rotation⟩ | ⟨extended_rotation⟩
- *           ⟨simple_rotation⟩ ::= ⟨ROTATE⟩⟨float⟩⟨float⟩⟨float⟩[angle]
+ *           ⟨simple_rotation⟩ ::= ⟨ROTATE⟩⟨vec3f⟩[angle]
  *               ⟨angle⟩ ::= ⟨float⟩
  *           ⟨extended_rotation⟩ ::= ⟨EXTENDED_ROTATE⟩⟨vec3f⟩
- *      ⟨scaling⟩ ::= ⟨SCALE⟩⟨float⟩⟨float⟩⟨float⟩
+ *
+ *      ⟨scaling⟩ ::= ⟨SCALE⟩⟨vec3f⟩
+ *
  *
  * ⟨model_loading⟩ ::= ⟨BEGIN_MODEL⟩ ⟨number of characters⟩ ⟨char⟩⁺ [texture] [color] ⟨END_MODEL⟩
  *      ⟨number of characters⟩ ::= ⟨int⟩
  *
  * ⟨texture⟩ ::= ⟨TEXTURE⟩ ⟨number of characters⟩ ⟨char⟩⁺
- * ⟨color⟩   ::=  (⟨DIFFUSE⟩ | ⟨AMBIENT⟩ | ⟨SPECULAR⟩ | ⟨EMISSIVE⟩) ⟨color_vec3f⟩
+ * ⟨color⟩   ::=  (⟨DIFFUSE⟩ | ⟨AMBIENT⟩ | ⟨SPECULAR⟩ | ⟨EMISSIVE⟩) ⟨nvec3f⟩
  *              | ⟨SHININESS⟩ ⟨shininess_float⟩
- *      ⟨color_vec3f⟩ ::= ⟨red⟩⟨green⟩⟨blue⟩
- *          ⟨red⟩,⟨green⟩,⟨blue⟩ ::= ⟨float⟩ ∈ {0,...,255}
  *      ⟨shininess_float⟩ ::= ⟨float⟩ ∈ [0, 128]
  *
- * ⟨vec3f⟩ ::= ⟨float⟩⟨float⟩⟨float⟩
  * @endcode
  *
  * Note: we'll use an array of floats, therefore we will need to cast to char when reading
@@ -73,6 +86,20 @@ using tinyxml2::XMLElement;
 using tinyxml2::XMLDocument, tinyxml2::XML_SUCCESS, tinyxml2::XMLError, tinyxml2::XML_NO_ATTRIBUTE;
 using std::cerr, std::endl;
 using std::string;
+
+string globalGeneratorExecutable;
+bool globalUsingGenerator = false;
+
+using std::string, std::filesystem::exists, std::cerr, std::endl;
+
+void crash_if_file_does_not_exist (const string &filename, const string &additional_info = "")
+{
+  if (!exists (filename))
+    {
+      cerr << "[parsing] Failed loading " << filename << " " << additional_info << endl;
+      exit (EXIT_FAILURE);
+    }
+}
 
 void crashIfFailedAttributeQuery (const XMLError error, const XMLElement &element, const string &attributeName)
 {
@@ -91,39 +118,34 @@ float getFloatAttribute (const XMLElement &e, const string &attributeName)
   return attributeValue;
 }
 
+
 template<typename T>
 T getAttribute (const XMLElement &e, const string &attributeName)
 {
   T _attributeValue;
   XMLError error;
-  if (std::is_same<float, T>::value)
+
+  if constexpr(std::is_same<string, T>::value)
+    {
+      const char **attributeValue;
+      error = e.QueryStringAttribute (attributeName.c_str (), attributeValue);
+      _attributeValue = string{*attributeValue};
+    }
+  else if constexpr(std::is_same<float, T>::value)
     {
       float attributeValue;
       error = e.QueryFloatAttribute (attributeName.c_str (), &attributeValue);
       _attributeValue = attributeValue;
     }
-  else if (std::is_same<bool, T>::value)
+  else if constexpr(std::is_same<bool, T>::value)
     {
       bool attributeValue;
       error = e.QueryBoolAttribute (attributeName.c_str (), &attributeValue);
       _attributeValue = attributeValue;
     }
-  else if (std::is_same<string, T>::value)
-    {
-      const char **attributeValue;
-      error = e.QueryStringAttribute (attributeName.c_str (), attributeValue);
-      _attributeValue = **attributeValue;
-    }
+
   crashIfFailedAttributeQuery (error, e, attributeName);
   return _attributeValue;
-}
-
-string getStringAttribute (const XMLElement &e, const string &attributeName)
-{
-  const char **attributeValue;
-  XMLError error = e.QueryStringAttribute (attributeName.c_str (), attributeValue);
-  crashIfFailedAttributeQuery (error, e, attributeName);
-  return string{*attributeValue};
 }
 
 void operations_push_transform_attributes (
@@ -241,23 +263,12 @@ void operations_push_transforms (const XMLElement *const transforms, vector<floa
  */
 
 int operations_push_string_attribute (
-    const XMLElement *const element,
+    const XMLElement &element,
     vector<float> &operations,
-    const char *const attribute_name)
+    string &&attribute_name)
 {
 
-  const char *const element_attribute_value = element->Attribute (attribute_name);
-  if (element_attribute_value == nullptr)
-    {
-      cerr << "[parsing] [operations_push_string_attribute] failed: attrbute " << attribute_name << " does not exist"
-           << endl;
-      exit (EXIT_FAILURE);
-    }
-  if (access (element_attribute_value, F_OK))
-    {
-      cerr << "[parsing] file " << element_attribute_value << " not found" << endl;
-      exit (EXIT_FAILURE);
-    }
+  auto element_attribute_value = getAttribute<string> (element, attribute_name);
   int i = 0;
   do
     operations.push_back (element_attribute_value[i++]);
@@ -267,44 +278,33 @@ int operations_push_string_attribute (
   return i;
 }
 
-void operations_push_model (const XMLElement *const model, vector<float> &operations)
+void operations_push_model (const XMLElement &model, vector<float> &operations)
 {
   operations.push_back (BEGIN_MODEL);
   {
 
-    const char *const model_name = model->Attribute ("file");
-    if (model_name == nullptr)
-      {
-        cerr << "[parsing] [operations_push_string_attribute] failed: attrbute file does not exist" << endl;
-        exit (EXIT_FAILURE);
-      }
-
+    auto model_name = getAttribute<string> (model, "file");
     cerr << "[parsing]: BEGIN_MODEL(" << model_name << ")" << endl;
 
     // generate model if specified
-    const XMLElement *const generator = model->FirstChildElement ("generator");
+    const XMLElement *const generator = model.FirstChildElement ("generator");
 
     if (globalUsingGenerator && generator != nullptr)
       {
         cerr << "[parsing] generating model " << model_name << endl;
-        const char *generator_argv[10];
-        if (generator->QueryStringAttribute ("argv", generator_argv))
-          {
-            cerr << "failed parsing argv attribute of generator at model " << model_name << endl;
-            exit (EXIT_FAILURE);
-          }
+        auto generator_argv = getAttribute<string> (*generator, "argv");
 #ifndef USE_SYSTEM
         int stat;
         if ((stat = fork ()) == 0)
           {
             wordexp_t p;
             wordexp ("generator", &p, WRDE_NOCMD | WRDE_UNDEF);
-            if (wordexp (*generator_argv, &p, WRDE_NOCMD | WRDE_UNDEF | WRDE_APPEND))
+            if (wordexp (generator_argv.c_str (), &p, WRDE_NOCMD | WRDE_UNDEF | WRDE_APPEND))
               {
                 cerr << "[parsing] failed argv expansion for model " << model_name << endl;
                 exit (EXIT_FAILURE);
               }
-            execv (globalGeneratorExecutable, p.we_wordv);
+            execv (globalGeneratorExecutable.c_str (), p.we_wordv);
             perror ("[operations_push_model child] generator failed");
             _exit (EXIT_FAILURE);
           }
@@ -334,20 +334,20 @@ void operations_push_model (const XMLElement *const model, vector<float> &operat
 
     if (string_len <= 0)
       {
-        fprintf (stderr, "[parsing] filename is empty");
+        cerr << "[parsing] filename is empty" << endl;
         exit (EXIT_FAILURE);
       }
   }
 
   //texture
-  const XMLElement *const texture = model->FirstChildElement ("texture");
+  const XMLElement *const texture = model.FirstChildElement ("texture");
   if (texture != nullptr)
     {
       operations.push_back (TEXTURE);
-      operations_push_string_attribute (texture, operations, "file");
+      operations_push_string_attribute (*texture, operations, "file");
     }
   //color (material colors)
-  const XMLElement *const color = model->FirstChildElement ("color");
+  const XMLElement *const color = model.FirstChildElement ("color");
   if (color != nullptr)
     {
       const int n = 4;
@@ -360,38 +360,17 @@ void operations_push_model (const XMLElement *const model, vector<float> &operat
             {
               const float RGB_MAX = 255.0f;
               operations.push_back (colorTypes[c]);
-              float R;
-              if (color_comp->QueryFloatAttribute ("R", &R))
-                {
-                  cerr << "[parsing] failed parsing R component" << endl;
-                  exit (EXIT_FAILURE);
-                }
-              float G;
-              if (color_comp->QueryFloatAttribute ("G", &G))
-                {
-                  cerr << "[parsing] failed parsing G component" << endl;
-                  exit (EXIT_FAILURE);
-                }
-              float B;
-              if (color_comp->QueryFloatAttribute ("B", &B))
-                {
-                  cerr << "[parsing] failed parsing B component" << endl;
-                  exit (EXIT_FAILURE);
-                }
-              operations.insert (operations.end (),
-                                 {R / RGB_MAX, G / RGB_MAX, B / RGB_MAX});
+              auto R = getAttribute<float> (*color_comp, "R");
+              auto G = getAttribute<float> (*color_comp, "G");
+              auto B = getAttribute<float> (*color_comp, "B");
+              operations.insert (operations.end (), {R / RGB_MAX, G / RGB_MAX, B / RGB_MAX});
             }
         }
       const XMLElement *const shininess = color->FirstChildElement ("shininess");
       if (shininess != nullptr)
         {
           operations.push_back (SHININESS);
-          float value;
-          if (shininess->QueryFloatAttribute ("value", &value))
-            {
-              cerr << "[parsing] failed parsing value attribute of shininess" << endl;
-              exit (EXIT_FAILURE);
-            }
+          auto value = getAttribute<float> (*shininess, "value");
           operations.push_back (value);
         }
     }
@@ -403,7 +382,7 @@ void operations_push_models (const XMLElement *const models, vector<float> &oper
 {
   const XMLElement *model = models->FirstChildElement ("model");
   do
-    operations_push_model (model, operations);
+    operations_push_model (*model, operations);
   while ((model = model->NextSiblingElement ("model")));
 }
 //! @} end of group Models
@@ -437,70 +416,44 @@ void operations_push_groups (const XMLElement &group, vector<float> &operations)
  *@{*/
 
 
-void operations_push_lights (const XMLElement *const lights, vector<float> &operations)
+void operations_push_lights (const XMLElement &lights, vector<float> &operations)
 {
-  const XMLElement *light = lights->FirstChildElement ();
+  const XMLElement *light = lights.FirstChildElement ();
   do
     {
-      const char *lightType[2];
-      if (light->QueryStringAttribute ("type", lightType))
-        {
-          cerr << "failed parsing type attribute of light" << endl;
-          exit (EXIT_FAILURE);
-        }
-      if (!strcmp (*lightType, "point"))
+      auto lightType = getAttribute<string> (*light, "type");
+      if ("point" == lightType)
         {
           operations.push_back (POINT);
-          float posX, posY, posZ;
-          if (light->QueryFloatAttribute ("posX", &posX)
-              | light->QueryFloatAttribute ("posY", &posY)
-              | light->QueryFloatAttribute ("posZ", &posZ))
-            {
-              cerr << "[parsing] Failed parsing POINT posX or posY or posZ" << endl;
-              exit (EXIT_FAILURE);
-            }
+          auto posX = getAttribute<float> (*light, "posX");
+          auto posY = getAttribute<float> (*light, "posY");
+          auto posZ = getAttribute<float> (*light, "posZ");
           operations.insert (operations.end (), {posX, posY, posZ});
 
         }
-      else if (!strcmp (*lightType, "directional"))
+      else if ("directional" == lightType)
         {
           operations.push_back (DIRECTIONAL);
-          float dirX, dirY, dirZ;
-          if (light->QueryFloatAttribute ("dirX", &dirX)
-              | light->QueryFloatAttribute ("dirY", &dirY)
-              | light->QueryFloatAttribute ("dirZ", &dirZ))
-            {
-              cerr << "[parsing] Failed parsing DIRECTIONAL dirX or dirY or dirZ" << endl;
-              exit (EXIT_FAILURE);
-            }
+
+          auto dirX = getAttribute<float> (*light, "dirX");
+          auto dirY = getAttribute<float> (*light, "dirY");
+          auto dirZ = getAttribute<float> (*light, "dirZ");
+
           operations.insert (operations.end (), {dirX, dirY, dirZ});
         }
-      else if (!strcmp (*lightType, "spotlight"))
+      else if ("spotlight" == lightType)
         {
           operations.push_back (SPOTLIGHT);
-          float posX, posY, posZ;
-          if (light->QueryFloatAttribute ("posX", &posX)
-              | light->QueryFloatAttribute ("posY", &posY)
-              | light->QueryFloatAttribute ("posZ", &posZ))
-            {
-              cerr << "[parsing] Failed parsing SPOTLIGHT posX or posY or posZ" << endl;
-              exit (EXIT_FAILURE);
-            }
+          auto posX = getAttribute<float> (*light, "posX");
+          auto posY = getAttribute<float> (*light, "posY");
+          auto posZ = getAttribute<float> (*light, "posZ");
 
-          float dirX, dirY, dirZ;
-          if (light->QueryFloatAttribute ("dirX", &dirX)
-              | light->QueryFloatAttribute ("dirY", &dirY)
-              | light->QueryFloatAttribute ("dirZ", &dirZ))
-            {
-              cerr << "[parsing] Failed parsing SPOTLIGHT dirX or dirY or dirZ" << endl;
-              exit (EXIT_FAILURE);
-            }
-          float cutoff;
-          if (light->QueryFloatAttribute ("cutoff", &cutoff))
-            {
-              cerr << "[parsing] Failed parsing SPOTLIGHT cutoff" << endl;
-              exit (EXIT_FAILURE);
-            }
+          auto dirX = getAttribute<float> (*light, "dirX");
+          auto dirY = getAttribute<float> (*light, "dirY");
+          auto dirZ = getAttribute<float> (*light, "dirZ");
+
+          auto cutoff = getAttribute<float> (*light, "cutoff");
+
           operations.insert (operations.end (), {
               posX, posY, posZ,
               dirX, dirY, dirZ,
@@ -509,7 +462,7 @@ void operations_push_lights (const XMLElement *const lights, vector<float> &oper
         }
       else
         {
-          fprintf (stderr, "[parsing] Unkown light type: %s\n", lightType);
+          cerr << "[parsing] Unknown light type: " << lightType << endl;
           exit (EXIT_FAILURE);
         }
     }
@@ -524,7 +477,7 @@ void operations_load_xml (const string &filename, vector<float> &operations)
     {
       if (doc.ErrorID () == tinyxml2::XML_ERROR_FILE_NOT_FOUND)
         cerr << "[parsing] Failed loading file: '" << filename << "'" << endl;
-      fprintf (stderr, "%s", doc.ErrorName ());
+      cerr << doc.ErrorName () << endl;
       exit (EXIT_FAILURE);
     }
 
@@ -538,36 +491,21 @@ void operations_load_xml (const string &filename, vector<float> &operations)
   const XMLElement &position = *camera.FirstChildElement ("position");
   operations_push_transform_attributes (position, operations);
 
-  const XMLElement *const lookAt = camera.FirstChildElement ("lookAt");
-  operations_push_transform_attributes (*lookAt, operations);
+  const XMLElement &lookAt = *camera.FirstChildElement ("lookAt");
+  operations_push_transform_attributes (lookAt, operations);
 
-  const XMLElement *const up = camera.FirstChildElement ("up");
-  if (up)
+  const XMLElement *up = camera.FirstChildElement ("up");
+  if (up != nullptr)
     operations_push_transform_attributes (*up, operations);
   else
     operations.insert (operations.end (), {0, 1, 0});
 
   const XMLElement *const projection = camera.FirstChildElement ("projection");
-  if (projection)
+  if (projection != nullptr)
     {
-      float fov;
-      if (projection->QueryFloatAttribute ("fov", &fov))
-        {
-          cerr << "[parsing] Failed parsing fov" << endl;
-          exit (EXIT_FAILURE);
-        }
-      float near;
-      if (projection->QueryFloatAttribute ("near", &near))
-        {
-          cerr << "[parsing] Failed parsing near" << endl;
-          exit (EXIT_FAILURE);
-        }
-      float far;
-      if (projection->QueryFloatAttribute ("far", &far))
-        {
-          cerr << "[parsing] Failed parsing far" << endl;
-          exit (EXIT_FAILURE);
-        }
+      auto fov = getAttribute<float> (*projection, "fov");
+      auto near = getAttribute<float> (*projection, "near");
+      auto far = getAttribute<float> (*projection, "far");
       operations.insert (operations.end (), {fov, near, far});
     }
   else
@@ -577,26 +515,16 @@ void operations_load_xml (const string &filename, vector<float> &operations)
   // lights
   const XMLElement *const lights = world->FirstChildElement ("lights");
   if (lights != nullptr)
-    operations_push_lights (lights, operations);
-
+    operations_push_lights (*lights, operations);
 
   // find generator if it exists
   const XMLElement *const generator = world->FirstChildElement ("generator");
   if (generator != nullptr)
     {
-      const char *generator_executable[BUFSIZ];
-      if (generator->QueryStringAttribute ("dir", generator_executable))
-        {
-          cerr << "[parsing] failed parsing attribute dir of generator" << endl;
-          exit (EXIT_FAILURE);
-        }
-      if (access (*generator_executable, F_OK))
-        {
-          cerr << "[parsing] generator " << *generator_executable << " not found" << endl;
-          exit (EXIT_FAILURE);
-        }
-      cerr << "[parsing] using generator " << *generator_executable << endl;
-      strncpy (globalGeneratorExecutable, *generator_executable, BUFSIZ);
+      auto generator_executable = getAttribute<string> (*generator, "dir");
+      crash_if_file_does_not_exist (generator_executable);
+      cerr << "[parsing] using generator " << generator_executable << endl;
+      globalGeneratorExecutable = generator_executable;
       globalUsingGenerator = true;
     }
 
