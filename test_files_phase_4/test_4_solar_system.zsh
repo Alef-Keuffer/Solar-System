@@ -41,7 +41,7 @@ sed -e "s/MERCURY/$MERCURY_D/g"\
     -e "s/SATURN/$SATURN_D/g"\
     -e "s/URANUS/$URANUS_D/g"\
     -e "s/NEPTUNE/$NEPTUNE_D/g"\
-    solar_system.template.xml > solar_system.xml
+    solar_system.xml.template > solar_system.xml
 
 ../bin/engine solar_system.xml
 rm -f mercury.3d venus.3d earth.3d mars.3d jupiter.3d saturn.3d uranus.3d neptune.3d sun.3d teapot.3d solar_system.xml

@@ -14,6 +14,7 @@ find_package(GLEW REQUIRED)
 find_package(GLUT REQUIRED)
 find_package(DevIL REQUIRED)
 find_package(glm REQUIRED)
+#find_package(tinyxml2 REQUIRED)
 
 link_libraries(glm ${OPENGL_LIBRARIES} ${GLEW_LIBRARIES} ${GLUT_LIBRARIES} ${IL_LIBRARIES})
 
@@ -25,8 +26,6 @@ set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 add_library(curves src/curves.cpp src/curves.h)
 link_libraries(curves)
 
-add_executable(${PROJECT_NAME} src/main.cpp)
-
 add_executable(generator src/generator.cpp)
 add_executable(engine src/engine.cpp)
 
@@ -35,17 +34,15 @@ target_link_libraries(parsing tinyxml2)
 
 add_library(util src/util.cpp src/util.h)
 
-#find_package(tinyxml2 REQUIRED)
-target_link_libraries(${PROJECT_NAME} tinyxml2)
 target_link_libraries(engine tinyxml2 parsing ${OPENGL_LIBRARIES} ${GLUT_LIBRARIES})
 add_dependencies(engine generator)
 
 foreach (folder test_files_phase_1 test_files_phase_2 test_files_phase_3 test_files_phase_4)
     file(GLOB files "${folder}/*.sh" "${folder}/*.zsh")
     foreach (file ${files})
-        get_filename_component(tname ${file} NAME)
+        get_filename_component(pname ${file} NAME_WE)
         add_custom_target(
-                ${tname}
+                ${pname}
                 COMMAND ${file}
                 WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/${folder}
                 DEPENDS engine generator
@@ -63,13 +60,6 @@ add_custom_target(
 
 # Tests
 
-add_custom_target(
-        test_2_4
-        COMMAND engine test_2_4.xml
-        COMMAND rm -f *.3d
-        WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/test_files_phase_2
-        DEPENDS engine generator
-)
 add_custom_target(
         test_3_1
         COMMAND generator bezier teapot.patch 10 teapot.3d
