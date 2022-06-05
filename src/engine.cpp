@@ -121,19 +121,20 @@ void
 spherical2Cartesian (const double radius, const double elevation, const double azimuth,
                      double *x, double *y, double *z)
 {
-
-  *x = radius * cos (elevation) * sin (azimuth) + globalCenterX;
-  *y = radius * sin (elevation) + globalCenterY;
-  *z = radius * cos (elevation) * cos (azimuth) + globalCenterZ;
+  // https://www.wikiwand.com/en/Spherical_coordinate_system
+  *x = radius * sin (elevation) * cos (azimuth) + globalCenterX;
+  *y = radius * cos (elevation) + globalCenterY;
+  *z = radius * sin (elevation) * sin (azimuth) + globalCenterZ;
 }
 
 void
 cartesian2Spherical (const double x, const double y, const double z,
                      double *radius, double *azimuth, double *elevation)
 {
+  // https://www.wikiwand.com/en/Spherical_coordinate_system
   *radius = abs (sqrt (pow ((x - globalCenterX), 2) + pow ((y - globalCenterY), 2) + pow ((z - globalCenterZ), 2)));
-  *elevation = asin ((y - globalCenterY) / (*radius));
-  *azimuth = asin ((x - globalCenterX) / (*radius * cos (*elevation)));
+  *elevation = acos ((y - globalCenterY) / (*radius));
+  *azimuth = atan2((z - globalCenterZ),(x - globalCenterZ));
 }
 
 //! @} end of group spherical
