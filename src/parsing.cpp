@@ -3,9 +3,7 @@
 
 #include <vector>
 #include <iostream>
-#include <csignal>
 #include <sys/wait.h>
-#include <pg_config.h>
 #include <wordexp.h>
 #include <cassert>
 
