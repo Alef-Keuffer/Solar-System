@@ -243,11 +243,11 @@ void fpsCamera ()
     }
   if (globalMotion.Down)
     {
-      globalFpsCamY += sens;
+      globalFpsCamY += 1 / sens;
     }
   if (globalMotion.Up)
     {
-      globalFpsCamY -= sens;
+      globalFpsCamY -= 1 / sens;
     }
   /*limit the values of pitch
     between -60 and 70
