@@ -37,7 +37,7 @@ target_link_libraries(${PROJECT_NAME} tinyxml2)
 target_link_libraries(engine tinyxml2 parsing ${OPENGL_LIBRARIES} ${GLUT_LIBRARIES})
 add_dependencies(engine generator)
 
-foreach (folder test_files_phase_1 test_files_phase_2)
+foreach (folder test_files_phase_1 test_files_phase_2 test_files_phase_3 test_files_phase_4)
     file(GLOB files "${folder}/*.sh" "${folder}/*.zsh")
     foreach (file ${files})
         get_filename_component(tname ${file} NAME)

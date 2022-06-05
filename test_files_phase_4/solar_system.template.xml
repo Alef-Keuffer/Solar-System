@@ -18,6 +18,7 @@
             </transform>
             <models>
                 <model file="teapot.3d"/>
+                <generator argv="bezier ../test_files_phase_3/teapot.patch 10 teapot.3d"/>
             </models>
         </group>
 
