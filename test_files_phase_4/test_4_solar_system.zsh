@@ -21,6 +21,8 @@ RES=64
 ../bin/generator sphere "$NEPTUNE_R" $RES $RES neptune.3d
 ../bin/generator sphere "$SUN_R" $RES $RES sun.3d
 ../bin/generator bezier ../test_files_phase_3/teapot.patch 10 teapot.3d
+../bin/generator sphere 100000 1000 1000 sky.3d
+#../bin/generator box 200000 30 sky.3d
 
 MERCURY_D=$(((SUN_R+MERCURY_R)*1.3))
 VENUS_D=$(((MERCURY_D+VENUS_R)*1.5))
@@ -42,4 +44,4 @@ sed -e "s/MERCURY/$MERCURY_D/g"\
     solar_system.template.xml > solar_system.xml
 
 ../bin/engine solar_system.xml
-rm mercury.3d venus.3d earth.3d mars.3d jupiter.3d saturn.3d uranus.3d neptune.3d sun.3d teapot.3d solar_system.xml
+rm -f mercury.3d venus.3d earth.3d mars.3d jupiter.3d saturn.3d uranus.3d neptune.3d sun.3d teapot.3d solar_system.xml
