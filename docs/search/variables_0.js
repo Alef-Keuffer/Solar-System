@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['ambient_0',['ambient',['../structmodel.html#a00b5f9a4d259fc06bacda6d4bbb8223a',1,'model']]]
+  ['ambient_0',['ambient',['../structmodel.html#a59802909659217ceee78acd7fab03b01',1,'model']]]
 ];

@@ -104,13 +104,20 @@ $(document).ready(function(){initNavTree('parsing_8cpp.html',''); initResizable(
 
 <div class="header">
   <div class="summary">
-<a href="#func-members">Functions</a>  </div>
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle"><div class="title">parsing.cpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;vector&gt;</code><br />
-<code>#include &lt;stdio.h&gt;</code><br />
-<code>#include &lt;string.h&gt;</code><br />
+<div class="textblock"><code>#include &lt;cstdio&gt;</code><br />
+<code>#include &lt;cstring&gt;</code><br />
+<code>#include &lt;vector&gt;</code><br />
+<code>#include &lt;iostream&gt;</code><br />
+<code>#include &lt;csignal&gt;</code><br />
+<code>#include &lt;sys/wait.h&gt;</code><br />
+<code>#include &lt;pg_config.h&gt;</code><br />
+<code>#include &lt;wordexp.h&gt;</code><br />
+<code>#include &lt;cassert&gt;</code><br />
 <code>#include &quot;tinyxml2.h&quot;</code><br />
 <code>#include &quot;<a class="el" href="parsing_8h_source.html">parsing.h</a>&quot;</code><br />
 </div><div class="textblock"><div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
@@ -118,137 +125,75 @@ $(document).ready(function(){initNavTree('parsing_8cpp.html',''); initResizable(
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="parsing_8cpp__incl.svg" width="415" height="187"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="parsing_8cpp__incl.svg" width="100%" height="440"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
 </div>
 </div>
 <p><a href="parsing_8cpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ga322e67bfbfd0f7db581a853b85fea9c1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___transforms.html#ga322e67bfbfd0f7db581a853b85fea9c1">operations_push_transform_attributes</a> (const XMLElement *transform, std::vector&lt; float &gt; *operations)</td></tr>
-<tr class="separator:ga322e67bfbfd0f7db581a853b85fea9c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga9fb2cf393283a6c4e01669d004e011cb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___transforms.html#ga9fb2cf393283a6c4e01669d004e011cb">operations_push_extended_translate_attributes</a> (const XMLElement *extended_translate, std::vector&lt; float &gt; *operations)</td></tr>
-<tr class="separator:ga9fb2cf393283a6c4e01669d004e011cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gafa423b24e0a976a40fa25bde5279d6da"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___transforms.html#gafa423b24e0a976a40fa25bde5279d6da">operations_push_transformation</a> (const XMLElement *transformation, vector&lt; float &gt; *operations)</td></tr>
-<tr class="separator:gafa423b24e0a976a40fa25bde5279d6da"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gad83b646af5265ef92c21db557652be7d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___transforms.html#gad83b646af5265ef92c21db557652be7d">operations_push_transforms</a> (XMLElement *transforms, std::vector&lt; float &gt; *operations)</td></tr>
-<tr class="separator:gad83b646af5265ef92c21db557652be7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaa7a60aeaf83f15158c6896c1b817eeee"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___models.html#gaa7a60aeaf83f15158c6896c1b817eeee">operations_push_string_attribute</a> (const XMLElement *element, vector&lt; float &gt; *operations, const char *attribute_name)</td></tr>
-<tr class="separator:gaa7a60aeaf83f15158c6896c1b817eeee"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaea4cf479be9d482699b0a7871a19efed"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___models.html#gaea4cf479be9d482699b0a7871a19efed">operations_push_model</a> (const XMLElement *<a class="el" href="structmodel.html">model</a>, vector&lt; float &gt; *operations)</td></tr>
-<tr class="separator:gaea4cf479be9d482699b0a7871a19efed"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gae6874961000e3d9274674e4f9c21dd60"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___models.html#gae6874961000e3d9274674e4f9c21dd60">operations_push_models</a> (XMLElement *models, std::vector&lt; float &gt; *operations)</td></tr>
-<tr class="separator:gae6874961000e3d9274674e4f9c21dd60"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga72c2d5ef943a89f829c08f6707e7669d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___groups.html#ga72c2d5ef943a89f829c08f6707e7669d">operations_push_groups</a> (tinyxml2::XMLElement *group, std::vector&lt; float &gt; *operations)</td></tr>
-<tr class="separator:ga72c2d5ef943a89f829c08f6707e7669d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga13d09c76a06c071031512828eb7bc4fa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xml.html#ga13d09c76a06c071031512828eb7bc4fa">operations_push_lights</a> (const XMLElement *lights, vector&lt; float &gt; *operations)</td></tr>
-<tr class="separator:ga13d09c76a06c071031512828eb7bc4fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gac937a83a82258806ef77b02f97ef0834"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xml.html#gac937a83a82258806ef77b02f97ef0834">operations_load_xml</a> (const char *filename, std::vector&lt; float &gt; *operations)</td></tr>
-<tr class="separator:gac937a83a82258806ef77b02f97ef0834"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga8ad288d2a741eb3d632a6d3e005c4347"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___printing.html#ga8ad288d2a741eb3d632a6d3e005c4347">operations_print</a> (std::vector&lt; float &gt; *operations)</td></tr>
-<tr class="separator:ga8ad288d2a741eb3d632a6d3e005c4347"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a46d5190ea0181cc625329b5221e9dce9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parsing_8cpp.html#a46d5190ea0181cc625329b5221e9dce9">example1</a> (const char *filename)</td></tr>
-<tr class="separator:a46d5190ea0181cc625329b5221e9dce9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a75c2e94360fa8e46050b4f66fe444d6b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parsing_8cpp.html#a75c2e94360fa8e46050b4f66fe444d6b">main2</a> (int argc, char *argv[])</td></tr>
-<tr class="separator:a75c2e94360fa8e46050b4f66fe444d6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa8e01339ca5863980bb193197d4781e2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___transforms.html#gaa8e01339ca5863980bb193197d4781e2">operations_push_transform_attributes</a> (const XMLElement *const transform, vector&lt; float &gt; &amp;operations)</td></tr>
+<tr class="separator:gaa8e01339ca5863980bb193197d4781e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga34490f49c910f6ad0b3b39d97ca6991f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___transforms.html#ga34490f49c910f6ad0b3b39d97ca6991f">operations_push_extended_translate_attributes</a> (const XMLElement *const extended_translate, vector&lt; float &gt; &amp;operations)</td></tr>
+<tr class="separator:ga34490f49c910f6ad0b3b39d97ca6991f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9b8048838c7a406b93e9677dd9cb4373"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___transforms.html#ga9b8048838c7a406b93e9677dd9cb4373">operations_push_transformation</a> (const XMLElement *const transformation, vector&lt; float &gt; &amp;operations)</td></tr>
+<tr class="separator:ga9b8048838c7a406b93e9677dd9cb4373"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab74408a65711c19872c69797a55c6229"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___transforms.html#gab74408a65711c19872c69797a55c6229">operations_push_transforms</a> (const XMLElement *const transforms, vector&lt; float &gt; &amp;operations)</td></tr>
+<tr class="separator:gab74408a65711c19872c69797a55c6229"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa31dcad7bd49e781068f4d5f42734e2a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___models.html#gaa31dcad7bd49e781068f4d5f42734e2a">operations_push_string_attribute</a> (const XMLElement *const element, vector&lt; float &gt; &amp;operations, const char *const attribute_name)</td></tr>
+<tr class="separator:gaa31dcad7bd49e781068f4d5f42734e2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9c6066851b617631703c06b7aa6f72ac"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___models.html#ga9c6066851b617631703c06b7aa6f72ac">operations_push_model</a> (const XMLElement *const <a class="el" href="structmodel.html">model</a>, vector&lt; float &gt; &amp;operations)</td></tr>
+<tr class="separator:ga9c6066851b617631703c06b7aa6f72ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf4f69faf6a2c6db692bd0f742c08ca17"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___models.html#gaf4f69faf6a2c6db692bd0f742c08ca17">operations_push_models</a> (const XMLElement *const models, vector&lt; float &gt; &amp;operations)</td></tr>
+<tr class="separator:gaf4f69faf6a2c6db692bd0f742c08ca17"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2729bcb63525027c28b0107fe17d3a06"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___groups.html#ga2729bcb63525027c28b0107fe17d3a06">operations_push_groups</a> (const XMLElement *const group, vector&lt; float &gt; &amp;operations)</td></tr>
+<tr class="separator:ga2729bcb63525027c28b0107fe17d3a06"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gadda1aacffc4688669d0253cec56f849b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xml.html#gadda1aacffc4688669d0253cec56f849b">operations_push_lights</a> (const XMLElement *const lights, vector&lt; float &gt; &amp;operations)</td></tr>
+<tr class="separator:gadda1aacffc4688669d0253cec56f849b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad700972f3f382c3cc5658ce95361ad0e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xml.html#gad700972f3f382c3cc5658ce95361ad0e">operations_load_xml</a> (const char *const filename, vector&lt; float &gt; &amp;operations)</td></tr>
+<tr class="separator:gad700972f3f382c3cc5658ce95361ad0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:ace1b3cf8879ded43bfa81197871b4725"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parsing_8cpp.html#ace1b3cf8879ded43bfa81197871b4725">globalGeneratorExecutable</a> [BUFSIZ]</td></tr>
+<tr class="separator:ace1b3cf8879ded43bfa81197871b4725"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa2a94b428d69819b582c4c971e757e5e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parsing_8cpp.html#aa2a94b428d69819b582c4c971e757e5e">globalUsingGenerator</a> = false</td></tr>
+<tr class="separator:aa2a94b428d69819b582c4c971e757e5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Function Documentation</h2>
-<a id="a46d5190ea0181cc625329b5221e9dce9" name="a46d5190ea0181cc625329b5221e9dce9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a46d5190ea0181cc625329b5221e9dce9">&#9670;&nbsp;</a></span>example1()</h2>
+<h2 class="groupheader">Variable Documentation</h2>
+<a id="ace1b3cf8879ded43bfa81197871b4725" name="ace1b3cf8879ded43bfa81197871b4725"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ace1b3cf8879ded43bfa81197871b4725">&#9670;&nbsp;</a></span>globalGeneratorExecutable</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void example1 </td>
-          <td>(</td>
-          <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>filename</em></td><td>)</td>
-          <td></td>
+          <td class="memname">char globalGeneratorExecutable[BUFSIZ]</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="parsing_8cpp_source.html#l00439">439</a> of file <a class="el" href="parsing_8cpp_source.html">parsing.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  440</span>{</div>
-<div class="line"><span class="lineno">  441</span>  tinyxml2::XMLDocument doc;</div>
-<div class="line"><span class="lineno">  442</span> </div>
-<div class="line"><span class="lineno">  443</span>  <span class="keywordflow">if</span> (doc.LoadFile (filename))</div>
-<div class="line"><span class="lineno">  444</span>    {</div>
-<div class="line"><span class="lineno">  445</span>      fprintf (stderr, <span class="stringliteral">&quot;%s&quot;</span>, doc.ErrorName ());</div>
-<div class="line"><span class="lineno">  446</span>      exit (1);</div>
-<div class="line"><span class="lineno">  447</span>    }</div>
-<div class="line"><span class="lineno">  448</span> </div>
-<div class="line"><span class="lineno">  449</span>  std::vector&lt;float&gt; operations;</div>
-<div class="line"><span class="lineno">  450</span>  <a class="code hl_function" href="group__xml.html#gac937a83a82258806ef77b02f97ef0834">operations_load_xml</a> (filename, &amp;operations);</div>
-<div class="line"><span class="lineno">  451</span>  <a class="code hl_function" href="group___printing.html#ga8ad288d2a741eb3d632a6d3e005c4347">operations_print</a> (&amp;operations);</div>
-<div class="line"><span class="lineno">  452</span>}</div>
-<div class="ttc" id="agroup___printing_html_ga8ad288d2a741eb3d632a6d3e005c4347"><div class="ttname"><a href="group___printing.html#ga8ad288d2a741eb3d632a6d3e005c4347">operations_print</a></div><div class="ttdeci">void operations_print(std::vector&lt; float &gt; *operations)</div><div class="ttdef"><b>Definition:</b> <a href="parsing_8cpp_source.html#l00351">parsing.cpp:351</a></div></div>
-<div class="ttc" id="agroup__xml_html_gac937a83a82258806ef77b02f97ef0834"><div class="ttname"><a href="group__xml.html#gac937a83a82258806ef77b02f97ef0834">operations_load_xml</a></div><div class="ttdeci">void operations_load_xml(const char *filename, std::vector&lt; float &gt; *operations)</div><div class="ttdef"><b>Definition:</b> <a href="parsing_8cpp_source.html#l00296">parsing.cpp:296</a></div></div>
-</div><!-- fragment -->
-<p class="reference">References <a class="el" href="parsing_8cpp_source.html#l00296">operations_load_xml()</a>, and <a class="el" href="parsing_8cpp_source.html#l00351">operations_print()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="parsing_8cpp_source.html#l00015">15</a> of file <a class="el" href="parsing_8cpp_source.html">parsing.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="parsing_8cpp_source.html#l00454">main2()</a>.</p>
-<div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
-<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
-</div>
-<div id="dynsection-1-content" class="dyncontent" style="display:none;">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="parsing_8cpp_a46d5190ea0181cc625329b5221e9dce9_cgraph.svg" width="100%" height="503"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-</div>
-<div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-2-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
-<div id="dynsection-2-summary" class="dynsummary" style="display:block;">
-</div>
-<div id="dynsection-2-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="parsing_8cpp_a46d5190ea0181cc625329b5221e9dce9_icgraph.svg" width="208" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
+<p class="reference">Referenced by <a class="el" href="parsing_8cpp_source.html#l00479">operations_load_xml()</a>, and <a class="el" href="parsing_8cpp_source.html#l00241">operations_push_model()</a>.</p>
 
 </div>
 </div>
-<a id="a75c2e94360fa8e46050b4f66fe444d6b" name="a75c2e94360fa8e46050b4f66fe444d6b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a75c2e94360fa8e46050b4f66fe444d6b">&#9670;&nbsp;</a></span>main2()</h2>
+<a id="aa2a94b428d69819b582c4c971e757e5e" name="aa2a94b428d69819b582c4c971e757e5e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa2a94b428d69819b582c4c971e757e5e">&#9670;&nbsp;</a></span>globalUsingGenerator</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int main2 </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>argc</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">char *&#160;</td>
-          <td class="paramname"><em>argv</em>[]&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
+          <td class="memname">bool globalUsingGenerator = false</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="parsing_8cpp_source.html#l00454">454</a> of file <a class="el" href="parsing_8cpp_source.html">parsing.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  455</span>{</div>
-<div class="line"><span class="lineno">  456</span>  <a class="code hl_function" href="parsing_8cpp.html#a46d5190ea0181cc625329b5221e9dce9">example1</a> (<span class="stringliteral">&quot;test_files_phase_2/test_2_3.xml&quot;</span>);</div>
-<div class="line"><span class="lineno">  457</span>  <span class="keywordflow">return</span> 1;</div>
-<div class="line"><span class="lineno">  458</span>}</div>
-<div class="ttc" id="aparsing_8cpp_html_a46d5190ea0181cc625329b5221e9dce9"><div class="ttname"><a href="parsing_8cpp.html#a46d5190ea0181cc625329b5221e9dce9">example1</a></div><div class="ttdeci">void example1(const char *filename)</div><div class="ttdef"><b>Definition:</b> <a href="parsing_8cpp_source.html#l00439">parsing.cpp:439</a></div></div>
-</div><!-- fragment -->
-<p class="reference">References <a class="el" href="parsing_8cpp_source.html#l00439">example1()</a>.</p>
-<div id="dynsection-3" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-3-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
-<div id="dynsection-3-summary" class="dynsummary" style="display:block;">
-</div>
-<div id="dynsection-3-content" class="dyncontent" style="display:none;">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="parsing_8cpp_a75c2e94360fa8e46050b4f66fe444d6b_cgraph.svg" width="100%" height="503"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-</div>
+<p class="definition">Definition at line <a class="el" href="parsing_8cpp_source.html#l00016">16</a> of file <a class="el" href="parsing_8cpp_source.html">parsing.cpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="parsing_8cpp_source.html#l00479">operations_load_xml()</a>, and <a class="el" href="parsing_8cpp_source.html#l00241">operations_push_model()</a>.</p>
 
 </div>
 </div>

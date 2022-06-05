@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['tbo_0',['tbo',['../structmodel.html#a6642bf44750e13f4720fcab39d428950',1,'model']]],
-  ['tc_1',['tc',['../structmodel.html#a32d49fddff5d56f60779be5ee6f71159',1,'model']]],
-  ['timebase_2',['timebase',['../group__engine.html#ga68a5ac52085606068a4d5ae94b0aa7e8',1,'engine.cpp']]]
+  ['shininess_0',['shininess',['../structmodel.html#a162a855dcc61ec108bda595d07a2fd8c',1,'model']]],
+  ['specular_1',['specular',['../structmodel.html#ab7bd407f234ace683e74bf614fcf7854',1,'model']]],
+  ['sphere_2',['SPHERE',['../generator_8cpp.html#a5e4444a284dcd0e0625f94dfde200b90',1,'generator.cpp']]]
 ];

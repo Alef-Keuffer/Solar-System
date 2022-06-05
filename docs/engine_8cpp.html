@@ -105,7 +105,6 @@ $(document).ready(function(){initNavTree('engine_8cpp.html',''); initResizable()
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
-<a href="#typedef-members">Typedefs</a> &#124;
 <a href="#func-members">Functions</a> &#124;
 <a href="#var-members">Variables</a>  </div>
   <div class="headertitle"><div class="title">engine.cpp File Reference</div></div>
@@ -114,11 +113,15 @@ $(document).ready(function(){initNavTree('engine_8cpp.html',''); initResizable()
 <div class="textblock"><code>#include &lt;GL/glew.h&gt;</code><br />
 <code>#include &lt;GL/glut.h&gt;</code><br />
 <code>#include &lt;cstdio&gt;</code><br />
-<code>#include &lt;vector&gt;</code><br />
 <code>#include &lt;cmath&gt;</code><br />
+<code>#include &lt;algorithm&gt;</code><br />
+<code>#include &lt;iostream&gt;</code><br />
+<code>#include &lt;vector&gt;</code><br />
 <code>#include &lt;tuple&gt;</code><br />
+<code>#include &lt;map&gt;</code><br />
 <code>#include &lt;IL/il.h&gt;</code><br />
 <code>#include &lt;glm/glm.hpp&gt;</code><br />
+<code>#include &lt;glm/gtx/string_cast.hpp&gt;</code><br />
 <code>#include &lt;glm/gtc/type_ptr.hpp&gt;</code><br />
 <code>#include &quot;<a class="el" href="parsing_8h_source.html">parsing.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="curves_8h_source.html">curves.h</a>&quot;</code><br />
@@ -127,8 +130,7 @@ $(document).ready(function(){initNavTree('engine_8cpp.html',''); initResizable()
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="engine_8cpp__incl.svg" width="100%" height="440"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="engine_8cpp__incl.svg" width="100%" height="440"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
 </div>
 </div>
 <p><a href="engine_8cpp_source.html">Go to the source code of this file.</a></p>
@@ -138,31 +140,26 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structmodel.html">model</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
-Typedefs</h2></td></tr>
-<tr class="memitem:gac23ada62673b8ab28c7af5ec63179742"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structmodel.html">model</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__model_engine.html#gac23ada62673b8ab28c7af5ec63179742">Model</a></td></tr>
-<tr class="separator:gac23ada62673b8ab28c7af5ec63179742"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:gab5ff5216bffd1e15798677f24213213d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__spherical.html#gab5ff5216bffd1e15798677f24213213d">spherical2Cartesian</a> (double radius, double elevation, double azimuth, double *x, double *y, double *z)</td></tr>
-<tr class="separator:gab5ff5216bffd1e15798677f24213213d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga2a22d15f7463ccd8f8d1aa65e7578983"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__spherical.html#ga2a22d15f7463ccd8f8d1aa65e7578983">cartesian2Spherical</a> (double x, double y, double z, double *radius, double *azimuth, double *elevation)</td></tr>
-<tr class="separator:ga2a22d15f7463ccd8f8d1aa65e7578983"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaeac535a2aaeb6b1c8c4d1169bbc3cab1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__spherical.html#gaeac535a2aaeb6b1c8c4d1169bbc3cab1">spherical2Cartesian</a> (const double radius, const double elevation, const double azimuth, double *x, double *y, double *z)</td></tr>
+<tr class="separator:gaeac535a2aaeb6b1c8c4d1169bbc3cab1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gabd434f65cba3ee8011b8d3cdd1f25dca"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__spherical.html#gabd434f65cba3ee8011b8d3cdd1f25dca">cartesian2Spherical</a> (const double x, const double y, const double z, double *radius, double *azimuth, double *elevation)</td></tr>
+<tr class="separator:gabd434f65cba3ee8011b8d3cdd1f25dca"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga8679d9b303f36964bf51dba0993caeaa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__engine.html#ga8679d9b303f36964bf51dba0993caeaa">env_load_defaults</a> ()</td></tr>
 <tr class="separator:ga8679d9b303f36964bf51dba0993caeaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga56beba311d0a6fcbda9aeb516fe67f8f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__model_engine.html#gac23ada62673b8ab28c7af5ec63179742">Model</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__model_engine.html#ga56beba311d0a6fcbda9aeb516fe67f8f">allocModel</a> (const char *path)</td></tr>
-<tr class="separator:ga56beba311d0a6fcbda9aeb516fe67f8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaa9af6d9e3eb9df46397e7fc463ae5525"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__model_engine.html#gac23ada62673b8ab28c7af5ec63179742">Model</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__model_engine.html#gaa9af6d9e3eb9df46397e7fc463ae5525">addTexture</a> (<a class="el" href="group__model_engine.html#gac23ada62673b8ab28c7af5ec63179742">Model</a> m, const char *path)</td></tr>
-<tr class="separator:gaa9af6d9e3eb9df46397e7fc463ae5525"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga9b0aa26dead35aab4fa6be0709998046"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__model_engine.html#ga9b0aa26dead35aab4fa6be0709998046">renderModel</a> (<a class="el" href="group__model_engine.html#gac23ada62673b8ab28c7af5ec63179742">Model</a> <a class="el" href="structmodel.html">model</a>)</td></tr>
-<tr class="separator:ga9b0aa26dead35aab4fa6be0709998046"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga33e20b37682a0492a9e95d13bef17f02"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__engine.html#ga33e20b37682a0492a9e95d13bef17f02">changeSize</a> (int w, int h)</td></tr>
-<tr class="separator:ga33e20b37682a0492a9e95d13bef17f02"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga361bcac2814bb93f543d2c0f1b28b6d2"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structmodel.html">model</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__model_engine.html#ga361bcac2814bb93f543d2c0f1b28b6d2">allocModel</a> (const char *const model3dFilePath)</td></tr>
+<tr class="separator:ga361bcac2814bb93f543d2c0f1b28b6d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8c7329ae859a08eea53a77130ebe6018"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__model_engine.html#ga8c7329ae859a08eea53a77130ebe6018">associate_a_texture_to_model</a> (struct <a class="el" href="structmodel.html">model</a> &amp;m, const char *const path)</td></tr>
+<tr class="separator:ga8c7329ae859a08eea53a77130ebe6018"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2907e4adf4f2bef2c8ce416cb8470997"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__model_engine.html#ga2907e4adf4f2bef2c8ce416cb8470997">renderModel</a> (const struct <a class="el" href="structmodel.html">model</a> &amp;<a class="el" href="structmodel.html">model</a>)</td></tr>
+<tr class="separator:ga2907e4adf4f2bef2c8ce416cb8470997"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga26df4370f6bf2d02524bd370e9e4e292"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__engine.html#ga26df4370f6bf2d02524bd370e9e4e292">changeSize</a> (const int w, int h)</td></tr>
+<tr class="separator:ga26df4370f6bf2d02524bd370e9e4e292"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a072c434cfd125e58ac1cec9a5725688a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="engine_8cpp.html#a072c434cfd125e58ac1cec9a5725688a">advance_in_rotation</a> (const float rotation_time, const vec3 &amp;axis_of_rotation)</td></tr>
 <tr class="separator:a072c434cfd125e58ac1cec9a5725688a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga887f20c10a27832ea24178203a47fcc2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___operations.html#ga887f20c10a27832ea24178203a47fcc2">operations_render</a> (std::vector&lt; float &gt; *operations)</td></tr>
-<tr class="separator:ga887f20c10a27832ea24178203a47fcc2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8d5a19a3522cea1b4254684cf6515d13"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___operations.html#ga8d5a19a3522cea1b4254684cf6515d13">operations_render</a> (vector&lt; float &gt; &amp;operations)</td></tr>
+<tr class="separator:ga8d5a19a3522cea1b4254684cf6515d13"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a634dba686e70e7ff3f10c37d11f463da"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="engine_8cpp.html#a634dba686e70e7ff3f10c37d11f463da">draw_axes</a> ()</td></tr>
 <tr class="separator:a634dba686e70e7ff3f10c37d11f463da"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gab9813926390dc5773baf0b20dc2ea16e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__engine.html#gab9813926390dc5773baf0b20dc2ea16e">redisplay</a> ()</td></tr>
@@ -171,8 +168,8 @@ Functions</h2></td></tr>
 <tr class="separator:gaf049ec1caddd7a032fc8b48641e12f1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga91c42686f3245f22fb6b17ba5372d92c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__engine.html#ga91c42686f3245f22fb6b17ba5372d92c">renderScene</a> ()</td></tr>
 <tr class="separator:ga91c42686f3245f22fb6b17ba5372d92c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga2b6a8884687b3fe271b099a450a82d24"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__engine.html#ga2b6a8884687b3fe271b099a450a82d24">xml_load_and_set_env</a> (const char *filename)</td></tr>
-<tr class="separator:ga2b6a8884687b3fe271b099a450a82d24"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4c801322659c1ed52adccd3874552bb3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__engine.html#ga4c801322659c1ed52adccd3874552bb3">xml_load_and_set_env</a> (const char *const filename)</td></tr>
+<tr class="separator:ga4c801322659c1ed52adccd3874552bb3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gac7632fff72011e8c11ae504a4596a7f7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__input.html#gac7632fff72011e8c11ae504a4596a7f7">keyboardFunc</a> (unsigned char key, int xmouse, int ymouse)</td></tr>
 <tr class="separator:gac7632fff72011e8c11ae504a4596a7f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gad48076b61c0ddb6bd4fadf644bf59ff1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__input.html#gad48076b61c0ddb6bd4fadf644bf59ff1">mouseFunc</a> (int button, int state, int x, int y)</td></tr>
@@ -292,8 +289,10 @@ Variables</h2></td></tr>
 <tr class="separator:ga2788cc0fae99c064d291338b8fbe8484"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gac3d947315432e74f7c2d8f0dee6d5166"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__spherical.html#gac3d947315432e74f7c2d8f0dee6d5166">globalMouseLeftButton</a> = false</td></tr>
 <tr class="separator:gac3d947315432e74f7c2d8f0dee6d5166"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga8a16af82495542bcca4dd9f261fc4ef2"><td class="memItemLeft" align="right" valign="top">static std::vector&lt; <a class="el" href="group__model_engine.html#gac23ada62673b8ab28c7af5ec63179742">Model</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__model_engine.html#ga8a16af82495542bcca4dd9f261fc4ef2">globalModels</a></td></tr>
-<tr class="separator:ga8a16af82495542bcca4dd9f261fc4ef2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa1758095e785e5812632c1427ca34e26"><td class="memItemLeft" align="right" valign="top">const auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__model_engine.html#gaa1758095e785e5812632c1427ca34e26">RGB_MAX</a> = 255.0</td></tr>
+<tr class="separator:gaa1758095e785e5812632c1427ca34e26"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8b7fb1565cdf931fa086d76687bd3f35"><td class="memItemLeft" align="right" valign="top">static std::vector&lt; struct <a class="el" href="structmodel.html">model</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__model_engine.html#ga8b7fb1565cdf931fa086d76687bd3f35">globalModels</a></td></tr>
+<tr class="separator:ga8b7fb1565cdf931fa086d76687bd3f35"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga5e4458752ec64e54ed9ef910aaac54e9"><td class="memItemLeft" align="right" valign="top">static std::vector&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__model_engine.html#ga5e4458752ec64e54ed9ef910aaac54e9">globalOperations</a></td></tr>
 <tr class="separator:ga5e4458752ec64e54ed9ef910aaac54e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga68a5ac52085606068a4d5ae94b0aa7e8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__engine.html#ga68a5ac52085606068a4d5ae94b0aa7e8">timebase</a> = 0</td></tr>
@@ -332,14 +331,14 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00365">365</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  366</span>{</div>
-<div class="line"><span class="lineno">  367</span>  <span class="keyword">const</span> <span class="keywordtype">float</span> gt = fmodf ((<span class="keywordtype">float</span>) glutGet (GLUT_ELAPSED_TIME), (<span class="keywordtype">float</span>) (rotation_time * 1000)) / (rotation_time * 1000);</div>
-<div class="line"><span class="lineno">  368</span>  <span class="keyword">const</span> <span class="keywordtype">float</span> angle = 360 * gt;</div>
-<div class="line"><span class="lineno">  369</span>  glRotatef (angle, axis_of_rotation.x, axis_of_rotation.y, axis_of_rotation.z);</div>
-<div class="line"><span class="lineno">  370</span>}</div>
+<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00426">426</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  427</span>{</div>
+<div class="line"><span class="lineno">  428</span>  <span class="keyword">const</span> <span class="keywordtype">float</span> gt = fmodf ((<span class="keywordtype">float</span>) glutGet (GLUT_ELAPSED_TIME), (<span class="keywordtype">float</span>) (rotation_time * 1000)) / (rotation_time * 1000);</div>
+<div class="line"><span class="lineno">  429</span>  <span class="keyword">const</span> <span class="keywordtype">float</span> angle = 360 * gt;</div>
+<div class="line"><span class="lineno">  430</span>  glRotatef (angle, axis_of_rotation.x, axis_of_rotation.y, axis_of_rotation.z);</div>
+<div class="line"><span class="lineno">  431</span>}</div>
 </div><!-- fragment -->
-<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00373">operations_render()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00434">operations_render()</a>.</p>
 <div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
@@ -365,30 +364,34 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00582">582</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  583</span>{</div>
-<div class="line"><span class="lineno">  584</span>  <span class="comment">/*draw absolute (before any transformation) axes*/</span></div>
-<div class="line"><span class="lineno">  585</span>  glBegin (GL_LINES);</div>
-<div class="line"><span class="lineno">  586</span>  <span class="comment">/*X-axis in red*/</span></div>
-<div class="line"><span class="lineno">  587</span>  glColor3f (1, 0, 0);</div>
-<div class="line"><span class="lineno">  588</span>  glVertex3f (100, 0, 0);</div>
-<div class="line"><span class="lineno">  589</span>  glVertex3f (-100, 0, 0);</div>
-<div class="line"><span class="lineno">  590</span> </div>
-<div class="line"><span class="lineno">  591</span>  <span class="comment">/*Y-Axis in Green*/</span></div>
-<div class="line"><span class="lineno">  592</span>  glColor3f (0, 1, 0);</div>
-<div class="line"><span class="lineno">  593</span>  glVertex3f (0, 100, 0);</div>
-<div class="line"><span class="lineno">  594</span>  glVertex3f (0, -100, 0);</div>
-<div class="line"><span class="lineno">  595</span> </div>
-<div class="line"><span class="lineno">  596</span>  <span class="comment">/*Z-Axis in Blue*/</span></div>
-<div class="line"><span class="lineno">  597</span>  glColor3f (0, 0, 1);</div>
-<div class="line"><span class="lineno">  598</span>  glVertex3f (0, 0, 100);</div>
-<div class="line"><span class="lineno">  599</span>  glVertex3f (0, 0, -100);</div>
-<div class="line"><span class="lineno">  600</span>  glColor3d (1, 1, 1);</div>
-<div class="line"><span class="lineno">  601</span>  glEnd ();</div>
-<div class="line"><span class="lineno">  602</span>  <span class="comment">/*end of draw absolute (before any transformation) axes*/</span></div>
-<div class="line"><span class="lineno">  603</span>}</div>
+<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00770">770</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  771</span>{</div>
+<div class="line"><span class="lineno">  772</span>  glDisable (GL_LIGHTING);</div>
+<div class="line"><span class="lineno">  773</span>  glEnable (GL_LIGHT0);</div>
+<div class="line"><span class="lineno">  774</span>  <span class="comment">/*draw absolute (before any transformation) axes*/</span></div>
+<div class="line"><span class="lineno">  775</span>  glBegin (GL_LINES);</div>
+<div class="line"><span class="lineno">  776</span>  <span class="comment">/*X-axis in red*/</span></div>
+<div class="line"><span class="lineno">  777</span>  glColor3f (1, 0, 0);</div>
+<div class="line"><span class="lineno">  778</span>  glVertex3f (100, 0, 0);</div>
+<div class="line"><span class="lineno">  779</span>  glVertex3f (0, 0, 0);</div>
+<div class="line"><span class="lineno">  780</span> </div>
+<div class="line"><span class="lineno">  781</span>  <span class="comment">/*Y-Axis in Green*/</span></div>
+<div class="line"><span class="lineno">  782</span>  glColor3f (0, 1, 0);</div>
+<div class="line"><span class="lineno">  783</span>  glVertex3f (0, 100, 0);</div>
+<div class="line"><span class="lineno">  784</span>  glVertex3f (0, 0, 0);</div>
+<div class="line"><span class="lineno">  785</span> </div>
+<div class="line"><span class="lineno">  786</span>  <span class="comment">/*Z-Axis in Blue*/</span></div>
+<div class="line"><span class="lineno">  787</span>  glColor3f (0, 0, 1);</div>
+<div class="line"><span class="lineno">  788</span>  glVertex3f (0, 0, 100);</div>
+<div class="line"><span class="lineno">  789</span>  glVertex3f (0, 0, 0);</div>
+<div class="line"><span class="lineno">  790</span> </div>
+<div class="line"><span class="lineno">  791</span>  glColor3d (1, 1, 1);</div>
+<div class="line"><span class="lineno">  792</span>  glEnd ();</div>
+<div class="line"><span class="lineno">  793</span>  <span class="comment">/*end of draw absolute (before any transformation) axes*/</span></div>
+<div class="line"><span class="lineno">  794</span>  glEnable (GL_LIGHTING);</div>
+<div class="line"><span class="lineno">  795</span>}</div>
 </div><!-- fragment -->
-<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00629">renderScene()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00821">renderScene()</a>.</p>
 <div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-2-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-2-summary" class="dynsummary" style="display:block;">

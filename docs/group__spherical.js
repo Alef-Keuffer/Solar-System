@@ -1,7 +1,7 @@
 var group__spherical =
 [
-    [ "cartesian2Spherical", "group__spherical.html#ga2a22d15f7463ccd8f8d1aa65e7578983", null ],
-    [ "spherical2Cartesian", "group__spherical.html#gab5ff5216bffd1e15798677f24213213d", null ],
+    [ "cartesian2Spherical", "group__spherical.html#gabd434f65cba3ee8011b8d3cdd1f25dca", null ],
+    [ "spherical2Cartesian", "group__spherical.html#gaeac535a2aaeb6b1c8c4d1169bbc3cab1", null ],
     [ "DEFAULT_GLOBAL_AZIMUTH", "group__spherical.html#ga8847a748f16dded3615f8f4b48ab2ef4", null ],
     [ "DEFAULT_GLOBAL_ELEVATION", "group__spherical.html#ga3f93d1092ee04ee1206b02259e320784", null ],
     [ "DEFAULT_GLOBAL_RADIUS", "group__spherical.html#ga9046d488bde40feb5c8cd6372f12d5cf", null ],

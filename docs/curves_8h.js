@@ -1,9 +1,8 @@
 var curves_8h =
 [
-    [ "advance_in_curve", "curves_8h.html#af213e79ca700e91ea886085a4149a848", null ],
-    [ "get_bezier_surface", "curves_8h.html#a77b42e1f138f5c9811b048e9d57eaac4", null ],
-    [ "get_curve", "curves_8h.html#a1a8b36d6a00f3a7ea42d24471078d3f8", null ],
-    [ "renderCurve", "curves_8h.html#a82b945d8ae67844e19848d7b4eb9ba2a", null ],
-    [ "Mb", "curves_8h.html#aa24e89a6a33c157674a3620855b4aa1d", null ],
-    [ "Mcr", "curves_8h.html#a05f434afe270e6b7b2b6eacfa5923c13", null ]
+    [ "advance_in_curve", "curves_8h.html#ae08e6206f5a3ef318859828853d3d08e", null ],
+    [ "get_curve_point_at", "curves_8h.html#a7e57a5c56b445f31ea05e5effe374f8d", null ],
+    [ "renderCurve", "curves_8h.html#ae472cc01e143436a95d1433a3e9a3e51", null ],
+    [ "Mb", "curves_8h.html#a99691b2338ffd4b0634a6360e90bb413", null ],
+    [ "Mcr", "curves_8h.html#a8a662c7c7aa152c6eeadca5d9fa83ea4", null ]
 ];

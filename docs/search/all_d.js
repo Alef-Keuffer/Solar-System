@@ -2,16 +2,15 @@ var searchData=
 [
   ['operation_5ft_0',['operation_t',['../parsing_8h.html#abeddee44f42e841422ce7c4852e4aa6a',1,'parsing.h']]],
   ['operations_1',['Operations',['../group___operations.html',1,'']]],
-  ['operations_5fload_5fxml_2',['operations_load_xml',['../group__xml.html#gac937a83a82258806ef77b02f97ef0834',1,'operations_load_xml(const char *filename, std::vector&lt; float &gt; *operations):&#160;parsing.cpp'],['../group__xml.html#gac937a83a82258806ef77b02f97ef0834',1,'operations_load_xml(const char *filename, std::vector&lt; float &gt; *operations):&#160;parsing.cpp']]],
-  ['operations_5fprint_3',['operations_print',['../group___printing.html#ga8ad288d2a741eb3d632a6d3e005c4347',1,'parsing.cpp']]],
-  ['operations_5fpush_5fextended_5ftranslate_5fattributes_4',['operations_push_extended_translate_attributes',['../group___transforms.html#ga9fb2cf393283a6c4e01669d004e011cb',1,'parsing.cpp']]],
-  ['operations_5fpush_5fgroups_5',['operations_push_groups',['../group___groups.html#ga72c2d5ef943a89f829c08f6707e7669d',1,'parsing.cpp']]],
-  ['operations_5fpush_5flights_6',['operations_push_lights',['../group__xml.html#ga13d09c76a06c071031512828eb7bc4fa',1,'parsing.cpp']]],
-  ['operations_5fpush_5fmodel_7',['operations_push_model',['../group___models.html#gaea4cf479be9d482699b0a7871a19efed',1,'parsing.cpp']]],
-  ['operations_5fpush_5fmodels_8',['operations_push_models',['../group___models.html#gae6874961000e3d9274674e4f9c21dd60',1,'parsing.cpp']]],
-  ['operations_5fpush_5fstring_5fattribute_9',['operations_push_string_attribute',['../group___models.html#gaa7a60aeaf83f15158c6896c1b817eeee',1,'parsing.cpp']]],
-  ['operations_5fpush_5ftransform_5fattributes_10',['operations_push_transform_attributes',['../group___transforms.html#ga322e67bfbfd0f7db581a853b85fea9c1',1,'parsing.cpp']]],
-  ['operations_5fpush_5ftransformation_11',['operations_push_transformation',['../group___transforms.html#gafa423b24e0a976a40fa25bde5279d6da',1,'parsing.cpp']]],
-  ['operations_5fpush_5ftransforms_12',['operations_push_transforms',['../group___transforms.html#gad83b646af5265ef92c21db557652be7d',1,'parsing.cpp']]],
-  ['operations_5frender_13',['operations_render',['../group___operations.html#ga887f20c10a27832ea24178203a47fcc2',1,'engine.cpp']]]
+  ['operations_5fload_5fxml_2',['operations_load_xml',['../group__xml.html#gad700972f3f382c3cc5658ce95361ad0e',1,'operations_load_xml(const char *const filename, vector&lt; float &gt; &amp;operations):&#160;parsing.cpp'],['../parsing_8h.html#ace767c4d1af7af44a014b83afd394b64',1,'operations_load_xml(const char *filename, std::vector&lt; float &gt; &amp;operations):&#160;parsing.h']]],
+  ['operations_5fpush_5fextended_5ftranslate_5fattributes_3',['operations_push_extended_translate_attributes',['../group___transforms.html#ga34490f49c910f6ad0b3b39d97ca6991f',1,'parsing.cpp']]],
+  ['operations_5fpush_5fgroups_4',['operations_push_groups',['../group___groups.html#ga2729bcb63525027c28b0107fe17d3a06',1,'parsing.cpp']]],
+  ['operations_5fpush_5flights_5',['operations_push_lights',['../group__xml.html#gadda1aacffc4688669d0253cec56f849b',1,'parsing.cpp']]],
+  ['operations_5fpush_5fmodel_6',['operations_push_model',['../group___models.html#ga9c6066851b617631703c06b7aa6f72ac',1,'parsing.cpp']]],
+  ['operations_5fpush_5fmodels_7',['operations_push_models',['../group___models.html#gaf4f69faf6a2c6db692bd0f742c08ca17',1,'parsing.cpp']]],
+  ['operations_5fpush_5fstring_5fattribute_8',['operations_push_string_attribute',['../group___models.html#gaa31dcad7bd49e781068f4d5f42734e2a',1,'parsing.cpp']]],
+  ['operations_5fpush_5ftransform_5fattributes_9',['operations_push_transform_attributes',['../group___transforms.html#gaa8e01339ca5863980bb193197d4781e2',1,'parsing.cpp']]],
+  ['operations_5fpush_5ftransformation_10',['operations_push_transformation',['../group___transforms.html#ga9b8048838c7a406b93e9677dd9cb4373',1,'parsing.cpp']]],
+  ['operations_5fpush_5ftransforms_11',['operations_push_transforms',['../group___transforms.html#gab74408a65711c19872c69797a55c6229',1,'parsing.cpp']]],
+  ['operations_5frender_12',['operations_render',['../group___operations.html#ga8d5a19a3522cea1b4254684cf6515d13',1,'engine.cpp']]]
 ];

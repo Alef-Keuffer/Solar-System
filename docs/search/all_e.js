@@ -10,7 +10,6 @@ var searchData=
   ['points_5fwrite_7',['points_write',['../group__points.html#gab0ec2dac46ec7ee44911b8bcf1e9dad0',1,'generator.cpp']]],
   ['position_8',['Position',['../group__position.html',1,'']]],
   ['practical_20assignment_20cg_20_2d_202020_2f21_9',['Practical Assignment CG - 2020/21',['../md_readme.html',1,'']]],
-  ['printing_10',['Printing',['../group___printing.html',1,'']]],
-  ['processspecialkeys_11',['processSpecialKeys',['../main_8cpp.html#a22a15e4bdf7b2b913b6cb41cc85b0b79',1,'main.cpp']]],
-  ['projection_12',['Projection',['../group__projection.html',1,'']]]
+  ['processspecialkeys_10',['processSpecialKeys',['../main_8cpp.html#a22a15e4bdf7b2b913b6cb41cc85b0b79',1,'main.cpp']]],
+  ['projection_11',['Projection',['../group__projection.html',1,'']]]
 ];

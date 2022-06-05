@@ -4,6 +4,5 @@ var group___operations =
     [ "Models", "group___models.html", "group___models" ],
     [ "Groups", "group___groups.html", "group___groups" ],
     [ "Xml", "group__xml.html", "group__xml" ],
-    [ "Printing", "group___printing.html", "group___printing" ],
-    [ "operations_render", "group___operations.html#ga887f20c10a27832ea24178203a47fcc2", null ]
+    [ "operations_render", "group___operations.html#ga8d5a19a3522cea1b4254684cf6515d13", null ]
 ];

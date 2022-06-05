@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['model_0',['model',['../structmodel.html',1,'']]]
+  ['basemodel_0',['baseModel',['../structbase_model.html',1,'']]]
 ];

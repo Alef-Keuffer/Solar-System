@@ -118,47 +118,55 @@ $(document).ready(function(){initNavTree('group__cube.html',''); initResizable()
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ga035b5ad854abdbc786a8b78882d390c1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__cube.html#ga035b5ad854abdbc786a8b78882d390c1">model_cube_vertices</a> (const float length, const unsigned int divisions, float points[])</td></tr>
-<tr class="separator:ga035b5ad854abdbc786a8b78882d390c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga029b7906dd04b97c96cca5dd9a9db601"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__cube.html#ga029b7906dd04b97c96cca5dd9a9db601">model_cube_nVertices</a> (const unsigned int divisions)</td></tr>
-<tr class="separator:ga029b7906dd04b97c96cca5dd9a9db601"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gad6fe75a034b53925563817d6efd139a0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__cube.html#gad6fe75a034b53925563817d6efd139a0">model_cube_write</a> (const char *filepath, const float length, const unsigned int divisions)</td></tr>
-<tr class="separator:gad6fe75a034b53925563817d6efd139a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6f47c7f7a450b00614ed0114ea191025"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__cube.html#ga6f47c7f7a450b00614ed0114ea191025">model_cube_vertices</a> (const float length, const unsigned int divisions, vector&lt; vec3 &gt; &amp;vertices, vector&lt; vec3 &gt; &amp;normals, vector&lt; vec2 &gt; &amp;texture)</td></tr>
+<tr class="separator:ga6f47c7f7a450b00614ed0114ea191025"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac38b747f505758bd5a764bbffb67d6b8"><td class="memItemLeft" align="right" valign="top">static unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__cube.html#gac38b747f505758bd5a764bbffb67d6b8">model_cube_nVertices</a> (const unsigned int divisions)</td></tr>
+<tr class="separator:gac38b747f505758bd5a764bbffb67d6b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga7239c3ce0b454de72e704380c91ab81d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__cube.html#ga7239c3ce0b454de72e704380c91ab81d">model_cube_write</a> (const char *const filepath, const float length, const unsigned int divisions)</td></tr>
+<tr class="separator:ga7239c3ce0b454de72e704380c91ab81d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="ga029b7906dd04b97c96cca5dd9a9db601" name="ga029b7906dd04b97c96cca5dd9a9db601"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga029b7906dd04b97c96cca5dd9a9db601">&#9670;&nbsp;</a></span>model_cube_nVertices()</h2>
+<a id="gac38b747f505758bd5a764bbffb67d6b8" name="gac38b747f505758bd5a764bbffb67d6b8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gac38b747f505758bd5a764bbffb67d6b8">&#9670;&nbsp;</a></span>model_cube_nVertices()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">unsigned int model_cube_nVertices </td>
+          <td class="memname">static unsigned int model_cube_nVertices </td>
           <td>(</td>
           <td class="paramtype">const unsigned int&#160;</td>
           <td class="paramname"><em>divisions</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="generator_8cpp_source.html#l00180">180</a> of file <a class="el" href="generator_8cpp_source.html">generator.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  181</span>{ <span class="keywordflow">return</span> divisions * divisions * 36; }</div>
+<p class="definition">Definition at line <a class="el" href="generator_8cpp_source.html#l00329">329</a> of file <a class="el" href="generator_8cpp_source.html">generator.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  330</span>{ <span class="keywordflow">return</span> divisions * divisions * 36; }</div>
 </div><!-- fragment -->
-<p class="reference">Referenced by <a class="el" href="generator_8cpp_source.html#l00183">model_cube_write()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="generator_8cpp_source.html#l00332">model_cube_write()</a>.</p>
 <div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="group__cube_ga029b7906dd04b97c96cca5dd9a9db601_icgraph.svg" width="472" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__cube_gac38b747f505758bd5a764bbffb67d6b8_icgraph.svg" width="472" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
 </div>
-<a id="ga035b5ad854abdbc786a8b78882d390c1" name="ga035b5ad854abdbc786a8b78882d390c1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga035b5ad854abdbc786a8b78882d390c1">&#9670;&nbsp;</a></span>model_cube_vertices()</h2>
+<a id="ga6f47c7f7a450b00614ed0114ea191025" name="ga6f47c7f7a450b00614ed0114ea191025"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga6f47c7f7a450b00614ed0114ea191025">&#9670;&nbsp;</a></span>model_cube_vertices()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -178,8 +186,20 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>points</em>[]&#160;</td>
+          <td class="paramtype">vector&lt; vec3 &gt; &amp;&#160;</td>
+          <td class="paramname"><em>vertices</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vector&lt; vec3 &gt; &amp;&#160;</td>
+          <td class="paramname"><em>normals</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vector&lt; vec2 &gt; &amp;&#160;</td>
+          <td class="paramname"><em>texture</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -189,100 +209,167 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="generator_8cpp_source.html#l00109">109</a> of file <a class="el" href="generator_8cpp_source.html">generator.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  110</span>{</div>
-<div class="line"><span class="lineno">  111</span>  <span class="keyword">const</span> <span class="keywordtype">float</span> o = -length / 2.0f;</div>
-<div class="line"><span class="lineno">  112</span>  <span class="keyword">const</span> <span class="keywordtype">float</span> d = length / (float) divisions;</div>
-<div class="line"><span class="lineno">  113</span> </div>
-<div class="line"><span class="lineno">  114</span>  <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> pos = 0;</div>
-<div class="line"><span class="lineno">  115</span> </div>
-<div class="line"><span class="lineno">  116</span>  <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> m = 1; m &lt;= divisions; m++)</div>
-<div class="line"><span class="lineno">  117</span>    {</div>
-<div class="line"><span class="lineno">  118</span>      <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> n = 1; n &lt;= divisions; n++)</div>
-<div class="line"><span class="lineno">  119</span>        {</div>
-<div class="line"><span class="lineno">  120</span>          <span class="keywordtype">float</span> i = (float) m;</div>
-<div class="line"><span class="lineno">  121</span>          <span class="keywordtype">float</span> j = (float) n;</div>
-<div class="line"><span class="lineno">  122</span> </div>
-<div class="line"><span class="lineno">  123</span>          <span class="comment">// top</span></div>
-<div class="line"><span class="lineno">  124</span>          <a class="code hl_function" href="group__points.html#ga127fb8e56ec1e38505cdd9ea6efa2cf6">points_vertex</a> (o + d * (i - 1), -o, o + d * (j - 1), &amp;pos, points); <span class="comment">//P1</span></div>
-<div class="line"><span class="lineno">  125</span>          <a class="code hl_function" href="group__points.html#ga127fb8e56ec1e38505cdd9ea6efa2cf6">points_vertex</a> (o + d * (i - 1), -o, o + d * j, &amp;pos, points); <span class="comment">//P1&#39;z</span></div>
-<div class="line"><span class="lineno">  126</span>          <a class="code hl_function" href="group__points.html#ga127fb8e56ec1e38505cdd9ea6efa2cf6">points_vertex</a> (o + d * i, -o, o + d * (j - 1), &amp;pos, points); <span class="comment">//P1&#39;x</span></div>
-<div class="line"><span class="lineno">  127</span> </div>
-<div class="line"><span class="lineno">  128</span>          <a class="code hl_function" href="group__points.html#ga127fb8e56ec1e38505cdd9ea6efa2cf6">points_vertex</a> (o + d * i, -o, o + d * (j - 1), &amp;pos, points); <span class="comment">//P1&#39;x</span></div>
-<div class="line"><span class="lineno">  129</span>          <a class="code hl_function" href="group__points.html#ga127fb8e56ec1e38505cdd9ea6efa2cf6">points_vertex</a> (o + d * (i - 1), -o, o + d * j, &amp;pos, points); <span class="comment">//P1&#39;z</span></div>
-<div class="line"><span class="lineno">  130</span>          <a class="code hl_function" href="group__points.html#ga127fb8e56ec1e38505cdd9ea6efa2cf6">points_vertex</a> (o + d * i, -o, o + d * j, &amp;pos, points); <span class="comment">//P2</span></div>
-<div class="line"><span class="lineno">  131</span> </div>
-<div class="line"><span class="lineno">  132</span>          <span class="comment">// bottom</span></div>
-<div class="line"><span class="lineno">  133</span>          <a class="code hl_function" href="group__points.html#ga127fb8e56ec1e38505cdd9ea6efa2cf6">points_vertex</a> (o + d * (i - 1), o, o + d * j, &amp;pos, points); <span class="comment">//P1&#39;z</span></div>
-<div class="line"><span class="lineno">  134</span>          <a class="code hl_function" href="group__points.html#ga127fb8e56ec1e38505cdd9ea6efa2cf6">points_vertex</a> (o + d * (i - 1), o, o + d * (j - 1), &amp;pos, points); <span class="comment">//P1</span></div>
-<div class="line"><span class="lineno">  135</span>          <a class="code hl_function" href="group__points.html#ga127fb8e56ec1e38505cdd9ea6efa2cf6">points_vertex</a> (o + d * i, o, o + d * (j - 1), &amp;pos, points); <span class="comment">//P1&#39;x</span></div>
-<div class="line"><span class="lineno">  136</span> </div>
-<div class="line"><span class="lineno">  137</span>          <a class="code hl_function" href="group__points.html#ga127fb8e56ec1e38505cdd9ea6efa2cf6">points_vertex</a> (o + d * (i - 1), o, o + d * j, &amp;pos, points); <span class="comment">//P1&#39;z</span></div>
-<div class="line"><span class="lineno">  138</span>          <a class="code hl_function" href="group__points.html#ga127fb8e56ec1e38505cdd9ea6efa2cf6">points_vertex</a> (o + d * i, o, o + d * (j - 1), &amp;pos, points); <span class="comment">//P1&#39;x</span></div>
-<div class="line"><span class="lineno">  139</span>          <a class="code hl_function" href="group__points.html#ga127fb8e56ec1e38505cdd9ea6efa2cf6">points_vertex</a> (o + d * i, o, o + d * j, &amp;pos, points); <span class="comment">//P2</span></div>
-<div class="line"><span class="lineno">  140</span> </div>
-<div class="line"><span class="lineno">  141</span>          <span class="comment">// left</span></div>
-<div class="line"><span class="lineno">  142</span>          <a class="code hl_function" href="group__points.html#ga127fb8e56ec1e38505cdd9ea6efa2cf6">points_vertex</a> (o, o + d * (i - 1), o + d * (j - 1), &amp;pos, points); <span class="comment">//P1</span></div>
-<div class="line"><span class="lineno">  143</span>          <a class="code hl_function" href="group__points.html#ga127fb8e56ec1e38505cdd9ea6efa2cf6">points_vertex</a> (o, o + d * (i - 1), o + d * j, &amp;pos, points); <span class="comment">//P1&#39;z</span></div>
-<div class="line"><span class="lineno">  144</span>          <a class="code hl_function" href="group__points.html#ga127fb8e56ec1e38505cdd9ea6efa2cf6">points_vertex</a> (o, o + d * i, o + d * (j - 1), &amp;pos, points); <span class="comment">//P1&#39;x</span></div>
-<div class="line"><span class="lineno">  145</span> </div>
-<div class="line"><span class="lineno">  146</span>          <a class="code hl_function" href="group__points.html#ga127fb8e56ec1e38505cdd9ea6efa2cf6">points_vertex</a> (o, o + d * i, o + d * (j - 1), &amp;pos, points); <span class="comment">//P1&#39;x</span></div>
-<div class="line"><span class="lineno">  147</span>          <a class="code hl_function" href="group__points.html#ga127fb8e56ec1e38505cdd9ea6efa2cf6">points_vertex</a> (o, o + d * (i - 1), o + d * j, &amp;pos, points); <span class="comment">//P1&#39;z</span></div>
-<div class="line"><span class="lineno">  148</span>          <a class="code hl_function" href="group__points.html#ga127fb8e56ec1e38505cdd9ea6efa2cf6">points_vertex</a> (o, o + d * i, o + d * j, &amp;pos, points); <span class="comment">//P2</span></div>
-<div class="line"><span class="lineno">  149</span> </div>
-<div class="line"><span class="lineno">  150</span>          <span class="comment">// right</span></div>
-<div class="line"><span class="lineno">  151</span>          <a class="code hl_function" href="group__points.html#ga127fb8e56ec1e38505cdd9ea6efa2cf6">points_vertex</a> (-o, o + d * (i - 1), o + d * j, &amp;pos, points); <span class="comment">//P1&#39;z</span></div>
-<div class="line"><span class="lineno">  152</span>          <a class="code hl_function" href="group__points.html#ga127fb8e56ec1e38505cdd9ea6efa2cf6">points_vertex</a> (-o, o + d * (i - 1), o + d * (j - 1), &amp;pos, points); <span class="comment">//P1</span></div>
-<div class="line"><span class="lineno">  153</span>          <a class="code hl_function" href="group__points.html#ga127fb8e56ec1e38505cdd9ea6efa2cf6">points_vertex</a> (-o, o + d * i, o + d * (j - 1), &amp;pos, points); <span class="comment">//P1&#39;x</span></div>
-<div class="line"><span class="lineno">  154</span> </div>
-<div class="line"><span class="lineno">  155</span>          <a class="code hl_function" href="group__points.html#ga127fb8e56ec1e38505cdd9ea6efa2cf6">points_vertex</a> (-o, o + d * (i - 1), o + d * j, &amp;pos, points); <span class="comment">//P1&#39;z</span></div>
-<div class="line"><span class="lineno">  156</span>          <a class="code hl_function" href="group__points.html#ga127fb8e56ec1e38505cdd9ea6efa2cf6">points_vertex</a> (-o, o + d * i, o + d * (j - 1), &amp;pos, points); <span class="comment">//P1&#39;x</span></div>
-<div class="line"><span class="lineno">  157</span>          <a class="code hl_function" href="group__points.html#ga127fb8e56ec1e38505cdd9ea6efa2cf6">points_vertex</a> (-o, o + d * i, o + d * j, &amp;pos, points); <span class="comment">//P2</span></div>
-<div class="line"><span class="lineno">  158</span> </div>
-<div class="line"><span class="lineno">  159</span>          <span class="comment">// front</span></div>
-<div class="line"><span class="lineno">  160</span>          <a class="code hl_function" href="group__points.html#ga127fb8e56ec1e38505cdd9ea6efa2cf6">points_vertex</a> (o + d * (i - 1), o + d * (j - 1), o, &amp;pos, points); <span class="comment">//P1</span></div>
-<div class="line"><span class="lineno">  161</span>          <a class="code hl_function" href="group__points.html#ga127fb8e56ec1e38505cdd9ea6efa2cf6">points_vertex</a> (o + d * (i - 1), o + d * j, o, &amp;pos, points); <span class="comment">//P1&#39;z</span></div>
-<div class="line"><span class="lineno">  162</span>          <a class="code hl_function" href="group__points.html#ga127fb8e56ec1e38505cdd9ea6efa2cf6">points_vertex</a> (o + d * i, o + d * (j - 1), o, &amp;pos, points); <span class="comment">//P1&#39;x</span></div>
-<div class="line"><span class="lineno">  163</span> </div>
-<div class="line"><span class="lineno">  164</span>          <a class="code hl_function" href="group__points.html#ga127fb8e56ec1e38505cdd9ea6efa2cf6">points_vertex</a> (o + d * i, o + d * (j - 1), o, &amp;pos, points); <span class="comment">//P1&#39;x</span></div>
-<div class="line"><span class="lineno">  165</span>          <a class="code hl_function" href="group__points.html#ga127fb8e56ec1e38505cdd9ea6efa2cf6">points_vertex</a> (o + d * (i - 1), o + d * j, o, &amp;pos, points); <span class="comment">//P1&#39;z</span></div>
-<div class="line"><span class="lineno">  166</span>          <a class="code hl_function" href="group__points.html#ga127fb8e56ec1e38505cdd9ea6efa2cf6">points_vertex</a> (o + d * i, o + d * j, o, &amp;pos, points); <span class="comment">//P2</span></div>
-<div class="line"><span class="lineno">  167</span> </div>
-<div class="line"><span class="lineno">  168</span>          <span class="comment">// back</span></div>
-<div class="line"><span class="lineno">  169</span>          <a class="code hl_function" href="group__points.html#ga127fb8e56ec1e38505cdd9ea6efa2cf6">points_vertex</a> (o + d * (i - 1), o + d * j, -o, &amp;pos, points); <span class="comment">//P1&#39;z</span></div>
-<div class="line"><span class="lineno">  170</span>          <a class="code hl_function" href="group__points.html#ga127fb8e56ec1e38505cdd9ea6efa2cf6">points_vertex</a> (o + d * (i - 1), o + d * (j - 1), -o, &amp;pos, points); <span class="comment">//P1</span></div>
-<div class="line"><span class="lineno">  171</span>          <a class="code hl_function" href="group__points.html#ga127fb8e56ec1e38505cdd9ea6efa2cf6">points_vertex</a> (o + d * i, o + d * (j - 1), -o, &amp;pos, points); <span class="comment">//P1&#39;x</span></div>
-<div class="line"><span class="lineno">  172</span> </div>
-<div class="line"><span class="lineno">  173</span>          <a class="code hl_function" href="group__points.html#ga127fb8e56ec1e38505cdd9ea6efa2cf6">points_vertex</a> (o + d * (i - 1), o + d * j, -o, &amp;pos, points); <span class="comment">//P1&#39;z</span></div>
-<div class="line"><span class="lineno">  174</span>          <a class="code hl_function" href="group__points.html#ga127fb8e56ec1e38505cdd9ea6efa2cf6">points_vertex</a> (o + d * i, o + d * (j - 1), -o, &amp;pos, points); <span class="comment">//P1&#39;x</span></div>
-<div class="line"><span class="lineno">  175</span>          <a class="code hl_function" href="group__points.html#ga127fb8e56ec1e38505cdd9ea6efa2cf6">points_vertex</a> (o + d * i, o + d * j, -o, &amp;pos, points); <span class="comment">//P2</span></div>
-<div class="line"><span class="lineno">  176</span>        }</div>
-<div class="line"><span class="lineno">  177</span>    }</div>
-<div class="line"><span class="lineno">  178</span>}</div>
-<div class="ttc" id="agroup__points_html_ga127fb8e56ec1e38505cdd9ea6efa2cf6"><div class="ttname"><a href="group__points.html#ga127fb8e56ec1e38505cdd9ea6efa2cf6">points_vertex</a></div><div class="ttdeci">void points_vertex(const float x, const float y, const float z, unsigned int *pos, float points[])</div><div class="ttdef"><b>Definition:</b> <a href="generator_8cpp_source.html#l00032">generator.cpp:32</a></div></div>
+<p class="definition">Definition at line <a class="el" href="generator_8cpp_source.html#l00177">177</a> of file <a class="el" href="generator_8cpp_source.html">generator.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  182</span>{</div>
+<div class="line"><span class="lineno">  183</span>  <span class="keyword">const</span> <span class="keywordtype">float</span> o = -length / 2.0f;</div>
+<div class="line"><span class="lineno">  184</span>  <span class="keyword">const</span> <span class="keywordtype">float</span> d = length / (float) divisions;</div>
+<div class="line"><span class="lineno">  185</span> </div>
+<div class="line"><span class="lineno">  186</span>  <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> uidiv1 = 1; uidiv1 &lt;= divisions; uidiv1++)</div>
+<div class="line"><span class="lineno">  187</span>    {</div>
+<div class="line"><span class="lineno">  188</span>      <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> uidiv2 = 1; uidiv2 &lt;= divisions; uidiv2++)</div>
+<div class="line"><span class="lineno">  189</span>        {</div>
+<div class="line"><span class="lineno">  190</span>          <span class="keyword">auto</span> <span class="keyword">const</span> fdiv1 = (float) uidiv1;</div>
+<div class="line"><span class="lineno">  191</span>          <span class="keyword">auto</span> <span class="keyword">const</span> fdiv2 = (float) uidiv2;</div>
+<div class="line"><span class="lineno">  192</span>          <span class="keyword">auto</span> <span class="keyword">const</span> fdivisions = (float) divisions;</div>
+<div class="line"><span class="lineno">  193</span> </div>
+<div class="line"><span class="lineno">  194</span>          <span class="comment">// y+</span></div>
+<div class="line"><span class="lineno">  195</span>          <span class="keywordflow">for</span> (<span class="keyword">auto</span> e : {</div>
+<div class="line"><span class="lineno">  196</span>              array&lt;float, 2&gt;{-1, -1}, <span class="comment">//P1</span></div>
+<div class="line"><span class="lineno">  197</span>              array&lt;float, 2&gt;{-1, 0}, <span class="comment">//P1&#39;z</span></div>
+<div class="line"><span class="lineno">  198</span>              array&lt;float, 2&gt;{0, -1}, <span class="comment">//P1&#39;x</span></div>
+<div class="line"><span class="lineno">  199</span> </div>
+<div class="line"><span class="lineno">  200</span>              array&lt;float, 2&gt;{0, -1}, <span class="comment">//P1&#39;x</span></div>
+<div class="line"><span class="lineno">  201</span>              array&lt;float, 2&gt;{-1, 0}, <span class="comment">//P1&#39;z</span></div>
+<div class="line"><span class="lineno">  202</span>              array&lt;float, 2&gt;{0, 0}   <span class="comment">//P2</span></div>
+<div class="line"><span class="lineno">  203</span>          })</div>
+<div class="line"><span class="lineno">  204</span>            {</div>
+<div class="line"><span class="lineno">  205</span>              vertices.emplace_back (o + d * (fdiv1 + e[0]), -o, o + d * (fdiv2 + e[1]));</div>
+<div class="line"><span class="lineno">  206</span>              normals.emplace_back (0, 1, 0);</div>
+<div class="line"><span class="lineno">  207</span>              texture.emplace_back ((fdiv1 + e[0]) / fdivisions, (fdiv2 + e[1]) / fdivisions);</div>
+<div class="line"><span class="lineno">  208</span>            }</div>
+<div class="line"><span class="lineno">  209</span> </div>
+<div class="line"><span class="lineno">  210</span>          <span class="comment">// y-</span></div>
+<div class="line"><span class="lineno">  211</span>          vertices.emplace_back (o + d * (fdiv1 - 1), o, o + d * fdiv2); <span class="comment">//P1&#39;z</span></div>
+<div class="line"><span class="lineno">  212</span>          vertices.emplace_back (o + d * (fdiv1 - 1), o, o + d * (fdiv2 - 1)); <span class="comment">//P1</span></div>
+<div class="line"><span class="lineno">  213</span>          vertices.emplace_back (o + d * fdiv1, o, o + d * (fdiv2 - 1)); <span class="comment">//P1&#39;x</span></div>
+<div class="line"><span class="lineno">  214</span> </div>
+<div class="line"><span class="lineno">  215</span>          vertices.emplace_back (o + d * (fdiv1 - 1), o, o + d * fdiv2); <span class="comment">//P1&#39;z</span></div>
+<div class="line"><span class="lineno">  216</span>          vertices.emplace_back (o + d * fdiv1, o, o + d * (fdiv2 - 1)); <span class="comment">//P1&#39;x</span></div>
+<div class="line"><span class="lineno">  217</span>          vertices.emplace_back (o + d * fdiv1, o, o + d * fdiv2); <span class="comment">//P2</span></div>
+<div class="line"><span class="lineno">  218</span> </div>
+<div class="line"><span class="lineno">  219</span>          <span class="keywordflow">for</span> (<span class="keywordtype">int</span> k = 0; k &lt; 6; ++k)</div>
+<div class="line"><span class="lineno">  220</span>            normals.emplace_back (0, -1, 0);</div>
+<div class="line"><span class="lineno">  221</span>          <span class="keywordflow">for</span> (<span class="keyword">auto</span> e : {</div>
+<div class="line"><span class="lineno">  222</span>              vec2 (-1.0f, 0.0f),</div>
+<div class="line"><span class="lineno">  223</span>              vec2 (-1.0f, -1.0f),</div>
+<div class="line"><span class="lineno">  224</span>              vec2 (0.0f, -1.0f),</div>
+<div class="line"><span class="lineno">  225</span> </div>
+<div class="line"><span class="lineno">  226</span>              vec2 (-1.0f, 0.0f),</div>
+<div class="line"><span class="lineno">  227</span>              vec2 (0.0f, -1.0f),</div>
+<div class="line"><span class="lineno">  228</span>              vec2 (0.0f, 0.0f)})</div>
+<div class="line"><span class="lineno">  229</span>            texture.emplace_back ((fdiv1 + e[0]) / fdivisions, (fdiv2 + e[1]) / fdivisions);</div>
+<div class="line"><span class="lineno">  230</span> </div>
+<div class="line"><span class="lineno">  231</span> </div>
+<div class="line"><span class="lineno">  232</span>          <span class="comment">// x-</span></div>
+<div class="line"><span class="lineno">  233</span>          vertices.emplace_back (o, o + d * (fdiv1 - 1), o + d * (fdiv2 - 1)); <span class="comment">//P1</span></div>
+<div class="line"><span class="lineno">  234</span>          vertices.emplace_back (o, o + d * (fdiv1 - 1), o + d * fdiv2); <span class="comment">//P1&#39;z</span></div>
+<div class="line"><span class="lineno">  235</span>          vertices.emplace_back (o, o + d * fdiv1, o + d * (fdiv2 - 1)); <span class="comment">//P1&#39;x</span></div>
+<div class="line"><span class="lineno">  236</span> </div>
+<div class="line"><span class="lineno">  237</span>          vertices.emplace_back (o, o + d * fdiv1, o + d * (fdiv2 - 1)); <span class="comment">//P1&#39;x</span></div>
+<div class="line"><span class="lineno">  238</span>          vertices.emplace_back (o, o + d * (fdiv1 - 1), o + d * fdiv2); <span class="comment">//P1&#39;z</span></div>
+<div class="line"><span class="lineno">  239</span>          vertices.emplace_back (o, o + d * fdiv1, o + d * fdiv2); <span class="comment">//P2</span></div>
+<div class="line"><span class="lineno">  240</span> </div>
+<div class="line"><span class="lineno">  241</span>          <span class="keywordflow">for</span> (<span class="keywordtype">int</span> k = 0; k &lt; 6; ++k)</div>
+<div class="line"><span class="lineno">  242</span>            normals.emplace_back (-1, 0, 0);</div>
+<div class="line"><span class="lineno">  243</span> </div>
+<div class="line"><span class="lineno">  244</span>          <span class="keywordflow">for</span> (<span class="keyword">auto</span> e : {</div>
+<div class="line"><span class="lineno">  245</span>              vec2 (-1.0f, -1.0f),</div>
+<div class="line"><span class="lineno">  246</span>              vec2 (-1.0f, 0.0f),</div>
+<div class="line"><span class="lineno">  247</span>              vec2 (0.0f, -1.0f),</div>
+<div class="line"><span class="lineno">  248</span> </div>
+<div class="line"><span class="lineno">  249</span>              vec2 (0.0f, -1.0f),</div>
+<div class="line"><span class="lineno">  250</span>              vec2 (-1.0f, 0.0f),</div>
+<div class="line"><span class="lineno">  251</span>              vec2 (0.0f, 0.0f)})</div>
+<div class="line"><span class="lineno">  252</span>            texture.emplace_back ((fdiv1 + e[0]) / fdivisions, (fdiv2 + e[1]) / fdivisions);</div>
+<div class="line"><span class="lineno">  253</span> </div>
+<div class="line"><span class="lineno">  254</span> </div>
+<div class="line"><span class="lineno">  255</span>          <span class="comment">// x+</span></div>
+<div class="line"><span class="lineno">  256</span>          vertices.emplace_back (-o, o + d * (fdiv1 - 1), o + d * fdiv2); <span class="comment">//P1&#39;z</span></div>
+<div class="line"><span class="lineno">  257</span>          vertices.emplace_back (-o, o + d * (fdiv1 - 1), o + d * (fdiv2 - 1)); <span class="comment">//P1</span></div>
+<div class="line"><span class="lineno">  258</span>          vertices.emplace_back (-o, o + d * fdiv1, o + d * (fdiv2 - 1)); <span class="comment">//P1&#39;x</span></div>
+<div class="line"><span class="lineno">  259</span> </div>
+<div class="line"><span class="lineno">  260</span>          vertices.emplace_back (-o, o + d * (fdiv1 - 1), o + d * fdiv2); <span class="comment">//P1&#39;z</span></div>
+<div class="line"><span class="lineno">  261</span>          vertices.emplace_back (-o, o + d * fdiv1, o + d * (fdiv2 - 1)); <span class="comment">//P1&#39;x</span></div>
+<div class="line"><span class="lineno">  262</span>          vertices.emplace_back (-o, o + d * fdiv1, o + d * fdiv2); <span class="comment">//P2</span></div>
+<div class="line"><span class="lineno">  263</span> </div>
+<div class="line"><span class="lineno">  264</span>          <span class="keywordflow">for</span> (<span class="keywordtype">int</span> k = 0; k &lt; 6; ++k)</div>
+<div class="line"><span class="lineno">  265</span>            normals.emplace_back (1, 0, 0);</div>
+<div class="line"><span class="lineno">  266</span> </div>
+<div class="line"><span class="lineno">  267</span>          <span class="keywordflow">for</span> (<span class="keyword">auto</span> e : {</div>
+<div class="line"><span class="lineno">  268</span>              vec2 (-1.0f, 0.0f),</div>
+<div class="line"><span class="lineno">  269</span>              vec2 (-1.0f, -1.0f),</div>
+<div class="line"><span class="lineno">  270</span>              vec2 (0.0f, -1.0f),</div>
+<div class="line"><span class="lineno">  271</span> </div>
+<div class="line"><span class="lineno">  272</span>              vec2 (-1.0f, 0.0f),</div>
+<div class="line"><span class="lineno">  273</span>              vec2 (0.0f, -1.0f),</div>
+<div class="line"><span class="lineno">  274</span>              vec2 (0.0f, 0.0f)})</div>
+<div class="line"><span class="lineno">  275</span>            texture.emplace_back ((fdiv1 + e[0]) / fdivisions, (fdiv2 + e[1]) / fdivisions);</div>
+<div class="line"><span class="lineno">  276</span> </div>
+<div class="line"><span class="lineno">  277</span> </div>
+<div class="line"><span class="lineno">  278</span>          <span class="comment">// z-</span></div>
+<div class="line"><span class="lineno">  279</span>          vertices.emplace_back (o + d * (fdiv1 - 1), o + d * (fdiv2 - 1), o); <span class="comment">//P1</span></div>
+<div class="line"><span class="lineno">  280</span>          vertices.emplace_back (o + d * (fdiv1 - 1), o + d * fdiv2, o); <span class="comment">//P1&#39;z</span></div>
+<div class="line"><span class="lineno">  281</span>          vertices.emplace_back (o + d * fdiv1, o + d * (fdiv2 - 1), o); <span class="comment">//P1&#39;x</span></div>
+<div class="line"><span class="lineno">  282</span> </div>
+<div class="line"><span class="lineno">  283</span>          vertices.emplace_back (o + d * fdiv1, o + d * (fdiv2 - 1), o); <span class="comment">//P1&#39;x</span></div>
+<div class="line"><span class="lineno">  284</span>          vertices.emplace_back (o + d * (fdiv1 - 1), o + d * fdiv2, o); <span class="comment">//P1&#39;z</span></div>
+<div class="line"><span class="lineno">  285</span>          vertices.emplace_back (o + d * fdiv1, o + d * fdiv2, o); <span class="comment">//P2</span></div>
+<div class="line"><span class="lineno">  286</span> </div>
+<div class="line"><span class="lineno">  287</span>          <span class="keywordflow">for</span> (<span class="keyword">auto</span> e : {</div>
+<div class="line"><span class="lineno">  288</span>              vec2 (-1.0f, -1.0f),<span class="comment">//P1</span></div>
+<div class="line"><span class="lineno">  289</span>              vec2 (-1.0f, 0.0f),<span class="comment">//P1&#39;z</span></div>
+<div class="line"><span class="lineno">  290</span>              vec2 (0.0f, -1.0f),<span class="comment">//P1&#39;x</span></div>
+<div class="line"><span class="lineno">  291</span> </div>
+<div class="line"><span class="lineno">  292</span>              vec2 (0.0f, -1.0f),<span class="comment">//P1&#39;x</span></div>
+<div class="line"><span class="lineno">  293</span>              vec2 (-1.0f, 0.0f),<span class="comment">//P1&#39;z</span></div>
+<div class="line"><span class="lineno">  294</span>              vec2 (0.0f, 0.0f)<span class="comment">//P2</span></div>
+<div class="line"><span class="lineno">  295</span>          })</div>
+<div class="line"><span class="lineno">  296</span>            {</div>
+<div class="line"><span class="lineno">  297</span>              normals.emplace_back (0, 0, -1);</div>
+<div class="line"><span class="lineno">  298</span>              texture.emplace_back ((fdiv1 + e[0]) / fdivisions, (fdiv2 + e[1]) / fdivisions);</div>
+<div class="line"><span class="lineno">  299</span>            }</div>
+<div class="line"><span class="lineno">  300</span> </div>
+<div class="line"><span class="lineno">  301</span> </div>
+<div class="line"><span class="lineno">  302</span> </div>
+<div class="line"><span class="lineno">  303</span>          <span class="comment">// z+</span></div>
+<div class="line"><span class="lineno">  304</span>          vertices.emplace_back (o + d * (fdiv1 - 1), o + d * fdiv2, -o); <span class="comment">//P1&#39;z</span></div>
+<div class="line"><span class="lineno">  305</span>          vertices.emplace_back (o + d * (fdiv1 - 1), o + d * (fdiv2 - 1), -o); <span class="comment">//P1</span></div>
+<div class="line"><span class="lineno">  306</span>          vertices.emplace_back (o + d * fdiv1, o + d * (fdiv2 - 1), -o); <span class="comment">//P1&#39;x</span></div>
+<div class="line"><span class="lineno">  307</span> </div>
+<div class="line"><span class="lineno">  308</span>          vertices.emplace_back (o + d * (fdiv1 - 1), o + d * fdiv2, -o); <span class="comment">//P1&#39;z</span></div>
+<div class="line"><span class="lineno">  309</span>          vertices.emplace_back (o + d * fdiv1, o + d * (fdiv2 - 1), -o); <span class="comment">//P1&#39;x</span></div>
+<div class="line"><span class="lineno">  310</span>          vertices.emplace_back (o + d * fdiv1, o + d * fdiv2, -o); <span class="comment">//P2</span></div>
+<div class="line"><span class="lineno">  311</span> </div>
+<div class="line"><span class="lineno">  312</span>          <span class="keywordflow">for</span> (<span class="keywordtype">int</span> k = 0; k &lt; 6; ++k)</div>
+<div class="line"><span class="lineno">  313</span>            normals.emplace_back (0, 0, 1);</div>
+<div class="line"><span class="lineno">  314</span> </div>
+<div class="line"><span class="lineno">  315</span>          <span class="keywordflow">for</span> (<span class="keyword">auto</span> e : {</div>
+<div class="line"><span class="lineno">  316</span>              vec2 (-1.0f, 0.0f),</div>
+<div class="line"><span class="lineno">  317</span>              vec2 (-1.0f, -1.0f),</div>
+<div class="line"><span class="lineno">  318</span>              vec2 (0.0f, -1.0f),</div>
+<div class="line"><span class="lineno">  319</span> </div>
+<div class="line"><span class="lineno">  320</span>              vec2 (-1.0f, 0.0f),</div>
+<div class="line"><span class="lineno">  321</span>              vec2 (0.0f, -1.0f),</div>
+<div class="line"><span class="lineno">  322</span>              vec2 (0.0f, 0.0f)</div>
+<div class="line"><span class="lineno">  323</span>          })</div>
+<div class="line"><span class="lineno">  324</span>            texture.emplace_back ((fdiv1 + e[0]) / fdivisions, (fdiv2 + e[1]) / fdivisions);</div>
+<div class="line"><span class="lineno">  325</span>        }</div>
+<div class="line"><span class="lineno">  326</span>    }</div>
+<div class="line"><span class="lineno">  327</span>}</div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="generator_8cpp_source.html#l00032">points_vertex()</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="generator_8cpp_source.html#l00183">model_cube_write()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="generator_8cpp_source.html#l00332">model_cube_write()</a>.</p>
 <div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-2-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+  <img id="dynsection-2-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-2-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-2-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="group__cube_ga035b5ad854abdbc786a8b78882d390c1_cgraph.svg" width="330" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-<div id="dynsection-3" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-3-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
-<div id="dynsection-3-summary" class="dynsummary" style="display:block;">
-</div>
-<div id="dynsection-3-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="group__cube_ga035b5ad854abdbc786a8b78882d390c1_icgraph.svg" width="463" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__cube_ga6f47c7f7a450b00614ed0114ea191025_icgraph.svg" width="463" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
 </div>
-<a id="gad6fe75a034b53925563817d6efd139a0" name="gad6fe75a034b53925563817d6efd139a0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gad6fe75a034b53925563817d6efd139a0">&#9670;&nbsp;</a></span>model_cube_write()</h2>
+<a id="ga7239c3ce0b454de72e704380c91ab81d" name="ga7239c3ce0b454de72e704380c91ab81d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga7239c3ce0b454de72e704380c91ab81d">&#9670;&nbsp;</a></span>model_cube_write()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -290,7 +377,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">void model_cube_write </td>
           <td>(</td>
-          <td class="paramtype">const char *&#160;</td>
+          <td class="paramtype">const char *const&#160;</td>
           <td class="paramname"><em>filepath</em>, </td>
         </tr>
         <tr>
@@ -313,33 +400,39 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="generator_8cpp_source.html#l00183">183</a> of file <a class="el" href="generator_8cpp_source.html">generator.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  184</span>{</div>
-<div class="line"><span class="lineno">  185</span>  <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> nVertices = <a class="code hl_function" href="group__cube.html#ga029b7906dd04b97c96cca5dd9a9db601">model_cube_nVertices</a> (divisions);</div>
-<div class="line"><span class="lineno">  186</span>  <span class="keywordtype">float</span> points[3 * nVertices];</div>
-<div class="line"><span class="lineno">  187</span>  <a class="code hl_function" href="group__cube.html#ga035b5ad854abdbc786a8b78882d390c1">model_cube_vertices</a> (length, divisions, points);</div>
-<div class="line"><span class="lineno">  188</span>  <a class="code hl_function" href="group__points.html#gab0ec2dac46ec7ee44911b8bcf1e9dad0">points_write</a> (filepath, nVertices, points);</div>
-<div class="line"><span class="lineno">  189</span>}</div>
-<div class="ttc" id="agroup__cube_html_ga029b7906dd04b97c96cca5dd9a9db601"><div class="ttname"><a href="group__cube.html#ga029b7906dd04b97c96cca5dd9a9db601">model_cube_nVertices</a></div><div class="ttdeci">unsigned int model_cube_nVertices(const unsigned int divisions)</div><div class="ttdef"><b>Definition:</b> <a href="generator_8cpp_source.html#l00180">generator.cpp:180</a></div></div>
-<div class="ttc" id="agroup__cube_html_ga035b5ad854abdbc786a8b78882d390c1"><div class="ttname"><a href="group__cube.html#ga035b5ad854abdbc786a8b78882d390c1">model_cube_vertices</a></div><div class="ttdeci">void model_cube_vertices(const float length, const unsigned int divisions, float points[])</div><div class="ttdef"><b>Definition:</b> <a href="generator_8cpp_source.html#l00109">generator.cpp:109</a></div></div>
-<div class="ttc" id="agroup__points_html_gab0ec2dac46ec7ee44911b8bcf1e9dad0"><div class="ttname"><a href="group__points.html#gab0ec2dac46ec7ee44911b8bcf1e9dad0">points_write</a></div><div class="ttdeci">void points_write(const char *filename, const unsigned int nVertices, const float points[])</div><div class="ttdef"><b>Definition:</b> <a href="generator_8cpp_source.html#l00040">generator.cpp:40</a></div></div>
+<p class="definition">Definition at line <a class="el" href="generator_8cpp_source.html#l00332">332</a> of file <a class="el" href="generator_8cpp_source.html">generator.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  335</span>{</div>
+<div class="line"><span class="lineno">  336</span>  <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> nVertices = <a class="code hl_function" href="group__cube.html#gac38b747f505758bd5a764bbffb67d6b8">model_cube_nVertices</a> (divisions);</div>
+<div class="line"><span class="lineno">  337</span>  vector&lt;vec3&gt; vertices;</div>
+<div class="line"><span class="lineno">  338</span>  vertices.reserve (nVertices);</div>
+<div class="line"><span class="lineno">  339</span>  vector&lt;vec3&gt; normals;</div>
+<div class="line"><span class="lineno">  340</span>  normals.reserve (nVertices);</div>
+<div class="line"><span class="lineno">  341</span>  vector&lt;vec2&gt; texture;</div>
+<div class="line"><span class="lineno">  342</span>  texture.reserve (nVertices);</div>
+<div class="line"><span class="lineno">  343</span> </div>
+<div class="line"><span class="lineno">  344</span>  <a class="code hl_function" href="group__cube.html#ga6f47c7f7a450b00614ed0114ea191025">model_cube_vertices</a> (length, divisions, vertices, normals, texture);</div>
+<div class="line"><span class="lineno">  345</span>  <a class="code hl_function" href="group__points.html#gaf9dbdadabbf44c2542a65faaad2ae271">model_write</a> (filepath, vertices, normals, texture);</div>
+<div class="line"><span class="lineno">  346</span>}</div>
+<div class="ttc" id="agroup__cube_html_ga6f47c7f7a450b00614ed0114ea191025"><div class="ttname"><a href="group__cube.html#ga6f47c7f7a450b00614ed0114ea191025">model_cube_vertices</a></div><div class="ttdeci">void model_cube_vertices(const float length, const unsigned int divisions, vector&lt; vec3 &gt; &amp;vertices, vector&lt; vec3 &gt; &amp;normals, vector&lt; vec2 &gt; &amp;texture)</div><div class="ttdef"><b>Definition:</b> <a href="generator_8cpp_source.html#l00177">generator.cpp:177</a></div></div>
+<div class="ttc" id="agroup__cube_html_gac38b747f505758bd5a764bbffb67d6b8"><div class="ttname"><a href="group__cube.html#gac38b747f505758bd5a764bbffb67d6b8">model_cube_nVertices</a></div><div class="ttdeci">static unsigned int model_cube_nVertices(const unsigned int divisions)</div><div class="ttdef"><b>Definition:</b> <a href="generator_8cpp_source.html#l00329">generator.cpp:329</a></div></div>
+<div class="ttc" id="agroup__points_html_gaf9dbdadabbf44c2542a65faaad2ae271"><div class="ttname"><a href="group__points.html#gaf9dbdadabbf44c2542a65faaad2ae271">model_write</a></div><div class="ttdeci">void model_write(const char *const filename, const vector&lt; vec3 &gt; &amp;vertices, const vector&lt; vec3 &gt; &amp;normals, const vector&lt; vec2 &gt; &amp;texture)</div><div class="ttdef"><b>Definition:</b> <a href="generator_8cpp_source.html#l00070">generator.cpp:70</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="generator_8cpp_source.html#l00180">model_cube_nVertices()</a>, <a class="el" href="generator_8cpp_source.html#l00109">model_cube_vertices()</a>, and <a class="el" href="generator_8cpp_source.html#l00040">points_write()</a>.</p>
+<p class="reference">References <a class="el" href="generator_8cpp_source.html#l00329">model_cube_nVertices()</a>, <a class="el" href="generator_8cpp_source.html#l00177">model_cube_vertices()</a>, and <a class="el" href="generator_8cpp_source.html#l00070">model_write()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="generator_8cpp_source.html#l00451">main()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="generator_8cpp_source.html#l00838">main()</a>.</p>
+<div id="dynsection-3" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-3-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-3-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-3-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__cube_ga7239c3ce0b454de72e704380c91ab81d_cgraph.svg" width="370" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 <div id="dynsection-4" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-4-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+  <img id="dynsection-4-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-4-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-4-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="group__cube_gad6fe75a034b53925563817d6efd139a0_cgraph.svg" width="528" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-<div id="dynsection-5" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-5-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
-<div id="dynsection-5-summary" class="dynsummary" style="display:block;">
-</div>
-<div id="dynsection-5-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="group__cube_gad6fe75a034b53925563817d6efd139a0_icgraph.svg" width="255" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__cube_ga7239c3ce0b454de72e704380c91ab81d_icgraph.svg" width="255" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
