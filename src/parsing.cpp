@@ -7,12 +7,12 @@
 #include <sys/wait.h>
 #include <pg_config.h>
 #include <wordexp.h>
+#include <cassert>
 
 #include "tinyxml2.h"
 #include "parsing.h"
 
 char globalGeneratorExecutable[BUFSIZ];
-char *globalPWD;
 bool globalUsingGenerator = false;
 
 /*! @addtogroup Operations
@@ -144,6 +144,7 @@ operations_push_extended_translate_attributes (
 
 void operations_push_transformation (const XMLElement *const transformation, vector<float> &operations)
 {
+  assert (transformation != nullptr);
   const char *const transformation_name = transformation->Value ();
 
   if (!strcmp ("translate", transformation_name))
