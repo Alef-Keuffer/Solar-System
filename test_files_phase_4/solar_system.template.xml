@@ -47,7 +47,7 @@
             </transform>
             <models>
                 <model file="mercury.3d">
-                	<texture file="mercury.jpg"/>	
+                    <texture file="mercury.jpg"/>
                 </model>
             </models>
         </group>
@@ -58,7 +58,7 @@
             </transform>
             <models>
                 <model file="venus.3d">
-                	<texture file="venus.jpg"/>
+                    <texture file="venus.jpg"/>
                 </model>
             </models>
         </group>
@@ -69,7 +69,7 @@
             </transform>
             <models>
                 <model file="earth.3d">
-                	<texture file="earth.jpg"/>
+                    <texture file="earth.jpg"/>
                 </model>
             </models>
         </group>
@@ -80,7 +80,7 @@
             </transform>
             <models>
                 <model file="mars.3d">
-                	<texture file="mars.jpg"/>
+                    <texture file="mars.jpg"/>
                 </model>
             </models>
         </group>
@@ -91,7 +91,7 @@
             </transform>
             <models>
                 <model file="jupiter.3d">
-                	<texture file="jupiter.jpg"/>
+                    <texture file="jupiter.jpg"/>
                 </model>
             </models>
         </group>
@@ -102,7 +102,7 @@
             </transform>
             <models>
                 <model file="saturn.3d">
-                	<texture file="saturn.jpg"/>
+                    <texture file="saturn.jpg"/>
                 </model>
             </models>
         </group>
@@ -113,7 +113,7 @@
             </transform>
             <models>
                 <model file="uranus.3d">
-                	<texture file="uranus.jpg"/>
+                    <texture file="uranus.jpg"/>
                 </model>
             </models>
         </group>
@@ -124,7 +124,7 @@
             </transform>
             <models>
                 <model file="neptune.3d">
-                	<texture file="neptune.jpg"/>
+                    <texture file="neptune.jpg"/>
                 </model>
             </models>
         </group>
