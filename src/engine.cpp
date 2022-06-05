@@ -200,6 +200,7 @@ struct model {
   GLuint vbo{};
   GLuint normals{};
   struct {
+    // default values specified at (page 5)[Phase 4 – Normals and Texture Coordinates][Practical Assignment CG - 2021/22 pdf]
     vec4 diffuse{200.0 / RGB_MAX, 200.0 / RGB_MAX, 200.0 / RGB_MAX, 1};
     vec4 ambient{50.0 / RGB_MAX, 50.0 / RGB_MAX, 50.0 / RGB_MAX, 1};
     vec4 specular{0, 0, 0, 1};
@@ -214,7 +215,7 @@ struct model {
 static std::vector<struct model> globalModels;
 static std::vector<float> globalOperations;
 
-struct model allocModel (const char *model3dFilePath)
+struct model allocModel (const char *const model3dFilePath)
 {
   FILE *fp = fopen (model3dFilePath, "r");
   if (!fp)
@@ -234,7 +235,7 @@ struct model allocModel (const char *model3dFilePath)
   const size_t nVerticesRead = fread (arrayOfVertices, 3 * sizeof (float), nVertices, fp);
   if (nVerticesRead != nVertices)
     {
-      cerr << nVerticesRead << "= nVerticesRead != nVertices = " << nVertices << endl;
+      cerr << nVerticesRead << " = nVerticesRead != nVertices = " << nVertices << endl;
       exit (EXIT_FAILURE);
     }
 
@@ -374,7 +375,7 @@ void renderModel (const struct model &model)
   // texture buffer object (slide 14) [class11]
   glBindTexture (GL_TEXTURE_2D, model.tbo);
 
-  glPushAttrib (GL_ALL_ATTRIB_BITS);
+  //glPushAttrib (GL_ALL_ATTRIB_BITS);
   // define a material for the object(s) (slide 8) [class9]
   glMaterialfv (GL_FRONT, GL_DIFFUSE, value_ptr (model.material.diffuse));
   glMaterialfv (GL_FRONT, GL_AMBIENT, value_ptr (model.material.ambient));
@@ -384,13 +385,12 @@ void renderModel (const struct model &model)
 
   // drawing
   glDrawArrays (GL_TRIANGLES, 0, model.nVertices);
-  glPopAttrib ();
+  //glPopAttrib ();
 
   // unbind array buffer
   glBindBuffer (GL_ARRAY_BUFFER, 0);
   // unbind texture (slide 10) [class11]
   glBindTexture (GL_TEXTURE_2D, 0);
-
 }
 
 //!@} end of group modelEngine
@@ -465,6 +465,10 @@ void operations_render (vector<float> &operations)
 
   unsigned int model_num = 0;
   unsigned char nLights = 0;
+
+  const float amb[4] = {0, 0, 1};
+  const float spec[4] = {1, 1, 1};
+  const float diff[4] = {1, 1, 1};
 
   for (i += 3; i < operations.size (); i++)
     {
@@ -563,7 +567,7 @@ void operations_render (vector<float> &operations)
             {
               if (isFirstTimeBeingExecuted)
                 cerr << "BEGIN_GROUP" << endl;
-              glPushAttrib (GL_ALL_ATTRIB_BITS);
+              //glPushAttrib (GL_ALL_ATTRIB_BITS);
               glPushMatrix ();
             }
           continue;
@@ -571,8 +575,8 @@ void operations_render (vector<float> &operations)
             {
               if (isFirstTimeBeingExecuted)
                 cerr << "END_GROUP" << endl;
-              glPopAttrib ();
               glPopMatrix ();
+              //glPopAttrib ();
             }
           continue;
           // texture
@@ -686,12 +690,18 @@ void operations_render (vector<float> &operations)
           // light sources
           case POINT:
             {
-              const vec4 pos = {operations[i + 1],
-                                operations[i + 2],
-                                operations[i + 3],
-                                0.0};
+              static const vec4 pos = {operations[i + 1],
+                                       operations[i + 2],
+                                       operations[i + 3],
+                                       1.0};
               if (isFirstTimeBeingExecuted)
-                cerr << "POINT (" << to_string (pos) << ")" << endl;
+                {
+                  glEnable (GL_LIGHT0 + nLights);
+                  glLightfv (GL_LIGHT0 + nLights, GL_AMBIENT, amb);
+                  glLightfv (GL_LIGHT0 + nLights, GL_DIFFUSE, diff);
+                  glLightfv (GL_LIGHT0 + nLights, GL_SPECULAR, spec);
+                  cerr << "POINT (" << to_string (pos) << ")" << endl;
+                }
               glLightfv (GL_LIGHT0 + nLights, GL_POSITION, value_ptr (pos));
               ++nLights;
               i += 3;
@@ -699,12 +709,18 @@ void operations_render (vector<float> &operations)
           continue;
           case DIRECTIONAL:
             {
-              const vec4 dir = {operations[i + 1],
-                                operations[i + 2],
-                                operations[i + 3],
-                                0.0};
+              static const vec4 dir = {operations[i + 1],
+                                       operations[i + 2],
+                                       operations[i + 3],
+                                       0.0};
               if (isFirstTimeBeingExecuted)
-                cerr << "DIRECTIONAL (" << to_string (dir) << ")" << endl;
+                {
+                  glEnable (GL_LIGHT0 + nLights);
+                  glLightfv (GL_LIGHT0 + nLights, GL_AMBIENT, amb);
+                  glLightfv (GL_LIGHT0 + nLights, GL_DIFFUSE, diff);
+                  glLightfv (GL_LIGHT0 + nLights, GL_SPECULAR, spec);
+                  cerr << "DIRECTIONAL (" << to_string (dir) << ")" << endl;
+                }
 
               glLightfv (GL_LIGHT0 + nLights, GL_POSITION, value_ptr (dir));
               ++nLights;
@@ -713,24 +729,33 @@ void operations_render (vector<float> &operations)
           continue;
           case SPOTLIGHT:
             {
-              const vec4 pos = {operations[i + 1],
-                                operations[i + 2],
-                                operations[i + 3],
-                                1.0};
-              const vec4 dir = {operations[i + 4],
-                                operations[i + 5],
-                                operations[i + 6],
-                                1.0};
-              const float cutoff = operations[i + 7];
+              static const vec4 pos = {operations[i + 1],
+                                       operations[i + 2],
+                                       operations[i + 3],
+                                       1.0};
+              static const vec4 dir = {operations[i + 4],
+                                       operations[i + 5],
+                                       operations[i + 6],
+                                       1.0};
+              static const float cutoff = operations[i + 7];
               if (isFirstTimeBeingExecuted)
-                cerr << "SPOTLIGHT:"
-                        "\n\t(pos: " << to_string (pos) << ")"
-                                                           "\n\t(dir: " << to_string (dir) << ")"
-                                                                                              "\n\t(cutoff: " << cutoff
-                     << ")" << endl;
+                {
+                  glEnable (GL_LIGHT0 + nLights);
+
+                  glLightfv (GL_LIGHT0 + nLights, GL_AMBIENT, amb);
+                  glLightfv (GL_LIGHT0 + nLights, GL_DIFFUSE, diff);
+                  glLightfv (GL_LIGHT0 + nLights, GL_SPECULAR, spec);
+                  glLightf (GL_LIGHT0 + nLights, GL_SPOT_CUTOFF, cutoff);
+
+                  cerr << "SPOTLIGHT:"
+                          "\n\t(pos: " << to_string (pos) << ")"
+                                                             "\n\t(dir: " << to_string (dir) << ")"
+                                                                                                "\n\t(cutoff: "
+                       << cutoff
+                       << ")" << endl;
+                }
               glLightfv (GL_LIGHT0 + nLights, GL_POSITION, value_ptr (pos));
               glLightfv (GL_LIGHT0 + nLights, GL_SPOT_DIRECTION, value_ptr (dir));
-              glLightf (GL_LIGHT0 + nLights, GL_SPOT_CUTOFF, cutoff);
               ++nLights;
               i += 7;
               continue;
@@ -745,6 +770,7 @@ void operations_render (vector<float> &operations)
 void draw_axes ()
 {
   glDisable (GL_LIGHTING);
+  glEnable (GL_LIGHT0);
   /*draw absolute (before any transformation) axes*/
   glBegin (GL_LINES);
   /*X-axis in red*/
@@ -1207,14 +1233,7 @@ void engine_run (int argc, char **argv)
 
   // activate lighting (done once in initialization) (slides 5) [class9]
   glEnable (GL_LIGHTING);
-  glEnable (GL_LIGHT0);
-  glEnable (GL_LIGHT1);
-  glEnable (GL_LIGHT2);
-  glEnable (GL_LIGHT3);
-  glEnable (GL_LIGHT4);
-  glEnable (GL_LIGHT5);
-  glEnable (GL_LIGHT6);
-  glEnable (GL_LIGHT7);
+  // glEnable (GL_LIGHTi) done when needed
 
   // activate arrays (slide 12) [class11]
   glEnableClientState (GL_VERTEX_ARRAY);
@@ -1230,7 +1249,7 @@ void engine_run (int argc, char **argv)
   glLightModelfv (GL_LIGHT_MODEL_AMBIENT, amb);
 
   // other details
-  //glEnable (GL_CULL_FACE);
+  glEnable (GL_CULL_FACE);
   //glPolygonMode (GL_FRONT_AND_BACK, GL_FILL);
 
   glewInit ();
@@ -1241,6 +1260,9 @@ void engine_run (int argc, char **argv)
   glutMainLoop ();
 }
 
+/*!
+ * ⟨command⟩ ::= ⟨xml_file⟩
+ */
 int main (int argc, char **argv)
 {
   engine_run (argc, argv);
