@@ -22,10 +22,13 @@
                     <point x="200" y="-500" z="-200"/>
                     <point x="800" y="10" z="0"/>
                 </translate>
+                <scale x="20" y="20" z="20"/>
             </transform>
             <models>
-                <model file="teapot.3d"/>
-                <generator argv="bezier ../test_files_phase_3/teapot.patch 10 teapot.3d"/>
+                <model file="teapot.3d">
+                    <texture file="teapot.jpg"/>
+                    <generator argv="bezier ../test_files_phase_3/teapot.patch 10 teapot.3d"/>
+                </model>
             </models>
         </group>
 

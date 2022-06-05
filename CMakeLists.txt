@@ -57,3 +57,45 @@ add_custom_target(
         COMMAND git commit -m docs
         WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
 )
+
+# Tests
+
+add_custom_target(
+        test_2_4
+        COMMAND engine test_2_4.xml
+        COMMAND rm -f *.3d
+        WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/test_files_phase_2
+        DEPENDS engine generator
+)
+add_custom_target(
+        test_3_1
+        COMMAND generator bezier teapot.patch 10 teapot.3d
+        COMMAND engine test_3_1.xml
+        COMMAND rm -f *.3d
+        WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/test_files_phase_3
+        DEPENDS engine generator
+)
+add_custom_target(
+        test_3_2
+        COMMAND generator bezier teapot.patch 10 teapot.3d
+        COMMAND engine test_3_2.xml
+        COMMAND rm -f *.3d
+        WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/test_files_phase_3
+        DEPENDS engine generator
+)
+add_custom_target(
+        test_4_5
+        COMMAND engine test_4_5.xml
+        COMMAND rm -f *.3d
+        WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/test_files_phase_4
+        DEPENDS engine generator
+)
+
+add_custom_target(
+        test_4_7
+        COMMAND engine test_4_7.xml
+        COMMAND rm -f *.3d
+        WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/test_files_phase_4
+        DEPENDS engine generator
+)
+

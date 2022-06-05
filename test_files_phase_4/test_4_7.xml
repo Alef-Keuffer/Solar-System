@@ -1,5 +1,5 @@
 <world>
-    <generator dir="generator"/>
+    <generator dir="../bin/generator"/>
     <camera>
         <position x="-0.740200" y="1.182951" z="1.376347"/>
         <lookAt x="0" y="0" z="0"/>
@@ -10,6 +10,7 @@
     <lights>
         <light type="point" posX="0" posY="0.2" posZ="0"/>
         <light type="point" posX="-2" posY="2" posZ="2"/>
+        <!--        <light type="directional" dirX="-2" dirY="2" dirZ="2"/>-->
     </lights>
 
     <group>
