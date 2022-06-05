@@ -4,7 +4,7 @@ var group__model_engine =
       [ "ambient", "structmodel.html#a59802909659217ceee78acd7fab03b01", null ],
       [ "diffuse", "structmodel.html#ac6da54555e9cdb72721492ef453b00c7", null ],
       [ "emissive", "structmodel.html#a5fae13ebfa02b349b41d210f8ac77d2c", null ],
-      [ "material", "structmodel.html#a8cb7a6506a1a71331a6402636f358d2b", null ],
+      [ "material", "structmodel.html#a7e4787d25329325aacd14a65d3bb2f96", null ],
       [ "normals", "structmodel.html#aa02ac56a51e39aa9e42df9eafd2e9302", null ],
       [ "nVertices", "structmodel.html#ae122038028ab471bfa2b266189e90404", null ],
       [ "shininess", "structmodel.html#a162a855dcc61ec108bda595d07a2fd8c", null ],

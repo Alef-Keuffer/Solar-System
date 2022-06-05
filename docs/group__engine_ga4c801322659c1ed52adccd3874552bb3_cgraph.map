@@ -1,6 +1,6 @@
 <map id="xml_load_and_set_env" name="xml_load_and_set_env">
 <area shape="rect" id="node1" title=" " alt="" coords="5,213,176,239"/>
-<area shape="rect" id="node2" href="$group__engine.html#ga8679d9b303f36964bf51dba0993caeaa" title=" " alt="" coords="233,162,374,189"/>
+<area shape="rect" id="node2" href="$group__explorer_camera.html#ga8679d9b303f36964bf51dba0993caeaa" title=" " alt="" coords="233,162,374,189"/>
 <area shape="rect" id="node3" href="$group__xml.html#gad700972f3f382c3cc5658ce95361ad0e" title=" " alt="" coords="224,213,383,239"/>
 <area shape="rect" id="node13" href="$group___operations.html#ga8d5a19a3522cea1b4254684cf6515d13" title=" " alt="" coords="233,419,373,446"/>
 <area shape="rect" id="node4" href="$group___groups.html#ga2729bcb63525027c28b0107fe17d3a06" title=" " alt="" coords="431,118,611,145"/>
@@ -16,7 +16,7 @@
 <area shape="rect" id="node19" href="$engine_8cpp.html#a072c434cfd125e58ac1cec9a5725688a" title=" " alt="" coords="443,339,598,366"/>
 <area shape="rect" id="node20" href="$group__model_engine.html#ga361bcac2814bb93f543d2c0f1b28b6d2" title=" " alt="" coords="474,390,567,417"/>
 <area shape="rect" id="node21" href="$group__model_engine.html#ga8c7329ae859a08eea53a77130ebe6018" title=" " alt="" coords="444,441,597,483"/>
-<area shape="rect" id="node22" href="$group__spherical.html#gabd434f65cba3ee8011b8d3cdd1f25dca" title=" " alt="" coords="445,507,596,534"/>
+<area shape="rect" id="node22" href="$group__explorer_camera.html#gabd434f65cba3ee8011b8d3cdd1f25dca" title=" " alt="" coords="445,507,596,534"/>
 <area shape="rect" id="node23" href="$curves_8cpp.html#ad812fc50a0384335487e258a6f61714e" title=" " alt="" coords="711,503,813,530"/>
 <area shape="rect" id="node24" href="$group__model_engine.html#ga2907e4adf4f2bef2c8ce416cb8470997" title=" " alt="" coords="469,609,573,635"/>
 <area shape="rect" id="node15" href="$curves_8cpp.html#a98b26a4263f61db7149441a99a6d35b6" title=" " alt="" coords="680,398,844,425"/>

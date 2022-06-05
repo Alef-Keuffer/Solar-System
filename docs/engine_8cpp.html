@@ -105,6 +105,8 @@ $(document).ready(function(){initNavTree('engine_8cpp.html',''); initResizable()
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
+<a href="#typedef-members">Typedefs</a> &#124;
+<a href="#enum-members">Enumerations</a> &#124;
 <a href="#func-members">Functions</a> &#124;
 <a href="#var-members">Variables</a>  </div>
   <div class="headertitle"><div class="title">engine.cpp File Reference</div></div>
@@ -137,45 +139,82 @@ $(document).ready(function(){initNavTree('engine_8cpp.html',''); initResizable()
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structprofile__struct.html">profile_struct</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_motion.html">Motion</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structmodel.html">model</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:ga4b93979f29f893a1d82ad1773c23a975"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structprofile__struct.html">profile_struct</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__camera.html#ga4b93979f29f893a1d82ad1773c23a975">profile_t</a></td></tr>
+<tr class="separator:ga4b93979f29f893a1d82ad1773c23a975"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:ga06fc87d81c62e9abb8790b6e5713c55b"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <a class="el" href="group__camera.html#gga06fc87d81c62e9abb8790b6e5713c55ba094dfcf5d29fe8127338ad9c5ac93a9b">EXPL</a> = 0
+, <a class="el" href="group__camera.html#gga06fc87d81c62e9abb8790b6e5713c55bafe46f38183e258bea6b1cf42ed17cf8f">FPS</a>
+, <a class="el" href="group__camera.html#gga06fc87d81c62e9abb8790b6e5713c55baf98394d47218019a4c04d2ce7c43fe5d">NPROFILES</a>
+ }</td></tr>
+<tr class="separator:ga06fc87d81c62e9abb8790b6e5713c55b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:gaeac535a2aaeb6b1c8c4d1169bbc3cab1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__spherical.html#gaeac535a2aaeb6b1c8c4d1169bbc3cab1">spherical2Cartesian</a> (const double radius, const double elevation, const double azimuth, double *x, double *y, double *z)</td></tr>
-<tr class="separator:gaeac535a2aaeb6b1c8c4d1169bbc3cab1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gabd434f65cba3ee8011b8d3cdd1f25dca"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__spherical.html#gabd434f65cba3ee8011b8d3cdd1f25dca">cartesian2Spherical</a> (const double x, const double y, const double z, double *radius, double *azimuth, double *elevation)</td></tr>
-<tr class="separator:gabd434f65cba3ee8011b8d3cdd1f25dca"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga8679d9b303f36964bf51dba0993caeaa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__engine.html#ga8679d9b303f36964bf51dba0993caeaa">env_load_defaults</a> ()</td></tr>
+<tr class="memitem:ga025f4079099b4474ee63a12529c22fa4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__camera.html#ga025f4079099b4474ee63a12529c22fa4">changeProfile</a> ()</td></tr>
+<tr class="separator:ga025f4079099b4474ee63a12529c22fa4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4eec7d736381fd000f84ccb4f2d844da"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__camera.html#ga4eec7d736381fd000f84ccb4f2d844da">loadProfile</a> (<a class="el" href="group__camera.html#ga4b93979f29f893a1d82ad1773c23a975">profile_t</a> <a class="el" href="group__camera.html#gad92c9af400eff3b9fbb66b0d1cf4cb66">profile</a>)</td></tr>
+<tr class="separator:ga4eec7d736381fd000f84ccb4f2d844da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga68143385b5ac297391a483f7980bad06"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__camera.html#ga68143385b5ac297391a483f7980bad06">defaultChangeSize</a> (const int w, int h)</td></tr>
+<tr class="separator:ga68143385b5ac297391a483f7980bad06"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9c69bbb7e3f0d4258e0c9f149fe25743"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__fps_camera.html#ga9c69bbb7e3f0d4258e0c9f149fe25743">fpsTimer</a> (int)</td></tr>
+<tr class="separator:ga9c69bbb7e3f0d4258e0c9f149fe25743"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaebc76dee5c95909fb1c36dd787c0fdd6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__fps_camera.html#gaebc76dee5c95909fb1c36dd787c0fdd6">fpsPassiveMotion</a> (int, int)</td></tr>
+<tr class="separator:gaebc76dee5c95909fb1c36dd787c0fdd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9170a3901736384a4688253a52675c63"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__fps_camera.html#ga9170a3901736384a4688253a52675c63">fpsCamera</a> ()</td></tr>
+<tr class="separator:ga9170a3901736384a4688253a52675c63"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaed73e5ab45fe69d1231f88a89a17fcf4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__fps_camera.html#gaed73e5ab45fe69d1231f88a89a17fcf4">fpsKeyboard</a> (unsigned char key, int x, int y)</td></tr>
+<tr class="separator:gaed73e5ab45fe69d1231f88a89a17fcf4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab3cdcf28f4c5e7c5a2b87d29b5d4ea95"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__fps_camera.html#gab3cdcf28f4c5e7c5a2b87d29b5d4ea95">fpsKeyboardUp</a> (unsigned char key, int x, int y)</td></tr>
+<tr class="separator:gab3cdcf28f4c5e7c5a2b87d29b5d4ea95"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2460303fbb6b455ef1d546f4ff051fee"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__fps_camera.html#ga2460303fbb6b455ef1d546f4ff051fee">fpsInit</a> ()</td></tr>
+<tr class="separator:ga2460303fbb6b455ef1d546f4ff051fee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab0f1d17222b0687759f3d0e7ee600f20"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__explorer_camera.html#gab0f1d17222b0687759f3d0e7ee600f20">explCamera</a> ()</td></tr>
+<tr class="separator:gab0f1d17222b0687759f3d0e7ee600f20"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0b95fc35a07bac37f27f163fb7cba34d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__explorer_camera.html#ga0b95fc35a07bac37f27f163fb7cba34d">explKeyboard</a> (unsigned char key, int x, int y)</td></tr>
+<tr class="separator:ga0b95fc35a07bac37f27f163fb7cba34d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab86b1c960c066cefd232128fa8754875"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__explorer_camera.html#gab86b1c960c066cefd232128fa8754875">explMouse</a> (int button, int state, int x, int y)</td></tr>
+<tr class="separator:gab86b1c960c066cefd232128fa8754875"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1521b52ce120927b1ab548e0b6631e13"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__explorer_camera.html#ga1521b52ce120927b1ab548e0b6631e13">explMotion</a> (int x, int y)</td></tr>
+<tr class="separator:ga1521b52ce120927b1ab548e0b6631e13"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga57ea05cfaf6caf9d9f67c5dd4726e382"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__explorer_camera.html#ga57ea05cfaf6caf9d9f67c5dd4726e382">explTimer</a> (int)</td></tr>
+<tr class="separator:ga57ea05cfaf6caf9d9f67c5dd4726e382"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8679d9b303f36964bf51dba0993caeaa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__explorer_camera.html#ga8679d9b303f36964bf51dba0993caeaa">env_load_defaults</a> ()</td></tr>
 <tr class="separator:ga8679d9b303f36964bf51dba0993caeaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaeac535a2aaeb6b1c8c4d1169bbc3cab1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__explorer_camera.html#gaeac535a2aaeb6b1c8c4d1169bbc3cab1">spherical2Cartesian</a> (const double radius, const double elevation, const double azimuth, double *x, double *y, double *z)</td></tr>
+<tr class="separator:gaeac535a2aaeb6b1c8c4d1169bbc3cab1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gabd434f65cba3ee8011b8d3cdd1f25dca"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__explorer_camera.html#gabd434f65cba3ee8011b8d3cdd1f25dca">cartesian2Spherical</a> (const double x, const double y, const double z, double *radius, double *azimuth, double *elevation)</td></tr>
+<tr class="separator:gabd434f65cba3ee8011b8d3cdd1f25dca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9fe47c5361dc03b642823dc88f07465b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__explorer_camera.html#ga9fe47c5361dc03b642823dc88f07465b">explRedisplay</a> ()</td></tr>
+<tr class="separator:ga9fe47c5361dc03b642823dc88f07465b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga361bcac2814bb93f543d2c0f1b28b6d2"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structmodel.html">model</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__model_engine.html#ga361bcac2814bb93f543d2c0f1b28b6d2">allocModel</a> (const char *const model3dFilePath)</td></tr>
 <tr class="separator:ga361bcac2814bb93f543d2c0f1b28b6d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga8c7329ae859a08eea53a77130ebe6018"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__model_engine.html#ga8c7329ae859a08eea53a77130ebe6018">associate_a_texture_to_model</a> (struct <a class="el" href="structmodel.html">model</a> &amp;m, const char *const path)</td></tr>
 <tr class="separator:ga8c7329ae859a08eea53a77130ebe6018"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga2907e4adf4f2bef2c8ce416cb8470997"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__model_engine.html#ga2907e4adf4f2bef2c8ce416cb8470997">renderModel</a> (const struct <a class="el" href="structmodel.html">model</a> &amp;<a class="el" href="structmodel.html">model</a>)</td></tr>
 <tr class="separator:ga2907e4adf4f2bef2c8ce416cb8470997"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga26df4370f6bf2d02524bd370e9e4e292"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__engine.html#ga26df4370f6bf2d02524bd370e9e4e292">changeSize</a> (const int w, int h)</td></tr>
-<tr class="separator:ga26df4370f6bf2d02524bd370e9e4e292"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a072c434cfd125e58ac1cec9a5725688a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="engine_8cpp.html#a072c434cfd125e58ac1cec9a5725688a">advance_in_rotation</a> (const float rotation_time, const vec3 &amp;axis_of_rotation)</td></tr>
 <tr class="separator:a072c434cfd125e58ac1cec9a5725688a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga8d5a19a3522cea1b4254684cf6515d13"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___operations.html#ga8d5a19a3522cea1b4254684cf6515d13">operations_render</a> (vector&lt; float &gt; &amp;operations)</td></tr>
 <tr class="separator:ga8d5a19a3522cea1b4254684cf6515d13"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a634dba686e70e7ff3f10c37d11f463da"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="engine_8cpp.html#a634dba686e70e7ff3f10c37d11f463da">draw_axes</a> ()</td></tr>
 <tr class="separator:a634dba686e70e7ff3f10c37d11f463da"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gab9813926390dc5773baf0b20dc2ea16e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__engine.html#gab9813926390dc5773baf0b20dc2ea16e">redisplay</a> ()</td></tr>
-<tr class="separator:gab9813926390dc5773baf0b20dc2ea16e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaf049ec1caddd7a032fc8b48641e12f1e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__engine.html#gaf049ec1caddd7a032fc8b48641e12f1e">renderGreenPlane</a> ()</td></tr>
 <tr class="separator:gaf049ec1caddd7a032fc8b48641e12f1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga91c42686f3245f22fb6b17ba5372d92c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__engine.html#ga91c42686f3245f22fb6b17ba5372d92c">renderScene</a> ()</td></tr>
 <tr class="separator:ga91c42686f3245f22fb6b17ba5372d92c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga4c801322659c1ed52adccd3874552bb3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__engine.html#ga4c801322659c1ed52adccd3874552bb3">xml_load_and_set_env</a> (const char *const filename)</td></tr>
 <tr class="separator:ga4c801322659c1ed52adccd3874552bb3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gac7632fff72011e8c11ae504a4596a7f7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__input.html#gac7632fff72011e8c11ae504a4596a7f7">keyboardFunc</a> (unsigned char key, int xmouse, int ymouse)</td></tr>
-<tr class="separator:gac7632fff72011e8c11ae504a4596a7f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gad48076b61c0ddb6bd4fadf644bf59ff1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__input.html#gad48076b61c0ddb6bd4fadf644bf59ff1">mouseFunc</a> (int button, int state, int x, int y)</td></tr>
-<tr class="separator:gad48076b61c0ddb6bd4fadf644bf59ff1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga2bebb17428cb218231ad556de2a20ed6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__input.html#ga2bebb17428cb218231ad556de2a20ed6">motionFunc</a> (int x, int y)</td></tr>
-<tr class="separator:ga2bebb17428cb218231ad556de2a20ed6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga98eaf946471acbd931de5d52ca83b3d1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__engine.html#ga98eaf946471acbd931de5d52ca83b3d1">engine_run</a> (int argc, char **argv)</td></tr>
 <tr class="separator:ga98eaf946471acbd931de5d52ca83b3d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga3c04138a5bfe5d72780bb7e82a18e627"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__engine.html#ga3c04138a5bfe5d72780bb7e82a18e627">main</a> (int argc, char **argv)</td></tr>
@@ -215,6 +254,46 @@ Variables</h2></td></tr>
 <tr class="separator:ga5c609aa58ab1231665e34d751cd592ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga6759b1a14e7b7edc9cc5f5caaee5cb88"><td class="memItemLeft" align="right" valign="top">static float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__engine.html#ga6759b1a14e7b7edc9cc5f5caaee5cb88">globalScaleZ</a> = 1</td></tr>
 <tr class="separator:ga6759b1a14e7b7edc9cc5f5caaee5cb88"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae0acd67f1829e658c87458286ad23bdc"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__fps_camera.html#gae0acd67f1829e658c87458286ad23bdc">globalWidth</a> = 16 * 50</td></tr>
+<tr class="separator:gae0acd67f1829e658c87458286ad23bdc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga715ae80f0a70f5e77abf82089612d279"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__fps_camera.html#ga715ae80f0a70f5e77abf82089612d279">globalHeight</a> = 9 * 50</td></tr>
+<tr class="separator:ga715ae80f0a70f5e77abf82089612d279"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac6207b42ce8dc1b2b88003e5b7ea8fb1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__fps_camera.html#gac6207b42ce8dc1b2b88003e5b7ea8fb1">globalLockCenter</a> = false</td></tr>
+<tr class="separator:gac6207b42ce8dc1b2b88003e5b7ea8fb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga732e855b4f0af43a5191703dde6c8a62"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__fps_camera.html#ga732e855b4f0af43a5191703dde6c8a62">globalPitch</a> = 0.0</td></tr>
+<tr class="separator:ga732e855b4f0af43a5191703dde6c8a62"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gabbca1a3b11e5dbbdfa2151c802ba2622"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__fps_camera.html#gabbca1a3b11e5dbbdfa2151c802ba2622">globalYaw</a> = 0.0</td></tr>
+<tr class="separator:gabbca1a3b11e5dbbdfa2151c802ba2622"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa0f31fbedb92450d82b28cf8b12b6b32"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="group__camera.html#ga4b93979f29f893a1d82ad1773c23a975">profile_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__fps_camera.html#gaa0f31fbedb92450d82b28cf8b12b6b32">globalProfile_FPS</a></td></tr>
+<tr class="separator:gaa0f31fbedb92450d82b28cf8b12b6b32"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga415440b0670bb4b1307a14a440eee18b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_motion.html">Motion</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__fps_camera.html#ga415440b0670bb4b1307a14a440eee18b">globalMotion</a> = {false, false, false, false}</td></tr>
+<tr class="separator:ga415440b0670bb4b1307a14a440eee18b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa9caf1552b0f176abb7d51d43bca292f"><td class="memItemLeft" align="right" valign="top">const auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__fps_camera.html#gaa9caf1552b0f176abb7d51d43bca292f">GLOBAL_FPS</a> = 60</td></tr>
+<tr class="separator:gaa9caf1552b0f176abb7d51d43bca292f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gabfde99c2a7cbb37bbfd52681554cbe1e"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__fps_camera.html#gabfde99c2a7cbb37bbfd52681554cbe1e">globalFpsCamX</a> = 0.0</td></tr>
+<tr class="separator:gabfde99c2a7cbb37bbfd52681554cbe1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4e41359e84532c8318ec93824b010cd2"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__fps_camera.html#ga4e41359e84532c8318ec93824b010cd2">globalFpsCamZ</a> = 0.0</td></tr>
+<tr class="separator:ga4e41359e84532c8318ec93824b010cd2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9e4f774a0698eaff59912b317747ba4a"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__fps_camera.html#ga9e4f774a0698eaff59912b317747ba4a">globalFpsCamY</a> = 0.0</td></tr>
+<tr class="separator:ga9e4f774a0698eaff59912b317747ba4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gafc0e962e75ad2d9eb6eff11178559577"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__fps_camera.html#gafc0e962e75ad2d9eb6eff11178559577">globalFpsSens</a> = 1</td></tr>
+<tr class="separator:gafc0e962e75ad2d9eb6eff11178559577"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab2ace04a22b453beae6d10138e2f2161"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="group__camera.html#ga4b93979f29f893a1d82ad1773c23a975">profile_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__explorer_camera.html#gab2ace04a22b453beae6d10138e2f2161">globalProfile_EXPL</a></td></tr>
+<tr class="separator:gab2ace04a22b453beae6d10138e2f2161"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9046d488bde40feb5c8cd6372f12d5cf"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__explorer_camera.html#ga9046d488bde40feb5c8cd6372f12d5cf">DEFAULT_GLOBAL_RADIUS</a> = 1</td></tr>
+<tr class="separator:ga9046d488bde40feb5c8cd6372f12d5cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8847a748f16dded3615f8f4b48ab2ef4"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__explorer_camera.html#ga8847a748f16dded3615f8f4b48ab2ef4">DEFAULT_GLOBAL_AZIMUTH</a> = 0</td></tr>
+<tr class="separator:ga8847a748f16dded3615f8f4b48ab2ef4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga3f93d1092ee04ee1206b02259e320784"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__explorer_camera.html#ga3f93d1092ee04ee1206b02259e320784">DEFAULT_GLOBAL_ELEVATION</a> = 0</td></tr>
+<tr class="separator:ga3f93d1092ee04ee1206b02259e320784"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaee0ddcd277ec7a7a451dbd5b17f98187"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__explorer_camera.html#gaee0ddcd277ec7a7a451dbd5b17f98187">globalRadius</a> = <a class="el" href="group__explorer_camera.html#ga9046d488bde40feb5c8cd6372f12d5cf">DEFAULT_GLOBAL_RADIUS</a></td></tr>
+<tr class="separator:gaee0ddcd277ec7a7a451dbd5b17f98187"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gadaab4529e17c31628ede6500a0f9dd07"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__explorer_camera.html#gadaab4529e17c31628ede6500a0f9dd07">globalAzimuth</a> = <a class="el" href="group__explorer_camera.html#ga8847a748f16dded3615f8f4b48ab2ef4">DEFAULT_GLOBAL_AZIMUTH</a></td></tr>
+<tr class="separator:gadaab4529e17c31628ede6500a0f9dd07"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2788cc0fae99c064d291338b8fbe8484"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__explorer_camera.html#ga2788cc0fae99c064d291338b8fbe8484">globalElevation</a> = <a class="el" href="group__explorer_camera.html#ga3f93d1092ee04ee1206b02259e320784">DEFAULT_GLOBAL_ELEVATION</a></td></tr>
+<tr class="separator:ga2788cc0fae99c064d291338b8fbe8484"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac3d947315432e74f7c2d8f0dee6d5166"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__explorer_camera.html#gac3d947315432e74f7c2d8f0dee6d5166">globalMouseLeftButton</a> = false</td></tr>
+<tr class="separator:gac3d947315432e74f7c2d8f0dee6d5166"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga5622007d32c9f02637b15e267ea5e66d"><td class="memItemLeft" align="right" valign="top">const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__position.html#ga5622007d32c9f02637b15e267ea5e66d">DEFAULT_GLOBAL_EYE_STEP</a> = 1</td></tr>
 <tr class="separator:ga5622007d32c9f02637b15e267ea5e66d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gac405408e87c2764abe6ccf07bc3e59e2"><td class="memItemLeft" align="right" valign="top">static float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__position.html#gac405408e87c2764abe6ccf07bc3e59e2">DEFAULT_GLOBAL_EYE_X</a> = 0</td></tr>
@@ -275,20 +354,16 @@ Variables</h2></td></tr>
 <tr class="separator:ga4ce7b2ac871b1ff992a5048c9efedb4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga0d7ac28f9a90c72a02d5f7c6f1182be9"><td class="memItemLeft" align="right" valign="top">static float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__projection.html#ga0d7ac28f9a90c72a02d5f7c6f1182be9">globalFar</a> = <a class="el" href="group__projection.html#ga77c5e8ffdba32056cc34a418d778962b">DEFAULT_GLOBAL_FAR</a></td></tr>
 <tr class="separator:ga0d7ac28f9a90c72a02d5f7c6f1182be9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga9046d488bde40feb5c8cd6372f12d5cf"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__spherical.html#ga9046d488bde40feb5c8cd6372f12d5cf">DEFAULT_GLOBAL_RADIUS</a> = 1</td></tr>
-<tr class="separator:ga9046d488bde40feb5c8cd6372f12d5cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga8847a748f16dded3615f8f4b48ab2ef4"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__spherical.html#ga8847a748f16dded3615f8f4b48ab2ef4">DEFAULT_GLOBAL_AZIMUTH</a> = 0</td></tr>
-<tr class="separator:ga8847a748f16dded3615f8f4b48ab2ef4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga3f93d1092ee04ee1206b02259e320784"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__spherical.html#ga3f93d1092ee04ee1206b02259e320784">DEFAULT_GLOBAL_ELEVATION</a> = 0</td></tr>
-<tr class="separator:ga3f93d1092ee04ee1206b02259e320784"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaee0ddcd277ec7a7a451dbd5b17f98187"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__spherical.html#gaee0ddcd277ec7a7a451dbd5b17f98187">globalRadius</a> = <a class="el" href="group__spherical.html#ga9046d488bde40feb5c8cd6372f12d5cf">DEFAULT_GLOBAL_RADIUS</a></td></tr>
-<tr class="separator:gaee0ddcd277ec7a7a451dbd5b17f98187"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gadaab4529e17c31628ede6500a0f9dd07"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__spherical.html#gadaab4529e17c31628ede6500a0f9dd07">globalAzimuth</a> = <a class="el" href="group__spherical.html#ga8847a748f16dded3615f8f4b48ab2ef4">DEFAULT_GLOBAL_AZIMUTH</a></td></tr>
-<tr class="separator:gadaab4529e17c31628ede6500a0f9dd07"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga2788cc0fae99c064d291338b8fbe8484"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__spherical.html#ga2788cc0fae99c064d291338b8fbe8484">globalElevation</a> = <a class="el" href="group__spherical.html#ga3f93d1092ee04ee1206b02259e320784">DEFAULT_GLOBAL_ELEVATION</a></td></tr>
-<tr class="separator:ga2788cc0fae99c064d291338b8fbe8484"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gac3d947315432e74f7c2d8f0dee6d5166"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__spherical.html#gac3d947315432e74f7c2d8f0dee6d5166">globalMouseLeftButton</a> = false</td></tr>
-<tr class="separator:gac3d947315432e74f7c2d8f0dee6d5166"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf8a2a5fce2d5ea87716da0cf311e222d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__explorer_camera.html#gaf8a2a5fce2d5ea87716da0cf311e222d">globalExplXPrev</a> = 0</td></tr>
+<tr class="separator:gaf8a2a5fce2d5ea87716da0cf311e222d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gabf14627179e42a9858b43ff0a308a829"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__explorer_camera.html#gabf14627179e42a9858b43ff0a308a829">globalExplYPrev</a> = 0</td></tr>
+<tr class="separator:gabf14627179e42a9858b43ff0a308a829"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad92c9af400eff3b9fbb66b0d1cf4cb66"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="group__camera.html#ga4b93979f29f893a1d82ad1773c23a975">profile_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__camera.html#gad92c9af400eff3b9fbb66b0d1cf4cb66">profile</a> [<a class="el" href="group__camera.html#gga06fc87d81c62e9abb8790b6e5713c55baf98394d47218019a4c04d2ce7c43fe5d">NPROFILES</a>] = {<a class="el" href="group__explorer_camera.html#gab2ace04a22b453beae6d10138e2f2161">globalProfile_EXPL</a>, <a class="el" href="group__fps_camera.html#gaa0f31fbedb92450d82b28cf8b12b6b32">globalProfile_FPS</a>}</td></tr>
+<tr class="separator:gad92c9af400eff3b9fbb66b0d1cf4cb66"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga88af28e439a6212618ae8f4db48bd5c6"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__camera.html#ga88af28e439a6212618ae8f4db48bd5c6">globalProfile</a> = <a class="el" href="group__camera.html#gga06fc87d81c62e9abb8790b6e5713c55bafe46f38183e258bea6b1cf42ed17cf8f">FPS</a></td></tr>
+<tr class="separator:ga88af28e439a6212618ae8f4db48bd5c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga10fb2da52a40b906d603a2c187b7469a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__camera.html#ga10fb2da52a40b906d603a2c187b7469a">globalProfileHasChanged</a> = true</td></tr>
+<tr class="separator:ga10fb2da52a40b906d603a2c187b7469a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaa1758095e785e5812632c1427ca34e26"><td class="memItemLeft" align="right" valign="top">const auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__model_engine.html#gaa1758095e785e5812632c1427ca34e26">RGB_MAX</a> = 255.0</td></tr>
 <tr class="separator:gaa1758095e785e5812632c1427ca34e26"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga8b7fb1565cdf931fa086d76687bd3f35"><td class="memItemLeft" align="right" valign="top">static std::vector&lt; struct <a class="el" href="structmodel.html">model</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__model_engine.html#ga8b7fb1565cdf931fa086d76687bd3f35">globalModels</a></td></tr>
@@ -299,10 +374,6 @@ Variables</h2></td></tr>
 <tr class="separator:ga68a5ac52085606068a4d5ae94b0aa7e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gad30f972f2e6e3e5ecab0dee38ae6cdb8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__engine.html#gad30f972f2e6e3e5ecab0dee38ae6cdb8">frame</a> = 0</td></tr>
 <tr class="separator:gad30f972f2e6e3e5ecab0dee38ae6cdb8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga86b84325bd56f5046ead1fc28690c412"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__input.html#ga86b84325bd56f5046ead1fc28690c412">globalXPrev</a> = 0</td></tr>
-<tr class="separator:ga86b84325bd56f5046ead1fc28690c412"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga5955bfd3ab86257de26e3b040e7fe4c3"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__input.html#ga5955bfd3ab86257de26e3b040e7fe4c3">globalYPrev</a> = 0</td></tr>
-<tr class="separator:ga5955bfd3ab86257de26e3b040e7fe4c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="a072c434cfd125e58ac1cec9a5725688a" name="a072c434cfd125e58ac1cec9a5725688a"></a>
@@ -331,14 +402,14 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00426">426</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  427</span>{</div>
-<div class="line"><span class="lineno">  428</span>  <span class="keyword">const</span> <span class="keywordtype">float</span> gt = fmodf ((<span class="keywordtype">float</span>) glutGet (GLUT_ELAPSED_TIME), (<span class="keywordtype">float</span>) (rotation_time * 1000)) / (rotation_time * 1000);</div>
-<div class="line"><span class="lineno">  429</span>  <span class="keyword">const</span> <span class="keywordtype">float</span> angle = 360 * gt;</div>
-<div class="line"><span class="lineno">  430</span>  glRotatef (angle, axis_of_rotation.x, axis_of_rotation.y, axis_of_rotation.z);</div>
-<div class="line"><span class="lineno">  431</span>}</div>
+<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l01105">1105</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno"> 1106</span>{</div>
+<div class="line"><span class="lineno"> 1107</span>  <span class="keyword">const</span> <span class="keywordtype">float</span> gt = fmodf ((<span class="keywordtype">float</span>) glutGet (GLUT_ELAPSED_TIME), (<span class="keywordtype">float</span>) (rotation_time * 1000)) / (rotation_time * 1000);</div>
+<div class="line"><span class="lineno"> 1108</span>  <span class="keyword">const</span> <span class="keywordtype">float</span> angle = 360 * gt;</div>
+<div class="line"><span class="lineno"> 1109</span>  glRotatef (angle, axis_of_rotation.x, axis_of_rotation.y, axis_of_rotation.z);</div>
+<div class="line"><span class="lineno"> 1110</span>}</div>
 </div><!-- fragment -->
-<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00434">operations_render()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l01113">operations_render()</a>.</p>
 <div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
@@ -364,42 +435,33 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00770">770</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  771</span>{</div>
-<div class="line"><span class="lineno">  772</span>  glDisable (GL_LIGHTING);</div>
-<div class="line"><span class="lineno">  773</span>  glEnable (GL_LIGHT0);</div>
-<div class="line"><span class="lineno">  774</span>  <span class="comment">/*draw absolute (before any transformation) axes*/</span></div>
-<div class="line"><span class="lineno">  775</span>  glBegin (GL_LINES);</div>
-<div class="line"><span class="lineno">  776</span>  <span class="comment">/*X-axis in red*/</span></div>
-<div class="line"><span class="lineno">  777</span>  glColor3f (1, 0, 0);</div>
-<div class="line"><span class="lineno">  778</span>  glVertex3f (100, 0, 0);</div>
-<div class="line"><span class="lineno">  779</span>  glVertex3f (0, 0, 0);</div>
-<div class="line"><span class="lineno">  780</span> </div>
-<div class="line"><span class="lineno">  781</span>  <span class="comment">/*Y-Axis in Green*/</span></div>
-<div class="line"><span class="lineno">  782</span>  glColor3f (0, 1, 0);</div>
-<div class="line"><span class="lineno">  783</span>  glVertex3f (0, 100, 0);</div>
-<div class="line"><span class="lineno">  784</span>  glVertex3f (0, 0, 0);</div>
-<div class="line"><span class="lineno">  785</span> </div>
-<div class="line"><span class="lineno">  786</span>  <span class="comment">/*Z-Axis in Blue*/</span></div>
-<div class="line"><span class="lineno">  787</span>  glColor3f (0, 0, 1);</div>
-<div class="line"><span class="lineno">  788</span>  glVertex3f (0, 0, 100);</div>
-<div class="line"><span class="lineno">  789</span>  glVertex3f (0, 0, 0);</div>
-<div class="line"><span class="lineno">  790</span> </div>
-<div class="line"><span class="lineno">  791</span>  glColor3d (1, 1, 1);</div>
-<div class="line"><span class="lineno">  792</span>  glEnd ();</div>
-<div class="line"><span class="lineno">  793</span>  <span class="comment">/*end of draw absolute (before any transformation) axes*/</span></div>
-<div class="line"><span class="lineno">  794</span>  glEnable (GL_LIGHTING);</div>
-<div class="line"><span class="lineno">  795</span>}</div>
+<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l01467">1467</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno"> 1468</span>{</div>
+<div class="line"><span class="lineno"> 1469</span>  glDisable (GL_LIGHTING);</div>
+<div class="line"><span class="lineno"> 1470</span>  glEnable (GL_LIGHT0);</div>
+<div class="line"><span class="lineno"> 1471</span>  <span class="comment">/*draw absolute (before any transformation) axes*/</span></div>
+<div class="line"><span class="lineno"> 1472</span>  glBegin (GL_LINES);</div>
+<div class="line"><span class="lineno"> 1473</span>  <span class="comment">/*X-axis in red*/</span></div>
+<div class="line"><span class="lineno"> 1474</span>  glColor3f (1, 0, 0);</div>
+<div class="line"><span class="lineno"> 1475</span>  glVertex3f (100, 0, 0);</div>
+<div class="line"><span class="lineno"> 1476</span>  glVertex3f (0, 0, 0);</div>
+<div class="line"><span class="lineno"> 1477</span> </div>
+<div class="line"><span class="lineno"> 1478</span>  <span class="comment">/*Y-Axis in Green*/</span></div>
+<div class="line"><span class="lineno"> 1479</span>  glColor3f (0, 1, 0);</div>
+<div class="line"><span class="lineno"> 1480</span>  glVertex3f (0, 100, 0);</div>
+<div class="line"><span class="lineno"> 1481</span>  glVertex3f (0, 0, 0);</div>
+<div class="line"><span class="lineno"> 1482</span> </div>
+<div class="line"><span class="lineno"> 1483</span>  <span class="comment">/*Z-Axis in Blue*/</span></div>
+<div class="line"><span class="lineno"> 1484</span>  glColor3f (0, 0, 1);</div>
+<div class="line"><span class="lineno"> 1485</span>  glVertex3f (0, 0, 100);</div>
+<div class="line"><span class="lineno"> 1486</span>  glVertex3f (0, 0, 0);</div>
+<div class="line"><span class="lineno"> 1487</span> </div>
+<div class="line"><span class="lineno"> 1488</span>  glColor3d (1, 1, 1);</div>
+<div class="line"><span class="lineno"> 1489</span>  glEnd ();</div>
+<div class="line"><span class="lineno"> 1490</span>  <span class="comment">/*end of draw absolute (before any transformation) axes*/</span></div>
+<div class="line"><span class="lineno"> 1491</span>  glEnable (GL_LIGHTING);</div>
+<div class="line"><span class="lineno"> 1492</span>}</div>
 </div><!-- fragment -->
-<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00821">renderScene()</a>.</p>
-<div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-2-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
-<div id="dynsection-2-summary" class="dynsummary" style="display:block;">
-</div>
-<div id="dynsection-2-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="engine_8cpp_a634dba686e70e7ff3f10c37d11f463da_icgraph.svg" width="499" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-
 </div>
 </div>
 </div><!-- contents -->

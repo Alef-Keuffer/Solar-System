@@ -21,9 +21,9 @@
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="main_8cpp.html#a33e20b37682a0492a9e95d13bef17f02" target="_top" xlink:title=" ">
-<polygon fill="white" stroke="black" points="150.5,-114.5 150.5,-133.5 222.5,-133.5 222.5,-114.5 150.5,-114.5"/>
-<text text-anchor="middle" x="186.5" y="-121.5" font-family="Helvetica,sans-Serif" font-size="10.00">changeSize</text>
+<g id="a_node2"><a xlink:href="main_8cpp.html#a170513e8231f724bf2c284fbea46dfab" target="_top" xlink:title=" ">
+<polygon fill="white" stroke="black" points="132.5,-114.5 132.5,-133.5 240.5,-133.5 240.5,-114.5 132.5,-114.5"/>
+<text text-anchor="middle" x="186.5" y="-121.5" font-family="Helvetica,sans-Serif" font-size="10.00">defaultChangeSize</text>
 </a>
 </g>
 </g>
@@ -36,17 +36,17 @@
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
-<g id="a_node3"><a xlink:href="main_8cpp.html#ac7632fff72011e8c11ae504a4596a7f7" target="_top" xlink:title=" ">
-<polygon fill="white" stroke="black" points="144.5,-76.5 144.5,-95.5 228.5,-95.5 228.5,-76.5 144.5,-76.5"/>
-<text text-anchor="middle" x="186.5" y="-83.5" font-family="Helvetica,sans-Serif" font-size="10.00">keyboardFunc</text>
+<g id="a_node3"><a xlink:href="main_8cpp.html#a6fbce3224a779408917e3f86f0946dde" target="_top" xlink:title=" ">
+<polygon fill="white" stroke="black" points="133.5,-76.5 133.5,-95.5 239.5,-95.5 239.5,-76.5 133.5,-76.5"/>
+<text text-anchor="middle" x="186.5" y="-83.5" font-family="Helvetica,sans-Serif" font-size="10.00">explKeyboardFunc</text>
 </a>
 </g>
 </g>
 <!-- Node1&#45;&gt;Node3 -->
 <g id="edge2" class="edge">
 <title>Node1&#45;&gt;Node3</title>
-<path fill="none" stroke="midnightblue" d="M94.17,-73.38C106.97,-75.15 120.95,-77.08 134.04,-78.89"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="133.92,-82.41 144.3,-80.31 134.88,-75.47 133.92,-82.41"/>
+<path fill="none" stroke="midnightblue" d="M94.17,-73.38C103.43,-74.66 113.31,-76.03 123.02,-77.37"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="122.67,-80.85 133.05,-78.75 123.62,-73.92 122.67,-80.85"/>
 </g>
 <!-- Node4 -->
 <g id="node4" class="node">

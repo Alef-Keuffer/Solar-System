@@ -128,9 +128,9 @@ Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:ga86b84325bd56f5046ead1fc28690c412"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__input.html#ga86b84325bd56f5046ead1fc28690c412">globalXPrev</a> = 0</td></tr>
+<tr class="memitem:ga86b84325bd56f5046ead1fc28690c412"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__input.html#ga86b84325bd56f5046ead1fc28690c412">globalExplXPrev</a> = 0</td></tr>
 <tr class="separator:ga86b84325bd56f5046ead1fc28690c412"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga5955bfd3ab86257de26e3b040e7fe4c3"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__input.html#ga5955bfd3ab86257de26e3b040e7fe4c3">globalYPrev</a> = 0</td></tr>
+<tr class="memitem:ga5955bfd3ab86257de26e3b040e7fe4c3"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__input.html#ga5955bfd3ab86257de26e3b040e7fe4c3">globalExplYPrev</a> = 0</td></tr>
 <tr class="separator:ga5955bfd3ab86257de26e3b040e7fe4c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -448,36 +448,36 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno"> 1163</span>      <span class="keyword">const</span> <span class="keywordtype">double</span> stepAlfa = 0.035;</div>
 <div class="line"><span class="lineno"> 1164</span>      <span class="keyword">const</span> <span class="keywordtype">double</span> stepBeta = 0.035;</div>
 <div class="line"><span class="lineno"> 1165</span> </div>
-<div class="line"><span class="lineno"> 1166</span>      <span class="keywordflow">if</span> (x &lt; <a class="code hl_variable" href="group__input.html#ga86b84325bd56f5046ead1fc28690c412">globalXPrev</a>)</div>
+<div class="line"><span class="lineno"> 1166</span>      <span class="keywordflow">if</span> (x &lt; <a class="code hl_variable" href="group__input.html#ga86b84325bd56f5046ead1fc28690c412">globalExplXPrev</a>)</div>
 <div class="line"><span class="lineno"> 1167</span>        <a class="code hl_variable" href="group__spherical.html#gadaab4529e17c31628ede6500a0f9dd07">globalAzimuth</a> += stepAlfa;</div>
-<div class="line"><span class="lineno"> 1168</span>      <span class="keywordflow">else</span> <span class="keywordflow">if</span> (x &gt; <a class="code hl_variable" href="group__input.html#ga86b84325bd56f5046ead1fc28690c412">globalXPrev</a>)</div>
+<div class="line"><span class="lineno"> 1168</span>      <span class="keywordflow">else</span> <span class="keywordflow">if</span> (x &gt; <a class="code hl_variable" href="group__input.html#ga86b84325bd56f5046ead1fc28690c412">globalExplXPrev</a>)</div>
 <div class="line"><span class="lineno"> 1169</span>        <a class="code hl_variable" href="group__spherical.html#gadaab4529e17c31628ede6500a0f9dd07">globalAzimuth</a> -= stepAlfa;</div>
 <div class="line"><span class="lineno"> 1170</span> </div>
-<div class="line"><span class="lineno"> 1171</span>      <span class="keywordflow">if</span> (y &lt; <a class="code hl_variable" href="group__input.html#ga5955bfd3ab86257de26e3b040e7fe4c3">globalYPrev</a>)</div>
+<div class="line"><span class="lineno"> 1171</span>      <span class="keywordflow">if</span> (y &lt; <a class="code hl_variable" href="group__input.html#ga5955bfd3ab86257de26e3b040e7fe4c3">globalExplYPrev</a>)</div>
 <div class="line"><span class="lineno"> 1172</span>        {</div>
 <div class="line"><span class="lineno"> 1173</span>          <a class="code hl_variable" href="group__spherical.html#ga2788cc0fae99c064d291338b8fbe8484">globalElevation</a> -= stepBeta;</div>
 <div class="line"><span class="lineno"> 1174</span>          <span class="keywordflow">if</span> (<a class="code hl_variable" href="group__spherical.html#ga2788cc0fae99c064d291338b8fbe8484">globalElevation</a> &lt; -1.5)</div>
 <div class="line"><span class="lineno"> 1175</span>            <a class="code hl_variable" href="group__spherical.html#ga2788cc0fae99c064d291338b8fbe8484">globalElevation</a> = -1.5;</div>
 <div class="line"><span class="lineno"> 1176</span>        }</div>
-<div class="line"><span class="lineno"> 1177</span>      <span class="keywordflow">else</span> <span class="keywordflow">if</span> (y &gt; <a class="code hl_variable" href="group__input.html#ga5955bfd3ab86257de26e3b040e7fe4c3">globalYPrev</a>)</div>
+<div class="line"><span class="lineno"> 1177</span>      <span class="keywordflow">else</span> <span class="keywordflow">if</span> (y &gt; <a class="code hl_variable" href="group__input.html#ga5955bfd3ab86257de26e3b040e7fe4c3">globalExplYPrev</a>)</div>
 <div class="line"><span class="lineno"> 1178</span>        {</div>
 <div class="line"><span class="lineno"> 1179</span>          <a class="code hl_variable" href="group__spherical.html#ga2788cc0fae99c064d291338b8fbe8484">globalElevation</a> += stepBeta;</div>
 <div class="line"><span class="lineno"> 1180</span>          <span class="keywordflow">if</span> (<a class="code hl_variable" href="group__spherical.html#ga2788cc0fae99c064d291338b8fbe8484">globalElevation</a> &gt; 1.5)</div>
 <div class="line"><span class="lineno"> 1181</span>            <a class="code hl_variable" href="group__spherical.html#ga2788cc0fae99c064d291338b8fbe8484">globalElevation</a> = 1.5;</div>
 <div class="line"><span class="lineno"> 1182</span>        }</div>
 <div class="line"><span class="lineno"> 1183</span> </div>
-<div class="line"><span class="lineno"> 1184</span>      <a class="code hl_variable" href="group__input.html#ga86b84325bd56f5046ead1fc28690c412">globalXPrev</a> = x;</div>
-<div class="line"><span class="lineno"> 1185</span>      <a class="code hl_variable" href="group__input.html#ga5955bfd3ab86257de26e3b040e7fe4c3">globalYPrev</a> = y;</div>
+<div class="line"><span class="lineno"> 1184</span>      <a class="code hl_variable" href="group__input.html#ga86b84325bd56f5046ead1fc28690c412">globalExplXPrev</a> = x;</div>
+<div class="line"><span class="lineno"> 1185</span>      <a class="code hl_variable" href="group__input.html#ga5955bfd3ab86257de26e3b040e7fe4c3">globalExplYPrev</a> = y;</div>
 <div class="line"><span class="lineno"> 1186</span>    }</div>
 <div class="line"><span class="lineno"> 1187</span>  <a class="code hl_function" href="group__engine.html#gab9813926390dc5773baf0b20dc2ea16e">redisplay</a> ();</div>
 <div class="line"><span class="lineno"> 1188</span>}</div>
-<div class="ttc" id="agroup__input_html_ga5955bfd3ab86257de26e3b040e7fe4c3"><div class="ttname"><a href="group__input.html#ga5955bfd3ab86257de26e3b040e7fe4c3">globalYPrev</a></div><div class="ttdeci">int globalYPrev</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l01076">engine.cpp:1076</a></div></div>
-<div class="ttc" id="agroup__input_html_ga86b84325bd56f5046ead1fc28690c412"><div class="ttname"><a href="group__input.html#ga86b84325bd56f5046ead1fc28690c412">globalXPrev</a></div><div class="ttdeci">int globalXPrev</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l01075">engine.cpp:1075</a></div></div>
+<div class="ttc" id="agroup__input_html_ga5955bfd3ab86257de26e3b040e7fe4c3"><div class="ttname"><a href="group__input.html#ga5955bfd3ab86257de26e3b040e7fe4c3">globalExplYPrev</a></div><div class="ttdeci">int globalExplYPrev</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l01076">engine.cpp:1076</a></div></div>
+<div class="ttc" id="agroup__input_html_ga86b84325bd56f5046ead1fc28690c412"><div class="ttname"><a href="group__input.html#ga86b84325bd56f5046ead1fc28690c412">globalExplXPrev</a></div><div class="ttdeci">int globalExplXPrev</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l01075">engine.cpp:1075</a></div></div>
 <div class="ttc" id="agroup__spherical_html_ga2788cc0fae99c064d291338b8fbe8484"><div class="ttname"><a href="group__spherical.html#ga2788cc0fae99c064d291338b8fbe8484">globalElevation</a></div><div class="ttdeci">double globalElevation</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00117">engine.cpp:117</a></div></div>
 <div class="ttc" id="agroup__spherical_html_gac3d947315432e74f7c2d8f0dee6d5166"><div class="ttname"><a href="group__spherical.html#gac3d947315432e74f7c2d8f0dee6d5166">globalMouseLeftButton</a></div><div class="ttdeci">bool globalMouseLeftButton</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00118">engine.cpp:118</a></div></div>
 <div class="ttc" id="agroup__spherical_html_gadaab4529e17c31628ede6500a0f9dd07"><div class="ttname"><a href="group__spherical.html#gadaab4529e17c31628ede6500a0f9dd07">globalAzimuth</a></div><div class="ttdeci">double globalAzimuth</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00116">engine.cpp:116</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="engine_8cpp_source.html#l00116">globalAzimuth</a>, <a class="el" href="engine_8cpp_source.html#l00117">globalElevation</a>, <a class="el" href="engine_8cpp_source.html#l00118">globalMouseLeftButton</a>, <a class="el" href="engine_8cpp_source.html#l01075">globalXPrev</a>, <a class="el" href="engine_8cpp_source.html#l01076">globalYPrev</a>, and <a class="el" href="engine_8cpp_source.html#l00799">redisplay()</a>.</p>
+<p class="reference">References <a class="el" href="engine_8cpp_source.html#l00116">globalAzimuth</a>, <a class="el" href="engine_8cpp_source.html#l00117">globalElevation</a>, <a class="el" href="engine_8cpp_source.html#l00118">globalMouseLeftButton</a>, <a class="el" href="engine_8cpp_source.html#l01075">globalExplXPrev</a>, <a class="el" href="engine_8cpp_source.html#l01076">globalExplYPrev</a>, and <a class="el" href="engine_8cpp_source.html#l00799">redisplay()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l01191">engine_run()</a>.</p>
 <div id="dynsection-3" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
@@ -562,8 +562,8 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno"> 1102</span>          <span class="keywordflow">if</span> (state == GLUT_DOWN)</div>
 <div class="line"><span class="lineno"> 1103</span>            {</div>
 <div class="line"><span class="lineno"> 1104</span>              <a class="code hl_variable" href="group__spherical.html#gac3d947315432e74f7c2d8f0dee6d5166">globalMouseLeftButton</a> = <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno"> 1105</span>              <a class="code hl_variable" href="group__input.html#ga86b84325bd56f5046ead1fc28690c412">globalXPrev</a> = x;</div>
-<div class="line"><span class="lineno"> 1106</span>              <a class="code hl_variable" href="group__input.html#ga5955bfd3ab86257de26e3b040e7fe4c3">globalYPrev</a> = y;</div>
+<div class="line"><span class="lineno"> 1105</span>              <a class="code hl_variable" href="group__input.html#ga86b84325bd56f5046ead1fc28690c412">globalExplXPrev</a> = x;</div>
+<div class="line"><span class="lineno"> 1106</span>              <a class="code hl_variable" href="group__input.html#ga5955bfd3ab86257de26e3b040e7fe4c3">globalExplYPrev</a> = y;</div>
 <div class="line"><span class="lineno"> 1107</span>            }</div>
 <div class="line"><span class="lineno"> 1108</span>          <span class="keywordflow">if</span> (state == GLUT_UP)</div>
 <div class="line"><span class="lineno"> 1109</span>            {</div>
@@ -618,7 +618,7 @@ Variables</h2></td></tr>
 <div class="ttc" id="agroup__spherical_html_gaee0ddcd277ec7a7a451dbd5b17f98187"><div class="ttname"><a href="group__spherical.html#gaee0ddcd277ec7a7a451dbd5b17f98187">globalRadius</a></div><div class="ttdeci">double globalRadius</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00115">engine.cpp:115</a></div></div>
 <div class="ttc" id="astructmodel_html"><div class="ttname"><a href="structmodel.html">model</a></div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00198">engine.cpp:198</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="engine_8cpp_source.html#l00080">globalCenterX</a>, <a class="el" href="engine_8cpp_source.html#l00082">globalCenterZ</a>, <a class="el" href="engine_8cpp_source.html#l00118">globalMouseLeftButton</a>, <a class="el" href="engine_8cpp_source.html#l00115">globalRadius</a>, <a class="el" href="engine_8cpp_source.html#l01075">globalXPrev</a>, <a class="el" href="engine_8cpp_source.html#l01076">globalYPrev</a>, and <a class="el" href="engine_8cpp_source.html#l00799">redisplay()</a>.</p>
+<p class="reference">References <a class="el" href="engine_8cpp_source.html#l00080">globalCenterX</a>, <a class="el" href="engine_8cpp_source.html#l00082">globalCenterZ</a>, <a class="el" href="engine_8cpp_source.html#l00118">globalMouseLeftButton</a>, <a class="el" href="engine_8cpp_source.html#l00115">globalRadius</a>, <a class="el" href="engine_8cpp_source.html#l01075">globalExplXPrev</a>, <a class="el" href="engine_8cpp_source.html#l01076">globalExplYPrev</a>, and <a class="el" href="engine_8cpp_source.html#l00799">redisplay()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l01191">engine_run()</a>.</p>
 <div id="dynsection-5" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
@@ -640,13 +640,13 @@ Variables</h2></td></tr>
 </div>
 <h2 class="groupheader">Variable Documentation</h2>
 <a id="ga86b84325bd56f5046ead1fc28690c412" name="ga86b84325bd56f5046ead1fc28690c412"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga86b84325bd56f5046ead1fc28690c412">&#9670;&nbsp;</a></span>globalXPrev</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ga86b84325bd56f5046ead1fc28690c412">&#9670;&nbsp;</a></span>globalExplXPrev</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int globalXPrev = 0</td>
+          <td class="memname">int globalExplXPrev = 0</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -658,13 +658,13 @@ Variables</h2></td></tr>
 </div>
 </div>
 <a id="ga5955bfd3ab86257de26e3b040e7fe4c3" name="ga5955bfd3ab86257de26e3b040e7fe4c3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga5955bfd3ab86257de26e3b040e7fe4c3">&#9670;&nbsp;</a></span>globalYPrev</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ga5955bfd3ab86257de26e3b040e7fe4c3">&#9670;&nbsp;</a></span>globalExplYPrev</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int globalYPrev = 0</td>
+          <td class="memname">int globalExplYPrev = 0</td>
         </tr>
       </table>
 </div><div class="memdoc">

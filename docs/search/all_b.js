@@ -4,7 +4,7 @@ var searchData=
   ['main_2ecpp_1',['main.cpp',['../main_8cpp.html',1,'']]],
   ['main2_2',['main2',['../main_8cpp.html#a0e663f52efbc8593793d628b4259ce9b',1,'main.cpp']]],
   ['mat_3',['mat',['../group__bezier.html#gafcf7fcde525db8b303b2205562b7684d',1,'generator.cpp']]],
-  ['material_4',['material',['../structmodel.html#a8cb7a6506a1a71331a6402636f358d2b',1,'model']]],
+  ['material_4',['material',['../structmodel.html#a7e4787d25329325aacd14a65d3bb2f96',1,'model']]],
   ['mb_5',['Mb',['../curves_8cpp.html#aa24e89a6a33c157674a3620855b4aa1d',1,'Mb():&#160;curves.cpp'],['../curves_8h.html#a99691b2338ffd4b0634a6360e90bb413',1,'Mb():&#160;curves.h']]],
   ['mcr_6',['Mcr',['../curves_8cpp.html#a05f434afe270e6b7b2b6eacfa5923c13',1,'Mcr():&#160;curves.cpp'],['../curves_8h.html#a8a662c7c7aa152c6eeadca5d9fa83ea4',1,'Mcr():&#160;curves.cpp']]],
   ['model_7',['model',['../structmodel.html',1,'']]],
@@ -29,6 +29,7 @@ var searchData=
   ['model_5fwrite_26',['model_write',['../group__points.html#gaf9dbdadabbf44c2542a65faaad2ae271',1,'generator.cpp']]],
   ['models_27',['Models',['../group___models.html',1,'']]],
   ['monic_5f3rd_5fpolynomial_5fat_28',['monic_3rd_polynomial_at',['../group__bezier.html#gaa5cc85b3de7b256bb1f7c98ac78fef08',1,'generator.cpp']]],
-  ['motionfunc_29',['motionFunc',['../group__input.html#ga2bebb17428cb218231ad556de2a20ed6',1,'engine.cpp']]],
-  ['mousefunc_30',['mouseFunc',['../group__input.html#gad48076b61c0ddb6bd4fadf644bf59ff1',1,'engine.cpp']]]
+  ['motion_29',['Motion',['../struct_motion.html',1,'']]],
+  ['motionfunc_30',['motionFunc',['../structprofile__struct.html#a4630f34e86f6802717c88b923ef93e42',1,'profile_struct']]],
+  ['mousefunc_31',['mouseFunc',['../structprofile__struct.html#a6e97e0aebf409fa2e5fdf2b30ed55566',1,'profile_struct']]]
 ];

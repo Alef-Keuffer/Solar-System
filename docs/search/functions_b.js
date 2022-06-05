@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['xml_5fload_5fand_5fset_5fenv_0',['xml_load_and_set_env',['../group__engine.html#ga4c801322659c1ed52adccd3874552bb3',1,'engine.cpp']]]
+  ['spherevertex_0',['sphereVertex',['../main_8cpp.html#a56f39b3037e5c23b0d7523d4a0aa364f',1,'main.cpp']]],
+  ['spherical2cartesian_1',['spherical2Cartesian',['../group__explorer_camera.html#gaeac535a2aaeb6b1c8c4d1169bbc3cab1',1,'engine.cpp']]]
 ];

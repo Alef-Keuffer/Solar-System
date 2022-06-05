@@ -159,88 +159,88 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00218">218</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  219</span>{</div>
-<div class="line"><span class="lineno">  220</span>  FILE *fp = fopen (model3dFilePath, <span class="stringliteral">&quot;r&quot;</span>);</div>
-<div class="line"><span class="lineno">  221</span>  <span class="keywordflow">if</span> (!fp)</div>
-<div class="line"><span class="lineno">  222</span>    {</div>
-<div class="line"><span class="lineno">  223</span>      cerr &lt;&lt; <span class="stringliteral">&quot;failed to open model: &quot;</span> &lt;&lt; model3dFilePath &lt;&lt; endl;</div>
-<div class="line"><span class="lineno">  224</span>      exit (EXIT_FAILURE);</div>
-<div class="line"><span class="lineno">  225</span>    }</div>
-<div class="line"><span class="lineno">  226</span> </div>
-<div class="line"><span class="lineno">  227</span>  cerr &lt;&lt; <span class="stringliteral">&quot;[allocModel] model file = &quot;</span> &lt;&lt; model3dFilePath &lt;&lt; endl;</div>
-<div class="line"><span class="lineno">  228</span>  <span class="comment">// read number of vertices</span></div>
-<div class="line"><span class="lineno">  229</span>  GLsizei nVertices;</div>
-<div class="line"><span class="lineno">  230</span>  fread (&amp;nVertices, <span class="keyword">sizeof</span> (nVertices), 1, fp);</div>
-<div class="line"><span class="lineno">  231</span>  cerr &lt;&lt; <span class="stringliteral">&quot;[allocModel] nVertices = &quot;</span> &lt;&lt; nVertices &lt;&lt; endl;</div>
-<div class="line"><span class="lineno">  232</span> </div>
-<div class="line"><span class="lineno">  233</span>  <span class="comment">// read vertices</span></div>
-<div class="line"><span class="lineno">  234</span>  <span class="keyword">auto</span> *arrayOfVertices = (<span class="keywordtype">float</span> *) malloc (3 * nVertices * <span class="keyword">sizeof</span> (<span class="keywordtype">float</span>));</div>
-<div class="line"><span class="lineno">  235</span>  <span class="keyword">const</span> <span class="keywordtype">size_t</span> nVerticesRead = fread (arrayOfVertices, 3 * <span class="keyword">sizeof</span> (<span class="keywordtype">float</span>), nVertices, fp);</div>
-<div class="line"><span class="lineno">  236</span>  <span class="keywordflow">if</span> (nVerticesRead != nVertices)</div>
-<div class="line"><span class="lineno">  237</span>    {</div>
-<div class="line"><span class="lineno">  238</span>      cerr &lt;&lt; nVerticesRead &lt;&lt; <span class="stringliteral">&quot; = nVerticesRead != nVertices = &quot;</span> &lt;&lt; nVertices &lt;&lt; endl;</div>
-<div class="line"><span class="lineno">  239</span>      exit (EXIT_FAILURE);</div>
-<div class="line"><span class="lineno">  240</span>    }</div>
-<div class="line"><span class="lineno">  241</span> </div>
-<div class="line"><span class="lineno">  242</span>  <span class="comment">// read normals</span></div>
-<div class="line"><span class="lineno">  243</span>  <span class="keyword">auto</span> *arrayOfNormals = (<span class="keywordtype">float</span> *) malloc (3 * nVertices * <span class="keyword">sizeof</span> (<span class="keywordtype">float</span>));</div>
-<div class="line"><span class="lineno">  244</span>  <span class="keyword">const</span> <span class="keywordtype">size_t</span> nNormalsRead = fread (arrayOfNormals, 3 * <span class="keyword">sizeof</span> (<span class="keywordtype">float</span>), nVertices, fp);</div>
-<div class="line"><span class="lineno">  245</span>  <span class="keywordflow">if</span> (nNormalsRead != nVertices)</div>
-<div class="line"><span class="lineno">  246</span>    {</div>
-<div class="line"><span class="lineno">  247</span>      cerr &lt;&lt; nNormalsRead &lt;&lt; <span class="stringliteral">&quot; = nNormalsRead != nVertices = &quot;</span> &lt;&lt; nVertices &lt;&lt; endl;</div>
-<div class="line"><span class="lineno">  248</span>      exit (EXIT_FAILURE);</div>
-<div class="line"><span class="lineno">  249</span>    }</div>
-<div class="line"><span class="lineno">  250</span> </div>
-<div class="line"><span class="lineno">  251</span>  <span class="comment">// read texture coordinates</span></div>
-<div class="line"><span class="lineno">  252</span>  <span class="keyword">auto</span> *arrayOfTextureCoordinates = (<span class="keywordtype">float</span> *) malloc (2 * nVertices * <span class="keyword">sizeof</span> (<span class="keywordtype">float</span>));</div>
-<div class="line"><span class="lineno">  253</span>  <span class="keyword">const</span> <span class="keywordtype">size_t</span> nTextureCoordinatesRead = fread (arrayOfTextureCoordinates, 2 * <span class="keyword">sizeof</span> (<span class="keywordtype">float</span>), nVertices, fp);</div>
-<div class="line"><span class="lineno">  254</span>  <span class="keywordflow">if</span> (nTextureCoordinatesRead != nVertices)</div>
-<div class="line"><span class="lineno">  255</span>    {</div>
-<div class="line"><span class="lineno">  256</span>      fprintf (stderr, <span class="stringliteral">&quot;%zu = nTextureCoordinatesRead != nVertices = %ul&quot;</span>, nTextureCoordinatesRead, nVertices);</div>
-<div class="line"><span class="lineno">  257</span>      exit (EXIT_FAILURE);</div>
-<div class="line"><span class="lineno">  258</span>    }</div>
-<div class="line"><span class="lineno">  259</span> </div>
-<div class="line"><span class="lineno">  260</span>  fclose (fp);</div>
-<div class="line"><span class="lineno">  261</span> </div>
-<div class="line"><span class="lineno">  262</span>  <span class="keyword">struct </span><a class="code hl_struct" href="structmodel.html">model</a> <a class="code hl_struct" href="structmodel.html">model</a>;</div>
-<div class="line"><span class="lineno">  263</span>  <a class="code hl_struct" href="structmodel.html">model</a>.<a class="code hl_variable" href="structmodel.html#ae122038028ab471bfa2b266189e90404">nVertices</a> = <a class="code hl_variable" href="structmodel.html#ae122038028ab471bfa2b266189e90404">nVertices</a>;</div>
-<div class="line"><span class="lineno">  264</span> </div>
-<div class="line"><span class="lineno">  265</span>  <span class="comment">// vertices buffer object array</span></div>
-<div class="line"><span class="lineno">  266</span>  <span class="keyword">const</span> GLsizei sizeOfVertexArray = (GLsizei) <span class="keyword">sizeof</span> (arrayOfVertices[0]) * 3 * <a class="code hl_struct" href="structmodel.html">model</a>.<a class="code hl_variable" href="structmodel.html#ae122038028ab471bfa2b266189e90404">nVertices</a>;</div>
-<div class="line"><span class="lineno">  267</span>  glGenBuffers (1, &amp;<a class="code hl_struct" href="structmodel.html">model</a>.<a class="code hl_variable" href="structmodel.html#ab22ca782aa5b8d3bd578be477ac37fe7">vbo</a>);</div>
-<div class="line"><span class="lineno">  268</span>  glBindBuffer (GL_ARRAY_BUFFER, <a class="code hl_struct" href="structmodel.html">model</a>.<a class="code hl_variable" href="structmodel.html#ab22ca782aa5b8d3bd578be477ac37fe7">vbo</a>);</div>
-<div class="line"><span class="lineno">  269</span>  glBufferData (GL_ARRAY_BUFFER, sizeOfVertexArray, arrayOfVertices, GL_STATIC_DRAW);</div>
-<div class="line"><span class="lineno">  270</span>  free (arrayOfVertices);</div>
-<div class="line"><span class="lineno">  271</span> </div>
-<div class="line"><span class="lineno">  272</span>  <span class="comment">// normals buffer object array</span></div>
-<div class="line"><span class="lineno">  273</span>  <span class="keyword">const</span> GLsizei sizeOfNormalsArray = (GLsizei) <span class="keyword">sizeof</span> (arrayOfNormals[0]) * 3 * <a class="code hl_struct" href="structmodel.html">model</a>.<a class="code hl_variable" href="structmodel.html#ae122038028ab471bfa2b266189e90404">nVertices</a>;</div>
-<div class="line"><span class="lineno">  274</span>  glGenBuffers (1, &amp;<a class="code hl_struct" href="structmodel.html">model</a>.<a class="code hl_variable" href="structmodel.html#aa02ac56a51e39aa9e42df9eafd2e9302">normals</a>);</div>
-<div class="line"><span class="lineno">  275</span>  glBindBuffer (GL_ARRAY_BUFFER, <a class="code hl_struct" href="structmodel.html">model</a>.<a class="code hl_variable" href="structmodel.html#aa02ac56a51e39aa9e42df9eafd2e9302">normals</a>);</div>
-<div class="line"><span class="lineno">  276</span>  glBufferData (GL_ARRAY_BUFFER, sizeOfNormalsArray, arrayOfNormals, GL_STATIC_DRAW);</div>
-<div class="line"><span class="lineno">  277</span>  free (arrayOfNormals);</div>
-<div class="line"><span class="lineno">  278</span> </div>
-<div class="line"><span class="lineno">  279</span>  <span class="comment">// texture coordinates buffer object array</span></div>
-<div class="line"><span class="lineno">  280</span>  <span class="keyword">const</span> GLsizei sizeOfTextureCoordinateArray = (GLsizei) <span class="keyword">sizeof</span> (arrayOfVertices[0]) * 2 * <a class="code hl_struct" href="structmodel.html">model</a>.<a class="code hl_variable" href="structmodel.html#ae122038028ab471bfa2b266189e90404">nVertices</a>;</div>
-<div class="line"><span class="lineno">  281</span>  glGenBuffers (1, &amp;<a class="code hl_struct" href="structmodel.html">model</a>.<a class="code hl_variable" href="structmodel.html#a32d49fddff5d56f60779be5ee6f71159">tc</a>);</div>
-<div class="line"><span class="lineno">  282</span>  glBindBuffer (GL_ARRAY_BUFFER, <a class="code hl_struct" href="structmodel.html">model</a>.<a class="code hl_variable" href="structmodel.html#a32d49fddff5d56f60779be5ee6f71159">tc</a>);</div>
-<div class="line"><span class="lineno">  283</span>  glBufferData (GL_ARRAY_BUFFER, sizeOfTextureCoordinateArray, arrayOfTextureCoordinates, GL_STATIC_DRAW);</div>
-<div class="line"><span class="lineno">  284</span>  free (arrayOfTextureCoordinates);</div>
-<div class="line"><span class="lineno">  285</span> </div>
-<div class="line"><span class="lineno">  286</span>  <span class="comment">// unbind array buffer</span></div>
-<div class="line"><span class="lineno">  287</span>  glBindBuffer (GL_ARRAY_BUFFER, 0);</div>
-<div class="line"><span class="lineno">  288</span> </div>
-<div class="line"><span class="lineno">  289</span>  <span class="keywordflow">return</span> <a class="code hl_struct" href="structmodel.html">model</a>;</div>
-<div class="line"><span class="lineno">  290</span>}</div>
-<div class="ttc" id="astructmodel_html"><div class="ttname"><a href="structmodel.html">model</a></div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00198">engine.cpp:198</a></div></div>
-<div class="ttc" id="astructmodel_html_a32d49fddff5d56f60779be5ee6f71159"><div class="ttname"><a href="structmodel.html#a32d49fddff5d56f60779be5ee6f71159">model::tc</a></div><div class="ttdeci">GLuint tc</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00212">engine.cpp:212</a></div></div>
-<div class="ttc" id="astructmodel_html_aa02ac56a51e39aa9e42df9eafd2e9302"><div class="ttname"><a href="structmodel.html#aa02ac56a51e39aa9e42df9eafd2e9302">model::normals</a></div><div class="ttdeci">GLuint normals</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00201">engine.cpp:201</a></div></div>
-<div class="ttc" id="astructmodel_html_ab22ca782aa5b8d3bd578be477ac37fe7"><div class="ttname"><a href="structmodel.html#ab22ca782aa5b8d3bd578be477ac37fe7">model::vbo</a></div><div class="ttdeci">GLuint vbo</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00200">engine.cpp:200</a></div></div>
-<div class="ttc" id="astructmodel_html_ae122038028ab471bfa2b266189e90404"><div class="ttname"><a href="structmodel.html#ae122038028ab471bfa2b266189e90404">model::nVertices</a></div><div class="ttdeci">GLsizei nVertices</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00199">engine.cpp:199</a></div></div>
+<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00894">894</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  895</span>{</div>
+<div class="line"><span class="lineno">  896</span>  FILE *fp = fopen (model3dFilePath, <span class="stringliteral">&quot;r&quot;</span>);</div>
+<div class="line"><span class="lineno">  897</span>  <span class="keywordflow">if</span> (!fp)</div>
+<div class="line"><span class="lineno">  898</span>    {</div>
+<div class="line"><span class="lineno">  899</span>      cerr &lt;&lt; <span class="stringliteral">&quot;failed to open model: &quot;</span> &lt;&lt; model3dFilePath &lt;&lt; endl;</div>
+<div class="line"><span class="lineno">  900</span>      exit (EXIT_FAILURE);</div>
+<div class="line"><span class="lineno">  901</span>    }</div>
+<div class="line"><span class="lineno">  902</span> </div>
+<div class="line"><span class="lineno">  903</span>  cerr &lt;&lt; <span class="stringliteral">&quot;[allocModel] model file = &quot;</span> &lt;&lt; model3dFilePath &lt;&lt; endl;</div>
+<div class="line"><span class="lineno">  904</span>  <span class="comment">// read number of vertices</span></div>
+<div class="line"><span class="lineno">  905</span>  GLsizei nVertices;</div>
+<div class="line"><span class="lineno">  906</span>  fread (&amp;nVertices, <span class="keyword">sizeof</span> (nVertices), 1, fp);</div>
+<div class="line"><span class="lineno">  907</span>  cerr &lt;&lt; <span class="stringliteral">&quot;[allocModel] nVertices = &quot;</span> &lt;&lt; nVertices &lt;&lt; endl;</div>
+<div class="line"><span class="lineno">  908</span> </div>
+<div class="line"><span class="lineno">  909</span>  <span class="comment">// read vertices</span></div>
+<div class="line"><span class="lineno">  910</span>  <span class="keyword">auto</span> *arrayOfVertices = (<span class="keywordtype">float</span> *) malloc (3 * nVertices * <span class="keyword">sizeof</span> (<span class="keywordtype">float</span>));</div>
+<div class="line"><span class="lineno">  911</span>  <span class="keyword">const</span> <span class="keywordtype">size_t</span> nVerticesRead = fread (arrayOfVertices, 3 * <span class="keyword">sizeof</span> (<span class="keywordtype">float</span>), nVertices, fp);</div>
+<div class="line"><span class="lineno">  912</span>  <span class="keywordflow">if</span> (nVerticesRead != nVertices)</div>
+<div class="line"><span class="lineno">  913</span>    {</div>
+<div class="line"><span class="lineno">  914</span>      cerr &lt;&lt; nVerticesRead &lt;&lt; <span class="stringliteral">&quot; = nVerticesRead != nVertices = &quot;</span> &lt;&lt; nVertices &lt;&lt; endl;</div>
+<div class="line"><span class="lineno">  915</span>      exit (EXIT_FAILURE);</div>
+<div class="line"><span class="lineno">  916</span>    }</div>
+<div class="line"><span class="lineno">  917</span> </div>
+<div class="line"><span class="lineno">  918</span>  <span class="comment">// read normals</span></div>
+<div class="line"><span class="lineno">  919</span>  <span class="keyword">auto</span> *arrayOfNormals = (<span class="keywordtype">float</span> *) malloc (3 * nVertices * <span class="keyword">sizeof</span> (<span class="keywordtype">float</span>));</div>
+<div class="line"><span class="lineno">  920</span>  <span class="keyword">const</span> <span class="keywordtype">size_t</span> nNormalsRead = fread (arrayOfNormals, 3 * <span class="keyword">sizeof</span> (<span class="keywordtype">float</span>), nVertices, fp);</div>
+<div class="line"><span class="lineno">  921</span>  <span class="keywordflow">if</span> (nNormalsRead != nVertices)</div>
+<div class="line"><span class="lineno">  922</span>    {</div>
+<div class="line"><span class="lineno">  923</span>      cerr &lt;&lt; nNormalsRead &lt;&lt; <span class="stringliteral">&quot; = nNormalsRead != nVertices = &quot;</span> &lt;&lt; nVertices &lt;&lt; endl;</div>
+<div class="line"><span class="lineno">  924</span>      exit (EXIT_FAILURE);</div>
+<div class="line"><span class="lineno">  925</span>    }</div>
+<div class="line"><span class="lineno">  926</span> </div>
+<div class="line"><span class="lineno">  927</span>  <span class="comment">// read texture coordinates</span></div>
+<div class="line"><span class="lineno">  928</span>  <span class="keyword">auto</span> *arrayOfTextureCoordinates = (<span class="keywordtype">float</span> *) malloc (2 * nVertices * <span class="keyword">sizeof</span> (<span class="keywordtype">float</span>));</div>
+<div class="line"><span class="lineno">  929</span>  <span class="keyword">const</span> <span class="keywordtype">size_t</span> nTextureCoordinatesRead = fread (arrayOfTextureCoordinates, 2 * <span class="keyword">sizeof</span> (<span class="keywordtype">float</span>), nVertices, fp);</div>
+<div class="line"><span class="lineno">  930</span>  <span class="keywordflow">if</span> (nTextureCoordinatesRead != nVertices)</div>
+<div class="line"><span class="lineno">  931</span>    {</div>
+<div class="line"><span class="lineno">  932</span>      fprintf (stderr, <span class="stringliteral">&quot;%zu = nTextureCoordinatesRead != nVertices = %ul&quot;</span>, nTextureCoordinatesRead, nVertices);</div>
+<div class="line"><span class="lineno">  933</span>      exit (EXIT_FAILURE);</div>
+<div class="line"><span class="lineno">  934</span>    }</div>
+<div class="line"><span class="lineno">  935</span> </div>
+<div class="line"><span class="lineno">  936</span>  fclose (fp);</div>
+<div class="line"><span class="lineno">  937</span> </div>
+<div class="line"><span class="lineno">  938</span>  <span class="keyword">struct </span><a class="code hl_struct" href="structmodel.html">model</a> <a class="code hl_struct" href="structmodel.html">model</a>;</div>
+<div class="line"><span class="lineno">  939</span>  <a class="code hl_struct" href="structmodel.html">model</a>.<a class="code hl_variable" href="structmodel.html#ae122038028ab471bfa2b266189e90404">nVertices</a> = <a class="code hl_variable" href="structmodel.html#ae122038028ab471bfa2b266189e90404">nVertices</a>;</div>
+<div class="line"><span class="lineno">  940</span> </div>
+<div class="line"><span class="lineno">  941</span>  <span class="comment">// vertices buffer object array</span></div>
+<div class="line"><span class="lineno">  942</span>  <span class="keyword">const</span> GLsizei sizeOfVertexArray = (GLsizei) <span class="keyword">sizeof</span> (arrayOfVertices[0]) * 3 * <a class="code hl_struct" href="structmodel.html">model</a>.<a class="code hl_variable" href="structmodel.html#ae122038028ab471bfa2b266189e90404">nVertices</a>;</div>
+<div class="line"><span class="lineno">  943</span>  glGenBuffers (1, &amp;<a class="code hl_struct" href="structmodel.html">model</a>.<a class="code hl_variable" href="structmodel.html#ab22ca782aa5b8d3bd578be477ac37fe7">vbo</a>);</div>
+<div class="line"><span class="lineno">  944</span>  glBindBuffer (GL_ARRAY_BUFFER, <a class="code hl_struct" href="structmodel.html">model</a>.<a class="code hl_variable" href="structmodel.html#ab22ca782aa5b8d3bd578be477ac37fe7">vbo</a>);</div>
+<div class="line"><span class="lineno">  945</span>  glBufferData (GL_ARRAY_BUFFER, sizeOfVertexArray, arrayOfVertices, GL_STATIC_DRAW);</div>
+<div class="line"><span class="lineno">  946</span>  free (arrayOfVertices);</div>
+<div class="line"><span class="lineno">  947</span> </div>
+<div class="line"><span class="lineno">  948</span>  <span class="comment">// normals buffer object array</span></div>
+<div class="line"><span class="lineno">  949</span>  <span class="keyword">const</span> GLsizei sizeOfNormalsArray = (GLsizei) <span class="keyword">sizeof</span> (arrayOfNormals[0]) * 3 * <a class="code hl_struct" href="structmodel.html">model</a>.<a class="code hl_variable" href="structmodel.html#ae122038028ab471bfa2b266189e90404">nVertices</a>;</div>
+<div class="line"><span class="lineno">  950</span>  glGenBuffers (1, &amp;<a class="code hl_struct" href="structmodel.html">model</a>.<a class="code hl_variable" href="structmodel.html#aa02ac56a51e39aa9e42df9eafd2e9302">normals</a>);</div>
+<div class="line"><span class="lineno">  951</span>  glBindBuffer (GL_ARRAY_BUFFER, <a class="code hl_struct" href="structmodel.html">model</a>.<a class="code hl_variable" href="structmodel.html#aa02ac56a51e39aa9e42df9eafd2e9302">normals</a>);</div>
+<div class="line"><span class="lineno">  952</span>  glBufferData (GL_ARRAY_BUFFER, sizeOfNormalsArray, arrayOfNormals, GL_STATIC_DRAW);</div>
+<div class="line"><span class="lineno">  953</span>  free (arrayOfNormals);</div>
+<div class="line"><span class="lineno">  954</span> </div>
+<div class="line"><span class="lineno">  955</span>  <span class="comment">// texture coordinates buffer object array</span></div>
+<div class="line"><span class="lineno">  956</span>  <span class="keyword">const</span> GLsizei sizeOfTextureCoordinateArray = (GLsizei) <span class="keyword">sizeof</span> (arrayOfVertices[0]) * 2 * <a class="code hl_struct" href="structmodel.html">model</a>.<a class="code hl_variable" href="structmodel.html#ae122038028ab471bfa2b266189e90404">nVertices</a>;</div>
+<div class="line"><span class="lineno">  957</span>  glGenBuffers (1, &amp;<a class="code hl_struct" href="structmodel.html">model</a>.<a class="code hl_variable" href="structmodel.html#a32d49fddff5d56f60779be5ee6f71159">tc</a>);</div>
+<div class="line"><span class="lineno">  958</span>  glBindBuffer (GL_ARRAY_BUFFER, <a class="code hl_struct" href="structmodel.html">model</a>.<a class="code hl_variable" href="structmodel.html#a32d49fddff5d56f60779be5ee6f71159">tc</a>);</div>
+<div class="line"><span class="lineno">  959</span>  glBufferData (GL_ARRAY_BUFFER, sizeOfTextureCoordinateArray, arrayOfTextureCoordinates, GL_STATIC_DRAW);</div>
+<div class="line"><span class="lineno">  960</span>  free (arrayOfTextureCoordinates);</div>
+<div class="line"><span class="lineno">  961</span> </div>
+<div class="line"><span class="lineno">  962</span>  <span class="comment">// unbind array buffer</span></div>
+<div class="line"><span class="lineno">  963</span>  glBindBuffer (GL_ARRAY_BUFFER, 0);</div>
+<div class="line"><span class="lineno">  964</span> </div>
+<div class="line"><span class="lineno">  965</span>  <span class="keywordflow">return</span> <a class="code hl_struct" href="structmodel.html">model</a>;</div>
+<div class="line"><span class="lineno">  966</span>}</div>
+<div class="ttc" id="astructmodel_html"><div class="ttname"><a href="structmodel.html">model</a></div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00874">engine.cpp:874</a></div></div>
+<div class="ttc" id="astructmodel_html_a32d49fddff5d56f60779be5ee6f71159"><div class="ttname"><a href="structmodel.html#a32d49fddff5d56f60779be5ee6f71159">model::tc</a></div><div class="ttdeci">GLuint tc</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00888">engine.cpp:888</a></div></div>
+<div class="ttc" id="astructmodel_html_aa02ac56a51e39aa9e42df9eafd2e9302"><div class="ttname"><a href="structmodel.html#aa02ac56a51e39aa9e42df9eafd2e9302">model::normals</a></div><div class="ttdeci">GLuint normals</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00877">engine.cpp:877</a></div></div>
+<div class="ttc" id="astructmodel_html_ab22ca782aa5b8d3bd578be477ac37fe7"><div class="ttname"><a href="structmodel.html#ab22ca782aa5b8d3bd578be477ac37fe7">model::vbo</a></div><div class="ttdeci">GLuint vbo</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00876">engine.cpp:876</a></div></div>
+<div class="ttc" id="astructmodel_html_ae122038028ab471bfa2b266189e90404"><div class="ttname"><a href="structmodel.html#ae122038028ab471bfa2b266189e90404">model::nVertices</a></div><div class="ttdeci">GLsizei nVertices</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00875">engine.cpp:875</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="engine_8cpp_source.html#l00201">model::normals</a>, <a class="el" href="engine_8cpp_source.html#l00199">model::nVertices</a>, <a class="el" href="engine_8cpp_source.html#l00212">model::tc</a>, and <a class="el" href="engine_8cpp_source.html#l00200">model::vbo</a>.</p>
+<p class="reference">References <a class="el" href="engine_8cpp_source.html#l00877">model::normals</a>, <a class="el" href="engine_8cpp_source.html#l00875">model::nVertices</a>, <a class="el" href="engine_8cpp_source.html#l00888">model::tc</a>, and <a class="el" href="engine_8cpp_source.html#l00876">model::vbo</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00434">operations_render()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l01113">operations_render()</a>.</p>
 <div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
@@ -277,73 +277,73 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00292">292</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  293</span>{</div>
-<div class="line"><span class="lineno">  294</span> </div>
-<div class="line"><span class="lineno">  295</span>  <span class="keyword">static</span> <span class="keywordtype">bool</span> isFirstTimeBeingExecuted = <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  296</span>  <span class="keywordflow">if</span> (isFirstTimeBeingExecuted)</div>
-<div class="line"><span class="lineno">  297</span>    {</div>
-<div class="line"><span class="lineno">  298</span>      <span class="comment">// DevIL setup - done once (slide 5) [class11]</span></div>
-<div class="line"><span class="lineno">  299</span>      ilInit ();</div>
-<div class="line"><span class="lineno">  300</span>      ilEnable (IL_ORIGIN_SET);</div>
-<div class="line"><span class="lineno">  301</span>      ilOriginFunc (IL_ORIGIN_LOWER_LEFT);</div>
-<div class="line"><span class="lineno">  302</span>    }</div>
-<div class="line"><span class="lineno">  303</span> </div>
-<div class="line"><span class="lineno">  304</span>  <span class="comment">// for each image (slide 5) [class11]</span></div>
-<div class="line"><span class="lineno">  305</span>  ILuint image;</div>
-<div class="line"><span class="lineno">  306</span>  ilGenImages (1, &amp;image);</div>
-<div class="line"><span class="lineno">  307</span>  ilBindImage (image);</div>
-<div class="line"><span class="lineno">  308</span>  <span class="keyword">const</span> ILboolean has_loaded_successfully = ilLoadImage ((ILstring) path);</div>
-<div class="line"><span class="lineno">  309</span>  <span class="keywordflow">if</span> (!has_loaded_successfully)</div>
-<div class="line"><span class="lineno">  310</span>    {</div>
-<div class="line"><span class="lineno">  311</span>      cerr &lt;&lt; <span class="stringliteral">&quot;[engine] failed to find texture file &#39;&quot;</span> &lt;&lt; path &lt;&lt; <span class="stringliteral">&quot;&#39;&quot;</span> &lt;&lt; endl;</div>
-<div class="line"><span class="lineno">  312</span>      exit (EXIT_FAILURE);</div>
-<div class="line"><span class="lineno">  313</span>    }</div>
-<div class="line"><span class="lineno">  314</span> </div>
-<div class="line"><span class="lineno">  315</span>  <span class="comment">// convert to RGBA (slide 6) [class11]</span></div>
-<div class="line"><span class="lineno">  316</span>  <span class="keyword">const</span> ILboolean has_converted_image_sucessfully = ilConvertImage (IL_RGBA, IL_UNSIGNED_BYTE);</div>
-<div class="line"><span class="lineno">  317</span>  <span class="keywordflow">if</span> (!has_converted_image_sucessfully)</div>
-<div class="line"><span class="lineno">  318</span>    {</div>
-<div class="line"><span class="lineno">  319</span>      cerr &lt;&lt; <span class="stringliteral">&quot;[engine] failed to convert texture &#39;&quot;</span> &lt;&lt; path &lt;&lt; <span class="stringliteral">&quot;&#39;&quot;</span> &lt;&lt; endl;</div>
-<div class="line"><span class="lineno">  320</span>      exit (EXIT_FAILURE);</div>
-<div class="line"><span class="lineno">  321</span>    }</div>
-<div class="line"><span class="lineno">  322</span> </div>
-<div class="line"><span class="lineno">  323</span>  <span class="comment">// texture creation in OpenGL (slide 8) [class11]</span></div>
-<div class="line"><span class="lineno">  324</span>  <span class="comment">// create a texture slot (slide 8) [class11]</span></div>
-<div class="line"><span class="lineno">  325</span>  glGenTextures (1, &amp;m.<a class="code hl_variable" href="structmodel.html#a6642bf44750e13f4720fcab39d428950">tbo</a>);</div>
-<div class="line"><span class="lineno">  326</span> </div>
-<div class="line"><span class="lineno">  327</span>  <span class="comment">// bind the slot (slide 8) [class11]</span></div>
-<div class="line"><span class="lineno">  328</span>  glBindTexture (GL_TEXTURE_2D, m.<a class="code hl_variable" href="structmodel.html#a6642bf44750e13f4720fcab39d428950">tbo</a>);</div>
-<div class="line"><span class="lineno">  329</span> </div>
-<div class="line"><span class="lineno">  330</span>  <span class="comment">// define texture parameters (slide 8) [class11]</span></div>
-<div class="line"><span class="lineno">  331</span>  glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);</div>
-<div class="line"><span class="lineno">  332</span>  glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);</div>
-<div class="line"><span class="lineno">  333</span> </div>
-<div class="line"><span class="lineno">  334</span>  glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR_MIPMAP_LINEAR);</div>
-<div class="line"><span class="lineno">  335</span>  glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);</div>
-<div class="line"><span class="lineno">  336</span> </div>
-<div class="line"><span class="lineno">  337</span>  <span class="comment">// get the required info (slide 7) [class11]</span></div>
-<div class="line"><span class="lineno">  338</span>  <span class="keyword">const</span> ILubyte *<span class="keyword">const</span> texData = ilGetData ();</div>
-<div class="line"><span class="lineno">  339</span>  <span class="keyword">const</span> GLsizei texture_width = ilGetInteger (IL_IMAGE_WIDTH);</div>
-<div class="line"><span class="lineno">  340</span>  <span class="keyword">const</span> GLsizei texture_height = ilGetInteger (IL_IMAGE_HEIGHT);</div>
-<div class="line"><span class="lineno">  341</span> </div>
-<div class="line"><span class="lineno">  342</span>  <span class="comment">// send texture data to OpenGL (slide 8) [class11]</span></div>
-<div class="line"><span class="lineno">  343</span>  glTexImage2D (GL_TEXTURE_2D, 0, GL_RGBA,</div>
-<div class="line"><span class="lineno">  344</span>                texture_width, texture_height, 0,</div>
-<div class="line"><span class="lineno">  345</span>                GL_RGBA, GL_UNSIGNED_BYTE, texData);</div>
-<div class="line"><span class="lineno">  346</span> </div>
-<div class="line"><span class="lineno">  347</span>  glGenerateMipmap (GL_TEXTURE_2D);</div>
-<div class="line"><span class="lineno">  348</span> </div>
-<div class="line"><span class="lineno">  349</span>  <span class="comment">// unbind texture</span></div>
-<div class="line"><span class="lineno">  350</span>  glBindTexture (GL_TEXTURE_2D, 0);</div>
-<div class="line"><span class="lineno">  351</span> </div>
-<div class="line"><span class="lineno">  352</span>  isFirstTimeBeingExecuted = <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">  353</span>}</div>
-<div class="ttc" id="astructmodel_html_a6642bf44750e13f4720fcab39d428950"><div class="ttname"><a href="structmodel.html#a6642bf44750e13f4720fcab39d428950">model::tbo</a></div><div class="ttdeci">GLuint tbo</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00211">engine.cpp:211</a></div></div>
+<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00968">968</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  969</span>{</div>
+<div class="line"><span class="lineno">  970</span> </div>
+<div class="line"><span class="lineno">  971</span>  <span class="keyword">static</span> <span class="keywordtype">bool</span> isFirstTimeBeingExecuted = <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  972</span>  <span class="keywordflow">if</span> (isFirstTimeBeingExecuted)</div>
+<div class="line"><span class="lineno">  973</span>    {</div>
+<div class="line"><span class="lineno">  974</span>      <span class="comment">// DevIL setup - done once (slide 5) [class11]</span></div>
+<div class="line"><span class="lineno">  975</span>      ilInit ();</div>
+<div class="line"><span class="lineno">  976</span>      ilEnable (IL_ORIGIN_SET);</div>
+<div class="line"><span class="lineno">  977</span>      ilOriginFunc (IL_ORIGIN_LOWER_LEFT);</div>
+<div class="line"><span class="lineno">  978</span>    }</div>
+<div class="line"><span class="lineno">  979</span> </div>
+<div class="line"><span class="lineno">  980</span>  <span class="comment">// for each image (slide 5) [class11]</span></div>
+<div class="line"><span class="lineno">  981</span>  ILuint image;</div>
+<div class="line"><span class="lineno">  982</span>  ilGenImages (1, &amp;image);</div>
+<div class="line"><span class="lineno">  983</span>  ilBindImage (image);</div>
+<div class="line"><span class="lineno">  984</span>  <span class="keyword">const</span> ILboolean has_loaded_successfully = ilLoadImage ((ILstring) path);</div>
+<div class="line"><span class="lineno">  985</span>  <span class="keywordflow">if</span> (!has_loaded_successfully)</div>
+<div class="line"><span class="lineno">  986</span>    {</div>
+<div class="line"><span class="lineno">  987</span>      cerr &lt;&lt; <span class="stringliteral">&quot;[engine] failed to find texture file &#39;&quot;</span> &lt;&lt; path &lt;&lt; <span class="stringliteral">&quot;&#39;&quot;</span> &lt;&lt; endl;</div>
+<div class="line"><span class="lineno">  988</span>      exit (EXIT_FAILURE);</div>
+<div class="line"><span class="lineno">  989</span>    }</div>
+<div class="line"><span class="lineno">  990</span> </div>
+<div class="line"><span class="lineno">  991</span>  <span class="comment">// convert to RGBA (slide 6) [class11]</span></div>
+<div class="line"><span class="lineno">  992</span>  <span class="keyword">const</span> ILboolean has_converted_image_sucessfully = ilConvertImage (IL_RGBA, IL_UNSIGNED_BYTE);</div>
+<div class="line"><span class="lineno">  993</span>  <span class="keywordflow">if</span> (!has_converted_image_sucessfully)</div>
+<div class="line"><span class="lineno">  994</span>    {</div>
+<div class="line"><span class="lineno">  995</span>      cerr &lt;&lt; <span class="stringliteral">&quot;[engine] failed to convert texture &#39;&quot;</span> &lt;&lt; path &lt;&lt; <span class="stringliteral">&quot;&#39;&quot;</span> &lt;&lt; endl;</div>
+<div class="line"><span class="lineno">  996</span>      exit (EXIT_FAILURE);</div>
+<div class="line"><span class="lineno">  997</span>    }</div>
+<div class="line"><span class="lineno">  998</span> </div>
+<div class="line"><span class="lineno">  999</span>  <span class="comment">// texture creation in OpenGL (slide 8) [class11]</span></div>
+<div class="line"><span class="lineno"> 1000</span>  <span class="comment">// create a texture slot (slide 8) [class11]</span></div>
+<div class="line"><span class="lineno"> 1001</span>  glGenTextures (1, &amp;m.<a class="code hl_variable" href="structmodel.html#a6642bf44750e13f4720fcab39d428950">tbo</a>);</div>
+<div class="line"><span class="lineno"> 1002</span> </div>
+<div class="line"><span class="lineno"> 1003</span>  <span class="comment">// bind the slot (slide 8) [class11]</span></div>
+<div class="line"><span class="lineno"> 1004</span>  glBindTexture (GL_TEXTURE_2D, m.<a class="code hl_variable" href="structmodel.html#a6642bf44750e13f4720fcab39d428950">tbo</a>);</div>
+<div class="line"><span class="lineno"> 1005</span> </div>
+<div class="line"><span class="lineno"> 1006</span>  <span class="comment">// define texture parameters (slide 8) [class11]</span></div>
+<div class="line"><span class="lineno"> 1007</span>  glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);</div>
+<div class="line"><span class="lineno"> 1008</span>  glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);</div>
+<div class="line"><span class="lineno"> 1009</span> </div>
+<div class="line"><span class="lineno"> 1010</span>  glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR_MIPMAP_LINEAR);</div>
+<div class="line"><span class="lineno"> 1011</span>  glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);</div>
+<div class="line"><span class="lineno"> 1012</span> </div>
+<div class="line"><span class="lineno"> 1013</span>  <span class="comment">// get the required info (slide 7) [class11]</span></div>
+<div class="line"><span class="lineno"> 1014</span>  <span class="keyword">const</span> ILubyte *<span class="keyword">const</span> texData = ilGetData ();</div>
+<div class="line"><span class="lineno"> 1015</span>  <span class="keyword">const</span> GLsizei texture_width = ilGetInteger (IL_IMAGE_WIDTH);</div>
+<div class="line"><span class="lineno"> 1016</span>  <span class="keyword">const</span> GLsizei texture_height = ilGetInteger (IL_IMAGE_HEIGHT);</div>
+<div class="line"><span class="lineno"> 1017</span> </div>
+<div class="line"><span class="lineno"> 1018</span>  <span class="comment">// send texture data to OpenGL (slide 8) [class11]</span></div>
+<div class="line"><span class="lineno"> 1019</span>  glTexImage2D (GL_TEXTURE_2D, 0, GL_RGBA,</div>
+<div class="line"><span class="lineno"> 1020</span>                texture_width, texture_height, 0,</div>
+<div class="line"><span class="lineno"> 1021</span>                GL_RGBA, GL_UNSIGNED_BYTE, texData);</div>
+<div class="line"><span class="lineno"> 1022</span> </div>
+<div class="line"><span class="lineno"> 1023</span>  glGenerateMipmap (GL_TEXTURE_2D);</div>
+<div class="line"><span class="lineno"> 1024</span> </div>
+<div class="line"><span class="lineno"> 1025</span>  <span class="comment">// unbind texture</span></div>
+<div class="line"><span class="lineno"> 1026</span>  glBindTexture (GL_TEXTURE_2D, 0);</div>
+<div class="line"><span class="lineno"> 1027</span> </div>
+<div class="line"><span class="lineno"> 1028</span>  isFirstTimeBeingExecuted = <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno"> 1029</span>}</div>
+<div class="ttc" id="astructmodel_html_a6642bf44750e13f4720fcab39d428950"><div class="ttname"><a href="structmodel.html#a6642bf44750e13f4720fcab39d428950">model::tbo</a></div><div class="ttdeci">GLuint tbo</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00887">engine.cpp:887</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="engine_8cpp_source.html#l00211">model::tbo</a>.</p>
+<p class="reference">References <a class="el" href="engine_8cpp_source.html#l00887">model::tbo</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00434">operations_render()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l01113">operations_render()</a>.</p>
 <div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-2-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-2-summary" class="dynsummary" style="display:block;">
@@ -370,56 +370,56 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00355">355</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  356</span>{</div>
-<div class="line"><span class="lineno">  357</span>  <span class="keywordflow">if</span> (!<a class="code hl_struct" href="structmodel.html">model</a>.<a class="code hl_variable" href="structmodel.html#ae122038028ab471bfa2b266189e90404">nVertices</a> % 3)</div>
-<div class="line"><span class="lineno">  358</span>    {</div>
-<div class="line"><span class="lineno">  359</span>      fprintf (stderr, <span class="stringliteral">&quot;Number of coordinates (%d) is not divisible by 3&quot;</span>, <a class="code hl_struct" href="structmodel.html">model</a>.<a class="code hl_variable" href="structmodel.html#ae122038028ab471bfa2b266189e90404">nVertices</a>);</div>
-<div class="line"><span class="lineno">  360</span>      exit (1);</div>
-<div class="line"><span class="lineno">  361</span>    }</div>
-<div class="line"><span class="lineno">  362</span> </div>
-<div class="line"><span class="lineno">  363</span>  <span class="comment">// vertex buffer object (slide 14) [class11]</span></div>
-<div class="line"><span class="lineno">  364</span>  glBindBuffer (GL_ARRAY_BUFFER, <a class="code hl_struct" href="structmodel.html">model</a>.<a class="code hl_variable" href="structmodel.html#ab22ca782aa5b8d3bd578be477ac37fe7">vbo</a>);</div>
-<div class="line"><span class="lineno">  365</span>  glVertexPointer (3, GL_FLOAT, 0, <span class="keyword">nullptr</span>);</div>
-<div class="line"><span class="lineno">  366</span> </div>
-<div class="line"><span class="lineno">  367</span>  <span class="comment">// normals (slide 14) [class11]</span></div>
-<div class="line"><span class="lineno">  368</span>  glBindBuffer (GL_ARRAY_BUFFER, <a class="code hl_struct" href="structmodel.html">model</a>.<a class="code hl_variable" href="structmodel.html#aa02ac56a51e39aa9e42df9eafd2e9302">normals</a>);</div>
-<div class="line"><span class="lineno">  369</span>  glNormalPointer (GL_FLOAT, 0, <span class="keyword">nullptr</span>);</div>
-<div class="line"><span class="lineno">  370</span> </div>
-<div class="line"><span class="lineno">  371</span>  <span class="comment">// texture coordinates (slide 14) [class11]</span></div>
-<div class="line"><span class="lineno">  372</span>  glBindBuffer (GL_ARRAY_BUFFER, <a class="code hl_struct" href="structmodel.html">model</a>.<a class="code hl_variable" href="structmodel.html#a32d49fddff5d56f60779be5ee6f71159">tc</a>);</div>
-<div class="line"><span class="lineno">  373</span>  glTexCoordPointer (2, GL_FLOAT, 0, <span class="keyword">nullptr</span>);</div>
-<div class="line"><span class="lineno">  374</span> </div>
-<div class="line"><span class="lineno">  375</span>  <span class="comment">// texture buffer object (slide 14) [class11]</span></div>
-<div class="line"><span class="lineno">  376</span>  glBindTexture (GL_TEXTURE_2D, <a class="code hl_struct" href="structmodel.html">model</a>.<a class="code hl_variable" href="structmodel.html#a6642bf44750e13f4720fcab39d428950">tbo</a>);</div>
-<div class="line"><span class="lineno">  377</span> </div>
-<div class="line"><span class="lineno">  378</span>  <span class="comment">//glPushAttrib (GL_ALL_ATTRIB_BITS);</span></div>
-<div class="line"><span class="lineno">  379</span>  <span class="comment">// define a material for the object(s) (slide 8) [class9]</span></div>
-<div class="line"><span class="lineno">  380</span>  glMaterialfv (GL_FRONT, GL_DIFFUSE, value_ptr (<a class="code hl_struct" href="structmodel.html">model</a>.<a class="code hl_variable" href="structmodel.html#a8cb7a6506a1a71331a6402636f358d2b">material</a>.<a class="code hl_variable" href="structmodel.html#ac6da54555e9cdb72721492ef453b00c7">diffuse</a>));</div>
-<div class="line"><span class="lineno">  381</span>  glMaterialfv (GL_FRONT, GL_AMBIENT, value_ptr (<a class="code hl_struct" href="structmodel.html">model</a>.<a class="code hl_variable" href="structmodel.html#a8cb7a6506a1a71331a6402636f358d2b">material</a>.<a class="code hl_variable" href="structmodel.html#a59802909659217ceee78acd7fab03b01">ambient</a>));</div>
-<div class="line"><span class="lineno">  382</span>  glMaterialfv (GL_FRONT, GL_SPECULAR, value_ptr (<a class="code hl_struct" href="structmodel.html">model</a>.<a class="code hl_variable" href="structmodel.html#a8cb7a6506a1a71331a6402636f358d2b">material</a>.<a class="code hl_variable" href="structmodel.html#ab7bd407f234ace683e74bf614fcf7854">specular</a>));</div>
-<div class="line"><span class="lineno">  383</span>  glMaterialfv (GL_FRONT, GL_EMISSION, value_ptr (<a class="code hl_struct" href="structmodel.html">model</a>.<a class="code hl_variable" href="structmodel.html#a8cb7a6506a1a71331a6402636f358d2b">material</a>.<a class="code hl_variable" href="structmodel.html#a5fae13ebfa02b349b41d210f8ac77d2c">emissive</a>));</div>
-<div class="line"><span class="lineno">  384</span>  glMaterialf (GL_FRONT, GL_SHININESS, <a class="code hl_struct" href="structmodel.html">model</a>.<a class="code hl_variable" href="structmodel.html#a8cb7a6506a1a71331a6402636f358d2b">material</a>.<a class="code hl_variable" href="structmodel.html#a162a855dcc61ec108bda595d07a2fd8c">shininess</a>);</div>
-<div class="line"><span class="lineno">  385</span> </div>
-<div class="line"><span class="lineno">  386</span>  <span class="comment">// drawing</span></div>
-<div class="line"><span class="lineno">  387</span>  glDrawArrays (GL_TRIANGLES, 0, <a class="code hl_struct" href="structmodel.html">model</a>.<a class="code hl_variable" href="structmodel.html#ae122038028ab471bfa2b266189e90404">nVertices</a>);</div>
-<div class="line"><span class="lineno">  388</span>  <span class="comment">//glPopAttrib ();</span></div>
-<div class="line"><span class="lineno">  389</span> </div>
-<div class="line"><span class="lineno">  390</span>  <span class="comment">// unbind array buffer</span></div>
-<div class="line"><span class="lineno">  391</span>  glBindBuffer (GL_ARRAY_BUFFER, 0);</div>
-<div class="line"><span class="lineno">  392</span>  <span class="comment">// unbind texture (slide 10) [class11]</span></div>
-<div class="line"><span class="lineno">  393</span>  glBindTexture (GL_TEXTURE_2D, 0);</div>
-<div class="line"><span class="lineno">  394</span>}</div>
-<div class="ttc" id="astructmodel_html_a162a855dcc61ec108bda595d07a2fd8c"><div class="ttname"><a href="structmodel.html#a162a855dcc61ec108bda595d07a2fd8c">model::shininess</a></div><div class="ttdeci">GLfloat shininess</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00208">engine.cpp:208</a></div></div>
-<div class="ttc" id="astructmodel_html_a59802909659217ceee78acd7fab03b01"><div class="ttname"><a href="structmodel.html#a59802909659217ceee78acd7fab03b01">model::ambient</a></div><div class="ttdeci">vec4 ambient</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00205">engine.cpp:205</a></div></div>
-<div class="ttc" id="astructmodel_html_a5fae13ebfa02b349b41d210f8ac77d2c"><div class="ttname"><a href="structmodel.html#a5fae13ebfa02b349b41d210f8ac77d2c">model::emissive</a></div><div class="ttdeci">vec4 emissive</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00207">engine.cpp:207</a></div></div>
-<div class="ttc" id="astructmodel_html_a8cb7a6506a1a71331a6402636f358d2b"><div class="ttname"><a href="structmodel.html#a8cb7a6506a1a71331a6402636f358d2b">model::material</a></div><div class="ttdeci">struct model::@0 material</div></div>
-<div class="ttc" id="astructmodel_html_ab7bd407f234ace683e74bf614fcf7854"><div class="ttname"><a href="structmodel.html#ab7bd407f234ace683e74bf614fcf7854">model::specular</a></div><div class="ttdeci">vec4 specular</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00206">engine.cpp:206</a></div></div>
-<div class="ttc" id="astructmodel_html_ac6da54555e9cdb72721492ef453b00c7"><div class="ttname"><a href="structmodel.html#ac6da54555e9cdb72721492ef453b00c7">model::diffuse</a></div><div class="ttdeci">vec4 diffuse</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00204">engine.cpp:204</a></div></div>
+<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l01031">1031</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno"> 1032</span>{</div>
+<div class="line"><span class="lineno"> 1033</span>  <span class="keywordflow">if</span> (!<a class="code hl_struct" href="structmodel.html">model</a>.<a class="code hl_variable" href="structmodel.html#ae122038028ab471bfa2b266189e90404">nVertices</a> % 3)</div>
+<div class="line"><span class="lineno"> 1034</span>    {</div>
+<div class="line"><span class="lineno"> 1035</span>      fprintf (stderr, <span class="stringliteral">&quot;Number of coordinates (%d) is not divisible by 3&quot;</span>, <a class="code hl_struct" href="structmodel.html">model</a>.<a class="code hl_variable" href="structmodel.html#ae122038028ab471bfa2b266189e90404">nVertices</a>);</div>
+<div class="line"><span class="lineno"> 1036</span>      exit (1);</div>
+<div class="line"><span class="lineno"> 1037</span>    }</div>
+<div class="line"><span class="lineno"> 1038</span> </div>
+<div class="line"><span class="lineno"> 1039</span>  <span class="comment">// vertex buffer object (slide 14) [class11]</span></div>
+<div class="line"><span class="lineno"> 1040</span>  glBindBuffer (GL_ARRAY_BUFFER, <a class="code hl_struct" href="structmodel.html">model</a>.<a class="code hl_variable" href="structmodel.html#ab22ca782aa5b8d3bd578be477ac37fe7">vbo</a>);</div>
+<div class="line"><span class="lineno"> 1041</span>  glVertexPointer (3, GL_FLOAT, 0, <span class="keyword">nullptr</span>);</div>
+<div class="line"><span class="lineno"> 1042</span> </div>
+<div class="line"><span class="lineno"> 1043</span>  <span class="comment">// normals (slide 14) [class11]</span></div>
+<div class="line"><span class="lineno"> 1044</span>  glBindBuffer (GL_ARRAY_BUFFER, <a class="code hl_struct" href="structmodel.html">model</a>.<a class="code hl_variable" href="structmodel.html#aa02ac56a51e39aa9e42df9eafd2e9302">normals</a>);</div>
+<div class="line"><span class="lineno"> 1045</span>  glNormalPointer (GL_FLOAT, 0, <span class="keyword">nullptr</span>);</div>
+<div class="line"><span class="lineno"> 1046</span> </div>
+<div class="line"><span class="lineno"> 1047</span>  <span class="comment">// texture coordinates (slide 14) [class11]</span></div>
+<div class="line"><span class="lineno"> 1048</span>  glBindBuffer (GL_ARRAY_BUFFER, <a class="code hl_struct" href="structmodel.html">model</a>.<a class="code hl_variable" href="structmodel.html#a32d49fddff5d56f60779be5ee6f71159">tc</a>);</div>
+<div class="line"><span class="lineno"> 1049</span>  glTexCoordPointer (2, GL_FLOAT, 0, <span class="keyword">nullptr</span>);</div>
+<div class="line"><span class="lineno"> 1050</span> </div>
+<div class="line"><span class="lineno"> 1051</span>  <span class="comment">// texture buffer object (slide 14) [class11]</span></div>
+<div class="line"><span class="lineno"> 1052</span>  glBindTexture (GL_TEXTURE_2D, <a class="code hl_struct" href="structmodel.html">model</a>.<a class="code hl_variable" href="structmodel.html#a6642bf44750e13f4720fcab39d428950">tbo</a>);</div>
+<div class="line"><span class="lineno"> 1053</span> </div>
+<div class="line"><span class="lineno"> 1054</span>  <span class="comment">//glPushAttrib (GL_ALL_ATTRIB_BITS);</span></div>
+<div class="line"><span class="lineno"> 1055</span>  <span class="comment">// define a material for the object(s) (slide 8) [class9]</span></div>
+<div class="line"><span class="lineno"> 1056</span>  glMaterialfv (GL_FRONT, GL_DIFFUSE, value_ptr (<a class="code hl_struct" href="structmodel.html">model</a>.<a class="code hl_variable" href="structmodel.html#a7e4787d25329325aacd14a65d3bb2f96">material</a>.<a class="code hl_variable" href="structmodel.html#ac6da54555e9cdb72721492ef453b00c7">diffuse</a>));</div>
+<div class="line"><span class="lineno"> 1057</span>  glMaterialfv (GL_FRONT, GL_AMBIENT, value_ptr (<a class="code hl_struct" href="structmodel.html">model</a>.<a class="code hl_variable" href="structmodel.html#a7e4787d25329325aacd14a65d3bb2f96">material</a>.<a class="code hl_variable" href="structmodel.html#a59802909659217ceee78acd7fab03b01">ambient</a>));</div>
+<div class="line"><span class="lineno"> 1058</span>  glMaterialfv (GL_FRONT, GL_SPECULAR, value_ptr (<a class="code hl_struct" href="structmodel.html">model</a>.<a class="code hl_variable" href="structmodel.html#a7e4787d25329325aacd14a65d3bb2f96">material</a>.<a class="code hl_variable" href="structmodel.html#ab7bd407f234ace683e74bf614fcf7854">specular</a>));</div>
+<div class="line"><span class="lineno"> 1059</span>  glMaterialfv (GL_FRONT, GL_EMISSION, value_ptr (<a class="code hl_struct" href="structmodel.html">model</a>.<a class="code hl_variable" href="structmodel.html#a7e4787d25329325aacd14a65d3bb2f96">material</a>.<a class="code hl_variable" href="structmodel.html#a5fae13ebfa02b349b41d210f8ac77d2c">emissive</a>));</div>
+<div class="line"><span class="lineno"> 1060</span>  glMaterialf (GL_FRONT, GL_SHININESS, <a class="code hl_struct" href="structmodel.html">model</a>.<a class="code hl_variable" href="structmodel.html#a7e4787d25329325aacd14a65d3bb2f96">material</a>.<a class="code hl_variable" href="structmodel.html#a162a855dcc61ec108bda595d07a2fd8c">shininess</a>);</div>
+<div class="line"><span class="lineno"> 1061</span> </div>
+<div class="line"><span class="lineno"> 1062</span>  <span class="comment">// drawing</span></div>
+<div class="line"><span class="lineno"> 1063</span>  glDrawArrays (GL_TRIANGLES, 0, <a class="code hl_struct" href="structmodel.html">model</a>.<a class="code hl_variable" href="structmodel.html#ae122038028ab471bfa2b266189e90404">nVertices</a>);</div>
+<div class="line"><span class="lineno"> 1064</span>  <span class="comment">//glPopAttrib ();</span></div>
+<div class="line"><span class="lineno"> 1065</span> </div>
+<div class="line"><span class="lineno"> 1066</span>  <span class="comment">// unbind array buffer</span></div>
+<div class="line"><span class="lineno"> 1067</span>  glBindBuffer (GL_ARRAY_BUFFER, 0);</div>
+<div class="line"><span class="lineno"> 1068</span>  <span class="comment">// unbind texture (slide 10) [class11]</span></div>
+<div class="line"><span class="lineno"> 1069</span>  glBindTexture (GL_TEXTURE_2D, 0);</div>
+<div class="line"><span class="lineno"> 1070</span>}</div>
+<div class="ttc" id="astructmodel_html_a162a855dcc61ec108bda595d07a2fd8c"><div class="ttname"><a href="structmodel.html#a162a855dcc61ec108bda595d07a2fd8c">model::shininess</a></div><div class="ttdeci">GLfloat shininess</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00884">engine.cpp:884</a></div></div>
+<div class="ttc" id="astructmodel_html_a59802909659217ceee78acd7fab03b01"><div class="ttname"><a href="structmodel.html#a59802909659217ceee78acd7fab03b01">model::ambient</a></div><div class="ttdeci">vec4 ambient</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00881">engine.cpp:881</a></div></div>
+<div class="ttc" id="astructmodel_html_a5fae13ebfa02b349b41d210f8ac77d2c"><div class="ttname"><a href="structmodel.html#a5fae13ebfa02b349b41d210f8ac77d2c">model::emissive</a></div><div class="ttdeci">vec4 emissive</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00883">engine.cpp:883</a></div></div>
+<div class="ttc" id="astructmodel_html_a7e4787d25329325aacd14a65d3bb2f96"><div class="ttname"><a href="structmodel.html#a7e4787d25329325aacd14a65d3bb2f96">model::material</a></div><div class="ttdeci">struct model::@1 material</div></div>
+<div class="ttc" id="astructmodel_html_ab7bd407f234ace683e74bf614fcf7854"><div class="ttname"><a href="structmodel.html#ab7bd407f234ace683e74bf614fcf7854">model::specular</a></div><div class="ttdeci">vec4 specular</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00882">engine.cpp:882</a></div></div>
+<div class="ttc" id="astructmodel_html_ac6da54555e9cdb72721492ef453b00c7"><div class="ttname"><a href="structmodel.html#ac6da54555e9cdb72721492ef453b00c7">model::diffuse</a></div><div class="ttdeci">vec4 diffuse</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00880">engine.cpp:880</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="engine_8cpp_source.html#l00205">model::ambient</a>, <a class="el" href="engine_8cpp_source.html#l00204">model::diffuse</a>, <a class="el" href="engine_8cpp_source.html#l00207">model::emissive</a>, <a class="el" href="structmodel.html#a8cb7a6506a1a71331a6402636f358d2b">model::material</a>, <a class="el" href="engine_8cpp_source.html#l00201">model::normals</a>, <a class="el" href="engine_8cpp_source.html#l00199">model::nVertices</a>, <a class="el" href="engine_8cpp_source.html#l00208">model::shininess</a>, <a class="el" href="engine_8cpp_source.html#l00206">model::specular</a>, <a class="el" href="engine_8cpp_source.html#l00211">model::tbo</a>, <a class="el" href="engine_8cpp_source.html#l00212">model::tc</a>, and <a class="el" href="engine_8cpp_source.html#l00200">model::vbo</a>.</p>
+<p class="reference">References <a class="el" href="engine_8cpp_source.html#l00881">model::ambient</a>, <a class="el" href="engine_8cpp_source.html#l00880">model::diffuse</a>, <a class="el" href="engine_8cpp_source.html#l00883">model::emissive</a>, <a class="el" href="structmodel.html#a7e4787d25329325aacd14a65d3bb2f96">model::material</a>, <a class="el" href="engine_8cpp_source.html#l00877">model::normals</a>, <a class="el" href="engine_8cpp_source.html#l00875">model::nVertices</a>, <a class="el" href="engine_8cpp_source.html#l00884">model::shininess</a>, <a class="el" href="engine_8cpp_source.html#l00882">model::specular</a>, <a class="el" href="engine_8cpp_source.html#l00887">model::tbo</a>, <a class="el" href="engine_8cpp_source.html#l00888">model::tc</a>, and <a class="el" href="engine_8cpp_source.html#l00876">model::vbo</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00434">operations_render()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l01113">operations_render()</a>.</p>
 <div id="dynsection-3" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-3-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-3-summary" class="dynsummary" style="display:block;">
@@ -451,9 +451,9 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00215">215</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00891">891</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00434">operations_render()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l01113">operations_render()</a>.</p>
 
 </div>
 </div>
@@ -477,9 +477,9 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00216">216</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00892">892</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00821">renderScene()</a>, and <a class="el" href="engine_8cpp_source.html#l00864">xml_load_and_set_env()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l01513">renderScene()</a>, and <a class="el" href="engine_8cpp_source.html#l01553">xml_load_and_set_env()</a>.</p>
 
 </div>
 </div>
@@ -495,9 +495,9 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00197">197</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00873">873</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="parsing_8cpp_source.html#l00241">operations_push_model()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="parsing_8cpp_source.html#l00239">operations_push_model()</a>.</p>
 
 </div>
 </div>

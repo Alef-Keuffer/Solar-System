@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['input_0',['Input',['../group__input.html',1,'']]]
+  ['generator_0',['Generator',['../group__generator.html',1,'']]],
+  ['groups_1',['Groups',['../group___groups.html',1,'']]]
 ];
