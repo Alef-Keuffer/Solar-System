@@ -52,9 +52,327 @@ static float globalScaleX = 1;
 static float globalScaleY = 1;
 static float globalScaleZ = 1;
 
-
 /*! @addtogroup camera
  * @{*/
+
+void changeProfile ();
+
+typedef struct profile_struct {
+  /**
+   * from https://www.opengl.org/resources/libraries/glut/spec3/node50.html:
+   * glutMouseFunc sets the mouse callback for
+   * the current window. When a user presses and
+   * releases mouse buttons in the window, each
+   * press and each release generates a mouse
+   * callback.
+   */
+  void (*mouseFunc) (int button, int state, int x, int y){};
+  /**
+   * from: https://www.opengl.org/resources/libraries/glut/spec3/node51.html
+   * The motion callback for a window is called when the
+   * mouse moves within the window while one or more mouse
+   * buttons are pressed.
+   */
+  void (*motionFunc) (int x, int y){};
+  /**
+   * from https://www.opengl.org/resources/libraries/glut/spec3/node51.html
+   * The passive motion callback for a window is called
+   * when the mouse moves within the window while no mouse
+   * buttons are pressed.
+   */
+  void (*passiveMotionFunc) (int x, int y){};
+  /**
+   * glutKeyboardFunc sets the keyboard
+   * callback for the current window. When a
+   * user types into the window, each key
+   * press generating an ASCII character will
+   * generate a keyboard callback. The key
+   * callback parameter is the generated ASCII
+   * character. The state of modifier keys
+   * such as Shift cannot be determined
+   * directly; their only effect will be on
+   * the returned ASCII data.
+   */
+  void (*keyboardFunc) (unsigned char key, int xmouse, int ymouse){};
+  //! sets the special keyboard up (key release) callback for the current window.
+  void (*keyboardUpFunc) (unsigned char key, int x, int y){};
+  void (*specialFunc) (int key, int xmouse, int ymouse){};
+  void (*displayFunc) (){};
+  void (*reshapeFunc) (int w, int h){};
+  void (*timerFunc) (int);
+  void (*setSettings) (){};
+
+  // non glut
+  void (*camera) ();
+  void (*init) ();
+
+} profile_t;
+
+void loadProfile (profile_t profile)
+{
+  if (profile.keyboardFunc != nullptr)
+    glutKeyboardFunc (profile.keyboardFunc);
+  else
+    glutKeyboardFunc (nullptr);
+  if (profile.keyboardUpFunc != nullptr)
+    glutKeyboardUpFunc (profile.keyboardUpFunc);
+  else
+    glutKeyboardUpFunc (nullptr);
+  if (profile.specialFunc != nullptr)
+    glutSpecialFunc (profile.specialFunc);
+  else
+    glutSpecialFunc (nullptr);
+  if (profile.mouseFunc != nullptr)
+    glutMouseFunc (profile.mouseFunc);
+  else
+    glutMouseFunc (nullptr);
+  if (profile.motionFunc != nullptr)
+    glutMotionFunc (profile.motionFunc);
+  else
+    glutMotionFunc (nullptr);
+
+  if (profile.passiveMotionFunc != nullptr)
+    glutPassiveMotionFunc (profile.passiveMotionFunc);
+  else
+    glutPassiveMotionFunc (nullptr);
+
+  if (profile.reshapeFunc != nullptr)
+    glutReshapeFunc (profile.reshapeFunc);
+  if (profile.displayFunc != nullptr)
+    glutDisplayFunc (profile.displayFunc);
+  if (profile.timerFunc != nullptr)
+    glutTimerFunc (0, profile.timerFunc, 0);
+}
+
+void defaultChangeSize (const int w, int h);
+
+/*! @addtogroup fpsCamera
+ * @{*/
+
+int globalWidth = 16 * 50;
+int globalHeight = 9 * 50;
+bool globalLockCenter = false;
+auto globalPitch = 0.0, globalYaw = 0.0;
+
+void fpsTimer (int);
+void fpsPassiveMotion (int, int);
+void fpsCamera ();
+void fpsKeyboard (unsigned char key, int x, int y);
+void fpsKeyboardUp (unsigned char key, int x, int y);
+void fpsInit ();
+
+const profile_t globalProfile_FPS = {
+    .passiveMotionFunc = fpsPassiveMotion,
+    .keyboardFunc = fpsKeyboard,
+    .keyboardUpFunc = fpsKeyboardUp,
+    .reshapeFunc = defaultChangeSize,
+    .camera = fpsCamera,
+    .init = fpsInit,
+};
+
+struct Motion {
+  bool Forward, Backward, Left, Right, Up, Down;
+};
+
+Motion globalMotion = {false, false, false, false};
+
+const auto GLOBAL_FPS = 60;
+
+void fpsInit ()
+{
+  glutSetCursor (GLUT_CURSOR_NONE);
+  glutTimerFunc (0, fpsTimer, 0);
+  //glDepthFunc (GL_LEQUAL);
+}
+
+/*this funtion is used to keep calling the display function periodically
+  at a rate of FPS times in one second. The constant FPS is defined above and
+  has the value of 60
+*/
+void fpsTimer (int)
+{
+  glutPostRedisplay ();
+  if (globalLockCenter)
+    glutWarpPointer (globalWidth / 2, globalHeight / 2);
+  glutTimerFunc (1000 / GLOBAL_FPS, fpsTimer, 0);
+}
+
+void fpsPassiveMotion (int x, int y)
+{
+  if (!globalLockCenter)
+    return;
+
+  /* two variables to store X and Y coordinates, as observed from the center
+    of the window
+  */
+  int dev_x, dev_y;
+  dev_x = (globalWidth / 2) - x;
+  dev_y = (globalHeight / 2) - y;
+
+  /* apply the changes to pitch and yaw*/
+  globalYaw += dev_x / 10.0;
+  globalPitch += dev_y / 10.0;
+}
+auto globalFpsCamX = 0.0, globalFpsCamZ = 0.0, globalFpsCamY = 0.0;
+float globalFpsSens = 1;
+
+void fpsCamera ()
+{
+  const auto TO_RADIANS = M_PI / 180.0;
+  const float sens = globalFpsSens;
+
+  if (globalMotion.Forward)
+    {
+      globalFpsCamX += cos ((globalYaw + 90) * TO_RADIANS) / sens;
+      globalFpsCamZ -= sin ((globalYaw + 90) * TO_RADIANS) / sens;
+    }
+  if (globalMotion.Backward)
+    {
+      globalFpsCamX += cos ((globalYaw + 90 + 180) * TO_RADIANS) / sens;
+      globalFpsCamZ -= sin ((globalYaw + 90 + 180) * TO_RADIANS) / sens;
+    }
+  if (globalMotion.Left)
+    {
+      globalFpsCamX += cos ((globalYaw + 90 + 90) * TO_RADIANS) / sens;
+      globalFpsCamZ -= sin ((globalYaw + 90 + 90) * TO_RADIANS) / sens;
+    }
+  if (globalMotion.Right)
+    {
+      globalFpsCamX += cos ((globalYaw + 90 - 90) * TO_RADIANS) / sens;
+      globalFpsCamZ -= sin ((globalYaw + 90 - 90) * TO_RADIANS) / sens;
+    }
+  if (globalMotion.Down)
+    {
+      globalFpsCamY += sens;
+    }
+  if (globalMotion.Up)
+    {
+      globalFpsCamY -= sens;
+    }
+  /*limit the values of pitch
+    between -60 and 70
+  */
+  if (globalPitch >= 70)
+    globalPitch = 70;
+  if (globalPitch <= -60)
+    globalPitch = -60;
+
+  glRotatef (-globalPitch, 1.0, 0.0, 0.0); // Along X axis
+  glRotatef (-globalYaw, 0.0, 1.0, 0.0);    //Along Y axis
+  glTranslatef (-globalFpsCamX, globalFpsCamY, -globalFpsCamZ);
+}
+
+void fpsKeyboard (unsigned char key, int x, int y)
+{
+  const unsigned char ESC = 27;
+
+  switch (key)
+    {
+      case ESC:
+        {
+          globalLockCenter = !globalLockCenter;
+          if (globalLockCenter)
+            glutSetCursor (GLUT_CURSOR_NONE);
+          else
+            glutSetCursor (GLUT_CURSOR_CROSSHAIR);
+          break;
+        }
+      case ' ':
+        changeProfile ();
+      break;
+      case '-':
+        globalFpsSens *= 1.5;
+      break;
+      case '+':
+        globalFpsSens *= .5;
+      break;
+      case 'W':
+      case 'w':
+        globalMotion.Forward = true;
+      break;
+      case 'A':
+      case 'a':
+        globalMotion.Left = true;
+      break;
+      case 'S':
+      case 's':
+        globalMotion.Backward = true;
+      break;
+      case 'D':
+      case 'd':
+        globalMotion.Right = true;
+      break;
+      case 'Q':
+      case 'q':
+        globalMotion.Down = true;
+      break;
+      case 'E':
+      case 'e':
+        globalMotion.Up = true;
+      break;
+    }
+}
+
+void fpsKeyboardUp (unsigned char key, int x, int y)
+{
+  switch (key)
+    {
+      case 'W':
+      case 'w':
+        globalMotion.Forward = false;
+      break;
+      case 'A':
+      case 'a':
+        globalMotion.Left = false;
+      break;
+      case 'S':
+      case 's':
+        globalMotion.Backward = false;
+      break;
+      case 'D':
+      case 'd':
+        globalMotion.Right = false;
+      break;
+      case 'Q':
+      case 'q':
+        globalMotion.Down = false;
+      break;
+      case 'E':
+      case 'e':
+        globalMotion.Up = false;
+      break;
+    }
+}
+
+//! @} end of group fpsCamera
+
+/*! @addtogroup explorerCamera
+ * @{*/
+
+void explCamera ();
+void explKeyboard (unsigned char key, int x, int y);
+void explMouse (int button, int state, int x, int y);
+void explMotion (int x, int y);
+void explTimer (int);
+void env_load_defaults ();
+
+const profile_t globalProfile_EXPL = {
+    .mouseFunc = explMouse,
+    .motionFunc = explMotion,
+    .keyboardFunc = explKeyboard,
+    .reshapeFunc = defaultChangeSize,
+    .timerFunc = explTimer,
+    .camera = explCamera,
+};
+
+double DEFAULT_GLOBAL_RADIUS = 1;
+double DEFAULT_GLOBAL_AZIMUTH = 0;
+double DEFAULT_GLOBAL_ELEVATION = 0;
+
+double globalRadius = DEFAULT_GLOBAL_RADIUS;
+double globalAzimuth = DEFAULT_GLOBAL_AZIMUTH;
+double globalElevation = DEFAULT_GLOBAL_ELEVATION;
+bool globalMouseLeftButton = false;
 
 /*! @addtogroup position
  * @{*/
@@ -106,17 +424,6 @@ static float globalNear = DEFAULT_GLOBAL_NEAR;
 static float globalFar = DEFAULT_GLOBAL_FAR;
 //!@} end of group projection
 
-/*! @addtogroup spherical
- * @{ */
-double DEFAULT_GLOBAL_RADIUS = 1;
-double DEFAULT_GLOBAL_AZIMUTH = 0;
-double DEFAULT_GLOBAL_ELEVATION = 0;
-
-double globalRadius = DEFAULT_GLOBAL_RADIUS;
-double globalAzimuth = DEFAULT_GLOBAL_AZIMUTH;
-double globalElevation = DEFAULT_GLOBAL_ELEVATION;
-bool globalMouseLeftButton = false;
-
 void
 spherical2Cartesian (const double radius, const double elevation, const double azimuth,
                      double *x, double *y, double *z)
@@ -134,11 +441,14 @@ cartesian2Spherical (const double x, const double y, const double z,
   // https://www.wikiwand.com/en/Spherical_coordinate_system
   *radius = abs (sqrt (pow ((x - globalCenterX), 2) + pow ((y - globalCenterY), 2) + pow ((z - globalCenterZ), 2)));
   *elevation = acos ((y - globalCenterY) / (*radius));
-  *azimuth = atan2((z - globalCenterZ),(x - globalCenterZ));
+  *azimuth = atan2 ((z - globalCenterZ), (x - globalCenterZ));
 }
 
-//! @} end of group spherical
-//! @} end of group camera
+void explRedisplay ()
+{
+  spherical2Cartesian (globalRadius, globalElevation, globalAzimuth, &globalEyeX, &globalEyeY, &globalEyeZ);
+  glutPostRedisplay ();
+}
 
 void env_load_defaults ()
 {
@@ -189,6 +499,371 @@ void env_load_defaults ()
   globalNear = DEFAULT_GLOBAL_NEAR;
   globalFar = DEFAULT_GLOBAL_FAR;
 }
+
+void explKeyboard (unsigned char key, int xmouse, int ymouse)
+{
+  /*
+      Rotation:
+          x y z       x↓ y↓ z↓
+          X Y Z       x↑ y↑ z↑
+      angle:
+          , .     θ-=s    θ+=s
+          < >     s↓     s↑
+      translation:
+          q w e       y↓ z↑ y↑
+          a s d       x↓ z↓ x↑
+      scaling:
+          u i o       y↓ z↑ y↑
+          j k l       x↓ z↓ x↑
+      background color: r g b R G B
+      camera:
+          1 2 3 ⎫       ! @ # ⎫        EyeX     EyeY     EyeZ
+          4 5 6 ⎬↓      $ % ^ ⎬↑       CenterX  CenterY  CenterZ
+          7 8 9 ⎭       & * ( ⎭        UpX      UpY      UpZ
+   */
+  const unsigned char ESC = 27;
+  switch (key)
+    {
+      case ESC:
+        {
+          globalLockCenter = !globalLockCenter;
+          if (globalLockCenter)
+            glutSetCursor (GLUT_CURSOR_NONE);
+          else
+            glutSetCursor (GLUT_CURSOR_CROSSHAIR);
+          break;
+        }
+      /*Rotation*/
+      case 'x':
+        globalRotateX -= 1;
+      break;
+
+      case 'X':
+        globalRotateX += 1;
+      break;
+
+      case 'y':
+        globalRotateY -= 1;
+      break;
+
+      case 'Y':
+        globalRotateY += 1;
+      break;
+
+      case 'z':
+        globalRotateZ -= 1;
+      break;
+
+      case 'Z':
+        globalRotateZ += 1;
+      break;
+
+      case ',':
+        globalAngle -= globalAngleStep;
+      break;
+
+      case '.':
+        globalAngle += globalAngleStep;
+      break;
+
+      case '<':
+        globalAngleStep /= 2;
+      break;
+
+      case '>':
+        globalAngleStep *= 2;
+      break;
+
+      /*translation*/
+      case 'T':
+        globalTranslateStep *= 2;
+      break;
+      case 't':
+        if (globalTranslateStep > 1)
+          globalTranslateStep /= 2;
+      break;
+
+      /*z-axis*/
+      case 'w':
+        globalTranslateZ += globalTranslateStep;
+      break;
+      case 's':
+        globalTranslateZ -= globalTranslateStep;
+      break;
+
+      /*x-axis*/
+      case 'a':
+        globalTranslateX -= globalTranslateStep;
+      break;
+      case 'd':
+        globalTranslateX += globalTranslateStep;
+      break;
+
+      /*y-axis*/
+      case 'q':
+        globalTranslateY -= globalTranslateStep;
+      break;
+      case 'e':
+        globalTranslateY += globalTranslateStep;
+      break;
+      /*end of translation*/
+
+      /*scaling*/
+
+      /*z-axis*/
+      case 'i':
+        globalScaleZ += globalScaleStep;
+      break;
+      case 'k':
+        globalScaleZ -= globalScaleStep;
+      break;
+
+      /*x-axis*/
+      case 'j':
+        globalScaleX -= globalScaleStep;
+      break;
+      case 'l':
+        globalScaleX += globalScaleStep;
+      break;
+
+      /*y-axis*/
+      case 'u':
+        globalScaleY -= globalScaleStep;
+      break;
+      case 'o':
+        globalScaleY += globalScaleStep;
+      break;
+      /*end of scaling*/
+
+      /*camera*/
+      case '`':
+        globalEyeStep *= 2;
+      break;
+      case '~':
+        if (globalEyeStep > 1)
+          globalEyeStep /= 2;
+      break;
+
+      case '1':
+        globalEyeX -= globalEyeStep;
+      break;
+      case '!':
+        globalEyeX += globalEyeStep;
+      break;
+      case '2':
+        globalEyeY -= globalEyeStep;
+      break;
+      case '@':
+        globalEyeY += globalEyeStep;
+      break;
+      case '3':
+        globalEyeZ -= globalEyeStep;
+      break;
+      case '#':
+        globalEyeZ += globalEyeStep;
+      break;
+
+      case '4':
+        globalCenterX -= globalCenterStep;
+      break;
+      case '$':
+        globalCenterX += globalCenterStep;
+      break;
+      case '5':
+        globalCenterY -= globalCenterStep;
+      break;
+      case '%':
+        globalCenterY += globalCenterStep;
+      break;
+      case '6':
+        globalCenterZ -= globalCenterStep;
+      break;
+      case '^':
+        globalCenterZ += globalCenterStep;
+      break;
+      case '7':
+        globalUpX -= globalUpStep;
+      break;
+      case '&':
+        globalUpX += globalUpStep;
+      break;
+      case '8':
+        globalUpY -= globalUpStep;
+      break;
+      case '*':
+        globalUpY += globalUpStep;
+      break;
+      case '9':
+        globalUpZ -= globalUpStep;
+      break;
+      case '(':
+        globalUpZ += globalUpStep;
+      break;
+
+      /*reset environment*/
+      case '0':
+        env_load_defaults ();
+      break;
+
+      case ' ':
+        changeProfile ();
+      break;
+
+      default:
+        break;
+    }
+  explRedisplay (); //request display() call ASAP
+}
+
+int globalExplXPrev = 0;
+int globalExplYPrev = 0;
+
+void explMouse (int button, int state, int x, int y)
+{
+  // Wheel reports as button 3(scroll up) and button 4(scroll down)
+  if ((button == 3) || (button == 4)) // It's a wheel event
+    {
+      // Each wheel event reports like a button click, GLUT_DOWN then GLUT_UP
+      if (state == GLUT_UP)
+        return; // Disregard redundant GLUT_UP events
+
+      if (button == 3)
+        {
+          globalRadius *= .8f;
+          if (globalRadius < .1f)
+            globalRadius = .1f;
+        }
+      else
+        globalRadius *= 1.5;
+      printf ("Scroll %s At %d %d\n", (button == 3) ? "Up" : "Down", x, y);
+    }
+  else
+    {  // normal button event
+      printf ("Button %s At %d %d\n", (state == GLUT_DOWN) ? "Down" : "Up", x, y);
+      if (button == GLUT_LEFT_BUTTON)
+        {
+          if (state == GLUT_DOWN)
+            {
+              globalMouseLeftButton = true;
+              globalExplXPrev = x;
+              globalExplYPrev = y;
+            }
+          if (state == GLUT_UP)
+            {
+              globalMouseLeftButton = false;
+            }
+        }
+      else if (button == GLUT_RIGHT_BUTTON)
+        {
+          if (state == GLUT_DOWN)
+            {
+              int window_width = glutGet (GLUT_WINDOW_WIDTH);
+              int window_height = glutGet (GLUT_WINDOW_HEIGHT);
+
+              GLbyte color[4];
+              GLfloat depth;
+              GLuint index;
+
+              //glReadPixels (x, window_height - y - 1, 1, 1, GL_RGBA, GL_UNSIGNED_BYTE, color);
+              glReadPixels (x, window_height - y - 1, 1, 1, GL_DEPTH_COMPONENT, GL_FLOAT, &depth);
+              //glReadPixels (x, window_height - y - 1, 1, 1, GL_STENCIL_INDEX, GL_UNSIGNED_INT, &index);
+
+              double ox, oy, oz;
+
+              double model[16];
+              glGetDoublev (GL_MODELVIEW_MATRIX, model);
+              double proj[16];
+              glGetDoublev (GL_PROJECTION_MATRIX, proj);
+              int view[4];
+              glGetIntegerv (GL_VIEWPORT, view);
+              gluUnProject (x, window_height - y - 1, depth,
+                            model,
+                            proj,
+                            view,
+                            &ox, &oy, &oz);
+              fprintf (stderr, "%d %d\n", x, y);
+              //globalTranslateX = -ox;
+              //globalTranslateZ = -oz;
+              /*cartesian2Spherical (ox, globalEyeY, oz,
+                                   &globalRadius, &globalAzimuth, &globalElevation);*/
+              //              globalTranslateX = ox;
+              //              globalTranslateZ = oz;
+              globalCenterX = ox;
+              globalCenterZ = oz;
+
+              fprintf (stderr, "%f %f %f\n", ox, oy, oz);
+            }
+        }
+    }
+
+  explRedisplay ();
+}
+
+void explMotion (int x, int y)
+{
+  if (globalMouseLeftButton)
+    {
+      const double stepAlfa = 0.04;
+      const double stepBeta = 0.035;
+
+      if (x > globalExplXPrev) // moving mouse right
+        globalAzimuth += stepAlfa;
+      else if (x < globalExplXPrev) // moving mouse left
+        globalAzimuth -= stepAlfa;
+
+      if (y > globalExplYPrev) // moving mouse up
+        {
+          globalElevation -= stepBeta;
+          if (globalElevation < .1)
+            globalElevation = .1;
+        }
+      else if (y < globalExplYPrev) // moving mouse down
+        {
+          globalElevation += stepBeta;
+          if (globalElevation > 3.1)
+            globalElevation = 3.1;
+        }
+
+      globalExplXPrev = x;
+      globalExplYPrev = y;
+    }
+  explRedisplay ();
+}
+
+void explCamera ()
+{
+  // set the camera
+  gluLookAt (globalEyeX, globalEyeY, globalEyeZ,
+             globalCenterX, globalCenterY, globalCenterZ,
+             globalUpX, globalUpY, globalUpZ);
+  //draw_axes ();
+
+  // put the geometric transformations here
+  glRotatef (globalAngle, globalRotateX, globalRotateY, globalRotateZ);
+  glTranslatef (globalTranslateX, globalTranslateY, globalTranslateZ);
+  glScalef (globalScaleX, globalScaleY, globalScaleZ);
+}
+void explTimer (int)
+{
+  glutPostRedisplay ();
+}
+
+//! @} end of group explorerCamera
+
+enum {
+  EXPL = 0, FPS, NPROFILES
+};
+const profile_t profile[NPROFILES] = {globalProfile_EXPL, globalProfile_FPS};
+int globalProfile = FPS;
+bool globalProfileHasChanged = true;
+
+void changeProfile ()
+{
+  globalProfileHasChanged = true;
+  globalProfile = (globalProfile + 1) % NPROFILES;
+}
+
+//! @} end of group camera
 
 //! @defgroup modelEngine Model
 
@@ -396,7 +1071,7 @@ void renderModel (const struct model &model)
 
 //!@} end of group modelEngine
 
-void changeSize (const int w, int h)
+void defaultChangeSize (const int w, int h)
 {
 
   // Prevent a divide by zero, when window is too short
@@ -421,6 +1096,9 @@ void changeSize (const int w, int h)
 
   // return to the model view matrix mode
   glMatrixMode (GL_MODELVIEW);
+
+  globalWidth = w;
+  globalHeight = h;
 }
 //!@} end of group engine
 
@@ -441,37 +1119,55 @@ void operations_render (vector<float> &operations)
 
   static vector<vector<vec3>> curves;
 
-  DEFAULT_GLOBAL_EYE_X = operations[i];
-  DEFAULT_GLOBAL_EYE_Y = operations[i + 1];
-  DEFAULT_GLOBAL_EYE_Z = operations[i + 2];
+  if (isFirstTimeBeingExecuted)
+    {
+      DEFAULT_GLOBAL_EYE_X = operations[i];
+      DEFAULT_GLOBAL_EYE_Y = operations[i + 1];
+      DEFAULT_GLOBAL_EYE_Z = operations[i + 2];
+    }
+  i += 3;
 
+  if (isFirstTimeBeingExecuted)
+    {
+      DEFAULT_GLOBAL_CENTER_X = operations[i];
+      DEFAULT_GLOBAL_CENTER_Y = operations[i + 1];
+      DEFAULT_GLOBAL_CENTER_Z = operations[i + 2];
+    }
+  i += 3;
+
+  if (isFirstTimeBeingExecuted)
+    {
+      DEFAULT_GLOBAL_UP_X = operations[i];
+      DEFAULT_GLOBAL_UP_Y = operations[i + 1];
+      DEFAULT_GLOBAL_UP_Z = operations[i + 2];
+    }
+  i += 3;
+
+  if (isFirstTimeBeingExecuted)
+    {
+      DEFAULT_GLOBAL_FOV = operations[i];
+      DEFAULT_GLOBAL_NEAR = operations[i + 1];
+      DEFAULT_GLOBAL_FAR = operations[i + 2];
+      cerr << "(FOV: " << DEFAULT_GLOBAL_FOV
+           << ", NEAR: " << DEFAULT_GLOBAL_NEAR
+           << ", FAR: " << DEFAULT_GLOBAL_FAR
+           << ")" << endl;
+    }
+  i += 3;
+
+  // default mode uses explorer camera
   cartesian2Spherical (
       DEFAULT_GLOBAL_EYE_X, DEFAULT_GLOBAL_EYE_Y, DEFAULT_GLOBAL_EYE_Z,
       &DEFAULT_GLOBAL_RADIUS, &DEFAULT_GLOBAL_AZIMUTH, &DEFAULT_GLOBAL_ELEVATION);
-  i += 3;
-
-  DEFAULT_GLOBAL_CENTER_X = operations[i];
-  DEFAULT_GLOBAL_CENTER_Y = operations[i + 1];
-  DEFAULT_GLOBAL_CENTER_Z = operations[i + 2];
-  i += 3;
-
-  DEFAULT_GLOBAL_UP_X = operations[i];
-  DEFAULT_GLOBAL_UP_Y = operations[i + 1];
-  DEFAULT_GLOBAL_UP_Z = operations[i + 2];
-  i += 3;
-
-  DEFAULT_GLOBAL_FOV = operations[i];
-  DEFAULT_GLOBAL_NEAR = operations[i + 1];
-  DEFAULT_GLOBAL_FAR = operations[i + 2];
 
   unsigned int model_num = 0;
   unsigned char nLights = 0;
 
-  const float amb[4] = {0, 0, 1};
-  const float spec[4] = {1, 1, 1};
-  const float diff[4] = {1, 1, 1};
+  static const float amb[4] = {0, 0, 0, 1};
+  static const float spec[4] = {1, 1, 1, 1};
+  static const float diff[4] = {1, 1, 1, 1};
 
-  for (i += 3; i < operations.size (); i++)
+  for (; i < operations.size (); i++)
     {
       assert(nLights < 8);
       switch ((int) operations[i])
@@ -797,11 +1493,6 @@ void draw_axes ()
 
 /*!@addtogroup engine
  * @{*/
-void redisplay ()
-{
-  spherical2Cartesian (globalRadius, globalElevation, globalAzimuth, &globalEyeX, &globalEyeY, &globalEyeZ);
-  glutPostRedisplay ();
-}
 
 void renderGreenPlane ()
 {
@@ -831,22 +1522,20 @@ void renderScene ()
   // helps in avoiding rounding mistakes, discards old matrix, read more
   glLoadIdentity ();
 
-  // set the camera
-  gluLookAt (globalEyeX, globalEyeY, globalEyeZ,
-             globalCenterX, globalCenterY, globalCenterZ,
-             globalUpX, globalUpY, globalUpZ);
-  draw_axes ();
-
-  // put the geometric transformations here
-  glRotatef (globalAngle, globalRotateX, globalRotateY, globalRotateZ);
-  glTranslatef (globalTranslateX, globalTranslateY, globalTranslateZ);
-  glScalef (globalScaleX, globalScaleY, globalScaleZ);
+  if (globalProfileHasChanged)
+    {
+      loadProfile (profile[globalProfile]);
+      if (profile[globalProfile].init != nullptr)
+        profile[globalProfile].init ();
+      globalProfileHasChanged = false;
+    }
+  profile[globalProfile].camera ();
 
   // render models
   operations_render (globalOperations);
 
   // calculate and display frame rate
-  frame++;
+  ++frame;
   time = glutGet (GLUT_ELAPSED_TIME);
   if (time - timebase > 1000)
     {
@@ -858,7 +1547,6 @@ void renderScene ()
     }
 
   // End of frame
-  redisplay ();
   glutSwapBuffers ();
 }
 
@@ -870,325 +1558,7 @@ void xml_load_and_set_env (const char *const filename)
   cerr << "LOOK_AT(" << globalCenterX << "," << globalCenterY << "," << globalCenterZ << ")" << endl;
   cerr << "POSITION(" << globalEyeX << "," << globalEyeY << "," << globalEyeZ << ")" << endl;
 }
-/*! @addtogroup input
- * @{*/
-void keyboardFunc (unsigned char key, int xmouse, int ymouse)
-{
-  /*
-      Rotation:
-          x y z       x↓ y↓ z↓
-          X Y Z       x↑ y↑ z↑
-      angle:
-          , .     θ-=s    θ+=s
-          < >     s↓     s↑
-      translation:
-          q w e       y↓ z↑ y↑
-          a s d       x↓ z↓ x↑
-      scaling:
-          u i o       y↓ z↑ y↑
-          j k l       x↓ z↓ x↑
-      background color: r g b R G B
-      camera:
-          1 2 3 ⎫       ! @ # ⎫        EyeX     EyeY     EyeZ
-          4 5 6 ⎬↓      $ % ^ ⎬↑       CenterX  CenterY  CenterZ
-          7 8 9 ⎭       & * ( ⎭        UpX      UpY      UpZ
-   */
-  switch (key)
-    {
-      /*Rotation*/
-      case 'x':
-        globalRotateX -= 1;
-      break;
 
-      case 'X':
-        globalRotateX += 1;
-      break;
-
-      case 'y':
-        globalRotateY -= 1;
-      break;
-
-      case 'Y':
-        globalRotateY += 1;
-      break;
-
-      case 'z':
-        globalRotateZ -= 1;
-      break;
-
-      case 'Z':
-        globalRotateZ += 1;
-      break;
-
-      case ',':
-        globalAngle -= globalAngleStep;
-      break;
-
-      case '.':
-        globalAngle += globalAngleStep;
-      break;
-
-      case '<':
-        globalAngleStep /= 2;
-      break;
-
-      case '>':
-        globalAngleStep *= 2;
-      break;
-
-      /*translation*/
-      case 'T':
-        globalTranslateStep *= 2;
-      break;
-      case 't':
-        if (globalTranslateStep > 1)
-          globalTranslateStep /= 2;
-      break;
-
-      /*z-axis*/
-      case 'w':
-        globalTranslateZ += globalTranslateStep;
-      break;
-      case 's':
-        globalTranslateZ -= globalTranslateStep;
-      break;
-
-      /*x-axis*/
-      case 'a':
-        globalTranslateX -= globalTranslateStep;
-      break;
-      case 'd':
-        globalTranslateX += globalTranslateStep;
-      break;
-
-      /*y-axis*/
-      case 'q':
-        globalTranslateY -= globalTranslateStep;
-      break;
-      case 'e':
-        globalTranslateY += globalTranslateStep;
-      break;
-      /*end of translation*/
-
-      /*scaling*/
-
-      /*z-axis*/
-      case 'i':
-        globalScaleZ += globalScaleStep;
-      break;
-      case 'k':
-        globalScaleZ -= globalScaleStep;
-      break;
-
-      /*x-axis*/
-      case 'j':
-        globalScaleX -= globalScaleStep;
-      break;
-      case 'l':
-        globalScaleX += globalScaleStep;
-      break;
-
-      /*y-axis*/
-      case 'u':
-        globalScaleY -= globalScaleStep;
-      break;
-      case 'o':
-        globalScaleY += globalScaleStep;
-      break;
-      /*end of scaling*/
-
-      /*camera*/
-      case '`':
-        globalEyeStep *= 2;
-      break;
-      case '~':
-        if (globalEyeStep > 1)
-          globalEyeStep /= 2;
-      break;
-
-      case '1':
-        globalEyeX -= globalEyeStep;
-      break;
-      case '!':
-        globalEyeX += globalEyeStep;
-      break;
-      case '2':
-        globalEyeY -= globalEyeStep;
-      break;
-      case '@':
-        globalEyeY += globalEyeStep;
-      break;
-      case '3':
-        globalEyeZ -= globalEyeStep;
-      break;
-      case '#':
-        globalEyeZ += globalEyeStep;
-      break;
-
-      case '4':
-        globalCenterX -= globalCenterStep;
-      break;
-      case '$':
-        globalCenterX += globalCenterStep;
-      break;
-      case '5':
-        globalCenterY -= globalCenterStep;
-      break;
-      case '%':
-        globalCenterY += globalCenterStep;
-      break;
-      case '6':
-        globalCenterZ -= globalCenterStep;
-      break;
-      case '^':
-        globalCenterZ += globalCenterStep;
-      break;
-      case '7':
-        globalUpX -= globalUpStep;
-      break;
-      case '&':
-        globalUpX += globalUpStep;
-      break;
-      case '8':
-        globalUpY -= globalUpStep;
-      break;
-      case '*':
-        globalUpY += globalUpStep;
-      break;
-      case '9':
-        globalUpZ -= globalUpStep;
-      break;
-      case '(':
-        globalUpZ += globalUpStep;
-      break;
-
-      /*reset environment*/
-      case '0':
-        env_load_defaults ();
-      break;
-
-      default:
-        break;
-    }
-  redisplay (); //request display() call ASAP
-}
-
-int globalXPrev = 0;
-int globalYPrev = 0;
-
-void mouseFunc (int button, int state, int x, int y)
-{
-  // Wheel reports as button 3(scroll up) and button 4(scroll down)
-  if ((button == 3) || (button == 4)) // It's a wheel event
-    {
-      // Each wheel event reports like a button click, GLUT_DOWN then GLUT_UP
-      if (state == GLUT_UP)
-        return; // Disregard redundant GLUT_UP events
-
-      if (button == 3)
-        {
-          globalRadius *= .8f;
-          if (globalRadius < .1f)
-            globalRadius = .1f;
-        }
-      else
-        globalRadius *= 1.5;
-      printf ("Scroll %s At %d %d\n", (button == 3) ? "Up" : "Down", x, y);
-    }
-  else
-    {  // normal button event
-      printf ("Button %s At %d %d\n", (state == GLUT_DOWN) ? "Down" : "Up", x, y);
-      if (button == GLUT_LEFT_BUTTON)
-        {
-          if (state == GLUT_DOWN)
-            {
-              globalMouseLeftButton = true;
-              globalXPrev = x;
-              globalYPrev = y;
-            }
-          if (state == GLUT_UP)
-            {
-              globalMouseLeftButton = false;
-            }
-        }
-      else if (button == GLUT_RIGHT_BUTTON)
-        {
-          if (state == GLUT_DOWN)
-            {
-              int window_width = glutGet (GLUT_WINDOW_WIDTH);
-              int window_height = glutGet (GLUT_WINDOW_HEIGHT);
-
-              GLbyte color[4];
-              GLfloat depth;
-              GLuint index;
-
-              //glReadPixels (x, window_height - y - 1, 1, 1, GL_RGBA, GL_UNSIGNED_BYTE, color);
-              glReadPixels (x, window_height - y - 1, 1, 1, GL_DEPTH_COMPONENT, GL_FLOAT, &depth);
-              //glReadPixels (x, window_height - y - 1, 1, 1, GL_STENCIL_INDEX, GL_UNSIGNED_INT, &index);
-
-              double ox, oy, oz;
-
-              double model[16];
-              glGetDoublev (GL_MODELVIEW_MATRIX, model);
-              double proj[16];
-              glGetDoublev (GL_PROJECTION_MATRIX, proj);
-              int view[4];
-              glGetIntegerv (GL_VIEWPORT, view);
-              gluUnProject (x, window_height - y - 1, depth,
-                            model,
-                            proj,
-                            view,
-                            &ox, &oy, &oz);
-              fprintf (stderr, "%d %d\n", x, y);
-              //globalTranslateX = -ox;
-              //globalTranslateZ = -oz;
-              /*cartesian2Spherical (ox, globalEyeY, oz,
-                                   &globalRadius, &globalAzimuth, &globalElevation);*/
-              //              globalTranslateX = ox;
-              //              globalTranslateZ = oz;
-              globalCenterX = ox;
-              globalCenterZ = oz;
-
-              fprintf (stderr, "%f %f %f\n", ox, oy, oz);
-            }
-        }
-    }
-
-  redisplay ();
-}
-
-void motionFunc (int x, int y)
-{
-  if (globalMouseLeftButton)
-    {
-      const double stepAlfa = 0.04;
-      const double stepBeta = 0.035;
-
-      if (x > globalXPrev) // moving mouse right
-        globalAzimuth += stepAlfa;
-      else if (x < globalXPrev) // moving mouse left
-        globalAzimuth -= stepAlfa;
-
-      if (y > globalYPrev) // moving mouse up
-        {
-          globalElevation -= stepBeta;
-          if (globalElevation < .1)
-            globalElevation = .1;
-        }
-      else if (y < globalYPrev) // moving mouse down
-        {
-          globalElevation += stepBeta;
-          if (globalElevation > 3.1)
-            globalElevation = 3.1;
-        }
-
-      globalXPrev = x;
-      globalYPrev = y;
-    }
-  redisplay ();
-}
-
-//! @} end of group input
 void engine_run (int argc, char **argv)
 {
 
@@ -1209,14 +1579,8 @@ void engine_run (int argc, char **argv)
 
   // Required callback registry
   glutDisplayFunc (renderScene);
-  glutReshapeFunc (changeSize);
+  loadProfile (profile[globalProfile]);
 
-  // Callback registration for keyboard processing
-  glutKeyboardFunc (keyboardFunc);
-
-  // Callback registration for mouse processing
-  glutMouseFunc (mouseFunc);
-  glutMotionFunc (motionFunc);
 
   //  OpenGL settings
   glEnable (GL_DEPTH_TEST);
@@ -1250,14 +1614,12 @@ void engine_run (int argc, char **argv)
   glLightModelfv (GL_LIGHT_MODEL_AMBIENT, amb);
 
   // other details
-  glEnable (GL_CULL_FACE);
+  //glEnable (GL_CULL_FACE);
   //glPolygonMode (GL_FRONT_AND_BACK, GL_FILL);
 
   glewInit ();
 
   xml_load_and_set_env (argv[1]);
-
-  // enter GLUT's main cycle
   glutMainLoop ();
 }
 
