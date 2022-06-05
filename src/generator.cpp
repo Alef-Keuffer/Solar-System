@@ -131,9 +131,9 @@ void model_plane_vertices (const float length,
               array<float, 2>{-1, 0},//P1'z
               array<float, 2>{0, 0}})//P2
             {
-              vertices.emplace_back (o + d * (fdiv1 - e[0]), 0, o + d * (fdiv2 - e[1]));
+              vertices.emplace_back (o + d * (fdiv1 + e[0]), 0, o + d * (fdiv2 + e[1]));
               normals.emplace_back (0, 1, 0);
-              texture.emplace_back ((fdiv1 - e[0]) / fdivisions, (fdiv2 - e[1]) / fdivisions);
+              texture.emplace_back ((fdiv1 + e[0]) / fdivisions, (fdiv2 + e[1]) / fdivisions);
             }
 
 
@@ -147,9 +147,9 @@ void model_plane_vertices (const float length,
               array<float, 2>{0.0f, -1.0f},
               array<float, 2>{0.0f, 0.0f}})
             {
-              vertices.emplace_back (o + d * (fdiv1 - e[0]), 0, o + d * (fdiv2 - e[1]));
+              vertices.emplace_back (o + d * (fdiv1 + e[0]), 0, o + d * (fdiv2 + e[1]));
               normals.emplace_back (0, -1, 0);
-              texture.emplace_back ((fdiv1 - e[0]) / fdivisions, (fdiv2 - e[1]) / fdivisions);
+              texture.emplace_back ((fdiv1 + e[0]) / fdivisions, (fdiv2 + e[1]) / fdivisions);
             }
         }
     }
