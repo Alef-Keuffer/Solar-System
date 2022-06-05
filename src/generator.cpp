@@ -834,6 +834,7 @@ void model_bezier_write (
  * ⟨plane⟩ ::= "plane" ⟨length⟩ ⟨divisions⟩
  * ⟨cube⟩ ::= "box" ⟨length⟩ ⟨divisions⟩
  * ⟨cone⟩ ::= "cone" ⟨base_radius⟩ ⟨height⟩ ⟨slices⟩ ⟨stacks⟩
+ * ⟨sphere⟩ ::= "sphere" ⟨radius⟩ ⟨slices⟩ ⟨stacks⟩
  */
 int main (const int argc, const char *const argv[])
 {
