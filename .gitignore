@@ -9,4 +9,5 @@
 **/CMakeCache.*
 **/*.vscode
 **/bin
-test_files_phase_2/solar_system.xml
+/.run
+/cmake-build-debug
