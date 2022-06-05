@@ -3,9 +3,15 @@
 
 #include <vector>
 #include <iostream>
+
+#ifndef USE_SYSTEM
 #include <sys/wait.h>
 #include <wordexp.h>
 #include <cassert>
+#else
+#include <filesystem>
+using std::filesystem::current_path;
+#endif
 
 #include "tinyxml2.h"
 #include "parsing.h"
@@ -66,40 +72,81 @@ using std::vector;
 using tinyxml2::XMLElement;
 using tinyxml2::XMLDocument, tinyxml2::XML_SUCCESS, tinyxml2::XMLError, tinyxml2::XML_NO_ATTRIBUTE;
 using std::cerr, std::endl;
+using std::string;
+
+void crashIfFailedAttributeQuery (const XMLError error, const XMLElement &element, const string &attributeName)
+{
+  if (!error)
+    return;
+  cerr << "[parsing] failed parsing attribute " << attributeName << " of element " << element.Value ()
+       << "\nError: " << XMLDocument::ErrorIDToName (error) << endl;
+  exit (EXIT_FAILURE);
+}
+
+float getFloatAttribute (const XMLElement &e, const string &attributeName)
+{
+  float attributeValue;
+  XMLError error = e.QueryFloatAttribute (attributeName.c_str (), &attributeValue);
+  crashIfFailedAttributeQuery (error, e, attributeName);
+  return attributeValue;
+}
+
+template<typename T>
+T getAttribute (const XMLElement &e, const string &attributeName)
+{
+  T _attributeValue;
+  XMLError error;
+  if (std::is_same<float, T>::value)
+    {
+      float attributeValue;
+      error = e.QueryFloatAttribute (attributeName.c_str (), &attributeValue);
+      _attributeValue = attributeValue;
+    }
+  else if (std::is_same<bool, T>::value)
+    {
+      bool attributeValue;
+      error = e.QueryBoolAttribute (attributeName.c_str (), &attributeValue);
+      _attributeValue = attributeValue;
+    }
+  else if (std::is_same<string, T>::value)
+    {
+      const char **attributeValue;
+      error = e.QueryStringAttribute (attributeName.c_str (), attributeValue);
+      _attributeValue = **attributeValue;
+    }
+  crashIfFailedAttributeQuery (error, e, attributeName);
+  return _attributeValue;
+}
+
+string getStringAttribute (const XMLElement &e, const string &attributeName)
+{
+  const char **attributeValue;
+  XMLError error = e.QueryStringAttribute (attributeName.c_str (), attributeValue);
+  crashIfFailedAttributeQuery (error, e, attributeName);
+  return string{*attributeValue};
+}
 
 void operations_push_transform_attributes (
-    const XMLElement *const transform,
+    const XMLElement &transform,
     vector<float> &operations)
 {
-  if (!transform)
-    {
-      fprintf (stderr, "[parsing] operations_push_transform_attributes: null transform\n");
-      exit (EXIT_FAILURE);
-    }
 
   float angle;
   {
-    const XMLError e = transform->QueryFloatAttribute ("angle", &angle);
+    const XMLError e = transform.QueryFloatAttribute ("angle", &angle);
     if (e == XML_SUCCESS)
       operations.push_back (angle);
     else if (e != XML_NO_ATTRIBUTE)
       {
-        fprintf (stderr, "[parsing] Parsing error %s at %s\n", transform->GetText (), XMLDocument::ErrorIDToName (e));
+        fprintf (stderr, "[parsing] Parsing error %s at %s\n", transform.Value (), XMLDocument::ErrorIDToName (e));
         exit (EXIT_FAILURE);
       }
   }
-  for (const char *const attribute_name : {"x", "y", "z"})
+  for (const string attribute_name : {"x", "y", "z"})
     {
-      float attributeValue;
-      XMLError e;
-      if ((e = transform->QueryFloatAttribute (attribute_name, &attributeValue)) != XML_SUCCESS)
-        {
-          fprintf (stderr, "[parsing] Parsing error %s at %s\n", transform->GetText (), XMLDocument::ErrorIDToName (e));
-          exit (EXIT_FAILURE);
-        }
+      float attributeValue = getFloatAttribute (transform, attribute_name);
       operations.push_back (attributeValue);
     }
-
 }
 
 void
@@ -113,18 +160,8 @@ operations_push_extended_translate_attributes (
       exit (EXIT_FAILURE);
     }
 
-  float time;
-  if (extended_translate->QueryFloatAttribute ("time", &time))
-    {
-      cerr << "[parsing] failed parsing time" << endl;
-      exit (EXIT_FAILURE);
-    }
-  bool align;
-  if (extended_translate->QueryBoolAttribute ("align", &align))
-    {
-      cerr << "[parsing] failed parsing align" << endl;
-      exit (EXIT_FAILURE);
-    }
+  auto time = getAttribute<float> (*extended_translate, "time");
+  auto align = getAttribute<bool> (*extended_translate, "align");
 
   operations.push_back ((float) time);
   operations.push_back ((float) align);
@@ -135,7 +172,7 @@ operations_push_extended_translate_attributes (
   for (auto child = extended_translate->FirstChildElement ("point"); child; child = child->NextSiblingElement ("point"))
     {
       ++number_of_points;
-      operations_push_transform_attributes (child, operations);
+      operations_push_transform_attributes (*child, operations);
     }
   operations[index_of_number_of_points] = (float) number_of_points;
 }
@@ -143,55 +180,49 @@ operations_push_extended_translate_attributes (
 void operations_push_transformation (const XMLElement *const transformation, vector<float> &operations)
 {
   assert (transformation != nullptr);
-  const char *const transformation_name = transformation->Value ();
+  const string transformation_name = transformation->Value ();
 
-  if (!strcmp ("translate", transformation_name))
+  if ("translate" == transformation_name)
     {
       if (transformation->Attribute ("time") != nullptr)
         {
           operations.push_back (EXTENDED_TRANSLATE);
           cerr << "[parsing] EXTENDED_TRANSLATE" << endl;
           operations_push_extended_translate_attributes (transformation, operations);
-
         }
       else
         {
           operations.push_back (TRANSLATE);
           cerr << "[parsing] TRANSLATE" << endl;
-          operations_push_transform_attributes (transformation, operations);
+          operations_push_transform_attributes (*transformation, operations);
         }
     }
-  else if (!strcmp ("rotate", transformation_name))
+  else if ("rotate" == transformation_name)
     {
       if (transformation->Attribute ("time"))
         {
           operations.push_back (EXTENDED_ROTATE);
           cerr << "[parsing] EXTENDED_ROTATE" << endl;
-          float time;
-          if (transformation->QueryFloatAttribute ("time", &time))
-            {
-              cerr << "[parsing] failed parsing time" << endl;
-              exit (EXIT_FAILURE);
-            }
+          auto time = getAttribute<float> (*transformation, "time");
           operations.push_back (time);
-          operations_push_transform_attributes (transformation, operations);
+          operations_push_transform_attributes (*transformation, operations);
         }
       else
         {
           operations.push_back (ROTATE);
           cerr << "[parsing] ROTATE" << endl;
-          operations_push_transform_attributes (transformation, operations);
+          operations_push_transform_attributes (*transformation, operations);
         }
     }
-  else if (!strcmp ("scale", transformation_name))
+  else if ("scale" == transformation_name)
     {
       operations.push_back (SCALE);
       cerr << "[parsing] SCALE" << endl;
-      operations_push_transform_attributes (transformation, operations);
+      operations_push_transform_attributes (*transformation, operations);
     }
   else
     {
-      fprintf (stderr, "[parsing] Unknown transformation: \"%s\"", transformation_name);
+      cerr << "[parsing] Unknown transformation: \"" << transformation_name << "\"" << endl;
       exit (EXIT_FAILURE);
     }
 }
@@ -259,29 +290,29 @@ void operations_push_model (const XMLElement *const model, vector<float> &operat
         const char *generator_argv[10];
         if (generator->QueryStringAttribute ("argv", generator_argv))
           {
-          cerr << "failed parsing argv attribute of generator at model " << model_name << endl;
-          exit (EXIT_FAILURE);
-        }
-      int stat;
-      if ((stat = fork ()) == 0)
-        {
-          wordexp_t p;
-          wordexp("generator", &p, WRDE_NOCMD | WRDE_UNDEF);
-          if (wordexp (*generator_argv, &p, WRDE_NOCMD | WRDE_UNDEF | WRDE_APPEND))
-            {
-              cerr << "[parsing] failed argv expansion for model " << model_name << endl;
-              exit(EXIT_FAILURE);
-            }
-
-          execv(globalGeneratorExecutable, p.we_wordv);
-          perror ("[operations_push_model child] generator failed");
-          _exit (EXIT_FAILURE);
-        }
-      else if (stat == -1)
-        {
-          perror ("[operations_push_model] ");
-          exit (EXIT_FAILURE);
-        }
+            cerr << "failed parsing argv attribute of generator at model " << model_name << endl;
+            exit (EXIT_FAILURE);
+          }
+#ifndef USE_SYSTEM
+        int stat;
+        if ((stat = fork ()) == 0)
+          {
+            wordexp_t p;
+            wordexp ("generator", &p, WRDE_NOCMD | WRDE_UNDEF);
+            if (wordexp (*generator_argv, &p, WRDE_NOCMD | WRDE_UNDEF | WRDE_APPEND))
+              {
+                cerr << "[parsing] failed argv expansion for model " << model_name << endl;
+                exit (EXIT_FAILURE);
+              }
+            execv (globalGeneratorExecutable, p.we_wordv);
+            perror ("[operations_push_model child] generator failed");
+            _exit (EXIT_FAILURE);
+          }
+        else if (stat == -1)
+          {
+            perror ("[operations_push_model] ");
+            exit (EXIT_FAILURE);
+          }
         int status;
         wait (&status);
         if (WIFEXITED(status) && WEXITSTATUS(status))
@@ -290,7 +321,15 @@ void operations_push_model (const XMLElement *const model, vector<float> &operat
             exit (EXIT_FAILURE);
           }
       }
-
+#else
+    std::stringstream command;
+    command << current_path() << "/" << globalGeneratorExecutable << " " << *generator_argv;
+    if(system(command.str().data()))
+      {
+        cerr << "generator failed at model " << model_name << endl;
+        exit(EXIT_FAILURE);
+      }
+#endif
     const int string_len = operations_push_string_attribute (model, operations, "file");
 
     if (string_len <= 0)
@@ -371,23 +410,23 @@ void operations_push_models (const XMLElement *const models, vector<float> &oper
 
 /*! @addtogroup Groups
  * @{*/
-void operations_push_groups (const XMLElement *const group, vector<float> &operations)
+void operations_push_groups (const XMLElement &group, vector<float> &operations)
 {
   operations.push_back (BEGIN_GROUP);
 
   // Inside "transform" tag there can be multiple transformations.
-  const XMLElement *const transforms = group->FirstChildElement ("transform");
-  const XMLElement *const models = group->FirstChildElement ("models");
+  const XMLElement *const transforms = group.FirstChildElement ("transform");
+  const XMLElement *const models = group.FirstChildElement ("models");
 
   if (transforms)
     operations_push_transforms (transforms, operations);
   if (models)
     operations_push_models (models, operations);
 
-  const XMLElement *childGroup = group->FirstChildElement ("group");
+  const XMLElement *childGroup = group.FirstChildElement ("group");
   if (childGroup)
     do
-      operations_push_groups (childGroup, operations);
+      operations_push_groups (*childGroup, operations);
     while ((childGroup = childGroup->NextSiblingElement ("group")));
 
   operations.push_back (END_GROUP);
@@ -477,37 +516,38 @@ void operations_push_lights (const XMLElement *const lights, vector<float> &oper
   while ((light = light->NextSiblingElement ()));
 }
 
-void operations_load_xml (const char *const filename, vector<float> &operations)
+void operations_load_xml (const string &filename, vector<float> &operations)
 {
   XMLDocument doc;
 
-  if (doc.LoadFile (filename))
+  if (doc.LoadFile (filename.c_str ()))
     {
       if (doc.ErrorID () == tinyxml2::XML_ERROR_FILE_NOT_FOUND)
-        fprintf (stderr, "[parsing] Failed loading file: '%s'\n", filename);
+        cerr << "[parsing] Failed loading file: '" << filename << "'" << endl;
       fprintf (stderr, "%s", doc.ErrorName ());
       exit (EXIT_FAILURE);
     }
 
-  fprintf (stderr, "[parsing] Loaded file: '%s'\n", filename);
+  cerr << "[parsing] Loaded file: '" << filename << "'" << endl;
   const XMLElement *const world = doc.FirstChildElement ("world");
+  cerr << "[parsing] Loaded element: '" << world->Value () << "'" << endl;
 
   /*camera*/
-  const XMLElement *const camera = world->FirstChildElement ("camera");
+  const XMLElement &camera = *world->FirstChildElement ("camera");
 
-  const XMLElement *const position = camera->FirstChildElement ("position");
+  const XMLElement &position = *camera.FirstChildElement ("position");
   operations_push_transform_attributes (position, operations);
 
-  const XMLElement *const lookAt = camera->FirstChildElement ("lookAt");
-  operations_push_transform_attributes (lookAt, operations);
+  const XMLElement *const lookAt = camera.FirstChildElement ("lookAt");
+  operations_push_transform_attributes (*lookAt, operations);
 
-  const XMLElement *const up = camera->FirstChildElement ("up");
+  const XMLElement *const up = camera.FirstChildElement ("up");
   if (up)
-    operations_push_transform_attributes (up, operations);
+    operations_push_transform_attributes (*up, operations);
   else
     operations.insert (operations.end (), {0, 1, 0});
 
-  const XMLElement *const projection = camera->FirstChildElement ("projection");
+  const XMLElement *const projection = camera.FirstChildElement ("projection");
   if (projection)
     {
       float fov;
@@ -544,7 +584,7 @@ void operations_load_xml (const char *const filename, vector<float> &operations)
   const XMLElement *const generator = world->FirstChildElement ("generator");
   if (generator != nullptr)
     {
-      const char **generator_executable;
+      const char *generator_executable[BUFSIZ];
       if (generator->QueryStringAttribute ("dir", generator_executable))
         {
           cerr << "[parsing] failed parsing attribute dir of generator" << endl;
@@ -562,7 +602,7 @@ void operations_load_xml (const char *const filename, vector<float> &operations)
 
   // groups
   const XMLElement *const group = world->FirstChildElement ("group");
-  operations_push_groups (group, operations);
+  operations_push_groups (*group, operations);
 }
 
 //! @} end of group xml
