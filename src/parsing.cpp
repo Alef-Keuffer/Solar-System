@@ -242,31 +242,25 @@ void operations_push_model (const XMLElement *const model, vector<float> &operat
 {
   operations.push_back (BEGIN_MODEL);
   {
-    const int string_len = operations_push_string_attribute (model, operations, "file");
 
-    if (string_len <= 0)
+    const char *const model_name = model->Attribute ("file");
+    if (model_name == nullptr)
       {
-        fprintf (stderr, "[parsing] filename is empty");
+        cerr << "[parsing] [operations_push_string_attribute] failed: attrbute file does not exist" << endl;
         exit (EXIT_FAILURE);
       }
-  }
 
-  const char *const model_name = model->Attribute ("file");
-  if (model_name == nullptr)
-    {
-      cerr << "[parsing] [operations_push_string_attribute] failed: attrbute file does not exist" << endl;
-      exit (EXIT_FAILURE);
-    }
+    cerr << "[parsing]: BEGIN_MODEL(" << model_name << ")" << endl;
 
-  // generate model if specified
-  const XMLElement *const generator = model->FirstChildElement ("generator");
+    // generate model if specified
+    const XMLElement *const generator = model->FirstChildElement ("generator");
 
-  if (globalUsingGenerator && generator != nullptr)
-    {
-      cerr << "[parsing] generating model " << model_name << endl;
-      const char *generator_argv[10];
-      if (generator->QueryStringAttribute ("argv", generator_argv))
-        {
+    if (globalUsingGenerator && generator != nullptr)
+      {
+        cerr << "[parsing] generating model " << model_name << endl;
+        const char *generator_argv[10];
+        if (generator->QueryStringAttribute ("argv", generator_argv))
+          {
           cerr << "failed parsing argv attribute of generator at model " << model_name << endl;
           exit (EXIT_FAILURE);
         }
@@ -290,14 +284,23 @@ void operations_push_model (const XMLElement *const model, vector<float> &operat
           perror ("[operations_push_model] ");
           exit (EXIT_FAILURE);
         }
-      int status;
-      wait (&status);
-      if (WIFEXITED(status) && WEXITSTATUS(status))
-        {
-          perror ("[operations_push_model] generator failed");
-          exit (EXIT_FAILURE);
-        }
-    }
+        int status;
+        wait (&status);
+        if (WIFEXITED(status) && WEXITSTATUS(status))
+          {
+            perror ("[operations_push_model] generator failed");
+            exit (EXIT_FAILURE);
+          }
+      }
+
+    const int string_len = operations_push_string_attribute (model, operations, "file");
+
+    if (string_len <= 0)
+      {
+        fprintf (stderr, "[parsing] filename is empty");
+        exit (EXIT_FAILURE);
+      }
+  }
 
   //texture
   const XMLElement *const texture = model->FirstChildElement ("texture");
@@ -402,13 +405,13 @@ void operations_push_lights (const XMLElement *const lights, vector<float> &oper
   const XMLElement *light = lights->FirstChildElement ();
   do
     {
-      const char *lightType;
-      if (light->QueryAttribute ("type", &lightType))
+      const char *lightType[2];
+      if (light->QueryStringAttribute ("type", lightType))
         {
           cerr << "failed parsing type attribute of light" << endl;
           exit (EXIT_FAILURE);
         }
-      if (!strcmp (lightType, "point"))
+      if (!strcmp (*lightType, "point"))
         {
           operations.push_back (POINT);
           float posX, posY, posZ;
@@ -422,7 +425,7 @@ void operations_push_lights (const XMLElement *const lights, vector<float> &oper
           operations.insert (operations.end (), {posX, posY, posZ});
 
         }
-      else if (!strcmp (lightType, "directional"))
+      else if (!strcmp (*lightType, "directional"))
         {
           operations.push_back (DIRECTIONAL);
           float dirX, dirY, dirZ;
@@ -435,7 +438,7 @@ void operations_push_lights (const XMLElement *const lights, vector<float> &oper
             }
           operations.insert (operations.end (), {dirX, dirY, dirZ});
         }
-      else if (!strcmp (lightType, "spotlight"))
+      else if (!strcmp (*lightType, "spotlight"))
         {
           operations.push_back (SPOTLIGHT);
           float posX, posY, posZ;
