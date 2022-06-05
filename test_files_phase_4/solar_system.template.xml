@@ -6,6 +6,13 @@
         <projection fov="60" near="10" far="100000"/> <!-- optional, use these values as default-->
     </camera>
 
+    <lights>
+        <light type="spotlight" posX="0" posY="0" posZ="0" dirX="1" dirY="0" dirZ="0" cutoff="10000"/>
+        <light type="spotlight" posX="0" posY="0" posZ="0" dirX="-1" dirY="0" dirZ="0" cutoff="10000"/>
+        <light type="spotlight" posX="0" posY="0" posZ="0" dirX="-.5" dirY="0" dirZ="0" cutoff="10000"/>
+        <light type="spotlight" posX="0" posY="0" posZ="0" dirX=".5" dirY="0" dirZ="0" cutoff="10000"/>
+    </lights>
+
     <group>
         <group>
             <transform>
@@ -27,7 +34,10 @@
         </transform>
         <models>
             <model file="sun.3d">
-            	<texture file="sun.jpg"/>
+                <texture file="sun.jpg"/>
+                <color>
+                    <emissive R="255" G="255" B="255"/>
+                </color>
             </model>
         </models>
         <group>
