@@ -53,5 +53,7 @@ endforeach ()
 add_custom_target(
         docs
         COMMAND doxygen Doxyfile
+        COMMAND git add docs
+        COMMAND git commit -m docs
         WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
 )
