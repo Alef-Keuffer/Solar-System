@@ -12,7 +12,6 @@
 
 #include <cstdio>
 #include <cmath>
-#include <algorithm>
 #include <iostream>
 #include <vector>
 #include <tuple>
@@ -843,7 +842,7 @@ void explCamera ()
   glTranslatef (globalTranslateX, globalTranslateY, globalTranslateZ);
   glScalef (globalScaleX, globalScaleY, globalScaleZ);
 
-  explRedisplay();
+  explRedisplay ();
 }
 void explTimer (int)
 {
@@ -983,10 +982,12 @@ void associate_a_texture_to_model (struct model &m, const char *const path)
   ILuint image;
   ilGenImages (1, &image);
   ilBindImage (image);
+
   const ILboolean has_loaded_successfully = ilLoadImage ((ILstring) path);
   if (!has_loaded_successfully)
     {
-      cerr << "[engine] failed to find texture file '" << path << "'" << endl;
+      cerr << "[engine] failed loading texture file '" << path << "'"
+           << "\nERROR#" << ilGetError () << endl;
       exit (EXIT_FAILURE);
     }
 
@@ -1552,7 +1553,7 @@ void renderScene ()
   glutSwapBuffers ();
 }
 
-void xml_load_and_set_env (const char *const filename)
+void xml_load_and_set_env (const string &filename)
 {
   operations_load_xml (filename, globalOperations);
   operations_render (globalOperations);
