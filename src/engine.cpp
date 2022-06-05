@@ -842,6 +842,8 @@ void explCamera ()
   glRotatef (globalAngle, globalRotateX, globalRotateY, globalRotateZ);
   glTranslatef (globalTranslateX, globalTranslateY, globalTranslateZ);
   glScalef (globalScaleX, globalScaleY, globalScaleZ);
+
+  explRedisplay();
 }
 void explTimer (int)
 {
