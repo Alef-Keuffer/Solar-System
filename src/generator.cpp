@@ -382,7 +382,7 @@ model_cone_vertex (const T r,
 
      r ≥ 0
      θ ∈ {-π      + i⋅s : s = 2π/slices      ∧ i ∈ {0,...,slices} }
-     h ∈ {-height + j⋅t : t =  height/stacks ∧ j ∈ {0,...,stacks} }
+     h ∈ {-height + j⋅t : t = height/stacks ∧ j ∈ {0,...,stacks} }
 
      check:
          1. https://www.math3d.org/7oeSkmuns
@@ -392,7 +392,7 @@ model_cone_vertex (const T r,
 
 template<typename T>
     requires arithmetic<T>
-void model_cone_vertices (const T r,
+void model_cone_vertices (const T radius,
                           const T height,
                           const unsigned int slices,
                           const unsigned int stacks,
@@ -401,10 +401,14 @@ void model_cone_vertices (const T r,
                           vector<vec2> &texture)
 {
 
-  const float s = 2.0f * (float) M_PI / (float) slices;
-  const float t = height / (float) stacks;
-  const float theta = -M_PI;
-  const float h = -height;
+  const T s = 2 * M_PI / (float) slices;
+  const T t = height / (float) stacks;
+
+  const T theta_0 = -M_PI;
+  const T h_0 = -height;
+
+  auto const fslices = (float) slices;
+  auto const fstacks = (float) stacks;
 
   for (unsigned int slice = 1; slice <= slices; ++slice)
     {
@@ -412,39 +416,49 @@ void model_cone_vertices (const T r,
         {
           auto const fslice = (float) slice;
           auto const fstack = (float) stack;
-          auto const fslices = (float) slices;
-          auto const fstacks = (float) stacks;
 
           //base
           vertices.emplace_back (0, 0, 0); //O
-          model_cone_vertex (r, height, theta + s * (fslice - 1), h, vertices); //P1
-          model_cone_vertex (r, height, theta + s * fslice, h, vertices); //P2
-
-          for (int k = 0; k < 3; ++k)
-            normals.emplace_back (0, -1, 0);
-
-          //
-          model_cone_vertex (r, height, theta + s * fslice, h + t * (fstack - 1), vertices); // P2
-          model_cone_vertex (r, height, theta + s * (fslice - 1), h + t * fstack, vertices); // P1'
-          model_cone_vertex (r, height, theta + s * fslice, h + t * fstack, vertices); //P2'
-
-          //
-          model_cone_vertex (r, height, theta + s * fslice, h + t * (fstack - 1), vertices); // P2
-          model_cone_vertex (r, height, theta + s * (fslice - 1), h + t * (fstack - 1), vertices); // P1
-          model_cone_vertex (r, height, theta + s * (fslice - 1), h + t * fstack, vertices); // P1'
-
-          const auto P1 = vertices.end ()[-2];
-          const auto P2 = vertices.end ()[-3];
-          const auto P1_prime = vertices.end ()[-1];
-          for (int k = 0; k < 6; ++k)
-            normals.push_back (normalize (cross (P2 - P1_prime, P1 - P1_prime)));
-
           texture.emplace_back (0, 0);
+          normals.emplace_back (0, -1, 0);
+          for (auto e : {
+              -1.0f,//P1
+              .0f //P2
+          })
+            {
+              model_cone_vertex (radius, height, theta_0 + s * (fslice + e), h_0, vertices); //P1
+              normals.emplace_back (0, -1, 0);
+            }
+
           texture.emplace_back (-1, 0);
           texture.emplace_back (0, 0);
 
-          for (int k = 0; k < 6; ++k)
-            texture.emplace_back (fslice / fslices, fstack / fstacks);
+          int q = 0;
+          for (auto e : {
+              array<float, 2>{0, -1},
+              array<float, 2>{-1, 0},
+              array<float, 2>{0, 0},
+
+              array<float, 2>{0, -1},
+              array<float, 2>{-1, -1},
+              array<float, 2>{-1, 0},
+          })
+            {
+              model_cone_vertex (radius, height,
+                                 theta_0 + s * (fslice + e[0]),
+                                 h_0 + t * (fstack + e[1]), vertices);
+              if (q % 3 == 2)
+                {
+                  const auto P1 = vertices.end ()[-2];
+                  const auto P2 = vertices.end ()[-3];
+                  const auto P1_prime = vertices.end ()[-1];
+                  for (auto _ = 0; _ < 3; ++_)
+                    normals.emplace_back (normalize (cross (P2 - P1_prime, P1 - P1_prime)));
+                }
+
+              texture.emplace_back (fslice / fslices, fstack / fstacks);
+              ++q;
+            }
         }
     }
 }
