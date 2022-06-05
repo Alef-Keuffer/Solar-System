@@ -243,11 +243,11 @@ void fpsCamera ()
     }
   if (globalMotion.Down)
     {
-      globalFpsCamY += sens;
+      globalFpsCamY += 1 / sens;
     }
   if (globalMotion.Up)
     {
-      globalFpsCamY -= sens;
+      globalFpsCamY -= 1 / sens;
     }
   /*limit the values of pitch
     between -60 and 70
@@ -854,7 +854,7 @@ enum {
   EXPL = 0, FPS, NPROFILES
 };
 const profile_t profile[NPROFILES] = {globalProfile_EXPL, globalProfile_FPS};
-int globalProfile = FPS;
+int globalProfile = EXPL;
 bool globalProfileHasChanged = true;
 
 void changeProfile ()
