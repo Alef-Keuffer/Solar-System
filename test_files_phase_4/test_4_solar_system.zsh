@@ -22,14 +22,14 @@ RES=64
 ../bin/generator sphere "$SUN_R" $RES $RES sun.3d
 ../bin/generator bezier ../test_files_phase_3/teapot.patch 10 teapot.3d
 
-MERCURY_D=$(((SUN_R+MERCURY_R)*1.5))
-VENUS_D=$(((MERCURY_D+VENUS_R)*2.5))
-EARTH_D=$(((VENUS_D+EARTH_R)*3.5))
-MARS_D=$(((EARTH_D+MARS_R)*4.5))
-JUPITER_D=$(((MARS_D+JUPITER_R)*5.5))
-SATURN_D=$(((JUPITER_D+SATURN_R)*6.5))
-URANUS_D=$(((SATURN_D+URANUS_R)*7.5))
-NEPTUNE_D=$(((URANUS_D+NEPTUNE_R)*8.5))
+MERCURY_D=$(((SUN_R+MERCURY_R)*1.3))
+VENUS_D=$(((MERCURY_D+VENUS_R)*1.5))
+EARTH_D=$(((VENUS_D+EARTH_R)*1.5))
+MARS_D=$(((EARTH_D+MARS_R)*1.7))
+JUPITER_D=$(((MARS_D+JUPITER_R)*1.7))
+SATURN_D=$(((JUPITER_D+SATURN_R)*1.9))
+URANUS_D=$(((SATURN_D+URANUS_R)*1.9))
+NEPTUNE_D=$(((URANUS_D+NEPTUNE_R)*1.9))
 
 sed -e "s/MERCURY/$MERCURY_D/g"\
     -e "s/VENUS/$VENUS_D/g"\
