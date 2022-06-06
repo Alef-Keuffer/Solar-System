@@ -854,16 +854,16 @@ struct model {
 static std::vector<struct model> globalModels;
 static std::vector<float> globalOperations;
 
-struct model allocModel (const char *const model3dFilePath)
+struct model getModel (const char *const model3dFilePath)
 {
-  FILE *fp = fopen (model3dFilePath, "r");
+  FILE *fp = fopen (model3dFileName, "r");
   if (!fp)
     {
-      cerr << "failed to open model: " << model3dFilePath << endl;
+      cerr << "failed to open model: " << model3dFileName << endl;
       exit (EXIT_FAILURE);
     }
 
-  cerr << "[allocModel] model file = " << model3dFilePath << endl;
+  cerr << "[allocModel] model file = " << model3dFileName << endl;
   // read number of vertices
   GLsizei nVertices;
   fread (&nVertices, sizeof (nVertices), 1, fp);
@@ -928,7 +928,7 @@ struct model allocModel (const char *const model3dFilePath)
   return model;
 }
 
-void associate_a_texture_to_model (struct model &m, const char *const path)
+void addTextureImageToModel (struct model &m, const char *const textureFileName)
 {
 
   static bool isFirstTimeBeingExecuted = true;
@@ -945,10 +945,10 @@ void associate_a_texture_to_model (struct model &m, const char *const path)
   ilGenImages (1, &image);
   ilBindImage (image);
 
-  const ILboolean has_loaded_successfully = ilLoadImage ((ILstring) path);
+  const ILboolean has_loaded_successfully = ilLoadImage ((ILstring) textureFileName);
   if (!has_loaded_successfully)
     {
-      cerr << "[engine] failed loading texture file '" << path << "'"
+      cerr << "[engine] failed loading texture file '" << textureFileName << "'"
            << "\nERROR#" << ilGetError () << endl;
       exit (EXIT_FAILURE);
     }
@@ -957,7 +957,7 @@ void associate_a_texture_to_model (struct model &m, const char *const path)
   const ILboolean has_converted_image_sucessfully = ilConvertImage (IL_RGBA, IL_UNSIGNED_BYTE);
   if (!has_converted_image_sucessfully)
     {
-      cerr << "[engine] failed to convert texture '" << path << "'" << endl;
+      cerr << "[engine] failed to convert texture '" << textureFileName << "'" << endl;
       exit (EXIT_FAILURE);
     }
 
