@@ -19,8 +19,6 @@
  * ⟨nvec3f⟩ ::= ⟨nfloat⟩⟨nfloat⟩⟨nfloat⟩
  * ⟨vec3f⟩  ::= ⟨float⟩⟨float⟩⟨float⟩
  *
- *
- *
  * ⟨operations⟩ ::= ⟨grouping⟩⁺
  *
  * ⟨grouping⟩ ::= ⟨BEGIN_GROUP⟩⟨elem⟩⁺⟨END_GROUP⟩
@@ -32,11 +30,11 @@
  *      ⟨lookAt⟩     ::= ⟨LOOK_AT⟩ ⟨vec3f⟩
  *      ⟨up⟩         ::= ⟨UP⟩ ⟨vec3f⟩
  *      ⟨projection⟩ ::= ⟨PROJECTION⟩ ⟨vec3f⟩
-
+ *
  * ⟨light⟩ ::= ⟨point⟩ | ⟨directional⟩ | ⟨spotlight⟩
- *     ⟨point⟩        ::= ⟨POINT⟩⟨nvec3f⟩
- *     ⟨directional⟩  ::= ⟨DIRECTIONAL⟩⟨nvec3f⟩
- *     ⟨spotlight⟩    ::= ⟨SPOTLIGHT⟩⟨nvec3f⟩⟨nvec3f⟩⟨cutoff⟩
+ *     ⟨point⟩        ::= ⟨POINT⟩⟨vec3f⟩
+ *     ⟨directional⟩  ::= ⟨DIRECTIONAL⟩⟨vec3f⟩
+ *     ⟨spotlight⟩    ::= ⟨SPOTLIGHT⟩⟨vec3f⟩⟨vec3f⟩⟨cutoff⟩
  *     ⟨cutoff⟩       ::= ⟨float⟩ ∈ [0,90] ∪ {180}
  *
  * ⟨transformation⟩ ::= ⟨translation⟩ | ⟨rotation⟩ | ⟨scaling⟩
@@ -341,7 +339,8 @@ void operations_push_any (const XMLElement *element, vector<float> &operations)
       switch (elementEnum)
         {
           case MODEL:
-            operations.push_back (END_MODEL);
+            if (element->ClosingType () == tinyxml2::XMLElement::OPEN)
+              operations.push_back (END_MODEL);
           break;
           case GROUP:
             operations.push_back (END_GROUP);

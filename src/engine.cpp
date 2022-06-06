@@ -431,7 +431,7 @@ cartesian2Spherical (
     vec3 &p)
 {
   // https://www.wikiwand.com/en/Spherical_coordinate_system
-  p.x = abs (sqrt (pow ((c.x - o.x), 2) + pow ((c.y - o.y), 2) + pow ((c.z - o.z), 2)));
+  p.x = sqrt (pow ((c.x - o.x), 2) + pow ((c.y - o.y), 2) + pow ((c.z - o.z), 2));
   p.y = acos ((c.y - o.y) / (p.x));
   p.z = atan2 ((c.z - o.z), (c.x - o.z));
 }
@@ -1098,9 +1098,9 @@ void operations_render (vector<float> &operations)
             {
               if (isFirstTimeBeingExecuted)
                 {
-                  D::cartesian = vec3{operations[i + 1],
-                                      operations[i + 2],
-                                      operations[i + 3]};
+                  D::cartesian[0] = operations[i + 1];
+                  D::cartesian[1] = operations[i + 2];
+                  D::cartesian[2] = operations[i + 3];
                   cerr << "POSITION(" << to_string (D::cartesian) << ")" << endl;
                 }
               i += 3;
@@ -1433,7 +1433,8 @@ void operations_render (vector<float> &operations)
         }
     }
   // default mode uses explorer camera
-  cartesian2Spherical (g::origin, g::cartesian, g::polar);
+  if (isFirstTimeBeingExecuted)
+    cartesian2Spherical (D::origin, D::cartesian, D::polar);
   hasPushedModels = true;
   hasLoadedCurves = true;
   isFirstTimeBeingExecuted = false;
