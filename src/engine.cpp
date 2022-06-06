@@ -29,28 +29,6 @@ using std::vector, std::tuple, std::map;
 using glm::mat4, glm::vec4, glm::vec3, glm::cross, glm::value_ptr;
 using std::cerr, std::endl, glm::to_string, std::string;
 
-/*rotation*/
-const unsigned int DEFAULT_GLOBAL_ANGLE_STEP = 16;
-static float globalAngleStep = DEFAULT_GLOBAL_ANGLE_STEP;
-static float globalAngle = 0;
-static float globalRotateX = 0;
-static float globalRotateY = 0;
-static float globalRotateZ = 0;
-
-/*translation*/
-const unsigned int DEFAULT_GLOBAL_TRANSLATE_STEP = 1;
-static float globalTranslateStep = DEFAULT_GLOBAL_TRANSLATE_STEP;
-static float globalTranslateX = 0;
-static float globalTranslateY = 0;
-static float globalTranslateZ = 0;
-
-/*scaling*/
-const unsigned int DEFAULT_GLOBAL_SCALE_STEP = 1;
-float globalScaleStep = DEFAULT_GLOBAL_SCALE_STEP;
-static float globalScaleX = 1;
-static float globalScaleY = 1;
-static float globalScaleZ = 1;
-
 /*! @addtogroup camera
  * @{*/
 
@@ -150,11 +128,6 @@ void defaultChangeSize (int w, int h);
  * by Ratul Thakur.
  * @{*/
 
-int globalWidth = 16 * 50;
-int globalHeight = 9 * 50;
-bool globalLockCenter = false;
-auto globalPitch = 0.0, globalYaw = 0.0;
-
 void fpsTimer (int);
 void fpsPassiveMotion (int, int);
 void fpsCamera ();
@@ -186,7 +159,12 @@ void fpsInit ()
   //glDepthFunc (GL_LEQUAL);
 }
 
-/*
+int globalWidth = 16 * 50;
+int globalHeight = 9 * 50;
+bool globalLockCenter = false;
+auto globalFpsPitch = 0.0, globalFpsYaw = 0.0;
+
+/**
  * this funtion is used to keep calling the display function periodically
  * at a rate of FPS times in one second. The constant FPS is defined above and
  * has the value of 60
@@ -213,10 +191,11 @@ void fpsPassiveMotion (int x, int y)
   dev_y = (globalHeight / 2) - y;
 
   /* apply the changes to pitch and yaw*/
-  globalYaw += dev_x / 10.0;
-  globalPitch += dev_y / 10.0;
+  globalFpsYaw += dev_x / 10.0;
+  globalFpsPitch += dev_y / 10.0;
 }
-auto globalFpsCamX = 0.0, globalFpsCamZ = 0.0, globalFpsCamY = 0.0;
+
+vec3 globalFpsCam{0, 0, 0};
 float globalFpsSens = 1;
 
 void fpsCamera ()
@@ -226,44 +205,44 @@ void fpsCamera ()
 
   if (globalMotion.Forward)
     {
-      globalFpsCamX += cos ((globalYaw + 90) * TO_RADIANS) / sens;
-      globalFpsCamZ -= sin ((globalYaw + 90) * TO_RADIANS) / sens;
+      globalFpsCam.x += cos ((globalFpsYaw + 90) * TO_RADIANS) / sens;
+      globalFpsCam.z -= sin ((globalFpsYaw + 90) * TO_RADIANS) / sens;
     }
   if (globalMotion.Backward)
     {
-      globalFpsCamX += cos ((globalYaw + 90 + 180) * TO_RADIANS) / sens;
-      globalFpsCamZ -= sin ((globalYaw + 90 + 180) * TO_RADIANS) / sens;
+      globalFpsCam.x += cos ((globalFpsYaw + 90 + 180) * TO_RADIANS) / sens;
+      globalFpsCam.z -= sin ((globalFpsYaw + 90 + 180) * TO_RADIANS) / sens;
     }
   if (globalMotion.Left)
     {
-      globalFpsCamX += cos ((globalYaw + 90 + 90) * TO_RADIANS) / sens;
-      globalFpsCamZ -= sin ((globalYaw + 90 + 90) * TO_RADIANS) / sens;
+      globalFpsCam.x += cos ((globalFpsYaw + 90 + 90) * TO_RADIANS) / sens;
+      globalFpsCam.z -= sin ((globalFpsYaw + 90 + 90) * TO_RADIANS) / sens;
     }
   if (globalMotion.Right)
     {
-      globalFpsCamX += cos ((globalYaw + 90 - 90) * TO_RADIANS) / sens;
-      globalFpsCamZ -= sin ((globalYaw + 90 - 90) * TO_RADIANS) / sens;
+      globalFpsCam.x += cos ((globalFpsYaw + 90 - 90) * TO_RADIANS) / sens;
+      globalFpsCam.z -= sin ((globalFpsYaw + 90 - 90) * TO_RADIANS) / sens;
     }
   if (globalMotion.Down)
     {
-      globalFpsCamY += 1 / sens;
+      globalFpsCam.y += 1 / sens;
     }
   if (globalMotion.Up)
     {
-      globalFpsCamY -= 1 / sens;
+      globalFpsCam.y -= 1 / sens;
     }
   /*
    * limit the values of pitch
    * between -60 and 70
    */
-  if (globalPitch >= 70)
-    globalPitch = 70;
-  if (globalPitch <= -60)
-    globalPitch = -60;
+  if (globalFpsPitch >= 70)
+    globalFpsPitch = 70;
+  if (globalFpsPitch <= -60)
+    globalFpsPitch = -60;
 
-  glRotatef (-globalPitch, 1.0, 0.0, 0.0); // Along X axis
-  glRotatef (-globalYaw, 0.0, 1.0, 0.0);    //Along Y axis
-  glTranslatef (-globalFpsCamX, globalFpsCamY, -globalFpsCamZ);
+  glRotatef (-globalFpsPitch, 1.0, 0.0, 0.0);  // Along X axis
+  glRotatef (-globalFpsYaw, 0.0, 1.0, 0.0);    // Along Y axis
+  glTranslatef (-globalFpsCam.x, globalFpsCam.y, -globalFpsCam.z);
 }
 
 void fpsKeyboard (unsigned char key, int x, int y)
@@ -369,139 +348,98 @@ const profile_t globalProfile_EXPL = {
     .camera = explCamera,
 };
 
-double DEFAULT_GLOBAL_RADIUS = 1;
-double DEFAULT_GLOBAL_AZIMUTH = 0;
-double DEFAULT_GLOBAL_ELEVATION = 0;
-
-double globalRadius = DEFAULT_GLOBAL_RADIUS;
-double globalAzimuth = DEFAULT_GLOBAL_AZIMUTH;
-double globalElevation = DEFAULT_GLOBAL_ELEVATION;
-bool globalMouseLeftButton = false;
-
-/*! @addtogroup position
- * @{*/
-const unsigned int DEFAULT_GLOBAL_EYE_STEP = 1;
-static float DEFAULT_GLOBAL_EYE_X = 0;
-static float DEFAULT_GLOBAL_EYE_Y = 0;
-static float DEFAULT_GLOBAL_EYE_Z = 0;
-
-static double globalEyeStep = DEFAULT_GLOBAL_EYE_STEP;
-static double globalEyeX = DEFAULT_GLOBAL_EYE_X;
-static double globalEyeY = DEFAULT_GLOBAL_EYE_Y;
-static double globalEyeZ = DEFAULT_GLOBAL_EYE_Z;
-//!@} end of group position
-
-/*! @addtogroup lookAt
- * @{*/
-const unsigned int DEFAULT_GLOBAL_CENTER_STEP = 1.0;
-static float DEFAULT_GLOBAL_CENTER_X = 0;
-static float DEFAULT_GLOBAL_CENTER_Y = 0;
-static float DEFAULT_GLOBAL_CENTER_Z = 0;
-
-float globalCenterStep = DEFAULT_GLOBAL_CENTER_STEP;
-static float globalCenterX = DEFAULT_GLOBAL_CENTER_X;
-static float globalCenterY = DEFAULT_GLOBAL_CENTER_Y;
-static float globalCenterZ = DEFAULT_GLOBAL_CENTER_Z;
-//!@} end of group lookAt
-
-/*! @addtogroup up
- * @{*/
-const unsigned int DEFAULT_GLOBAL_UP_STEP = 1;
-static float DEFAULT_GLOBAL_UP_X = 0;
-static float DEFAULT_GLOBAL_UP_Y = 1;
-static float DEFAULT_GLOBAL_UP_Z = 0;
-
-float globalUpStep = DEFAULT_GLOBAL_UP_STEP;
-static float globalUpX = DEFAULT_GLOBAL_UP_X;
-static float globalUpY = DEFAULT_GLOBAL_UP_Y;
-static float globalUpZ = DEFAULT_GLOBAL_UP_Z;
-//!@} end of group up
-
-/*! @addtogroup projection
- * @{*/
-static float DEFAULT_GLOBAL_FOV = 60;
-static float DEFAULT_GLOBAL_NEAR = 1;
-static float DEFAULT_GLOBAL_FAR = 1000;
-
-static float globalFOV = DEFAULT_GLOBAL_FOV;
-static float globalNear = DEFAULT_GLOBAL_NEAR;
-static float globalFar = DEFAULT_GLOBAL_FAR;
-//!@} end of group projection
-
-void
-spherical2Cartesian (const double radius, const double elevation, const double azimuth,
-                     double *x, double *y, double *z)
+//! defaults
+namespace D
 {
-  // https://www.wikiwand.com/en/Spherical_coordinate_system
-  *x = radius * sin (elevation) * cos (azimuth) + globalCenterX;
-  *y = radius * cos (elevation) + globalCenterY;
-  *z = radius * sin (elevation) * sin (azimuth) + globalCenterZ;
+float eyeStep = 1, centerStep = 1, upStep = 1, angleStep = 16, translateStep = 1, scaleStep = 1;
+vec4 rotate (0, 0, 0, 0);
+vec3 translate (0, 0, 0);
+vec3 scale (1, 1, 1);
+vec3 cartesian (0, 2, 5);
+vec3 origin (0, 0, 0);
+vec3 up (0, 1, 0);
+//! (fov,near,var)
+vec3 projection (60, 1, 100);
+//! (radius,zenith,azimuth)
+vec3 polar (1, 45, 45);
 }
 
-void
-cartesian2Spherical (const double x, const double y, const double z,
-                     double *radius, double *azimuth, double *elevation)
+//! global
+namespace g
 {
-  // https://www.wikiwand.com/en/Spherical_coordinate_system
-  *radius = abs (sqrt (pow ((x - globalCenterX), 2) + pow ((y - globalCenterY), 2) + pow ((z - globalCenterZ), 2)));
-  *elevation = acos ((y - globalCenterY) / (*radius));
-  *azimuth = atan2 ((z - globalCenterZ), (x - globalCenterZ));
-}
-
-void explRedisplay ()
-{
-  spherical2Cartesian (globalRadius, globalElevation, globalAzimuth, &globalEyeX, &globalEyeY, &globalEyeZ);
-  glutPostRedisplay ();
+float eyeStep = D::eyeStep, centerStep = D::centerStep, upStep = D::upStep,
+    angleStep = D::angleStep, translateStep = D::translateStep, scaleStep = D::scaleStep;
+vec4 rotate = D::rotate;
+vec3 translate = D::translate;
+vec3 scale = D::scale;
+vec3 cartesian = D::cartesian;
+vec3 origin = D::origin;
+vec3 up = D::up;
+vec3 polar = D::polar;
+vec3 projection = D::projection;
 }
 
 void env_load_defaults ()
 {
-  /*rotation*/
-  globalAngleStep = DEFAULT_GLOBAL_ANGLE_STEP;
-  globalAngle = 0;
-  globalRotateX = 0;
-  globalRotateY = 0;
-  globalRotateZ = 0;
+  g::angleStep = D::angleStep;
+  g::translateStep = D::translateStep;
+  g::scaleStep = D::scaleStep;
+  g::eyeStep = D::upStep;
+  g::centerStep = D::centerStep;
+  g::upStep = D::centerStep;
 
-  /*translation*/
-  globalTranslateStep = DEFAULT_GLOBAL_TRANSLATE_STEP;
-  globalTranslateX = 0;
-  globalTranslateY = 0;
-  globalTranslateZ = 0;
+  g::rotate = D::rotate;
+  g::translate = D::translate;
+  g::scale = D::scale;
+  g::cartesian = D::cartesian;
+  g::origin = D::origin;
+  g::up = D::up;
+  g::projection = D::projection;
+  g::polar = D::polar;
+}
 
-  /*scaling*/
-  globalScaleStep = DEFAULT_GLOBAL_SCALE_STEP;
-  globalScaleX = 1;
-  globalScaleY = 1;
-  globalScaleZ = 1;
+bool globalMouseLeftButton = false;
 
-  /*position*/
-  globalEyeStep = DEFAULT_GLOBAL_EYE_STEP;
-  globalEyeX = DEFAULT_GLOBAL_EYE_X;
-  globalEyeY = DEFAULT_GLOBAL_EYE_Y;
-  globalEyeZ = DEFAULT_GLOBAL_EYE_Z;
+/*!
+ * @param polar (radius,zenith,azimuth)
+ */
+void
+spherical2Cartesian (
+    const vec3 &origin,
+    const vec3 &polar,
+    vec3 &cartesian)
+{
+  // https://www.wikiwand.com/en/Spherical_coordinate_system
+  cartesian.x = polar.x * sin (polar.y) * cos (polar.z) + origin.x;
+  cartesian.y = polar.x * cos (polar.y) + origin.y;
+  cartesian.z = polar.x * sin (polar.y) * sin (polar.z) + origin.z;
+}
 
-  globalRadius = DEFAULT_GLOBAL_RADIUS;
-  globalAzimuth = DEFAULT_GLOBAL_AZIMUTH;
-  globalElevation = DEFAULT_GLOBAL_ELEVATION;
+/*!
+ *
+ * @param o Origin
+ * @param c Cartesian coordinates
+ * @param p Spherical coordinates (r, φ, θ) as:
+ *              radial distance r,
+ *              zenith angle φ.
+ *              azimuthal angle θ,
+ */
+void
+cartesian2Spherical (
+    const vec3 &o,
+    const vec3 &c,
+    vec3 &p)
+{
+  // https://www.wikiwand.com/en/Spherical_coordinate_system
+  p.x = abs (sqrt (pow ((c.x - o.x), 2) + pow ((c.y - o.y), 2) + pow ((c.z - o.z), 2)));
+  p.y = acos ((c.y - o.y) / (p.x));
+  p.z = atan2 ((c.z - o.z), (c.x - o.z));
+}
 
-  /*lookAt*/
-  globalCenterStep = DEFAULT_GLOBAL_CENTER_STEP;
-  globalCenterX = DEFAULT_GLOBAL_CENTER_X;
-  globalCenterY = DEFAULT_GLOBAL_CENTER_Y;
-  globalCenterZ = DEFAULT_GLOBAL_CENTER_Z;
-
-  /*up*/
-
-  globalUpStep = DEFAULT_GLOBAL_UP_STEP;
-  globalUpX = DEFAULT_GLOBAL_UP_X;
-  globalUpY = DEFAULT_GLOBAL_UP_Y;
-  globalUpZ = DEFAULT_GLOBAL_UP_Z;
-
-  /*projection*/
-  globalFOV = DEFAULT_GLOBAL_FOV;
-  globalNear = DEFAULT_GLOBAL_NEAR;
-  globalFar = DEFAULT_GLOBAL_FAR;
+void explRedisplay ()
+{
+  spherical2Cartesian (g::origin, g::polar, g::cartesian);
+  glutPostRedisplay ();
 }
 
 void explKeyboard (unsigned char key, int xmouse, int ymouse)
@@ -539,76 +477,76 @@ void explKeyboard (unsigned char key, int xmouse, int ymouse)
         }
       /*Rotation*/
       case 'x':
-        globalRotateX -= 1;
+        g::rotate.x -= 1;
       break;
 
       case 'X':
-        globalRotateX += 1;
+        g::rotate.x += 1;
       break;
 
       case 'y':
-        globalRotateY -= 1;
+        g::rotate.y -= 1;
       break;
 
       case 'Y':
-        globalRotateY += 1;
+        g::rotate.y += 1;
       break;
 
       case 'z':
-        globalRotateZ -= 1;
+        g::rotate.z -= 1;
       break;
 
       case 'Z':
-        globalRotateZ += 1;
+        g::rotate.z += 1;
       break;
 
       case ',':
-        globalAngle -= globalAngleStep;
+        g::rotate.w -= g::angleStep;
       break;
 
       case '.':
-        globalAngle += globalAngleStep;
+        g::rotate.w += g::angleStep;
       break;
 
       case '<':
-        globalAngleStep /= 2;
+        g::angleStep /= 2;
       break;
 
       case '>':
-        globalAngleStep *= 2;
+        g::angleStep *= 2;
       break;
 
       /*translation*/
       case 'T':
-        globalTranslateStep *= 2;
+        g::translateStep *= 2;
       break;
       case 't':
-        if (globalTranslateStep > 1)
-          globalTranslateStep /= 2;
+        if (g::translateStep > 1)
+          g::translateStep /= 2;
       break;
 
       /*z-axis*/
       case 'w':
-        globalTranslateZ += globalTranslateStep;
+        g::translate.z += g::translateStep;
       break;
       case 's':
-        globalTranslateZ -= globalTranslateStep;
+        g::translate.z -= g::translateStep;
       break;
 
       /*x-axis*/
       case 'a':
-        globalTranslateX -= globalTranslateStep;
+        g::translate.x -= g::translateStep;
       break;
       case 'd':
-        globalTranslateX += globalTranslateStep;
+        g::translate.x += g::translateStep;
       break;
 
       /*y-axis*/
       case 'q':
-        globalTranslateY -= globalTranslateStep;
+        g::translate.y -= g::translateStep;
       break;
       case 'e':
-        globalTranslateY += globalTranslateStep;
+        g::translate.y += g::translateStep;
       break;
       /*end of translation*/
 
@@ -616,92 +554,92 @@ void explKeyboard (unsigned char key, int xmouse, int ymouse)
 
       /*z-axis*/
       case 'i':
-        globalScaleZ += globalScaleStep;
+        g::scale.z += g::scaleStep;
       break;
       case 'k':
-        globalScaleZ -= globalScaleStep;
+        g::scale.z -= g::scaleStep;
       break;
 
       /*x-axis*/
       case 'j':
-        globalScaleX -= globalScaleStep;
+        g::scale.x -= g::scaleStep;
       break;
       case 'l':
-        globalScaleX += globalScaleStep;
+        g::scale.x += g::scaleStep;
       break;
 
       /*y-axis*/
       case 'u':
-        globalScaleY -= globalScaleStep;
+        g::scale.y -= g::scaleStep;
       break;
       case 'o':
-        globalScaleY += globalScaleStep;
+        g::scale.y += g::scaleStep;
       break;
       /*end of scaling*/
 
       /*camera*/
       case '`':
-        globalEyeStep *= 2;
+        g::eyeStep *= 2;
       break;
       case '~':
-        if (globalEyeStep > 1)
-          globalEyeStep /= 2;
+        if (g::eyeStep > 1)
+          g::eyeStep /= 2;
       break;
 
       case '1':
-        globalEyeX -= globalEyeStep;
+        g::cartesian.x -= g::eyeStep;
       break;
       case '!':
-        globalEyeX += globalEyeStep;
+        g::cartesian.x += g::eyeStep;
       break;
       case '2':
-        globalEyeY -= globalEyeStep;
+        g::cartesian.y -= g::eyeStep;
       break;
       case '@':
-        globalEyeY += globalEyeStep;
+        g::cartesian.y += g::eyeStep;
       break;
       case '3':
-        globalEyeZ -= globalEyeStep;
+        g::cartesian.z -= g::eyeStep;
       break;
       case '#':
-        globalEyeZ += globalEyeStep;
+        g::cartesian.z += g::eyeStep;
       break;
 
       case '4':
-        globalCenterX -= globalCenterStep;
+        g::origin.x -= g::centerStep;
       break;
       case '$':
-        globalCenterX += globalCenterStep;
+        g::origin.x += g::centerStep;
       break;
       case '5':
-        globalCenterY -= globalCenterStep;
+        g::origin.y -= g::centerStep;
       break;
       case '%':
-        globalCenterY += globalCenterStep;
+        g::origin.y += g::centerStep;
       break;
       case '6':
-        globalCenterZ -= globalCenterStep;
+        g::origin.z -= g::centerStep;
       break;
       case '^':
-        globalCenterZ += globalCenterStep;
+        g::origin.z += g::centerStep;
       break;
       case '7':
-        globalUpX -= globalUpStep;
+        g::up.x -= g::upStep;
       break;
       case '&':
-        globalUpX += globalUpStep;
+        g::up.x += g::upStep;
       break;
       case '8':
-        globalUpY -= globalUpStep;
+        g::up.y -= g::upStep;
       break;
       case '*':
-        globalUpY += globalUpStep;
+        g::up.y += g::upStep;
       break;
       case '9':
-        globalUpZ -= globalUpStep;
+        g::up.z -= g::upStep;
       break;
       case '(':
-        globalUpZ += globalUpStep;
+        g::up.z += g::upStep;
       break;
 
       /*reset environment*/
@@ -733,12 +671,12 @@ void explMouse (int button, int state, int x, int y)
 
       if (button == 3)
         {
-          globalRadius *= .8f;
-          if (globalRadius < .1f)
-            globalRadius = .1f;
+          g::polar.x *= .8f;
+          if (g::polar.x < .1f)
+            g::polar.x = .1f;
         }
       else
-        globalRadius *= 1.5;
+        g::polar.x *= 1.5;
       printf ("Scroll %s At %d %d\n", (button == 3) ? "Up" : "Down", x, y);
     }
   else
@@ -811,8 +749,8 @@ void explMouse (int button, int state, int x, int y)
                                    &globalRadius, &globalAzimuth, &globalElevation);*/
               //              globalTranslateX = ox;
               //              globalTranslateZ = oz;
-              globalCenterX = ox;
-              globalCenterZ = oz;
+              g::origin.x = ox;
+              g::origin.z = oz;
 
               fprintf (stderr, "%f %f %f\n", ox, oy, oz);
             }
@@ -830,21 +768,21 @@ void explMotion (int x, int y)
       const double stepBeta = 0.035;
 
       if (x > globalExplXPrev) // moving mouse right
-        globalAzimuth += stepAlfa;
+        g::polar.z += stepAlfa;
       else if (x < globalExplXPrev) // moving mouse left
-        globalAzimuth -= stepAlfa;
+        g::polar.z -= stepAlfa;
 
       if (y > globalExplYPrev) // moving mouse up
         {
-          globalElevation -= stepBeta;
-          if (globalElevation < .1)
-            globalElevation = .1;
+          g::polar.y -= stepBeta;
+          if (g::polar.y < .1)
+            g::polar.y = .1;
         }
       else if (y < globalExplYPrev) // moving mouse down
         {
-          globalElevation += stepBeta;
-          if (globalElevation > 3.1)
-            globalElevation = 3.1;
+          g::polar.y += stepBeta;
+          if (g::polar.y > 3.1)
+            g::polar.y = 3.1;
         }
 
       globalExplXPrev = x;
@@ -856,15 +794,15 @@ void explMotion (int x, int y)
 void explCamera ()
 {
   // set the camera
-  gluLookAt (globalEyeX, globalEyeY, globalEyeZ,
-             globalCenterX, globalCenterY, globalCenterZ,
-             globalUpX, globalUpY, globalUpZ);
+  gluLookAt (g::cartesian.x, g::cartesian.y, g::cartesian.z,
+             g::origin.x, g::origin.y, g::origin.z,
+             g::up.x, g::up.y, g::up.z);
   //draw_axes ();
 
   // put the geometric transformations here
-  glRotatef (globalAngle, globalRotateX, globalRotateY, globalRotateZ);
-  glTranslatef (globalTranslateX, globalTranslateY, globalTranslateZ);
-  glScalef (globalScaleX, globalScaleY, globalScaleZ);
+  glRotatef (g::rotate.w, g::rotate.x, g::rotate.y, g::rotate.z);
+  glTranslatef (g::translate.x, g::translate.y, g::translate.z);
+  glScalef (g::scale.x, g::scale.y, g::scale.z);
 
   explRedisplay ();
 }
@@ -1119,7 +1057,7 @@ void defaultChangeSize (const int w, int h)
   glViewport (0, 0, w, h);
 
   // Set perspective
-  gluPerspective (globalFOV, ratio, globalNear, globalFar); //fox,near,far
+  gluPerspective (g::projection.x, ratio, g::projection.y, g::projection.z); //fox,near,far
 
   // return to the model view matrix mode
   glMatrixMode (GL_MODELVIEW);
@@ -1160,13 +1098,10 @@ void operations_render (vector<float> &operations)
             {
               if (isFirstTimeBeingExecuted)
                 {
-                  DEFAULT_GLOBAL_EYE_X = operations[i + 1];
-                  DEFAULT_GLOBAL_EYE_Y = operations[i + 2];
-                  DEFAULT_GLOBAL_EYE_Z = operations[i + 3];
-                  cerr << "POSITION("
-                       << DEFAULT_GLOBAL_EYE_X << ","
-                       << DEFAULT_GLOBAL_EYE_Y << ","
-                       << DEFAULT_GLOBAL_EYE_Z << ")" << endl;
+                  D::cartesian = vec3{operations[i + 1],
+                                      operations[i + 2],
+                                      operations[i + 3]};
+                  cerr << "POSITION(" << to_string (D::cartesian) << ")" << endl;
                 }
               i += 3;
             }
@@ -1175,13 +1110,10 @@ void operations_render (vector<float> &operations)
             {
               if (isFirstTimeBeingExecuted)
                 {
-                  DEFAULT_GLOBAL_CENTER_X = operations[i + 1];
-                  DEFAULT_GLOBAL_CENTER_Y = operations[i + 2];
-                  DEFAULT_GLOBAL_CENTER_Z = operations[i + 3];
-                  cerr << "LOOK_AT("
-                       << DEFAULT_GLOBAL_CENTER_X << ","
-                       << DEFAULT_GLOBAL_CENTER_Y << ","
-                       << DEFAULT_GLOBAL_CENTER_Z << ")" << endl;
+                  D::origin = {operations[i + 1],
+                               operations[i + 2],
+                               operations[i + 3]};
+                  cerr << "LOOK_AT(" << to_string (D::origin) << ")" << endl;
                 }
               i += 3;
             }
@@ -1190,13 +1122,10 @@ void operations_render (vector<float> &operations)
             {
               if (isFirstTimeBeingExecuted)
                 {
-                  DEFAULT_GLOBAL_UP_X = operations[i + 1];
-                  DEFAULT_GLOBAL_UP_Y = operations[i + 2];
-                  DEFAULT_GLOBAL_UP_Z = operations[i + 3];
-                  cerr << "UP("
-                       << DEFAULT_GLOBAL_UP_X << ","
-                       << DEFAULT_GLOBAL_UP_Y << ","
-                       << DEFAULT_GLOBAL_UP_Z << ")" << endl;
+                  D::up = {operations[i + 1],
+                           operations[i + 2],
+                           operations[i + 3]};
+                  cerr << "UP(" << to_string (D::up) << ")" << endl;
                 }
               i += 3;
             }
@@ -1205,12 +1134,12 @@ void operations_render (vector<float> &operations)
             {
               if (isFirstTimeBeingExecuted)
                 {
-                  DEFAULT_GLOBAL_FOV = operations[i + 1];
-                  DEFAULT_GLOBAL_NEAR = operations[i + 2];
-                  DEFAULT_GLOBAL_FAR = operations[i + 3];
-                  cerr << "PROJECTION(FOV: " << DEFAULT_GLOBAL_FOV
-                       << ", NEAR: " << DEFAULT_GLOBAL_NEAR
-                       << ", FAR: " << DEFAULT_GLOBAL_FAR
+                  D::projection = {operations[i + 1],
+                                   operations[i + 2],
+                                   operations[i + 3]};
+                  cerr << "PROJECTION(FOV: " << D::projection.x
+                       << ", NEAR: " << D::projection.y
+                       << ", FAR: " << D::projection.z
                        << ")" << endl;
                 }
               i += 3;
@@ -1504,9 +1433,7 @@ void operations_render (vector<float> &operations)
         }
     }
   // default mode uses explorer camera
-  cartesian2Spherical (
-      DEFAULT_GLOBAL_EYE_X, DEFAULT_GLOBAL_EYE_Y, DEFAULT_GLOBAL_EYE_Z,
-      &DEFAULT_GLOBAL_RADIUS, &DEFAULT_GLOBAL_AZIMUTH, &DEFAULT_GLOBAL_ELEVATION);
+  cartesian2Spherical (g::origin, g::cartesian, g::polar);
   hasPushedModels = true;
   hasLoadedCurves = true;
   isFirstTimeBeingExecuted = false;
