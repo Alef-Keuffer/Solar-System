@@ -32,8 +32,6 @@ add_executable(engine src/engine.cpp)
 add_library(parsing src/parsing.cpp src/parsing.h)
 target_link_libraries(parsing tinyxml2)
 
-add_library(util src/util.cpp src/util.h)
-
 target_link_libraries(engine tinyxml2 parsing ${OPENGL_LIBRARIES} ${GLUT_LIBRARIES})
 add_dependencies(engine generator)
 
