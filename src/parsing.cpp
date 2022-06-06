@@ -69,10 +69,24 @@
  * the model filename characters and to int when reading the number of characters.
  */
 
+/** @addtogroup Parsing
+ * @{ */
+
+/** @addtogroup Auxiliary
+ * @{ */
+
 using std::vector, std::map;
 using std::string, std::filesystem::exists, std::cerr, std::endl;
 using tinyxml2::XMLElement, tinyxml2::XMLDocument;
 using tinyxml2::XMLError, tinyxml2::XML_SUCCESS;
+
+void crashIfFileDoesNotExist (const string &filename, const string &additional_info = "")
+{
+  if (exists (filename))
+    return;
+  cerr << "[parsing] Failed loading " << filename << " " << additional_info << endl;
+  exit (EXIT_FAILURE);
+}
 
 void crashIfFailedAttributeQuery (const XMLError error, const XMLElement &element, const string &attributeName)
 {
@@ -128,14 +142,6 @@ int operations_push_string_attribute (
   return i;
 }
 
-void crashIfFileDoesNotExist (const string &filename, const string &additional_info = "")
-{
-  if (exists (filename))
-    return;
-  cerr << "[parsing] Failed loading " << filename << " " << additional_info << endl;
-  exit (EXIT_FAILURE);
-}
-
 int elementToEnum (string &&s)
 {
   map<string, int> m{
@@ -178,6 +184,8 @@ void pushFloatAttributes (const XMLElement &element, vector<float> &operations)
       }
     while ((attribute = attribute->Next ()) != nullptr);
 }
+
+//! @} end of group Auxiliary
 
 void operations_push_any (const XMLElement *element, vector<float> &operations)
 {
@@ -365,5 +373,5 @@ void operations_load_xml (const string &filename, vector<float> &operations)
   const XMLElement *const world = doc.FirstChildElement ("world");
   operations_push_any (world, operations);
 }
-
+//! @} end of group Parsing
 //! @} end of group Operations

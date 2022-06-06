@@ -49,6 +49,12 @@ foreach (folder test_files_phase_1 test_files_phase_2 test_files_phase_3 test_fi
 endforeach ()
 
 add_custom_target(
+        doxygen
+        COMMAND doxygen Doxyfile
+        WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+)
+
+add_custom_target(
         docs
         COMMAND doxygen Doxyfile
         COMMAND git add docs

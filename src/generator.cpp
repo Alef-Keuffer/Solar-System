@@ -26,15 +26,10 @@ using std::filesystem::exists, std::cerr, std::endl, glm::to_string;
 template<class T>
 concept arithmetic =  std::is_integral<T>::value or std::is_floating_point<T>::value;
 
-const char *SPHERE = "sphere";
-const char *CUBE = "box";
-const char *CONE = "cone";
-const char *PLANE = "plane";
-const char *BEZIER = "bezier";
 /*! @addtogroup generator
 * @{*/
 
-/*! @addtogroup points
+/*! @addtogroup Write
  * @{*/
 
 void
@@ -69,12 +64,12 @@ model_write (const char *const filename,
        << filename << endl;
 }
 
-//!@} end of group points
+//!@} end of group Write
 
-/*! @addtogroup model
+/*! @addtogroup Models
  * @{*/
 
-/*! @addtogroup plane
+/*! @addtogroup Plane
 * @{*/
 void model_plane_vertices (const float length,
                            const unsigned int divisions,
@@ -141,9 +136,9 @@ void model_plane_write (const char *filepath, const float length, const unsigned
   model_plane_vertices (length, divisions, vertices, normals, texture);
   model_write (filepath, vertices, normals, texture);
 }
-//!@} end of group plane
+//!@} end of group Plane
 
-/*! @addtogroup cube
+/*! @addtogroup Cube
 * @{*/
 void model_cube_vertices (const float length,
                           const unsigned int divisions,
@@ -316,9 +311,9 @@ void model_cube_write (const char *const filepath,
   model_write (filepath, vertices, normals, texture);
 }
 
-//!@} end of group cube
+//!@} end of group Cube
 
-/*! @addtogroup cone
+/*! @addtogroup Cone
 * @{*/
 
 /*!
@@ -456,9 +451,9 @@ void model_cone_write (const char *const filepath,
   model_write (filepath, vertices, normals, texture);
 }
 
-//!@} end of group cone
+//!@} end of group Cone
 
-/*! @addtogroup sphere
+/*! @addtogroup Sphere
 * @{*/
 
 static inline unsigned int model_sphere_nVertices (const unsigned int slices, const unsigned int stacks)
@@ -550,11 +545,9 @@ void model_sphere_write (const char *const filepath,
   model_sphere_vertices (radius, slices, stacks, vertices, normals, texture);
   model_write (filepath, vertices, normals, texture);
 }
-//!@} end of group sphere
+//!@} end of group Sphere
 
-//!@} end of group model
-
-/*! @addtogroup bezier
+/*! @addtogroup Bezier
  * @{ */
 vector<array<vec3, 16>> read_Bezier (const char *const patch)
 {
@@ -783,17 +776,22 @@ void model_bezier_write (
 
   model_write (out_3d_file, vertices, normals, texture);
 }
-//!@} end of group bezier
+//!@} end of group Bezier
 
-//!@} end of group generator
+//!@} end of group Models
+
+/*! @addtogroup CLI
+ * @{ */
 
 /*!
+ * @code{.unparsed}
  * ⟨command⟩ ::= (⟨plane⟩ | ⟨cube⟩ | ⟨sphere⟩ | ⟨cone⟩ | ⟨patch⟩) ⟨out_file⟩
- * ⟨patch⟩ ::= "bezier" ⟨patch_file⟩ ⟨tesselation⟩
- * ⟨plane⟩ ::= "plane" ⟨length⟩ ⟨divisions⟩
- * ⟨cube⟩ ::= "box" ⟨length⟩ ⟨divisions⟩
- * ⟨cone⟩ ::= "cone" ⟨base_radius⟩ ⟨height⟩ ⟨slices⟩ ⟨stacks⟩
- * ⟨sphere⟩ ::= "sphere" ⟨radius⟩ ⟨slices⟩ ⟨stacks⟩
+ * ⟨patch⟩   ::= "bezier" ⟨patch_file⟩ ⟨tesselation⟩
+ * ⟨plane⟩   ::= "plane" ⟨length⟩ ⟨divisions⟩
+ * ⟨cube⟩    ::= "box" ⟨length⟩ ⟨divisions⟩
+ * ⟨cone⟩    ::= "cone" ⟨base_radius⟩ ⟨height⟩ ⟨slices⟩ ⟨stacks⟩
+ * ⟨sphere⟩  ::= "sphere" ⟨radius⟩ ⟨slices⟩ ⟨stacks⟩
+ * @endcode
  */
 int main (const int argc, const char *const argv[])
 {
@@ -808,6 +806,12 @@ int main (const int argc, const char *const argv[])
       cerr << "[generator] output filepath: '" << out_file_path << "'" << endl;
       const char *const polygon = argv[1];
       cerr << "[generator] polygon to generate: " << polygon << endl;
+
+      const char *SPHERE = "sphere";
+      const char *CUBE = "box";
+      const char *CONE = "cone";
+      const char *PLANE = "plane";
+      const char *BEZIER = "bezier";
 
       if (!strcmp (PLANE, polygon))
         {
@@ -928,3 +932,7 @@ int main (const int argc, const char *const argv[])
     }
   return 0;
 }
+
+//! @} end of group CLI
+
+//!@} end of group generator

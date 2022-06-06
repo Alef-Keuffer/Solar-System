@@ -32,6 +32,9 @@ using std::cerr, std::endl, glm::to_string, std::string;
 /*! @addtogroup camera
  * @{*/
 
+/*! @addtogroup Profile
+ * @{ */
+
 void changeProfile ();
 
 typedef struct profile_struct {
@@ -84,6 +87,18 @@ typedef struct profile_struct {
   void (*init) ();
 
 } profile_t;
+enum {
+  EXPL = 0, FPS, NPROFILES
+};
+
+int globalProfile = EXPL;
+bool globalProfileHasChanged = true;
+
+void changeProfile ()
+{
+  globalProfileHasChanged = true;
+  globalProfile = (globalProfile + 1) % NPROFILES;
+}
 
 void loadProfile (profile_t profile)
 {
@@ -123,10 +138,13 @@ void loadProfile (profile_t profile)
 
 void defaultChangeSize (int w, int h);
 
+//! @} end of group Profile
+
 /*! @addtogroup fpsCamera
+ * @{
  * Great credit to https://thepentamollisproject.blogspot.com/2018/02/setting-up-first-person-camera-in.html
  * by Ratul Thakur.
- * @{*/
+ */
 
 void fpsTimer (int);
 void fpsPassiveMotion (int, int);
@@ -161,7 +179,13 @@ void fpsInit ()
 
 int globalWidth = 16 * 50;
 int globalHeight = 9 * 50;
-bool globalLockCenter = false;
+
+/*!
+ * Used to decide whether or not to warp pointer to the center of the screen.
+ * Should have a key that allows unlocking/locking cursor to change, that is,
+ * a key than when pressed changes the value of this variable.
+ */
+bool globalWarpCursorToCenter = false;
 auto globalFpsPitch = 0.0, globalFpsYaw = 0.0;
 
 /**
@@ -172,14 +196,14 @@ auto globalFpsPitch = 0.0, globalFpsYaw = 0.0;
 void fpsTimer (int)
 {
   glutPostRedisplay ();
-  if (globalLockCenter)
+  if (globalWarpCursorToCenter)
     glutWarpPointer (globalWidth / 2, globalHeight / 2);
   glutTimerFunc (1000 / GLOBAL_FPS, fpsTimer, 0);
 }
 
 void fpsPassiveMotion (int x, int y)
 {
-  if (!globalLockCenter)
+  if (!globalWarpCursorToCenter)
     return;
 
   /*
@@ -245,6 +269,19 @@ void fpsCamera ()
   glTranslatef (-globalFpsCam.x, globalFpsCam.y, -globalFpsCam.z);
 }
 
+/*!
+ * UP      : e,E
+ * DOWN    : q,Q
+ * FORWARD : w,W
+ * BACKWARD: s,S
+ * LEFT    : a,A
+ * RIGHT   : d,D
+ *
+ * Increase speed: +
+ * Decrease speed: -
+ *
+ * Lock/Unlock Cursor: ESC
+ */
 void fpsKeyboard (unsigned char key, int x, int y)
 {
   const unsigned char ESC = 27;
@@ -253,8 +290,8 @@ void fpsKeyboard (unsigned char key, int x, int y)
     {
       case ESC:
         {
-          globalLockCenter = !globalLockCenter;
-          if (globalLockCenter)
+          globalWarpCursorToCenter = !globalWarpCursorToCenter;
+          if (globalWarpCursorToCenter)
             glutSetCursor (GLUT_CURSOR_NONE);
           else
             glutSetCursor (GLUT_CURSOR_CROSSHAIR);
@@ -326,7 +363,6 @@ void fpsKeyboardUp (unsigned char key, int x, int y)
       break;
     }
 }
-
 //! @} end of group fpsCamera
 
 /*! @addtogroup explorerCamera
@@ -401,7 +437,7 @@ void env_load_defaults ()
 bool globalMouseLeftButton = false;
 
 /*!
- * @param polar (radius,zenith,azimuth)
+ * @param polar Spherical coordinates (radius,zenith,azimuth)
  */
 void
 spherical2Cartesian (
@@ -468,8 +504,8 @@ void explKeyboard (unsigned char key, int xmouse, int ymouse)
     {
       case ESC:
         {
-          globalLockCenter = !globalLockCenter;
-          if (globalLockCenter)
+          globalWarpCursorToCenter = !globalWarpCursorToCenter;
+          if (globalWarpCursorToCenter)
             glutSetCursor (GLUT_CURSOR_NONE);
           else
             glutSetCursor (GLUT_CURSOR_CROSSHAIR);
@@ -813,27 +849,18 @@ void explTimer (int)
 
 //! @} end of group explorerCamera
 
-enum {
-  EXPL = 0, FPS, NPROFILES
-};
+//! @ingroup Profile
 const profile_t profile[NPROFILES] = {globalProfile_EXPL, globalProfile_FPS};
-int globalProfile = EXPL;
-bool globalProfileHasChanged = true;
-
-void changeProfile ()
-{
-  globalProfileHasChanged = true;
-  globalProfile = (globalProfile + 1) % NPROFILES;
-}
 
 //! @} end of group camera
 
 //! @defgroup modelEngine Model
 
+const auto RGB_MAX = 255.0;
+
 /*! @addtogroup modelEngine
  * @{*/
 
-const auto RGB_MAX = 255.0;
 struct model {
   GLsizei nVertices{};
   GLuint vbo{};
@@ -854,7 +881,10 @@ struct model {
 static std::vector<struct model> globalModels;
 static std::vector<float> globalOperations;
 
-struct model getModel (const char *const model3dFilePath)
+/*!
+ * @param model3dFileName a file with info ⟨number_of_vertices⟩⟨vertices⟩⟨normals⟩⟨texture_coordinates⟩
+ */
+struct model getModel (const char *const model3dFileName)
 {
   FILE *fp = fopen (model3dFileName, "r");
   if (!fp)
@@ -928,6 +958,13 @@ struct model getModel (const char *const model3dFilePath)
   return model;
 }
 
+/*!
+ * Given model @p m, associate the texture name of the two-dimensional texture
+ * image @p textureFileName to @ref model.tbo
+ *
+ * @param m Model
+ * @param textureFileName path to the texture being added
+ */
 void addTextureImageToModel (struct model &m, const char *const textureFileName)
 {
 
@@ -949,7 +986,7 @@ void addTextureImageToModel (struct model &m, const char *const textureFileName)
   if (!has_loaded_successfully)
     {
       cerr << "[engine] failed loading texture file '" << textureFileName << "'"
-           << "\nERROR#" << ilGetError () << endl;
+          << "\nERROR#" << ilGetError () << endl;
       exit (EXIT_FAILURE);
     }
 
@@ -1075,6 +1112,13 @@ void advance_in_rotation (const float rotation_time, const vec3 &axis_of_rotatio
 }
 
 //! @ingroup Operations
+
+/** @addtogroup Rendering
+ * @{ */
+
+/*!
+ * See @ref Operations for the BNF of @p operations.
+ */
 void operations_render (vector<float> &operations)
 {
   static bool isFirstTimeBeingExecuted = true;
@@ -1260,7 +1304,7 @@ void operations_render (vector<float> &operations)
                   for (j = 0; j < stringSize; ++j)
                     textureFilePath[j] = (char) operations[i + 2 + j];
                   textureFilePath[j] = '\0';
-                  associate_a_texture_to_model (globalModels.back (), textureFilePath);
+                  addTextureImageToModel (globalModels.back (), textureFilePath);
                   if (isFirstTimeBeingExecuted)
                     cerr << "TEXTURE (" << textureFilePath << ")" << endl;
                 }
@@ -1342,7 +1386,7 @@ void operations_render (vector<float> &operations)
                     modelName[j] = (char) operations[i + 2 + j];
                   modelName[j] = '\0';
 
-                  globalModels.push_back (allocModel (modelName));
+                  globalModels.push_back (getModel (modelName));
                   if (isFirstTimeBeingExecuted)
                     cerr << "BEGIN_MODEL (" << modelName << ")" << endl;
                 }
@@ -1440,6 +1484,8 @@ void operations_render (vector<float> &operations)
   isFirstTimeBeingExecuted = false;
 }
 
+//!@} end of group Rendering
+
 void draw_axes ()
 {
   glDisable (GL_LIGHTING);
@@ -1467,9 +1513,6 @@ void draw_axes ()
   glEnable (GL_LIGHTING);
 }
 
-/*!@addtogroup engine
- * @{*/
-
 void renderGreenPlane ()
 {
   glColor3f (0.2f, 0.8f, 0.2f);
@@ -1486,6 +1529,10 @@ void renderGreenPlane ()
 }
 
 int timebase = 0, frame = 0;
+
+/*! @addtogroup engine
+ * @{ */
+
 void renderScene ()
 {
   float fps;
@@ -1598,13 +1645,19 @@ void engine_run (int argc, char **argv)
   glutMainLoop ();
 }
 
+/*! @addtogroup Operations_CLI CLI
+ * @{ */
+
 /*!
- * ⟨command⟩ ::= ⟨xml_file⟩
+ * @code⟨command⟩ ::= ⟨xml_file⟩@endcode
  */
 int main (int argc, char **argv)
 {
   engine_run (argc, argv);
   return 1;
 }
-//!@} end of group engine
+
+//! @} end of group Operations_CLI
+
+//! @} end of group engine
 

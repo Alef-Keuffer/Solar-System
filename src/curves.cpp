@@ -7,6 +7,9 @@ using glm::mat4, glm::mat4x3;
 using glm::vec4, glm::vec3, glm::vec2, glm::value_ptr;
 using std::array, std::vector;
 
+/** @addtogroup Curves
+ * @{ */
+
 //! Catmull-rom matrix
 const mat4 Mcr = {
     -0.5f, 1.5f, -1.5f, 0.5f,
@@ -129,3 +132,5 @@ void advance_in_curve (const float translation_time,
   if (align)
     glMultMatrixf (value_ptr (rot));
 }
+
+//! @} end of group Curves
