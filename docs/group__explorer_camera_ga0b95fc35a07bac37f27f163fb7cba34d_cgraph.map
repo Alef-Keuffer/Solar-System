@@ -1,7 +1,15 @@
 <map id="explKeyboard" name="explKeyboard">
-<area shape="rect" id="node1" title=" " alt="" coords="5,56,116,83"/>
-<area shape="rect" id="node2" href="$group__camera.html#ga025f4079099b4474ee63a12529c22fa4" title=" " alt="" coords="179,5,290,32"/>
-<area shape="rect" id="node3" href="$group__explorer_camera.html#ga8679d9b303f36964bf51dba0993caeaa" title=" " alt="" coords="164,56,305,83"/>
-<area shape="rect" id="node4" href="$group__explorer_camera.html#ga9fe47c5361dc03b642823dc88f07465b" title=" " alt="" coords="177,107,292,133"/>
-<area shape="rect" id="node5" href="$group__explorer_camera.html#gaeac535a2aaeb6b1c8c4d1169bbc3cab1" title=" " alt="" coords="353,107,504,133"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,107,116,133"/>
+<area shape="rect" id="node2" href="$group__camera.html#ga025f4079099b4474ee63a12529c22fa4" title=" " alt="" coords="166,56,277,83"/>
+<area shape="rect" id="node3" href="$group__explorer_camera.html#ga8679d9b303f36964bf51dba0993caeaa" title=" " alt="" coords="331,157,473,184"/>
+<area shape="rect" id="node12" href="$group__explorer_camera.html#ga9fe47c5361dc03b642823dc88f07465b" title=" " alt="" coords="164,107,279,133"/>
+<area shape="rect" id="node4" href="$namespace_d.html#a393bfec992f13a40a9f601e3e6c82874" title=" " alt="" coords="528,5,628,32"/>
+<area shape="rect" id="node5" href="$namespace_d.html#ae27403f76d7334ff69a099e42f1f1616" title=" " alt="" coords="539,56,617,83"/>
+<area shape="rect" id="node6" href="$namespace_d.html#aa2fb96ccebb5bf88d4325f85beb99d84" title="(radius,zenith,azimuth)" alt="" coords="541,107,615,133"/>
+<area shape="rect" id="node7" href="$namespace_d.html#a49b3788c9a2aae032c6c74d76441aa18" title="(fov,near,var)" alt="" coords="525,360,631,387"/>
+<area shape="rect" id="node8" href="$namespace_d.html#acff69d64de92ad4a8530de5424425dee" title=" " alt="" coords="539,157,617,184"/>
+<area shape="rect" id="node9" href="$namespace_d.html#a1ccd692563b2bed3dbd7275b0bd3dbb3" title=" " alt="" coords="541,208,615,235"/>
+<area shape="rect" id="node10" href="$namespace_d.html#ae308988f832b1d5420f532ac7dfd772e" title=" " alt="" coords="529,259,627,285"/>
+<area shape="rect" id="node11" href="$namespace_d.html#a075a76915f7e2899933f446de8be40d9" title=" " alt="" coords="550,309,606,336"/>
+<area shape="rect" id="node13" href="$group__explorer_camera.html#ga549cdceeb42f58967c400bcf0fe7a9cf" title=" " alt="" coords="327,81,477,108"/>
 </map>

@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['nprofiles_0',['NPROFILES',['../group__camera.html#gga06fc87d81c62e9abb8790b6e5713c55baf98394d47218019a4c04d2ce7c43fe5d',1,'engine.cpp']]]
+  ['generator_0',['GENERATOR',['../parsing_8h.html#a99fb83031ce9923c84392b4e92f956b5a4fa3cd4b6ded76bc4eb76b8a0d081a50',1,'parsing.h']]],
+  ['group_1',['GROUP',['../parsing_8h.html#a99fb83031ce9923c84392b4e92f956b5aa080685d80f04dc0f10c028c686ea221',1,'parsing.h']]]
 ];

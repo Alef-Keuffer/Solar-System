@@ -128,8 +128,8 @@ Functions</h2></td></tr>
 <tr class="separator:gad11b5559e8d34f899f934960207ded9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gafcf7fcde525db8b303b2205562b7684d"><td class="memItemLeft" align="right" valign="top">mat4x3&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__bezier.html#gafcf7fcde525db8b303b2205562b7684d">mat</a> (const array&lt; vec3, 4 &gt; C)</td></tr>
 <tr class="separator:gafcf7fcde525db8b303b2205562b7684d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga3ab22588659e568df730297c82e0930b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__bezier.html#ga3ab22588659e568df730297c82e0930b">get_bezier_point_at</a> (const float u, const float v, const array&lt; vec3, 16 &gt; &amp;cp, vec3 &amp;coordinate_in_3d_space, vec3 &amp;normal)</td></tr>
-<tr class="separator:ga3ab22588659e568df730297c82e0930b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4623e7c5e81e842a2b10cd85b9481744"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__bezier.html#ga4623e7c5e81e842a2b10cd85b9481744">get_bezier_point_at</a> (const auto u, const auto v, const array&lt; vec3, 16 &gt; &amp;cp, vec3 &amp;coordinate_in_3d_space, vec3 &amp;normal)</td></tr>
+<tr class="separator:ga4623e7c5e81e842a2b10cd85b9481744"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga8d6c3e5adc4ee3cfb89a75f2ce7642a8"><td class="memItemLeft" align="right" valign="top">static unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__bezier.html#ga8d6c3e5adc4ee3cfb89a75f2ce7642a8">model_bezier_patch_nVertices</a> (const unsigned int tesselation)</td></tr>
 <tr class="separator:ga8d6c3e5adc4ee3cfb89a75f2ce7642a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga20c58299589514750446c5b775b91bc0"><td class="memItemLeft" align="right" valign="top">static unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__bezier.html#ga20c58299589514750446c5b775b91bc0">model_bezier_surface_nVertices</a> (const unsigned int number_of_patches, const unsigned int tesselation)</td></tr>
@@ -169,18 +169,19 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="generator_8cpp_source.html#l00666">666</a> of file <a class="el" href="generator_8cpp_source.html">generator.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  667</span>{</div>
-<div class="line"><span class="lineno">  668</span>  <span class="keywordflow">return</span> {3 * pow (n, 2), 2 * n, 1, 0};</div>
-<div class="line"><span class="lineno">  669</span>}</div>
+<p class="definition">Definition at line <a class="el" href="generator_8cpp_source.html#l00637">637</a> of file <a class="el" href="generator_8cpp_source.html">generator.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  638</span>{</div>
+<div class="line"><span class="lineno">  639</span>  <span class="keywordflow">return</span> {3 * pow (n, 2), 2 * n, 1, 0};</div>
+<div class="line"><span class="lineno">  640</span>}</div>
 </div><!-- fragment -->
-<p class="reference">Referenced by <a class="el" href="generator_8cpp_source.html#l00685">get_bezier_point_at()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="generator_8cpp_source.html#l00656">get_bezier_point_at()</a>.</p>
 <div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="group__bezier_gad11b5559e8d34f899f934960207ded9a_icgraph.svg" width="100%" height="300"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="group__bezier_gad11b5559e8d34f899f934960207ded9a_icgraph.svg" width="100%" height="300"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 </div>
 
 </div>
@@ -229,60 +230,50 @@ template&lt;typename T &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="generator_8cpp_source.html#l00735">735</a> of file <a class="el" href="generator_8cpp_source.html">generator.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  741</span>{</div>
-<div class="line"><span class="lineno">  742</span>  <span class="keyword">auto</span> float_tesselation = (float) int_tesselation;</div>
-<div class="line"><span class="lineno">  743</span>  <span class="keyword">const</span> <span class="keyword">auto</span> step = 1.0 / float_tesselation;</div>
-<div class="line"><span class="lineno">  744</span>  <span class="keywordflow">for</span> (<span class="keywordtype">int</span> v = 0; v &lt; int_tesselation; ++v)</div>
-<div class="line"><span class="lineno">  745</span>    {</div>
-<div class="line"><span class="lineno">  746</span>      <span class="keywordflow">for</span> (<span class="keywordtype">int</span> u = 0; u &lt; int_tesselation; ++u)</div>
-<div class="line"><span class="lineno">  747</span>        {</div>
-<div class="line"><span class="lineno">  748</span>          <span class="keywordflow">for</span> (<span class="keyword">auto</span> e : {</div>
-<div class="line"><span class="lineno">  749</span>              <span class="comment">// upper triangle</span></div>
-<div class="line"><span class="lineno">  750</span>              array&lt;float, 2&gt;{0, 1},</div>
-<div class="line"><span class="lineno">  751</span>              array&lt;float, 2&gt;{0, 0},</div>
-<div class="line"><span class="lineno">  752</span>              array&lt;float, 2&gt;{1, 0},</div>
-<div class="line"><span class="lineno">  753</span>              <span class="comment">// lower triangle</span></div>
-<div class="line"><span class="lineno">  754</span>              array&lt;float, 2&gt;{1, 0},</div>
-<div class="line"><span class="lineno">  755</span>              array&lt;float, 2&gt;{1, 1},</div>
-<div class="line"><span class="lineno">  756</span>              array&lt;float, 2&gt;{0, 1},</div>
-<div class="line"><span class="lineno">  757</span>          })</div>
-<div class="line"><span class="lineno">  758</span>            {</div>
-<div class="line"><span class="lineno">  759</span>              vec3 vertex, normal;</div>
-<div class="line"><span class="lineno">  760</span>              <a class="code hl_function" href="group__bezier.html#ga3ab22588659e568df730297c82e0930b">get_bezier_point_at</a> (u * step + step * e[0], v * step + step * e[1], control_points, vertex, normal);</div>
-<div class="line"><span class="lineno">  761</span> </div>
-<div class="line"><span class="lineno">  762</span>              <span class="keyword">auto</span> fu = (float) u;</div>
-<div class="line"><span class="lineno">  763</span>              <span class="keyword">auto</span> fv = (float) v;</div>
-<div class="line"><span class="lineno">  764</span>              vertices.push_back (vertex);</div>
-<div class="line"><span class="lineno">  765</span>              normals.push_back (normal);</div>
-<div class="line"><span class="lineno">  766</span>              texture.emplace_back (-(u * step + step * e[0]), -(v * step + step * e[1]));</div>
-<div class="line"><span class="lineno">  767</span>            }</div>
-<div class="line"><span class="lineno">  768</span> </div>
-<div class="line"><span class="lineno">  769</span>          <span class="comment">//          // upper triangle</span></div>
-<div class="line"><span class="lineno">  770</span>          <span class="comment">//          vertices.push_back (get_bezier_point_at (u * step, v * step, control_points));</span></div>
-<div class="line"><span class="lineno">  771</span>          <span class="comment">//          vertices.push_back (get_bezier_point_at (u * step, v * step + step, control_points));</span></div>
-<div class="line"><span class="lineno">  772</span>          <span class="comment">//          vertices.push_back (get_bezier_point_at (u * step + step, v * step, control_points));</span></div>
-<div class="line"><span class="lineno">  773</span>          <span class="comment">//          // lower triangle</span></div>
-<div class="line"><span class="lineno">  774</span>          <span class="comment">//          vertices.push_back (get_bezier_point_at (u * step + step, v * step, control_points));</span></div>
-<div class="line"><span class="lineno">  775</span>          <span class="comment">//          vertices.push_back (get_bezier_point_at (u * step + step, v * step + step, control_points));</span></div>
-<div class="line"><span class="lineno">  776</span>          <span class="comment">//          vertices.push_back (get_bezier_point_at (u * step, v * step + step, control_points));</span></div>
-<div class="line"><span class="lineno">  777</span>        }</div>
-<div class="line"><span class="lineno">  778</span>    }</div>
-<div class="line"><span class="lineno">  779</span>  <span class="comment">/*std::cout &lt;&lt; &quot;get_bezier_patch got:&quot; &lt;&lt; std::endl;</span></div>
-<div class="line"><span class="lineno">  780</span><span class="comment">  for (auto p : pontos)</span></div>
-<div class="line"><span class="lineno">  781</span><span class="comment">    std::cout &lt;&lt; glm::to_string (p) &lt;&lt; std::endl;*/</span></div>
-<div class="line"><span class="lineno">  782</span>}</div>
-<div class="ttc" id="agroup__bezier_html_ga3ab22588659e568df730297c82e0930b"><div class="ttname"><a href="group__bezier.html#ga3ab22588659e568df730297c82e0930b">get_bezier_point_at</a></div><div class="ttdeci">void get_bezier_point_at(const float u, const float v, const array&lt; vec3, 16 &gt; &amp;cp, vec3 &amp;coordinate_in_3d_space, vec3 &amp;normal)</div><div class="ttdef"><b>Definition:</b> <a href="generator_8cpp_source.html#l00685">generator.cpp:685</a></div></div>
+<p class="definition">Definition at line <a class="el" href="generator_8cpp_source.html#l00706">706</a> of file <a class="el" href="generator_8cpp_source.html">generator.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  712</span>{</div>
+<div class="line"><span class="lineno">  713</span>  <span class="keyword">auto</span> float_tesselation = (float) int_tesselation;</div>
+<div class="line"><span class="lineno">  714</span>  <span class="keyword">const</span> <span class="keyword">auto</span> step = 1.0 / float_tesselation;</div>
+<div class="line"><span class="lineno">  715</span>  <span class="keywordflow">for</span> (<span class="keywordtype">int</span> v = 0; v &lt; int_tesselation; ++v)</div>
+<div class="line"><span class="lineno">  716</span>    {</div>
+<div class="line"><span class="lineno">  717</span>      <span class="keywordflow">for</span> (<span class="keywordtype">int</span> u = 0; u &lt; int_tesselation; ++u)</div>
+<div class="line"><span class="lineno">  718</span>        {</div>
+<div class="line"><span class="lineno">  719</span>          <span class="keywordflow">for</span> (<span class="keyword">auto</span> e : {</div>
+<div class="line"><span class="lineno">  720</span>              <span class="comment">// upper triangle</span></div>
+<div class="line"><span class="lineno">  721</span>              array&lt;float, 2&gt;{0, 1},</div>
+<div class="line"><span class="lineno">  722</span>              array&lt;float, 2&gt;{0, 0},</div>
+<div class="line"><span class="lineno">  723</span>              array&lt;float, 2&gt;{1, 0},</div>
+<div class="line"><span class="lineno">  724</span>              <span class="comment">// lower triangle</span></div>
+<div class="line"><span class="lineno">  725</span>              array&lt;float, 2&gt;{1, 0},</div>
+<div class="line"><span class="lineno">  726</span>              array&lt;float, 2&gt;{1, 1},</div>
+<div class="line"><span class="lineno">  727</span>              array&lt;float, 2&gt;{0, 1},</div>
+<div class="line"><span class="lineno">  728</span>          })</div>
+<div class="line"><span class="lineno">  729</span>            {</div>
+<div class="line"><span class="lineno">  730</span>              vec3 vertex, normal;</div>
+<div class="line"><span class="lineno">  731</span>              <a class="code hl_function" href="group__bezier.html#ga4623e7c5e81e842a2b10cd85b9481744">get_bezier_point_at</a> (u * step + step * e[0], v * step + step * e[1], control_points, vertex, normal);</div>
+<div class="line"><span class="lineno">  732</span> </div>
+<div class="line"><span class="lineno">  733</span>              vertices.push_back (vertex);</div>
+<div class="line"><span class="lineno">  734</span>              normals.push_back (normal);</div>
+<div class="line"><span class="lineno">  735</span>              texture.emplace_back (-(u * step + step * e[0]), -(v * step + step * e[1]));</div>
+<div class="line"><span class="lineno">  736</span>            }</div>
+<div class="line"><span class="lineno">  737</span>        }</div>
+<div class="line"><span class="lineno">  738</span>    }</div>
+<div class="line"><span class="lineno">  739</span>  <span class="comment">/*std::cout &lt;&lt; &quot;get_bezier_patch got:&quot; &lt;&lt; std::endl;</span></div>
+<div class="line"><span class="lineno">  740</span><span class="comment">  for (auto p : pontos)</span></div>
+<div class="line"><span class="lineno">  741</span><span class="comment">    std::cout &lt;&lt; glm::to_string (p) &lt;&lt; std::endl;*/</span></div>
+<div class="line"><span class="lineno">  742</span>}</div>
+<div class="ttc" id="agroup__bezier_html_ga4623e7c5e81e842a2b10cd85b9481744"><div class="ttname"><a href="group__bezier.html#ga4623e7c5e81e842a2b10cd85b9481744">get_bezier_point_at</a></div><div class="ttdeci">void get_bezier_point_at(const auto u, const auto v, const array&lt; vec3, 16 &gt; &amp;cp, vec3 &amp;coordinate_in_3d_space, vec3 &amp;normal)</div><div class="ttdef"><b>Definition:</b> <a href="generator_8cpp_source.html#l00656">generator.cpp:656</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="generator_8cpp_source.html#l00685">get_bezier_point_at()</a>.</p>
+<p class="reference">References <a class="el" href="generator_8cpp_source.html#l00656">get_bezier_point_at()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="generator_8cpp_source.html#l00790">get_bezier_surface()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="generator_8cpp_source.html#l00750">get_bezier_surface()</a>.</p>
 <div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-2-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-2-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-2-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="group__bezier_ga08aa0300760bfa97d7555a4c4d09f8be_cgraph.svg" width="582" height="206"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__bezier_ga08aa0300760bfa97d7555a4c4d09f8be_cgraph.svg" width="582" height="206"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 <div id="dynsection-3" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-3-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
@@ -294,8 +285,8 @@ template&lt;typename T &gt; </div>
 
 </div>
 </div>
-<a id="ga3ab22588659e568df730297c82e0930b" name="ga3ab22588659e568df730297c82e0930b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga3ab22588659e568df730297c82e0930b">&#9670;&nbsp;</a></span>get_bezier_point_at()</h2>
+<a id="ga4623e7c5e81e842a2b10cd85b9481744" name="ga4623e7c5e81e842a2b10cd85b9481744"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga4623e7c5e81e842a2b10cd85b9481744">&#9670;&nbsp;</a></span>get_bezier_point_at()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -303,13 +294,13 @@ template&lt;typename T &gt; </div>
         <tr>
           <td class="memname">void get_bezier_point_at </td>
           <td>(</td>
-          <td class="paramtype">const float&#160;</td>
+          <td class="paramtype">const auto&#160;</td>
           <td class="paramname"><em>u</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const float&#160;</td>
+          <td class="paramtype">const auto&#160;</td>
           <td class="paramname"><em>v</em>, </td>
         </tr>
         <tr>
@@ -348,60 +339,62 @@ template&lt;typename T &gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="generator_8cpp_source.html#l00685">685</a> of file <a class="el" href="generator_8cpp_source.html">generator.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  691</span>{</div>
-<div class="line"><span class="lineno">  692</span> </div>
-<div class="line"><span class="lineno">  693</span>  <span class="comment">// P_u notation at (slide 17)[Curves and Surfaces]</span></div>
-<div class="line"><span class="lineno">  694</span> </div>
-<div class="line"><span class="lineno">  695</span>  <span class="comment">// P(u,v) = UM(Pi0(P0u) + Pi1(P1u) + Pi2(P2u) Pi3(P3u)) based on (page 6)[CURVES AND SURFACES]</span></div>
-<div class="line"><span class="lineno">  696</span> </div>
-<div class="line"><span class="lineno">  697</span>  <span class="comment">// 4 sets of control points for 4 Bézier curves</span></div>
-<div class="line"><span class="lineno">  698</span>  array&lt;vec3, 4&gt; C_i0 = {cp[0], cp[1], cp[2], cp[3]};</div>
-<div class="line"><span class="lineno">  699</span>  array&lt;vec3, 4&gt; C_i1 = {cp[4], cp[5], cp[6], cp[7]};</div>
-<div class="line"><span class="lineno">  700</span>  array&lt;vec3, 4&gt; C_i2 = {cp[8], cp[9], cp[10], cp[11]};</div>
-<div class="line"><span class="lineno">  701</span>  array&lt;vec3, 4&gt; C_i3 = {cp[12], cp[13], cp[14], cp[15]};</div>
-<div class="line"><span class="lineno">  702</span> </div>
-<div class="line"><span class="lineno">  703</span>  <span class="comment">// calculate P_i(u) at each Bézier curve defined by Ci</span></div>
-<div class="line"><span class="lineno">  704</span>  vec3 P0u, P1u, P2u, P3u, _;</div>
-<div class="line"><span class="lineno">  705</span>  <a class="code hl_function" href="curves_8cpp.html#a6d6def6a76701b08284cba58066e3382">get_curve_point_at</a> (u, <a class="code hl_variable" href="curves_8cpp.html#aa24e89a6a33c157674a3620855b4aa1d">Mb</a>, C_i0, P0u, _);</div>
-<div class="line"><span class="lineno">  706</span>  <a class="code hl_function" href="curves_8cpp.html#a6d6def6a76701b08284cba58066e3382">get_curve_point_at</a> (u, <a class="code hl_variable" href="curves_8cpp.html#aa24e89a6a33c157674a3620855b4aa1d">Mb</a>, C_i1, P1u, _);</div>
-<div class="line"><span class="lineno">  707</span>  <a class="code hl_function" href="curves_8cpp.html#a6d6def6a76701b08284cba58066e3382">get_curve_point_at</a> (u, <a class="code hl_variable" href="curves_8cpp.html#aa24e89a6a33c157674a3620855b4aa1d">Mb</a>, C_i2, P2u, _);</div>
-<div class="line"><span class="lineno">  708</span>  <a class="code hl_function" href="curves_8cpp.html#a6d6def6a76701b08284cba58066e3382">get_curve_point_at</a> (u, <a class="code hl_variable" href="curves_8cpp.html#aa24e89a6a33c157674a3620855b4aa1d">Mb</a>, C_i3, P3u, _);</div>
-<div class="line"><span class="lineno">  709</span> </div>
-<div class="line"><span class="lineno">  710</span>  <span class="comment">// Calculate vector tangent to u⃗</span></div>
-<div class="line"><span class="lineno">  711</span>  <span class="keyword">const</span> <span class="keyword">auto</span> VM = <a class="code hl_function" href="group__bezier.html#gaa5cc85b3de7b256bb1f7c98ac78fef08">monic_3rd_polynomial_at</a> (v) * <a class="code hl_variable" href="curves_8cpp.html#aa24e89a6a33c157674a3620855b4aa1d">Mb</a>;</div>
-<div class="line"><span class="lineno">  712</span>  <span class="keyword">const</span> <span class="keyword">auto</span> U_prime = <a class="code hl_function" href="group__bezier.html#gad11b5559e8d34f899f934960207ded9a">deriv_of_monic_3rd_polynomial_at</a> (u);</div>
-<div class="line"><span class="lineno">  713</span>  <span class="keyword">const</span> <span class="keyword">auto</span> tangent_u =</div>
-<div class="line"><span class="lineno">  714</span>      (<a class="code hl_function" href="group__bezier.html#gafcf7fcde525db8b303b2205562b7684d">mat</a> (C_i0) * VM[0] + <a class="code hl_function" href="group__bezier.html#gafcf7fcde525db8b303b2205562b7684d">mat</a> (C_i1) * VM[1] + <a class="code hl_function" href="group__bezier.html#gafcf7fcde525db8b303b2205562b7684d">mat</a> (C_i2) * VM[2] + <a class="code hl_function" href="group__bezier.html#gafcf7fcde525db8b303b2205562b7684d">mat</a> (C_i3) * VM[3]) * <a class="code hl_variable" href="curves_8cpp.html#aa24e89a6a33c157674a3620855b4aa1d">Mb</a> * U_prime;</div>
-<div class="line"><span class="lineno">  715</span> </div>
-<div class="line"><span class="lineno">  716</span>  vec3 Puv, tangent_v;</div>
-<div class="line"><span class="lineno">  717</span>  <a class="code hl_function" href="curves_8cpp.html#a6d6def6a76701b08284cba58066e3382">get_curve_point_at</a> (v, <a class="code hl_variable" href="curves_8cpp.html#aa24e89a6a33c157674a3620855b4aa1d">Mb</a>, {P0u, P1u, P2u, P3u}, Puv, tangent_v);</div>
-<div class="line"><span class="lineno">  718</span> </div>
-<div class="line"><span class="lineno">  719</span>  normal = normalize (cross (tangent_u, tangent_v));</div>
-<div class="line"><span class="lineno">  720</span>  coordinate_in_3d_space = Puv;</div>
-<div class="line"><span class="lineno">  721</span>}</div>
+<p class="definition">Definition at line <a class="el" href="generator_8cpp_source.html#l00656">656</a> of file <a class="el" href="generator_8cpp_source.html">generator.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  662</span>{</div>
+<div class="line"><span class="lineno">  663</span> </div>
+<div class="line"><span class="lineno">  664</span>  <span class="comment">// P_u notation at (slide 17)[Curves and Surfaces]</span></div>
+<div class="line"><span class="lineno">  665</span> </div>
+<div class="line"><span class="lineno">  666</span>  <span class="comment">// P(u,v) = UM(Pi0(P0u) + Pi1(P1u) + Pi2(P2u) Pi3(P3u)) based on (page 6)[CURVES AND SURFACES]</span></div>
+<div class="line"><span class="lineno">  667</span> </div>
+<div class="line"><span class="lineno">  668</span>  <span class="comment">// 4 sets of control points for 4 Bézier curves</span></div>
+<div class="line"><span class="lineno">  669</span>  array&lt;vec3, 4&gt; C_i0 = {cp[0], cp[1], cp[2], cp[3]};</div>
+<div class="line"><span class="lineno">  670</span>  array&lt;vec3, 4&gt; C_i1 = {cp[4], cp[5], cp[6], cp[7]};</div>
+<div class="line"><span class="lineno">  671</span>  array&lt;vec3, 4&gt; C_i2 = {cp[8], cp[9], cp[10], cp[11]};</div>
+<div class="line"><span class="lineno">  672</span>  array&lt;vec3, 4&gt; C_i3 = {cp[12], cp[13], cp[14], cp[15]};</div>
+<div class="line"><span class="lineno">  673</span> </div>
+<div class="line"><span class="lineno">  674</span>  <span class="comment">// calculate P_i(u) at each Bézier curve defined by Ci</span></div>
+<div class="line"><span class="lineno">  675</span>  vec3 P0u, P1u, P2u, P3u, _;</div>
+<div class="line"><span class="lineno">  676</span>  <a class="code hl_function" href="curves_8cpp.html#a6d6def6a76701b08284cba58066e3382">get_curve_point_at</a> (u, <a class="code hl_variable" href="curves_8cpp.html#aa24e89a6a33c157674a3620855b4aa1d">Mb</a>, C_i0, P0u, _);</div>
+<div class="line"><span class="lineno">  677</span>  <a class="code hl_function" href="curves_8cpp.html#a6d6def6a76701b08284cba58066e3382">get_curve_point_at</a> (u, <a class="code hl_variable" href="curves_8cpp.html#aa24e89a6a33c157674a3620855b4aa1d">Mb</a>, C_i1, P1u, _);</div>
+<div class="line"><span class="lineno">  678</span>  <a class="code hl_function" href="curves_8cpp.html#a6d6def6a76701b08284cba58066e3382">get_curve_point_at</a> (u, <a class="code hl_variable" href="curves_8cpp.html#aa24e89a6a33c157674a3620855b4aa1d">Mb</a>, C_i2, P2u, _);</div>
+<div class="line"><span class="lineno">  679</span>  <a class="code hl_function" href="curves_8cpp.html#a6d6def6a76701b08284cba58066e3382">get_curve_point_at</a> (u, <a class="code hl_variable" href="curves_8cpp.html#aa24e89a6a33c157674a3620855b4aa1d">Mb</a>, C_i3, P3u, _);</div>
+<div class="line"><span class="lineno">  680</span> </div>
+<div class="line"><span class="lineno">  681</span>  <span class="comment">// Calculate vector tangent to u⃗</span></div>
+<div class="line"><span class="lineno">  682</span>  <span class="keyword">const</span> <span class="keyword">auto</span> VM = <a class="code hl_function" href="group__bezier.html#gaa5cc85b3de7b256bb1f7c98ac78fef08">monic_3rd_polynomial_at</a> (v) * <a class="code hl_variable" href="curves_8cpp.html#aa24e89a6a33c157674a3620855b4aa1d">Mb</a>;</div>
+<div class="line"><span class="lineno">  683</span>  <span class="keyword">const</span> <span class="keyword">auto</span> U_prime = <a class="code hl_function" href="group__bezier.html#gad11b5559e8d34f899f934960207ded9a">deriv_of_monic_3rd_polynomial_at</a> (u);</div>
+<div class="line"><span class="lineno">  684</span>  <span class="keyword">const</span> <span class="keyword">auto</span> tangent_u =</div>
+<div class="line"><span class="lineno">  685</span>      (<a class="code hl_function" href="group__bezier.html#gafcf7fcde525db8b303b2205562b7684d">mat</a> (C_i0) * VM[0] + <a class="code hl_function" href="group__bezier.html#gafcf7fcde525db8b303b2205562b7684d">mat</a> (C_i1) * VM[1] + <a class="code hl_function" href="group__bezier.html#gafcf7fcde525db8b303b2205562b7684d">mat</a> (C_i2) * VM[2] + <a class="code hl_function" href="group__bezier.html#gafcf7fcde525db8b303b2205562b7684d">mat</a> (C_i3) * VM[3]) * <a class="code hl_variable" href="curves_8cpp.html#aa24e89a6a33c157674a3620855b4aa1d">Mb</a> * U_prime;</div>
+<div class="line"><span class="lineno">  686</span> </div>
+<div class="line"><span class="lineno">  687</span>  vec3 Puv, tangent_v;</div>
+<div class="line"><span class="lineno">  688</span>  <a class="code hl_function" href="curves_8cpp.html#a6d6def6a76701b08284cba58066e3382">get_curve_point_at</a> (v, <a class="code hl_variable" href="curves_8cpp.html#aa24e89a6a33c157674a3620855b4aa1d">Mb</a>, {P0u, P1u, P2u, P3u}, Puv, tangent_v);</div>
+<div class="line"><span class="lineno">  689</span> </div>
+<div class="line"><span class="lineno">  690</span>  normal = normalize (cross (tangent_u, tangent_v));</div>
+<div class="line"><span class="lineno">  691</span>  coordinate_in_3d_space = Puv;</div>
+<div class="line"><span class="lineno">  692</span>}</div>
 <div class="ttc" id="acurves_8cpp_html_a6d6def6a76701b08284cba58066e3382"><div class="ttname"><a href="curves_8cpp.html#a6d6def6a76701b08284cba58066e3382">get_curve_point_at</a></div><div class="ttdeci">void get_curve_point_at(const float t, const mat4 &amp;M, const array&lt; vec3, 4 &gt; &amp;control_points, vec3 &amp;coordinate_in_3d_space, vec3 &amp;derivative_at_t)</div><div class="ttdef"><b>Definition:</b> <a href="curves_8cpp_source.html#l00032">curves.cpp:32</a></div></div>
 <div class="ttc" id="acurves_8cpp_html_aa24e89a6a33c157674a3620855b4aa1d"><div class="ttname"><a href="curves_8cpp.html#aa24e89a6a33c157674a3620855b4aa1d">Mb</a></div><div class="ttdeci">const mat4 Mb</div><div class="ttdoc">Bezier matrix.</div><div class="ttdef"><b>Definition:</b> <a href="curves_8cpp_source.html#l00018">curves.cpp:18</a></div></div>
-<div class="ttc" id="agroup__bezier_html_gaa5cc85b3de7b256bb1f7c98ac78fef08"><div class="ttname"><a href="group__bezier.html#gaa5cc85b3de7b256bb1f7c98ac78fef08">monic_3rd_polynomial_at</a></div><div class="ttdeci">static vec4 monic_3rd_polynomial_at(T n)</div><div class="ttdef"><b>Definition:</b> <a href="generator_8cpp_source.html#l00661">generator.cpp:661</a></div></div>
-<div class="ttc" id="agroup__bezier_html_gad11b5559e8d34f899f934960207ded9a"><div class="ttname"><a href="group__bezier.html#gad11b5559e8d34f899f934960207ded9a">deriv_of_monic_3rd_polynomial_at</a></div><div class="ttdeci">static vec4 deriv_of_monic_3rd_polynomial_at(T n)</div><div class="ttdef"><b>Definition:</b> <a href="generator_8cpp_source.html#l00666">generator.cpp:666</a></div></div>
-<div class="ttc" id="agroup__bezier_html_gafcf7fcde525db8b303b2205562b7684d"><div class="ttname"><a href="group__bezier.html#gafcf7fcde525db8b303b2205562b7684d">mat</a></div><div class="ttdeci">mat4x3 mat(const array&lt; vec3, 4 &gt; C)</div><div class="ttdef"><b>Definition:</b> <a href="generator_8cpp_source.html#l00671">generator.cpp:671</a></div></div>
+<div class="ttc" id="agroup__bezier_html_gaa5cc85b3de7b256bb1f7c98ac78fef08"><div class="ttname"><a href="group__bezier.html#gaa5cc85b3de7b256bb1f7c98ac78fef08">monic_3rd_polynomial_at</a></div><div class="ttdeci">static vec4 monic_3rd_polynomial_at(T n)</div><div class="ttdef"><b>Definition:</b> <a href="generator_8cpp_source.html#l00632">generator.cpp:632</a></div></div>
+<div class="ttc" id="agroup__bezier_html_gad11b5559e8d34f899f934960207ded9a"><div class="ttname"><a href="group__bezier.html#gad11b5559e8d34f899f934960207ded9a">deriv_of_monic_3rd_polynomial_at</a></div><div class="ttdeci">static vec4 deriv_of_monic_3rd_polynomial_at(T n)</div><div class="ttdef"><b>Definition:</b> <a href="generator_8cpp_source.html#l00637">generator.cpp:637</a></div></div>
+<div class="ttc" id="agroup__bezier_html_gafcf7fcde525db8b303b2205562b7684d"><div class="ttname"><a href="group__bezier.html#gafcf7fcde525db8b303b2205562b7684d">mat</a></div><div class="ttdeci">mat4x3 mat(const array&lt; vec3, 4 &gt; C)</div><div class="ttdef"><b>Definition:</b> <a href="generator_8cpp_source.html#l00642">generator.cpp:642</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="generator_8cpp_source.html#l00666">deriv_of_monic_3rd_polynomial_at()</a>, <a class="el" href="curves_8cpp_source.html#l00032">get_curve_point_at()</a>, <a class="el" href="generator_8cpp_source.html#l00671">mat()</a>, <a class="el" href="curves_8cpp_source.html#l00018">Mb</a>, and <a class="el" href="generator_8cpp_source.html#l00661">monic_3rd_polynomial_at()</a>.</p>
+<p class="reference">References <a class="el" href="generator_8cpp_source.html#l00637">deriv_of_monic_3rd_polynomial_at()</a>, <a class="el" href="curves_8cpp_source.html#l00032">get_curve_point_at()</a>, <a class="el" href="generator_8cpp_source.html#l00642">mat()</a>, <a class="el" href="curves_8cpp_source.html#l00018">Mb</a>, and <a class="el" href="generator_8cpp_source.html#l00632">monic_3rd_polynomial_at()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="generator_8cpp_source.html#l00735">get_bezier_patch()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="generator_8cpp_source.html#l00706">get_bezier_patch()</a>.</p>
 <div id="dynsection-4" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-4-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-4-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-4-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="group__bezier_ga3ab22588659e568df730297c82e0930b_cgraph.svg" width="400" height="206"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__bezier_ga4623e7c5e81e842a2b10cd85b9481744_cgraph.svg" width="400" height="206"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 <div id="dynsection-5" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-5-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-5-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-5-content" class="dyncontent" style="display:none;">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="group__bezier_ga3ab22588659e568df730297c82e0930b_icgraph.svg" width="100%" height="300"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="group__bezier_ga4623e7c5e81e842a2b10cd85b9481744_icgraph.svg" width="100%" height="300"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 </div>
 
 </div>
@@ -456,23 +449,24 @@ template&lt;typename T &gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="generator_8cpp_source.html#l00790">790</a> of file <a class="el" href="generator_8cpp_source.html">generator.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  796</span>{</div>
-<div class="line"><span class="lineno">  797</span> </div>
-<div class="line"><span class="lineno">  798</span>  <span class="keywordflow">for</span> (<span class="keyword">auto</span> &amp;control_element : control_elements)</div>
-<div class="line"><span class="lineno">  799</span>    <a class="code hl_function" href="group__bezier.html#ga08aa0300760bfa97d7555a4c4d09f8be">get_bezier_patch</a> (control_element, tesselation, vertices, normals, texture);</div>
-<div class="line"><span class="lineno">  800</span>}</div>
-<div class="ttc" id="agroup__bezier_html_ga08aa0300760bfa97d7555a4c4d09f8be"><div class="ttname"><a href="group__bezier.html#ga08aa0300760bfa97d7555a4c4d09f8be">get_bezier_patch</a></div><div class="ttdeci">void get_bezier_patch(const array&lt; vec3, 16 &gt; control_points, const int int_tesselation, vector&lt; vec3 &gt; &amp;vertices, vector&lt; vec3 &gt; &amp;normals, vector&lt; vec2 &gt; &amp;texture)</div><div class="ttdef"><b>Definition:</b> <a href="generator_8cpp_source.html#l00735">generator.cpp:735</a></div></div>
+<p class="definition">Definition at line <a class="el" href="generator_8cpp_source.html#l00750">750</a> of file <a class="el" href="generator_8cpp_source.html">generator.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  756</span>{</div>
+<div class="line"><span class="lineno">  757</span> </div>
+<div class="line"><span class="lineno">  758</span>  <span class="keywordflow">for</span> (<span class="keyword">auto</span> &amp;control_element : control_elements)</div>
+<div class="line"><span class="lineno">  759</span>    <a class="code hl_function" href="group__bezier.html#ga08aa0300760bfa97d7555a4c4d09f8be">get_bezier_patch</a> (control_element, tesselation, vertices, normals, texture);</div>
+<div class="line"><span class="lineno">  760</span>}</div>
+<div class="ttc" id="agroup__bezier_html_ga08aa0300760bfa97d7555a4c4d09f8be"><div class="ttname"><a href="group__bezier.html#ga08aa0300760bfa97d7555a4c4d09f8be">get_bezier_patch</a></div><div class="ttdeci">void get_bezier_patch(const array&lt; vec3, 16 &gt; control_points, const int int_tesselation, vector&lt; vec3 &gt; &amp;vertices, vector&lt; vec3 &gt; &amp;normals, vector&lt; vec2 &gt; &amp;texture)</div><div class="ttdef"><b>Definition:</b> <a href="generator_8cpp_source.html#l00706">generator.cpp:706</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="generator_8cpp_source.html#l00735">get_bezier_patch()</a>.</p>
+<p class="reference">References <a class="el" href="generator_8cpp_source.html#l00706">get_bezier_patch()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="generator_8cpp_source.html#l00802">model_bezier_write()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="generator_8cpp_source.html#l00762">model_bezier_write()</a>.</p>
 <div id="dynsection-6" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-6-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-6-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-6-content" class="dyncontent" style="display:none;">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="group__bezier_gad696b1162ccfd03b01584b7794814cf5_cgraph.svg" width="100%" height="454"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="group__bezier_gad696b1162ccfd03b01584b7794814cf5_cgraph.svg" width="100%" height="454"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 </div>
 <div id="dynsection-7" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-7-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
@@ -500,18 +494,19 @@ template&lt;typename T &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="generator_8cpp_source.html#l00671">671</a> of file <a class="el" href="generator_8cpp_source.html">generator.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  672</span>{</div>
-<div class="line"><span class="lineno">  673</span>  <span class="keywordflow">return</span> {C[0], C[1], C[2], C[3]};</div>
-<div class="line"><span class="lineno">  674</span>}</div>
+<p class="definition">Definition at line <a class="el" href="generator_8cpp_source.html#l00642">642</a> of file <a class="el" href="generator_8cpp_source.html">generator.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  643</span>{</div>
+<div class="line"><span class="lineno">  644</span>  <span class="keywordflow">return</span> {C[0], C[1], C[2], C[3]};</div>
+<div class="line"><span class="lineno">  645</span>}</div>
 </div><!-- fragment -->
-<p class="reference">Referenced by <a class="el" href="generator_8cpp_source.html#l00685">get_bezier_point_at()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="generator_8cpp_source.html#l00656">get_bezier_point_at()</a>.</p>
 <div id="dynsection-8" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-8-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-8-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-8-content" class="dyncontent" style="display:none;">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="group__bezier_gafcf7fcde525db8b303b2205562b7684d_icgraph.svg" width="100%" height="300"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="group__bezier_gafcf7fcde525db8b303b2205562b7684d_icgraph.svg" width="100%" height="300"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 </div>
 
 </div>
@@ -540,12 +535,12 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="generator_8cpp_source.html#l00723">723</a> of file <a class="el" href="generator_8cpp_source.html">generator.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  724</span>{</div>
-<div class="line"><span class="lineno">  725</span>  <span class="keywordflow">return</span> tesselation * tesselation * 6;</div>
-<div class="line"><span class="lineno">  726</span>}</div>
+<p class="definition">Definition at line <a class="el" href="generator_8cpp_source.html#l00694">694</a> of file <a class="el" href="generator_8cpp_source.html">generator.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  695</span>{</div>
+<div class="line"><span class="lineno">  696</span>  <span class="keywordflow">return</span> tesselation * tesselation * 6;</div>
+<div class="line"><span class="lineno">  697</span>}</div>
 </div><!-- fragment -->
-<p class="reference">Referenced by <a class="el" href="generator_8cpp_source.html#l00728">model_bezier_surface_nVertices()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="generator_8cpp_source.html#l00699">model_bezier_surface_nVertices()</a>.</p>
 <div id="dynsection-9" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-9-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-9-summary" class="dynsummary" style="display:block;">
@@ -590,15 +585,15 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="generator_8cpp_source.html#l00728">728</a> of file <a class="el" href="generator_8cpp_source.html">generator.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  731</span>{</div>
-<div class="line"><span class="lineno">  732</span>  <span class="keywordflow">return</span> <a class="code hl_function" href="group__bezier.html#ga8d6c3e5adc4ee3cfb89a75f2ce7642a8">model_bezier_patch_nVertices</a> (tesselation) * number_of_patches;</div>
-<div class="line"><span class="lineno">  733</span>}</div>
-<div class="ttc" id="agroup__bezier_html_ga8d6c3e5adc4ee3cfb89a75f2ce7642a8"><div class="ttname"><a href="group__bezier.html#ga8d6c3e5adc4ee3cfb89a75f2ce7642a8">model_bezier_patch_nVertices</a></div><div class="ttdeci">static unsigned int model_bezier_patch_nVertices(const unsigned int tesselation)</div><div class="ttdef"><b>Definition:</b> <a href="generator_8cpp_source.html#l00723">generator.cpp:723</a></div></div>
+<p class="definition">Definition at line <a class="el" href="generator_8cpp_source.html#l00699">699</a> of file <a class="el" href="generator_8cpp_source.html">generator.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  702</span>{</div>
+<div class="line"><span class="lineno">  703</span>  <span class="keywordflow">return</span> <a class="code hl_function" href="group__bezier.html#ga8d6c3e5adc4ee3cfb89a75f2ce7642a8">model_bezier_patch_nVertices</a> (tesselation) * number_of_patches;</div>
+<div class="line"><span class="lineno">  704</span>}</div>
+<div class="ttc" id="agroup__bezier_html_ga8d6c3e5adc4ee3cfb89a75f2ce7642a8"><div class="ttname"><a href="group__bezier.html#ga8d6c3e5adc4ee3cfb89a75f2ce7642a8">model_bezier_patch_nVertices</a></div><div class="ttdeci">static unsigned int model_bezier_patch_nVertices(const unsigned int tesselation)</div><div class="ttdef"><b>Definition:</b> <a href="generator_8cpp_source.html#l00694">generator.cpp:694</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="generator_8cpp_source.html#l00723">model_bezier_patch_nVertices()</a>.</p>
+<p class="reference">References <a class="el" href="generator_8cpp_source.html#l00694">model_bezier_patch_nVertices()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="generator_8cpp_source.html#l00802">model_bezier_write()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="generator_8cpp_source.html#l00762">model_bezier_write()</a>.</p>
 <div id="dynsection-10" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-10-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-10-summary" class="dynsummary" style="display:block;">
@@ -648,42 +643,42 @@ template&lt;typename T &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="generator_8cpp_source.html#l00802">802</a> of file <a class="el" href="generator_8cpp_source.html">generator.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  806</span>{</div>
-<div class="line"><span class="lineno">  807</span>  vector&lt;array&lt;vec3, 16&gt;&gt; control_points = <a class="code hl_function" href="group__bezier.html#ga84e3c4940075b047e593e590b6e814d8">read_Bezier</a> (in_patch_file);</div>
-<div class="line"><span class="lineno">  808</span> </div>
-<div class="line"><span class="lineno">  809</span>  <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> nVertices = <a class="code hl_function" href="group__bezier.html#ga20c58299589514750446c5b775b91bc0">model_bezier_surface_nVertices</a> (control_points.size (), tesselation);</div>
-<div class="line"><span class="lineno">  810</span>  vector&lt;vec3&gt; vertices;</div>
-<div class="line"><span class="lineno">  811</span>  vertices.reserve (nVertices);</div>
-<div class="line"><span class="lineno">  812</span>  vector&lt;vec3&gt; normals;</div>
-<div class="line"><span class="lineno">  813</span>  normals.reserve (nVertices);</div>
-<div class="line"><span class="lineno">  814</span>  vector&lt;vec2&gt; texture;</div>
-<div class="line"><span class="lineno">  815</span>  texture.reserve (nVertices);</div>
-<div class="line"><span class="lineno">  816</span> </div>
-<div class="line"><span class="lineno">  817</span>  <a class="code hl_function" href="group__bezier.html#gad696b1162ccfd03b01584b7794814cf5">get_bezier_surface</a> (control_points, tesselation, vertices, normals, texture);</div>
-<div class="line"><span class="lineno">  818</span>  <span class="keywordflow">if</span> (nVertices != vertices.size ())</div>
-<div class="line"><span class="lineno">  819</span>    {</div>
-<div class="line"><span class="lineno">  820</span>      cerr &lt;&lt; nVertices &lt;&lt; <span class="stringliteral">&quot; = nVertices != vertices.size () = &quot;</span> &lt;&lt; vertices.size () &lt;&lt; endl;</div>
-<div class="line"><span class="lineno">  821</span>      exit (EXIT_FAILURE);</div>
-<div class="line"><span class="lineno">  822</span>    }</div>
-<div class="line"><span class="lineno">  823</span>  <span class="comment">//assert (nVertices == vertices.size ());</span></div>
-<div class="line"><span class="lineno">  824</span> </div>
-<div class="line"><span class="lineno">  825</span>  <a class="code hl_function" href="group__points.html#gaf9dbdadabbf44c2542a65faaad2ae271">model_write</a> (out_3d_file, vertices, normals, texture);</div>
-<div class="line"><span class="lineno">  826</span>}</div>
-<div class="ttc" id="agroup__bezier_html_ga20c58299589514750446c5b775b91bc0"><div class="ttname"><a href="group__bezier.html#ga20c58299589514750446c5b775b91bc0">model_bezier_surface_nVertices</a></div><div class="ttdeci">static unsigned int model_bezier_surface_nVertices(const unsigned int number_of_patches, const unsigned int tesselation)</div><div class="ttdef"><b>Definition:</b> <a href="generator_8cpp_source.html#l00728">generator.cpp:728</a></div></div>
-<div class="ttc" id="agroup__bezier_html_ga84e3c4940075b047e593e590b6e814d8"><div class="ttname"><a href="group__bezier.html#ga84e3c4940075b047e593e590b6e814d8">read_Bezier</a></div><div class="ttdeci">vector&lt; array&lt; vec3, 16 &gt; &gt; read_Bezier(const char *const patch)</div><div class="ttdef"><b>Definition:</b> <a href="generator_8cpp_source.html#l00588">generator.cpp:588</a></div></div>
-<div class="ttc" id="agroup__bezier_html_gad696b1162ccfd03b01584b7794814cf5"><div class="ttname"><a href="group__bezier.html#gad696b1162ccfd03b01584b7794814cf5">get_bezier_surface</a></div><div class="ttdeci">void get_bezier_surface(const vector&lt; array&lt; vec3, 16 &gt; &gt; &amp;control_elements, const int tesselation, vector&lt; vec3 &gt; &amp;vertices, vector&lt; vec3 &gt; &amp;normals, vector&lt; vec2 &gt; &amp;texture)</div><div class="ttdef"><b>Definition:</b> <a href="generator_8cpp_source.html#l00790">generator.cpp:790</a></div></div>
-<div class="ttc" id="agroup__points_html_gaf9dbdadabbf44c2542a65faaad2ae271"><div class="ttname"><a href="group__points.html#gaf9dbdadabbf44c2542a65faaad2ae271">model_write</a></div><div class="ttdeci">void model_write(const char *const filename, const vector&lt; vec3 &gt; &amp;vertices, const vector&lt; vec3 &gt; &amp;normals, const vector&lt; vec2 &gt; &amp;texture)</div><div class="ttdef"><b>Definition:</b> <a href="generator_8cpp_source.html#l00070">generator.cpp:70</a></div></div>
+<p class="definition">Definition at line <a class="el" href="generator_8cpp_source.html#l00762">762</a> of file <a class="el" href="generator_8cpp_source.html">generator.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  766</span>{</div>
+<div class="line"><span class="lineno">  767</span>  vector&lt;array&lt;vec3, 16&gt;&gt; control_points = <a class="code hl_function" href="group__bezier.html#ga84e3c4940075b047e593e590b6e814d8">read_Bezier</a> (in_patch_file);</div>
+<div class="line"><span class="lineno">  768</span> </div>
+<div class="line"><span class="lineno">  769</span>  <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> nVertices = <a class="code hl_function" href="group__bezier.html#ga20c58299589514750446c5b775b91bc0">model_bezier_surface_nVertices</a> (control_points.size (), tesselation);</div>
+<div class="line"><span class="lineno">  770</span>  vector&lt;vec3&gt; vertices;</div>
+<div class="line"><span class="lineno">  771</span>  vertices.reserve (nVertices);</div>
+<div class="line"><span class="lineno">  772</span>  vector&lt;vec3&gt; normals;</div>
+<div class="line"><span class="lineno">  773</span>  normals.reserve (nVertices);</div>
+<div class="line"><span class="lineno">  774</span>  vector&lt;vec2&gt; texture;</div>
+<div class="line"><span class="lineno">  775</span>  texture.reserve (nVertices);</div>
+<div class="line"><span class="lineno">  776</span> </div>
+<div class="line"><span class="lineno">  777</span>  <a class="code hl_function" href="group__bezier.html#gad696b1162ccfd03b01584b7794814cf5">get_bezier_surface</a> (control_points, tesselation, vertices, normals, texture);</div>
+<div class="line"><span class="lineno">  778</span>  <span class="keywordflow">if</span> (nVertices != vertices.size ())</div>
+<div class="line"><span class="lineno">  779</span>    {</div>
+<div class="line"><span class="lineno">  780</span>      cerr &lt;&lt; nVertices &lt;&lt; <span class="stringliteral">&quot; = nVertices != vertices.size () = &quot;</span> &lt;&lt; vertices.size () &lt;&lt; endl;</div>
+<div class="line"><span class="lineno">  781</span>      exit (EXIT_FAILURE);</div>
+<div class="line"><span class="lineno">  782</span>    }</div>
+<div class="line"><span class="lineno">  783</span> </div>
+<div class="line"><span class="lineno">  784</span>  <a class="code hl_function" href="group__points.html#gaf9dbdadabbf44c2542a65faaad2ae271">model_write</a> (out_3d_file, vertices, normals, texture);</div>
+<div class="line"><span class="lineno">  785</span>}</div>
+<div class="ttc" id="agroup__bezier_html_ga20c58299589514750446c5b775b91bc0"><div class="ttname"><a href="group__bezier.html#ga20c58299589514750446c5b775b91bc0">model_bezier_surface_nVertices</a></div><div class="ttdeci">static unsigned int model_bezier_surface_nVertices(const unsigned int number_of_patches, const unsigned int tesselation)</div><div class="ttdef"><b>Definition:</b> <a href="generator_8cpp_source.html#l00699">generator.cpp:699</a></div></div>
+<div class="ttc" id="agroup__bezier_html_ga84e3c4940075b047e593e590b6e814d8"><div class="ttname"><a href="group__bezier.html#ga84e3c4940075b047e593e590b6e814d8">read_Bezier</a></div><div class="ttdeci">vector&lt; array&lt; vec3, 16 &gt; &gt; read_Bezier(const char *const patch)</div><div class="ttdef"><b>Definition:</b> <a href="generator_8cpp_source.html#l00559">generator.cpp:559</a></div></div>
+<div class="ttc" id="agroup__bezier_html_gad696b1162ccfd03b01584b7794814cf5"><div class="ttname"><a href="group__bezier.html#gad696b1162ccfd03b01584b7794814cf5">get_bezier_surface</a></div><div class="ttdeci">void get_bezier_surface(const vector&lt; array&lt; vec3, 16 &gt; &gt; &amp;control_elements, const int tesselation, vector&lt; vec3 &gt; &amp;vertices, vector&lt; vec3 &gt; &amp;normals, vector&lt; vec2 &gt; &amp;texture)</div><div class="ttdef"><b>Definition:</b> <a href="generator_8cpp_source.html#l00750">generator.cpp:750</a></div></div>
+<div class="ttc" id="agroup__points_html_gaf9dbdadabbf44c2542a65faaad2ae271"><div class="ttname"><a href="group__points.html#gaf9dbdadabbf44c2542a65faaad2ae271">model_write</a></div><div class="ttdeci">void model_write(const char *const filename, const vector&lt; vec3 &gt; &amp;vertices, const vector&lt; vec3 &gt; &amp;normals, const vector&lt; vec2 &gt; &amp;texture)</div><div class="ttdef"><b>Definition:</b> <a href="generator_8cpp_source.html#l00041">generator.cpp:41</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="generator_8cpp_source.html#l00790">get_bezier_surface()</a>, <a class="el" href="generator_8cpp_source.html#l00728">model_bezier_surface_nVertices()</a>, <a class="el" href="generator_8cpp_source.html#l00070">model_write()</a>, and <a class="el" href="generator_8cpp_source.html#l00588">read_Bezier()</a>.</p>
+<p class="reference">References <a class="el" href="generator_8cpp_source.html#l00750">get_bezier_surface()</a>, <a class="el" href="generator_8cpp_source.html#l00699">model_bezier_surface_nVertices()</a>, <a class="el" href="generator_8cpp_source.html#l00041">model_write()</a>, and <a class="el" href="generator_8cpp_source.html#l00559">read_Bezier()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="generator_8cpp_source.html#l00839">main()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="generator_8cpp_source.html#l00798">main()</a>.</p>
 <div id="dynsection-12" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-12-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-12-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-12-content" class="dyncontent" style="display:none;">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="group__bezier_ga0886f14826417ba72823e219550591e1_cgraph.svg" width="100%" height="523"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="group__bezier_ga0886f14826417ba72823e219550591e1_cgraph.svg" width="100%" height="523"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 </div>
 <div id="dynsection-13" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-13-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
@@ -721,18 +716,19 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="generator_8cpp_source.html#l00661">661</a> of file <a class="el" href="generator_8cpp_source.html">generator.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  662</span>{</div>
-<div class="line"><span class="lineno">  663</span>  <span class="keywordflow">return</span> {pow (n, 3), pow (n, 2), n, 1};</div>
-<div class="line"><span class="lineno">  664</span>}</div>
+<p class="definition">Definition at line <a class="el" href="generator_8cpp_source.html#l00632">632</a> of file <a class="el" href="generator_8cpp_source.html">generator.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  633</span>{</div>
+<div class="line"><span class="lineno">  634</span>  <span class="keywordflow">return</span> {pow (n, 3), pow (n, 2), n, 1};</div>
+<div class="line"><span class="lineno">  635</span>}</div>
 </div><!-- fragment -->
-<p class="reference">Referenced by <a class="el" href="generator_8cpp_source.html#l00685">get_bezier_point_at()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="generator_8cpp_source.html#l00656">get_bezier_point_at()</a>.</p>
 <div id="dynsection-14" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-14-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-14-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-14-content" class="dyncontent" style="display:none;">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="group__bezier_gaa5cc85b3de7b256bb1f7c98ac78fef08_icgraph.svg" width="100%" height="300"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="group__bezier_gaa5cc85b3de7b256bb1f7c98ac78fef08_icgraph.svg" width="100%" height="300"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 </div>
 
 </div>
@@ -753,80 +749,80 @@ template&lt;typename T &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="generator_8cpp_source.html#l00588">588</a> of file <a class="el" href="generator_8cpp_source.html">generator.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  589</span>{</div>
-<div class="line"><span class="lineno">  590</span>  <span class="keywordtype">string</span> buffer;</div>
-<div class="line"><span class="lineno">  591</span>  ifstream myFile;</div>
-<div class="line"><span class="lineno">  592</span> </div>
-<div class="line"><span class="lineno">  593</span>  myFile.open (patch, ios::in | ios::out);</div>
-<div class="line"><span class="lineno">  594</span>  getline (myFile, buffer);</div>
-<div class="line"><span class="lineno">  595</span>  <span class="comment">// Número de patches presentes no ficheiro.</span></div>
-<div class="line"><span class="lineno">  596</span>  <span class="keyword">const</span> <span class="keywordtype">int</span> n_patches = stoi (buffer);</div>
-<div class="line"><span class="lineno">  597</span> </div>
-<div class="line"><span class="lineno">  598</span>  <span class="comment">// Vetor de vetores de índices.</span></div>
-<div class="line"><span class="lineno">  599</span>  vector&lt;vector&lt;int&gt;&gt; patches;</div>
-<div class="line"><span class="lineno">  600</span> </div>
-<div class="line"><span class="lineno">  601</span>  <span class="comment">// Ciclo externo lê uma linha (patch) de cada vez</span></div>
-<div class="line"><span class="lineno">  602</span>  <span class="keywordflow">for</span> (<span class="keywordtype">int</span> j = 0; j &lt; n_patches; j++)</div>
-<div class="line"><span class="lineno">  603</span>    {</div>
-<div class="line"><span class="lineno">  604</span>      vector&lt;int&gt; patchIndexes;</div>
-<div class="line"><span class="lineno">  605</span>      <span class="comment">/*</span></div>
-<div class="line"><span class="lineno">  606</span><span class="comment">      Ciclo interno lê os índices dos pontos de controlo de cada patch, sabendo que cada</span></div>
-<div class="line"><span class="lineno">  607</span><span class="comment">      patch terá 16 pontos de controlo.</span></div>
-<div class="line"><span class="lineno">  608</span><span class="comment">      */</span></div>
-<div class="line"><span class="lineno">  609</span>      <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 15; i++)</div>
-<div class="line"><span class="lineno">  610</span>        {</div>
-<div class="line"><span class="lineno">  611</span>          getline (myFile, buffer, <span class="charliteral">&#39;,&#39;</span>);</div>
-<div class="line"><span class="lineno">  612</span>          patchIndexes.push_back (stoi (buffer));</div>
-<div class="line"><span class="lineno">  613</span>        }</div>
-<div class="line"><span class="lineno">  614</span>      getline (myFile, buffer);</div>
-<div class="line"><span class="lineno">  615</span>      patchIndexes.push_back (stoi (buffer));</div>
-<div class="line"><span class="lineno">  616</span>      patches.push_back (patchIndexes);</div>
-<div class="line"><span class="lineno">  617</span>    }</div>
-<div class="line"><span class="lineno">  618</span> </div>
-<div class="line"><span class="lineno">  619</span>  getline (myFile, buffer);</div>
-<div class="line"><span class="lineno">  620</span>  <span class="comment">// Número de pontos presentes no ficheiro.</span></div>
-<div class="line"><span class="lineno">  621</span>  <span class="keyword">const</span> <span class="keywordtype">int</span> pts = stoi (buffer);</div>
+<p class="definition">Definition at line <a class="el" href="generator_8cpp_source.html#l00559">559</a> of file <a class="el" href="generator_8cpp_source.html">generator.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  560</span>{</div>
+<div class="line"><span class="lineno">  561</span>  <span class="keywordtype">string</span> buffer;</div>
+<div class="line"><span class="lineno">  562</span>  ifstream myFile;</div>
+<div class="line"><span class="lineno">  563</span> </div>
+<div class="line"><span class="lineno">  564</span>  myFile.open (patch, ios::in | ios::out);</div>
+<div class="line"><span class="lineno">  565</span>  getline (myFile, buffer);</div>
+<div class="line"><span class="lineno">  566</span>  <span class="comment">// Número de patches presentes no ficheiro.</span></div>
+<div class="line"><span class="lineno">  567</span>  <span class="keyword">const</span> <span class="keywordtype">int</span> n_patches = stoi (buffer);</div>
+<div class="line"><span class="lineno">  568</span> </div>
+<div class="line"><span class="lineno">  569</span>  <span class="comment">// Vetor de vetores de índices.</span></div>
+<div class="line"><span class="lineno">  570</span>  vector&lt;vector&lt;int&gt;&gt; patches;</div>
+<div class="line"><span class="lineno">  571</span> </div>
+<div class="line"><span class="lineno">  572</span>  <span class="comment">// Ciclo externo lê uma linha (patch) de cada vez</span></div>
+<div class="line"><span class="lineno">  573</span>  <span class="keywordflow">for</span> (<span class="keywordtype">int</span> j = 0; j &lt; n_patches; j++)</div>
+<div class="line"><span class="lineno">  574</span>    {</div>
+<div class="line"><span class="lineno">  575</span>      vector&lt;int&gt; patchIndexes;</div>
+<div class="line"><span class="lineno">  576</span>      <span class="comment">/*</span></div>
+<div class="line"><span class="lineno">  577</span><span class="comment">      Ciclo interno lê os índices dos pontos de controlo de cada patch, sabendo que cada</span></div>
+<div class="line"><span class="lineno">  578</span><span class="comment">      patch terá 16 pontos de controlo.</span></div>
+<div class="line"><span class="lineno">  579</span><span class="comment">      */</span></div>
+<div class="line"><span class="lineno">  580</span>      <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 15; i++)</div>
+<div class="line"><span class="lineno">  581</span>        {</div>
+<div class="line"><span class="lineno">  582</span>          getline (myFile, buffer, <span class="charliteral">&#39;,&#39;</span>);</div>
+<div class="line"><span class="lineno">  583</span>          patchIndexes.push_back (stoi (buffer));</div>
+<div class="line"><span class="lineno">  584</span>        }</div>
+<div class="line"><span class="lineno">  585</span>      getline (myFile, buffer);</div>
+<div class="line"><span class="lineno">  586</span>      patchIndexes.push_back (stoi (buffer));</div>
+<div class="line"><span class="lineno">  587</span>      patches.push_back (patchIndexes);</div>
+<div class="line"><span class="lineno">  588</span>    }</div>
+<div class="line"><span class="lineno">  589</span> </div>
+<div class="line"><span class="lineno">  590</span>  getline (myFile, buffer);</div>
+<div class="line"><span class="lineno">  591</span>  <span class="comment">// Número de pontos presentes no ficheiro.</span></div>
+<div class="line"><span class="lineno">  592</span>  <span class="keyword">const</span> <span class="keywordtype">int</span> pts = stoi (buffer);</div>
+<div class="line"><span class="lineno">  593</span> </div>
+<div class="line"><span class="lineno">  594</span>  <span class="comment">// Vetor que guardará as coordenadas de pontos de controlo para superfície de Bézier.</span></div>
+<div class="line"><span class="lineno">  595</span>  vector&lt;vec3&gt; control;</div>
+<div class="line"><span class="lineno">  596</span>  <span class="keywordflow">for</span> (<span class="keywordtype">int</span> j = 0; j &lt; pts; j++)</div>
+<div class="line"><span class="lineno">  597</span>    {</div>
+<div class="line"><span class="lineno">  598</span>      vec3 v;</div>
+<div class="line"><span class="lineno">  599</span>      getline (myFile, buffer, <span class="charliteral">&#39;,&#39;</span>);</div>
+<div class="line"><span class="lineno">  600</span>      v[0] = stof (buffer);</div>
+<div class="line"><span class="lineno">  601</span>      getline (myFile, buffer, <span class="charliteral">&#39;,&#39;</span>);</div>
+<div class="line"><span class="lineno">  602</span>      v[1] = stof (buffer);</div>
+<div class="line"><span class="lineno">  603</span>      getline (myFile, buffer);</div>
+<div class="line"><span class="lineno">  604</span>      v[2] = stof (buffer);</div>
+<div class="line"><span class="lineno">  605</span>      control.push_back (v);</div>
+<div class="line"><span class="lineno">  606</span>    }</div>
+<div class="line"><span class="lineno">  607</span> </div>
+<div class="line"><span class="lineno">  608</span>  <span class="comment">/*</span></div>
+<div class="line"><span class="lineno">  609</span><span class="comment">  Percorrem-se os vetores que, para cada patch, guardam os seus índices de pontos de controlo.</span></div>
+<div class="line"><span class="lineno">  610</span><span class="comment">  Para cada patch, constroi-se um vetor com as coordenadas dos seus pontos de controlo.</span></div>
+<div class="line"><span class="lineno">  611</span><span class="comment">  */</span></div>
+<div class="line"><span class="lineno">  612</span>  vector&lt;array&lt;vec3, 16&gt;&gt; pointsInPatches;</div>
+<div class="line"><span class="lineno">  613</span>  <span class="keywordflow">for</span> (<span class="keyword">auto</span> &amp;patche : patches)</div>
+<div class="line"><span class="lineno">  614</span>    {</div>
+<div class="line"><span class="lineno">  615</span>      array&lt;vec3, 16&gt; pointsInPatch{};</div>
+<div class="line"><span class="lineno">  616</span>      <span class="keywordflow">for</span> (<span class="keywordtype">int</span> j = 0; j &lt; 16; j++)</div>
+<div class="line"><span class="lineno">  617</span>        {</div>
+<div class="line"><span class="lineno">  618</span>          pointsInPatch[j] = control[patche[j]];</div>
+<div class="line"><span class="lineno">  619</span>        }</div>
+<div class="line"><span class="lineno">  620</span>      pointsInPatches.push_back (pointsInPatch);</div>
+<div class="line"><span class="lineno">  621</span>    }</div>
 <div class="line"><span class="lineno">  622</span> </div>
-<div class="line"><span class="lineno">  623</span>  <span class="comment">// Vetor que guardará as coordenadas de pontos de controlo para superfície de Bézier.</span></div>
-<div class="line"><span class="lineno">  624</span>  vector&lt;vec3&gt; control;</div>
-<div class="line"><span class="lineno">  625</span>  <span class="keywordflow">for</span> (<span class="keywordtype">int</span> j = 0; j &lt; pts; j++)</div>
-<div class="line"><span class="lineno">  626</span>    {</div>
-<div class="line"><span class="lineno">  627</span>      vec3 v;</div>
-<div class="line"><span class="lineno">  628</span>      getline (myFile, buffer, <span class="charliteral">&#39;,&#39;</span>);</div>
-<div class="line"><span class="lineno">  629</span>      v[0] = stof (buffer);</div>
-<div class="line"><span class="lineno">  630</span>      getline (myFile, buffer, <span class="charliteral">&#39;,&#39;</span>);</div>
-<div class="line"><span class="lineno">  631</span>      v[1] = stof (buffer);</div>
-<div class="line"><span class="lineno">  632</span>      getline (myFile, buffer);</div>
-<div class="line"><span class="lineno">  633</span>      v[2] = stof (buffer);</div>
-<div class="line"><span class="lineno">  634</span>      control.push_back (v);</div>
-<div class="line"><span class="lineno">  635</span>    }</div>
-<div class="line"><span class="lineno">  636</span> </div>
-<div class="line"><span class="lineno">  637</span>  <span class="comment">/*</span></div>
-<div class="line"><span class="lineno">  638</span><span class="comment">  Percorrem-se os vetores que, para cada patch, guardam os seus índices de pontos de controlo.</span></div>
-<div class="line"><span class="lineno">  639</span><span class="comment">  Para cada patch, constroi-se um vetor com as coordenadas dos seus pontos de controlo.</span></div>
-<div class="line"><span class="lineno">  640</span><span class="comment">  */</span></div>
-<div class="line"><span class="lineno">  641</span>  vector&lt;array&lt;vec3, 16&gt;&gt; pointsInPatches;</div>
-<div class="line"><span class="lineno">  642</span>  <span class="keywordflow">for</span> (<span class="keyword">auto</span> &amp;patche : patches)</div>
-<div class="line"><span class="lineno">  643</span>    {</div>
-<div class="line"><span class="lineno">  644</span>      array&lt;vec3, 16&gt; pointsInPatch{};</div>
-<div class="line"><span class="lineno">  645</span>      <span class="keywordflow">for</span> (<span class="keywordtype">int</span> j = 0; j &lt; 16; j++)</div>
-<div class="line"><span class="lineno">  646</span>        {</div>
-<div class="line"><span class="lineno">  647</span>          pointsInPatch[j] = control[patche[j]];</div>
-<div class="line"><span class="lineno">  648</span>        }</div>
-<div class="line"><span class="lineno">  649</span>      pointsInPatches.push_back (pointsInPatch);</div>
-<div class="line"><span class="lineno">  650</span>    }</div>
-<div class="line"><span class="lineno">  651</span> </div>
-<div class="line"><span class="lineno">  652</span>  myFile.close ();</div>
-<div class="line"><span class="lineno">  653</span> </div>
-<div class="line"><span class="lineno">  654</span>  <span class="comment">/*std::cout &lt;&lt; &quot;read_Bezier read:&quot; &lt;&lt; std::endl;</span></div>
-<div class="line"><span class="lineno">  655</span><span class="comment">  for (auto arr : pointsInPatches)</span></div>
-<div class="line"><span class="lineno">  656</span><span class="comment">    for (auto p : arr)</span></div>
-<div class="line"><span class="lineno">  657</span><span class="comment">      std::cout &lt;&lt; glm::to_string (p) &lt;&lt; std::endl;*/</span></div>
-<div class="line"><span class="lineno">  658</span>  <span class="keywordflow">return</span> pointsInPatches;</div>
-<div class="line"><span class="lineno">  659</span>}</div>
+<div class="line"><span class="lineno">  623</span>  myFile.close ();</div>
+<div class="line"><span class="lineno">  624</span> </div>
+<div class="line"><span class="lineno">  625</span>  <span class="comment">/*std::cout &lt;&lt; &quot;read_Bezier read:&quot; &lt;&lt; std::endl;</span></div>
+<div class="line"><span class="lineno">  626</span><span class="comment">  for (auto arr : pointsInPatches)</span></div>
+<div class="line"><span class="lineno">  627</span><span class="comment">    for (auto p : arr)</span></div>
+<div class="line"><span class="lineno">  628</span><span class="comment">      std::cout &lt;&lt; glm::to_string (p) &lt;&lt; std::endl;*/</span></div>
+<div class="line"><span class="lineno">  629</span>  <span class="keywordflow">return</span> pointsInPatches;</div>
+<div class="line"><span class="lineno">  630</span>}</div>
 </div><!-- fragment -->
-<p class="reference">Referenced by <a class="el" href="generator_8cpp_source.html#l00802">model_bezier_write()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="generator_8cpp_source.html#l00762">model_bezier_write()</a>.</p>
 <div id="dynsection-15" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-15-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-15-summary" class="dynsummary" style="display:block;">

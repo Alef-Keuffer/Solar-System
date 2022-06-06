@@ -66,7 +66,7 @@
 <!-- Node4 -->
 <g id="node4" class="node">
 <title>Node4</title>
-<g id="a_node4"><a xlink:href="group__sphere.html#ga928920fa74fa2bfbaa44d52fd31b4793" target="_top" xlink:title=" ">
+<g id="a_node4"><a xlink:href="group__sphere.html#gacf1c00867069a3a1ad3a69b8ded33821" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="black" points="325,-38.5 325,-57.5 447,-57.5 447,-38.5 325,-38.5"/>
 <text text-anchor="middle" x="386" y="-45.5" font-family="Helvetica,sans-Serif" font-size="10.00">model_sphere_vertex</text>
 </a>

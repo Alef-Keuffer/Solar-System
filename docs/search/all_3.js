@@ -1,15 +1,12 @@
 var searchData=
 [
-  ['camera_0',['camera',['../structprofile__struct.html#aaac928e6078dec741c9c7d9a3d874b28',1,'profile_struct']]],
-  ['camera_1',['Camera',['../group__camera.html',1,'']]],
-  ['cartesian2spherical_2',['cartesian2Spherical',['../group__explorer_camera.html#gabd434f65cba3ee8011b8d3cdd1f25dca',1,'engine.cpp']]],
-  ['changeprofile_3',['changeProfile',['../group__camera.html#ga025f4079099b4474ee63a12529c22fa4',1,'engine.cpp']]],
-  ['cone_4',['CONE',['../generator_8cpp.html#a6fef3a1a7a2e188e7a9ec3bfbbe73b53',1,'generator.cpp']]],
-  ['cone_5',['Cone',['../group__cone.html',1,'']]],
-  ['conevertex_6',['coneVertex',['../main_8cpp.html#a808aea2b6040a6c77d4062c1f190a0f2',1,'main.cpp']]],
-  ['cube_7',['CUBE',['../generator_8cpp.html#a0116cf973c39f8ad007b29a64ce0dc68',1,'generator.cpp']]],
-  ['cube_8',['Cube',['../group__cube.html',1,'']]],
-  ['curves_2ecpp_9',['curves.cpp',['../curves_8cpp.html',1,'']]],
-  ['curves_2eh_10',['curves.h',['../curves_8h.html',1,'']]],
-  ['cylindervertex_11',['cylinderVertex',['../main_8cpp.html#af20ab473c07c3e4231754764f382be46',1,'main.cpp']]]
+  ['d_0',['D',['../namespace_d.html',1,'']]],
+  ['defaultchangesize_1',['defaultChangeSize',['../group__camera.html#ga170513e8231f724bf2c284fbea46dfab',1,'engine.cpp']]],
+  ['deriv_5fof_5fmonic_5f3rd_5fpolynomial_5fat_2',['deriv_of_monic_3rd_polynomial_at',['../group__bezier.html#gad11b5559e8d34f899f934960207ded9a',1,'generator.cpp']]],
+  ['diffuse_3',['diffuse',['../structmodel.html#ac6da54555e9cdb72721492ef453b00c7',1,'model']]],
+  ['diffuse_4',['DIFFUSE',['../parsing_8h.html#a99fb83031ce9923c84392b4e92f956b5ae24747f0d4ad269225adda5df5feaa2c',1,'parsing.h']]],
+  ['directional_5',['DIRECTIONAL',['../parsing_8h.html#a99fb83031ce9923c84392b4e92f956b5ac1fbb1e261b4d7aab1e57e564a486fb0',1,'parsing.h']]],
+  ['displayfunc_6',['displayFunc',['../structprofile__struct.html#a9da75dfd0a717391af01f2d740da5298',1,'profile_struct']]],
+  ['down_7',['Down',['../struct_motion.html#a59af8d96bdfe9372038160f381e6f3fc',1,'Motion']]],
+  ['draw_5faxes_8',['draw_axes',['../engine_8cpp.html#a634dba686e70e7ff3f10c37d11f463da',1,'engine.cpp']]]
 ];

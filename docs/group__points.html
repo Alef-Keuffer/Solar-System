@@ -118,10 +118,6 @@ $(document).ready(function(){initNavTree('group__points.html',''); initResizable
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ga127fb8e56ec1e38505cdd9ea6efa2cf6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__points.html#ga127fb8e56ec1e38505cdd9ea6efa2cf6">points_vertex</a> (const float x, const float y, const float z, unsigned int *pos, float points[])</td></tr>
-<tr class="separator:ga127fb8e56ec1e38505cdd9ea6efa2cf6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gab0ec2dac46ec7ee44911b8bcf1e9dad0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__points.html#gab0ec2dac46ec7ee44911b8bcf1e9dad0">points_write</a> (const char *filename, const unsigned int nVertices, const float points[])</td></tr>
-<tr class="separator:gab0ec2dac46ec7ee44911b8bcf1e9dad0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaf9dbdadabbf44c2542a65faaad2ae271"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__points.html#gaf9dbdadabbf44c2542a65faaad2ae271">model_write</a> (const char *const filename, const vector&lt; vec3 &gt; &amp;vertices, const vector&lt; vec3 &gt; &amp;normals, const vector&lt; vec2 &gt; &amp;texture)</td></tr>
 <tr class="separator:gaf9dbdadabbf44c2542a65faaad2ae271"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -165,35 +161,35 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="generator_8cpp_source.html#l00070">70</a> of file <a class="el" href="generator_8cpp_source.html">generator.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   74</span>{</div>
-<div class="line"><span class="lineno">   75</span>  FILE *fp = fopen (filename, <span class="stringliteral">&quot;w&quot;</span>);</div>
-<div class="line"><span class="lineno">   76</span> </div>
-<div class="line"><span class="lineno">   77</span>  <span class="keywordflow">if</span> (!fp)</div>
-<div class="line"><span class="lineno">   78</span>    {</div>
-<div class="line"><span class="lineno">   79</span>      fprintf (stderr, <span class="stringliteral">&quot;failed to open file: %s&quot;</span>, filename);</div>
-<div class="line"><span class="lineno">   80</span>      exit (1);</div>
-<div class="line"><span class="lineno">   81</span>    }</div>
-<div class="line"><span class="lineno">   82</span> </div>
-<div class="line"><span class="lineno">   83</span>  assert(vertices.size () &lt; INT_MAX);</div>
-<div class="line"><span class="lineno">   84</span>  <span class="keyword">const</span> <span class="keywordtype">int</span> nVertices = vertices.size ();</div>
-<div class="line"><span class="lineno">   85</span>  <span class="keyword">const</span> <span class="keywordtype">int</span> nNormals = normals.size ();</div>
-<div class="line"><span class="lineno">   86</span>  <span class="keyword">const</span> <span class="keywordtype">int</span> nTextures = texture.size ();</div>
-<div class="line"><span class="lineno">   87</span>  fwrite (&amp;nVertices, <span class="keyword">sizeof</span> (nVertices), 1, fp);</div>
-<div class="line"><span class="lineno">   88</span>  fwrite (vertices.data (), sizeof (vertices.back ()), nVertices, fp);</div>
-<div class="line"><span class="lineno">   89</span>  fwrite (normals.data (), sizeof (normals.back ()), nNormals, fp);</div>
-<div class="line"><span class="lineno">   90</span>  fwrite (texture.data (), sizeof (texture.back ()), nTextures, fp);</div>
-<div class="line"><span class="lineno">   91</span> </div>
-<div class="line"><span class="lineno">   92</span>  fclose (fp);</div>
-<div class="line"><span class="lineno">   93</span> </div>
-<div class="line"><span class="lineno">   94</span>  cerr &lt;&lt; <span class="stringliteral">&quot;[generator] Wrote &quot;</span></div>
-<div class="line"><span class="lineno">   95</span>       &lt;&lt; nVertices &lt;&lt; <span class="stringliteral">&quot; vertices, &quot;</span></div>
-<div class="line"><span class="lineno">   96</span>       &lt;&lt; nNormals &lt;&lt; <span class="stringliteral">&quot; normals, &quot;</span></div>
-<div class="line"><span class="lineno">   97</span>       &lt;&lt; nTextures &lt;&lt; <span class="stringliteral">&quot; textures to &quot;</span></div>
-<div class="line"><span class="lineno">   98</span>       &lt;&lt; filename &lt;&lt; endl;</div>
-<div class="line"><span class="lineno">   99</span>}</div>
+<p class="definition">Definition at line <a class="el" href="generator_8cpp_source.html#l00041">41</a> of file <a class="el" href="generator_8cpp_source.html">generator.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   45</span>{</div>
+<div class="line"><span class="lineno">   46</span>  FILE *fp = fopen (filename, <span class="stringliteral">&quot;w&quot;</span>);</div>
+<div class="line"><span class="lineno">   47</span> </div>
+<div class="line"><span class="lineno">   48</span>  <span class="keywordflow">if</span> (!fp)</div>
+<div class="line"><span class="lineno">   49</span>    {</div>
+<div class="line"><span class="lineno">   50</span>      fprintf (stderr, <span class="stringliteral">&quot;failed to open file: %s&quot;</span>, filename);</div>
+<div class="line"><span class="lineno">   51</span>      exit (1);</div>
+<div class="line"><span class="lineno">   52</span>    }</div>
+<div class="line"><span class="lineno">   53</span> </div>
+<div class="line"><span class="lineno">   54</span>  assert(vertices.size () &lt; INT_MAX);</div>
+<div class="line"><span class="lineno">   55</span>  <span class="keyword">const</span> <span class="keywordtype">int</span> nVertices = (int) vertices.size ();</div>
+<div class="line"><span class="lineno">   56</span>  <span class="keyword">const</span> <span class="keywordtype">int</span> nNormals = (int) normals.size ();</div>
+<div class="line"><span class="lineno">   57</span>  <span class="keyword">const</span> <span class="keywordtype">int</span> nTextures = (int) texture.size ();</div>
+<div class="line"><span class="lineno">   58</span>  fwrite (&amp;nVertices, <span class="keyword">sizeof</span> (nVertices), 1, fp);</div>
+<div class="line"><span class="lineno">   59</span>  fwrite (vertices.data (), sizeof (vertices.back ()), nVertices, fp);</div>
+<div class="line"><span class="lineno">   60</span>  fwrite (normals.data (), sizeof (normals.back ()), nNormals, fp);</div>
+<div class="line"><span class="lineno">   61</span>  fwrite (texture.data (), sizeof (texture.back ()), nTextures, fp);</div>
+<div class="line"><span class="lineno">   62</span> </div>
+<div class="line"><span class="lineno">   63</span>  fclose (fp);</div>
+<div class="line"><span class="lineno">   64</span> </div>
+<div class="line"><span class="lineno">   65</span>  cerr &lt;&lt; <span class="stringliteral">&quot;[generator] Wrote &quot;</span></div>
+<div class="line"><span class="lineno">   66</span>       &lt;&lt; nVertices &lt;&lt; <span class="stringliteral">&quot; vertices, &quot;</span></div>
+<div class="line"><span class="lineno">   67</span>       &lt;&lt; nNormals &lt;&lt; <span class="stringliteral">&quot; normals, &quot;</span></div>
+<div class="line"><span class="lineno">   68</span>       &lt;&lt; nTextures &lt;&lt; <span class="stringliteral">&quot; textures to &quot;</span></div>
+<div class="line"><span class="lineno">   69</span>       &lt;&lt; filename &lt;&lt; endl;</div>
+<div class="line"><span class="lineno">   70</span>}</div>
 </div><!-- fragment -->
-<p class="reference">Referenced by <a class="el" href="generator_8cpp_source.html#l00802">model_bezier_write()</a>, <a class="el" href="generator_8cpp_source.html#l00471">model_cone_write()</a>, <a class="el" href="generator_8cpp_source.html#l00332">model_cube_write()</a>, <a class="el" href="generator_8cpp_source.html#l00161">model_plane_write()</a>, and <a class="el" href="generator_8cpp_source.html#l00566">model_sphere_write()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="generator_8cpp_source.html#l00762">model_bezier_write()</a>, <a class="el" href="generator_8cpp_source.html#l00442">model_cone_write()</a>, <a class="el" href="generator_8cpp_source.html#l00303">model_cube_write()</a>, <a class="el" href="generator_8cpp_source.html#l00132">model_plane_write()</a>, and <a class="el" href="generator_8cpp_source.html#l00537">model_sphere_write()</a>.</p>
 <div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
@@ -202,109 +198,6 @@ Functions</h2></td></tr>
 <div class="center"><iframe scrolling="no" frameborder="0" src="group__points_gaf9dbdadabbf44c2542a65faaad2ae271_icgraph.svg" width="419" height="240"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
-</div>
-</div>
-<a id="ga127fb8e56ec1e38505cdd9ea6efa2cf6" name="ga127fb8e56ec1e38505cdd9ea6efa2cf6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga127fb8e56ec1e38505cdd9ea6efa2cf6">&#9670;&nbsp;</a></span>points_vertex()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void points_vertex </td>
-          <td>(</td>
-          <td class="paramtype">const float&#160;</td>
-          <td class="paramname"><em>x</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const float&#160;</td>
-          <td class="paramname"><em>y</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const float&#160;</td>
-          <td class="paramname"><em>z</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">unsigned int *&#160;</td>
-          <td class="paramname"><em>pos</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>points</em>[]&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="generator_8cpp_source.html#l00046">46</a> of file <a class="el" href="generator_8cpp_source.html">generator.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   47</span>{</div>
-<div class="line"><span class="lineno">   48</span>  points[*pos] = x;</div>
-<div class="line"><span class="lineno">   49</span>  points[*pos + 1] = y;</div>
-<div class="line"><span class="lineno">   50</span>  points[*pos + 2] = z;</div>
-<div class="line"><span class="lineno">   51</span>  *pos += 3;</div>
-<div class="line"><span class="lineno">   52</span>}</div>
-</div><!-- fragment -->
-</div>
-</div>
-<a id="gab0ec2dac46ec7ee44911b8bcf1e9dad0" name="gab0ec2dac46ec7ee44911b8bcf1e9dad0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gab0ec2dac46ec7ee44911b8bcf1e9dad0">&#9670;&nbsp;</a></span>points_write()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void points_write </td>
-          <td>(</td>
-          <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>filename</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const unsigned int&#160;</td>
-          <td class="paramname"><em>nVertices</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const float&#160;</td>
-          <td class="paramname"><em>points</em>[]&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="generator_8cpp_source.html#l00054">54</a> of file <a class="el" href="generator_8cpp_source.html">generator.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   55</span>{</div>
-<div class="line"><span class="lineno">   56</span>  FILE *fp = fopen (filename, <span class="stringliteral">&quot;w&quot;</span>);</div>
-<div class="line"><span class="lineno">   57</span>  <span class="keywordflow">if</span> (!fp)</div>
-<div class="line"><span class="lineno">   58</span>    {</div>
-<div class="line"><span class="lineno">   59</span>      fprintf (stderr, <span class="stringliteral">&quot;failed to open file: %s&quot;</span>, filename);</div>
-<div class="line"><span class="lineno">   60</span>      exit (1);</div>
-<div class="line"><span class="lineno">   61</span>    }</div>
-<div class="line"><span class="lineno">   62</span> </div>
-<div class="line"><span class="lineno">   63</span>  fwrite (&amp;nVertices, <span class="keyword">sizeof</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>), 1, fp);</div>
-<div class="line"><span class="lineno">   64</span>  fwrite (points, 3 * <span class="keyword">sizeof</span> (<span class="keywordtype">float</span>), nVertices, fp);</div>
-<div class="line"><span class="lineno">   65</span> </div>
-<div class="line"><span class="lineno">   66</span>  fclose (fp);</div>
-<div class="line"><span class="lineno">   67</span>}</div>
-</div><!-- fragment -->
 </div>
 </div>
 </div><!-- contents -->

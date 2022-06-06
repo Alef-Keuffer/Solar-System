@@ -22,7 +22,7 @@ var group__camera =
       [ "NPROFILES", "group__camera.html#gga06fc87d81c62e9abb8790b6e5713c55baf98394d47218019a4c04d2ce7c43fe5d", null ]
     ] ],
     [ "changeProfile", "group__camera.html#ga025f4079099b4474ee63a12529c22fa4", null ],
-    [ "defaultChangeSize", "group__camera.html#ga68143385b5ac297391a483f7980bad06", null ],
+    [ "defaultChangeSize", "group__camera.html#ga170513e8231f724bf2c284fbea46dfab", null ],
     [ "loadProfile", "group__camera.html#ga4eec7d736381fd000f84ccb4f2d844da", null ],
     [ "globalProfile", "group__camera.html#ga88af28e439a6212618ae8f4db48bd5c6", null ],
     [ "globalProfileHasChanged", "group__camera.html#ga10fb2da52a40b906d603a2c187b7469a", null ],

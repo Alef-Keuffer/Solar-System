@@ -104,18 +104,16 @@ $(document).ready(function(){initNavTree('parsing_8cpp.html',''); initResizable(
 
 <div class="header">
   <div class="summary">
-<a href="#func-members">Functions</a> &#124;
-<a href="#var-members">Variables</a>  </div>
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle"><div class="title">parsing.cpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;cstdio&gt;</code><br />
-<code>#include &lt;cstring&gt;</code><br />
-<code>#include &lt;vector&gt;</code><br />
+<div class="textblock"><code>#include &lt;cassert&gt;</code><br />
+<code>#include &lt;filesystem&gt;</code><br />
 <code>#include &lt;iostream&gt;</code><br />
-<code>#include &lt;sys/wait.h&gt;</code><br />
-<code>#include &lt;wordexp.h&gt;</code><br />
-<code>#include &lt;cassert&gt;</code><br />
+<code>#include &lt;string&gt;</code><br />
+<code>#include &lt;map&gt;</code><br />
+<code>#include &lt;vector&gt;</code><br />
 <code>#include &quot;tinyxml2.h&quot;</code><br />
 <code>#include &quot;<a class="el" href="parsing_8h_source.html">parsing.h</a>&quot;</code><br />
 </div><div class="textblock"><div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
@@ -131,71 +129,24 @@ $(document).ready(function(){initNavTree('parsing_8cpp.html',''); initResizable(
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:gaa8e01339ca5863980bb193197d4781e2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___transforms.html#gaa8e01339ca5863980bb193197d4781e2">operations_push_transform_attributes</a> (const XMLElement *const transform, vector&lt; float &gt; &amp;operations)</td></tr>
-<tr class="separator:gaa8e01339ca5863980bb193197d4781e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga34490f49c910f6ad0b3b39d97ca6991f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___transforms.html#ga34490f49c910f6ad0b3b39d97ca6991f">operations_push_extended_translate_attributes</a> (const XMLElement *const extended_translate, vector&lt; float &gt; &amp;operations)</td></tr>
-<tr class="separator:ga34490f49c910f6ad0b3b39d97ca6991f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga9b8048838c7a406b93e9677dd9cb4373"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___transforms.html#ga9b8048838c7a406b93e9677dd9cb4373">operations_push_transformation</a> (const XMLElement *const transformation, vector&lt; float &gt; &amp;operations)</td></tr>
-<tr class="separator:ga9b8048838c7a406b93e9677dd9cb4373"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gab74408a65711c19872c69797a55c6229"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___transforms.html#gab74408a65711c19872c69797a55c6229">operations_push_transforms</a> (const XMLElement *const transforms, vector&lt; float &gt; &amp;operations)</td></tr>
-<tr class="separator:gab74408a65711c19872c69797a55c6229"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaa31dcad7bd49e781068f4d5f42734e2a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___models.html#gaa31dcad7bd49e781068f4d5f42734e2a">operations_push_string_attribute</a> (const XMLElement *const element, vector&lt; float &gt; &amp;operations, const char *const attribute_name)</td></tr>
-<tr class="separator:gaa31dcad7bd49e781068f4d5f42734e2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga9c6066851b617631703c06b7aa6f72ac"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___models.html#ga9c6066851b617631703c06b7aa6f72ac">operations_push_model</a> (const XMLElement *const <a class="el" href="structmodel.html">model</a>, vector&lt; float &gt; &amp;operations)</td></tr>
-<tr class="separator:ga9c6066851b617631703c06b7aa6f72ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaf4f69faf6a2c6db692bd0f742c08ca17"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___models.html#gaf4f69faf6a2c6db692bd0f742c08ca17">operations_push_models</a> (const XMLElement *const models, vector&lt; float &gt; &amp;operations)</td></tr>
-<tr class="separator:gaf4f69faf6a2c6db692bd0f742c08ca17"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga2729bcb63525027c28b0107fe17d3a06"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___groups.html#ga2729bcb63525027c28b0107fe17d3a06">operations_push_groups</a> (const XMLElement *const group, vector&lt; float &gt; &amp;operations)</td></tr>
-<tr class="separator:ga2729bcb63525027c28b0107fe17d3a06"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gadda1aacffc4688669d0253cec56f849b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xml.html#gadda1aacffc4688669d0253cec56f849b">operations_push_lights</a> (const XMLElement *const lights, vector&lt; float &gt; &amp;operations)</td></tr>
-<tr class="separator:gadda1aacffc4688669d0253cec56f849b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gad700972f3f382c3cc5658ce95361ad0e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xml.html#gad700972f3f382c3cc5658ce95361ad0e">operations_load_xml</a> (const char *const filename, vector&lt; float &gt; &amp;operations)</td></tr>
-<tr class="separator:gad700972f3f382c3cc5658ce95361ad0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
-Variables</h2></td></tr>
-<tr class="memitem:ace1b3cf8879ded43bfa81197871b4725"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parsing_8cpp.html#ace1b3cf8879ded43bfa81197871b4725">globalGeneratorExecutable</a> [BUFSIZ]</td></tr>
-<tr class="separator:ace1b3cf8879ded43bfa81197871b4725"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa2a94b428d69819b582c4c971e757e5e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parsing_8cpp.html#aa2a94b428d69819b582c4c971e757e5e">globalUsingGenerator</a> = false</td></tr>
-<tr class="separator:aa2a94b428d69819b582c4c971e757e5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga817568e96291812d821782e63de5c8d3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___operations.html#ga817568e96291812d821782e63de5c8d3">crashIfFailedAttributeQuery</a> (const XMLError error, const XMLElement &amp;element, const string &amp;attributeName)</td></tr>
+<tr class="separator:ga817568e96291812d821782e63de5c8d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga227eb0147a1a7491f11a40bf0b493336"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:ga227eb0147a1a7491f11a40bf0b493336"><td class="memTemplItemLeft" align="right" valign="top">T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group___operations.html#ga227eb0147a1a7491f11a40bf0b493336">getAttribute</a> (const XMLElement &amp;e, const string &amp;attributeName)</td></tr>
+<tr class="separator:ga227eb0147a1a7491f11a40bf0b493336"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga27f2fb7edc94a99859f8e3a5120af3b4"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___operations.html#ga27f2fb7edc94a99859f8e3a5120af3b4">operations_push_string_attribute</a> (const XMLElement &amp;element, vector&lt; float &gt; &amp;operations, string &amp;&amp;attribute_name)</td></tr>
+<tr class="separator:ga27f2fb7edc94a99859f8e3a5120af3b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga5e1350b5e6d7267d7e95a8ee351eae51"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___operations.html#ga5e1350b5e6d7267d7e95a8ee351eae51">crashIfFileDoesNotExist</a> (const string &amp;filename, const string &amp;additional_info=&quot;&quot;)</td></tr>
+<tr class="separator:ga5e1350b5e6d7267d7e95a8ee351eae51"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab70be49ae6c9836b6605fa296e23c58c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___operations.html#gab70be49ae6c9836b6605fa296e23c58c">elementToEnum</a> (string &amp;&amp;s)</td></tr>
+<tr class="separator:gab70be49ae6c9836b6605fa296e23c58c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga97fc3f3450980b121126d829a0263836"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___operations.html#ga97fc3f3450980b121126d829a0263836">pushFloatAttributes</a> (const XMLElement &amp;element, vector&lt; float &gt; &amp;operations)</td></tr>
+<tr class="separator:ga97fc3f3450980b121126d829a0263836"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga724a75a0bcc5898b0f2e576db5a3ef65"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___operations.html#ga724a75a0bcc5898b0f2e576db5a3ef65">operations_push_any</a> (const XMLElement *element, vector&lt; float &gt; &amp;operations)</td></tr>
+<tr class="separator:ga724a75a0bcc5898b0f2e576db5a3ef65"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga462c16b6479801f3de982785f509141a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___operations.html#ga462c16b6479801f3de982785f509141a">operations_load_xml</a> (const string &amp;filename, vector&lt; float &gt; &amp;operations)</td></tr>
+<tr class="separator:ga462c16b6479801f3de982785f509141a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Variable Documentation</h2>
-<a id="ace1b3cf8879ded43bfa81197871b4725" name="ace1b3cf8879ded43bfa81197871b4725"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ace1b3cf8879ded43bfa81197871b4725">&#9670;&nbsp;</a></span>globalGeneratorExecutable</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">char globalGeneratorExecutable[BUFSIZ]</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="parsing_8cpp_source.html#l00013">13</a> of file <a class="el" href="parsing_8cpp_source.html">parsing.cpp</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="parsing_8cpp_source.html#l00480">operations_load_xml()</a>, and <a class="el" href="parsing_8cpp_source.html#l00239">operations_push_model()</a>.</p>
-
-</div>
-</div>
-<a id="aa2a94b428d69819b582c4c971e757e5e" name="aa2a94b428d69819b582c4c971e757e5e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa2a94b428d69819b582c4c971e757e5e">&#9670;&nbsp;</a></span>globalUsingGenerator</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool globalUsingGenerator = false</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="parsing_8cpp_source.html#l00014">14</a> of file <a class="el" href="parsing_8cpp_source.html">parsing.cpp</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="parsing_8cpp_source.html#l00480">operations_load_xml()</a>, and <a class="el" href="parsing_8cpp_source.html#l00239">operations_push_model()</a>.</p>
-
-</div>
-</div>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

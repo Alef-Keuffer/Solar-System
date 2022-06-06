@@ -1,5 +1,8 @@
 <map id="explMotion" name="explMotion">
-<area shape="rect" id="node1" title=" " alt="" coords="5,5,100,32"/>
-<area shape="rect" id="node2" href="$group__explorer_camera.html#ga9fe47c5361dc03b642823dc88f07465b" title=" " alt="" coords="148,5,263,32"/>
-<area shape="rect" id="node3" href="$group__explorer_camera.html#gaeac535a2aaeb6b1c8c4d1169bbc3cab1" title=" " alt="" coords="311,5,461,32"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,56,100,83"/>
+<area shape="rect" id="node2" href="$group__explorer_camera.html#ga9fe47c5361dc03b642823dc88f07465b" title=" " alt="" coords="148,56,263,83"/>
+<area shape="rect" id="node3" href="$group__explorer_camera.html#ga549cdceeb42f58967c400bcf0fe7a9cf" title=" " alt="" coords="311,56,461,83"/>
+<area shape="rect" id="node4" href="$namespace_d.html#a393bfec992f13a40a9f601e3e6c82874" title=" " alt="" coords="509,5,609,32"/>
+<area shape="rect" id="node5" href="$namespace_d.html#ae27403f76d7334ff69a099e42f1f1616" title=" " alt="" coords="521,56,598,83"/>
+<area shape="rect" id="node6" href="$namespace_d.html#aa2fb96ccebb5bf88d4325f85beb99d84" title="(radius,zenith,azimuth)" alt="" coords="523,107,596,133"/>
 </map>

@@ -2,7 +2,7 @@ var group__bezier =
 [
     [ "deriv_of_monic_3rd_polynomial_at", "group__bezier.html#gad11b5559e8d34f899f934960207ded9a", null ],
     [ "get_bezier_patch", "group__bezier.html#ga08aa0300760bfa97d7555a4c4d09f8be", null ],
-    [ "get_bezier_point_at", "group__bezier.html#ga3ab22588659e568df730297c82e0930b", null ],
+    [ "get_bezier_point_at", "group__bezier.html#ga4623e7c5e81e842a2b10cd85b9481744", null ],
     [ "get_bezier_surface", "group__bezier.html#gad696b1162ccfd03b01584b7794814cf5", null ],
     [ "mat", "group__bezier.html#gafcf7fcde525db8b303b2205562b7684d", null ],
     [ "model_bezier_patch_nVertices", "group__bezier.html#ga8d6c3e5adc4ee3cfb89a75f2ce7642a8", null ],

@@ -15,15 +15,13 @@ var group__fps_camera =
     [ "fpsPassiveMotion", "group__fps_camera.html#gaebc76dee5c95909fb1c36dd787c0fdd6", null ],
     [ "fpsTimer", "group__fps_camera.html#ga9c69bbb7e3f0d4258e0c9f149fe25743", null ],
     [ "GLOBAL_FPS", "group__fps_camera.html#gaa9caf1552b0f176abb7d51d43bca292f", null ],
-    [ "globalFpsCamX", "group__fps_camera.html#gabfde99c2a7cbb37bbfd52681554cbe1e", null ],
-    [ "globalFpsCamY", "group__fps_camera.html#ga9e4f774a0698eaff59912b317747ba4a", null ],
-    [ "globalFpsCamZ", "group__fps_camera.html#ga4e41359e84532c8318ec93824b010cd2", null ],
+    [ "globalFpsCam", "group__fps_camera.html#ga8e64cb27da500c9469d1acf396d52843", null ],
+    [ "globalFpsPitch", "group__fps_camera.html#ga2b23aa8c1ca0a05bd1e8448f63e25de4", null ],
     [ "globalFpsSens", "group__fps_camera.html#gafc0e962e75ad2d9eb6eff11178559577", null ],
+    [ "globalFpsYaw", "group__fps_camera.html#gaafc3d44d3edf8cf00820eebbfbb57351", null ],
     [ "globalHeight", "group__fps_camera.html#ga715ae80f0a70f5e77abf82089612d279", null ],
     [ "globalLockCenter", "group__fps_camera.html#gac6207b42ce8dc1b2b88003e5b7ea8fb1", null ],
     [ "globalMotion", "group__fps_camera.html#ga415440b0670bb4b1307a14a440eee18b", null ],
-    [ "globalPitch", "group__fps_camera.html#ga732e855b4f0af43a5191703dde6c8a62", null ],
     [ "globalProfile_FPS", "group__fps_camera.html#gaa0f31fbedb92450d82b28cf8b12b6b32", null ],
-    [ "globalWidth", "group__fps_camera.html#gae0acd67f1829e658c87458286ad23bdc", null ],
-    [ "globalYaw", "group__fps_camera.html#gabbca1a3b11e5dbbdfa2151c802ba2622", null ]
+    [ "globalWidth", "group__fps_camera.html#gae0acd67f1829e658c87458286ad23bdc", null ]
 ];

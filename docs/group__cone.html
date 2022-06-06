@@ -167,12 +167,12 @@ requires <a class="el" href="conceptarithmetic.html">arithmetic</a>&lt;T&gt;</td
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="generator_8cpp_source.html#l00466">466</a> of file <a class="el" href="generator_8cpp_source.html">generator.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  467</span>{</div>
-<div class="line"><span class="lineno">  468</span>  <span class="keywordflow">return</span> slices * stacks * 9;</div>
-<div class="line"><span class="lineno">  469</span>}</div>
+<p class="definition">Definition at line <a class="el" href="generator_8cpp_source.html#l00437">437</a> of file <a class="el" href="generator_8cpp_source.html">generator.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  438</span>{</div>
+<div class="line"><span class="lineno">  439</span>  <span class="keywordflow">return</span> slices * stacks * 9;</div>
+<div class="line"><span class="lineno">  440</span>}</div>
 </div><!-- fragment -->
-<p class="reference">Referenced by <a class="el" href="generator_8cpp_source.html#l00471">model_cone_write()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="generator_8cpp_source.html#l00442">model_cone_write()</a>.</p>
 <div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
@@ -246,24 +246,24 @@ requires <a class="el" href="conceptarithmetic.html">arithmetic</a>&lt;T&gt;</di
 </p>
 <p >See the <a href="https://www.math3d.org/7oeSkmuns">3d model</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="generator_8cpp_source.html#l00372">372</a> of file <a class="el" href="generator_8cpp_source.html">generator.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  377</span>{</div>
-<div class="line"><span class="lineno">  378</span>  <span class="comment">/*</span></div>
-<div class="line"><span class="lineno">  379</span><span class="comment">     x = r ⋅ (h/height) ⋅ cos(θ)</span></div>
-<div class="line"><span class="lineno">  380</span><span class="comment">     y = 2 ⋅ (height + h)</span></div>
-<div class="line"><span class="lineno">  381</span><span class="comment">     z = r ⋅ (h/height) ⋅ sin(θ)</span></div>
-<div class="line"><span class="lineno">  382</span><span class="comment"></span> </div>
-<div class="line"><span class="lineno">  383</span><span class="comment">     r ≥ 0</span></div>
-<div class="line"><span class="lineno">  384</span><span class="comment">     θ ∈ {-π      + i⋅s : s = 2π/slices      ∧ i ∈ {0,...,slices} }</span></div>
-<div class="line"><span class="lineno">  385</span><span class="comment">     h ∈ {-height + j⋅t : t = height/stacks ∧ j ∈ {0,...,stacks} }</span></div>
-<div class="line"><span class="lineno">  386</span><span class="comment"></span> </div>
-<div class="line"><span class="lineno">  387</span><span class="comment">     check:</span></div>
-<div class="line"><span class="lineno">  388</span><span class="comment">         1. https://www.math3d.org/7oeSkmuns</span></div>
-<div class="line"><span class="lineno">  389</span><span class="comment">   */</span></div>
-<div class="line"><span class="lineno">  390</span>  vertices.emplace_back (r * h / height * cos (theta), height + h, r * h / height * sin (theta));</div>
-<div class="line"><span class="lineno">  391</span>}</div>
+<p class="definition">Definition at line <a class="el" href="generator_8cpp_source.html#l00343">343</a> of file <a class="el" href="generator_8cpp_source.html">generator.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  348</span>{</div>
+<div class="line"><span class="lineno">  349</span>  <span class="comment">/*</span></div>
+<div class="line"><span class="lineno">  350</span><span class="comment">     x = r ⋅ (h/height) ⋅ cos(θ)</span></div>
+<div class="line"><span class="lineno">  351</span><span class="comment">     y = 2 ⋅ (height + h)</span></div>
+<div class="line"><span class="lineno">  352</span><span class="comment">     z = r ⋅ (h/height) ⋅ sin(θ)</span></div>
+<div class="line"><span class="lineno">  353</span><span class="comment"></span> </div>
+<div class="line"><span class="lineno">  354</span><span class="comment">     r ≥ 0</span></div>
+<div class="line"><span class="lineno">  355</span><span class="comment">     θ ∈ {-π      + i⋅s : s = 2π/slices      ∧ i ∈ {0,...,slices} }</span></div>
+<div class="line"><span class="lineno">  356</span><span class="comment">     h ∈ {-height + j⋅t : t = height/stacks ∧ j ∈ {0,...,stacks} }</span></div>
+<div class="line"><span class="lineno">  357</span><span class="comment"></span> </div>
+<div class="line"><span class="lineno">  358</span><span class="comment">     check:</span></div>
+<div class="line"><span class="lineno">  359</span><span class="comment">         1. https://www.math3d.org/7oeSkmuns</span></div>
+<div class="line"><span class="lineno">  360</span><span class="comment">   */</span></div>
+<div class="line"><span class="lineno">  361</span>  vertices.emplace_back (r * h / height * cos (theta), height + h, r * h / height * sin (theta));</div>
+<div class="line"><span class="lineno">  362</span>}</div>
 </div><!-- fragment -->
-<p class="reference">Referenced by <a class="el" href="generator_8cpp_source.html#l00395">model_cone_vertices()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="generator_8cpp_source.html#l00366">model_cone_vertices()</a>.</p>
 <div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-2-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-2-summary" class="dynsummary" style="display:block;">
@@ -333,75 +333,75 @@ requires <a class="el" href="conceptarithmetic.html">arithmetic</a>&lt;T&gt;</di
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="generator_8cpp_source.html#l00395">395</a> of file <a class="el" href="generator_8cpp_source.html">generator.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  402</span>{</div>
+<p class="definition">Definition at line <a class="el" href="generator_8cpp_source.html#l00366">366</a> of file <a class="el" href="generator_8cpp_source.html">generator.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  373</span>{</div>
+<div class="line"><span class="lineno">  374</span> </div>
+<div class="line"><span class="lineno">  375</span>  <span class="keyword">const</span> T s = 2 * M_PI / (float) slices;</div>
+<div class="line"><span class="lineno">  376</span>  <span class="keyword">const</span> T t = height / (float) stacks;</div>
+<div class="line"><span class="lineno">  377</span> </div>
+<div class="line"><span class="lineno">  378</span>  <span class="keyword">const</span> T theta_0 = -M_PI;</div>
+<div class="line"><span class="lineno">  379</span>  <span class="keyword">const</span> T h_0 = -height;</div>
+<div class="line"><span class="lineno">  380</span> </div>
+<div class="line"><span class="lineno">  381</span>  <span class="keyword">auto</span> <span class="keyword">const</span> fslices = (float) slices;</div>
+<div class="line"><span class="lineno">  382</span>  <span class="keyword">auto</span> <span class="keyword">const</span> fstacks = (float) stacks;</div>
+<div class="line"><span class="lineno">  383</span> </div>
+<div class="line"><span class="lineno">  384</span>  <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> slice = 1; slice &lt;= slices; ++slice)</div>
+<div class="line"><span class="lineno">  385</span>    {</div>
+<div class="line"><span class="lineno">  386</span>      <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> stack = 1; stack &lt;= stacks; ++stack)</div>
+<div class="line"><span class="lineno">  387</span>        {</div>
+<div class="line"><span class="lineno">  388</span>          <span class="keyword">auto</span> <span class="keyword">const</span> fslice = (float) slice;</div>
+<div class="line"><span class="lineno">  389</span>          <span class="keyword">auto</span> <span class="keyword">const</span> fstack = (float) stack;</div>
+<div class="line"><span class="lineno">  390</span> </div>
+<div class="line"><span class="lineno">  391</span>          <span class="comment">//base</span></div>
+<div class="line"><span class="lineno">  392</span>          vertices.emplace_back (0, 0, 0); <span class="comment">//O</span></div>
+<div class="line"><span class="lineno">  393</span>          texture.emplace_back (0, 0);</div>
+<div class="line"><span class="lineno">  394</span>          normals.emplace_back (0, -1, 0);</div>
+<div class="line"><span class="lineno">  395</span>          <span class="keywordflow">for</span> (<span class="keyword">auto</span> e : {</div>
+<div class="line"><span class="lineno">  396</span>              -1.0f,<span class="comment">//P1</span></div>
+<div class="line"><span class="lineno">  397</span>              .0f <span class="comment">//P2</span></div>
+<div class="line"><span class="lineno">  398</span>          })</div>
+<div class="line"><span class="lineno">  399</span>            {</div>
+<div class="line"><span class="lineno">  400</span>              <a class="code hl_function" href="group__cone.html#ga57970e2d7e92898171f3ab74ff588ec4">model_cone_vertex</a> (radius, height, theta_0 + s * (fslice + e), h_0, vertices); <span class="comment">//P1</span></div>
+<div class="line"><span class="lineno">  401</span>              normals.emplace_back (0, -1, 0);</div>
+<div class="line"><span class="lineno">  402</span>            }</div>
 <div class="line"><span class="lineno">  403</span> </div>
-<div class="line"><span class="lineno">  404</span>  <span class="keyword">const</span> T s = 2 * M_PI / (float) slices;</div>
-<div class="line"><span class="lineno">  405</span>  <span class="keyword">const</span> T t = height / (float) stacks;</div>
+<div class="line"><span class="lineno">  404</span>          texture.emplace_back (-1, 0);</div>
+<div class="line"><span class="lineno">  405</span>          texture.emplace_back (0, 0);</div>
 <div class="line"><span class="lineno">  406</span> </div>
-<div class="line"><span class="lineno">  407</span>  <span class="keyword">const</span> T theta_0 = -M_PI;</div>
-<div class="line"><span class="lineno">  408</span>  <span class="keyword">const</span> T h_0 = -height;</div>
-<div class="line"><span class="lineno">  409</span> </div>
-<div class="line"><span class="lineno">  410</span>  <span class="keyword">auto</span> <span class="keyword">const</span> fslices = (float) slices;</div>
-<div class="line"><span class="lineno">  411</span>  <span class="keyword">auto</span> <span class="keyword">const</span> fstacks = (float) stacks;</div>
+<div class="line"><span class="lineno">  407</span>          <span class="keywordtype">int</span> q = 0;</div>
+<div class="line"><span class="lineno">  408</span>          <span class="keywordflow">for</span> (<span class="keyword">auto</span> e : {</div>
+<div class="line"><span class="lineno">  409</span>              array&lt;float, 2&gt;{0, -1},</div>
+<div class="line"><span class="lineno">  410</span>              array&lt;float, 2&gt;{-1, 0},</div>
+<div class="line"><span class="lineno">  411</span>              array&lt;float, 2&gt;{0, 0},</div>
 <div class="line"><span class="lineno">  412</span> </div>
-<div class="line"><span class="lineno">  413</span>  <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> slice = 1; slice &lt;= slices; ++slice)</div>
-<div class="line"><span class="lineno">  414</span>    {</div>
-<div class="line"><span class="lineno">  415</span>      <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> stack = 1; stack &lt;= stacks; ++stack)</div>
-<div class="line"><span class="lineno">  416</span>        {</div>
-<div class="line"><span class="lineno">  417</span>          <span class="keyword">auto</span> <span class="keyword">const</span> fslice = (float) slice;</div>
-<div class="line"><span class="lineno">  418</span>          <span class="keyword">auto</span> <span class="keyword">const</span> fstack = (float) stack;</div>
-<div class="line"><span class="lineno">  419</span> </div>
-<div class="line"><span class="lineno">  420</span>          <span class="comment">//base</span></div>
-<div class="line"><span class="lineno">  421</span>          vertices.emplace_back (0, 0, 0); <span class="comment">//O</span></div>
-<div class="line"><span class="lineno">  422</span>          texture.emplace_back (0, 0);</div>
-<div class="line"><span class="lineno">  423</span>          normals.emplace_back (0, -1, 0);</div>
-<div class="line"><span class="lineno">  424</span>          <span class="keywordflow">for</span> (<span class="keyword">auto</span> e : {</div>
-<div class="line"><span class="lineno">  425</span>              -1.0f,<span class="comment">//P1</span></div>
-<div class="line"><span class="lineno">  426</span>              .0f <span class="comment">//P2</span></div>
-<div class="line"><span class="lineno">  427</span>          })</div>
-<div class="line"><span class="lineno">  428</span>            {</div>
-<div class="line"><span class="lineno">  429</span>              <a class="code hl_function" href="group__cone.html#ga57970e2d7e92898171f3ab74ff588ec4">model_cone_vertex</a> (radius, height, theta_0 + s * (fslice + e), h_0, vertices); <span class="comment">//P1</span></div>
-<div class="line"><span class="lineno">  430</span>              normals.emplace_back (0, -1, 0);</div>
-<div class="line"><span class="lineno">  431</span>            }</div>
-<div class="line"><span class="lineno">  432</span> </div>
-<div class="line"><span class="lineno">  433</span>          texture.emplace_back (-1, 0);</div>
-<div class="line"><span class="lineno">  434</span>          texture.emplace_back (0, 0);</div>
-<div class="line"><span class="lineno">  435</span> </div>
-<div class="line"><span class="lineno">  436</span>          <span class="keywordtype">int</span> q = 0;</div>
-<div class="line"><span class="lineno">  437</span>          <span class="keywordflow">for</span> (<span class="keyword">auto</span> e : {</div>
-<div class="line"><span class="lineno">  438</span>              array&lt;float, 2&gt;{0, -1},</div>
-<div class="line"><span class="lineno">  439</span>              array&lt;float, 2&gt;{-1, 0},</div>
-<div class="line"><span class="lineno">  440</span>              array&lt;float, 2&gt;{0, 0},</div>
-<div class="line"><span class="lineno">  441</span> </div>
-<div class="line"><span class="lineno">  442</span>              array&lt;float, 2&gt;{0, -1},</div>
-<div class="line"><span class="lineno">  443</span>              array&lt;float, 2&gt;{-1, -1},</div>
-<div class="line"><span class="lineno">  444</span>              array&lt;float, 2&gt;{-1, 0},</div>
-<div class="line"><span class="lineno">  445</span>          })</div>
-<div class="line"><span class="lineno">  446</span>            {</div>
-<div class="line"><span class="lineno">  447</span>              <a class="code hl_function" href="group__cone.html#ga57970e2d7e92898171f3ab74ff588ec4">model_cone_vertex</a> (radius, height,</div>
-<div class="line"><span class="lineno">  448</span>                                 theta_0 + s * (fslice + e[0]),</div>
-<div class="line"><span class="lineno">  449</span>                                 h_0 + t * (fstack + e[1]), vertices);</div>
-<div class="line"><span class="lineno">  450</span>              <span class="keywordflow">if</span> (q % 3 == 2)</div>
-<div class="line"><span class="lineno">  451</span>                {</div>
-<div class="line"><span class="lineno">  452</span>                  <span class="keyword">const</span> <span class="keyword">auto</span> P1 = vertices.end ()[-2];</div>
-<div class="line"><span class="lineno">  453</span>                  <span class="keyword">const</span> <span class="keyword">auto</span> P2 = vertices.end ()[-3];</div>
-<div class="line"><span class="lineno">  454</span>                  <span class="keyword">const</span> <span class="keyword">auto</span> P1_prime = vertices.end ()[-1];</div>
-<div class="line"><span class="lineno">  455</span>                  <span class="keywordflow">for</span> (<span class="keyword">auto</span> _ = 0; _ &lt; 3; ++_)</div>
-<div class="line"><span class="lineno">  456</span>                    normals.emplace_back (normalize (cross (P2 - P1_prime, P1 - P1_prime)));</div>
-<div class="line"><span class="lineno">  457</span>                }</div>
-<div class="line"><span class="lineno">  458</span> </div>
-<div class="line"><span class="lineno">  459</span>              texture.emplace_back (fslice / fslices, fstack / fstacks);</div>
-<div class="line"><span class="lineno">  460</span>              ++q;</div>
-<div class="line"><span class="lineno">  461</span>            }</div>
-<div class="line"><span class="lineno">  462</span>        }</div>
-<div class="line"><span class="lineno">  463</span>    }</div>
-<div class="line"><span class="lineno">  464</span>}</div>
-<div class="ttc" id="agroup__cone_html_ga57970e2d7e92898171f3ab74ff588ec4"><div class="ttname"><a href="group__cone.html#ga57970e2d7e92898171f3ab74ff588ec4">model_cone_vertex</a></div><div class="ttdeci">static void model_cone_vertex(const T r, const T height, const T theta, const T h, vector&lt; vec3 &gt; &amp;vertices)</div><div class="ttdef"><b>Definition:</b> <a href="generator_8cpp_source.html#l00372">generator.cpp:372</a></div></div>
+<div class="line"><span class="lineno">  413</span>              array&lt;float, 2&gt;{0, -1},</div>
+<div class="line"><span class="lineno">  414</span>              array&lt;float, 2&gt;{-1, -1},</div>
+<div class="line"><span class="lineno">  415</span>              array&lt;float, 2&gt;{-1, 0},</div>
+<div class="line"><span class="lineno">  416</span>          })</div>
+<div class="line"><span class="lineno">  417</span>            {</div>
+<div class="line"><span class="lineno">  418</span>              <a class="code hl_function" href="group__cone.html#ga57970e2d7e92898171f3ab74ff588ec4">model_cone_vertex</a> (radius, height,</div>
+<div class="line"><span class="lineno">  419</span>                                 theta_0 + s * (fslice + e[0]),</div>
+<div class="line"><span class="lineno">  420</span>                                 h_0 + t * (fstack + e[1]), vertices);</div>
+<div class="line"><span class="lineno">  421</span>              <span class="keywordflow">if</span> (q % 3 == 2)</div>
+<div class="line"><span class="lineno">  422</span>                {</div>
+<div class="line"><span class="lineno">  423</span>                  <span class="keyword">const</span> <span class="keyword">auto</span> P1 = vertices.end ()[-2];</div>
+<div class="line"><span class="lineno">  424</span>                  <span class="keyword">const</span> <span class="keyword">auto</span> P2 = vertices.end ()[-3];</div>
+<div class="line"><span class="lineno">  425</span>                  <span class="keyword">const</span> <span class="keyword">auto</span> P1_prime = vertices.end ()[-1];</div>
+<div class="line"><span class="lineno">  426</span>                  <span class="keywordflow">for</span> (<span class="keyword">auto</span> _ = 0; _ &lt; 3; ++_)</div>
+<div class="line"><span class="lineno">  427</span>                    normals.emplace_back (normalize (cross (P2 - P1_prime, P1 - P1_prime)));</div>
+<div class="line"><span class="lineno">  428</span>                }</div>
+<div class="line"><span class="lineno">  429</span> </div>
+<div class="line"><span class="lineno">  430</span>              texture.emplace_back (fslice / fslices, fstack / fstacks);</div>
+<div class="line"><span class="lineno">  431</span>              ++q;</div>
+<div class="line"><span class="lineno">  432</span>            }</div>
+<div class="line"><span class="lineno">  433</span>        }</div>
+<div class="line"><span class="lineno">  434</span>    }</div>
+<div class="line"><span class="lineno">  435</span>}</div>
+<div class="ttc" id="agroup__cone_html_ga57970e2d7e92898171f3ab74ff588ec4"><div class="ttname"><a href="group__cone.html#ga57970e2d7e92898171f3ab74ff588ec4">model_cone_vertex</a></div><div class="ttdeci">static void model_cone_vertex(const T r, const T height, const T theta, const T h, vector&lt; vec3 &gt; &amp;vertices)</div><div class="ttdef"><b>Definition:</b> <a href="generator_8cpp_source.html#l00343">generator.cpp:343</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="generator_8cpp_source.html#l00372">model_cone_vertex()</a>.</p>
+<p class="reference">References <a class="el" href="generator_8cpp_source.html#l00343">model_cone_vertex()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="generator_8cpp_source.html#l00471">model_cone_write()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="generator_8cpp_source.html#l00442">model_cone_write()</a>.</p>
 <div id="dynsection-3" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-3-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-3-summary" class="dynsummary" style="display:block;">
@@ -463,25 +463,25 @@ requires <a class="el" href="conceptarithmetic.html">arithmetic</a>&lt;T&gt;</di
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="generator_8cpp_source.html#l00471">471</a> of file <a class="el" href="generator_8cpp_source.html">generator.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  476</span>{</div>
-<div class="line"><span class="lineno">  477</span>  <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> nVertices = <a class="code hl_function" href="group__cone.html#ga5b5f2964e2c773066361e823daa9211d">model_cone_nVertices</a> (stacks, slices);</div>
-<div class="line"><span class="lineno">  478</span>  vector&lt;vec3&gt; vertices;</div>
-<div class="line"><span class="lineno">  479</span>  vertices.reserve (nVertices);</div>
-<div class="line"><span class="lineno">  480</span>  vector&lt;vec3&gt; normals;</div>
-<div class="line"><span class="lineno">  481</span>  normals.reserve (nVertices);</div>
-<div class="line"><span class="lineno">  482</span>  vector&lt;vec2&gt; texture;</div>
-<div class="line"><span class="lineno">  483</span>  texture.reserve (nVertices);</div>
-<div class="line"><span class="lineno">  484</span>  <a class="code hl_function" href="group__cone.html#ga6ea124a8a7febdc575dae2585526a7e7">model_cone_vertices</a> (radius, height, slices, stacks, vertices, normals, texture);</div>
-<div class="line"><span class="lineno">  485</span>  <a class="code hl_function" href="group__points.html#gaf9dbdadabbf44c2542a65faaad2ae271">model_write</a> (filepath, vertices, normals, texture);</div>
-<div class="line"><span class="lineno">  486</span>}</div>
-<div class="ttc" id="agroup__cone_html_ga5b5f2964e2c773066361e823daa9211d"><div class="ttname"><a href="group__cone.html#ga5b5f2964e2c773066361e823daa9211d">model_cone_nVertices</a></div><div class="ttdeci">static unsigned int model_cone_nVertices(const unsigned int stacks, const unsigned int slices)</div><div class="ttdef"><b>Definition:</b> <a href="generator_8cpp_source.html#l00466">generator.cpp:466</a></div></div>
-<div class="ttc" id="agroup__cone_html_ga6ea124a8a7febdc575dae2585526a7e7"><div class="ttname"><a href="group__cone.html#ga6ea124a8a7febdc575dae2585526a7e7">model_cone_vertices</a></div><div class="ttdeci">void model_cone_vertices(const T radius, const T height, const unsigned int slices, const unsigned int stacks, vector&lt; vec3 &gt; &amp;vertices, vector&lt; vec3 &gt; &amp;normals, vector&lt; vec2 &gt; &amp;texture)</div><div class="ttdef"><b>Definition:</b> <a href="generator_8cpp_source.html#l00395">generator.cpp:395</a></div></div>
-<div class="ttc" id="agroup__points_html_gaf9dbdadabbf44c2542a65faaad2ae271"><div class="ttname"><a href="group__points.html#gaf9dbdadabbf44c2542a65faaad2ae271">model_write</a></div><div class="ttdeci">void model_write(const char *const filename, const vector&lt; vec3 &gt; &amp;vertices, const vector&lt; vec3 &gt; &amp;normals, const vector&lt; vec2 &gt; &amp;texture)</div><div class="ttdef"><b>Definition:</b> <a href="generator_8cpp_source.html#l00070">generator.cpp:70</a></div></div>
+<p class="definition">Definition at line <a class="el" href="generator_8cpp_source.html#l00442">442</a> of file <a class="el" href="generator_8cpp_source.html">generator.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  447</span>{</div>
+<div class="line"><span class="lineno">  448</span>  <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> nVertices = <a class="code hl_function" href="group__cone.html#ga5b5f2964e2c773066361e823daa9211d">model_cone_nVertices</a> (stacks, slices);</div>
+<div class="line"><span class="lineno">  449</span>  vector&lt;vec3&gt; vertices;</div>
+<div class="line"><span class="lineno">  450</span>  vertices.reserve (nVertices);</div>
+<div class="line"><span class="lineno">  451</span>  vector&lt;vec3&gt; normals;</div>
+<div class="line"><span class="lineno">  452</span>  normals.reserve (nVertices);</div>
+<div class="line"><span class="lineno">  453</span>  vector&lt;vec2&gt; texture;</div>
+<div class="line"><span class="lineno">  454</span>  texture.reserve (nVertices);</div>
+<div class="line"><span class="lineno">  455</span>  <a class="code hl_function" href="group__cone.html#ga6ea124a8a7febdc575dae2585526a7e7">model_cone_vertices</a> (radius, height, slices, stacks, vertices, normals, texture);</div>
+<div class="line"><span class="lineno">  456</span>  <a class="code hl_function" href="group__points.html#gaf9dbdadabbf44c2542a65faaad2ae271">model_write</a> (filepath, vertices, normals, texture);</div>
+<div class="line"><span class="lineno">  457</span>}</div>
+<div class="ttc" id="agroup__cone_html_ga5b5f2964e2c773066361e823daa9211d"><div class="ttname"><a href="group__cone.html#ga5b5f2964e2c773066361e823daa9211d">model_cone_nVertices</a></div><div class="ttdeci">static unsigned int model_cone_nVertices(const unsigned int stacks, const unsigned int slices)</div><div class="ttdef"><b>Definition:</b> <a href="generator_8cpp_source.html#l00437">generator.cpp:437</a></div></div>
+<div class="ttc" id="agroup__cone_html_ga6ea124a8a7febdc575dae2585526a7e7"><div class="ttname"><a href="group__cone.html#ga6ea124a8a7febdc575dae2585526a7e7">model_cone_vertices</a></div><div class="ttdeci">void model_cone_vertices(const T radius, const T height, const unsigned int slices, const unsigned int stacks, vector&lt; vec3 &gt; &amp;vertices, vector&lt; vec3 &gt; &amp;normals, vector&lt; vec2 &gt; &amp;texture)</div><div class="ttdef"><b>Definition:</b> <a href="generator_8cpp_source.html#l00366">generator.cpp:366</a></div></div>
+<div class="ttc" id="agroup__points_html_gaf9dbdadabbf44c2542a65faaad2ae271"><div class="ttname"><a href="group__points.html#gaf9dbdadabbf44c2542a65faaad2ae271">model_write</a></div><div class="ttdeci">void model_write(const char *const filename, const vector&lt; vec3 &gt; &amp;vertices, const vector&lt; vec3 &gt; &amp;normals, const vector&lt; vec2 &gt; &amp;texture)</div><div class="ttdef"><b>Definition:</b> <a href="generator_8cpp_source.html#l00041">generator.cpp:41</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="generator_8cpp_source.html#l00466">model_cone_nVertices()</a>, <a class="el" href="generator_8cpp_source.html#l00395">model_cone_vertices()</a>, and <a class="el" href="generator_8cpp_source.html#l00070">model_write()</a>.</p>
+<p class="reference">References <a class="el" href="generator_8cpp_source.html#l00437">model_cone_nVertices()</a>, <a class="el" href="generator_8cpp_source.html#l00366">model_cone_vertices()</a>, and <a class="el" href="generator_8cpp_source.html#l00041">model_write()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="generator_8cpp_source.html#l00839">main()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="generator_8cpp_source.html#l00798">main()</a>.</p>
 <div id="dynsection-5" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-5-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-5-summary" class="dynsummary" style="display:block;">

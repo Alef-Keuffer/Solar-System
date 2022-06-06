@@ -218,7 +218,7 @@ var sectionId = 'dynsection-1';
 <!-- Node5 -->
 <g id="node5" class="node">
 <title>Node5</title>
-<g id="a_node5"><a xlink:href="group__bezier.html#ga3ab22588659e568df730297c82e0930b" target="_top" xlink:title=" ">
+<g id="a_node5"><a xlink:href="group__bezier.html#ga4623e7c5e81e842a2b10cd85b9481744" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="black" points="560,-430.5 560,-449.5 673,-449.5 673,-430.5 560,-430.5"/>
 <text text-anchor="middle" x="616.5" y="-437.5" font-family="Helvetica,sans-Serif" font-size="10.00">get_bezier_point_at</text>
 </a>
@@ -469,7 +469,7 @@ var sectionId = 'dynsection-1';
 <!-- Node27 -->
 <g id="node27" class="node">
 <title>Node27</title>
-<g id="a_node27"><a xlink:href="group__sphere.html#ga928920fa74fa2bfbaa44d52fd31b4793" target="_top" xlink:title=" ">
+<g id="a_node27"><a xlink:href="group__sphere.html#gacf1c00867069a3a1ad3a69b8ded33821" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="black" points="402,-0.5 402,-19.5 524,-19.5 524,-0.5 402,-0.5"/>
 <text text-anchor="middle" x="463" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">model_sphere_vertex</text>
 </a>

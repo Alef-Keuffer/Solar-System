@@ -1,17 +1,16 @@
 var searchData=
 [
-  ['read_5fbezier_0',['read_Bezier',['../group__bezier.html#ga84e3c4940075b047e593e590b6e814d8',1,'generator.cpp']]],
-  ['readme_2emd_1',['readme.md',['../readme_8md.html',1,'']]],
-  ['readmodeltobuffer_2',['readModelToBuffer',['../main_8cpp.html#a943eb4ae9be9204315e7dc4ccb7b3ca6',1,'main.cpp']]],
-  ['render3d_3',['render3d',['../main_8cpp.html#a26a1f548f94f1ae7cb50446eded247ce',1,'main.cpp']]],
-  ['render_5fpyramid_4',['render_pyramid',['../main_8cpp.html#aca02828d2c21e8acd8c9c384921ae964',1,'main.cpp']]],
-  ['rendercurve_5',['renderCurve',['../curves_8cpp.html#ad812fc50a0384335487e258a6f61714e',1,'renderCurve(const mat4 M, const vector&lt; vec3 &gt; &amp;control_points, const unsigned int tesselation):&#160;curves.cpp'],['../curves_8h.html#ae472cc01e143436a95d1433a3e9a3e51',1,'renderCurve(glm::mat4 M, const std::vector&lt; glm::vec3 &gt; &amp;control_points, unsigned int tesselation=100):&#160;curves.h']]],
-  ['rendergreenplane_6',['renderGreenPlane',['../group__engine.html#gaf049ec1caddd7a032fc8b48641e12f1e',1,'engine.cpp']]],
-  ['rendermodel_7',['renderModel',['../group__model_engine.html#ga2907e4adf4f2bef2c8ce416cb8470997',1,'engine.cpp']]],
-  ['renderscene_8',['renderScene',['../group__engine.html#ga91c42686f3245f22fb6b17ba5372d92c',1,'renderScene():&#160;engine.cpp'],['../main_8cpp.html#a2a96aed746d13d9b42d7888e156045f6',1,'renderScene(void):&#160;main.cpp']]],
-  ['rendertrianglevertexseq_9',['renderTriangleVertexSeq',['../main_8cpp.html#a398691ab8678e504e5d144ef8f004dff',1,'main.cpp']]],
-  ['reshapefunc_10',['reshapeFunc',['../structprofile__struct.html#a712341b3b1b8313b39bfdd4f3863c567',1,'profile_struct']]],
-  ['rgb_5fmax_11',['RGB_MAX',['../group__model_engine.html#gaa1758095e785e5812632c1427ca34e26',1,'engine.cpp']]],
-  ['right_12',['Right',['../struct_motion.html#a5efd02f67c53c8edcab169bb3637e3a2',1,'Motion']]],
-  ['rotate_13',['ROTATE',['../parsing_8h.html#a99fb83031ce9923c84392b4e92f956b5a3dcfe0046eb5876e287dbf0914819b16',1,'parsing.h']]]
+  ['scale_0',['SCALE',['../parsing_8h.html#a99fb83031ce9923c84392b4e92f956b5a593be05a10070b4e7e0856e20590eaaf',1,'parsing.h']]],
+  ['scale_1',['scale',['../namespaceg.html#a9b1afaa62e5b4befaf0e453c2f301a48',1,'g::scale()'],['../namespace_d.html#a1ccd692563b2bed3dbd7275b0bd3dbb3',1,'D::scale(1, 1, 1)']]],
+  ['scalestep_2',['scaleStep',['../namespace_d.html#afe89487dc153c7171337f8281b2128d1',1,'D::scaleStep()'],['../namespaceg.html#ac5756d0f6e4915f0b4547d48aecc9c26',1,'g::scaleStep()']]],
+  ['setsettings_3',['setSettings',['../structprofile__struct.html#aec5eea1ed7c15c02d118a7da6464fdbd',1,'profile_struct']]],
+  ['shininess_4',['shininess',['../structmodel.html#a162a855dcc61ec108bda595d07a2fd8c',1,'model']]],
+  ['shininess_5',['SHININESS',['../parsing_8h.html#a99fb83031ce9923c84392b4e92f956b5a7ea973d08bd1caade1267208a6a39372',1,'parsing.h']]],
+  ['specialfunc_6',['specialFunc',['../structprofile__struct.html#a016b3d773e43a5695a5e6a0fb649d2b2',1,'profile_struct']]],
+  ['specular_7',['specular',['../structmodel.html#ab7bd407f234ace683e74bf614fcf7854',1,'model']]],
+  ['specular_8',['SPECULAR',['../parsing_8h.html#a99fb83031ce9923c84392b4e92f956b5a41ced480f23b6fb8c3f77ca72d7af552',1,'parsing.h']]],
+  ['sphere_9',['SPHERE',['../generator_8cpp.html#a5e4444a284dcd0e0625f94dfde200b90',1,'generator.cpp']]],
+  ['sphere_10',['Sphere',['../group__sphere.html',1,'']]],
+  ['spherical2cartesian_11',['spherical2Cartesian',['../group__explorer_camera.html#ga549cdceeb42f58967c400bcf0fe7a9cf',1,'engine.cpp']]],
+  ['spotlight_12',['SPOTLIGHT',['../parsing_8h.html#a99fb83031ce9923c84392b4e92f956b5a3821057f47b0e1f45de81c3109f913db',1,'parsing.h']]]
 ];

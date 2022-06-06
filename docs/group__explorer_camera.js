@@ -1,10 +1,8 @@
 var group__explorer_camera =
 [
-    [ "Position", "group__position.html", "group__position" ],
-    [ "LookAt", "group__look_at.html", "group__look_at" ],
-    [ "Up", "group__up.html", "group__up" ],
-    [ "Projection", "group__projection.html", "group__projection" ],
-    [ "cartesian2Spherical", "group__explorer_camera.html#gabd434f65cba3ee8011b8d3cdd1f25dca", null ],
+    [ "D", "namespace_d.html", null ],
+    [ "g", "namespaceg.html", null ],
+    [ "cartesian2Spherical", "group__explorer_camera.html#ga2bd01f833407b47f26121736925e24fc", null ],
     [ "env_load_defaults", "group__explorer_camera.html#ga8679d9b303f36964bf51dba0993caeaa", null ],
     [ "explCamera", "group__explorer_camera.html#gab0f1d17222b0687759f3d0e7ee600f20", null ],
     [ "explKeyboard", "group__explorer_camera.html#ga0b95fc35a07bac37f27f163fb7cba34d", null ],
@@ -12,15 +10,9 @@ var group__explorer_camera =
     [ "explMouse", "group__explorer_camera.html#gab86b1c960c066cefd232128fa8754875", null ],
     [ "explRedisplay", "group__explorer_camera.html#ga9fe47c5361dc03b642823dc88f07465b", null ],
     [ "explTimer", "group__explorer_camera.html#ga57ea05cfaf6caf9d9f67c5dd4726e382", null ],
-    [ "spherical2Cartesian", "group__explorer_camera.html#gaeac535a2aaeb6b1c8c4d1169bbc3cab1", null ],
-    [ "DEFAULT_GLOBAL_AZIMUTH", "group__explorer_camera.html#ga8847a748f16dded3615f8f4b48ab2ef4", null ],
-    [ "DEFAULT_GLOBAL_ELEVATION", "group__explorer_camera.html#ga3f93d1092ee04ee1206b02259e320784", null ],
-    [ "DEFAULT_GLOBAL_RADIUS", "group__explorer_camera.html#ga9046d488bde40feb5c8cd6372f12d5cf", null ],
-    [ "globalAzimuth", "group__explorer_camera.html#gadaab4529e17c31628ede6500a0f9dd07", null ],
-    [ "globalElevation", "group__explorer_camera.html#ga2788cc0fae99c064d291338b8fbe8484", null ],
+    [ "spherical2Cartesian", "group__explorer_camera.html#ga549cdceeb42f58967c400bcf0fe7a9cf", null ],
     [ "globalExplXPrev", "group__explorer_camera.html#gaf8a2a5fce2d5ea87716da0cf311e222d", null ],
     [ "globalExplYPrev", "group__explorer_camera.html#gabf14627179e42a9858b43ff0a308a829", null ],
     [ "globalMouseLeftButton", "group__explorer_camera.html#gac3d947315432e74f7c2d8f0dee6d5166", null ],
-    [ "globalProfile_EXPL", "group__explorer_camera.html#gab2ace04a22b453beae6d10138e2f2161", null ],
-    [ "globalRadius", "group__explorer_camera.html#gaee0ddcd277ec7a7a451dbd5b17f98187", null ]
+    [ "globalProfile_EXPL", "group__explorer_camera.html#gab2ace04a22b453beae6d10138e2f2161", null ]
 ];

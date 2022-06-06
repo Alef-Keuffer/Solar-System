@@ -1,15 +1,11 @@
 var searchData=
 [
-  ['scale_0',['SCALE',['../parsing_8h.html#a99fb83031ce9923c84392b4e92f956b5a593be05a10070b4e7e0856e20590eaaf',1,'parsing.h']]],
-  ['setsettings_1',['setSettings',['../structprofile__struct.html#aec5eea1ed7c15c02d118a7da6464fdbd',1,'profile_struct']]],
-  ['shininess_2',['shininess',['../structmodel.html#a162a855dcc61ec108bda595d07a2fd8c',1,'model']]],
-  ['shininess_3',['SHININESS',['../parsing_8h.html#a99fb83031ce9923c84392b4e92f956b5a7ea973d08bd1caade1267208a6a39372',1,'parsing.h']]],
-  ['specialfunc_4',['specialFunc',['../structprofile__struct.html#a016b3d773e43a5695a5e6a0fb649d2b2',1,'profile_struct']]],
-  ['specular_5',['specular',['../structmodel.html#ab7bd407f234ace683e74bf614fcf7854',1,'model']]],
-  ['specular_6',['SPECULAR',['../parsing_8h.html#a99fb83031ce9923c84392b4e92f956b5a41ced480f23b6fb8c3f77ca72d7af552',1,'parsing.h']]],
-  ['sphere_7',['SPHERE',['../generator_8cpp.html#a5e4444a284dcd0e0625f94dfde200b90',1,'generator.cpp']]],
-  ['sphere_8',['Sphere',['../group__sphere.html',1,'']]],
-  ['spherevertex_9',['sphereVertex',['../main_8cpp.html#a56f39b3037e5c23b0d7523d4a0aa364f',1,'main.cpp']]],
-  ['spherical2cartesian_10',['spherical2Cartesian',['../group__explorer_camera.html#gaeac535a2aaeb6b1c8c4d1169bbc3cab1',1,'engine.cpp']]],
-  ['spotlight_11',['SPOTLIGHT',['../parsing_8h.html#a99fb83031ce9923c84392b4e92f956b5a3821057f47b0e1f45de81c3109f913db',1,'parsing.h']]]
+  ['tbo_0',['tbo',['../structmodel.html#a6642bf44750e13f4720fcab39d428950',1,'model']]],
+  ['tc_1',['tc',['../structmodel.html#a32d49fddff5d56f60779be5ee6f71159',1,'model']]],
+  ['texture_2',['TEXTURE',['../parsing_8h.html#a99fb83031ce9923c84392b4e92f956b5a3f07a311da6e3003d3922d665098da2d',1,'parsing.h']]],
+  ['timebase_3',['timebase',['../group__engine.html#ga68a5ac52085606068a4d5ae94b0aa7e8',1,'engine.cpp']]],
+  ['timerfunc_4',['timerFunc',['../structprofile__struct.html#a0d434947b3bbb09572b161b816bb7592',1,'profile_struct']]],
+  ['translate_5',['translate',['../namespaceg.html#aac8ee5fe8c16824bfc7bcdef7fd5804e',1,'g::translate()'],['../namespace_d.html#ae308988f832b1d5420f532ac7dfd772e',1,'D::translate()']]],
+  ['translate_6',['TRANSLATE',['../parsing_8h.html#a99fb83031ce9923c84392b4e92f956b5abc6501410409b0638909b580970b35f7',1,'parsing.h']]],
+  ['translatestep_7',['translateStep',['../namespace_d.html#a140743eaad562d384d1263a71a9f543e',1,'D::translateStep()'],['../namespaceg.html#ad742384d234990c775f85fb2922b8e7b',1,'g::translateStep()']]]
 ];

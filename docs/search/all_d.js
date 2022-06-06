@@ -1,16 +1,19 @@
 var searchData=
 [
-  ['operation_5ft_0',['operation_t',['../parsing_8h.html#abeddee44f42e841422ce7c4852e4aa6a',1,'parsing.h']]],
-  ['operations_1',['Operations',['../group___operations.html',1,'']]],
-  ['operations_5fload_5fxml_2',['operations_load_xml',['../group__xml.html#gad700972f3f382c3cc5658ce95361ad0e',1,'operations_load_xml(const char *const filename, vector&lt; float &gt; &amp;operations):&#160;parsing.cpp'],['../parsing_8h.html#ace767c4d1af7af44a014b83afd394b64',1,'operations_load_xml(const char *filename, std::vector&lt; float &gt; &amp;operations):&#160;parsing.h']]],
-  ['operations_5fpush_5fextended_5ftranslate_5fattributes_3',['operations_push_extended_translate_attributes',['../group___transforms.html#ga34490f49c910f6ad0b3b39d97ca6991f',1,'parsing.cpp']]],
-  ['operations_5fpush_5fgroups_4',['operations_push_groups',['../group___groups.html#ga2729bcb63525027c28b0107fe17d3a06',1,'parsing.cpp']]],
-  ['operations_5fpush_5flights_5',['operations_push_lights',['../group__xml.html#gadda1aacffc4688669d0253cec56f849b',1,'parsing.cpp']]],
-  ['operations_5fpush_5fmodel_6',['operations_push_model',['../group___models.html#ga9c6066851b617631703c06b7aa6f72ac',1,'parsing.cpp']]],
-  ['operations_5fpush_5fmodels_7',['operations_push_models',['../group___models.html#gaf4f69faf6a2c6db692bd0f742c08ca17',1,'parsing.cpp']]],
-  ['operations_5fpush_5fstring_5fattribute_8',['operations_push_string_attribute',['../group___models.html#gaa31dcad7bd49e781068f4d5f42734e2a',1,'parsing.cpp']]],
-  ['operations_5fpush_5ftransform_5fattributes_9',['operations_push_transform_attributes',['../group___transforms.html#gaa8e01339ca5863980bb193197d4781e2',1,'parsing.cpp']]],
-  ['operations_5fpush_5ftransformation_10',['operations_push_transformation',['../group___transforms.html#ga9b8048838c7a406b93e9677dd9cb4373',1,'parsing.cpp']]],
-  ['operations_5fpush_5ftransforms_11',['operations_push_transforms',['../group___transforms.html#gab74408a65711c19872c69797a55c6229',1,'parsing.cpp']]],
-  ['operations_5frender_12',['operations_render',['../group___operations.html#ga8d5a19a3522cea1b4254684cf6515d13',1,'engine.cpp']]]
+  ['parsing_2ecpp_0',['parsing.cpp',['../parsing_8cpp.html',1,'']]],
+  ['parsing_2eh_1',['parsing.h',['../parsing_8h.html',1,'']]],
+  ['passivemotionfunc_2',['passiveMotionFunc',['../structprofile__struct.html#abf379dcde8e056709fec38713b1a38f9',1,'profile_struct']]],
+  ['plane_3',['PLANE',['../generator_8cpp.html#a01beb44cc7789a6fc47c32e854b88bdd',1,'generator.cpp']]],
+  ['plane_4',['Plane',['../group__plane.html',1,'']]],
+  ['point_5',['POINT',['../parsing_8h.html#a99fb83031ce9923c84392b4e92f956b5a15108ccafa3232b9067f889b6156f565',1,'parsing.h']]],
+  ['points_6',['Points',['../group__points.html',1,'']]],
+  ['polar_7',['polar',['../namespaceg.html#a508e0e303cb9629f706fa19bf8aa5984',1,'g::polar()'],['../namespace_d.html#aa2fb96ccebb5bf88d4325f85beb99d84',1,'D::polar()']]],
+  ['position_8',['POSITION',['../parsing_8h.html#a99fb83031ce9923c84392b4e92f956b5ad34d5395053a1781444508e570283be1',1,'parsing.h']]],
+  ['practical_20assignment_20cg_20_2d_202020_2f21_9',['Practical Assignment CG - 2020/21',['../md_readme.html',1,'']]],
+  ['profile_10',['profile',['../group__camera.html#gad92c9af400eff3b9fbb66b0d1cf4cb66',1,'engine.cpp']]],
+  ['profile_5fstruct_11',['profile_struct',['../structprofile__struct.html',1,'']]],
+  ['profile_5ft_12',['profile_t',['../group__camera.html#ga4b93979f29f893a1d82ad1773c23a975',1,'engine.cpp']]],
+  ['projection_13',['projection',['../namespaceg.html#acdb206147317d8190355ac7afd3ca07a',1,'g::projection()'],['../namespace_d.html#a49b3788c9a2aae032c6c74d76441aa18',1,'D::projection()']]],
+  ['projection_14',['PROJECTION',['../parsing_8h.html#a99fb83031ce9923c84392b4e92f956b5a295dc00dd5da0bca4ed9f724c3cb3904',1,'parsing.h']]],
+  ['pushfloatattributes_15',['pushFloatAttributes',['../group___operations.html#ga97fc3f3450980b121126d829a0263836',1,'parsing.cpp']]]
 ];
