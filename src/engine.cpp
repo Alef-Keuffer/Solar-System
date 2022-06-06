@@ -1134,66 +1134,83 @@ void advance_in_rotation (const float rotation_time, const vec3 &axis_of_rotatio
 //! @ingroup Operations
 void operations_render (vector<float> &operations)
 {
-  unsigned int i = 0;
   static bool isFirstTimeBeingExecuted = true;
   static bool hasPushedModels = false;
   static bool hasLoadedCurves = false;
 
   static vector<vector<vec3>> curves;
 
-  if (isFirstTimeBeingExecuted)
-    {
-      DEFAULT_GLOBAL_EYE_X = operations[i];
-      DEFAULT_GLOBAL_EYE_Y = operations[i + 1];
-      DEFAULT_GLOBAL_EYE_Z = operations[i + 2];
-    }
-  i += 3;
-
-  if (isFirstTimeBeingExecuted)
-    {
-      DEFAULT_GLOBAL_CENTER_X = operations[i];
-      DEFAULT_GLOBAL_CENTER_Y = operations[i + 1];
-      DEFAULT_GLOBAL_CENTER_Z = operations[i + 2];
-    }
-  i += 3;
-
-  if (isFirstTimeBeingExecuted)
-    {
-      DEFAULT_GLOBAL_UP_X = operations[i];
-      DEFAULT_GLOBAL_UP_Y = operations[i + 1];
-      DEFAULT_GLOBAL_UP_Z = operations[i + 2];
-    }
-  i += 3;
-
-  if (isFirstTimeBeingExecuted)
-    {
-      DEFAULT_GLOBAL_FOV = operations[i];
-      DEFAULT_GLOBAL_NEAR = operations[i + 1];
-      DEFAULT_GLOBAL_FAR = operations[i + 2];
-      cerr << "(FOV: " << DEFAULT_GLOBAL_FOV
-           << ", NEAR: " << DEFAULT_GLOBAL_NEAR
-           << ", FAR: " << DEFAULT_GLOBAL_FAR
-           << ")" << endl;
-    }
-  i += 3;
-
-  // default mode uses explorer camera
-  cartesian2Spherical (
-      DEFAULT_GLOBAL_EYE_X, DEFAULT_GLOBAL_EYE_Y, DEFAULT_GLOBAL_EYE_Z,
-      &DEFAULT_GLOBAL_RADIUS, &DEFAULT_GLOBAL_AZIMUTH, &DEFAULT_GLOBAL_ELEVATION);
-
-  unsigned int model_num = 0;
-  unsigned char nLights = 0;
-
   static const float amb[4] = {0, 0, 0, 1};
   static const float spec[4] = {1, 1, 1, 1};
   static const float diff[4] = {1, 1, 1, 1};
 
-  for (; i < operations.size (); i++)
+  unsigned int model_num = 0;
+  unsigned char nLights = 0;
+  for (unsigned int i = 0; i < operations.size (); ++i)
     {
       assert(nLights < 8);
       switch ((int) operations[i])
         {
+          case POSITION:
+            {
+              if (isFirstTimeBeingExecuted)
+                {
+                  DEFAULT_GLOBAL_EYE_X = operations[i + 1];
+                  DEFAULT_GLOBAL_EYE_Y = operations[i + 2];
+                  DEFAULT_GLOBAL_EYE_Z = operations[i + 3];
+                  cerr << "POSITION("
+                       << DEFAULT_GLOBAL_EYE_X << ","
+                       << DEFAULT_GLOBAL_EYE_Y << ","
+                       << DEFAULT_GLOBAL_EYE_Z << ")" << endl;
+                }
+              i += 3;
+            }
+          continue;
+          case LOOK_AT:
+            {
+              if (isFirstTimeBeingExecuted)
+                {
+                  DEFAULT_GLOBAL_CENTER_X = operations[i + 1];
+                  DEFAULT_GLOBAL_CENTER_Y = operations[i + 2];
+                  DEFAULT_GLOBAL_CENTER_Z = operations[i + 3];
+                  cerr << "LOOK_AT("
+                       << DEFAULT_GLOBAL_CENTER_X << ","
+                       << DEFAULT_GLOBAL_CENTER_Y << ","
+                       << DEFAULT_GLOBAL_CENTER_Z << ")" << endl;
+                }
+              i += 3;
+            }
+          continue;
+          case UP:
+            {
+              if (isFirstTimeBeingExecuted)
+                {
+                  DEFAULT_GLOBAL_UP_X = operations[i + 1];
+                  DEFAULT_GLOBAL_UP_Y = operations[i + 2];
+                  DEFAULT_GLOBAL_UP_Z = operations[i + 3];
+                  cerr << "UP("
+                       << DEFAULT_GLOBAL_UP_X << ","
+                       << DEFAULT_GLOBAL_UP_Y << ","
+                       << DEFAULT_GLOBAL_UP_Z << ")" << endl;
+                }
+              i += 3;
+            }
+          continue;
+          case PROJECTION:
+            {
+              if (isFirstTimeBeingExecuted)
+                {
+                  DEFAULT_GLOBAL_FOV = operations[i + 1];
+                  DEFAULT_GLOBAL_NEAR = operations[i + 2];
+                  DEFAULT_GLOBAL_FAR = operations[i + 3];
+                  cerr << "PROJECTION(FOV: " << DEFAULT_GLOBAL_FOV
+                       << ", NEAR: " << DEFAULT_GLOBAL_NEAR
+                       << ", FAR: " << DEFAULT_GLOBAL_FAR
+                       << ")" << endl;
+                }
+              i += 3;
+            }
+          continue;
           // transformations
           case ROTATE:
             {
@@ -1481,6 +1498,10 @@ void operations_render (vector<float> &operations)
             }
         }
     }
+  // default mode uses explorer camera
+  cartesian2Spherical (
+      DEFAULT_GLOBAL_EYE_X, DEFAULT_GLOBAL_EYE_Y, DEFAULT_GLOBAL_EYE_Z,
+      &DEFAULT_GLOBAL_RADIUS, &DEFAULT_GLOBAL_AZIMUTH, &DEFAULT_GLOBAL_ELEVATION);
   hasPushedModels = true;
   hasLoadedCurves = true;
   isFirstTimeBeingExecuted = false;
@@ -1554,6 +1575,7 @@ void renderScene ()
   profile[globalProfile].camera ();
 
   // render models
+  draw_axes ();
   operations_render (globalOperations);
 
   // calculate and display frame rate
@@ -1577,8 +1599,6 @@ void xml_load_and_set_env (const string &filename)
   operations_load_xml (filename, globalOperations);
   operations_render (globalOperations);
   env_load_defaults ();
-  cerr << "LOOK_AT(" << globalCenterX << "," << globalCenterY << "," << globalCenterZ << ")" << endl;
-  cerr << "POSITION(" << globalEyeX << "," << globalEyeY << "," << globalEyeZ << ")" << endl;
 }
 
 void engine_run (int argc, char **argv)

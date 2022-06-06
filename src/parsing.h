@@ -23,7 +23,16 @@ enum {
   SHININESS,
   POINT,
   DIRECTIONAL,
-  SPOTLIGHT
+  SPOTLIGHT,
+  POSITION,
+  LIGHT,
+  LOOK_AT,
+  UP,
+  PROJECTION,
+  MODEL,
+  GROUP,
+  GENERATOR,
+  OTHER
 };
 
 typedef unsigned char operation_t;
