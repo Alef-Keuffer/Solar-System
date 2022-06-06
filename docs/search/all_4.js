@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['elementtoenum_0',['elementToEnum',['../group___operations.html#gab70be49ae6c9836b6605fa296e23c58c',1,'parsing.cpp']]],
+  ['elementtoenum_0',['elementToEnum',['../group___parsing.html#gab70be49ae6c9836b6605fa296e23c58c',1,'parsing.cpp']]],
   ['emissive_1',['emissive',['../structmodel.html#a5fae13ebfa02b349b41d210f8ac77d2c',1,'model']]],
   ['emissive_2',['EMISSIVE',['../parsing_8h.html#a99fb83031ce9923c84392b4e92f956b5a25d9faaa28f74c31604a16192b659205',1,'parsing.h']]],
   ['end_5fgroup_3',['END_GROUP',['../parsing_8h.html#a99fb83031ce9923c84392b4e92f956b5ad8484e02f6123a1ce51bf55c92ab775c',1,'parsing.h']]],
