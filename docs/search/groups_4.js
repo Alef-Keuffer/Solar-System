@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['generator_0',['Generator',['../group__generator.html',1,'']]]
+  ['fpscamera_0',['FpsCamera',['../group__fps_camera.html',1,'']]]
 ];

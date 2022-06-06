@@ -51,7 +51,7 @@
 <!-- Node17 -->
 <g id="node17" class="node">
 <title>Node17</title>
-<g id="a_node17"><a xlink:href="group___operations.html#ga8d5a19a3522cea1b4254684cf6515d13" target="_top" xlink:title=" ">
+<g id="a_node17"><a xlink:href="group___rendering.html#ga8d5a19a3522cea1b4254684cf6515d13" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="black" points="171,-341.5 171,-360.5 276,-360.5 276,-341.5 171,-341.5"/>
 <text text-anchor="middle" x="223.5" y="-348.5" font-family="Helvetica,sans-Serif" font-size="10.00">operations_render</text>
 </a>
@@ -207,7 +207,7 @@
 <!-- Node13 -->
 <g id="node13" class="node">
 <title>Node13</title>
-<g id="a_node13"><a xlink:href="parsing_8cpp.html#a5e1350b5e6d7267d7e95a8ee351eae51" target="_top" xlink:title=" ">
+<g id="a_node13"><a xlink:href="group___auxiliary.html#ga5e1350b5e6d7267d7e95a8ee351eae51" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="black" points="497,-38.5 497,-57.5 629,-57.5 629,-38.5 497,-38.5"/>
 <text text-anchor="middle" x="563" y="-45.5" font-family="Helvetica,sans-Serif" font-size="10.00">crashIfFileDoesNotExist</text>
 </a>
@@ -222,7 +222,7 @@
 <!-- Node14 -->
 <g id="node14" class="node">
 <title>Node14</title>
-<g id="a_node14"><a xlink:href="group___parsing.html#gab70be49ae6c9836b6605fa296e23c58c" target="_top" xlink:title=" ">
+<g id="a_node14"><a xlink:href="group___auxiliary.html#gab70be49ae6c9836b6605fa296e23c58c" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="black" points="515.5,-0.5 515.5,-19.5 610.5,-19.5 610.5,-0.5 515.5,-0.5"/>
 <text text-anchor="middle" x="563" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">elementToEnum</text>
 </a>
@@ -237,7 +237,7 @@
 <!-- Node15 -->
 <g id="node15" class="node">
 <title>Node15</title>
-<g id="a_node15"><a xlink:href="group___parsing.html#ga27f2fb7edc94a99859f8e3a5120af3b4" target="_top" xlink:title=" ">
+<g id="a_node15"><a xlink:href="group___auxiliary.html#ga27f2fb7edc94a99859f8e3a5120af3b4" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="black" points="498,-115 498,-145 628,-145 628,-115 498,-115"/>
 <text text-anchor="start" x="506" y="-133" font-family="Helvetica,sans-Serif" font-size="10.00">operations_push_string</text>
 <text text-anchor="middle" x="563" y="-122" font-family="Helvetica,sans-Serif" font-size="10.00">_attribute</text>
@@ -253,7 +253,7 @@
 <!-- Node16 -->
 <g id="node16" class="node">
 <title>Node16</title>
-<g id="a_node16"><a xlink:href="group___parsing.html#ga97fc3f3450980b121126d829a0263836" target="_top" xlink:title=" ">
+<g id="a_node16"><a xlink:href="group___auxiliary.html#ga97fc3f3450980b121126d829a0263836" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="black" points="506.5,-76.5 506.5,-95.5 619.5,-95.5 619.5,-76.5 506.5,-76.5"/>
 <text text-anchor="middle" x="563" y="-83.5" font-family="Helvetica,sans-Serif" font-size="10.00">pushFloatAttributes</text>
 </a>
@@ -319,7 +319,7 @@
 <!-- Node19 -->
 <g id="node19" class="node">
 <title>Node19</title>
-<g id="a_node19"><a xlink:href="curves_8cpp.html#a821c8cbf0a47b918c60a4912b733e6bd" target="_top" xlink:title=" ">
+<g id="a_node19"><a xlink:href="group___curves.html#ga821c8cbf0a47b918c60a4912b733e6bd" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="black" points="338,-341.5 338,-360.5 442,-360.5 442,-341.5 338,-341.5"/>
 <text text-anchor="middle" x="390" y="-348.5" font-family="Helvetica,sans-Serif" font-size="10.00">advance_in_curve</text>
 </a>
@@ -379,7 +379,7 @@
 <!-- Node27 -->
 <g id="node27" class="node">
 <title>Node27</title>
-<g id="a_node27"><a xlink:href="curves_8cpp.html#ad812fc50a0384335487e258a6f61714e" target="_top" xlink:title=" ">
+<g id="a_node27"><a xlink:href="group___curves.html#gad812fc50a0384335487e258a6f61714e" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="black" points="524.5,-303.5 524.5,-322.5 601.5,-322.5 601.5,-303.5 524.5,-303.5"/>
 <text text-anchor="middle" x="563" y="-310.5" font-family="Helvetica,sans-Serif" font-size="10.00">renderCurve</text>
 </a>
@@ -409,7 +409,7 @@
 <!-- Node20 -->
 <g id="node20" class="node">
 <title>Node20</title>
-<g id="a_node20"><a xlink:href="curves_8cpp.html#a98b26a4263f61db7149441a99a6d35b6" target="_top" xlink:title=" ">
+<g id="a_node20"><a xlink:href="group___curves.html#ga98b26a4263f61db7149441a99a6d35b6" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="black" points="501.5,-341.5 501.5,-360.5 624.5,-360.5 624.5,-341.5 501.5,-341.5"/>
 <text text-anchor="middle" x="563" y="-348.5" font-family="Helvetica,sans-Serif" font-size="10.00">align_global_pos_mat</text>
 </a>
@@ -424,7 +424,7 @@
 <!-- Node21 -->
 <g id="node21" class="node">
 <title>Node21</title>
-<g id="a_node21"><a xlink:href="curves_8cpp.html#af7cd8d9b34a073c2fd2d7d8187bcff42" target="_top" xlink:title=" ">
+<g id="a_node21"><a xlink:href="group___curves.html#gaf7cd8d9b34a073c2fd2d7d8187bcff42" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="black" points="665,-322.5 665,-341.5 795,-341.5 795,-322.5 665,-322.5"/>
 <text text-anchor="middle" x="730" y="-329.5" font-family="Helvetica,sans-Serif" font-size="10.00">get_curve_global_point</text>
 </a>
@@ -439,7 +439,7 @@
 <!-- Node22 -->
 <g id="node22" class="node">
 <title>Node22</title>
-<g id="a_node22"><a xlink:href="curves_8cpp.html#afa648d7de8c941b50b26f02755a955b9" target="_top" xlink:title=" ">
+<g id="a_node22"><a xlink:href="group___curves.html#gafa648d7de8c941b50b26f02755a955b9" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="black" points="841.5,-341.5 841.5,-360.5 930.5,-360.5 930.5,-341.5 841.5,-341.5"/>
 <text text-anchor="middle" x="886" y="-348.5" font-family="Helvetica,sans-Serif" font-size="10.00">get_curve_info</text>
 </a>
@@ -454,7 +454,7 @@
 <!-- Node23 -->
 <g id="node23" class="node">
 <title>Node23</title>
-<g id="a_node23"><a xlink:href="curves_8cpp.html#a6d6def6a76701b08284cba58066e3382" target="_top" xlink:title=" ">
+<g id="a_node23"><a xlink:href="group___curves.html#ga6d6def6a76701b08284cba58066e3382" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="black" points="831,-303.5 831,-322.5 941,-322.5 941,-303.5 831,-303.5"/>
 <text text-anchor="middle" x="886" y="-310.5" font-family="Helvetica,sans-Serif" font-size="10.00">get_curve_point_at</text>
 </a>

@@ -67,7 +67,7 @@ var sectionId = 'dynsection-1';
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="group__camera.html#ga4eec7d736381fd000f84ccb4f2d844da" target="_top" xlink:title=" ">
+<g id="a_node2"><a xlink:href="group___profile.html#ga4eec7d736381fd000f84ccb4f2d844da" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="black" points="296,-464.5 296,-483.5 365,-483.5 365,-464.5 296,-464.5"/>
 <text text-anchor="middle" x="330.5" y="-471.5" font-family="Helvetica,sans-Serif" font-size="10.00">loadProfile</text>
 </a>
@@ -133,7 +133,7 @@ var sectionId = 'dynsection-1';
 <!-- Node5 -->
 <g id="node5" class="node">
 <title>Node5</title>
-<g id="a_node5"><a xlink:href="group___operations.html#ga8d5a19a3522cea1b4254684cf6515d13" target="_top" xlink:title=" ">
+<g id="a_node5"><a xlink:href="group___rendering.html#ga8d5a19a3522cea1b4254684cf6515d13" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="black" points="278,-388.5 278,-407.5 383,-407.5 383,-388.5 278,-388.5"/>
 <text text-anchor="middle" x="330.5" y="-395.5" font-family="Helvetica,sans-Serif" font-size="10.00">operations_render</text>
 </a>
@@ -163,7 +163,7 @@ var sectionId = 'dynsection-1';
 <!-- Node7 -->
 <g id="node7" class="node">
 <title>Node7</title>
-<g id="a_node7"><a xlink:href="curves_8cpp.html#a821c8cbf0a47b918c60a4912b733e6bd" target="_top" xlink:title=" ">
+<g id="a_node7"><a xlink:href="group___curves.html#ga821c8cbf0a47b918c60a4912b733e6bd" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="black" points="445,-464.5 445,-483.5 549,-483.5 549,-464.5 445,-464.5"/>
 <text text-anchor="middle" x="497" y="-471.5" font-family="Helvetica,sans-Serif" font-size="10.00">advance_in_curve</text>
 </a>
@@ -283,7 +283,7 @@ var sectionId = 'dynsection-1';
 <!-- Node19 -->
 <g id="node19" class="node">
 <title>Node19</title>
-<g id="a_node19"><a xlink:href="curves_8cpp.html#ad812fc50a0384335487e258a6f61714e" target="_top" xlink:title=" ">
+<g id="a_node19"><a xlink:href="group___curves.html#gad812fc50a0384335487e258a6f61714e" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="black" points="631.5,-426.5 631.5,-445.5 708.5,-445.5 708.5,-426.5 631.5,-426.5"/>
 <text text-anchor="middle" x="670" y="-433.5" font-family="Helvetica,sans-Serif" font-size="10.00">renderCurve</text>
 </a>
@@ -343,7 +343,7 @@ var sectionId = 'dynsection-1';
 <!-- Node8 -->
 <g id="node8" class="node">
 <title>Node8</title>
-<g id="a_node8"><a xlink:href="curves_8cpp.html#a98b26a4263f61db7149441a99a6d35b6" target="_top" xlink:title=" ">
+<g id="a_node8"><a xlink:href="group___curves.html#ga98b26a4263f61db7149441a99a6d35b6" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="black" points="608.5,-464.5 608.5,-483.5 731.5,-483.5 731.5,-464.5 608.5,-464.5"/>
 <text text-anchor="middle" x="670" y="-471.5" font-family="Helvetica,sans-Serif" font-size="10.00">align_global_pos_mat</text>
 </a>
@@ -358,7 +358,7 @@ var sectionId = 'dynsection-1';
 <!-- Node9 -->
 <g id="node9" class="node">
 <title>Node9</title>
-<g id="a_node9"><a xlink:href="curves_8cpp.html#af7cd8d9b34a073c2fd2d7d8187bcff42" target="_top" xlink:title=" ">
+<g id="a_node9"><a xlink:href="group___curves.html#gaf7cd8d9b34a073c2fd2d7d8187bcff42" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="black" points="772,-445.5 772,-464.5 902,-464.5 902,-445.5 772,-445.5"/>
 <text text-anchor="middle" x="837" y="-452.5" font-family="Helvetica,sans-Serif" font-size="10.00">get_curve_global_point</text>
 </a>
@@ -373,7 +373,7 @@ var sectionId = 'dynsection-1';
 <!-- Node10 -->
 <g id="node10" class="node">
 <title>Node10</title>
-<g id="a_node10"><a xlink:href="curves_8cpp.html#afa648d7de8c941b50b26f02755a955b9" target="_top" xlink:title=" ">
+<g id="a_node10"><a xlink:href="group___curves.html#gafa648d7de8c941b50b26f02755a955b9" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="black" points="948.5,-464.5 948.5,-483.5 1037.5,-483.5 1037.5,-464.5 948.5,-464.5"/>
 <text text-anchor="middle" x="993" y="-471.5" font-family="Helvetica,sans-Serif" font-size="10.00">get_curve_info</text>
 </a>
@@ -388,7 +388,7 @@ var sectionId = 'dynsection-1';
 <!-- Node11 -->
 <g id="node11" class="node">
 <title>Node11</title>
-<g id="a_node11"><a xlink:href="curves_8cpp.html#a6d6def6a76701b08284cba58066e3382" target="_top" xlink:title=" ">
+<g id="a_node11"><a xlink:href="group___curves.html#ga6d6def6a76701b08284cba58066e3382" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="black" points="938,-426.5 938,-445.5 1048,-445.5 1048,-426.5 938,-426.5"/>
 <text text-anchor="middle" x="993" y="-433.5" font-family="Helvetica,sans-Serif" font-size="10.00">get_curve_point_at</text>
 </a>
@@ -532,7 +532,7 @@ var sectionId = 'dynsection-1';
 <!-- Node29 -->
 <g id="node29" class="node">
 <title>Node29</title>
-<g id="a_node29"><a xlink:href="parsing_8cpp.html#a5e1350b5e6d7267d7e95a8ee351eae51" target="_top" xlink:title=" ">
+<g id="a_node29"><a xlink:href="group___auxiliary.html#ga5e1350b5e6d7267d7e95a8ee351eae51" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="black" points="604,-126.5 604,-145.5 736,-145.5 736,-126.5 604,-126.5"/>
 <text text-anchor="middle" x="670" y="-133.5" font-family="Helvetica,sans-Serif" font-size="10.00">crashIfFileDoesNotExist</text>
 </a>
@@ -547,7 +547,7 @@ var sectionId = 'dynsection-1';
 <!-- Node30 -->
 <g id="node30" class="node">
 <title>Node30</title>
-<g id="a_node30"><a xlink:href="group___parsing.html#gab70be49ae6c9836b6605fa296e23c58c" target="_top" xlink:title=" ">
+<g id="a_node30"><a xlink:href="group___auxiliary.html#gab70be49ae6c9836b6605fa296e23c58c" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="black" points="622.5,-88.5 622.5,-107.5 717.5,-107.5 717.5,-88.5 622.5,-88.5"/>
 <text text-anchor="middle" x="670" y="-95.5" font-family="Helvetica,sans-Serif" font-size="10.00">elementToEnum</text>
 </a>
@@ -562,7 +562,7 @@ var sectionId = 'dynsection-1';
 <!-- Node31 -->
 <g id="node31" class="node">
 <title>Node31</title>
-<g id="a_node31"><a xlink:href="group___parsing.html#ga27f2fb7edc94a99859f8e3a5120af3b4" target="_top" xlink:title=" ">
+<g id="a_node31"><a xlink:href="group___auxiliary.html#ga27f2fb7edc94a99859f8e3a5120af3b4" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="black" points="605,-39 605,-69 735,-69 735,-39 605,-39"/>
 <text text-anchor="start" x="613" y="-57" font-family="Helvetica,sans-Serif" font-size="10.00">operations_push_string</text>
 <text text-anchor="middle" x="670" y="-46" font-family="Helvetica,sans-Serif" font-size="10.00">_attribute</text>
@@ -578,7 +578,7 @@ var sectionId = 'dynsection-1';
 <!-- Node32 -->
 <g id="node32" class="node">
 <title>Node32</title>
-<g id="a_node32"><a xlink:href="group___parsing.html#ga97fc3f3450980b121126d829a0263836" target="_top" xlink:title=" ">
+<g id="a_node32"><a xlink:href="group___auxiliary.html#ga97fc3f3450980b121126d829a0263836" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="black" points="613.5,-0.5 613.5,-19.5 726.5,-19.5 726.5,-0.5 613.5,-0.5"/>
 <text text-anchor="middle" x="670" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">pushFloatAttributes</text>
 </a>

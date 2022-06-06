@@ -21,7 +21,7 @@
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="group__camera.html#ga025f4079099b4474ee63a12529c22fa4" target="_top" xlink:title=" ">
+<g id="a_node2"><a xlink:href="group___profile.html#ga025f4079099b4474ee63a12529c22fa4" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="black" points="120.5,-228.5 120.5,-247.5 203.5,-247.5 203.5,-228.5 120.5,-228.5"/>
 <text text-anchor="middle" x="162" y="-235.5" font-family="Helvetica,sans-Serif" font-size="10.00">changeProfile</text>
 </a>

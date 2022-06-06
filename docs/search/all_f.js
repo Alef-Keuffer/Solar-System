@@ -9,8 +9,7 @@ var searchData=
   ['specialfunc_6',['specialFunc',['../structprofile__struct.html#a016b3d773e43a5695a5e6a0fb649d2b2',1,'profile_struct']]],
   ['specular_7',['specular',['../structmodel.html#ab7bd407f234ace683e74bf614fcf7854',1,'model']]],
   ['specular_8',['SPECULAR',['../parsing_8h.html#a99fb83031ce9923c84392b4e92f956b5a41ced480f23b6fb8c3f77ca72d7af552',1,'parsing.h']]],
-  ['sphere_9',['SPHERE',['../generator_8cpp.html#a5e4444a284dcd0e0625f94dfde200b90',1,'generator.cpp']]],
-  ['sphere_10',['Sphere',['../group__sphere.html',1,'']]],
-  ['spherical2cartesian_11',['spherical2Cartesian',['../group__explorer_camera.html#ga549cdceeb42f58967c400bcf0fe7a9cf',1,'engine.cpp']]],
-  ['spotlight_12',['SPOTLIGHT',['../parsing_8h.html#a99fb83031ce9923c84392b4e92f956b5a3821057f47b0e1f45de81c3109f913db',1,'parsing.h']]]
+  ['sphere_9',['Sphere',['../group___sphere.html',1,'']]],
+  ['spherical2cartesian_10',['spherical2Cartesian',['../group__explorer_camera.html#ga549cdceeb42f58967c400bcf0fe7a9cf',1,'engine.cpp']]],
+  ['spotlight_11',['SPOTLIGHT',['../parsing_8h.html#a99fb83031ce9923c84392b4e92f956b5a3821057f47b0e1f45de81c3109f913db',1,'parsing.h']]]
 ];

@@ -1,4 +1,9 @@
 <map id="Models" name="Models">
-<area shape="rect" id="node1" title=" " alt="" coords="147,5,216,31"/>
-<area shape="rect" id="node2" href="$group___operations.html" title=" " alt="" coords="5,5,99,31"/>
+<area shape="rect" id="node1" href="$group___bezier.html" title=" " alt="" coords="259,5,322,31"/>
+<area shape="rect" id="node2" href="$group___cone.html" title=" " alt="" coords="263,55,318,80"/>
+<area shape="rect" id="node3" href="$group___cube.html" title=" " alt="" coords="263,104,318,129"/>
+<area shape="rect" id="node4" title=" " alt="" coords="140,104,209,129"/>
+<area shape="rect" id="node5" href="$group___plane.html" title=" " alt="" coords="261,153,320,179"/>
+<area shape="rect" id="node6" href="$group___sphere.html" title=" " alt="" coords="257,203,324,228"/>
+<area shape="rect" id="node7" href="$group__generator.html" title=" " alt="" coords="5,104,92,129"/>
 </map>

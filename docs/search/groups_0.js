@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['bezier_0',['Bezier',['../group__bezier.html',1,'']]]
+  ['auxiliary_0',['Auxiliary',['../group___auxiliary.html',1,'']]]
 ];

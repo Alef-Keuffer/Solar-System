@@ -1,6 +1,6 @@
 var group__generator =
 [
-    [ "Points", "group__points.html", "group__points" ],
-    [ "Model", "group__model.html", "group__model" ],
-    [ "Bezier", "group__bezier.html", "group__bezier" ]
+    [ "Write", "group___write.html", "group___write" ],
+    [ "Models", "group___models.html", "group___models" ],
+    [ "CLI", "group___c_l_i.html", "group___c_l_i" ]
 ];

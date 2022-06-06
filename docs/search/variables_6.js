@@ -12,10 +12,10 @@ var searchData=
   ['globalmotion_9',['globalMotion',['../group__fps_camera.html#ga415440b0670bb4b1307a14a440eee18b',1,'engine.cpp']]],
   ['globalmouseleftbutton_10',['globalMouseLeftButton',['../group__explorer_camera.html#gac3d947315432e74f7c2d8f0dee6d5166',1,'engine.cpp']]],
   ['globaloperations_11',['globalOperations',['../group__model_engine.html#ga5e4458752ec64e54ed9ef910aaac54e9',1,'engine.cpp']]],
-  ['globalprofile_12',['globalProfile',['../group__camera.html#ga88af28e439a6212618ae8f4db48bd5c6',1,'engine.cpp']]],
+  ['globalprofile_12',['globalProfile',['../group___profile.html#ga88af28e439a6212618ae8f4db48bd5c6',1,'engine.cpp']]],
   ['globalprofile_5fexpl_13',['globalProfile_EXPL',['../group__explorer_camera.html#gab2ace04a22b453beae6d10138e2f2161',1,'engine.cpp']]],
   ['globalprofile_5ffps_14',['globalProfile_FPS',['../group__fps_camera.html#gaa0f31fbedb92450d82b28cf8b12b6b32',1,'engine.cpp']]],
-  ['globalprofilehaschanged_15',['globalProfileHasChanged',['../group__camera.html#ga10fb2da52a40b906d603a2c187b7469a',1,'engine.cpp']]],
+  ['globalprofilehaschanged_15',['globalProfileHasChanged',['../group___profile.html#ga10fb2da52a40b906d603a2c187b7469a',1,'engine.cpp']]],
   ['globalwarpcursortocenter_16',['globalWarpCursorToCenter',['../group__fps_camera.html#gad045a39bcbfa75417dbcd3cab243fa9f',1,'engine.cpp']]],
   ['globalwidth_17',['globalWidth',['../group__fps_camera.html#gae0acd67f1829e658c87458286ad23bdc',1,'engine.cpp']]]
 ];

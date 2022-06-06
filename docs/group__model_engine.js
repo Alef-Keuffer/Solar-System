@@ -17,6 +17,5 @@ var group__model_engine =
     [ "getModel", "group__model_engine.html#gac02eaf37d06ce4074af34bcf4c2ebec6", null ],
     [ "renderModel", "group__model_engine.html#ga2907e4adf4f2bef2c8ce416cb8470997", null ],
     [ "globalModels", "group__model_engine.html#ga8b7fb1565cdf931fa086d76687bd3f35", null ],
-    [ "globalOperations", "group__model_engine.html#ga5e4458752ec64e54ed9ef910aaac54e9", null ],
-    [ "RGB_MAX", "group__model_engine.html#gaa1758095e785e5812632c1427ca34e26", null ]
+    [ "globalOperations", "group__model_engine.html#ga5e4458752ec64e54ed9ef910aaac54e9", null ]
 ];

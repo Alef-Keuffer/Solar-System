@@ -1,6 +1,7 @@
 <map id="Camera" name="Camera">
-<area shape="rect" id="node1" title=" " alt="" coords="120,31,193,56"/>
-<area shape="rect" id="node3" href="$group__explorer_camera.html" title=" " alt="" coords="241,5,368,31"/>
-<area shape="rect" id="node4" href="$group__fps_camera.html" title=" " alt="" coords="257,55,353,80"/>
-<area shape="rect" id="node2" href="$group__engine.html" title=" " alt="" coords="5,31,72,56"/>
+<area shape="rect" id="node1" href="$group___profile.html" title=" " alt="" coords="273,5,337,31"/>
+<area shape="rect" id="node2" title=" " alt="" coords="120,55,193,80"/>
+<area shape="rect" id="node4" href="$group__explorer_camera.html" title=" " alt="" coords="241,55,368,80"/>
+<area shape="rect" id="node5" href="$group__fps_camera.html" title=" " alt="" coords="257,104,353,129"/>
+<area shape="rect" id="node3" href="$group__engine.html" title=" " alt="" coords="5,55,72,80"/>
 </map>
