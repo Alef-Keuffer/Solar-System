@@ -20,8 +20,8 @@ var group__fps_camera =
     [ "globalFpsSens", "group__fps_camera.html#gafc0e962e75ad2d9eb6eff11178559577", null ],
     [ "globalFpsYaw", "group__fps_camera.html#gaafc3d44d3edf8cf00820eebbfbb57351", null ],
     [ "globalHeight", "group__fps_camera.html#ga715ae80f0a70f5e77abf82089612d279", null ],
-    [ "globalLockCenter", "group__fps_camera.html#gac6207b42ce8dc1b2b88003e5b7ea8fb1", null ],
     [ "globalMotion", "group__fps_camera.html#ga415440b0670bb4b1307a14a440eee18b", null ],
     [ "globalProfile_FPS", "group__fps_camera.html#gaa0f31fbedb92450d82b28cf8b12b6b32", null ],
+    [ "globalWarpCursorToCenter", "group__fps_camera.html#gad045a39bcbfa75417dbcd3cab243fa9f", null ],
     [ "globalWidth", "group__fps_camera.html#gae0acd67f1829e658c87458286ad23bdc", null ]
 ];

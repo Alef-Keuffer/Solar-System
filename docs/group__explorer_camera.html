@@ -115,8 +115,7 @@ $(document).ready(function(){initNavTree('group__explorer_camera.html',''); init
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="group__explorer_camera.svg" width="259" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__explorer_camera.svg" width="259" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
@@ -202,22 +201,21 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00428">428</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  432</span>{</div>
-<div class="line"><span class="lineno">  433</span>  <span class="comment">// https://www.wikiwand.com/en/Spherical_coordinate_system</span></div>
-<div class="line"><span class="lineno">  434</span>  p.x = sqrt (pow ((c.x - o.x), 2) + pow ((c.y - o.y), 2) + pow ((c.z - o.z), 2));</div>
-<div class="line"><span class="lineno">  435</span>  p.y = acos ((c.y - o.y) / (p.x));</div>
-<div class="line"><span class="lineno">  436</span>  p.z = atan2 ((c.z - o.z), (c.x - o.z));</div>
-<div class="line"><span class="lineno">  437</span>}</div>
+<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00446">446</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  450</span>{</div>
+<div class="line"><span class="lineno">  451</span>  <span class="comment">// https://www.wikiwand.com/en/Spherical_coordinate_system</span></div>
+<div class="line"><span class="lineno">  452</span>  p.x = sqrt (pow ((c.x - o.x), 2) + pow ((c.y - o.y), 2) + pow ((c.z - o.z), 2));</div>
+<div class="line"><span class="lineno">  453</span>  p.y = acos ((c.y - o.y) / (p.x));</div>
+<div class="line"><span class="lineno">  454</span>  p.z = atan2 ((c.z - o.z), (c.x - o.z));</div>
+<div class="line"><span class="lineno">  455</span>}</div>
 </div><!-- fragment -->
-<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l01078">operations_render()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l01110">operations_render()</a>.</p>
 <div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="group__explorer_camera_ga2bd01f833407b47f26121736925e24fc_icgraph.svg" width="100%" height="366"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="group__explorer_camera_ga2bd01f833407b47f26121736925e24fc_icgraph.svg" width="100%" height="366"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
 </div>
 
 </div>
@@ -237,70 +235,68 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00382">382</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  383</span>{</div>
-<div class="line"><span class="lineno">  384</span>  <a class="code hl_variable" href="namespaceg.html#aec2a1ff8ec5c063e53a9c14c9e55e009">g::angleStep</a> = <a class="code hl_variable" href="namespace_d.html#a8f08a0dae9a436af80b7ed8cb7f54c4a">D::angleStep</a>;</div>
-<div class="line"><span class="lineno">  385</span>  <a class="code hl_variable" href="namespaceg.html#ad742384d234990c775f85fb2922b8e7b">g::translateStep</a> = <a class="code hl_variable" href="namespace_d.html#a140743eaad562d384d1263a71a9f543e">D::translateStep</a>;</div>
-<div class="line"><span class="lineno">  386</span>  <a class="code hl_variable" href="namespaceg.html#ac5756d0f6e4915f0b4547d48aecc9c26">g::scaleStep</a> = <a class="code hl_variable" href="namespace_d.html#afe89487dc153c7171337f8281b2128d1">D::scaleStep</a>;</div>
-<div class="line"><span class="lineno">  387</span>  <a class="code hl_variable" href="namespaceg.html#af8579e841ff5c2f329d22ed0d0d0b31c">g::eyeStep</a> = <a class="code hl_variable" href="namespace_d.html#a4d5e7aa780fba8949abc71ba3005fb2f">D::upStep</a>;</div>
-<div class="line"><span class="lineno">  388</span>  <a class="code hl_variable" href="namespaceg.html#ace112a8306302ffd18372ee22598219f">g::centerStep</a> = <a class="code hl_variable" href="namespace_d.html#aab0a15456e4b9f428af5e894fdb107e5">D::centerStep</a>;</div>
-<div class="line"><span class="lineno">  389</span>  <a class="code hl_variable" href="namespaceg.html#a9ffd93c4ce581302c099770bb70a4d2c">g::upStep</a> = <a class="code hl_variable" href="namespace_d.html#aab0a15456e4b9f428af5e894fdb107e5">D::centerStep</a>;</div>
-<div class="line"><span class="lineno">  390</span> </div>
-<div class="line"><span class="lineno">  391</span>  <a class="code hl_variable" href="namespaceg.html#aefddf7aa61d9c9b8126c47abbb22e9c6">g::rotate</a> = <a class="code hl_function" href="namespace_d.html#acff69d64de92ad4a8530de5424425dee">D::rotate</a>;</div>
-<div class="line"><span class="lineno">  392</span>  <a class="code hl_variable" href="namespaceg.html#aac8ee5fe8c16824bfc7bcdef7fd5804e">g::translate</a> = <a class="code hl_function" href="namespace_d.html#ae308988f832b1d5420f532ac7dfd772e">D::translate</a>;</div>
-<div class="line"><span class="lineno">  393</span>  <a class="code hl_variable" href="namespaceg.html#a9b1afaa62e5b4befaf0e453c2f301a48">g::scale</a> = <a class="code hl_function" href="namespace_d.html#a1ccd692563b2bed3dbd7275b0bd3dbb3">D::scale</a>;</div>
-<div class="line"><span class="lineno">  394</span>  <a class="code hl_variable" href="namespaceg.html#add6c93372391e2a66e9db30ff6f5b983">g::cartesian</a> = <a class="code hl_function" href="namespace_d.html#a393bfec992f13a40a9f601e3e6c82874">D::cartesian</a>;</div>
-<div class="line"><span class="lineno">  395</span>  <a class="code hl_variable" href="namespaceg.html#a71a27540abbb96a7be8b6ee95a9b2d66">g::origin</a> = <a class="code hl_function" href="namespace_d.html#ae27403f76d7334ff69a099e42f1f1616">D::origin</a>;</div>
-<div class="line"><span class="lineno">  396</span>  <a class="code hl_variable" href="namespaceg.html#a85aa032088340c12cf8b86f09ff28634">g::up</a> = <a class="code hl_function" href="namespace_d.html#a075a76915f7e2899933f446de8be40d9">D::up</a>;</div>
-<div class="line"><span class="lineno">  397</span>  <a class="code hl_variable" href="namespaceg.html#acdb206147317d8190355ac7afd3ca07a">g::projection</a> = <a class="code hl_function" href="namespace_d.html#a49b3788c9a2aae032c6c74d76441aa18">D::projection</a>;</div>
-<div class="line"><span class="lineno">  398</span>  <a class="code hl_variable" href="namespaceg.html#a508e0e303cb9629f706fa19bf8aa5984">g::polar</a> = <a class="code hl_function" href="namespace_d.html#aa2fb96ccebb5bf88d4325f85beb99d84">D::polar</a>;</div>
-<div class="line"><span class="lineno">  399</span>}</div>
+<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00400">400</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  401</span>{</div>
+<div class="line"><span class="lineno">  402</span>  <a class="code hl_variable" href="namespaceg.html#aec2a1ff8ec5c063e53a9c14c9e55e009">g::angleStep</a> = <a class="code hl_variable" href="namespace_d.html#a8f08a0dae9a436af80b7ed8cb7f54c4a">D::angleStep</a>;</div>
+<div class="line"><span class="lineno">  403</span>  <a class="code hl_variable" href="namespaceg.html#ad742384d234990c775f85fb2922b8e7b">g::translateStep</a> = <a class="code hl_variable" href="namespace_d.html#a140743eaad562d384d1263a71a9f543e">D::translateStep</a>;</div>
+<div class="line"><span class="lineno">  404</span>  <a class="code hl_variable" href="namespaceg.html#ac5756d0f6e4915f0b4547d48aecc9c26">g::scaleStep</a> = <a class="code hl_variable" href="namespace_d.html#afe89487dc153c7171337f8281b2128d1">D::scaleStep</a>;</div>
+<div class="line"><span class="lineno">  405</span>  <a class="code hl_variable" href="namespaceg.html#af8579e841ff5c2f329d22ed0d0d0b31c">g::eyeStep</a> = <a class="code hl_variable" href="namespace_d.html#a4d5e7aa780fba8949abc71ba3005fb2f">D::upStep</a>;</div>
+<div class="line"><span class="lineno">  406</span>  <a class="code hl_variable" href="namespaceg.html#ace112a8306302ffd18372ee22598219f">g::centerStep</a> = <a class="code hl_variable" href="namespace_d.html#aab0a15456e4b9f428af5e894fdb107e5">D::centerStep</a>;</div>
+<div class="line"><span class="lineno">  407</span>  <a class="code hl_variable" href="namespaceg.html#a9ffd93c4ce581302c099770bb70a4d2c">g::upStep</a> = <a class="code hl_variable" href="namespace_d.html#aab0a15456e4b9f428af5e894fdb107e5">D::centerStep</a>;</div>
+<div class="line"><span class="lineno">  408</span> </div>
+<div class="line"><span class="lineno">  409</span>  <a class="code hl_variable" href="namespaceg.html#aefddf7aa61d9c9b8126c47abbb22e9c6">g::rotate</a> = <a class="code hl_function" href="namespace_d.html#acff69d64de92ad4a8530de5424425dee">D::rotate</a>;</div>
+<div class="line"><span class="lineno">  410</span>  <a class="code hl_variable" href="namespaceg.html#aac8ee5fe8c16824bfc7bcdef7fd5804e">g::translate</a> = <a class="code hl_function" href="namespace_d.html#ae308988f832b1d5420f532ac7dfd772e">D::translate</a>;</div>
+<div class="line"><span class="lineno">  411</span>  <a class="code hl_variable" href="namespaceg.html#a9b1afaa62e5b4befaf0e453c2f301a48">g::scale</a> = <a class="code hl_function" href="namespace_d.html#a1ccd692563b2bed3dbd7275b0bd3dbb3">D::scale</a>;</div>
+<div class="line"><span class="lineno">  412</span>  <a class="code hl_variable" href="namespaceg.html#add6c93372391e2a66e9db30ff6f5b983">g::cartesian</a> = <a class="code hl_function" href="namespace_d.html#a393bfec992f13a40a9f601e3e6c82874">D::cartesian</a>;</div>
+<div class="line"><span class="lineno">  413</span>  <a class="code hl_variable" href="namespaceg.html#a71a27540abbb96a7be8b6ee95a9b2d66">g::origin</a> = <a class="code hl_function" href="namespace_d.html#ae27403f76d7334ff69a099e42f1f1616">D::origin</a>;</div>
+<div class="line"><span class="lineno">  414</span>  <a class="code hl_variable" href="namespaceg.html#a85aa032088340c12cf8b86f09ff28634">g::up</a> = <a class="code hl_function" href="namespace_d.html#a075a76915f7e2899933f446de8be40d9">D::up</a>;</div>
+<div class="line"><span class="lineno">  415</span>  <a class="code hl_variable" href="namespaceg.html#acdb206147317d8190355ac7afd3ca07a">g::projection</a> = <a class="code hl_function" href="namespace_d.html#a49b3788c9a2aae032c6c74d76441aa18">D::projection</a>;</div>
+<div class="line"><span class="lineno">  416</span>  <a class="code hl_variable" href="namespaceg.html#a508e0e303cb9629f706fa19bf8aa5984">g::polar</a> = <a class="code hl_function" href="namespace_d.html#aa2fb96ccebb5bf88d4325f85beb99d84">D::polar</a>;</div>
+<div class="line"><span class="lineno">  417</span>}</div>
 <div class="ttc" id="anamespace_d_html_a075a76915f7e2899933f446de8be40d9"><div class="ttname"><a href="namespace_d.html#a075a76915f7e2899933f446de8be40d9">D::up</a></div><div class="ttdeci">vec3 up(0, 1, 0)</div></div>
-<div class="ttc" id="anamespace_d_html_a140743eaad562d384d1263a71a9f543e"><div class="ttname"><a href="namespace_d.html#a140743eaad562d384d1263a71a9f543e">D::translateStep</a></div><div class="ttdeci">float translateStep</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00354">engine.cpp:354</a></div></div>
+<div class="ttc" id="anamespace_d_html_a140743eaad562d384d1263a71a9f543e"><div class="ttname"><a href="namespace_d.html#a140743eaad562d384d1263a71a9f543e">D::translateStep</a></div><div class="ttdeci">float translateStep</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00372">engine.cpp:372</a></div></div>
 <div class="ttc" id="anamespace_d_html_a1ccd692563b2bed3dbd7275b0bd3dbb3"><div class="ttname"><a href="namespace_d.html#a1ccd692563b2bed3dbd7275b0bd3dbb3">D::scale</a></div><div class="ttdeci">vec3 scale(1, 1, 1)</div></div>
 <div class="ttc" id="anamespace_d_html_a393bfec992f13a40a9f601e3e6c82874"><div class="ttname"><a href="namespace_d.html#a393bfec992f13a40a9f601e3e6c82874">D::cartesian</a></div><div class="ttdeci">vec3 cartesian(0, 2, 5)</div></div>
 <div class="ttc" id="anamespace_d_html_a49b3788c9a2aae032c6c74d76441aa18"><div class="ttname"><a href="namespace_d.html#a49b3788c9a2aae032c6c74d76441aa18">D::projection</a></div><div class="ttdeci">vec3 projection(60, 1, 100)</div><div class="ttdoc">(fov,near,var)</div></div>
-<div class="ttc" id="anamespace_d_html_a4d5e7aa780fba8949abc71ba3005fb2f"><div class="ttname"><a href="namespace_d.html#a4d5e7aa780fba8949abc71ba3005fb2f">D::upStep</a></div><div class="ttdeci">float upStep</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00354">engine.cpp:354</a></div></div>
-<div class="ttc" id="anamespace_d_html_a8f08a0dae9a436af80b7ed8cb7f54c4a"><div class="ttname"><a href="namespace_d.html#a8f08a0dae9a436af80b7ed8cb7f54c4a">D::angleStep</a></div><div class="ttdeci">float angleStep</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00354">engine.cpp:354</a></div></div>
+<div class="ttc" id="anamespace_d_html_a4d5e7aa780fba8949abc71ba3005fb2f"><div class="ttname"><a href="namespace_d.html#a4d5e7aa780fba8949abc71ba3005fb2f">D::upStep</a></div><div class="ttdeci">float upStep</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00372">engine.cpp:372</a></div></div>
+<div class="ttc" id="anamespace_d_html_a8f08a0dae9a436af80b7ed8cb7f54c4a"><div class="ttname"><a href="namespace_d.html#a8f08a0dae9a436af80b7ed8cb7f54c4a">D::angleStep</a></div><div class="ttdeci">float angleStep</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00372">engine.cpp:372</a></div></div>
 <div class="ttc" id="anamespace_d_html_aa2fb96ccebb5bf88d4325f85beb99d84"><div class="ttname"><a href="namespace_d.html#aa2fb96ccebb5bf88d4325f85beb99d84">D::polar</a></div><div class="ttdeci">vec3 polar(1, 45, 45)</div><div class="ttdoc">(radius,zenith,azimuth)</div></div>
-<div class="ttc" id="anamespace_d_html_aab0a15456e4b9f428af5e894fdb107e5"><div class="ttname"><a href="namespace_d.html#aab0a15456e4b9f428af5e894fdb107e5">D::centerStep</a></div><div class="ttdeci">float centerStep</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00354">engine.cpp:354</a></div></div>
+<div class="ttc" id="anamespace_d_html_aab0a15456e4b9f428af5e894fdb107e5"><div class="ttname"><a href="namespace_d.html#aab0a15456e4b9f428af5e894fdb107e5">D::centerStep</a></div><div class="ttdeci">float centerStep</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00372">engine.cpp:372</a></div></div>
 <div class="ttc" id="anamespace_d_html_acff69d64de92ad4a8530de5424425dee"><div class="ttname"><a href="namespace_d.html#acff69d64de92ad4a8530de5424425dee">D::rotate</a></div><div class="ttdeci">vec4 rotate(0, 0, 0, 0)</div></div>
 <div class="ttc" id="anamespace_d_html_ae27403f76d7334ff69a099e42f1f1616"><div class="ttname"><a href="namespace_d.html#ae27403f76d7334ff69a099e42f1f1616">D::origin</a></div><div class="ttdeci">vec3 origin(0, 0, 0)</div></div>
 <div class="ttc" id="anamespace_d_html_ae308988f832b1d5420f532ac7dfd772e"><div class="ttname"><a href="namespace_d.html#ae308988f832b1d5420f532ac7dfd772e">D::translate</a></div><div class="ttdeci">vec3 translate(0, 0, 0)</div></div>
-<div class="ttc" id="anamespace_d_html_afe89487dc153c7171337f8281b2128d1"><div class="ttname"><a href="namespace_d.html#afe89487dc153c7171337f8281b2128d1">D::scaleStep</a></div><div class="ttdeci">float scaleStep</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00354">engine.cpp:354</a></div></div>
-<div class="ttc" id="anamespaceg_html_a508e0e303cb9629f706fa19bf8aa5984"><div class="ttname"><a href="namespaceg.html#a508e0e303cb9629f706fa19bf8aa5984">g::polar</a></div><div class="ttdeci">vec3 polar</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00378">engine.cpp:378</a></div></div>
-<div class="ttc" id="anamespaceg_html_a71a27540abbb96a7be8b6ee95a9b2d66"><div class="ttname"><a href="namespaceg.html#a71a27540abbb96a7be8b6ee95a9b2d66">g::origin</a></div><div class="ttdeci">vec3 origin</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00376">engine.cpp:376</a></div></div>
-<div class="ttc" id="anamespaceg_html_a85aa032088340c12cf8b86f09ff28634"><div class="ttname"><a href="namespaceg.html#a85aa032088340c12cf8b86f09ff28634">g::up</a></div><div class="ttdeci">vec3 up</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00377">engine.cpp:377</a></div></div>
-<div class="ttc" id="anamespaceg_html_a9b1afaa62e5b4befaf0e453c2f301a48"><div class="ttname"><a href="namespaceg.html#a9b1afaa62e5b4befaf0e453c2f301a48">g::scale</a></div><div class="ttdeci">vec3 scale</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00374">engine.cpp:374</a></div></div>
-<div class="ttc" id="anamespaceg_html_a9ffd93c4ce581302c099770bb70a4d2c"><div class="ttname"><a href="namespaceg.html#a9ffd93c4ce581302c099770bb70a4d2c">g::upStep</a></div><div class="ttdeci">float upStep</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00370">engine.cpp:370</a></div></div>
-<div class="ttc" id="anamespaceg_html_aac8ee5fe8c16824bfc7bcdef7fd5804e"><div class="ttname"><a href="namespaceg.html#aac8ee5fe8c16824bfc7bcdef7fd5804e">g::translate</a></div><div class="ttdeci">vec3 translate</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00373">engine.cpp:373</a></div></div>
-<div class="ttc" id="anamespaceg_html_ac5756d0f6e4915f0b4547d48aecc9c26"><div class="ttname"><a href="namespaceg.html#ac5756d0f6e4915f0b4547d48aecc9c26">g::scaleStep</a></div><div class="ttdeci">float scaleStep</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00371">engine.cpp:371</a></div></div>
-<div class="ttc" id="anamespaceg_html_acdb206147317d8190355ac7afd3ca07a"><div class="ttname"><a href="namespaceg.html#acdb206147317d8190355ac7afd3ca07a">g::projection</a></div><div class="ttdeci">vec3 projection</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00379">engine.cpp:379</a></div></div>
-<div class="ttc" id="anamespaceg_html_ace112a8306302ffd18372ee22598219f"><div class="ttname"><a href="namespaceg.html#ace112a8306302ffd18372ee22598219f">g::centerStep</a></div><div class="ttdeci">float centerStep</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00370">engine.cpp:370</a></div></div>
-<div class="ttc" id="anamespaceg_html_ad742384d234990c775f85fb2922b8e7b"><div class="ttname"><a href="namespaceg.html#ad742384d234990c775f85fb2922b8e7b">g::translateStep</a></div><div class="ttdeci">float translateStep</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00371">engine.cpp:371</a></div></div>
-<div class="ttc" id="anamespaceg_html_add6c93372391e2a66e9db30ff6f5b983"><div class="ttname"><a href="namespaceg.html#add6c93372391e2a66e9db30ff6f5b983">g::cartesian</a></div><div class="ttdeci">vec3 cartesian</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00375">engine.cpp:375</a></div></div>
-<div class="ttc" id="anamespaceg_html_aec2a1ff8ec5c063e53a9c14c9e55e009"><div class="ttname"><a href="namespaceg.html#aec2a1ff8ec5c063e53a9c14c9e55e009">g::angleStep</a></div><div class="ttdeci">float angleStep</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00371">engine.cpp:371</a></div></div>
-<div class="ttc" id="anamespaceg_html_aefddf7aa61d9c9b8126c47abbb22e9c6"><div class="ttname"><a href="namespaceg.html#aefddf7aa61d9c9b8126c47abbb22e9c6">g::rotate</a></div><div class="ttdeci">vec4 rotate</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00372">engine.cpp:372</a></div></div>
-<div class="ttc" id="anamespaceg_html_af8579e841ff5c2f329d22ed0d0d0b31c"><div class="ttname"><a href="namespaceg.html#af8579e841ff5c2f329d22ed0d0d0b31c">g::eyeStep</a></div><div class="ttdeci">float eyeStep</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00370">engine.cpp:370</a></div></div>
+<div class="ttc" id="anamespace_d_html_afe89487dc153c7171337f8281b2128d1"><div class="ttname"><a href="namespace_d.html#afe89487dc153c7171337f8281b2128d1">D::scaleStep</a></div><div class="ttdeci">float scaleStep</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00372">engine.cpp:372</a></div></div>
+<div class="ttc" id="anamespaceg_html_a508e0e303cb9629f706fa19bf8aa5984"><div class="ttname"><a href="namespaceg.html#a508e0e303cb9629f706fa19bf8aa5984">g::polar</a></div><div class="ttdeci">vec3 polar</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00396">engine.cpp:396</a></div></div>
+<div class="ttc" id="anamespaceg_html_a71a27540abbb96a7be8b6ee95a9b2d66"><div class="ttname"><a href="namespaceg.html#a71a27540abbb96a7be8b6ee95a9b2d66">g::origin</a></div><div class="ttdeci">vec3 origin</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00394">engine.cpp:394</a></div></div>
+<div class="ttc" id="anamespaceg_html_a85aa032088340c12cf8b86f09ff28634"><div class="ttname"><a href="namespaceg.html#a85aa032088340c12cf8b86f09ff28634">g::up</a></div><div class="ttdeci">vec3 up</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00395">engine.cpp:395</a></div></div>
+<div class="ttc" id="anamespaceg_html_a9b1afaa62e5b4befaf0e453c2f301a48"><div class="ttname"><a href="namespaceg.html#a9b1afaa62e5b4befaf0e453c2f301a48">g::scale</a></div><div class="ttdeci">vec3 scale</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00392">engine.cpp:392</a></div></div>
+<div class="ttc" id="anamespaceg_html_a9ffd93c4ce581302c099770bb70a4d2c"><div class="ttname"><a href="namespaceg.html#a9ffd93c4ce581302c099770bb70a4d2c">g::upStep</a></div><div class="ttdeci">float upStep</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00388">engine.cpp:388</a></div></div>
+<div class="ttc" id="anamespaceg_html_aac8ee5fe8c16824bfc7bcdef7fd5804e"><div class="ttname"><a href="namespaceg.html#aac8ee5fe8c16824bfc7bcdef7fd5804e">g::translate</a></div><div class="ttdeci">vec3 translate</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00391">engine.cpp:391</a></div></div>
+<div class="ttc" id="anamespaceg_html_ac5756d0f6e4915f0b4547d48aecc9c26"><div class="ttname"><a href="namespaceg.html#ac5756d0f6e4915f0b4547d48aecc9c26">g::scaleStep</a></div><div class="ttdeci">float scaleStep</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00389">engine.cpp:389</a></div></div>
+<div class="ttc" id="anamespaceg_html_acdb206147317d8190355ac7afd3ca07a"><div class="ttname"><a href="namespaceg.html#acdb206147317d8190355ac7afd3ca07a">g::projection</a></div><div class="ttdeci">vec3 projection</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00397">engine.cpp:397</a></div></div>
+<div class="ttc" id="anamespaceg_html_ace112a8306302ffd18372ee22598219f"><div class="ttname"><a href="namespaceg.html#ace112a8306302ffd18372ee22598219f">g::centerStep</a></div><div class="ttdeci">float centerStep</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00388">engine.cpp:388</a></div></div>
+<div class="ttc" id="anamespaceg_html_ad742384d234990c775f85fb2922b8e7b"><div class="ttname"><a href="namespaceg.html#ad742384d234990c775f85fb2922b8e7b">g::translateStep</a></div><div class="ttdeci">float translateStep</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00389">engine.cpp:389</a></div></div>
+<div class="ttc" id="anamespaceg_html_add6c93372391e2a66e9db30ff6f5b983"><div class="ttname"><a href="namespaceg.html#add6c93372391e2a66e9db30ff6f5b983">g::cartesian</a></div><div class="ttdeci">vec3 cartesian</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00393">engine.cpp:393</a></div></div>
+<div class="ttc" id="anamespaceg_html_aec2a1ff8ec5c063e53a9c14c9e55e009"><div class="ttname"><a href="namespaceg.html#aec2a1ff8ec5c063e53a9c14c9e55e009">g::angleStep</a></div><div class="ttdeci">float angleStep</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00389">engine.cpp:389</a></div></div>
+<div class="ttc" id="anamespaceg_html_aefddf7aa61d9c9b8126c47abbb22e9c6"><div class="ttname"><a href="namespaceg.html#aefddf7aa61d9c9b8126c47abbb22e9c6">g::rotate</a></div><div class="ttdeci">vec4 rotate</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00390">engine.cpp:390</a></div></div>
+<div class="ttc" id="anamespaceg_html_af8579e841ff5c2f329d22ed0d0d0b31c"><div class="ttname"><a href="namespaceg.html#af8579e841ff5c2f329d22ed0d0d0b31c">g::eyeStep</a></div><div class="ttdeci">float eyeStep</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00388">engine.cpp:388</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="engine_8cpp_source.html#l00354">D::angleStep</a>, <a class="el" href="engine_8cpp_source.html#l00371">g::angleStep</a>, <a class="el" href="namespace_d.html#a393bfec992f13a40a9f601e3e6c82874">D::cartesian()</a>, <a class="el" href="engine_8cpp_source.html#l00375">g::cartesian</a>, <a class="el" href="engine_8cpp_source.html#l00354">D::centerStep</a>, <a class="el" href="engine_8cpp_source.html#l00370">g::centerStep</a>, <a class="el" href="engine_8cpp_source.html#l00370">g::eyeStep</a>, <a class="el" href="namespace_d.html#ae27403f76d7334ff69a099e42f1f1616">D::origin()</a>, <a class="el" href="engine_8cpp_source.html#l00376">g::origin</a>, <a class="el" href="namespace_d.html#aa2fb96ccebb5bf88d4325f85beb99d84">D::polar()</a>, <a class="el" href="engine_8cpp_source.html#l00378">g::polar</a>, <a class="el" href="namespace_d.html#a49b3788c9a2aae032c6c74d76441aa18">D::projection()</a>, <a class="el" href="engine_8cpp_source.html#l00379">g::projection</a>, <a class="el" href="namespace_d.html#acff69d64de92ad4a8530de5424425dee">D::rotate()</a>, <a class="el" href="engine_8cpp_source.html#l00372">g::rotate</a>, <a class="el" href="namespace_d.html#a1ccd692563b2bed3dbd7275b0bd3dbb3">D::scale()</a>, <a class="el" href="engine_8cpp_source.html#l00374">g::scale</a>, <a class="el" href="engine_8cpp_source.html#l00354">D::scaleStep</a>, <a class="el" href="engine_8cpp_source.html#l00371">g::scaleStep</a>, <a class="el" href="namespace_d.html#ae308988f832b1d5420f532ac7dfd772e">D::translate()</a>, <a class="el" href="engine_8cpp_source.html#l00373">g::translate</a>, <a class="el" href="engine_8cpp_source.html#l00354">D::translateStep</a>, <a class="el" href="engine_8cpp_source.html#l00371">g::translateStep</a>, <a class="el" href="namespace_d.html#a075a76915f7e2899933f446de8be40d9">D::up()</a>, <a class="el" href="engine_8cpp_source.html#l00377">g::up</a>, <a class="el" href="engine_8cpp_source.html#l00354">D::upStep</a>, and <a class="el" href="engine_8cpp_source.html#l00370">g::upStep</a>.</p>
+<p class="reference">References <a class="el" href="engine_8cpp_source.html#l00372">D::angleStep</a>, <a class="el" href="engine_8cpp_source.html#l00389">g::angleStep</a>, <a class="el" href="namespace_d.html#a393bfec992f13a40a9f601e3e6c82874">D::cartesian()</a>, <a class="el" href="engine_8cpp_source.html#l00393">g::cartesian</a>, <a class="el" href="engine_8cpp_source.html#l00372">D::centerStep</a>, <a class="el" href="engine_8cpp_source.html#l00388">g::centerStep</a>, <a class="el" href="engine_8cpp_source.html#l00388">g::eyeStep</a>, <a class="el" href="namespace_d.html#ae27403f76d7334ff69a099e42f1f1616">D::origin()</a>, <a class="el" href="engine_8cpp_source.html#l00394">g::origin</a>, <a class="el" href="namespace_d.html#aa2fb96ccebb5bf88d4325f85beb99d84">D::polar()</a>, <a class="el" href="engine_8cpp_source.html#l00396">g::polar</a>, <a class="el" href="namespace_d.html#a49b3788c9a2aae032c6c74d76441aa18">D::projection()</a>, <a class="el" href="engine_8cpp_source.html#l00397">g::projection</a>, <a class="el" href="namespace_d.html#acff69d64de92ad4a8530de5424425dee">D::rotate()</a>, <a class="el" href="engine_8cpp_source.html#l00390">g::rotate</a>, <a class="el" href="namespace_d.html#a1ccd692563b2bed3dbd7275b0bd3dbb3">D::scale()</a>, <a class="el" href="engine_8cpp_source.html#l00392">g::scale</a>, <a class="el" href="engine_8cpp_source.html#l00372">D::scaleStep</a>, <a class="el" href="engine_8cpp_source.html#l00389">g::scaleStep</a>, <a class="el" href="namespace_d.html#ae308988f832b1d5420f532ac7dfd772e">D::translate()</a>, <a class="el" href="engine_8cpp_source.html#l00391">g::translate</a>, <a class="el" href="engine_8cpp_source.html#l00372">D::translateStep</a>, <a class="el" href="engine_8cpp_source.html#l00389">g::translateStep</a>, <a class="el" href="namespace_d.html#a075a76915f7e2899933f446de8be40d9">D::up()</a>, <a class="el" href="engine_8cpp_source.html#l00395">g::up</a>, <a class="el" href="engine_8cpp_source.html#l00372">D::upStep</a>, and <a class="el" href="engine_8cpp_source.html#l00388">g::upStep</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00445">explKeyboard()</a>, and <a class="el" href="engine_8cpp_source.html#l01530">xml_load_and_set_env()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00463">explKeyboard()</a>, and <a class="el" href="engine_8cpp_source.html#l01562">xml_load_and_set_env()</a>.</p>
 <div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-2-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-2-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-2-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="group__explorer_camera_ga8679d9b303f36964bf51dba0993caeaa_cgraph.svg" width="306" height="392"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__explorer_camera_ga8679d9b303f36964bf51dba0993caeaa_cgraph.svg" width="306" height="392"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div id="dynsection-3" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-3-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-3-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-3-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="group__explorer_camera_ga8679d9b303f36964bf51dba0993caeaa_icgraph.svg" width="616" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__explorer_camera_ga8679d9b303f36964bf51dba0993caeaa_icgraph.svg" width="616" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -320,31 +316,30 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00794">794</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  795</span>{</div>
-<div class="line"><span class="lineno">  796</span>  <span class="comment">// set the camera</span></div>
-<div class="line"><span class="lineno">  797</span>  gluLookAt (<a class="code hl_variable" href="namespaceg.html#add6c93372391e2a66e9db30ff6f5b983">g::cartesian</a>.x, <a class="code hl_variable" href="namespaceg.html#add6c93372391e2a66e9db30ff6f5b983">g::cartesian</a>.y, <a class="code hl_variable" href="namespaceg.html#add6c93372391e2a66e9db30ff6f5b983">g::cartesian</a>.z,</div>
-<div class="line"><span class="lineno">  798</span>             <a class="code hl_variable" href="namespaceg.html#a71a27540abbb96a7be8b6ee95a9b2d66">g::origin</a>.x, <a class="code hl_variable" href="namespaceg.html#a71a27540abbb96a7be8b6ee95a9b2d66">g::origin</a>.y, <a class="code hl_variable" href="namespaceg.html#a71a27540abbb96a7be8b6ee95a9b2d66">g::origin</a>.z,</div>
-<div class="line"><span class="lineno">  799</span>             <a class="code hl_variable" href="namespaceg.html#a85aa032088340c12cf8b86f09ff28634">g::up</a>.x, <a class="code hl_variable" href="namespaceg.html#a85aa032088340c12cf8b86f09ff28634">g::up</a>.y, <a class="code hl_variable" href="namespaceg.html#a85aa032088340c12cf8b86f09ff28634">g::up</a>.z);</div>
-<div class="line"><span class="lineno">  800</span>  <span class="comment">//draw_axes ();</span></div>
-<div class="line"><span class="lineno">  801</span> </div>
-<div class="line"><span class="lineno">  802</span>  <span class="comment">// put the geometric transformations here</span></div>
-<div class="line"><span class="lineno">  803</span>  glRotatef (<a class="code hl_variable" href="namespaceg.html#aefddf7aa61d9c9b8126c47abbb22e9c6">g::rotate</a>.w, <a class="code hl_variable" href="namespaceg.html#aefddf7aa61d9c9b8126c47abbb22e9c6">g::rotate</a>.x, <a class="code hl_variable" href="namespaceg.html#aefddf7aa61d9c9b8126c47abbb22e9c6">g::rotate</a>.y, <a class="code hl_variable" href="namespaceg.html#aefddf7aa61d9c9b8126c47abbb22e9c6">g::rotate</a>.z);</div>
-<div class="line"><span class="lineno">  804</span>  glTranslatef (<a class="code hl_variable" href="namespaceg.html#aac8ee5fe8c16824bfc7bcdef7fd5804e">g::translate</a>.x, <a class="code hl_variable" href="namespaceg.html#aac8ee5fe8c16824bfc7bcdef7fd5804e">g::translate</a>.y, <a class="code hl_variable" href="namespaceg.html#aac8ee5fe8c16824bfc7bcdef7fd5804e">g::translate</a>.z);</div>
-<div class="line"><span class="lineno">  805</span>  glScalef (<a class="code hl_variable" href="namespaceg.html#a9b1afaa62e5b4befaf0e453c2f301a48">g::scale</a>.x, <a class="code hl_variable" href="namespaceg.html#a9b1afaa62e5b4befaf0e453c2f301a48">g::scale</a>.y, <a class="code hl_variable" href="namespaceg.html#a9b1afaa62e5b4befaf0e453c2f301a48">g::scale</a>.z);</div>
-<div class="line"><span class="lineno">  806</span> </div>
-<div class="line"><span class="lineno">  807</span>  <a class="code hl_function" href="group__explorer_camera.html#ga9fe47c5361dc03b642823dc88f07465b">explRedisplay</a> ();</div>
-<div class="line"><span class="lineno">  808</span>}</div>
-<div class="ttc" id="agroup__explorer_camera_html_ga9fe47c5361dc03b642823dc88f07465b"><div class="ttname"><a href="group__explorer_camera.html#ga9fe47c5361dc03b642823dc88f07465b">explRedisplay</a></div><div class="ttdeci">void explRedisplay()</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00439">engine.cpp:439</a></div></div>
+<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00812">812</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  813</span>{</div>
+<div class="line"><span class="lineno">  814</span>  <span class="comment">// set the camera</span></div>
+<div class="line"><span class="lineno">  815</span>  gluLookAt (<a class="code hl_variable" href="namespaceg.html#add6c93372391e2a66e9db30ff6f5b983">g::cartesian</a>.x, <a class="code hl_variable" href="namespaceg.html#add6c93372391e2a66e9db30ff6f5b983">g::cartesian</a>.y, <a class="code hl_variable" href="namespaceg.html#add6c93372391e2a66e9db30ff6f5b983">g::cartesian</a>.z,</div>
+<div class="line"><span class="lineno">  816</span>             <a class="code hl_variable" href="namespaceg.html#a71a27540abbb96a7be8b6ee95a9b2d66">g::origin</a>.x, <a class="code hl_variable" href="namespaceg.html#a71a27540abbb96a7be8b6ee95a9b2d66">g::origin</a>.y, <a class="code hl_variable" href="namespaceg.html#a71a27540abbb96a7be8b6ee95a9b2d66">g::origin</a>.z,</div>
+<div class="line"><span class="lineno">  817</span>             <a class="code hl_variable" href="namespaceg.html#a85aa032088340c12cf8b86f09ff28634">g::up</a>.x, <a class="code hl_variable" href="namespaceg.html#a85aa032088340c12cf8b86f09ff28634">g::up</a>.y, <a class="code hl_variable" href="namespaceg.html#a85aa032088340c12cf8b86f09ff28634">g::up</a>.z);</div>
+<div class="line"><span class="lineno">  818</span>  <span class="comment">//draw_axes ();</span></div>
+<div class="line"><span class="lineno">  819</span> </div>
+<div class="line"><span class="lineno">  820</span>  <span class="comment">// put the geometric transformations here</span></div>
+<div class="line"><span class="lineno">  821</span>  glRotatef (<a class="code hl_variable" href="namespaceg.html#aefddf7aa61d9c9b8126c47abbb22e9c6">g::rotate</a>.w, <a class="code hl_variable" href="namespaceg.html#aefddf7aa61d9c9b8126c47abbb22e9c6">g::rotate</a>.x, <a class="code hl_variable" href="namespaceg.html#aefddf7aa61d9c9b8126c47abbb22e9c6">g::rotate</a>.y, <a class="code hl_variable" href="namespaceg.html#aefddf7aa61d9c9b8126c47abbb22e9c6">g::rotate</a>.z);</div>
+<div class="line"><span class="lineno">  822</span>  glTranslatef (<a class="code hl_variable" href="namespaceg.html#aac8ee5fe8c16824bfc7bcdef7fd5804e">g::translate</a>.x, <a class="code hl_variable" href="namespaceg.html#aac8ee5fe8c16824bfc7bcdef7fd5804e">g::translate</a>.y, <a class="code hl_variable" href="namespaceg.html#aac8ee5fe8c16824bfc7bcdef7fd5804e">g::translate</a>.z);</div>
+<div class="line"><span class="lineno">  823</span>  glScalef (<a class="code hl_variable" href="namespaceg.html#a9b1afaa62e5b4befaf0e453c2f301a48">g::scale</a>.x, <a class="code hl_variable" href="namespaceg.html#a9b1afaa62e5b4befaf0e453c2f301a48">g::scale</a>.y, <a class="code hl_variable" href="namespaceg.html#a9b1afaa62e5b4befaf0e453c2f301a48">g::scale</a>.z);</div>
+<div class="line"><span class="lineno">  824</span> </div>
+<div class="line"><span class="lineno">  825</span>  <a class="code hl_function" href="group__explorer_camera.html#ga9fe47c5361dc03b642823dc88f07465b">explRedisplay</a> ();</div>
+<div class="line"><span class="lineno">  826</span>}</div>
+<div class="ttc" id="agroup__explorer_camera_html_ga9fe47c5361dc03b642823dc88f07465b"><div class="ttname"><a href="group__explorer_camera.html#ga9fe47c5361dc03b642823dc88f07465b">explRedisplay</a></div><div class="ttdeci">void explRedisplay()</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00457">engine.cpp:457</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="engine_8cpp_source.html#l00375">g::cartesian</a>, <a class="el" href="engine_8cpp_source.html#l00439">explRedisplay()</a>, <a class="el" href="engine_8cpp_source.html#l00376">g::origin</a>, <a class="el" href="engine_8cpp_source.html#l00372">g::rotate</a>, <a class="el" href="engine_8cpp_source.html#l00374">g::scale</a>, <a class="el" href="engine_8cpp_source.html#l00373">g::translate</a>, and <a class="el" href="engine_8cpp_source.html#l00377">g::up</a>.</p>
+<p class="reference">References <a class="el" href="engine_8cpp_source.html#l00393">g::cartesian</a>, <a class="el" href="engine_8cpp_source.html#l00457">explRedisplay()</a>, <a class="el" href="engine_8cpp_source.html#l00394">g::origin</a>, <a class="el" href="engine_8cpp_source.html#l00390">g::rotate</a>, <a class="el" href="engine_8cpp_source.html#l00392">g::scale</a>, <a class="el" href="engine_8cpp_source.html#l00391">g::translate</a>, and <a class="el" href="engine_8cpp_source.html#l00395">g::up</a>.</p>
 <div id="dynsection-4" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-4-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-4-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-4-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="group__explorer_camera_gab0f1d17222b0687759f3d0e7ee600f20_cgraph.svg" width="622" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__explorer_camera_gab0f1d17222b0687759f3d0e7ee600f20_cgraph.svg" width="622" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -381,232 +376,231 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00445">445</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  446</span>{</div>
-<div class="line"><span class="lineno">  447</span>  <span class="comment">/*</span></div>
-<div class="line"><span class="lineno">  448</span><span class="comment">      Rotation:</span></div>
-<div class="line"><span class="lineno">  449</span><span class="comment">          x y z       x↓ y↓ z↓</span></div>
-<div class="line"><span class="lineno">  450</span><span class="comment">          X Y Z       x↑ y↑ z↑</span></div>
-<div class="line"><span class="lineno">  451</span><span class="comment">      angle:</span></div>
-<div class="line"><span class="lineno">  452</span><span class="comment">          , .     θ-=s    θ+=s</span></div>
-<div class="line"><span class="lineno">  453</span><span class="comment">          &lt; &gt;     s↓     s↑</span></div>
-<div class="line"><span class="lineno">  454</span><span class="comment">      translation:</span></div>
-<div class="line"><span class="lineno">  455</span><span class="comment">          q w e       y↓ z↑ y↑</span></div>
-<div class="line"><span class="lineno">  456</span><span class="comment">          a s d       x↓ z↓ x↑</span></div>
-<div class="line"><span class="lineno">  457</span><span class="comment">      scaling:</span></div>
-<div class="line"><span class="lineno">  458</span><span class="comment">          u i o       y↓ z↑ y↑</span></div>
-<div class="line"><span class="lineno">  459</span><span class="comment">          j k l       x↓ z↓ x↑</span></div>
-<div class="line"><span class="lineno">  460</span><span class="comment">      background color: r g b R G B</span></div>
-<div class="line"><span class="lineno">  461</span><span class="comment">      camera:</span></div>
-<div class="line"><span class="lineno">  462</span><span class="comment">          1 2 3 ⎫       ! @ # ⎫        EyeX     EyeY     EyeZ</span></div>
-<div class="line"><span class="lineno">  463</span><span class="comment">          4 5 6 ⎬↓      $ % ^ ⎬↑       CenterX  CenterY  CenterZ</span></div>
-<div class="line"><span class="lineno">  464</span><span class="comment">          7 8 9 ⎭       &amp; * ( ⎭        UpX      UpY      UpZ</span></div>
-<div class="line"><span class="lineno">  465</span><span class="comment">   */</span></div>
-<div class="line"><span class="lineno">  466</span>  <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> ESC = 27;</div>
-<div class="line"><span class="lineno">  467</span>  <span class="keywordflow">switch</span> (key)</div>
-<div class="line"><span class="lineno">  468</span>    {</div>
-<div class="line"><span class="lineno">  469</span>      <span class="keywordflow">case</span> ESC:</div>
-<div class="line"><span class="lineno">  470</span>        {</div>
-<div class="line"><span class="lineno">  471</span>          <a class="code hl_variable" href="group__fps_camera.html#gac6207b42ce8dc1b2b88003e5b7ea8fb1">globalLockCenter</a> = !<a class="code hl_variable" href="group__fps_camera.html#gac6207b42ce8dc1b2b88003e5b7ea8fb1">globalLockCenter</a>;</div>
-<div class="line"><span class="lineno">  472</span>          <span class="keywordflow">if</span> (<a class="code hl_variable" href="group__fps_camera.html#gac6207b42ce8dc1b2b88003e5b7ea8fb1">globalLockCenter</a>)</div>
-<div class="line"><span class="lineno">  473</span>            glutSetCursor (GLUT_CURSOR_NONE);</div>
-<div class="line"><span class="lineno">  474</span>          <span class="keywordflow">else</span></div>
-<div class="line"><span class="lineno">  475</span>            glutSetCursor (GLUT_CURSOR_CROSSHAIR);</div>
-<div class="line"><span class="lineno">  476</span>          <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  477</span>        }</div>
-<div class="line"><span class="lineno">  478</span>      <span class="comment">/*Rotation*/</span></div>
-<div class="line"><span class="lineno">  479</span>      <span class="keywordflow">case</span> <span class="charliteral">&#39;x&#39;</span>:</div>
-<div class="line"><span class="lineno">  480</span>        <a class="code hl_variable" href="namespaceg.html#aefddf7aa61d9c9b8126c47abbb22e9c6">g::rotate</a>.x -= 1;</div>
-<div class="line"><span class="lineno">  481</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  482</span> </div>
-<div class="line"><span class="lineno">  483</span>      <span class="keywordflow">case</span> <span class="charliteral">&#39;X&#39;</span>:</div>
-<div class="line"><span class="lineno">  484</span>        <a class="code hl_variable" href="namespaceg.html#aefddf7aa61d9c9b8126c47abbb22e9c6">g::rotate</a>.x += 1;</div>
-<div class="line"><span class="lineno">  485</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  486</span> </div>
-<div class="line"><span class="lineno">  487</span>      <span class="keywordflow">case</span> <span class="charliteral">&#39;y&#39;</span>:</div>
-<div class="line"><span class="lineno">  488</span>        <a class="code hl_variable" href="namespaceg.html#aefddf7aa61d9c9b8126c47abbb22e9c6">g::rotate</a>.y -= 1;</div>
-<div class="line"><span class="lineno">  489</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  490</span> </div>
-<div class="line"><span class="lineno">  491</span>      <span class="keywordflow">case</span> <span class="charliteral">&#39;Y&#39;</span>:</div>
-<div class="line"><span class="lineno">  492</span>        <a class="code hl_variable" href="namespaceg.html#aefddf7aa61d9c9b8126c47abbb22e9c6">g::rotate</a>.y += 1;</div>
-<div class="line"><span class="lineno">  493</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  494</span> </div>
-<div class="line"><span class="lineno">  495</span>      <span class="keywordflow">case</span> <span class="charliteral">&#39;z&#39;</span>:</div>
-<div class="line"><span class="lineno">  496</span>        <a class="code hl_variable" href="namespaceg.html#aefddf7aa61d9c9b8126c47abbb22e9c6">g::rotate</a>.z -= 1;</div>
-<div class="line"><span class="lineno">  497</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  498</span> </div>
-<div class="line"><span class="lineno">  499</span>      <span class="keywordflow">case</span> <span class="charliteral">&#39;Z&#39;</span>:</div>
-<div class="line"><span class="lineno">  500</span>        <a class="code hl_variable" href="namespaceg.html#aefddf7aa61d9c9b8126c47abbb22e9c6">g::rotate</a>.z += 1;</div>
-<div class="line"><span class="lineno">  501</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  502</span> </div>
-<div class="line"><span class="lineno">  503</span>      <span class="keywordflow">case</span> <span class="charliteral">&#39;,&#39;</span>:</div>
-<div class="line"><span class="lineno">  504</span>        <a class="code hl_variable" href="namespaceg.html#aefddf7aa61d9c9b8126c47abbb22e9c6">g::rotate</a>.w -= <a class="code hl_variable" href="namespaceg.html#aec2a1ff8ec5c063e53a9c14c9e55e009">g::angleStep</a>;</div>
-<div class="line"><span class="lineno">  505</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  506</span> </div>
-<div class="line"><span class="lineno">  507</span>      <span class="keywordflow">case</span> <span class="charliteral">&#39;.&#39;</span>:</div>
-<div class="line"><span class="lineno">  508</span>        <a class="code hl_variable" href="namespaceg.html#aefddf7aa61d9c9b8126c47abbb22e9c6">g::rotate</a>.w += <a class="code hl_variable" href="namespaceg.html#aec2a1ff8ec5c063e53a9c14c9e55e009">g::angleStep</a>;</div>
-<div class="line"><span class="lineno">  509</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  510</span> </div>
-<div class="line"><span class="lineno">  511</span>      <span class="keywordflow">case</span> <span class="charliteral">&#39;&lt;&#39;</span>:</div>
-<div class="line"><span class="lineno">  512</span>        <a class="code hl_variable" href="namespaceg.html#aec2a1ff8ec5c063e53a9c14c9e55e009">g::angleStep</a> /= 2;</div>
-<div class="line"><span class="lineno">  513</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  514</span> </div>
-<div class="line"><span class="lineno">  515</span>      <span class="keywordflow">case</span> <span class="charliteral">&#39;&gt;&#39;</span>:</div>
-<div class="line"><span class="lineno">  516</span>        <a class="code hl_variable" href="namespaceg.html#aec2a1ff8ec5c063e53a9c14c9e55e009">g::angleStep</a> *= 2;</div>
-<div class="line"><span class="lineno">  517</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  518</span> </div>
-<div class="line"><span class="lineno">  519</span>      <span class="comment">/*translation*/</span></div>
-<div class="line"><span class="lineno">  520</span>      <span class="keywordflow">case</span> <span class="charliteral">&#39;T&#39;</span>:</div>
-<div class="line"><span class="lineno">  521</span>        <a class="code hl_variable" href="namespaceg.html#ad742384d234990c775f85fb2922b8e7b">g::translateStep</a> *= 2;</div>
-<div class="line"><span class="lineno">  522</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  523</span>      <span class="keywordflow">case</span> <span class="charliteral">&#39;t&#39;</span>:</div>
-<div class="line"><span class="lineno">  524</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="namespaceg.html#ad742384d234990c775f85fb2922b8e7b">g::translateStep</a> &gt; 1)</div>
-<div class="line"><span class="lineno">  525</span>          <a class="code hl_variable" href="namespaceg.html#ad742384d234990c775f85fb2922b8e7b">g::translateStep</a> /= 2;</div>
-<div class="line"><span class="lineno">  526</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  527</span> </div>
-<div class="line"><span class="lineno">  528</span>      <span class="comment">/*z-axis*/</span></div>
-<div class="line"><span class="lineno">  529</span>      <span class="keywordflow">case</span> <span class="charliteral">&#39;w&#39;</span>:</div>
-<div class="line"><span class="lineno">  530</span>        <a class="code hl_variable" href="namespaceg.html#aac8ee5fe8c16824bfc7bcdef7fd5804e">g::translate</a>.z += <a class="code hl_variable" href="namespaceg.html#ad742384d234990c775f85fb2922b8e7b">g::translateStep</a>;</div>
+<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00463">463</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  464</span>{</div>
+<div class="line"><span class="lineno">  465</span>  <span class="comment">/*</span></div>
+<div class="line"><span class="lineno">  466</span><span class="comment">      Rotation:</span></div>
+<div class="line"><span class="lineno">  467</span><span class="comment">          x y z       x↓ y↓ z↓</span></div>
+<div class="line"><span class="lineno">  468</span><span class="comment">          X Y Z       x↑ y↑ z↑</span></div>
+<div class="line"><span class="lineno">  469</span><span class="comment">      angle:</span></div>
+<div class="line"><span class="lineno">  470</span><span class="comment">          , .     θ-=s    θ+=s</span></div>
+<div class="line"><span class="lineno">  471</span><span class="comment">          &lt; &gt;     s↓     s↑</span></div>
+<div class="line"><span class="lineno">  472</span><span class="comment">      translation:</span></div>
+<div class="line"><span class="lineno">  473</span><span class="comment">          q w e       y↓ z↑ y↑</span></div>
+<div class="line"><span class="lineno">  474</span><span class="comment">          a s d       x↓ z↓ x↑</span></div>
+<div class="line"><span class="lineno">  475</span><span class="comment">      scaling:</span></div>
+<div class="line"><span class="lineno">  476</span><span class="comment">          u i o       y↓ z↑ y↑</span></div>
+<div class="line"><span class="lineno">  477</span><span class="comment">          j k l       x↓ z↓ x↑</span></div>
+<div class="line"><span class="lineno">  478</span><span class="comment">      background color: r g b R G B</span></div>
+<div class="line"><span class="lineno">  479</span><span class="comment">      camera:</span></div>
+<div class="line"><span class="lineno">  480</span><span class="comment">          1 2 3 ⎫       ! @ # ⎫        EyeX     EyeY     EyeZ</span></div>
+<div class="line"><span class="lineno">  481</span><span class="comment">          4 5 6 ⎬↓      $ % ^ ⎬↑       CenterX  CenterY  CenterZ</span></div>
+<div class="line"><span class="lineno">  482</span><span class="comment">          7 8 9 ⎭       &amp; * ( ⎭        UpX      UpY      UpZ</span></div>
+<div class="line"><span class="lineno">  483</span><span class="comment">   */</span></div>
+<div class="line"><span class="lineno">  484</span>  <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> ESC = 27;</div>
+<div class="line"><span class="lineno">  485</span>  <span class="keywordflow">switch</span> (key)</div>
+<div class="line"><span class="lineno">  486</span>    {</div>
+<div class="line"><span class="lineno">  487</span>      <span class="keywordflow">case</span> ESC:</div>
+<div class="line"><span class="lineno">  488</span>        {</div>
+<div class="line"><span class="lineno">  489</span>          <a class="code hl_variable" href="group__fps_camera.html#gad045a39bcbfa75417dbcd3cab243fa9f">globalWarpCursorToCenter</a> = !<a class="code hl_variable" href="group__fps_camera.html#gad045a39bcbfa75417dbcd3cab243fa9f">globalWarpCursorToCenter</a>;</div>
+<div class="line"><span class="lineno">  490</span>          <span class="keywordflow">if</span> (<a class="code hl_variable" href="group__fps_camera.html#gad045a39bcbfa75417dbcd3cab243fa9f">globalWarpCursorToCenter</a>)</div>
+<div class="line"><span class="lineno">  491</span>            glutSetCursor (GLUT_CURSOR_NONE);</div>
+<div class="line"><span class="lineno">  492</span>          <span class="keywordflow">else</span></div>
+<div class="line"><span class="lineno">  493</span>            glutSetCursor (GLUT_CURSOR_CROSSHAIR);</div>
+<div class="line"><span class="lineno">  494</span>          <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  495</span>        }</div>
+<div class="line"><span class="lineno">  496</span>      <span class="comment">/*Rotation*/</span></div>
+<div class="line"><span class="lineno">  497</span>      <span class="keywordflow">case</span> <span class="charliteral">&#39;x&#39;</span>:</div>
+<div class="line"><span class="lineno">  498</span>        <a class="code hl_variable" href="namespaceg.html#aefddf7aa61d9c9b8126c47abbb22e9c6">g::rotate</a>.x -= 1;</div>
+<div class="line"><span class="lineno">  499</span>      <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  500</span> </div>
+<div class="line"><span class="lineno">  501</span>      <span class="keywordflow">case</span> <span class="charliteral">&#39;X&#39;</span>:</div>
+<div class="line"><span class="lineno">  502</span>        <a class="code hl_variable" href="namespaceg.html#aefddf7aa61d9c9b8126c47abbb22e9c6">g::rotate</a>.x += 1;</div>
+<div class="line"><span class="lineno">  503</span>      <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  504</span> </div>
+<div class="line"><span class="lineno">  505</span>      <span class="keywordflow">case</span> <span class="charliteral">&#39;y&#39;</span>:</div>
+<div class="line"><span class="lineno">  506</span>        <a class="code hl_variable" href="namespaceg.html#aefddf7aa61d9c9b8126c47abbb22e9c6">g::rotate</a>.y -= 1;</div>
+<div class="line"><span class="lineno">  507</span>      <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  508</span> </div>
+<div class="line"><span class="lineno">  509</span>      <span class="keywordflow">case</span> <span class="charliteral">&#39;Y&#39;</span>:</div>
+<div class="line"><span class="lineno">  510</span>        <a class="code hl_variable" href="namespaceg.html#aefddf7aa61d9c9b8126c47abbb22e9c6">g::rotate</a>.y += 1;</div>
+<div class="line"><span class="lineno">  511</span>      <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  512</span> </div>
+<div class="line"><span class="lineno">  513</span>      <span class="keywordflow">case</span> <span class="charliteral">&#39;z&#39;</span>:</div>
+<div class="line"><span class="lineno">  514</span>        <a class="code hl_variable" href="namespaceg.html#aefddf7aa61d9c9b8126c47abbb22e9c6">g::rotate</a>.z -= 1;</div>
+<div class="line"><span class="lineno">  515</span>      <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  516</span> </div>
+<div class="line"><span class="lineno">  517</span>      <span class="keywordflow">case</span> <span class="charliteral">&#39;Z&#39;</span>:</div>
+<div class="line"><span class="lineno">  518</span>        <a class="code hl_variable" href="namespaceg.html#aefddf7aa61d9c9b8126c47abbb22e9c6">g::rotate</a>.z += 1;</div>
+<div class="line"><span class="lineno">  519</span>      <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  520</span> </div>
+<div class="line"><span class="lineno">  521</span>      <span class="keywordflow">case</span> <span class="charliteral">&#39;,&#39;</span>:</div>
+<div class="line"><span class="lineno">  522</span>        <a class="code hl_variable" href="namespaceg.html#aefddf7aa61d9c9b8126c47abbb22e9c6">g::rotate</a>.w -= <a class="code hl_variable" href="namespaceg.html#aec2a1ff8ec5c063e53a9c14c9e55e009">g::angleStep</a>;</div>
+<div class="line"><span class="lineno">  523</span>      <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  524</span> </div>
+<div class="line"><span class="lineno">  525</span>      <span class="keywordflow">case</span> <span class="charliteral">&#39;.&#39;</span>:</div>
+<div class="line"><span class="lineno">  526</span>        <a class="code hl_variable" href="namespaceg.html#aefddf7aa61d9c9b8126c47abbb22e9c6">g::rotate</a>.w += <a class="code hl_variable" href="namespaceg.html#aec2a1ff8ec5c063e53a9c14c9e55e009">g::angleStep</a>;</div>
+<div class="line"><span class="lineno">  527</span>      <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  528</span> </div>
+<div class="line"><span class="lineno">  529</span>      <span class="keywordflow">case</span> <span class="charliteral">&#39;&lt;&#39;</span>:</div>
+<div class="line"><span class="lineno">  530</span>        <a class="code hl_variable" href="namespaceg.html#aec2a1ff8ec5c063e53a9c14c9e55e009">g::angleStep</a> /= 2;</div>
 <div class="line"><span class="lineno">  531</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  532</span>      <span class="keywordflow">case</span> <span class="charliteral">&#39;s&#39;</span>:</div>
-<div class="line"><span class="lineno">  533</span>        <a class="code hl_variable" href="namespaceg.html#aac8ee5fe8c16824bfc7bcdef7fd5804e">g::translate</a>.z -= <a class="code hl_variable" href="namespaceg.html#ad742384d234990c775f85fb2922b8e7b">g::translateStep</a>;</div>
-<div class="line"><span class="lineno">  534</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  535</span> </div>
-<div class="line"><span class="lineno">  536</span>      <span class="comment">/*x-axis*/</span></div>
-<div class="line"><span class="lineno">  537</span>      <span class="keywordflow">case</span> <span class="charliteral">&#39;a&#39;</span>:</div>
-<div class="line"><span class="lineno">  538</span>        <a class="code hl_variable" href="namespaceg.html#aac8ee5fe8c16824bfc7bcdef7fd5804e">g::translate</a>.x -= <a class="code hl_variable" href="namespaceg.html#ad742384d234990c775f85fb2922b8e7b">g::translateStep</a>;</div>
-<div class="line"><span class="lineno">  539</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  540</span>      <span class="keywordflow">case</span> <span class="charliteral">&#39;d&#39;</span>:</div>
-<div class="line"><span class="lineno">  541</span>        <a class="code hl_variable" href="namespaceg.html#aac8ee5fe8c16824bfc7bcdef7fd5804e">g::translate</a>.x += <a class="code hl_variable" href="namespaceg.html#ad742384d234990c775f85fb2922b8e7b">g::translateStep</a>;</div>
-<div class="line"><span class="lineno">  542</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  543</span> </div>
-<div class="line"><span class="lineno">  544</span>      <span class="comment">/*y-axis*/</span></div>
-<div class="line"><span class="lineno">  545</span>      <span class="keywordflow">case</span> <span class="charliteral">&#39;q&#39;</span>:</div>
-<div class="line"><span class="lineno">  546</span>        <a class="code hl_variable" href="namespaceg.html#aac8ee5fe8c16824bfc7bcdef7fd5804e">g::translate</a>.y -= <a class="code hl_variable" href="namespaceg.html#ad742384d234990c775f85fb2922b8e7b">g::translateStep</a>;</div>
-<div class="line"><span class="lineno">  547</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  548</span>      <span class="keywordflow">case</span> <span class="charliteral">&#39;e&#39;</span>:</div>
-<div class="line"><span class="lineno">  549</span>        <a class="code hl_variable" href="namespaceg.html#aac8ee5fe8c16824bfc7bcdef7fd5804e">g::translate</a>.y += <a class="code hl_variable" href="namespaceg.html#ad742384d234990c775f85fb2922b8e7b">g::translateStep</a>;</div>
-<div class="line"><span class="lineno">  550</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  551</span>      <span class="comment">/*end of translation*/</span></div>
-<div class="line"><span class="lineno">  552</span> </div>
-<div class="line"><span class="lineno">  553</span>      <span class="comment">/*scaling*/</span></div>
-<div class="line"><span class="lineno">  554</span> </div>
-<div class="line"><span class="lineno">  555</span>      <span class="comment">/*z-axis*/</span></div>
-<div class="line"><span class="lineno">  556</span>      <span class="keywordflow">case</span> <span class="charliteral">&#39;i&#39;</span>:</div>
-<div class="line"><span class="lineno">  557</span>        <a class="code hl_variable" href="namespaceg.html#a9b1afaa62e5b4befaf0e453c2f301a48">g::scale</a>.z += <a class="code hl_variable" href="namespaceg.html#ac5756d0f6e4915f0b4547d48aecc9c26">g::scaleStep</a>;</div>
-<div class="line"><span class="lineno">  558</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  559</span>      <span class="keywordflow">case</span> <span class="charliteral">&#39;k&#39;</span>:</div>
-<div class="line"><span class="lineno">  560</span>        <a class="code hl_variable" href="namespaceg.html#a9b1afaa62e5b4befaf0e453c2f301a48">g::scale</a>.z -= <a class="code hl_variable" href="namespaceg.html#ac5756d0f6e4915f0b4547d48aecc9c26">g::scaleStep</a>;</div>
-<div class="line"><span class="lineno">  561</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  562</span> </div>
-<div class="line"><span class="lineno">  563</span>      <span class="comment">/*x-axis*/</span></div>
-<div class="line"><span class="lineno">  564</span>      <span class="keywordflow">case</span> <span class="charliteral">&#39;j&#39;</span>:</div>
-<div class="line"><span class="lineno">  565</span>        <a class="code hl_variable" href="namespaceg.html#a9b1afaa62e5b4befaf0e453c2f301a48">g::scale</a>.x -= <a class="code hl_variable" href="namespaceg.html#ac5756d0f6e4915f0b4547d48aecc9c26">g::scaleStep</a>;</div>
-<div class="line"><span class="lineno">  566</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  567</span>      <span class="keywordflow">case</span> <span class="charliteral">&#39;l&#39;</span>:</div>
-<div class="line"><span class="lineno">  568</span>        <a class="code hl_variable" href="namespaceg.html#a9b1afaa62e5b4befaf0e453c2f301a48">g::scale</a>.x += <a class="code hl_variable" href="namespaceg.html#ac5756d0f6e4915f0b4547d48aecc9c26">g::scaleStep</a>;</div>
-<div class="line"><span class="lineno">  569</span>      <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  532</span> </div>
+<div class="line"><span class="lineno">  533</span>      <span class="keywordflow">case</span> <span class="charliteral">&#39;&gt;&#39;</span>:</div>
+<div class="line"><span class="lineno">  534</span>        <a class="code hl_variable" href="namespaceg.html#aec2a1ff8ec5c063e53a9c14c9e55e009">g::angleStep</a> *= 2;</div>
+<div class="line"><span class="lineno">  535</span>      <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  536</span> </div>
+<div class="line"><span class="lineno">  537</span>      <span class="comment">/*translation*/</span></div>
+<div class="line"><span class="lineno">  538</span>      <span class="keywordflow">case</span> <span class="charliteral">&#39;T&#39;</span>:</div>
+<div class="line"><span class="lineno">  539</span>        <a class="code hl_variable" href="namespaceg.html#ad742384d234990c775f85fb2922b8e7b">g::translateStep</a> *= 2;</div>
+<div class="line"><span class="lineno">  540</span>      <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  541</span>      <span class="keywordflow">case</span> <span class="charliteral">&#39;t&#39;</span>:</div>
+<div class="line"><span class="lineno">  542</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="namespaceg.html#ad742384d234990c775f85fb2922b8e7b">g::translateStep</a> &gt; 1)</div>
+<div class="line"><span class="lineno">  543</span>          <a class="code hl_variable" href="namespaceg.html#ad742384d234990c775f85fb2922b8e7b">g::translateStep</a> /= 2;</div>
+<div class="line"><span class="lineno">  544</span>      <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  545</span> </div>
+<div class="line"><span class="lineno">  546</span>      <span class="comment">/*z-axis*/</span></div>
+<div class="line"><span class="lineno">  547</span>      <span class="keywordflow">case</span> <span class="charliteral">&#39;w&#39;</span>:</div>
+<div class="line"><span class="lineno">  548</span>        <a class="code hl_variable" href="namespaceg.html#aac8ee5fe8c16824bfc7bcdef7fd5804e">g::translate</a>.z += <a class="code hl_variable" href="namespaceg.html#ad742384d234990c775f85fb2922b8e7b">g::translateStep</a>;</div>
+<div class="line"><span class="lineno">  549</span>      <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  550</span>      <span class="keywordflow">case</span> <span class="charliteral">&#39;s&#39;</span>:</div>
+<div class="line"><span class="lineno">  551</span>        <a class="code hl_variable" href="namespaceg.html#aac8ee5fe8c16824bfc7bcdef7fd5804e">g::translate</a>.z -= <a class="code hl_variable" href="namespaceg.html#ad742384d234990c775f85fb2922b8e7b">g::translateStep</a>;</div>
+<div class="line"><span class="lineno">  552</span>      <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  553</span> </div>
+<div class="line"><span class="lineno">  554</span>      <span class="comment">/*x-axis*/</span></div>
+<div class="line"><span class="lineno">  555</span>      <span class="keywordflow">case</span> <span class="charliteral">&#39;a&#39;</span>:</div>
+<div class="line"><span class="lineno">  556</span>        <a class="code hl_variable" href="namespaceg.html#aac8ee5fe8c16824bfc7bcdef7fd5804e">g::translate</a>.x -= <a class="code hl_variable" href="namespaceg.html#ad742384d234990c775f85fb2922b8e7b">g::translateStep</a>;</div>
+<div class="line"><span class="lineno">  557</span>      <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  558</span>      <span class="keywordflow">case</span> <span class="charliteral">&#39;d&#39;</span>:</div>
+<div class="line"><span class="lineno">  559</span>        <a class="code hl_variable" href="namespaceg.html#aac8ee5fe8c16824bfc7bcdef7fd5804e">g::translate</a>.x += <a class="code hl_variable" href="namespaceg.html#ad742384d234990c775f85fb2922b8e7b">g::translateStep</a>;</div>
+<div class="line"><span class="lineno">  560</span>      <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  561</span> </div>
+<div class="line"><span class="lineno">  562</span>      <span class="comment">/*y-axis*/</span></div>
+<div class="line"><span class="lineno">  563</span>      <span class="keywordflow">case</span> <span class="charliteral">&#39;q&#39;</span>:</div>
+<div class="line"><span class="lineno">  564</span>        <a class="code hl_variable" href="namespaceg.html#aac8ee5fe8c16824bfc7bcdef7fd5804e">g::translate</a>.y -= <a class="code hl_variable" href="namespaceg.html#ad742384d234990c775f85fb2922b8e7b">g::translateStep</a>;</div>
+<div class="line"><span class="lineno">  565</span>      <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  566</span>      <span class="keywordflow">case</span> <span class="charliteral">&#39;e&#39;</span>:</div>
+<div class="line"><span class="lineno">  567</span>        <a class="code hl_variable" href="namespaceg.html#aac8ee5fe8c16824bfc7bcdef7fd5804e">g::translate</a>.y += <a class="code hl_variable" href="namespaceg.html#ad742384d234990c775f85fb2922b8e7b">g::translateStep</a>;</div>
+<div class="line"><span class="lineno">  568</span>      <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  569</span>      <span class="comment">/*end of translation*/</span></div>
 <div class="line"><span class="lineno">  570</span> </div>
-<div class="line"><span class="lineno">  571</span>      <span class="comment">/*y-axis*/</span></div>
-<div class="line"><span class="lineno">  572</span>      <span class="keywordflow">case</span> <span class="charliteral">&#39;u&#39;</span>:</div>
-<div class="line"><span class="lineno">  573</span>        <a class="code hl_variable" href="namespaceg.html#a9b1afaa62e5b4befaf0e453c2f301a48">g::scale</a>.y -= <a class="code hl_variable" href="namespaceg.html#ac5756d0f6e4915f0b4547d48aecc9c26">g::scaleStep</a>;</div>
-<div class="line"><span class="lineno">  574</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  575</span>      <span class="keywordflow">case</span> <span class="charliteral">&#39;o&#39;</span>:</div>
-<div class="line"><span class="lineno">  576</span>        <a class="code hl_variable" href="namespaceg.html#a9b1afaa62e5b4befaf0e453c2f301a48">g::scale</a>.y += <a class="code hl_variable" href="namespaceg.html#ac5756d0f6e4915f0b4547d48aecc9c26">g::scaleStep</a>;</div>
-<div class="line"><span class="lineno">  577</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  578</span>      <span class="comment">/*end of scaling*/</span></div>
-<div class="line"><span class="lineno">  579</span> </div>
-<div class="line"><span class="lineno">  580</span>      <span class="comment">/*camera*/</span></div>
-<div class="line"><span class="lineno">  581</span>      <span class="keywordflow">case</span> <span class="charliteral">&#39;`&#39;</span>:</div>
-<div class="line"><span class="lineno">  582</span>        <a class="code hl_variable" href="namespaceg.html#af8579e841ff5c2f329d22ed0d0d0b31c">g::eyeStep</a> *= 2;</div>
-<div class="line"><span class="lineno">  583</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  584</span>      <span class="keywordflow">case</span> <span class="charliteral">&#39;~&#39;</span>:</div>
-<div class="line"><span class="lineno">  585</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="namespaceg.html#af8579e841ff5c2f329d22ed0d0d0b31c">g::eyeStep</a> &gt; 1)</div>
-<div class="line"><span class="lineno">  586</span>          <a class="code hl_variable" href="namespaceg.html#af8579e841ff5c2f329d22ed0d0d0b31c">g::eyeStep</a> /= 2;</div>
+<div class="line"><span class="lineno">  571</span>      <span class="comment">/*scaling*/</span></div>
+<div class="line"><span class="lineno">  572</span> </div>
+<div class="line"><span class="lineno">  573</span>      <span class="comment">/*z-axis*/</span></div>
+<div class="line"><span class="lineno">  574</span>      <span class="keywordflow">case</span> <span class="charliteral">&#39;i&#39;</span>:</div>
+<div class="line"><span class="lineno">  575</span>        <a class="code hl_variable" href="namespaceg.html#a9b1afaa62e5b4befaf0e453c2f301a48">g::scale</a>.z += <a class="code hl_variable" href="namespaceg.html#ac5756d0f6e4915f0b4547d48aecc9c26">g::scaleStep</a>;</div>
+<div class="line"><span class="lineno">  576</span>      <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  577</span>      <span class="keywordflow">case</span> <span class="charliteral">&#39;k&#39;</span>:</div>
+<div class="line"><span class="lineno">  578</span>        <a class="code hl_variable" href="namespaceg.html#a9b1afaa62e5b4befaf0e453c2f301a48">g::scale</a>.z -= <a class="code hl_variable" href="namespaceg.html#ac5756d0f6e4915f0b4547d48aecc9c26">g::scaleStep</a>;</div>
+<div class="line"><span class="lineno">  579</span>      <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  580</span> </div>
+<div class="line"><span class="lineno">  581</span>      <span class="comment">/*x-axis*/</span></div>
+<div class="line"><span class="lineno">  582</span>      <span class="keywordflow">case</span> <span class="charliteral">&#39;j&#39;</span>:</div>
+<div class="line"><span class="lineno">  583</span>        <a class="code hl_variable" href="namespaceg.html#a9b1afaa62e5b4befaf0e453c2f301a48">g::scale</a>.x -= <a class="code hl_variable" href="namespaceg.html#ac5756d0f6e4915f0b4547d48aecc9c26">g::scaleStep</a>;</div>
+<div class="line"><span class="lineno">  584</span>      <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  585</span>      <span class="keywordflow">case</span> <span class="charliteral">&#39;l&#39;</span>:</div>
+<div class="line"><span class="lineno">  586</span>        <a class="code hl_variable" href="namespaceg.html#a9b1afaa62e5b4befaf0e453c2f301a48">g::scale</a>.x += <a class="code hl_variable" href="namespaceg.html#ac5756d0f6e4915f0b4547d48aecc9c26">g::scaleStep</a>;</div>
 <div class="line"><span class="lineno">  587</span>      <span class="keywordflow">break</span>;</div>
 <div class="line"><span class="lineno">  588</span> </div>
-<div class="line"><span class="lineno">  589</span>      <span class="keywordflow">case</span> <span class="charliteral">&#39;1&#39;</span>:</div>
-<div class="line"><span class="lineno">  590</span>        <a class="code hl_variable" href="namespaceg.html#add6c93372391e2a66e9db30ff6f5b983">g::cartesian</a>.x -= <a class="code hl_variable" href="namespaceg.html#af8579e841ff5c2f329d22ed0d0d0b31c">g::eyeStep</a>;</div>
-<div class="line"><span class="lineno">  591</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  592</span>      <span class="keywordflow">case</span> <span class="charliteral">&#39;!&#39;</span>:</div>
-<div class="line"><span class="lineno">  593</span>        <a class="code hl_variable" href="namespaceg.html#add6c93372391e2a66e9db30ff6f5b983">g::cartesian</a>.x += <a class="code hl_variable" href="namespaceg.html#af8579e841ff5c2f329d22ed0d0d0b31c">g::eyeStep</a>;</div>
-<div class="line"><span class="lineno">  594</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  595</span>      <span class="keywordflow">case</span> <span class="charliteral">&#39;2&#39;</span>:</div>
-<div class="line"><span class="lineno">  596</span>        <a class="code hl_variable" href="namespaceg.html#add6c93372391e2a66e9db30ff6f5b983">g::cartesian</a>.y -= <a class="code hl_variable" href="namespaceg.html#af8579e841ff5c2f329d22ed0d0d0b31c">g::eyeStep</a>;</div>
-<div class="line"><span class="lineno">  597</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  598</span>      <span class="keywordflow">case</span> <span class="charliteral">&#39;@&#39;</span>:</div>
-<div class="line"><span class="lineno">  599</span>        <a class="code hl_variable" href="namespaceg.html#add6c93372391e2a66e9db30ff6f5b983">g::cartesian</a>.y += <a class="code hl_variable" href="namespaceg.html#af8579e841ff5c2f329d22ed0d0d0b31c">g::eyeStep</a>;</div>
-<div class="line"><span class="lineno">  600</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  601</span>      <span class="keywordflow">case</span> <span class="charliteral">&#39;3&#39;</span>:</div>
-<div class="line"><span class="lineno">  602</span>        <a class="code hl_variable" href="namespaceg.html#add6c93372391e2a66e9db30ff6f5b983">g::cartesian</a>.z -= <a class="code hl_variable" href="namespaceg.html#af8579e841ff5c2f329d22ed0d0d0b31c">g::eyeStep</a>;</div>
-<div class="line"><span class="lineno">  603</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  604</span>      <span class="keywordflow">case</span> <span class="charliteral">&#39;#&#39;</span>:</div>
-<div class="line"><span class="lineno">  605</span>        <a class="code hl_variable" href="namespaceg.html#add6c93372391e2a66e9db30ff6f5b983">g::cartesian</a>.z += <a class="code hl_variable" href="namespaceg.html#af8579e841ff5c2f329d22ed0d0d0b31c">g::eyeStep</a>;</div>
-<div class="line"><span class="lineno">  606</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  607</span> </div>
-<div class="line"><span class="lineno">  608</span>      <span class="keywordflow">case</span> <span class="charliteral">&#39;4&#39;</span>:</div>
-<div class="line"><span class="lineno">  609</span>        <a class="code hl_variable" href="namespaceg.html#a71a27540abbb96a7be8b6ee95a9b2d66">g::origin</a>.x -= <a class="code hl_variable" href="namespaceg.html#ace112a8306302ffd18372ee22598219f">g::centerStep</a>;</div>
-<div class="line"><span class="lineno">  610</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  611</span>      <span class="keywordflow">case</span> <span class="charliteral">&#39;$&#39;</span>:</div>
-<div class="line"><span class="lineno">  612</span>        <a class="code hl_variable" href="namespaceg.html#a71a27540abbb96a7be8b6ee95a9b2d66">g::origin</a>.x += <a class="code hl_variable" href="namespaceg.html#ace112a8306302ffd18372ee22598219f">g::centerStep</a>;</div>
-<div class="line"><span class="lineno">  613</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  614</span>      <span class="keywordflow">case</span> <span class="charliteral">&#39;5&#39;</span>:</div>
-<div class="line"><span class="lineno">  615</span>        <a class="code hl_variable" href="namespaceg.html#a71a27540abbb96a7be8b6ee95a9b2d66">g::origin</a>.y -= <a class="code hl_variable" href="namespaceg.html#ace112a8306302ffd18372ee22598219f">g::centerStep</a>;</div>
-<div class="line"><span class="lineno">  616</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  617</span>      <span class="keywordflow">case</span> <span class="charliteral">&#39;%&#39;</span>:</div>
-<div class="line"><span class="lineno">  618</span>        <a class="code hl_variable" href="namespaceg.html#a71a27540abbb96a7be8b6ee95a9b2d66">g::origin</a>.y += <a class="code hl_variable" href="namespaceg.html#ace112a8306302ffd18372ee22598219f">g::centerStep</a>;</div>
-<div class="line"><span class="lineno">  619</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  620</span>      <span class="keywordflow">case</span> <span class="charliteral">&#39;6&#39;</span>:</div>
-<div class="line"><span class="lineno">  621</span>        <a class="code hl_variable" href="namespaceg.html#a71a27540abbb96a7be8b6ee95a9b2d66">g::origin</a>.z -= <a class="code hl_variable" href="namespaceg.html#ace112a8306302ffd18372ee22598219f">g::centerStep</a>;</div>
-<div class="line"><span class="lineno">  622</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  623</span>      <span class="keywordflow">case</span> <span class="charliteral">&#39;^&#39;</span>:</div>
-<div class="line"><span class="lineno">  624</span>        <a class="code hl_variable" href="namespaceg.html#a71a27540abbb96a7be8b6ee95a9b2d66">g::origin</a>.z += <a class="code hl_variable" href="namespaceg.html#ace112a8306302ffd18372ee22598219f">g::centerStep</a>;</div>
-<div class="line"><span class="lineno">  625</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  626</span>      <span class="keywordflow">case</span> <span class="charliteral">&#39;7&#39;</span>:</div>
-<div class="line"><span class="lineno">  627</span>        <a class="code hl_variable" href="namespaceg.html#a85aa032088340c12cf8b86f09ff28634">g::up</a>.x -= <a class="code hl_variable" href="namespaceg.html#a9ffd93c4ce581302c099770bb70a4d2c">g::upStep</a>;</div>
+<div class="line"><span class="lineno">  589</span>      <span class="comment">/*y-axis*/</span></div>
+<div class="line"><span class="lineno">  590</span>      <span class="keywordflow">case</span> <span class="charliteral">&#39;u&#39;</span>:</div>
+<div class="line"><span class="lineno">  591</span>        <a class="code hl_variable" href="namespaceg.html#a9b1afaa62e5b4befaf0e453c2f301a48">g::scale</a>.y -= <a class="code hl_variable" href="namespaceg.html#ac5756d0f6e4915f0b4547d48aecc9c26">g::scaleStep</a>;</div>
+<div class="line"><span class="lineno">  592</span>      <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  593</span>      <span class="keywordflow">case</span> <span class="charliteral">&#39;o&#39;</span>:</div>
+<div class="line"><span class="lineno">  594</span>        <a class="code hl_variable" href="namespaceg.html#a9b1afaa62e5b4befaf0e453c2f301a48">g::scale</a>.y += <a class="code hl_variable" href="namespaceg.html#ac5756d0f6e4915f0b4547d48aecc9c26">g::scaleStep</a>;</div>
+<div class="line"><span class="lineno">  595</span>      <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  596</span>      <span class="comment">/*end of scaling*/</span></div>
+<div class="line"><span class="lineno">  597</span> </div>
+<div class="line"><span class="lineno">  598</span>      <span class="comment">/*camera*/</span></div>
+<div class="line"><span class="lineno">  599</span>      <span class="keywordflow">case</span> <span class="charliteral">&#39;`&#39;</span>:</div>
+<div class="line"><span class="lineno">  600</span>        <a class="code hl_variable" href="namespaceg.html#af8579e841ff5c2f329d22ed0d0d0b31c">g::eyeStep</a> *= 2;</div>
+<div class="line"><span class="lineno">  601</span>      <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  602</span>      <span class="keywordflow">case</span> <span class="charliteral">&#39;~&#39;</span>:</div>
+<div class="line"><span class="lineno">  603</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="namespaceg.html#af8579e841ff5c2f329d22ed0d0d0b31c">g::eyeStep</a> &gt; 1)</div>
+<div class="line"><span class="lineno">  604</span>          <a class="code hl_variable" href="namespaceg.html#af8579e841ff5c2f329d22ed0d0d0b31c">g::eyeStep</a> /= 2;</div>
+<div class="line"><span class="lineno">  605</span>      <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  606</span> </div>
+<div class="line"><span class="lineno">  607</span>      <span class="keywordflow">case</span> <span class="charliteral">&#39;1&#39;</span>:</div>
+<div class="line"><span class="lineno">  608</span>        <a class="code hl_variable" href="namespaceg.html#add6c93372391e2a66e9db30ff6f5b983">g::cartesian</a>.x -= <a class="code hl_variable" href="namespaceg.html#af8579e841ff5c2f329d22ed0d0d0b31c">g::eyeStep</a>;</div>
+<div class="line"><span class="lineno">  609</span>      <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  610</span>      <span class="keywordflow">case</span> <span class="charliteral">&#39;!&#39;</span>:</div>
+<div class="line"><span class="lineno">  611</span>        <a class="code hl_variable" href="namespaceg.html#add6c93372391e2a66e9db30ff6f5b983">g::cartesian</a>.x += <a class="code hl_variable" href="namespaceg.html#af8579e841ff5c2f329d22ed0d0d0b31c">g::eyeStep</a>;</div>
+<div class="line"><span class="lineno">  612</span>      <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  613</span>      <span class="keywordflow">case</span> <span class="charliteral">&#39;2&#39;</span>:</div>
+<div class="line"><span class="lineno">  614</span>        <a class="code hl_variable" href="namespaceg.html#add6c93372391e2a66e9db30ff6f5b983">g::cartesian</a>.y -= <a class="code hl_variable" href="namespaceg.html#af8579e841ff5c2f329d22ed0d0d0b31c">g::eyeStep</a>;</div>
+<div class="line"><span class="lineno">  615</span>      <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  616</span>      <span class="keywordflow">case</span> <span class="charliteral">&#39;@&#39;</span>:</div>
+<div class="line"><span class="lineno">  617</span>        <a class="code hl_variable" href="namespaceg.html#add6c93372391e2a66e9db30ff6f5b983">g::cartesian</a>.y += <a class="code hl_variable" href="namespaceg.html#af8579e841ff5c2f329d22ed0d0d0b31c">g::eyeStep</a>;</div>
+<div class="line"><span class="lineno">  618</span>      <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  619</span>      <span class="keywordflow">case</span> <span class="charliteral">&#39;3&#39;</span>:</div>
+<div class="line"><span class="lineno">  620</span>        <a class="code hl_variable" href="namespaceg.html#add6c93372391e2a66e9db30ff6f5b983">g::cartesian</a>.z -= <a class="code hl_variable" href="namespaceg.html#af8579e841ff5c2f329d22ed0d0d0b31c">g::eyeStep</a>;</div>
+<div class="line"><span class="lineno">  621</span>      <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  622</span>      <span class="keywordflow">case</span> <span class="charliteral">&#39;#&#39;</span>:</div>
+<div class="line"><span class="lineno">  623</span>        <a class="code hl_variable" href="namespaceg.html#add6c93372391e2a66e9db30ff6f5b983">g::cartesian</a>.z += <a class="code hl_variable" href="namespaceg.html#af8579e841ff5c2f329d22ed0d0d0b31c">g::eyeStep</a>;</div>
+<div class="line"><span class="lineno">  624</span>      <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  625</span> </div>
+<div class="line"><span class="lineno">  626</span>      <span class="keywordflow">case</span> <span class="charliteral">&#39;4&#39;</span>:</div>
+<div class="line"><span class="lineno">  627</span>        <a class="code hl_variable" href="namespaceg.html#a71a27540abbb96a7be8b6ee95a9b2d66">g::origin</a>.x -= <a class="code hl_variable" href="namespaceg.html#ace112a8306302ffd18372ee22598219f">g::centerStep</a>;</div>
 <div class="line"><span class="lineno">  628</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  629</span>      <span class="keywordflow">case</span> <span class="charliteral">&#39;&amp;&#39;</span>:</div>
-<div class="line"><span class="lineno">  630</span>        <a class="code hl_variable" href="namespaceg.html#a85aa032088340c12cf8b86f09ff28634">g::up</a>.x += <a class="code hl_variable" href="namespaceg.html#a9ffd93c4ce581302c099770bb70a4d2c">g::upStep</a>;</div>
+<div class="line"><span class="lineno">  629</span>      <span class="keywordflow">case</span> <span class="charliteral">&#39;$&#39;</span>:</div>
+<div class="line"><span class="lineno">  630</span>        <a class="code hl_variable" href="namespaceg.html#a71a27540abbb96a7be8b6ee95a9b2d66">g::origin</a>.x += <a class="code hl_variable" href="namespaceg.html#ace112a8306302ffd18372ee22598219f">g::centerStep</a>;</div>
 <div class="line"><span class="lineno">  631</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  632</span>      <span class="keywordflow">case</span> <span class="charliteral">&#39;8&#39;</span>:</div>
-<div class="line"><span class="lineno">  633</span>        <a class="code hl_variable" href="namespaceg.html#a85aa032088340c12cf8b86f09ff28634">g::up</a>.y -= <a class="code hl_variable" href="namespaceg.html#a9ffd93c4ce581302c099770bb70a4d2c">g::upStep</a>;</div>
+<div class="line"><span class="lineno">  632</span>      <span class="keywordflow">case</span> <span class="charliteral">&#39;5&#39;</span>:</div>
+<div class="line"><span class="lineno">  633</span>        <a class="code hl_variable" href="namespaceg.html#a71a27540abbb96a7be8b6ee95a9b2d66">g::origin</a>.y -= <a class="code hl_variable" href="namespaceg.html#ace112a8306302ffd18372ee22598219f">g::centerStep</a>;</div>
 <div class="line"><span class="lineno">  634</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  635</span>      <span class="keywordflow">case</span> <span class="charliteral">&#39;*&#39;</span>:</div>
-<div class="line"><span class="lineno">  636</span>        <a class="code hl_variable" href="namespaceg.html#a85aa032088340c12cf8b86f09ff28634">g::up</a>.y += <a class="code hl_variable" href="namespaceg.html#a9ffd93c4ce581302c099770bb70a4d2c">g::upStep</a>;</div>
+<div class="line"><span class="lineno">  635</span>      <span class="keywordflow">case</span> <span class="charliteral">&#39;%&#39;</span>:</div>
+<div class="line"><span class="lineno">  636</span>        <a class="code hl_variable" href="namespaceg.html#a71a27540abbb96a7be8b6ee95a9b2d66">g::origin</a>.y += <a class="code hl_variable" href="namespaceg.html#ace112a8306302ffd18372ee22598219f">g::centerStep</a>;</div>
 <div class="line"><span class="lineno">  637</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  638</span>      <span class="keywordflow">case</span> <span class="charliteral">&#39;9&#39;</span>:</div>
-<div class="line"><span class="lineno">  639</span>        <a class="code hl_variable" href="namespaceg.html#a85aa032088340c12cf8b86f09ff28634">g::up</a>.z -= <a class="code hl_variable" href="namespaceg.html#a9ffd93c4ce581302c099770bb70a4d2c">g::upStep</a>;</div>
+<div class="line"><span class="lineno">  638</span>      <span class="keywordflow">case</span> <span class="charliteral">&#39;6&#39;</span>:</div>
+<div class="line"><span class="lineno">  639</span>        <a class="code hl_variable" href="namespaceg.html#a71a27540abbb96a7be8b6ee95a9b2d66">g::origin</a>.z -= <a class="code hl_variable" href="namespaceg.html#ace112a8306302ffd18372ee22598219f">g::centerStep</a>;</div>
 <div class="line"><span class="lineno">  640</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  641</span>      <span class="keywordflow">case</span> <span class="charliteral">&#39;(&#39;</span>:</div>
-<div class="line"><span class="lineno">  642</span>        <a class="code hl_variable" href="namespaceg.html#a85aa032088340c12cf8b86f09ff28634">g::up</a>.z += <a class="code hl_variable" href="namespaceg.html#a9ffd93c4ce581302c099770bb70a4d2c">g::upStep</a>;</div>
+<div class="line"><span class="lineno">  641</span>      <span class="keywordflow">case</span> <span class="charliteral">&#39;^&#39;</span>:</div>
+<div class="line"><span class="lineno">  642</span>        <a class="code hl_variable" href="namespaceg.html#a71a27540abbb96a7be8b6ee95a9b2d66">g::origin</a>.z += <a class="code hl_variable" href="namespaceg.html#ace112a8306302ffd18372ee22598219f">g::centerStep</a>;</div>
 <div class="line"><span class="lineno">  643</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  644</span> </div>
-<div class="line"><span class="lineno">  645</span>      <span class="comment">/*reset environment*/</span></div>
-<div class="line"><span class="lineno">  646</span>      <span class="keywordflow">case</span> <span class="charliteral">&#39;0&#39;</span>:</div>
-<div class="line"><span class="lineno">  647</span>        <a class="code hl_function" href="group__explorer_camera.html#ga8679d9b303f36964bf51dba0993caeaa">env_load_defaults</a> ();</div>
-<div class="line"><span class="lineno">  648</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  649</span> </div>
-<div class="line"><span class="lineno">  650</span>      <span class="keywordflow">case</span> <span class="charliteral">&#39; &#39;</span>:</div>
-<div class="line"><span class="lineno">  651</span>        <a class="code hl_function" href="group__camera.html#ga025f4079099b4474ee63a12529c22fa4">changeProfile</a> ();</div>
+<div class="line"><span class="lineno">  644</span>      <span class="keywordflow">case</span> <span class="charliteral">&#39;7&#39;</span>:</div>
+<div class="line"><span class="lineno">  645</span>        <a class="code hl_variable" href="namespaceg.html#a85aa032088340c12cf8b86f09ff28634">g::up</a>.x -= <a class="code hl_variable" href="namespaceg.html#a9ffd93c4ce581302c099770bb70a4d2c">g::upStep</a>;</div>
+<div class="line"><span class="lineno">  646</span>      <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  647</span>      <span class="keywordflow">case</span> <span class="charliteral">&#39;&amp;&#39;</span>:</div>
+<div class="line"><span class="lineno">  648</span>        <a class="code hl_variable" href="namespaceg.html#a85aa032088340c12cf8b86f09ff28634">g::up</a>.x += <a class="code hl_variable" href="namespaceg.html#a9ffd93c4ce581302c099770bb70a4d2c">g::upStep</a>;</div>
+<div class="line"><span class="lineno">  649</span>      <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  650</span>      <span class="keywordflow">case</span> <span class="charliteral">&#39;8&#39;</span>:</div>
+<div class="line"><span class="lineno">  651</span>        <a class="code hl_variable" href="namespaceg.html#a85aa032088340c12cf8b86f09ff28634">g::up</a>.y -= <a class="code hl_variable" href="namespaceg.html#a9ffd93c4ce581302c099770bb70a4d2c">g::upStep</a>;</div>
 <div class="line"><span class="lineno">  652</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  653</span> </div>
-<div class="line"><span class="lineno">  654</span>      <span class="keywordflow">default</span>:</div>
-<div class="line"><span class="lineno">  655</span>        <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  656</span>    }</div>
-<div class="line"><span class="lineno">  657</span>  <a class="code hl_function" href="group__explorer_camera.html#ga9fe47c5361dc03b642823dc88f07465b">explRedisplay</a> (); <span class="comment">//request display() call ASAP</span></div>
-<div class="line"><span class="lineno">  658</span>}</div>
-<div class="ttc" id="agroup__camera_html_ga025f4079099b4474ee63a12529c22fa4"><div class="ttname"><a href="group__camera.html#ga025f4079099b4474ee63a12529c22fa4">changeProfile</a></div><div class="ttdeci">void changeProfile()</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00823">engine.cpp:823</a></div></div>
-<div class="ttc" id="agroup__explorer_camera_html_ga8679d9b303f36964bf51dba0993caeaa"><div class="ttname"><a href="group__explorer_camera.html#ga8679d9b303f36964bf51dba0993caeaa">env_load_defaults</a></div><div class="ttdeci">void env_load_defaults()</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00382">engine.cpp:382</a></div></div>
-<div class="ttc" id="agroup__fps_camera_html_gac6207b42ce8dc1b2b88003e5b7ea8fb1"><div class="ttname"><a href="group__fps_camera.html#gac6207b42ce8dc1b2b88003e5b7ea8fb1">globalLockCenter</a></div><div class="ttdeci">bool globalLockCenter</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00164">engine.cpp:164</a></div></div>
+<div class="line"><span class="lineno">  653</span>      <span class="keywordflow">case</span> <span class="charliteral">&#39;*&#39;</span>:</div>
+<div class="line"><span class="lineno">  654</span>        <a class="code hl_variable" href="namespaceg.html#a85aa032088340c12cf8b86f09ff28634">g::up</a>.y += <a class="code hl_variable" href="namespaceg.html#a9ffd93c4ce581302c099770bb70a4d2c">g::upStep</a>;</div>
+<div class="line"><span class="lineno">  655</span>      <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  656</span>      <span class="keywordflow">case</span> <span class="charliteral">&#39;9&#39;</span>:</div>
+<div class="line"><span class="lineno">  657</span>        <a class="code hl_variable" href="namespaceg.html#a85aa032088340c12cf8b86f09ff28634">g::up</a>.z -= <a class="code hl_variable" href="namespaceg.html#a9ffd93c4ce581302c099770bb70a4d2c">g::upStep</a>;</div>
+<div class="line"><span class="lineno">  658</span>      <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  659</span>      <span class="keywordflow">case</span> <span class="charliteral">&#39;(&#39;</span>:</div>
+<div class="line"><span class="lineno">  660</span>        <a class="code hl_variable" href="namespaceg.html#a85aa032088340c12cf8b86f09ff28634">g::up</a>.z += <a class="code hl_variable" href="namespaceg.html#a9ffd93c4ce581302c099770bb70a4d2c">g::upStep</a>;</div>
+<div class="line"><span class="lineno">  661</span>      <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  662</span> </div>
+<div class="line"><span class="lineno">  663</span>      <span class="comment">/*reset environment*/</span></div>
+<div class="line"><span class="lineno">  664</span>      <span class="keywordflow">case</span> <span class="charliteral">&#39;0&#39;</span>:</div>
+<div class="line"><span class="lineno">  665</span>        <a class="code hl_function" href="group__explorer_camera.html#ga8679d9b303f36964bf51dba0993caeaa">env_load_defaults</a> ();</div>
+<div class="line"><span class="lineno">  666</span>      <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  667</span> </div>
+<div class="line"><span class="lineno">  668</span>      <span class="keywordflow">case</span> <span class="charliteral">&#39; &#39;</span>:</div>
+<div class="line"><span class="lineno">  669</span>        <a class="code hl_function" href="group__camera.html#ga025f4079099b4474ee63a12529c22fa4">changeProfile</a> ();</div>
+<div class="line"><span class="lineno">  670</span>      <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  671</span> </div>
+<div class="line"><span class="lineno">  672</span>      <span class="keywordflow">default</span>:</div>
+<div class="line"><span class="lineno">  673</span>        <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  674</span>    }</div>
+<div class="line"><span class="lineno">  675</span>  <a class="code hl_function" href="group__explorer_camera.html#ga9fe47c5361dc03b642823dc88f07465b">explRedisplay</a> (); <span class="comment">//request display() call ASAP</span></div>
+<div class="line"><span class="lineno">  676</span>}</div>
+<div class="ttc" id="agroup__camera_html_ga025f4079099b4474ee63a12529c22fa4"><div class="ttname"><a href="group__camera.html#ga025f4079099b4474ee63a12529c22fa4">changeProfile</a></div><div class="ttdeci">void changeProfile()</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00841">engine.cpp:841</a></div></div>
+<div class="ttc" id="agroup__explorer_camera_html_ga8679d9b303f36964bf51dba0993caeaa"><div class="ttname"><a href="group__explorer_camera.html#ga8679d9b303f36964bf51dba0993caeaa">env_load_defaults</a></div><div class="ttdeci">void env_load_defaults()</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00400">engine.cpp:400</a></div></div>
+<div class="ttc" id="agroup__fps_camera_html_gad045a39bcbfa75417dbcd3cab243fa9f"><div class="ttname"><a href="group__fps_camera.html#gad045a39bcbfa75417dbcd3cab243fa9f">globalWarpCursorToCenter</a></div><div class="ttdeci">bool globalWarpCursorToCenter</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00170">engine.cpp:170</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="engine_8cpp_source.html#l00371">g::angleStep</a>, <a class="el" href="engine_8cpp_source.html#l00375">g::cartesian</a>, <a class="el" href="engine_8cpp_source.html#l00370">g::centerStep</a>, <a class="el" href="engine_8cpp_source.html#l00823">changeProfile()</a>, <a class="el" href="engine_8cpp_source.html#l00382">env_load_defaults()</a>, <a class="el" href="engine_8cpp_source.html#l00439">explRedisplay()</a>, <a class="el" href="engine_8cpp_source.html#l00370">g::eyeStep</a>, <a class="el" href="engine_8cpp_source.html#l00164">globalLockCenter</a>, <a class="el" href="engine_8cpp_source.html#l00376">g::origin</a>, <a class="el" href="engine_8cpp_source.html#l00372">g::rotate</a>, <a class="el" href="engine_8cpp_source.html#l00374">g::scale</a>, <a class="el" href="engine_8cpp_source.html#l00371">g::scaleStep</a>, <a class="el" href="engine_8cpp_source.html#l00373">g::translate</a>, <a class="el" href="engine_8cpp_source.html#l00371">g::translateStep</a>, <a class="el" href="engine_8cpp_source.html#l00377">g::up</a>, and <a class="el" href="engine_8cpp_source.html#l00370">g::upStep</a>.</p>
+<p class="reference">References <a class="el" href="engine_8cpp_source.html#l00389">g::angleStep</a>, <a class="el" href="engine_8cpp_source.html#l00393">g::cartesian</a>, <a class="el" href="engine_8cpp_source.html#l00388">g::centerStep</a>, <a class="el" href="engine_8cpp_source.html#l00841">changeProfile()</a>, <a class="el" href="engine_8cpp_source.html#l00400">env_load_defaults()</a>, <a class="el" href="engine_8cpp_source.html#l00457">explRedisplay()</a>, <a class="el" href="engine_8cpp_source.html#l00388">g::eyeStep</a>, <a class="el" href="engine_8cpp_source.html#l00170">globalWarpCursorToCenter</a>, <a class="el" href="engine_8cpp_source.html#l00394">g::origin</a>, <a class="el" href="engine_8cpp_source.html#l00390">g::rotate</a>, <a class="el" href="engine_8cpp_source.html#l00392">g::scale</a>, <a class="el" href="engine_8cpp_source.html#l00389">g::scaleStep</a>, <a class="el" href="engine_8cpp_source.html#l00391">g::translate</a>, <a class="el" href="engine_8cpp_source.html#l00389">g::translateStep</a>, <a class="el" href="engine_8cpp_source.html#l00395">g::up</a>, and <a class="el" href="engine_8cpp_source.html#l00388">g::upStep</a>.</p>
 <div id="dynsection-5" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-5-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-5-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-5-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="group__explorer_camera_ga0b95fc35a07bac37f27f163fb7cba34d_cgraph.svg" width="636" height="392"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__explorer_camera_ga0b95fc35a07bac37f27f163fb7cba34d_cgraph.svg" width="636" height="392"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -637,48 +631,47 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00763">763</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  764</span>{</div>
-<div class="line"><span class="lineno">  765</span>  <span class="keywordflow">if</span> (<a class="code hl_variable" href="group__explorer_camera.html#gac3d947315432e74f7c2d8f0dee6d5166">globalMouseLeftButton</a>)</div>
-<div class="line"><span class="lineno">  766</span>    {</div>
-<div class="line"><span class="lineno">  767</span>      <span class="keyword">const</span> <span class="keywordtype">double</span> stepAlfa = 0.04;</div>
-<div class="line"><span class="lineno">  768</span>      <span class="keyword">const</span> <span class="keywordtype">double</span> stepBeta = 0.035;</div>
-<div class="line"><span class="lineno">  769</span> </div>
-<div class="line"><span class="lineno">  770</span>      <span class="keywordflow">if</span> (x &gt; <a class="code hl_variable" href="group__explorer_camera.html#gaf8a2a5fce2d5ea87716da0cf311e222d">globalExplXPrev</a>) <span class="comment">// moving mouse right</span></div>
-<div class="line"><span class="lineno">  771</span>        <a class="code hl_variable" href="namespaceg.html#a508e0e303cb9629f706fa19bf8aa5984">g::polar</a>.z += stepAlfa;</div>
-<div class="line"><span class="lineno">  772</span>      <span class="keywordflow">else</span> <span class="keywordflow">if</span> (x &lt; <a class="code hl_variable" href="group__explorer_camera.html#gaf8a2a5fce2d5ea87716da0cf311e222d">globalExplXPrev</a>) <span class="comment">// moving mouse left</span></div>
-<div class="line"><span class="lineno">  773</span>        <a class="code hl_variable" href="namespaceg.html#a508e0e303cb9629f706fa19bf8aa5984">g::polar</a>.z -= stepAlfa;</div>
-<div class="line"><span class="lineno">  774</span> </div>
-<div class="line"><span class="lineno">  775</span>      <span class="keywordflow">if</span> (y &gt; <a class="code hl_variable" href="group__explorer_camera.html#gabf14627179e42a9858b43ff0a308a829">globalExplYPrev</a>) <span class="comment">// moving mouse up</span></div>
-<div class="line"><span class="lineno">  776</span>        {</div>
-<div class="line"><span class="lineno">  777</span>          <a class="code hl_variable" href="namespaceg.html#a508e0e303cb9629f706fa19bf8aa5984">g::polar</a>.y -= stepBeta;</div>
-<div class="line"><span class="lineno">  778</span>          <span class="keywordflow">if</span> (<a class="code hl_variable" href="namespaceg.html#a508e0e303cb9629f706fa19bf8aa5984">g::polar</a>.y &lt; .1)</div>
-<div class="line"><span class="lineno">  779</span>            <a class="code hl_variable" href="namespaceg.html#a508e0e303cb9629f706fa19bf8aa5984">g::polar</a>.y = .1;</div>
-<div class="line"><span class="lineno">  780</span>        }</div>
-<div class="line"><span class="lineno">  781</span>      <span class="keywordflow">else</span> <span class="keywordflow">if</span> (y &lt; <a class="code hl_variable" href="group__explorer_camera.html#gabf14627179e42a9858b43ff0a308a829">globalExplYPrev</a>) <span class="comment">// moving mouse down</span></div>
-<div class="line"><span class="lineno">  782</span>        {</div>
-<div class="line"><span class="lineno">  783</span>          <a class="code hl_variable" href="namespaceg.html#a508e0e303cb9629f706fa19bf8aa5984">g::polar</a>.y += stepBeta;</div>
-<div class="line"><span class="lineno">  784</span>          <span class="keywordflow">if</span> (<a class="code hl_variable" href="namespaceg.html#a508e0e303cb9629f706fa19bf8aa5984">g::polar</a>.y &gt; 3.1)</div>
-<div class="line"><span class="lineno">  785</span>            <a class="code hl_variable" href="namespaceg.html#a508e0e303cb9629f706fa19bf8aa5984">g::polar</a>.y = 3.1;</div>
-<div class="line"><span class="lineno">  786</span>        }</div>
+<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00781">781</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  782</span>{</div>
+<div class="line"><span class="lineno">  783</span>  <span class="keywordflow">if</span> (<a class="code hl_variable" href="group__explorer_camera.html#gac3d947315432e74f7c2d8f0dee6d5166">globalMouseLeftButton</a>)</div>
+<div class="line"><span class="lineno">  784</span>    {</div>
+<div class="line"><span class="lineno">  785</span>      <span class="keyword">const</span> <span class="keywordtype">double</span> stepAlfa = 0.04;</div>
+<div class="line"><span class="lineno">  786</span>      <span class="keyword">const</span> <span class="keywordtype">double</span> stepBeta = 0.035;</div>
 <div class="line"><span class="lineno">  787</span> </div>
-<div class="line"><span class="lineno">  788</span>      <a class="code hl_variable" href="group__explorer_camera.html#gaf8a2a5fce2d5ea87716da0cf311e222d">globalExplXPrev</a> = x;</div>
-<div class="line"><span class="lineno">  789</span>      <a class="code hl_variable" href="group__explorer_camera.html#gabf14627179e42a9858b43ff0a308a829">globalExplYPrev</a> = y;</div>
-<div class="line"><span class="lineno">  790</span>    }</div>
-<div class="line"><span class="lineno">  791</span>  <a class="code hl_function" href="group__explorer_camera.html#ga9fe47c5361dc03b642823dc88f07465b">explRedisplay</a> ();</div>
-<div class="line"><span class="lineno">  792</span>}</div>
-<div class="ttc" id="agroup__explorer_camera_html_gabf14627179e42a9858b43ff0a308a829"><div class="ttname"><a href="group__explorer_camera.html#gabf14627179e42a9858b43ff0a308a829">globalExplYPrev</a></div><div class="ttdeci">int globalExplYPrev</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00661">engine.cpp:661</a></div></div>
-<div class="ttc" id="agroup__explorer_camera_html_gac3d947315432e74f7c2d8f0dee6d5166"><div class="ttname"><a href="group__explorer_camera.html#gac3d947315432e74f7c2d8f0dee6d5166">globalMouseLeftButton</a></div><div class="ttdeci">bool globalMouseLeftButton</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00401">engine.cpp:401</a></div></div>
-<div class="ttc" id="agroup__explorer_camera_html_gaf8a2a5fce2d5ea87716da0cf311e222d"><div class="ttname"><a href="group__explorer_camera.html#gaf8a2a5fce2d5ea87716da0cf311e222d">globalExplXPrev</a></div><div class="ttdeci">int globalExplXPrev</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00660">engine.cpp:660</a></div></div>
+<div class="line"><span class="lineno">  788</span>      <span class="keywordflow">if</span> (x &gt; <a class="code hl_variable" href="group__explorer_camera.html#gaf8a2a5fce2d5ea87716da0cf311e222d">globalExplXPrev</a>) <span class="comment">// moving mouse right</span></div>
+<div class="line"><span class="lineno">  789</span>        <a class="code hl_variable" href="namespaceg.html#a508e0e303cb9629f706fa19bf8aa5984">g::polar</a>.z += stepAlfa;</div>
+<div class="line"><span class="lineno">  790</span>      <span class="keywordflow">else</span> <span class="keywordflow">if</span> (x &lt; <a class="code hl_variable" href="group__explorer_camera.html#gaf8a2a5fce2d5ea87716da0cf311e222d">globalExplXPrev</a>) <span class="comment">// moving mouse left</span></div>
+<div class="line"><span class="lineno">  791</span>        <a class="code hl_variable" href="namespaceg.html#a508e0e303cb9629f706fa19bf8aa5984">g::polar</a>.z -= stepAlfa;</div>
+<div class="line"><span class="lineno">  792</span> </div>
+<div class="line"><span class="lineno">  793</span>      <span class="keywordflow">if</span> (y &gt; <a class="code hl_variable" href="group__explorer_camera.html#gabf14627179e42a9858b43ff0a308a829">globalExplYPrev</a>) <span class="comment">// moving mouse up</span></div>
+<div class="line"><span class="lineno">  794</span>        {</div>
+<div class="line"><span class="lineno">  795</span>          <a class="code hl_variable" href="namespaceg.html#a508e0e303cb9629f706fa19bf8aa5984">g::polar</a>.y -= stepBeta;</div>
+<div class="line"><span class="lineno">  796</span>          <span class="keywordflow">if</span> (<a class="code hl_variable" href="namespaceg.html#a508e0e303cb9629f706fa19bf8aa5984">g::polar</a>.y &lt; .1)</div>
+<div class="line"><span class="lineno">  797</span>            <a class="code hl_variable" href="namespaceg.html#a508e0e303cb9629f706fa19bf8aa5984">g::polar</a>.y = .1;</div>
+<div class="line"><span class="lineno">  798</span>        }</div>
+<div class="line"><span class="lineno">  799</span>      <span class="keywordflow">else</span> <span class="keywordflow">if</span> (y &lt; <a class="code hl_variable" href="group__explorer_camera.html#gabf14627179e42a9858b43ff0a308a829">globalExplYPrev</a>) <span class="comment">// moving mouse down</span></div>
+<div class="line"><span class="lineno">  800</span>        {</div>
+<div class="line"><span class="lineno">  801</span>          <a class="code hl_variable" href="namespaceg.html#a508e0e303cb9629f706fa19bf8aa5984">g::polar</a>.y += stepBeta;</div>
+<div class="line"><span class="lineno">  802</span>          <span class="keywordflow">if</span> (<a class="code hl_variable" href="namespaceg.html#a508e0e303cb9629f706fa19bf8aa5984">g::polar</a>.y &gt; 3.1)</div>
+<div class="line"><span class="lineno">  803</span>            <a class="code hl_variable" href="namespaceg.html#a508e0e303cb9629f706fa19bf8aa5984">g::polar</a>.y = 3.1;</div>
+<div class="line"><span class="lineno">  804</span>        }</div>
+<div class="line"><span class="lineno">  805</span> </div>
+<div class="line"><span class="lineno">  806</span>      <a class="code hl_variable" href="group__explorer_camera.html#gaf8a2a5fce2d5ea87716da0cf311e222d">globalExplXPrev</a> = x;</div>
+<div class="line"><span class="lineno">  807</span>      <a class="code hl_variable" href="group__explorer_camera.html#gabf14627179e42a9858b43ff0a308a829">globalExplYPrev</a> = y;</div>
+<div class="line"><span class="lineno">  808</span>    }</div>
+<div class="line"><span class="lineno">  809</span>  <a class="code hl_function" href="group__explorer_camera.html#ga9fe47c5361dc03b642823dc88f07465b">explRedisplay</a> ();</div>
+<div class="line"><span class="lineno">  810</span>}</div>
+<div class="ttc" id="agroup__explorer_camera_html_gabf14627179e42a9858b43ff0a308a829"><div class="ttname"><a href="group__explorer_camera.html#gabf14627179e42a9858b43ff0a308a829">globalExplYPrev</a></div><div class="ttdeci">int globalExplYPrev</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00679">engine.cpp:679</a></div></div>
+<div class="ttc" id="agroup__explorer_camera_html_gac3d947315432e74f7c2d8f0dee6d5166"><div class="ttname"><a href="group__explorer_camera.html#gac3d947315432e74f7c2d8f0dee6d5166">globalMouseLeftButton</a></div><div class="ttdeci">bool globalMouseLeftButton</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00419">engine.cpp:419</a></div></div>
+<div class="ttc" id="agroup__explorer_camera_html_gaf8a2a5fce2d5ea87716da0cf311e222d"><div class="ttname"><a href="group__explorer_camera.html#gaf8a2a5fce2d5ea87716da0cf311e222d">globalExplXPrev</a></div><div class="ttdeci">int globalExplXPrev</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00678">engine.cpp:678</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="engine_8cpp_source.html#l00439">explRedisplay()</a>, <a class="el" href="engine_8cpp_source.html#l00660">globalExplXPrev</a>, <a class="el" href="engine_8cpp_source.html#l00661">globalExplYPrev</a>, <a class="el" href="engine_8cpp_source.html#l00401">globalMouseLeftButton</a>, and <a class="el" href="engine_8cpp_source.html#l00378">g::polar</a>.</p>
+<p class="reference">References <a class="el" href="engine_8cpp_source.html#l00457">explRedisplay()</a>, <a class="el" href="engine_8cpp_source.html#l00678">globalExplXPrev</a>, <a class="el" href="engine_8cpp_source.html#l00679">globalExplYPrev</a>, <a class="el" href="engine_8cpp_source.html#l00419">globalMouseLeftButton</a>, and <a class="el" href="engine_8cpp_source.html#l00396">g::polar</a>.</p>
 <div id="dynsection-6" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-6-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-6-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-6-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="group__explorer_camera_ga1521b52ce120927b1ab548e0b6631e13_cgraph.svg" width="615" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__explorer_camera_ga1521b52ce120927b1ab548e0b6631e13_cgraph.svg" width="615" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -725,97 +718,96 @@ Variables</h2></td></tr>
 <p >objX (2winX - view0)/view2 - 1 objY = INV P M (2winX - view1)/view3 - 1 objZ 2winZ - 1 W 1</p>
 <p >INV denotes matrix inversion. W is an unused variable, included for consistent matrix notation.</p>
 
-<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00663">663</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  664</span>{</div>
-<div class="line"><span class="lineno">  665</span>  <span class="comment">// Wheel reports as button 3(scroll up) and button 4(scroll down)</span></div>
-<div class="line"><span class="lineno">  666</span>  <span class="keywordflow">if</span> ((button == 3) || (button == 4)) <span class="comment">// It&#39;s a wheel event</span></div>
-<div class="line"><span class="lineno">  667</span>    {</div>
-<div class="line"><span class="lineno">  668</span>      <span class="comment">// Each wheel event reports like a button click, GLUT_DOWN then GLUT_UP</span></div>
-<div class="line"><span class="lineno">  669</span>      <span class="keywordflow">if</span> (state == GLUT_UP)</div>
-<div class="line"><span class="lineno">  670</span>        <span class="keywordflow">return</span>; <span class="comment">// Disregard redundant GLUT_UP events</span></div>
-<div class="line"><span class="lineno">  671</span> </div>
-<div class="line"><span class="lineno">  672</span>      <span class="keywordflow">if</span> (button == 3)</div>
-<div class="line"><span class="lineno">  673</span>        {</div>
-<div class="line"><span class="lineno">  674</span>          <a class="code hl_variable" href="namespaceg.html#a508e0e303cb9629f706fa19bf8aa5984">g::polar</a>.x *= .8f;</div>
-<div class="line"><span class="lineno">  675</span>          <span class="keywordflow">if</span> (<a class="code hl_variable" href="namespaceg.html#a508e0e303cb9629f706fa19bf8aa5984">g::polar</a>.x &lt; .1f)</div>
-<div class="line"><span class="lineno">  676</span>            <a class="code hl_variable" href="namespaceg.html#a508e0e303cb9629f706fa19bf8aa5984">g::polar</a>.x = .1f;</div>
-<div class="line"><span class="lineno">  677</span>        }</div>
-<div class="line"><span class="lineno">  678</span>      <span class="keywordflow">else</span></div>
-<div class="line"><span class="lineno">  679</span>        <a class="code hl_variable" href="namespaceg.html#a508e0e303cb9629f706fa19bf8aa5984">g::polar</a>.x *= 1.5;</div>
-<div class="line"><span class="lineno">  680</span>      printf (<span class="stringliteral">&quot;Scroll %s At %d %d\n&quot;</span>, (button == 3) ? <span class="stringliteral">&quot;Up&quot;</span> : <span class="stringliteral">&quot;Down&quot;</span>, x, y);</div>
-<div class="line"><span class="lineno">  681</span>    }</div>
-<div class="line"><span class="lineno">  682</span>  <span class="keywordflow">else</span></div>
-<div class="line"><span class="lineno">  683</span>    {  <span class="comment">// normal button event</span></div>
-<div class="line"><span class="lineno">  684</span>      printf (<span class="stringliteral">&quot;Button %s At %d %d\n&quot;</span>, (state == GLUT_DOWN) ? <span class="stringliteral">&quot;Down&quot;</span> : <span class="stringliteral">&quot;Up&quot;</span>, x, y);</div>
-<div class="line"><span class="lineno">  685</span>      <span class="keywordflow">if</span> (button == GLUT_LEFT_BUTTON)</div>
-<div class="line"><span class="lineno">  686</span>        {</div>
-<div class="line"><span class="lineno">  687</span>          <span class="keywordflow">if</span> (state == GLUT_DOWN)</div>
-<div class="line"><span class="lineno">  688</span>            {</div>
-<div class="line"><span class="lineno">  689</span>              <a class="code hl_variable" href="group__explorer_camera.html#gac3d947315432e74f7c2d8f0dee6d5166">globalMouseLeftButton</a> = <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  690</span>              <a class="code hl_variable" href="group__explorer_camera.html#gaf8a2a5fce2d5ea87716da0cf311e222d">globalExplXPrev</a> = x;</div>
-<div class="line"><span class="lineno">  691</span>              <a class="code hl_variable" href="group__explorer_camera.html#gabf14627179e42a9858b43ff0a308a829">globalExplYPrev</a> = y;</div>
-<div class="line"><span class="lineno">  692</span>            }</div>
-<div class="line"><span class="lineno">  693</span>          <span class="keywordflow">if</span> (state == GLUT_UP)</div>
-<div class="line"><span class="lineno">  694</span>            {</div>
-<div class="line"><span class="lineno">  695</span>              <a class="code hl_variable" href="group__explorer_camera.html#gac3d947315432e74f7c2d8f0dee6d5166">globalMouseLeftButton</a> = <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">  696</span>            }</div>
-<div class="line"><span class="lineno">  697</span>        }</div>
-<div class="line"><span class="lineno">  698</span>      <span class="keywordflow">else</span> <span class="keywordflow">if</span> (button == GLUT_RIGHT_BUTTON)</div>
-<div class="line"><span class="lineno">  699</span>        {</div>
-<div class="line"><span class="lineno">  700</span>          <span class="keywordflow">if</span> (state == GLUT_DOWN)</div>
-<div class="line"><span class="lineno">  701</span>            {</div>
-<div class="line"><span class="lineno">  702</span>              <span class="keywordtype">int</span> window_width = glutGet (GLUT_WINDOW_WIDTH);</div>
-<div class="line"><span class="lineno">  703</span>              <span class="keywordtype">int</span> window_height = glutGet (GLUT_WINDOW_HEIGHT);</div>
-<div class="line"><span class="lineno">  704</span> </div>
-<div class="line"><span class="lineno">  705</span>              GLbyte color[4];</div>
-<div class="line"><span class="lineno">  706</span>              GLfloat depth;</div>
-<div class="line"><span class="lineno">  707</span>              GLuint index;</div>
-<div class="line"><span class="lineno">  708</span> </div>
-<div class="line"><span class="lineno">  709</span>              <span class="comment">//glReadPixels (x, window_height - y - 1, 1, 1, GL_RGBA, GL_UNSIGNED_BYTE, color);</span></div>
-<div class="line"><span class="lineno">  710</span>              <span class="comment">// glReadPixels returns pixel data from the frame buffer</span></div>
-<div class="line"><span class="lineno">  711</span>              glReadPixels (x, window_height - y - 1, 1, 1, GL_DEPTH_COMPONENT, GL_FLOAT, &amp;depth);</div>
-<div class="line"><span class="lineno">  712</span>              <span class="comment">//glReadPixels (x, window_height - y - 1, 1, 1, GL_STENCIL_INDEX, GL_UNSIGNED_INT, &amp;index);</span></div>
-<div class="line"><span class="lineno">  713</span> </div>
-<div class="line"><span class="lineno">  714</span>              <span class="keywordtype">double</span> ox, oy, oz;</div>
-<div class="line"><span class="lineno">  715</span> </div>
-<div class="line"><span class="lineno">  716</span>              GLdouble <a class="code hl_struct" href="structmodel.html">model</a>[16];</div>
-<div class="line"><span class="lineno">  717</span>              glGetDoublev (GL_MODELVIEW_MATRIX, <a class="code hl_struct" href="structmodel.html">model</a>);</div>
-<div class="line"><span class="lineno">  718</span>              GLdouble proj[16];</div>
-<div class="line"><span class="lineno">  719</span>              glGetDoublev (GL_PROJECTION_MATRIX, proj);</div>
-<div class="line"><span class="lineno">  720</span>              GLint view[4];</div>
-<div class="line"><span class="lineno">  721</span>              glGetIntegerv (GL_VIEWPORT, view);</div>
-<div class="line"><span class="lineno">  740</span>              gluUnProject (x, window_height - y - 1, depth,</div>
-<div class="line"><span class="lineno">  741</span>                            <a class="code hl_struct" href="structmodel.html">model</a>,</div>
-<div class="line"><span class="lineno">  742</span>                            proj,</div>
-<div class="line"><span class="lineno">  743</span>                            view,</div>
-<div class="line"><span class="lineno">  744</span>                            &amp;ox, &amp;oy, &amp;oz);</div>
-<div class="line"><span class="lineno">  745</span>              fprintf (stderr, <span class="stringliteral">&quot;%d %d\n&quot;</span>, x, y);</div>
-<div class="line"><span class="lineno">  746</span>              <span class="comment">//globalTranslateX = -ox;</span></div>
-<div class="line"><span class="lineno">  747</span>              <span class="comment">//globalTranslateZ = -oz;</span></div>
-<div class="line"><span class="lineno">  748</span>              <span class="comment">/*cartesian2Spherical (ox, globalEyeY, oz,</span></div>
-<div class="line"><span class="lineno">  749</span><span class="comment">                                   &amp;globalRadius, &amp;globalAzimuth, &amp;globalElevation);*/</span></div>
-<div class="line"><span class="lineno">  750</span>              <span class="comment">//              globalTranslateX = ox;</span></div>
-<div class="line"><span class="lineno">  751</span>              <span class="comment">//              globalTranslateZ = oz;</span></div>
-<div class="line"><span class="lineno">  752</span>              <a class="code hl_variable" href="namespaceg.html#a71a27540abbb96a7be8b6ee95a9b2d66">g::origin</a>.x = ox;</div>
-<div class="line"><span class="lineno">  753</span>              <a class="code hl_variable" href="namespaceg.html#a71a27540abbb96a7be8b6ee95a9b2d66">g::origin</a>.z = oz;</div>
-<div class="line"><span class="lineno">  754</span> </div>
-<div class="line"><span class="lineno">  755</span>              fprintf (stderr, <span class="stringliteral">&quot;%f %f %f\n&quot;</span>, ox, oy, oz);</div>
-<div class="line"><span class="lineno">  756</span>            }</div>
-<div class="line"><span class="lineno">  757</span>        }</div>
-<div class="line"><span class="lineno">  758</span>    }</div>
-<div class="line"><span class="lineno">  759</span> </div>
-<div class="line"><span class="lineno">  760</span>  <a class="code hl_function" href="group__explorer_camera.html#ga9fe47c5361dc03b642823dc88f07465b">explRedisplay</a> ();</div>
-<div class="line"><span class="lineno">  761</span>}</div>
-<div class="ttc" id="astructmodel_html"><div class="ttname"><a href="structmodel.html">model</a></div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00837">engine.cpp:837</a></div></div>
+<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00681">681</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  682</span>{</div>
+<div class="line"><span class="lineno">  683</span>  <span class="comment">// Wheel reports as button 3(scroll up) and button 4(scroll down)</span></div>
+<div class="line"><span class="lineno">  684</span>  <span class="keywordflow">if</span> ((button == 3) || (button == 4)) <span class="comment">// It&#39;s a wheel event</span></div>
+<div class="line"><span class="lineno">  685</span>    {</div>
+<div class="line"><span class="lineno">  686</span>      <span class="comment">// Each wheel event reports like a button click, GLUT_DOWN then GLUT_UP</span></div>
+<div class="line"><span class="lineno">  687</span>      <span class="keywordflow">if</span> (state == GLUT_UP)</div>
+<div class="line"><span class="lineno">  688</span>        <span class="keywordflow">return</span>; <span class="comment">// Disregard redundant GLUT_UP events</span></div>
+<div class="line"><span class="lineno">  689</span> </div>
+<div class="line"><span class="lineno">  690</span>      <span class="keywordflow">if</span> (button == 3)</div>
+<div class="line"><span class="lineno">  691</span>        {</div>
+<div class="line"><span class="lineno">  692</span>          <a class="code hl_variable" href="namespaceg.html#a508e0e303cb9629f706fa19bf8aa5984">g::polar</a>.x *= .8f;</div>
+<div class="line"><span class="lineno">  693</span>          <span class="keywordflow">if</span> (<a class="code hl_variable" href="namespaceg.html#a508e0e303cb9629f706fa19bf8aa5984">g::polar</a>.x &lt; .1f)</div>
+<div class="line"><span class="lineno">  694</span>            <a class="code hl_variable" href="namespaceg.html#a508e0e303cb9629f706fa19bf8aa5984">g::polar</a>.x = .1f;</div>
+<div class="line"><span class="lineno">  695</span>        }</div>
+<div class="line"><span class="lineno">  696</span>      <span class="keywordflow">else</span></div>
+<div class="line"><span class="lineno">  697</span>        <a class="code hl_variable" href="namespaceg.html#a508e0e303cb9629f706fa19bf8aa5984">g::polar</a>.x *= 1.5;</div>
+<div class="line"><span class="lineno">  698</span>      printf (<span class="stringliteral">&quot;Scroll %s At %d %d\n&quot;</span>, (button == 3) ? <span class="stringliteral">&quot;Up&quot;</span> : <span class="stringliteral">&quot;Down&quot;</span>, x, y);</div>
+<div class="line"><span class="lineno">  699</span>    }</div>
+<div class="line"><span class="lineno">  700</span>  <span class="keywordflow">else</span></div>
+<div class="line"><span class="lineno">  701</span>    {  <span class="comment">// normal button event</span></div>
+<div class="line"><span class="lineno">  702</span>      printf (<span class="stringliteral">&quot;Button %s At %d %d\n&quot;</span>, (state == GLUT_DOWN) ? <span class="stringliteral">&quot;Down&quot;</span> : <span class="stringliteral">&quot;Up&quot;</span>, x, y);</div>
+<div class="line"><span class="lineno">  703</span>      <span class="keywordflow">if</span> (button == GLUT_LEFT_BUTTON)</div>
+<div class="line"><span class="lineno">  704</span>        {</div>
+<div class="line"><span class="lineno">  705</span>          <span class="keywordflow">if</span> (state == GLUT_DOWN)</div>
+<div class="line"><span class="lineno">  706</span>            {</div>
+<div class="line"><span class="lineno">  707</span>              <a class="code hl_variable" href="group__explorer_camera.html#gac3d947315432e74f7c2d8f0dee6d5166">globalMouseLeftButton</a> = <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  708</span>              <a class="code hl_variable" href="group__explorer_camera.html#gaf8a2a5fce2d5ea87716da0cf311e222d">globalExplXPrev</a> = x;</div>
+<div class="line"><span class="lineno">  709</span>              <a class="code hl_variable" href="group__explorer_camera.html#gabf14627179e42a9858b43ff0a308a829">globalExplYPrev</a> = y;</div>
+<div class="line"><span class="lineno">  710</span>            }</div>
+<div class="line"><span class="lineno">  711</span>          <span class="keywordflow">if</span> (state == GLUT_UP)</div>
+<div class="line"><span class="lineno">  712</span>            {</div>
+<div class="line"><span class="lineno">  713</span>              <a class="code hl_variable" href="group__explorer_camera.html#gac3d947315432e74f7c2d8f0dee6d5166">globalMouseLeftButton</a> = <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  714</span>            }</div>
+<div class="line"><span class="lineno">  715</span>        }</div>
+<div class="line"><span class="lineno">  716</span>      <span class="keywordflow">else</span> <span class="keywordflow">if</span> (button == GLUT_RIGHT_BUTTON)</div>
+<div class="line"><span class="lineno">  717</span>        {</div>
+<div class="line"><span class="lineno">  718</span>          <span class="keywordflow">if</span> (state == GLUT_DOWN)</div>
+<div class="line"><span class="lineno">  719</span>            {</div>
+<div class="line"><span class="lineno">  720</span>              <span class="keywordtype">int</span> window_width = glutGet (GLUT_WINDOW_WIDTH);</div>
+<div class="line"><span class="lineno">  721</span>              <span class="keywordtype">int</span> window_height = glutGet (GLUT_WINDOW_HEIGHT);</div>
+<div class="line"><span class="lineno">  722</span> </div>
+<div class="line"><span class="lineno">  723</span>              GLbyte color[4];</div>
+<div class="line"><span class="lineno">  724</span>              GLfloat depth;</div>
+<div class="line"><span class="lineno">  725</span>              GLuint index;</div>
+<div class="line"><span class="lineno">  726</span> </div>
+<div class="line"><span class="lineno">  727</span>              <span class="comment">//glReadPixels (x, window_height - y - 1, 1, 1, GL_RGBA, GL_UNSIGNED_BYTE, color);</span></div>
+<div class="line"><span class="lineno">  728</span>              <span class="comment">// glReadPixels returns pixel data from the frame buffer</span></div>
+<div class="line"><span class="lineno">  729</span>              glReadPixels (x, window_height - y - 1, 1, 1, GL_DEPTH_COMPONENT, GL_FLOAT, &amp;depth);</div>
+<div class="line"><span class="lineno">  730</span>              <span class="comment">//glReadPixels (x, window_height - y - 1, 1, 1, GL_STENCIL_INDEX, GL_UNSIGNED_INT, &amp;index);</span></div>
+<div class="line"><span class="lineno">  731</span> </div>
+<div class="line"><span class="lineno">  732</span>              <span class="keywordtype">double</span> ox, oy, oz;</div>
+<div class="line"><span class="lineno">  733</span> </div>
+<div class="line"><span class="lineno">  734</span>              GLdouble <a class="code hl_struct" href="structmodel.html">model</a>[16];</div>
+<div class="line"><span class="lineno">  735</span>              glGetDoublev (GL_MODELVIEW_MATRIX, <a class="code hl_struct" href="structmodel.html">model</a>);</div>
+<div class="line"><span class="lineno">  736</span>              GLdouble proj[16];</div>
+<div class="line"><span class="lineno">  737</span>              glGetDoublev (GL_PROJECTION_MATRIX, proj);</div>
+<div class="line"><span class="lineno">  738</span>              GLint view[4];</div>
+<div class="line"><span class="lineno">  739</span>              glGetIntegerv (GL_VIEWPORT, view);</div>
+<div class="line"><span class="lineno">  758</span>              gluUnProject (x, window_height - y - 1, depth,</div>
+<div class="line"><span class="lineno">  759</span>                            <a class="code hl_struct" href="structmodel.html">model</a>,</div>
+<div class="line"><span class="lineno">  760</span>                            proj,</div>
+<div class="line"><span class="lineno">  761</span>                            view,</div>
+<div class="line"><span class="lineno">  762</span>                            &amp;ox, &amp;oy, &amp;oz);</div>
+<div class="line"><span class="lineno">  763</span>              fprintf (stderr, <span class="stringliteral">&quot;%d %d\n&quot;</span>, x, y);</div>
+<div class="line"><span class="lineno">  764</span>              <span class="comment">//globalTranslateX = -ox;</span></div>
+<div class="line"><span class="lineno">  765</span>              <span class="comment">//globalTranslateZ = -oz;</span></div>
+<div class="line"><span class="lineno">  766</span>              <span class="comment">/*cartesian2Spherical (ox, globalEyeY, oz,</span></div>
+<div class="line"><span class="lineno">  767</span><span class="comment">                                   &amp;globalRadius, &amp;globalAzimuth, &amp;globalElevation);*/</span></div>
+<div class="line"><span class="lineno">  768</span>              <span class="comment">//              globalTranslateX = ox;</span></div>
+<div class="line"><span class="lineno">  769</span>              <span class="comment">//              globalTranslateZ = oz;</span></div>
+<div class="line"><span class="lineno">  770</span>              <a class="code hl_variable" href="namespaceg.html#a71a27540abbb96a7be8b6ee95a9b2d66">g::origin</a>.x = ox;</div>
+<div class="line"><span class="lineno">  771</span>              <a class="code hl_variable" href="namespaceg.html#a71a27540abbb96a7be8b6ee95a9b2d66">g::origin</a>.z = oz;</div>
+<div class="line"><span class="lineno">  772</span> </div>
+<div class="line"><span class="lineno">  773</span>              fprintf (stderr, <span class="stringliteral">&quot;%f %f %f\n&quot;</span>, ox, oy, oz);</div>
+<div class="line"><span class="lineno">  774</span>            }</div>
+<div class="line"><span class="lineno">  775</span>        }</div>
+<div class="line"><span class="lineno">  776</span>    }</div>
+<div class="line"><span class="lineno">  777</span> </div>
+<div class="line"><span class="lineno">  778</span>  <a class="code hl_function" href="group__explorer_camera.html#ga9fe47c5361dc03b642823dc88f07465b">explRedisplay</a> ();</div>
+<div class="line"><span class="lineno">  779</span>}</div>
+<div class="ttc" id="astructmodel_html"><div class="ttname"><a href="structmodel.html">model</a></div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00855">engine.cpp:855</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="engine_8cpp_source.html#l00439">explRedisplay()</a>, <a class="el" href="engine_8cpp_source.html#l00660">globalExplXPrev</a>, <a class="el" href="engine_8cpp_source.html#l00661">globalExplYPrev</a>, <a class="el" href="engine_8cpp_source.html#l00401">globalMouseLeftButton</a>, <a class="el" href="engine_8cpp_source.html#l00376">g::origin</a>, and <a class="el" href="engine_8cpp_source.html#l00378">g::polar</a>.</p>
+<p class="reference">References <a class="el" href="engine_8cpp_source.html#l00457">explRedisplay()</a>, <a class="el" href="engine_8cpp_source.html#l00678">globalExplXPrev</a>, <a class="el" href="engine_8cpp_source.html#l00679">globalExplYPrev</a>, <a class="el" href="engine_8cpp_source.html#l00419">globalMouseLeftButton</a>, <a class="el" href="engine_8cpp_source.html#l00394">g::origin</a>, and <a class="el" href="engine_8cpp_source.html#l00396">g::polar</a>.</p>
 <div id="dynsection-7" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-7-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-7-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-7-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="group__explorer_camera_gab86b1c960c066cefd232128fa8754875_cgraph.svg" width="614" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__explorer_camera_gab86b1c960c066cefd232128fa8754875_cgraph.svg" width="614" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -835,31 +827,29 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00439">439</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  440</span>{</div>
-<div class="line"><span class="lineno">  441</span>  <a class="code hl_function" href="group__explorer_camera.html#ga549cdceeb42f58967c400bcf0fe7a9cf">spherical2Cartesian</a> (<a class="code hl_variable" href="namespaceg.html#a71a27540abbb96a7be8b6ee95a9b2d66">g::origin</a>, <a class="code hl_variable" href="namespaceg.html#a508e0e303cb9629f706fa19bf8aa5984">g::polar</a>, <a class="code hl_variable" href="namespaceg.html#add6c93372391e2a66e9db30ff6f5b983">g::cartesian</a>);</div>
-<div class="line"><span class="lineno">  442</span>  glutPostRedisplay ();</div>
-<div class="line"><span class="lineno">  443</span>}</div>
-<div class="ttc" id="agroup__explorer_camera_html_ga549cdceeb42f58967c400bcf0fe7a9cf"><div class="ttname"><a href="group__explorer_camera.html#ga549cdceeb42f58967c400bcf0fe7a9cf">spherical2Cartesian</a></div><div class="ttdeci">void spherical2Cartesian(const vec3 &amp;origin, const vec3 &amp;polar, vec3 &amp;cartesian)</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00407">engine.cpp:407</a></div></div>
+<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00457">457</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  458</span>{</div>
+<div class="line"><span class="lineno">  459</span>  <a class="code hl_function" href="group__explorer_camera.html#ga549cdceeb42f58967c400bcf0fe7a9cf">spherical2Cartesian</a> (<a class="code hl_variable" href="namespaceg.html#a71a27540abbb96a7be8b6ee95a9b2d66">g::origin</a>, <a class="code hl_variable" href="namespaceg.html#a508e0e303cb9629f706fa19bf8aa5984">g::polar</a>, <a class="code hl_variable" href="namespaceg.html#add6c93372391e2a66e9db30ff6f5b983">g::cartesian</a>);</div>
+<div class="line"><span class="lineno">  460</span>  glutPostRedisplay ();</div>
+<div class="line"><span class="lineno">  461</span>}</div>
+<div class="ttc" id="agroup__explorer_camera_html_ga549cdceeb42f58967c400bcf0fe7a9cf"><div class="ttname"><a href="group__explorer_camera.html#ga549cdceeb42f58967c400bcf0fe7a9cf">spherical2Cartesian</a></div><div class="ttdeci">void spherical2Cartesian(const vec3 &amp;origin, const vec3 &amp;polar, vec3 &amp;cartesian)</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00425">engine.cpp:425</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="engine_8cpp_source.html#l00375">g::cartesian</a>, <a class="el" href="engine_8cpp_source.html#l00376">g::origin</a>, <a class="el" href="engine_8cpp_source.html#l00378">g::polar</a>, and <a class="el" href="engine_8cpp_source.html#l00407">spherical2Cartesian()</a>.</p>
+<p class="reference">References <a class="el" href="engine_8cpp_source.html#l00393">g::cartesian</a>, <a class="el" href="engine_8cpp_source.html#l00394">g::origin</a>, <a class="el" href="engine_8cpp_source.html#l00396">g::polar</a>, and <a class="el" href="engine_8cpp_source.html#l00425">spherical2Cartesian()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00794">explCamera()</a>, <a class="el" href="engine_8cpp_source.html#l00445">explKeyboard()</a>, <a class="el" href="engine_8cpp_source.html#l00763">explMotion()</a>, and <a class="el" href="engine_8cpp_source.html#l00663">explMouse()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00812">explCamera()</a>, <a class="el" href="engine_8cpp_source.html#l00463">explKeyboard()</a>, <a class="el" href="engine_8cpp_source.html#l00781">explMotion()</a>, and <a class="el" href="engine_8cpp_source.html#l00681">explMouse()</a>.</p>
 <div id="dynsection-8" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-8-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-8-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-8-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="group__explorer_camera_ga9fe47c5361dc03b642823dc88f07465b_cgraph.svg" width="472" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__explorer_camera_ga9fe47c5361dc03b642823dc88f07465b_cgraph.svg" width="472" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div id="dynsection-9" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-9-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-9-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-9-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="group__explorer_camera_ga9fe47c5361dc03b642823dc88f07465b_icgraph.svg" width="284" height="190"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__explorer_camera_ga9fe47c5361dc03b642823dc88f07465b_icgraph.svg" width="284" height="190"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -880,10 +870,10 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00809">809</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  810</span>{</div>
-<div class="line"><span class="lineno">  811</span>  glutPostRedisplay ();</div>
-<div class="line"><span class="lineno">  812</span>}</div>
+<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00827">827</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  828</span>{</div>
+<div class="line"><span class="lineno">  829</span>  glutPostRedisplay ();</div>
+<div class="line"><span class="lineno">  830</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -920,37 +910,35 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">polar</td><td>(radius,zenith,azimuth) </td></tr>
+    <tr><td class="paramname">polar</td><td>Spherical coordinates (radius,zenith,azimuth) </td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00407">407</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  411</span>{</div>
-<div class="line"><span class="lineno">  412</span>  <span class="comment">// https://www.wikiwand.com/en/Spherical_coordinate_system</span></div>
-<div class="line"><span class="lineno">  413</span>  <a class="code hl_function" href="namespace_d.html#a393bfec992f13a40a9f601e3e6c82874">cartesian</a>.x = <a class="code hl_function" href="namespace_d.html#aa2fb96ccebb5bf88d4325f85beb99d84">polar</a>.x * sin (<a class="code hl_function" href="namespace_d.html#aa2fb96ccebb5bf88d4325f85beb99d84">polar</a>.y) * cos (<a class="code hl_function" href="namespace_d.html#aa2fb96ccebb5bf88d4325f85beb99d84">polar</a>.z) + <a class="code hl_function" href="namespace_d.html#ae27403f76d7334ff69a099e42f1f1616">origin</a>.x;</div>
-<div class="line"><span class="lineno">  414</span>  <a class="code hl_function" href="namespace_d.html#a393bfec992f13a40a9f601e3e6c82874">cartesian</a>.y = <a class="code hl_function" href="namespace_d.html#aa2fb96ccebb5bf88d4325f85beb99d84">polar</a>.x * cos (<a class="code hl_function" href="namespace_d.html#aa2fb96ccebb5bf88d4325f85beb99d84">polar</a>.y) + <a class="code hl_function" href="namespace_d.html#ae27403f76d7334ff69a099e42f1f1616">origin</a>.y;</div>
-<div class="line"><span class="lineno">  415</span>  <a class="code hl_function" href="namespace_d.html#a393bfec992f13a40a9f601e3e6c82874">cartesian</a>.z = <a class="code hl_function" href="namespace_d.html#aa2fb96ccebb5bf88d4325f85beb99d84">polar</a>.x * sin (<a class="code hl_function" href="namespace_d.html#aa2fb96ccebb5bf88d4325f85beb99d84">polar</a>.y) * sin (<a class="code hl_function" href="namespace_d.html#aa2fb96ccebb5bf88d4325f85beb99d84">polar</a>.z) + <a class="code hl_function" href="namespace_d.html#ae27403f76d7334ff69a099e42f1f1616">origin</a>.z;</div>
-<div class="line"><span class="lineno">  416</span>}</div>
+<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00425">425</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  429</span>{</div>
+<div class="line"><span class="lineno">  430</span>  <span class="comment">// https://www.wikiwand.com/en/Spherical_coordinate_system</span></div>
+<div class="line"><span class="lineno">  431</span>  <a class="code hl_function" href="namespace_d.html#a393bfec992f13a40a9f601e3e6c82874">cartesian</a>.x = <a class="code hl_function" href="namespace_d.html#aa2fb96ccebb5bf88d4325f85beb99d84">polar</a>.x * sin (<a class="code hl_function" href="namespace_d.html#aa2fb96ccebb5bf88d4325f85beb99d84">polar</a>.y) * cos (<a class="code hl_function" href="namespace_d.html#aa2fb96ccebb5bf88d4325f85beb99d84">polar</a>.z) + <a class="code hl_function" href="namespace_d.html#ae27403f76d7334ff69a099e42f1f1616">origin</a>.x;</div>
+<div class="line"><span class="lineno">  432</span>  <a class="code hl_function" href="namespace_d.html#a393bfec992f13a40a9f601e3e6c82874">cartesian</a>.y = <a class="code hl_function" href="namespace_d.html#aa2fb96ccebb5bf88d4325f85beb99d84">polar</a>.x * cos (<a class="code hl_function" href="namespace_d.html#aa2fb96ccebb5bf88d4325f85beb99d84">polar</a>.y) + <a class="code hl_function" href="namespace_d.html#ae27403f76d7334ff69a099e42f1f1616">origin</a>.y;</div>
+<div class="line"><span class="lineno">  433</span>  <a class="code hl_function" href="namespace_d.html#a393bfec992f13a40a9f601e3e6c82874">cartesian</a>.z = <a class="code hl_function" href="namespace_d.html#aa2fb96ccebb5bf88d4325f85beb99d84">polar</a>.x * sin (<a class="code hl_function" href="namespace_d.html#aa2fb96ccebb5bf88d4325f85beb99d84">polar</a>.y) * sin (<a class="code hl_function" href="namespace_d.html#aa2fb96ccebb5bf88d4325f85beb99d84">polar</a>.z) + <a class="code hl_function" href="namespace_d.html#ae27403f76d7334ff69a099e42f1f1616">origin</a>.z;</div>
+<div class="line"><span class="lineno">  434</span>}</div>
 </div><!-- fragment -->
 <p class="reference">References <a class="el" href="namespace_d.html#a393bfec992f13a40a9f601e3e6c82874">D::cartesian()</a>, <a class="el" href="namespace_d.html#ae27403f76d7334ff69a099e42f1f1616">D::origin()</a>, and <a class="el" href="namespace_d.html#aa2fb96ccebb5bf88d4325f85beb99d84">D::polar()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00439">explRedisplay()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00457">explRedisplay()</a>.</p>
 <div id="dynsection-10" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-10-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-10-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-10-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="group__explorer_camera_ga549cdceeb42f58967c400bcf0fe7a9cf_cgraph.svg" width="310" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__explorer_camera_ga549cdceeb42f58967c400bcf0fe7a9cf_cgraph.svg" width="310" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div id="dynsection-11" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-11-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-11-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-11-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="group__explorer_camera_ga549cdceeb42f58967c400bcf0fe7a9cf_icgraph.svg" width="483" height="190"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__explorer_camera_ga549cdceeb42f58967c400bcf0fe7a9cf_icgraph.svg" width="483" height="190"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -968,9 +956,9 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00660">660</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00678">678</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00763">explMotion()</a>, and <a class="el" href="engine_8cpp_source.html#l00663">explMouse()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00781">explMotion()</a>, and <a class="el" href="engine_8cpp_source.html#l00681">explMouse()</a>.</p>
 
 </div>
 </div>
@@ -986,9 +974,9 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00661">661</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00679">679</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00763">explMotion()</a>, and <a class="el" href="engine_8cpp_source.html#l00663">explMouse()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00781">explMotion()</a>, and <a class="el" href="engine_8cpp_source.html#l00681">explMouse()</a>.</p>
 
 </div>
 </div>
@@ -1004,9 +992,9 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00401">401</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00419">419</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00763">explMotion()</a>, and <a class="el" href="engine_8cpp_source.html#l00663">explMouse()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="engine_8cpp_source.html#l00781">explMotion()</a>, and <a class="el" href="engine_8cpp_source.html#l00681">explMouse()</a>.</p>
 
 </div>
 </div>
@@ -1029,14 +1017,14 @@ Variables</h2></td></tr>
 <div class="line">    .timerFunc = <a class="code hl_function" href="group__explorer_camera.html#ga57ea05cfaf6caf9d9f67c5dd4726e382">explTimer</a>,</div>
 <div class="line">    .camera = <a class="code hl_function" href="group__explorer_camera.html#gab0f1d17222b0687759f3d0e7ee600f20">explCamera</a>,</div>
 <div class="line">}</div>
-<div class="ttc" id="agroup__camera_html_ga170513e8231f724bf2c284fbea46dfab"><div class="ttname"><a href="group__camera.html#ga170513e8231f724bf2c284fbea46dfab">defaultChangeSize</a></div><div class="ttdeci">void defaultChangeSize(int w, int h)</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l01039">engine.cpp:1039</a></div></div>
-<div class="ttc" id="agroup__explorer_camera_html_ga0b95fc35a07bac37f27f163fb7cba34d"><div class="ttname"><a href="group__explorer_camera.html#ga0b95fc35a07bac37f27f163fb7cba34d">explKeyboard</a></div><div class="ttdeci">void explKeyboard(unsigned char key, int x, int y)</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00445">engine.cpp:445</a></div></div>
-<div class="ttc" id="agroup__explorer_camera_html_ga1521b52ce120927b1ab548e0b6631e13"><div class="ttname"><a href="group__explorer_camera.html#ga1521b52ce120927b1ab548e0b6631e13">explMotion</a></div><div class="ttdeci">void explMotion(int x, int y)</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00763">engine.cpp:763</a></div></div>
-<div class="ttc" id="agroup__explorer_camera_html_ga57ea05cfaf6caf9d9f67c5dd4726e382"><div class="ttname"><a href="group__explorer_camera.html#ga57ea05cfaf6caf9d9f67c5dd4726e382">explTimer</a></div><div class="ttdeci">void explTimer(int)</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00809">engine.cpp:809</a></div></div>
-<div class="ttc" id="agroup__explorer_camera_html_gab0f1d17222b0687759f3d0e7ee600f20"><div class="ttname"><a href="group__explorer_camera.html#gab0f1d17222b0687759f3d0e7ee600f20">explCamera</a></div><div class="ttdeci">void explCamera()</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00794">engine.cpp:794</a></div></div>
-<div class="ttc" id="agroup__explorer_camera_html_gab86b1c960c066cefd232128fa8754875"><div class="ttname"><a href="group__explorer_camera.html#gab86b1c960c066cefd232128fa8754875">explMouse</a></div><div class="ttdeci">void explMouse(int button, int state, int x, int y)</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00663">engine.cpp:663</a></div></div>
+<div class="ttc" id="agroup__camera_html_ga170513e8231f724bf2c284fbea46dfab"><div class="ttname"><a href="group__camera.html#ga170513e8231f724bf2c284fbea46dfab">defaultChangeSize</a></div><div class="ttdeci">void defaultChangeSize(int w, int h)</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l01067">engine.cpp:1067</a></div></div>
+<div class="ttc" id="agroup__explorer_camera_html_ga0b95fc35a07bac37f27f163fb7cba34d"><div class="ttname"><a href="group__explorer_camera.html#ga0b95fc35a07bac37f27f163fb7cba34d">explKeyboard</a></div><div class="ttdeci">void explKeyboard(unsigned char key, int x, int y)</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00463">engine.cpp:463</a></div></div>
+<div class="ttc" id="agroup__explorer_camera_html_ga1521b52ce120927b1ab548e0b6631e13"><div class="ttname"><a href="group__explorer_camera.html#ga1521b52ce120927b1ab548e0b6631e13">explMotion</a></div><div class="ttdeci">void explMotion(int x, int y)</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00781">engine.cpp:781</a></div></div>
+<div class="ttc" id="agroup__explorer_camera_html_ga57ea05cfaf6caf9d9f67c5dd4726e382"><div class="ttname"><a href="group__explorer_camera.html#ga57ea05cfaf6caf9d9f67c5dd4726e382">explTimer</a></div><div class="ttdeci">void explTimer(int)</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00827">engine.cpp:827</a></div></div>
+<div class="ttc" id="agroup__explorer_camera_html_gab0f1d17222b0687759f3d0e7ee600f20"><div class="ttname"><a href="group__explorer_camera.html#gab0f1d17222b0687759f3d0e7ee600f20">explCamera</a></div><div class="ttdeci">void explCamera()</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00812">engine.cpp:812</a></div></div>
+<div class="ttc" id="agroup__explorer_camera_html_gab86b1c960c066cefd232128fa8754875"><div class="ttname"><a href="group__explorer_camera.html#gab86b1c960c066cefd232128fa8754875">explMouse</a></div><div class="ttdeci">void explMouse(int button, int state, int x, int y)</div><div class="ttdef"><b>Definition:</b> <a href="engine_8cpp_source.html#l00681">engine.cpp:681</a></div></div>
 </div><!-- fragment -->
-<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00342">342</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="engine_8cpp_source.html#l00360">360</a> of file <a class="el" href="engine_8cpp_source.html">engine.cpp</a>.</p>
 
 </div>
 </div>

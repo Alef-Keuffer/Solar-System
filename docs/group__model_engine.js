@@ -13,8 +13,8 @@ var group__model_engine =
       [ "tc", "structmodel.html#a32d49fddff5d56f60779be5ee6f71159", null ],
       [ "vbo", "structmodel.html#ab22ca782aa5b8d3bd578be477ac37fe7", null ]
     ] ],
-    [ "allocModel", "group__model_engine.html#ga361bcac2814bb93f543d2c0f1b28b6d2", null ],
-    [ "associate_a_texture_to_model", "group__model_engine.html#ga8c7329ae859a08eea53a77130ebe6018", null ],
+    [ "addTextureImageToModel", "group__model_engine.html#ga2ca8791f2c1829e3df5d449129d21c32", null ],
+    [ "getModel", "group__model_engine.html#gac02eaf37d06ce4074af34bcf4c2ebec6", null ],
     [ "renderModel", "group__model_engine.html#ga2907e4adf4f2bef2c8ce416cb8470997", null ],
     [ "globalModels", "group__model_engine.html#ga8b7fb1565cdf931fa086d76687bd3f35", null ],
     [ "globalOperations", "group__model_engine.html#ga5e4458752ec64e54ed9ef910aaac54e9", null ],
