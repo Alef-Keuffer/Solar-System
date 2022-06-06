@@ -143,7 +143,7 @@ void loadProfile (profile_t profile)
     glutTimerFunc (0, profile.timerFunc, 0);
 }
 
-void defaultChangeSize (const int w, int h);
+void defaultChangeSize (int w, int h);
 
 /*! @addtogroup fpsCamera
  * @{*/

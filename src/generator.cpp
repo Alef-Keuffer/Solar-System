@@ -11,7 +11,7 @@
 #include <fstream>
 #include <tuple>
 #include <iostream>
-#include <csignal>
+#include <filesystem>
 
 #include "curves.h"
 
@@ -21,7 +21,7 @@ using glm::normalize, glm::cross;
 using std::vector, std::tuple, std::array;
 
 using std::string, std::ifstream, std::ios, std::stringstream;
-using std::cerr, std::endl, glm::to_string;
+using std::filesystem::exists, std::cerr, std::endl, glm::to_string;
 
 template<class T>
 concept arithmetic =  std::is_integral<T>::value or std::is_floating_point<T>::value;
@@ -34,37 +34,8 @@ const char *BEZIER = "bezier";
 /*! @addtogroup generator
 * @{*/
 
-struct baseModel {
-  int nVertices;
-  float *vertices;
-  float *normals;
-  float *texture_coordinates;
-};
-
 /*! @addtogroup points
  * @{*/
-void points_vertex (const float x, const float y, const float z, unsigned int *pos, float points[])
-{
-  points[*pos] = x;
-  points[*pos + 1] = y;
-  points[*pos + 2] = z;
-  *pos += 3;
-}
-
-void points_write (const char *filename, const unsigned int nVertices, const float points[])
-{
-  FILE *fp = fopen (filename, "w");
-  if (!fp)
-    {
-      fprintf (stderr, "failed to open file: %s", filename);
-      exit (1);
-    }
-
-  fwrite (&nVertices, sizeof (unsigned int), 1, fp);
-  fwrite (points, 3 * sizeof (float), nVertices, fp);
-
-  fclose (fp);
-}
 
 void
 model_write (const char *const filename,
@@ -81,9 +52,9 @@ model_write (const char *const filename,
     }
 
   assert(vertices.size () < INT_MAX);
-  const int nVertices = vertices.size ();
-  const int nNormals = normals.size ();
-  const int nTextures = texture.size ();
+  const int nVertices = (int) vertices.size ();
+  const int nNormals = (int) normals.size ();
+  const int nTextures = (int) texture.size ();
   fwrite (&nVertices, sizeof (nVertices), 1, fp);
   fwrite (vertices.data (), sizeof (vertices.back ()), nVertices, fp);
   fwrite (normals.data (), sizeof (normals.back ()), nNormals, fp);
@@ -496,9 +467,9 @@ static inline unsigned int model_sphere_nVertices (const unsigned int slices, co
 }
 
 static inline void
-model_sphere_vertex (const float r,
-                     const float theta,
-                     const float phi,
+model_sphere_vertex (const auto r,
+                     const auto theta,
+                     const auto phi,
                      vector<vec3> &vertices,
                      vector<vec3> &normals)
 {
@@ -683,8 +654,8 @@ mat4x3 mat (const array<vec3, 4> C)
  * @param[out] normal vector normal to the patch specified.
  */
 void get_bezier_point_at (
-    const float u,
-    const float v,
+    const auto u,
+    const auto v,
     const array<vec3, 16> &cp,
     vec3 &coordinate_in_3d_space,
     vec3 &normal)
@@ -759,21 +730,10 @@ void get_bezier_patch (
               vec3 vertex, normal;
               get_bezier_point_at (u * step + step * e[0], v * step + step * e[1], control_points, vertex, normal);
 
-              auto fu = (float) u;
-              auto fv = (float) v;
               vertices.push_back (vertex);
               normals.push_back (normal);
               texture.emplace_back (-(u * step + step * e[0]), -(v * step + step * e[1]));
             }
-
-          //          // upper triangle
-          //          vertices.push_back (get_bezier_point_at (u * step, v * step, control_points));
-          //          vertices.push_back (get_bezier_point_at (u * step, v * step + step, control_points));
-          //          vertices.push_back (get_bezier_point_at (u * step + step, v * step, control_points));
-          //          // lower triangle
-          //          vertices.push_back (get_bezier_point_at (u * step + step, v * step, control_points));
-          //          vertices.push_back (get_bezier_point_at (u * step + step, v * step + step, control_points));
-          //          vertices.push_back (get_bezier_point_at (u * step, v * step + step, control_points));
         }
     }
   /*std::cout << "get_bezier_patch got:" << std::endl;
@@ -820,7 +780,6 @@ void model_bezier_write (
       cerr << nVertices << " = nVertices != vertices.size () = " << vertices.size () << endl;
       exit (EXIT_FAILURE);
     }
-  //assert (nVertices == vertices.size ());
 
   model_write (out_3d_file, vertices, normals, texture);
 }
@@ -952,12 +911,13 @@ int main (const int argc, const char *const argv[])
               exit (EXIT_FAILURE);
             }
           const char *const input_patch_file_path = argv[2];
-          if (access (input_patch_file_path, F_OK))
+          if (!exists (input_patch_file_path))
             {
               cerr << "[generator] file " << input_patch_file_path << " for bezier patch not found" << endl;
               exit (EXIT_FAILURE);
             }
-          cerr << "BEZIER(tesselation: " << tesselation << ", input file: " << input_patch_file_path << ")" << endl;
+          cerr << "[generator] BEZIER(tesselation: " << tesselation << ", input file: " << input_patch_file_path << ")"
+               << endl;
           model_bezier_write (tesselation, input_patch_file_path, out_file_path);
         }
       else

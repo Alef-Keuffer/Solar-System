@@ -71,7 +71,7 @@ get_curve_info (const float global_time,
 }
 
 void
-get_curve_global_point (const float gt, const mat4 &M, const vector<vec3> &control_points, vec3 &pos, vec3 &deriv)
+get_curve_global_point (const auto gt, const mat4 &M, const vector<vec3> &control_points, vec3 &pos, vec3 &deriv)
 {
   float local_t;
   array<vec3, 4> Q{};
@@ -107,19 +107,11 @@ void renderCurve (const mat4 M, const vector<vec3> &control_points, const unsign
   glBegin (GL_LINE_STRIP);
   for (auto t = 0; t <= tesselation; ++t)
     {
-
       get_curve_global_point (t * step, M, control_points, pos, deriv);
       glVertex3f (pos.x, pos.y, pos.z);
     }
   glEnd ();
 
-  //  for (auto p : control_points)
-  //    {
-  //      glPushMatrix ();
-  //      glTranslatef (p.x, p.y, p.z);
-  //      glutSolidSphere (.02, 10, 10);
-  //      glPopMatrix ();
-  //    }
   glPopMatrix ();
 }
 
