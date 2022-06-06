@@ -40,7 +40,7 @@
                     <point x="200" y="-500" z="-200"/>
                     <point x="800" y="10" z="0"/>
                 </translate>
-                <scale x="20" y="20" z="20"/>
+                <scale x="40" y="40" z="40"/>
             </transform>
             <models>
                 <model file="teapot.3d">
