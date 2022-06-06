@@ -147,6 +147,7 @@ void defaultChangeSize (int w, int h);
 
 /*! @addtogroup fpsCamera
  * Great credit to https://thepentamollisproject.blogspot.com/2018/02/setting-up-first-person-camera-in.html
+ * by Ratul Thakur.
  * @{*/
 
 int globalWidth = 16 * 50;
@@ -185,9 +186,10 @@ void fpsInit ()
   //glDepthFunc (GL_LEQUAL);
 }
 
-/*this funtion is used to keep calling the display function periodically
-  at a rate of FPS times in one second. The constant FPS is defined above and
-  has the value of 60
+/*
+ * this funtion is used to keep calling the display function periodically
+ * at a rate of FPS times in one second. The constant FPS is defined above and
+ * has the value of 60
 */
 void fpsTimer (int)
 {
@@ -202,9 +204,10 @@ void fpsPassiveMotion (int x, int y)
   if (!globalLockCenter)
     return;
 
-  /* two variables to store X and Y coordinates, as observed from the center
-    of the window
-  */
+  /*
+   * two variables to store X and Y coordinates, as observed from the center
+   * of the window
+   */
   int dev_x, dev_y;
   dev_x = (globalWidth / 2) - x;
   dev_y = (globalHeight / 2) - y;
@@ -249,9 +252,10 @@ void fpsCamera ()
     {
       globalFpsCamY -= 1 / sens;
     }
-  /*limit the values of pitch
-    between -60 and 70
-  */
+  /*
+   * limit the values of pitch
+   * between -60 and 70
+   */
   if (globalPitch >= 70)
     globalPitch = 70;
   if (globalPitch <= -60)
