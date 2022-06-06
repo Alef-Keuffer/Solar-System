@@ -146,6 +146,7 @@ void loadProfile (profile_t profile)
 void defaultChangeSize (int w, int h);
 
 /*! @addtogroup fpsCamera
+ * Great credit to https://thepentamollisproject.blogspot.com/2018/02/setting-up-first-person-camera-in.html
  * @{*/
 
 int globalWidth = 16 * 50;
