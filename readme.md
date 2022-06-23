@@ -2,7 +2,7 @@
 
 ## Documentation
 
-See [docs](https://alef-keuffer.github.io/proj/)
+See [docs](https://alef-keuffer.github.io/Solar-System/)
 
 ## Goal
 
